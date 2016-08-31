@@ -1,0 +1,752 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Samsara API",
+        "version": "1.0.0"
+    },
+    "host": "api.samsara.com",
+    "schemes": [
+        "https"
+    ],
+    "basePath": "/v1",
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "externalDocs": {
+        "description": "Documentation for the Samsara API",
+        "url": "https://www.samsara.com/api"
+    },
+    "paths": {
+        "/sensors/list": {
+            "post": {
+                "summary": "This method returns a list of the sensor objects in the Samsara Cloud and information about them.",
+                "operationId": "get_sensors",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "$ref": "#/parameters/groupParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of sensor objects.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "sensors": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Sensor"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/sensors/temperature": {
+            "post": {
+                "summary": "This method returns the current ambient temperature (and probe temperature if applicable) for the requested sensors.",
+                "operationId": "get_sensors_temperature",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "$ref": "#/parameters/sensorParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of sensor objects containing the current temperature reported by each sensor.",
+                        "schema": {
+                            "$ref": "#/definitions/TemperatureResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/sensors/humidity": {
+            "post": {
+                "summary": "This method returns the current relative humidity for the requested sensors.",
+                "operationId": "get_sensors_humidity",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "$ref": "#/parameters/sensorParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of sensor objects containing the current humidity reported by each sensor.",
+                        "schema": {
+                            "$ref": "#/definitions/HumidityResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/sensors/history": {
+            "post": {
+                "summary": "This method returns a set of historical data for the specified sensors in the specified time range and at the specified time resolution.",
+                "operationId": "get_sensors_history",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "historyParam",
+                        "description": "Group ID, time range and resolution, and list of sensor ID, field pairs to query.",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "groupId",
+                                "startMs",
+                                "endMs",
+                                "stepMs",
+                                "series"
+                            ],
+                            "properties": {
+                                "groupId": {
+                                    "type": "integer",
+                                    "description": "Group ID to query.",
+                                    "format": "int64"
+                                },
+                                "startMs": {
+                                    "type": "integer",
+                                    "description": "Beginning of the time range, specified in milliseconds UNIX time."
+                                },
+                                "endMs": {
+                                    "type": "integer",
+                                    "description": "End of the time range, specified in milliseconds UNIX time."
+                                },
+                                "stepMs": {
+                                    "type": "integer",
+                                    "description": "Time resolution for which data should be returned, in milliseconds.",
+                                    "example": "Specifying 3600000 will return data at hour intervals."
+                                },
+                                "series": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "description": "Sensor ID and field to query.",
+                                        "required": [
+                                            "widgetId",
+                                            "field"
+                                        ],
+                                        "properties": {
+                                            "widgetId": {
+                                                "type": "integer",
+                                                "description": "Sensor ID to query.",
+                                                "format": "int64"
+                                            },
+                                            "field": {
+                                                "type": "string",
+                                                "description": "Field to query.",
+                                                "enum": [
+                                                    "ambientTemperature",
+                                                    "probeTemperature",
+                                                    "currentLoop1Raw",
+                                                    "currentLoop1Mapped",
+                                                    "currentLoop2Raw",
+                                                    "currentLoop2Mapped",
+                                                    "pmPowerTotal",
+                                                    "pmPhase1Power",
+                                                    "pmPhase2Power",
+                                                    "pmPhase3Power",
+                                                    "pmPhase1PowerFactor",
+                                                    "pmPhase2PowerFactor",
+                                                    "pmPhase3PowerFactor"
+                                                ]
+                                            }
+                                        }
+                                    }
+                                },
+                                "fillMissing": {
+                                    "type": "string",
+                                    "enum": [
+                                        "withNull",
+                                        "withPrevious"
+                                    ],
+                                    "default": "withNull"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of results objects, each containing a time and a datapoint for each requested sensor/field pair.",
+                        "schema": {
+                            "$ref": "#/definitions/SensorHistoryResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/list": {
+            "post": {
+                "summary": "This method returns a list of the vehicles in the Samsara Cloud and information about them.",
+                "operationId": "get_fleet",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "$ref": "#/parameters/groupParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of vehicles and information about each.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "groupId": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                },
+                                "vehicles": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Vehicle"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/locations": {
+            "post": {
+                "summary": "This method returns the current location in latitude and longitude of all vehicles in a requested group.",
+                "operationId": "get_fleet_locations",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "$ref": "#/parameters/groupParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of vehicle objects containing their location and the time at which that location was logged.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "groupId": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                },
+                                "vehicles": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/VehicleLocation"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/trips": {
+            "post": {
+                "summary": "This method returns a set of historical trips data for the specified vehicle in the specified time range.",
+                "operationId": "get_fleet_trips",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "tripsParam",
+                        "description": "Group ID, vehicle ID and time range to query.",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "groupId",
+                                "vehicleId",
+                                "startMs",
+                                "endMs"
+                            ],
+                            "properties": {
+                                "groupId": {
+                                    "type": "integer",
+                                    "description": "Group ID to query.",
+                                    "format": "int64"
+                                },
+                                "vehicleId": {
+                                    "type": "integer",
+                                    "description": "Vehicle ID to query.",
+                                    "format": "int64"
+                                },
+                                "startMs": {
+                                    "type": "integer",
+                                    "description": "Beginning of the time range, specified in milliseconds UNIX time."
+                                },
+                                "endMs": {
+                                    "type": "integer",
+                                    "description": "End of the time range, specified in milliseconds UNIX time."
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of trips taken by the requested vehicle within the specified timeframe.",
+                        "schema": {
+                            "$ref": "#/definitions/TripResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/add_address": {
+            "post": {
+                "summary": "This method adds an address book entry to the specified group.",
+                "operationId": "add_fleet_address",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "addressParam",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "groupId",
+                                "name",
+                                "address",
+                                "radius"
+                            ],
+                            "properties": {
+                                "groupId": {
+                                    "type": "integer",
+                                    "description": "Group ID to query.",
+                                    "format": "int64"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "description": "Name of the location to add to the address book."
+                                },
+                                "address": {
+                                    "type": "string",
+                                    "description": "The address of the entry to add, as it would be recognized if provided to maps.google.com."
+                                },
+                                "radius": {
+                                    "type": "integer",
+                                    "description": "Radius in meters of the address (used for matching vehicle trip stops to this location)."
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Address was successfully added. No response body is returned."
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/set_data": {
+            "post": {
+                "summary": "This method enables the mutation of metadata for vehicles in the Samsara Cloud.",
+                "operationId": "update_vehicles",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "vehicleUpdateParam",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "groupId",
+                                "vehicles"
+                            ],
+                            "properties": {
+                                "groupId": {
+                                    "type": "integer",
+                                    "description": "Group ID to query.",
+                                    "format": "int64"
+                                },
+                                "vehicles": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Vehicle"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Vehicles were successfully updated. No response body is returned."
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Sensor": {
+            "type": "object",
+            "description": "Contains information about a sensor.",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "ID of the sensor.",
+                    "format": "int64"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the sensor."
+                },
+                "macAddress": {
+                    "type": "string",
+                    "description": "MAC address of the sensor."
+                }
+            }
+        },
+        "Vehicle": {
+            "type": "object",
+            "description": "A vehicle object.",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "ID of the vehicle.",
+                    "format": "int64"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the vehicle."
+                },
+                "note": {
+                    "type": "string"
+                }
+            }
+        },
+        "VehicleLocation": {
+            "type": "object",
+            "description": "Contains the location, in latitude and longitude, of a vehicle.",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "ID of the vehicle.",
+                    "format": "int64"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the vehicle."
+                },
+                "latitude": {
+                    "type": "integer",
+                    "description": "Latitude in decimal degrees."
+                },
+                "longitude": {
+                    "type": "integer",
+                    "description": "Longitude in decimal degrees."
+                },
+                "location": {
+                    "type": "string",
+                    "description": "Text representation of nearest identifiable location to (latitude, longitude) coordinates."
+                },
+                "time": {
+                    "type": "integer",
+                    "description": "The time the reported location was logged, reported as a UNIX timestamp in milliseconds."
+                }
+            }
+        },
+        "TemperatureResponse": {
+            "type": "object",
+            "description": "Contains the current temperatures of a sensor.",
+            "properties": {
+                "groupId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "sensors": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "ID of the sensor."
+                            },
+                            "ambientTemperature": {
+                                "type": "integer",
+                                "description": "Currently reported ambient temperature in millidegrees celsius."
+                            },
+                            "probeTemperature": {
+                                "type": "integer",
+                                "description": "Currently reported probe temperature in millidegrees celsius. If no probe is connected, this parameter will not be reported."
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "HumidityResponse": {
+            "type": "object",
+            "description": "Contains the current humidity of a sensor.",
+            "properties": {
+                "groupId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "sensors": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "description": "ID of the sensor.",
+                                "format": "int64"
+                            },
+                            "humidity": {
+                                "type": "integer",
+                                "description": "Currently reported relative humidity in percent, from 0-100."
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "TripResponse": {
+            "type": "object",
+            "description": "Contains the trips for the vehicle in the requested timeframe. A trip is represented as an object that contains startMs, startLocation, startCoordinates, endMs, endLocation, and endCoordinates.",
+            "properties": {
+                "trips": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "startMs": {
+                                "type": "integer",
+                                "description": "Beginning of the trip in UNIX milliseconds."
+                            },
+                            "startCoordinates": {
+                                "type": "object",
+                                "description": "Start (latitude, longitude) in decimal degrees.",
+                                "properties": {
+                                    "latitude": {
+                                        "type": "integer"
+                                    },
+                                    "longitude": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "startLocation": {
+                                "type": "string",
+                                "description": "Text representation of nearest identifiable location to the start (latitude, longitude) coordinates."
+                            },
+                            "endMs": {
+                                "type": "integer",
+                                "description": "End of the trip in UNIX milliseconds."
+                            },
+                            "endCoordinates": {
+                                "type": "object",
+                                "description": "End (latitude, longitude) in decimal degrees.",
+                                "properties": {
+                                    "latitude": {
+                                        "type": "integer"
+                                    },
+                                    "longitude": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "endLocation": {
+                                "type": "string",
+                                "description": "Text representation of nearest identifiable location to the end (latitude, longitude) coordinates."
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "ErrorResponse": {
+            "type": "object",
+            "description": "Contains the error response when a request fails.",
+            "properties": {
+                "status_code": {
+                    "type": "integer",
+                    "description": "HTTP status code returned.",
+                    "format": "int64"
+                },
+                "message": {
+                    "type": "string",
+                    "description": "Error message returned."
+                }
+            }
+        },
+        "SensorHistoryResponse": {
+            "type": "object",
+            "description": "Contains the results for a sensor history request. Each result contains a timestamp and datapoint for each requested (sensor, field) pair.",
+            "properties": {
+                "results": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "timeMs": {
+                                "type": "integer",
+                                "description": "Timestamp in UNIX milliseconds."
+                            },
+                            "series": {
+                                "type": "array",
+                                "description": "List of datapoints, one for each requested (sensor, field) pair.",
+                                "items": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "parameters": {
+        "accessTokenParam": {
+            "name": "access_token",
+            "description": "Samsara API access token.",
+            "required": true,
+            "in": "query",
+            "type": "string"
+        },
+        "groupParam": {
+            "name": "groupParam",
+            "description": "Group ID to query.",
+            "required": true,
+            "in": "body",
+            "schema": {
+                "type": "object",
+                "required": [
+                    "groupId"
+                ],
+                "properties": {
+                    "groupId": {
+                        "type": "integer",
+                        "description": "Group ID to query.",
+                        "format": "int64"
+                    }
+                }
+            }
+        },
+        "sensorParam": {
+            "name": "sensorParam",
+            "description": "Group ID and list of sensor IDs to query.",
+            "required": true,
+            "in": "body",
+            "schema": {
+                "type": "object",
+                "required": [
+                    "groupId",
+                    "sensors"
+                ],
+                "properties": {
+                    "groupId": {
+                        "type": "integer",
+                        "description": "Group ID to query.",
+                        "format": "int64"
+                    },
+                    "sensors": {
+                        "type": "array",
+                        "description": "List of sensor IDs to query.",
+                        "items": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
