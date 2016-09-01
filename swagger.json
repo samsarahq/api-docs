@@ -318,7 +318,8 @@
                             "properties": {
                                 "groupId": {
                                     "type": "integer",
-                                    "format": "int64"
+                                    "format": "int64",
+                                    "example": 101
                                 },
                                 "vehicles": {
                                     "type": "array",
@@ -373,15 +374,18 @@
                                 "vehicleId": {
                                     "type": "integer",
                                     "description": "Vehicle ID to query.",
-                                    "format": "int64"
+                                    "format": "int64",
+                                    "example": 112
                                 },
                                 "startMs": {
                                     "type": "integer",
-                                    "description": "Beginning of the time range, specified in milliseconds UNIX time."
+                                    "description": "Beginning of the time range, specified in milliseconds UNIX time.",
+                                    "example": 53
                                 },
                                 "endMs": {
                                     "type": "integer",
-                                    "description": "End of the time range, specified in milliseconds UNIX time."
+                                    "description": "End of the time range, specified in milliseconds UNIX time.",
+                                    "example": 1462881998034
                                 }
                             }
                         }
@@ -492,7 +496,8 @@
                                 "groupId": {
                                     "type": "integer",
                                     "description": "Group ID to query.",
-                                    "format": "int64"
+                                    "format": "int64",
+                                    "example": 101
                                 },
                                 "vehicles": {
                                     "type": "array",
@@ -563,7 +568,8 @@
                     "example": "Truck A7"
                 },
                 "note": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Red truck 2015 M16"
                 }
             }
         },
@@ -614,7 +620,7 @@
                 "groupId": {
                     "type": "integer",
                     "format": "int64",
-                    "example": 108
+                    "example": 101
                 },
                 "sensors": {
                     "type": "array",
@@ -625,7 +631,7 @@
                                 "type": "integer",
                                 "format": "int64",
                                 "description": "ID of the sensor.",
-                                "example": 119
+                                "example": 122
                             },
                             "ambientTemperature": {
                                 "type": "integer",
@@ -768,7 +774,8 @@
                                 "description": "List of datapoints, one for each requested (sensor, field) pair.",
                                 "items": {
                                     "type": "integer",
-                                    "format": "int64"
+                                    "format": "int64",
+                                    "example": 1
                                 }
                             }
                         }
