@@ -602,7 +602,8 @@
             "properties": {
                 "groupId": {
                     "type": "integer",
-                    "format": "int64"
+                    "format": "int64",
+                    "example": 108
                 },
                 "sensors": {
                     "type": "array",
@@ -612,15 +613,18 @@
                             "id": {
                                 "type": "integer",
                                 "format": "int64",
-                                "description": "ID of the sensor."
+                                "description": "ID of the sensor.",
+                                "example": 119
                             },
                             "ambientTemperature": {
                                 "type": "integer",
-                                "description": "Currently reported ambient temperature in millidegrees celsius."
+                                "description": "Currently reported ambient temperature in millidegrees celsius.",
+                                "example": 11057
                             },
                             "probeTemperature": {
                                 "type": "integer",
-                                "description": "Currently reported probe temperature in millidegrees celsius. If no probe is connected, this parameter will not be reported."
+                                "description": "Currently reported probe temperature in millidegrees celsius. If no probe is connected, this parameter will not be reported.",
+                                "example": -20145
                             }
                         }
                     }
@@ -633,7 +637,8 @@
             "properties": {
                 "groupId": {
                     "type": "integer",
-                    "format": "int64"
+                    "format": "int64",
+                    "example": 101
                 },
                 "sensors": {
                     "type": "array",
@@ -643,11 +648,13 @@
                             "id": {
                                 "type": "integer",
                                 "description": "ID of the sensor.",
-                                "format": "int64"
+                                "format": "int64",
+                                "example": 122
                             },
                             "humidity": {
                                 "type": "integer",
-                                "description": "Currently reported relative humidity in percent, from 0-100."
+                                "description": "Currently reported relative humidity in percent, from 0-100.",
+                                "example": 53
                             }
                         }
                     }
@@ -665,43 +672,51 @@
                         "properties": {
                             "startMs": {
                                 "type": "integer",
-                                "description": "Beginning of the trip in UNIX milliseconds."
+                                "description": "Beginning of the trip in UNIX milliseconds.",
+                                "example": 53
                             },
                             "startCoordinates": {
                                 "type": "object",
                                 "description": "Start (latitude, longitude) in decimal degrees.",
                                 "properties": {
                                     "latitude": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "example": 29.443702345
                                     },
                                     "longitude": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "example": -98.502888123
                                     }
                                 }
                             },
                             "startLocation": {
                                 "type": "string",
-                                "description": "Text representation of nearest identifiable location to the start (latitude, longitude) coordinates."
+                                "description": "Text representation of nearest identifiable location to the start (latitude, longitude) coordinates.",
+                                "example": "Woodland Lane, Dallas, TX"
                             },
                             "endMs": {
                                 "type": "integer",
-                                "description": "End of the trip in UNIX milliseconds."
+                                "description": "End of the trip in UNIX milliseconds.",
+                                "example": 1462881998034
                             },
                             "endCoordinates": {
                                 "type": "object",
                                 "description": "End (latitude, longitude) in decimal degrees.",
                                 "properties": {
                                     "latitude": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "example": 23.413702345
                                     },
                                     "longitude": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "example": -91.502888123
                                     }
                                 }
                             },
                             "endLocation": {
                                 "type": "string",
-                                "description": "Text representation of nearest identifiable location to the end (latitude, longitude) coordinates."
+                                "description": "Text representation of nearest identifiable location to the end (latitude, longitude) coordinates.",
+                                "example": "FC Elementary School"
                             }
                         }
                     }
@@ -734,7 +749,8 @@
                         "properties": {
                             "timeMs": {
                                 "type": "integer",
-                                "description": "Timestamp in UNIX milliseconds."
+                                "description": "Timestamp in UNIX milliseconds.",
+                                "example": 1453449599999
                             },
                             "series": {
                                 "type": "array",
