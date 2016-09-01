@@ -19,6 +19,16 @@
         "description": "Documentation for the Samsara API",
         "url": "https://www.samsara.com/api"
     },
+    "tags": [
+        {
+            "name": "Sensors",
+            "description": "Access to sensor data"
+        },
+        {
+            "name": "Fleet",
+            "description": "Access to fleet data"
+        }
+    ],
     "paths": {
         "/sensors/list": {
             "post": {
@@ -26,6 +36,7 @@
                     "Sensors"
                 ],
                 "summary": "Get sensor objects",
+                "description": "This method returns a list of the sensor objects in the Samsara Cloud and information about them.",
                 "operationId": "get_sensors",
                 "parameters": [
                     {
@@ -65,6 +76,7 @@
                     "Sensors"
                 ],
                 "summary": "Get temperature for requested sensors.",
+                "description": "This method returns the current ambient temperature (and probe temperature if applicable) for the requested sensors.",
                 "operationId": "get_sensors_temperature",
                 "parameters": [
                     {
@@ -96,6 +108,7 @@
                     "Sensors"
                 ],
                 "summary": "Get humidity for requested sensors.",
+                "description": "This method returns the current relative humidity for the requested sensors.",
                 "operationId": "get_sensors_humidity",
                 "parameters": [
                     {
@@ -127,6 +140,7 @@
                     "Sensors"
                 ],
                 "summary": "Get historical data for specified sensors.",
+                "description": "This method returns a set of historical data for the specified sensors in the specified time range and at the specified time resolution.",
                 "operationId": "get_sensors_history",
                 "parameters": [
                     {
@@ -236,6 +250,7 @@
                     "Fleet"
                 ],
                 "summary": "Get list of the vehicles.",
+                "description": "This method returns a list of the vehicles in the Samsara Cloud and information about them.",
                 "operationId": "get_fleet",
                 "parameters": [
                     {
@@ -279,6 +294,7 @@
                     "Fleet"
                 ],
                 "summary": "Get current location of vehicles in a group.",
+                "description": "This method returns the current location in latitude and longitude of all vehicles in a requested group.",
                 "operationId": "get_fleet_locations",
                 "parameters": [
                     {
@@ -322,6 +338,7 @@
                     "Fleet"
                 ],
                 "summary": "Get historical trips data for specified vehicle.",
+                "description": "This method returns a set of historical trips data for the specified vehicle in the specified time range.",
                 "operationId": "get_fleet_trips",
                 "parameters": [
                     {
@@ -385,6 +402,7 @@
                     "Fleet"
                 ],
                 "summary": "Add an address book entry to a specified group.",
+                "description": "This method adds an address book entry to the specified group.",
                 "operationId": "add_fleet_address",
                 "parameters": [
                     {
@@ -443,6 +461,7 @@
                     "Fleet"
                 ],
                 "summary": "Enables mutation of metadata for vehicles.",
+                "description": "This method enables the mutation of metadata for vehicles in the Samsara Cloud.",
                 "operationId": "update_vehicles",
                 "parameters": [
                     {
