@@ -165,7 +165,7 @@
                                     "type": "integer",
                                     "description": "Group ID to query.",
                                     "format": "int64",
-                                    "example": 111
+                                    "example": 101
                                 },
                                 "startMs": {
                                     "type": "integer",
@@ -195,7 +195,8 @@
                                             "widgetId": {
                                                 "type": "integer",
                                                 "description": "Sensor ID to query.",
-                                                "format": "int64"
+                                                "format": "int64",
+                                                "example": 1
                                             },
                                             "field": {
                                                 "type": "string",
@@ -214,7 +215,8 @@
                                                     "pmPhase1PowerFactor",
                                                     "pmPhase2PowerFactor",
                                                     "pmPhase3PowerFactor"
-                                                ]
+                                                ],
+                                                "example": "ambientTemperature"
                                             }
                                         }
                                     }
@@ -271,7 +273,8 @@
                             "properties": {
                                 "groupId": {
                                     "type": "integer",
-                                    "format": "int64"
+                                    "format": "int64",
+                                    "example": 101
                                 },
                                 "vehicles": {
                                     "type": "array",
@@ -364,7 +367,8 @@
                                 "groupId": {
                                     "type": "integer",
                                     "description": "Group ID to query.",
-                                    "format": "int64"
+                                    "format": "int64",
+                                    "example": 101
                                 },
                                 "vehicleId": {
                                     "type": "integer",
@@ -428,7 +432,7 @@
                                     "type": "integer",
                                     "description": "Group ID to query.",
                                     "format": "int64",
-                                    "example": 100
+                                    "example": 101
                                 },
                                 "name": {
                                     "type": "string",
@@ -796,7 +800,7 @@
                         "type": "integer",
                         "description": "Group ID to query.",
                         "format": "int64",
-                        "example": 123
+                        "example": 101
                     }
                 }
             }
@@ -816,7 +820,8 @@
                     "groupId": {
                         "type": "integer",
                         "description": "Group ID to query.",
-                        "format": "int64"
+                        "format": "int64",
+                        "example": 101
                     },
                     "sensors": {
                         "type": "array",
@@ -824,7 +829,10 @@
                         "items": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": [
+                            122
+                        ]
                     }
                 }
             }
