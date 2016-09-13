@@ -31,225 +31,6 @@
         }
     ],
     "paths": {
-        "/sensors/list": {
-            "post": {
-                "tags": [
-                    "Sensors"
-                ],
-                "summary": "Get sensor objects",
-                "description": "This method returns a list of the sensor objects in the Samsara Cloud and information about them.",
-                "operationId": "get_sensors",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/accessTokenParam"
-                    },
-                    {
-                        "$ref": "#/parameters/groupParam"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "List of sensor objects.",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "sensors": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/Sensor"
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "default": {
-                        "description": "Unexpected error.",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/sensors/temperature": {
-            "post": {
-                "tags": [
-                    "Sensors"
-                ],
-                "summary": "Get temperature for requested sensors.",
-                "description": "This method returns the current ambient temperature (and probe temperature if applicable) for the requested sensors.",
-                "operationId": "get_sensors_temperature",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/accessTokenParam"
-                    },
-                    {
-                        "$ref": "#/parameters/sensorParam"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "List of sensor objects containing the current temperature reported by each sensor.",
-                        "schema": {
-                            "$ref": "#/definitions/TemperatureResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Unexpected error.",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/sensors/humidity": {
-            "post": {
-                "tags": [
-                    "Sensors"
-                ],
-                "summary": "Get humidity for requested sensors.",
-                "description": "This method returns the current relative humidity for the requested sensors.",
-                "operationId": "get_sensors_humidity",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/accessTokenParam"
-                    },
-                    {
-                        "$ref": "#/parameters/sensorParam"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "List of sensor objects containing the current humidity reported by each sensor.",
-                        "schema": {
-                            "$ref": "#/definitions/HumidityResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Unexpected error.",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/sensors/history": {
-            "post": {
-                "tags": [
-                    "Sensors"
-                ],
-                "summary": "Get historical data for specified sensors.",
-                "description": "This method returns a set of historical data for the specified sensors in the specified time range and at the specified time resolution.",
-                "operationId": "get_sensors_history",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/accessTokenParam"
-                    },
-                    {
-                        "name": "historyParam",
-                        "description": "Group ID, time range and resolution, and list of sensor ID, field pairs to query.",
-                        "required": true,
-                        "in": "body",
-                        "schema": {
-                            "type": "object",
-                            "required": [
-                                "groupId",
-                                "startMs",
-                                "endMs",
-                                "stepMs",
-                                "series"
-                            ],
-                            "properties": {
-                                "groupId": {
-                                    "type": "integer",
-                                    "description": "Group ID to query.",
-                                    "format": "int",
-                                    "example": 101
-                                },
-                                "startMs": {
-                                    "type": "integer",
-                                    "description": "Beginning of the time range, specified in milliseconds UNIX time.",
-                                    "example": 53
-                                },
-                                "endMs": {
-                                    "type": "integer",
-                                    "description": "End of the time range, specified in milliseconds UNIX time.",
-                                    "example": 1453449599999
-                                },
-                                "stepMs": {
-                                    "type": "integer",
-                                    "description": "Time resolution for which data should be returned, in milliseconds. Specifying 3600000 will return data at hour intervals.",
-                                    "example": 3600000
-                                },
-                                "series": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "description": "Sensor ID and field to query.",
-                                        "required": [
-                                            "widgetId",
-                                            "field"
-                                        ],
-                                        "properties": {
-                                            "widgetId": {
-                                                "type": "integer",
-                                                "description": "Sensor ID to query.",
-                                                "format": "int",
-                                                "example": 1
-                                            },
-                                            "field": {
-                                                "type": "string",
-                                                "description": "Field to query.",
-                                                "enum": [
-                                                    "ambientTemperature",
-                                                    "probeTemperature",
-                                                    "currentLoop1Raw",
-                                                    "currentLoop1Mapped",
-                                                    "currentLoop2Raw",
-                                                    "currentLoop2Mapped",
-                                                    "pmPowerTotal",
-                                                    "pmPhase1Power",
-                                                    "pmPhase2Power",
-                                                    "pmPhase3Power",
-                                                    "pmPhase1PowerFactor",
-                                                    "pmPhase2PowerFactor",
-                                                    "pmPhase3PowerFactor"
-                                                ],
-                                                "example": "ambientTemperature"
-                                            }
-                                        }
-                                    }
-                                },
-                                "fillMissing": {
-                                    "type": "string",
-                                    "enum": [
-                                        "withNull",
-                                        "withPrevious"
-                                    ],
-                                    "default": "withNull"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "List of results objects, each containing a time and a datapoint for each requested sensor/field pair.",
-                        "schema": {
-                            "$ref": "#/definitions/SensorHistoryResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Unexpected error.",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
         "/fleet/list": {
             "post": {
                 "tags": [
@@ -513,6 +294,225 @@
                 "responses": {
                     "200": {
                         "description": "Vehicles were successfully updated. No response body is returned."
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/sensors/list": {
+            "post": {
+                "tags": [
+                    "Sensors"
+                ],
+                "summary": "Get sensor objects",
+                "description": "This method returns a list of the sensor objects in the Samsara Cloud and information about them.",
+                "operationId": "get_sensors",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "$ref": "#/parameters/groupParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of sensor objects.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "sensors": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Sensor"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/sensors/temperature": {
+            "post": {
+                "tags": [
+                    "Sensors"
+                ],
+                "summary": "Get temperature for requested sensors.",
+                "description": "This method returns the current ambient temperature (and probe temperature if applicable) for the requested sensors.",
+                "operationId": "get_sensors_temperature",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "$ref": "#/parameters/sensorParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of sensor objects containing the current temperature reported by each sensor.",
+                        "schema": {
+                            "$ref": "#/definitions/TemperatureResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/sensors/humidity": {
+            "post": {
+                "tags": [
+                    "Sensors"
+                ],
+                "summary": "Get humidity for requested sensors.",
+                "description": "This method returns the current relative humidity for the requested sensors.",
+                "operationId": "get_sensors_humidity",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "$ref": "#/parameters/sensorParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of sensor objects containing the current humidity reported by each sensor.",
+                        "schema": {
+                            "$ref": "#/definitions/HumidityResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/sensors/history": {
+            "post": {
+                "tags": [
+                    "Sensors"
+                ],
+                "summary": "Get historical data for specified sensors.",
+                "description": "This method returns a set of historical data for the specified sensors in the specified time range and at the specified time resolution.",
+                "operationId": "get_sensors_history",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "historyParam",
+                        "description": "Group ID, time range and resolution, and list of sensor ID, field pairs to query.",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "groupId",
+                                "startMs",
+                                "endMs",
+                                "stepMs",
+                                "series"
+                            ],
+                            "properties": {
+                                "groupId": {
+                                    "type": "integer",
+                                    "description": "Group ID to query.",
+                                    "format": "int",
+                                    "example": 101
+                                },
+                                "startMs": {
+                                    "type": "integer",
+                                    "description": "Beginning of the time range, specified in milliseconds UNIX time.",
+                                    "example": 53
+                                },
+                                "endMs": {
+                                    "type": "integer",
+                                    "description": "End of the time range, specified in milliseconds UNIX time.",
+                                    "example": 1453449599999
+                                },
+                                "stepMs": {
+                                    "type": "integer",
+                                    "description": "Time resolution for which data should be returned, in milliseconds. Specifying 3600000 will return data at hour intervals.",
+                                    "example": 3600000
+                                },
+                                "series": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "description": "Sensor ID and field to query.",
+                                        "required": [
+                                            "widgetId",
+                                            "field"
+                                        ],
+                                        "properties": {
+                                            "widgetId": {
+                                                "type": "integer",
+                                                "description": "Sensor ID to query.",
+                                                "format": "int",
+                                                "example": 1
+                                            },
+                                            "field": {
+                                                "type": "string",
+                                                "description": "Field to query.",
+                                                "enum": [
+                                                    "ambientTemperature",
+                                                    "probeTemperature",
+                                                    "currentLoop1Raw",
+                                                    "currentLoop1Mapped",
+                                                    "currentLoop2Raw",
+                                                    "currentLoop2Mapped",
+                                                    "pmPowerTotal",
+                                                    "pmPhase1Power",
+                                                    "pmPhase2Power",
+                                                    "pmPhase3Power",
+                                                    "pmPhase1PowerFactor",
+                                                    "pmPhase2PowerFactor",
+                                                    "pmPhase3PowerFactor"
+                                                ],
+                                                "example": "ambientTemperature"
+                                            }
+                                        }
+                                    }
+                                },
+                                "fillMissing": {
+                                    "type": "string",
+                                    "enum": [
+                                        "withNull",
+                                        "withPrevious"
+                                    ],
+                                    "default": "withNull"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of results objects, each containing a time and a datapoint for each requested sensor/field pair.",
+                        "schema": {
+                            "$ref": "#/definitions/SensorHistoryResponse"
+                        }
                     },
                     "default": {
                         "description": "Unexpected error.",
