@@ -162,7 +162,7 @@
                                 "startMs": {
                                     "type": "integer",
                                     "description": "Beginning of the time range, specified in milliseconds UNIX time.",
-                                    "example": 53
+                                    "example": 1462878398034
                                 },
                                 "endMs": {
                                     "type": "integer",
@@ -178,6 +178,119 @@
                         "description": "List of trips taken by the requested vehicle within the specified timeframe.",
                         "schema": {
                             "$ref": "#/definitions/TripResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/drivers": {
+            "post": {
+                "tags": [
+                    "Fleet"
+                ],
+                "summary": "Get all the drivers for the specified group.",
+                "operationId": "get_fleet_drivers",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "groupDriversParam",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "groupId"
+                            ],
+                            "properties": {
+                                "groupId": {
+                                    "type": "integer",
+                                    "format": "int64",
+                                    "description": "Group ID to query.",
+                                    "example": 101
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "All drivers in the group.",
+                        "schema": {
+                            "$ref": "#/definitions/DriversRespose"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/hos_logs": {
+            "post": {
+                "tags": [
+                    "Fleet"
+                ],
+                "summary": "Get the HOS (hours of service) logs for the specified driver.",
+                "operationId": "get_fleet_hos_logs",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "hosLogsParam",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "groupId",
+                                "driverId",
+                                "startMs",
+                                "endMs"
+                            ],
+                            "properties": {
+                                "groupId": {
+                                    "type": "integer",
+                                    "format": "int64",
+                                    "description": "Group ID to query.",
+                                    "example": 101
+                                },
+                                "driverId": {
+                                    "type": "integer",
+                                    "format": "int64",
+                                    "description": "Driver ID to query.",
+                                    "example": 444
+                                },
+                                "startMs": {
+                                    "type": "integer",
+                                    "description": "Beginning of the time range, specified in milliseconds UNIX time.",
+                                    "example": 1462878398034
+                                },
+                                "endMs": {
+                                    "type": "integer",
+                                    "description": "End of the time range, specified in milliseconds UNIX time.",
+                                    "example": 1462881998034
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "HOS logs for the specified driver.",
+                        "schema": {
+                            "$ref": "#/definitions/HosLogsResponse"
                         }
                     },
                     "default": {
@@ -444,12 +557,12 @@
                                 "startMs": {
                                     "type": "integer",
                                     "description": "Beginning of the time range, specified in milliseconds UNIX time.",
-                                    "example": 53
+                                    "example": 1462878398034
                                 },
                                 "endMs": {
                                     "type": "integer",
                                     "description": "End of the time range, specified in milliseconds UNIX time.",
-                                    "example": 1453449599999
+                                    "example": 1462881998034
                                 },
                                 "stepMs": {
                                     "type": "integer",
@@ -691,7 +804,7 @@
                             "startMs": {
                                 "type": "integer",
                                 "description": "Beginning of the trip in UNIX milliseconds.",
-                                "example": 53
+                                "example": 1462878398034
                             },
                             "startCoordinates": {
                                 "type": "object",
@@ -735,6 +848,90 @@
                                 "type": "string",
                                 "description": "Text representation of nearest identifiable location to the end (latitude, longitude) coordinates.",
                                 "example": "FC Elementary School"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "DriversRespose": {
+            "type": "object",
+            "properties": {
+                "drivers": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "name": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "HosLogsResponse": {
+            "type": "object",
+            "properties": {
+                "logs": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "groupId": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "ID of the group.",
+                                "example": 101
+                            },
+                            "vehicleId": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "ID of the vehicle.",
+                                "example": 112
+                            },
+                            "driverId": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "ID of the driver.",
+                                "example": 444
+                            },
+                            "logStartMs": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "The time at which the log/HOS status started in UNIX milliseconds.",
+                                "example": 1462881998034
+                            },
+                            "statusType": {
+                                "type": "string",
+                                "description": "The Hours of Service status type. One of 'OFF_DUTY', 'SLEEPER_BED', 'DRIVING', 'ON_DUTY'.",
+                                "example": "OFF_DUTY"
+                            },
+                            "locCity": {
+                                "type": "string",
+                                "description": "City in which the log was recorded.",
+                                "example": "Ahwatukee"
+                            },
+                            "locState": {
+                                "type": "string",
+                                "description": "State in which the log was recorded.",
+                                "example": "Arizona"
+                            },
+                            "locLat": {
+                                "type": "number",
+                                "format": "float",
+                                "description": "Latitude at which the log was recorded.",
+                                "example": 23.413702345
+                            },
+                            "locLng": {
+                                "type": "number",
+                                "format": "float",
+                                "description": "Longitude at which the log was recorded.",
+                                "example": -98.502888123
                             }
                         }
                     }
