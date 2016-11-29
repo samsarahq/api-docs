@@ -20,412 +20,10 @@
         "description": "Documentation for the Samsara API",
         "url": "https://www.samsara.com/api"
     },
-    "tags": [
-        {
-            "name": "Fleet",
-            "description": "Access to fleet data"
-        },
-        {
-            "name": "Sensors",
-            "description": "Access to sensor data"
-        }
-    ],
     "paths": {
-        "/fleet/list": {
-            "post": {
-                "tags": [
-                    "Fleet"
-                ],
-                "summary": "/fleet/list",
-                "description": "Get list of the vehicles. This method returns a list of the vehicles in the Samsara Cloud and information about them.",
-                "operationId": "get_fleet",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/accessTokenParam"
-                    },
-                    {
-                        "$ref": "#/parameters/groupParam"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "List of vehicles and information about each.",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "groupId": {
-                                    "type": "integer",
-                                    "format": "int",
-                                    "example": 101
-                                },
-                                "vehicles": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/Vehicle"
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "default": {
-                        "description": "Unexpected error.",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/fleet/locations": {
-            "post": {
-                "tags": [
-                    "Fleet"
-                ],
-                "summary": "/fleet/locations",
-                "description": "Get current location of vehicles in a group. This method returns the current location in latitude and longitude of all vehicles in a requested group.",
-                "operationId": "get_fleet_locations",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/accessTokenParam"
-                    },
-                    {
-                        "$ref": "#/parameters/groupParam"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "List of vehicle objects containing their location and the time at which that location was logged.",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "groupId": {
-                                    "type": "integer",
-                                    "format": "int",
-                                    "example": 101
-                                },
-                                "vehicles": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/VehicleLocation"
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "default": {
-                        "description": "Unexpected error.",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/fleet/trips": {
-            "post": {
-                "tags": [
-                    "Fleet"
-                ],
-                "summary": "/fleet/trips",
-                "description": "Get historical trips data for specified vehicle. This method returns a set of historical trips data for the specified vehicle in the specified time range.",
-                "operationId": "get_fleet_trips",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/accessTokenParam"
-                    },
-                    {
-                        "name": "tripsParam",
-                        "description": "Group ID, vehicle ID and time range to query.",
-                        "required": true,
-                        "in": "body",
-                        "schema": {
-                            "type": "object",
-                            "required": [
-                                "groupId",
-                                "vehicleId",
-                                "startMs",
-                                "endMs"
-                            ],
-                            "properties": {
-                                "groupId": {
-                                    "type": "integer",
-                                    "description": "Group ID to query.",
-                                    "format": "int",
-                                    "example": 101
-                                },
-                                "vehicleId": {
-                                    "type": "integer",
-                                    "description": "Vehicle ID to query.",
-                                    "format": "int",
-                                    "example": 112
-                                },
-                                "startMs": {
-                                    "type": "integer",
-                                    "description": "Beginning of the time range, specified in milliseconds UNIX time.",
-                                    "example": 1462878398034
-                                },
-                                "endMs": {
-                                    "type": "integer",
-                                    "description": "End of the time range, specified in milliseconds UNIX time.",
-                                    "example": 1462881998034
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "List of trips taken by the requested vehicle within the specified timeframe.",
-                        "schema": {
-                            "$ref": "#/definitions/TripResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Unexpected error.",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/fleet/drivers": {
-            "post": {
-                "tags": [
-                    "Fleet"
-                ],
-                "summary": "/fleet/drivers",
-                "description":"Get all the drivers for the specified group.",
-                "operationId": "get_fleet_drivers",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/accessTokenParam"
-                    },
-                    {
-                        "name": "groupDriversParam",
-                        "required": true,
-                        "in": "body",
-                        "schema": {
-                            "type": "object",
-                            "required": [
-                                "groupId"
-                            ],
-                            "properties": {
-                                "groupId": {
-                                    "type": "integer",
-                                    "format": "int64",
-                                    "description": "Group ID to query.",
-                                    "example": 101
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "All drivers in the group.",
-                        "schema": {
-                            "$ref": "#/definitions/DriversRespose"
-                        }
-                    },
-                    "default": {
-                        "description": "Unexpected error.",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/fleet/hos_logs": {
-            "post": {
-                "tags": [
-                    "Fleet"
-                ],
-                "summary": "/fleet/hos_logs",
-                "description":"Get the HOS (hours of service) logs for the specified driver.",
-                "operationId": "get_fleet_hos_logs",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/accessTokenParam"
-                    },
-                    {
-                        "name": "hosLogsParam",
-                        "required": true,
-                        "in": "body",
-                        "schema": {
-                            "type": "object",
-                            "required": [
-                                "groupId",
-                                "driverId",
-                                "startMs",
-                                "endMs"
-                            ],
-                            "properties": {
-                                "groupId": {
-                                    "type": "integer",
-                                    "format": "int64",
-                                    "description": "Group ID to query.",
-                                    "example": 101
-                                },
-                                "driverId": {
-                                    "type": "integer",
-                                    "format": "int64",
-                                    "description": "Driver ID to query.",
-                                    "example": 444
-                                },
-                                "startMs": {
-                                    "type": "integer",
-                                    "description": "Beginning of the time range, specified in milliseconds UNIX time.",
-                                    "example": 1462878398034
-                                },
-                                "endMs": {
-                                    "type": "integer",
-                                    "description": "End of the time range, specified in milliseconds UNIX time.",
-                                    "example": 1462881998034
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "HOS logs for the specified driver.",
-                        "schema": {
-                            "$ref": "#/definitions/HosLogsResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Unexpected error.",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/fleet/add_address": {
-            "post": {
-                "tags": [
-                    "Fleet"
-                ],
-                "summary": "/fleet/add_address",
-                "description": "This method adds an address book entry to the specified group.",
-                "operationId": "add_fleet_address",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/accessTokenParam"
-                    },
-                    {
-                        "name": "addressParam",
-                        "required": true,
-                        "in": "body",
-                        "schema": {
-                            "type": "object",
-                            "required": [
-                                "groupId",
-                                "name",
-                                "address",
-                                "radius"
-                            ],
-                            "properties": {
-                                "groupId": {
-                                    "type": "integer",
-                                    "description": "Group ID to query.",
-                                    "format": "int",
-                                    "example": 101
-                                },
-                                "name": {
-                                    "type": "string",
-                                    "description": "Name of the location to add to the address book.",
-                                    "example": "HQ"
-                                },
-                                "address": {
-                                    "type": "string",
-                                    "description": "The address of the entry to add, as it would be recognized if provided to maps.google.com",
-                                    "example": "501 York St"
-                                },
-                                "radius": {
-                                    "type": "integer",
-                                    "description": "Radius in meters of the address (used for matching vehicle trip stops to this location).",
-                                    "example": 10
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Address was successfully added. No response body is returned."
-                    },
-                    "default": {
-                        "description": "Unexpected error.",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/fleet/set_data": {
-            "post": {
-                "tags": [
-                    "Fleet"
-                ],
-                "summary": "/fleet/set_data",
-                "description": "This method enables the mutation of metadata for vehicles in the Samsara Cloud.",
-                "operationId": "update_vehicles",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/accessTokenParam"
-                    },
-                    {
-                        "name": "vehicleUpdateParam",
-                        "required": true,
-                        "in": "body",
-                        "schema": {
-                            "type": "object",
-                            "required": [
-                                "groupId",
-                                "vehicles"
-                            ],
-                            "properties": {
-                                "groupId": {
-                                    "type": "integer",
-                                    "description": "Group ID to query.",
-                                    "format": "int",
-                                    "example": 101
-                                },
-                                "vehicles": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/Vehicle"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Vehicles were successfully updated. No response body is returned."
-                    },
-                    "default": {
-                        "description": "Unexpected error.",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
         "/sensors/list": {
             "post": {
-                "tags": [
-                    "Sensors"
-                ],
-                "summary": "/sensors/list",
-                "description": "Get sensor objects. This method returns a list of the sensor objects in the Samsara Cloud and information about them.",
+                "summary": "This method returns a list of the sensor objects in the Samsara Cloud and information about them.",
                 "operationId": "get_sensors",
                 "parameters": [
                     {
@@ -461,11 +59,7 @@
         },
         "/sensors/temperature": {
             "post": {
-                "tags": [
-                    "Sensors"
-                ],
-                "summary": "/sensors/temperature",
-                "description": "Get temperature for requested sensors. This method returns the current ambient temperature (and probe temperature if applicable) for the requested sensors.",
+                "summary": "This method returns the current ambient temperature (and probe temperature if applicable) for the requested sensors.",
                 "operationId": "get_sensors_temperature",
                 "parameters": [
                     {
@@ -493,11 +87,7 @@
         },
         "/sensors/humidity": {
             "post": {
-                "tags": [
-                    "Sensors"
-                ],
-                "summary": "/sensors/humidity",
-                "description": "Get humidity for requested sensors. This method returns the current relative humidity for the requested sensors.",
+                "summary": "This method returns the current relative humidity for the requested sensors.",
                 "operationId": "get_sensors_humidity",
                 "parameters": [
                     {
@@ -525,11 +115,7 @@
         },
         "/sensors/history": {
             "post": {
-                "tags": [
-                    "Sensors"
-                ],
-                "summary": "/sensors/history",
-                "description": "Get historical data for specified sensors. This method returns a set of historical data for the specified sensors in the specified time range and at the specified time resolution.",
+                "summary": "This method returns a set of historical data for the specified sensors in the specified time range and at the specified time resolution.",
                 "operationId": "get_sensors_history",
                 "parameters": [
                     {
@@ -553,23 +139,20 @@
                                 "groupId": {
                                     "type": "integer",
                                     "description": "Group ID to query.",
-                                    "format": "int",
-                                    "example": 101
+                                    "format": "int64"
                                 },
                                 "startMs": {
                                     "type": "integer",
-                                    "description": "Beginning of the time range, specified in milliseconds UNIX time.",
-                                    "example": 1462878398034
+                                    "description": "Beginning of the time range, specified in milliseconds UNIX time."
                                 },
                                 "endMs": {
                                     "type": "integer",
-                                    "description": "End of the time range, specified in milliseconds UNIX time.",
-                                    "example": 1462881998034
+                                    "description": "End of the time range, specified in milliseconds UNIX time."
                                 },
                                 "stepMs": {
                                     "type": "integer",
-                                    "description": "Time resolution for which data should be returned, in milliseconds. Specifying 3600000 will return data at hour intervals.",
-                                    "example": 3600000
+                                    "description": "Time resolution for which data should be returned, in milliseconds.",
+                                    "example": "Specifying 3600000 will return data at hour intervals."
                                 },
                                 "series": {
                                     "type": "array",
@@ -584,8 +167,7 @@
                                             "widgetId": {
                                                 "type": "integer",
                                                 "description": "Sensor ID to query.",
-                                                "format": "int",
-                                                "example": 1
+                                                "format": "int64"
                                             },
                                             "field": {
                                                 "type": "string",
@@ -604,8 +186,7 @@
                                                     "pmPhase1PowerFactor",
                                                     "pmPhase2PowerFactor",
                                                     "pmPhase3PowerFactor"
-                                                ],
-                                                "example": "ambientTemperature"
+                                                ]
                                             }
                                         }
                                     }
@@ -637,6 +218,614 @@
                     }
                 }
             }
+        },
+        "/fleet/list": {
+            "post": {
+                "summary": "This method returns a list of the vehicles in the Samsara Cloud and information about them.",
+                "operationId": "get_fleet",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "$ref": "#/parameters/groupParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of vehicles and information about each.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "groupId": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                },
+                                "vehicles": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Vehicle"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/locations": {
+            "post": {
+                "summary": "This method returns the current location in latitude and longitude of all vehicles in a requested group.",
+                "operationId": "get_fleet_locations",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "$ref": "#/parameters/groupParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of vehicle objects containing their location and the time at which that location was logged.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "groupId": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                },
+                                "vehicles": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/VehicleLocation"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/trips": {
+            "post": {
+                "summary": "This method returns a set of historical trips data for the specified vehicle in the specified time range.",
+                "operationId": "get_fleet_trips",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "tripsParam",
+                        "description": "Group ID, vehicle ID and time range to query.",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "groupId",
+                                "vehicleId",
+                                "startMs",
+                                "endMs"
+                            ],
+                            "properties": {
+                                "groupId": {
+                                    "type": "integer",
+                                    "description": "Group ID to query.",
+                                    "format": "int64"
+                                },
+                                "vehicleId": {
+                                    "type": "integer",
+                                    "description": "Vehicle ID to query.",
+                                    "format": "int64"
+                                },
+                                "startMs": {
+                                    "type": "integer",
+                                    "description": "Beginning of the time range, specified in milliseconds UNIX time."
+                                },
+                                "endMs": {
+                                    "type": "integer",
+                                    "description": "End of the time range, specified in milliseconds UNIX time."
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of trips taken by the requested vehicle within the specified timeframe.",
+                        "schema": {
+                            "$ref": "#/definitions/TripResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/drivers": {
+            "post": {
+                "summary": "Get all the drivers for the specified group.",
+                "operationId": "get_fleet_drivers",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "groupDriversParam",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "groupId"
+                            ],
+                            "properties": {
+                                "groupId": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "All drivers in the group.",
+                        "schema": {
+                            "$ref": "#/definitions/DriversRespose"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/hos_logs": {
+            "post": {
+                "summary": "Get the HOS (hours of service) logs for the specified driver.",
+                "operationId": "get_fleet_hos_logs",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "hosLogsParam",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "groupId",
+                                "driverId",
+                                "startMs",
+                                "endMs"
+                            ],
+                            "properties": {
+                                "groupId": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                },
+                                "driverId": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                },
+                                "startMs": {
+                                    "type": "integer"
+                                },
+                                "endMs": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "HOS logs for the specified driver.",
+                        "schema": {
+                            "$ref": "#/definitions/HosLogsResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/add_address": {
+            "post": {
+                "summary": "This method adds an address book entry to the specified group.",
+                "operationId": "add_fleet_address",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "addressParam",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "groupId",
+                                "name",
+                                "address",
+                                "radius"
+                            ],
+                            "properties": {
+                                "groupId": {
+                                    "type": "integer",
+                                    "description": "Group ID to query.",
+                                    "format": "int64"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "description": "Name of the location to add to the address book."
+                                },
+                                "address": {
+                                    "type": "string",
+                                    "description": "The address of the entry to add, as it would be recognized if provided to maps.google.com."
+                                },
+                                "radius": {
+                                    "type": "integer",
+                                    "description": "Radius in meters of the address (used for matching vehicle trip stops to this location)."
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Address was successfully added. No response body is returned."
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/set_data": {
+            "post": {
+                "summary": "This method enables the mutation of metadata for vehicles in the Samsara Cloud.",
+                "operationId": "update_vehicles",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "vehicleUpdateParam",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "groupId",
+                                "vehicles"
+                            ],
+                            "properties": {
+                                "groupId": {
+                                    "type": "integer",
+                                    "description": "Group ID to query.",
+                                    "format": "int64"
+                                },
+                                "vehicles": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Vehicle"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Vehicles were successfully updated. No response body is returned."
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/dispatch_jobs": {
+            "post": {
+                "summary": "Get the dispatch jobs for the specified group.",
+                "operationId": "get_fleet_dispatch_jobs",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "getDispatchJobsParam",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "group_id",
+                                "duration_seconds"
+                            ],
+                            "properties": {
+                                "group_id": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                },
+                                "job_created_at_max_ms": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                },
+                                "duration_seconds": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Dispatch jobs for the specified group.",
+                        "schema": {
+                            "$ref": "#/definitions/DispatchJobsResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/dispatch_jobs/create": {
+            "post": {
+                "summary": "Create dispatch jobs in the specified group.",
+                "operationId": "create_fleet_dispatch_jobs",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "createDispatchJobsParam",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "group_id",
+                                "dispatch_jobs"
+                            ],
+                            "properties": {
+                                "group_id": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                },
+                                "dispatch_jobs": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "external_identifier": {
+                                                "type": "string"
+                                            },
+                                            "driver_id": {
+                                                "type": "integer",
+                                                "format": "int64"
+                                            },
+                                            "vehicle_id": {
+                                                "type": "integer",
+                                                "format": "int64"
+                                            },
+                                            "job_state": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "JobState_Unassigned",
+                                                    "JobState_Assigned",
+                                                    "JobState_Started",
+                                                    "JobState_Completed",
+                                                    "JobState_Cancelled"
+                                                ]
+                                            },
+                                            "scheduled_arrival_time_ms": {
+                                                "type": "integer",
+                                                "format": "int64"
+                                            },
+                                            "started_at_ms": {
+                                                "type": "integer",
+                                                "format": "int64"
+                                            },
+                                            "completed_at_ms": {
+                                                "type": "integer",
+                                                "format": "int64"
+                                            },
+                                            "cancelled_at_ms": {
+                                                "type": "integer",
+                                                "format": "int64"
+                                            },
+                                            "job_created_at_ms": {
+                                                "type": "integer",
+                                                "format": "int64"
+                                            },
+                                            "notes": {
+                                                "type": "string"
+                                            },
+                                            "destination_name": {
+                                                "type": "string"
+                                            },
+                                            "destination_address": {
+                                                "type": "string"
+                                            },
+                                            "destination_lat": {
+                                                "type": "number",
+                                                "format": "float"
+                                            },
+                                            "destination_lng": {
+                                                "type": "number",
+                                                "format": "float"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Dispatch jobs created for the specified group as a result of the request.",
+                        "schema": {
+                            "$ref": "#/definitions/DispatchJobsResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/dispatch_jobs/update": {
+            "post": {
+                "summary": "Update dispatch jobs specified group.",
+                "operationId": "update_fleet_dispatch_jobs",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "updateDispatchJobsParam",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "group_id",
+                                "dispatch_jobs"
+                            ],
+                            "properties": {
+                                "group_id": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                },
+                                "dispatch_jobs": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "format": "int64"
+                                            },
+                                            "external_identifier": {
+                                                "type": "string"
+                                            },
+                                            "driver_id": {
+                                                "type": "integer",
+                                                "format": "int64"
+                                            },
+                                            "vehicle_id": {
+                                                "type": "integer",
+                                                "format": "int64"
+                                            },
+                                            "job_state": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "JobState_Unassigned",
+                                                    "JobState_Assigned",
+                                                    "JobState_Started",
+                                                    "JobState_Completed",
+                                                    "JobState_Cancelled"
+                                                ]
+                                            },
+                                            "scheduled_arrival_time_ms": {
+                                                "type": "integer",
+                                                "format": "int64"
+                                            },
+                                            "started_at_ms": {
+                                                "type": "integer",
+                                                "format": "int64"
+                                            },
+                                            "completed_at_ms": {
+                                                "type": "integer",
+                                                "format": "int64"
+                                            },
+                                            "cancelled_at_ms": {
+                                                "type": "integer",
+                                                "format": "int64"
+                                            },
+                                            "notes": {
+                                                "type": "string"
+                                            },
+                                            "destination_name": {
+                                                "type": "string"
+                                            },
+                                            "destination_address": {
+                                                "type": "string"
+                                            },
+                                            "destination_lat": {
+                                                "type": "number",
+                                                "format": "float"
+                                            },
+                                            "destination_lng": {
+                                                "type": "number",
+                                                "format": "float"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Dispatch jobs updated for the specified group as a result of the request.",
+                        "schema": {
+                            "$ref": "#/definitions/DispatchJobsResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -650,18 +839,15 @@
                 "id": {
                     "type": "integer",
                     "description": "ID of the sensor.",
-                    "format": "int",
-                    "example": 123
+                    "format": "int64"
                 },
                 "name": {
                     "type": "string",
-                    "description": "Name of the sensor.",
-                    "example": "Freezer ABC"
+                    "description": "Name of the sensor."
                 },
                 "macAddress": {
                     "type": "string",
-                    "description": "MAC address of the sensor.",
-                    "example": "11:11:11:11:11:11"
+                    "description": "MAC address of the sensor."
                 }
             }
         },
@@ -675,17 +861,14 @@
                 "id": {
                     "type": "integer",
                     "description": "ID of the vehicle.",
-                    "format": "int",
-                    "example": 112
+                    "format": "int64"
                 },
                 "name": {
                     "type": "string",
-                    "description": "Name of the vehicle.",
-                    "example": "Truck A7"
+                    "description": "Name of the vehicle."
                 },
                 "note": {
-                    "type": "string",
-                    "example": "Red truck 2015 M16"
+                    "type": "string"
                 }
             }
         },
@@ -699,33 +882,29 @@
                 "id": {
                     "type": "integer",
                     "description": "ID of the vehicle.",
-                    "format": "int",
-                    "example": 112
+                    "format": "int64"
                 },
                 "name": {
                     "type": "string",
-                    "description": "Name of the vehicle.",
-                    "example": "Truck A7"
+                    "description": "Name of the vehicle."
                 },
                 "latitude": {
-                    "type": "integer",
-                    "description": "Latitude in decimal degrees.",
-                    "example": 123.456
+                    "type": "number",
+                    "format": "float",
+                    "description": "Latitude in decimal degrees."
                 },
                 "longitude": {
-                    "type": "integer",
-                    "description": "Longitude in decimal degrees.",
-                    "example": 567.89
+                    "type": "number",
+                    "format": "float",
+                    "description": "Longitude in decimal degrees."
                 },
                 "location": {
                     "type": "string",
-                    "description": "Text representation of nearest identifiable location to (latitude, longitude) coordinates.",
-                    "example": "1 Main St, Dallas, TX"
+                    "description": "Text representation of nearest identifiable location to (latitude, longitude) coordinates."
                 },
                 "time": {
                     "type": "integer",
-                    "description": "The time the reported location was logged, reported as a UNIX timestamp in milliseconds.",
-                    "example": 6789
+                    "description": "The time the reported location was logged, reported as a UNIX timestamp in milliseconds."
                 }
             }
         },
@@ -735,8 +914,7 @@
             "properties": {
                 "groupId": {
                     "type": "integer",
-                    "format": "int",
-                    "example": 101
+                    "format": "int64"
                 },
                 "sensors": {
                     "type": "array",
@@ -745,19 +923,16 @@
                         "properties": {
                             "id": {
                                 "type": "integer",
-                                "format": "int",
-                                "description": "ID of the sensor.",
-                                "example": 122
+                                "format": "int64",
+                                "description": "ID of the sensor."
                             },
                             "ambientTemperature": {
                                 "type": "integer",
-                                "description": "Currently reported ambient temperature in millidegrees celsius.",
-                                "example": 11057
+                                "description": "Currently reported ambient temperature in millidegrees celsius."
                             },
                             "probeTemperature": {
                                 "type": "integer",
-                                "description": "Currently reported probe temperature in millidegrees celsius. If no probe is connected, this parameter will not be reported.",
-                                "example": -20145
+                                "description": "Currently reported probe temperature in millidegrees celsius. If no probe is connected, this parameter will not be reported."
                             }
                         }
                     }
@@ -770,8 +945,7 @@
             "properties": {
                 "groupId": {
                     "type": "integer",
-                    "format": "int",
-                    "example": 101
+                    "format": "int64"
                 },
                 "sensors": {
                     "type": "array",
@@ -781,13 +955,11 @@
                             "id": {
                                 "type": "integer",
                                 "description": "ID of the sensor.",
-                                "format": "int",
-                                "example": 122
+                                "format": "int64"
                             },
                             "humidity": {
                                 "type": "integer",
-                                "description": "Currently reported relative humidity in percent, from 0-100.",
-                                "example": 53
+                                "description": "Currently reported relative humidity in percent, from 0-100."
                             }
                         }
                     }
@@ -805,56 +977,47 @@
                         "properties": {
                             "startMs": {
                                 "type": "integer",
-                                "description": "Beginning of the trip in UNIX milliseconds.",
-                                "example": 1462878398034
+                                "description": "Beginning of the trip in UNIX milliseconds."
                             },
                             "startCoordinates": {
                                 "type": "object",
                                 "description": "Start (latitude, longitude) in decimal degrees.",
                                 "properties": {
                                     "latitude": {
-                                        "type": "integer",
-                                        "example": 29.443702345
+                                        "type": "number",
+                                        "format": "float"
                                     },
                                     "longitude": {
-                                        "type": "integer",
-                                        "example": -98.502888123
+                                        "type": "number",
+                                        "format": "float"
                                     }
                                 }
                             },
                             "startLocation": {
                                 "type": "string",
-                                "description": "Text representation of nearest identifiable location to the start (latitude, longitude) coordinates.",
-                                "example": "Woodland Lane, Dallas, TX"
+                                "description": "Text representation of nearest identifiable location to the start (latitude, longitude) coordinates."
                             },
                             "endMs": {
                                 "type": "integer",
-                                "description": "End of the trip in UNIX milliseconds.",
-                                "example": 1462881998034
+                                "description": "End of the trip in UNIX milliseconds."
                             },
                             "endCoordinates": {
                                 "type": "object",
                                 "description": "End (latitude, longitude) in decimal degrees.",
                                 "properties": {
                                     "latitude": {
-                                        "type": "integer",
-                                        "example": 23.413702345
+                                        "type": "number",
+                                        "format": "float"
                                     },
                                     "longitude": {
-                                        "type": "integer",
-                                        "example": -91.502888123
+                                        "type": "number",
+                                        "format": "float"
                                     }
                                 }
                             },
                             "endLocation": {
                                 "type": "string",
-                                "description": "Text representation of nearest identifiable location to the end (latitude, longitude) coordinates.",
-                                "example": "FC Elementary School"
-                            },
-                            "distanceMeters": {
-                                "type": "integer",
-                                "description": "Length of the trip in meters.",
-                                "example": "2500"
+                                "description": "Text representation of nearest identifiable location to the end (latitude, longitude) coordinates."
                             }
                         }
                     }
@@ -891,54 +1054,36 @@
                         "properties": {
                             "groupId": {
                                 "type": "integer",
-                                "format": "int64",
-                                "description": "ID of the group.",
-                                "example": 101
+                                "format": "int64"
                             },
                             "vehicleId": {
                                 "type": "integer",
-                                "format": "int64",
-                                "description": "ID of the vehicle.",
-                                "example": 112
+                                "format": "int64"
                             },
                             "driverId": {
                                 "type": "integer",
-                                "format": "int64",
-                                "description": "ID of the driver.",
-                                "example": 444
+                                "format": "int64"
                             },
                             "logStartMs": {
                                 "type": "integer",
-                                "format": "int64",
-                                "description": "The time at which the log/HOS status started in UNIX milliseconds.",
-                                "example": 1462881998034
+                                "format": "int64"
                             },
                             "statusType": {
-                                "type": "string",
-                                "description": "The Hours of Service status type. One of 'OFF_DUTY', 'SLEEPER_BED', 'DRIVING', 'ON_DUTY'.",
-                                "example": "OFF_DUTY"
+                                "type": "string"
                             },
                             "locCity": {
-                                "type": "string",
-                                "description": "City in which the log was recorded.",
-                                "example": "Ahwatukee"
+                                "type": "string"
                             },
                             "locState": {
-                                "type": "string",
-                                "description": "State in which the log was recorded.",
-                                "example": "Arizona"
+                                "type": "string"
                             },
                             "locLat": {
                                 "type": "number",
-                                "format": "float",
-                                "description": "Latitude at which the log was recorded.",
-                                "example": 23.413702345
+                                "format": "float"
                             },
                             "locLng": {
                                 "type": "number",
-                                "format": "float",
-                                "description": "Longitude at which the log was recorded.",
-                                "example": -98.502888123
+                                "format": "float"
                             }
                         }
                     }
@@ -952,7 +1097,7 @@
                 "status_code": {
                     "type": "integer",
                     "description": "HTTP status code returned.",
-                    "format": "int"
+                    "format": "int64"
                 },
                 "message": {
                     "type": "string",
@@ -971,17 +1116,98 @@
                         "properties": {
                             "timeMs": {
                                 "type": "integer",
-                                "description": "Timestamp in UNIX milliseconds.",
-                                "example": 1453449599999
+                                "description": "Timestamp in UNIX milliseconds."
                             },
                             "series": {
                                 "type": "array",
                                 "description": "List of datapoints, one for each requested (sensor, field) pair.",
                                 "items": {
                                     "type": "integer",
-                                    "format": "int",
-                                    "example": 1
+                                    "format": "int64"
                                 }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "DispatchJobsResponse": {
+            "type": "object",
+            "properties": {
+                "dispatch_jobs": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "external_identifier": {
+                                "type": "string"
+                            },
+                            "org_id": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "group_id": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "driver_id": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "vehicle_id": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "job_state": {
+                                "type": "string",
+                                "enum": [
+                                    "JobState_Unassigned",
+                                    "JobState_Assigned",
+                                    "JobState_Started",
+                                    "JobState_Completed",
+                                    "JobState_Cancelled"
+                                ]
+                            },
+                            "scheduled_arrival_time_ms": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "started_at_ms": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "completed_at_ms": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "cancelled_at_ms": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "job_created_at_ms": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "notes": {
+                                "type": "string"
+                            },
+                            "destination_name": {
+                                "type": "string"
+                            },
+                            "destination_address": {
+                                "type": "string"
+                            },
+                            "destination_lat": {
+                                "type": "number",
+                                "format": "float"
+                            },
+                            "destination_lng": {
+                                "type": "number",
+                                "format": "float"
                             }
                         }
                     }
@@ -1011,8 +1237,7 @@
                     "groupId": {
                         "type": "integer",
                         "description": "Group ID to query.",
-                        "format": "int",
-                        "example": 101
+                        "format": "int64"
                     }
                 }
             }
@@ -1032,19 +1257,15 @@
                     "groupId": {
                         "type": "integer",
                         "description": "Group ID to query.",
-                        "format": "int",
-                        "example": 101
+                        "format": "int64"
                     },
                     "sensors": {
                         "type": "array",
                         "description": "List of sensor IDs to query.",
                         "items": {
                             "type": "integer",
-                            "format": "int"
-                        },
-                        "example": [
-                            122
-                        ]
+                            "format": "int64"
+                        }
                     }
                 }
             }
