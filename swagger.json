@@ -20,10 +20,24 @@
         "description": "Documentation for the Samsara API",
         "url": "https://www.samsara.com/api"
     },
+    "tags": [
+        {
+            "name": "Fleet",
+            "description": "Access to fleet data"
+        },
+        {
+            "name": "Sensors",
+            "description": "Access to sensor data"
+        }
+    ],
     "paths": {
         "/sensors/list": {
             "post": {
-                "summary": "This method returns a list of the sensor objects in the Samsara Cloud and information about them.",
+                "tags": [
+                    "Sensors"
+                ],
+                "summary": "/sensors/list",
+                "description": "Get sensor objects. This method returns a list of the sensor objects in the Samsara Cloud and information about them.",
                 "operationId": "get_sensors",
                 "parameters": [
                     {
@@ -59,7 +73,11 @@
         },
         "/sensors/temperature": {
             "post": {
-                "summary": "This method returns the current ambient temperature (and probe temperature if applicable) for the requested sensors.",
+                "tags": [
+                    "Sensors"
+                ],
+                "summary": "/sensors/temperature",
+                "description": "Get temperature for requested sensors. This method returns the current ambient temperature (and probe temperature if applicable) for the requested sensors.",
                 "operationId": "get_sensors_temperature",
                 "parameters": [
                     {
@@ -87,7 +105,11 @@
         },
         "/sensors/humidity": {
             "post": {
-                "summary": "This method returns the current relative humidity for the requested sensors.",
+                "tags": [
+                    "Sensors"
+                ],
+                "summary": "/sensors/humidity",
+                "description": "Get humidity for requested sensors. This method returns the current relative humidity for the requested sensors.",
                 "operationId": "get_sensors_humidity",
                 "parameters": [
                     {
@@ -115,7 +137,11 @@
         },
         "/sensors/history": {
             "post": {
-                "summary": "This method returns a set of historical data for the specified sensors in the specified time range and at the specified time resolution.",
+                "tags": [
+                    "Sensors"
+                ],
+                "summary": "/sensors/history",
+                "description": "Get historical data for specified sensors. This method returns a set of historical data for the specified sensors in the specified time range and at the specified time resolution.",
                 "operationId": "get_sensors_history",
                 "parameters": [
                     {
@@ -139,20 +165,23 @@
                                 "groupId": {
                                     "type": "integer",
                                     "description": "Group ID to query.",
-                                    "format": "int64"
+                                    "format": "int64",
+                                    "example": 101
                                 },
                                 "startMs": {
                                     "type": "integer",
-                                    "description": "Beginning of the time range, specified in milliseconds UNIX time."
+                                    "description": "Beginning of the time range, specified in milliseconds UNIX time.",
+                                    "example": 1462878398034
                                 },
                                 "endMs": {
                                     "type": "integer",
-                                    "description": "End of the time range, specified in milliseconds UNIX time."
+                                    "description": "End of the time range, specified in milliseconds UNIX time.",
+                                    "example": 1462881998034
                                 },
                                 "stepMs": {
                                     "type": "integer",
-                                    "description": "Time resolution for which data should be returned, in milliseconds.",
-                                    "example": "Specifying 3600000 will return data at hour intervals."
+                                    "description": "Time resolution for which data should be returned, in milliseconds. Specifying 3600000 will return data at hour intervals.",
+                                    "example": 3600000
                                 },
                                 "series": {
                                     "type": "array",
@@ -167,7 +196,8 @@
                                             "widgetId": {
                                                 "type": "integer",
                                                 "description": "Sensor ID to query.",
-                                                "format": "int64"
+                                                "format": "int64",
+                                                "example": 1
                                             },
                                             "field": {
                                                 "type": "string",
@@ -186,7 +216,8 @@
                                                     "pmPhase1PowerFactor",
                                                     "pmPhase2PowerFactor",
                                                     "pmPhase3PowerFactor"
-                                                ]
+                                                ],
+                                                "example": "ambientTemperature"
                                             }
                                         }
                                     }
@@ -221,7 +252,11 @@
         },
         "/fleet/list": {
             "post": {
-                "summary": "This method returns a list of the vehicles in the Samsara Cloud and information about them.",
+                "tags": [
+                    "Fleet"
+                ],
+                "summary": "/fleet/list",
+                "description": "Get list of the vehicles. This method returns a list of the vehicles in the Samsara Cloud and information about them.",
                 "operationId": "get_fleet",
                 "parameters": [
                     {
@@ -239,7 +274,9 @@
                             "properties": {
                                 "groupId": {
                                     "type": "integer",
-                                    "format": "int64"
+                                    "format": "int64",
+                                    "description": "Group ID to query.",
+                                    "example": 101
                                 },
                                 "vehicles": {
                                     "type": "array",
@@ -261,7 +298,11 @@
         },
         "/fleet/locations": {
             "post": {
-                "summary": "This method returns the current location in latitude and longitude of all vehicles in a requested group.",
+                "tags": [
+                    "Fleet"
+                ],
+                "summary": "/fleet/locations",
+                "description": "Get current location of vehicles in a group. This method returns the current location in latitude and longitude of all vehicles in a requested group.",
                 "operationId": "get_fleet_locations",
                 "parameters": [
                     {
@@ -279,7 +320,9 @@
                             "properties": {
                                 "groupId": {
                                     "type": "integer",
-                                    "format": "int64"
+                                    "format": "int64",
+                                    "description": "Group ID to query.",
+                                    "example": 101
                                 },
                                 "vehicles": {
                                     "type": "array",
@@ -301,7 +344,11 @@
         },
         "/fleet/trips": {
             "post": {
-                "summary": "This method returns a set of historical trips data for the specified vehicle in the specified time range.",
+                "tags": [
+                    "Fleet"
+                ],
+                "summary": "/fleet/trips",
+                "description": "Get historical trips data for specified vehicle. This method returns a set of historical trips data for the specified vehicle in the specified time range.",
                 "operationId": "get_fleet_trips",
                 "parameters": [
                     {
@@ -324,20 +371,24 @@
                                 "groupId": {
                                     "type": "integer",
                                     "description": "Group ID to query.",
-                                    "format": "int64"
+                                    "format": "int64",
+                                    "example": 101
                                 },
                                 "vehicleId": {
                                     "type": "integer",
                                     "description": "Vehicle ID to query.",
-                                    "format": "int64"
+                                    "format": "int64",
+                                    "example": 112
                                 },
                                 "startMs": {
                                     "type": "integer",
-                                    "description": "Beginning of the time range, specified in milliseconds UNIX time."
+                                    "description": "Beginning of the time range, specified in milliseconds UNIX time.",
+                                    "example": 1462878398034
                                 },
                                 "endMs": {
                                     "type": "integer",
-                                    "description": "End of the time range, specified in milliseconds UNIX time."
+                                    "description": "End of the time range, specified in milliseconds UNIX time.",
+                                    "example": 1462881998034
                                 }
                             }
                         }
@@ -361,7 +412,11 @@
         },
         "/fleet/drivers": {
             "post": {
-                "summary": "Get all the drivers for the specified group.",
+                "tags": [
+                    "Fleet"
+                ],
+                "summary": "/fleet/drivers",
+                "description": "Get all the drivers for the specified group.",
                 "operationId": "get_fleet_drivers",
                 "parameters": [
                     {
@@ -379,7 +434,9 @@
                             "properties": {
                                 "groupId": {
                                     "type": "integer",
-                                    "format": "int64"
+                                    "format": "int64",
+                                    "description": "Group ID to query.",
+                                    "example": 101
                                 }
                             }
                         }
@@ -403,7 +460,11 @@
         },
         "/fleet/hos_logs": {
             "post": {
-                "summary": "Get the HOS (hours of service) logs for the specified driver.",
+                "tags": [
+                    "Fleet"
+                ],
+                "summary": "/fleet/hos_logs",
+                "description": "Get the HOS (hours of service) logs for the specified driver.",
                 "operationId": "get_fleet_hos_logs",
                 "parameters": [
                     {
@@ -424,17 +485,25 @@
                             "properties": {
                                 "groupId": {
                                     "type": "integer",
-                                    "format": "int64"
+                                    "format": "int64",
+                                    "description": "Group ID to query.",
+                                    "example": 101
                                 },
                                 "driverId": {
                                     "type": "integer",
-                                    "format": "int64"
+                                    "format": "int64",
+                                    "description": "Driver ID to query.",
+                                    "example": 444
                                 },
                                 "startMs": {
-                                    "type": "integer"
+                                    "type": "integer",
+                                    "description": "Beginning of the time range, specified in milliseconds UNIX time.",
+                                    "example": 1462878398034
                                 },
                                 "endMs": {
-                                    "type": "integer"
+                                    "type": "integer",
+                                    "description": "End of the time range, specified in milliseconds UNIX time.",
+                                    "example": 1462881998034
                                 }
                             }
                         }
@@ -458,7 +527,11 @@
         },
         "/fleet/add_address": {
             "post": {
-                "summary": "This method adds an address book entry to the specified group.",
+                "tags": [
+                    "Fleet"
+                ],
+                "summary": "/fleet/add_address",
+                "description": "This method adds an address book entry to the specified group.",
                 "operationId": "add_fleet_address",
                 "parameters": [
                     {
@@ -480,19 +553,23 @@
                                 "groupId": {
                                     "type": "integer",
                                     "description": "Group ID to query.",
-                                    "format": "int64"
+                                    "format": "int64",
+                                    "example": 101
                                 },
                                 "name": {
                                     "type": "string",
-                                    "description": "Name of the location to add to the address book."
+                                    "description": "Name of the location to add to the address book.",
+                                    "example": "HQ"
                                 },
                                 "address": {
                                     "type": "string",
-                                    "description": "The address of the entry to add, as it would be recognized if provided to maps.google.com."
+                                    "description": "The address of the entry to add, as it would be recognized if provided to maps.google.com.",
+                                    "example": "501 York St"
                                 },
                                 "radius": {
                                     "type": "integer",
-                                    "description": "Radius in meters of the address (used for matching vehicle trip stops to this location)."
+                                    "description": "Radius in meters of the address (used for matching vehicle trip stops to this location).",
+                                    "example": 10
                                 }
                             }
                         }
@@ -513,7 +590,11 @@
         },
         "/fleet/set_data": {
             "post": {
-                "summary": "This method enables the mutation of metadata for vehicles in the Samsara Cloud.",
+                "tags": [
+                    "Fleet"
+                ],
+                "summary": "/fleet/set_data",
+                "description": "This method enables the mutation of metadata for vehicles in the Samsara Cloud.",
                 "operationId": "update_vehicles",
                 "parameters": [
                     {
@@ -533,7 +614,8 @@
                                 "groupId": {
                                     "type": "integer",
                                     "description": "Group ID to query.",
-                                    "format": "int64"
+                                    "format": "int64",
+                                    "example": 101
                                 },
                                 "vehicles": {
                                     "type": "array",
@@ -560,7 +642,11 @@
         },
         "/fleet/dispatch_jobs": {
             "post": {
-                "summary": "Get the dispatch jobs for the specified group.",
+                "tags": [
+                    "Fleet"
+                ],
+                "summary": "/fleet/dispatch_jobs",
+                "description": "Get the dispatch jobs for the specified group.",
                 "operationId": "get_fleet_dispatch_jobs",
                 "parameters": [
                     {
@@ -579,15 +665,21 @@
                             "properties": {
                                 "group_id": {
                                     "type": "integer",
-                                    "format": "int64"
+                                    "description": "Group ID to query.",
+                                    "format": "int64",
+                                    "example": 101
                                 },
                                 "job_created_at_max_ms": {
                                     "type": "integer",
-                                    "format": "int64"
+                                    "format": "int64",
+                                    "description": "Maximum value of the JobCreatedAtMs, specified in milliseconds UNIX time.",
+                                    "example": 1462878398034
                                 },
                                 "duration_seconds": {
                                     "type": "integer",
-                                    "format": "int64"
+                                    "format": "int64",
+                                    "description": "Duration of the query specified in seconds. E.g. to search for jobs created up to a week before job_created_at_max_ms, set duration_seconds to 604800.",
+                                    "example": 604800
                                 }
                             }
                         }
@@ -611,7 +703,11 @@
         },
         "/fleet/dispatch_jobs/create": {
             "post": {
-                "summary": "Create dispatch jobs in the specified group.",
+                "tags": [
+                    "Fleet"
+                ],
+                "summary": "/fleet/dispatch_jobs/create",
+                "description": "Create dispatch jobs in the specified group.",
                 "operationId": "create_fleet_dispatch_jobs",
                 "parameters": [
                     {
@@ -630,7 +726,9 @@
                             "properties": {
                                 "group_id": {
                                     "type": "integer",
-                                    "format": "int64"
+                                    "description": "Group ID to query.",
+                                    "format": "int64",
+                                    "example": 101
                                 },
                                 "dispatch_jobs": {
                                     "type": "array",
@@ -638,15 +736,21 @@
                                         "type": "object",
                                         "properties": {
                                             "external_identifier": {
-                                                "type": "string"
+                                                "type": "string",
+                                                "description": "A string that can be used to map jobs in the Samsara database to jobs in an external database.",
+                                                "example": "mysql_dispatch_job_id_2379"
                                             },
                                             "driver_id": {
                                                 "type": "integer",
-                                                "format": "int64"
+                                                "format": "int64",
+                                                "description":  "ID of the driver assigned to the dispatch job.",
+                                                "example": 444
                                             },
                                             "vehicle_id": {
                                                 "type": "integer",
-                                                "format": "int64"
+                                                "format": "int64",
+                                                "description": "ID of the vehicle used for the dispatch job.",
+                                                "example": 112
                                             },
                                             "job_state": {
                                                 "type": "string",
@@ -656,44 +760,66 @@
                                                     "JobState_Started",
                                                     "JobState_Completed",
                                                     "JobState_Cancelled"
-                                                ]
+                                                ],
+                                                "description": "The current state of the dispatch job.",
+                                                "example": "JobState_Unassigned"
                                             },
                                             "scheduled_arrival_time_ms": {
                                                 "type": "integer",
-                                                "format": "int64"
+                                                "format": "int64",
+                                                "description": "The time at which the assigned driver is scheduled to arrive at the job destination.",
+                                                "example": 1462881998034
                                             },
                                             "started_at_ms": {
                                                 "type": "integer",
-                                                "format": "int64"
+                                                "format": "int64",
+                                                "description": "The time at which the assigned driver started fulfilling the job (e.g. started driving to the destination).",
+                                                "example": 1462881998034
                                             },
                                             "completed_at_ms": {
                                                 "type": "integer",
-                                                "format": "int64"
+                                                "format": "int64",
+                                                "description": "The time at which the job was marked complete.",
+                                                "example": 1462881998034
                                             },
                                             "cancelled_at_ms": {
                                                 "type": "integer",
-                                                "format": "int64"
+                                                "format": "int64",
+                                                "description": "The time at which the job was marked cancelled.",
+                                                "example": 1462881998034
                                             },
                                             "job_created_at_ms": {
                                                 "type": "integer",
-                                                "format": "int64"
+                                                "format": "int64",
+                                                "description": "The time at which the job was created.",
+                                                "example": 1462881998034
                                             },
                                             "notes": {
-                                                "type": "string"
+                                                "type": "string",
+                                                "description": "Notes regarding the details of this job.",
+                                                "example": "Ensure crates are stacked no more than 3 high."
                                             },
                                             "destination_name": {
-                                                "type": "string"
+                                                "type": "string",
+                                                "description": "The name of the job destination.",
+                                                "example": "ACME Inc. Philadelphia HQ"
                                             },
                                             "destination_address": {
-                                                "type": "string"
+                                                "type": "string",
+                                                "description": "The address of the job destination, as it would be recognized if provided to maps.google.com",
+                                                "example": "123 Main St, Philadelphia, PA 19106"
                                             },
                                             "destination_lat": {
                                                 "type": "number",
-                                                "format": "float"
+                                                "format": "float",
+                                                "description": "Latitude of the destination in decimal degrees.",
+                                                "example": 123.456
                                             },
                                             "destination_lng": {
                                                 "type": "number",
-                                                "format": "float"
+                                                "format": "float",
+                                                "description": "Latitude of the destination in decimal degrees.",
+                                                "example": 37.459
                                             }
                                         }
                                     }
@@ -720,7 +846,11 @@
         },
         "/fleet/dispatch_jobs/update": {
             "post": {
-                "summary": "Update dispatch jobs specified group.",
+                "tags": [
+                    "Fleet"
+                ],
+                "summary": "/fleet/dispatch_jobs/update",
+                "description": "Update dispatch jobs in the specified group.",
                 "operationId": "update_fleet_dispatch_jobs",
                 "parameters": [
                     {
@@ -739,7 +869,9 @@
                             "properties": {
                                 "group_id": {
                                     "type": "integer",
-                                    "format": "int64"
+                                    "description": "Group ID to query.",
+                                    "format": "int64",
+                                    "example": 101
                                 },
                                 "dispatch_jobs": {
                                     "type": "array",
@@ -748,18 +880,26 @@
                                         "properties": {
                                             "id": {
                                                 "type": "integer",
-                                                "format": "int64"
+                                                "format": "int64",
+                                                "description": "ID of the Samsara dispatch job to be updated.",
+                                                "example": 773
                                             },
                                             "external_identifier": {
-                                                "type": "string"
+                                                "type": "string",
+                                                "description": "New= string that can be used to map jobs in the Samsara database to jobs in an external database.",
+                                                "example": "mysql_dispatch_job_id_2379"
                                             },
                                             "driver_id": {
                                                 "type": "integer",
-                                                "format": "int64"
+                                                "format": "int64",
+                                                "description": "New ID of the driver assigned to the dispatch job.",
+                                                "example": 444
                                             },
                                             "vehicle_id": {
                                                 "type": "integer",
-                                                "format": "int64"
+                                                "format": "int64",
+                                                "description": "New ID of the vehicle used for the dispatch job.",
+                                                "example": 112
                                             },
                                             "job_state": {
                                                 "type": "string",
@@ -769,40 +909,60 @@
                                                     "JobState_Started",
                                                     "JobState_Completed",
                                                     "JobState_Cancelled"
-                                                ]
+                                                ],
+                                                "description": "The current state of the dispatch job.",
+                                                "example": "JobState_Unassigned"
                                             },
                                             "scheduled_arrival_time_ms": {
                                                 "type": "integer",
-                                                "format": "int64"
+                                                "format": "int64",
+                                                "description": "The time at which the assigned driver is scheduled to arrive at the job destination.",
+                                                "example": 1462881998034
                                             },
                                             "started_at_ms": {
                                                 "type": "integer",
-                                                "format": "int64"
+                                                "format": "int64",
+                                                "description": "The time at which the assigned driver started fulfilling the job (e.g. started driving to the destination).",
+                                                "example": 1462881998034
                                             },
                                             "completed_at_ms": {
                                                 "type": "integer",
-                                                "format": "int64"
+                                                "format": "int64",
+                                                "description": "The time at which the job was marked complete.",
+                                                "example": 1462881998034
                                             },
                                             "cancelled_at_ms": {
                                                 "type": "integer",
-                                                "format": "int64"
+                                                "format": "int64",
+                                                "description": "The time at which the job was marked cancelled.",
+                                                "example": 1462881998034
                                             },
                                             "notes": {
-                                                "type": "string"
+                                                "type": "string",
+                                                "description": "Notes regarding the details of this job.",
+                                                "example": "Ensure crates are stacked no more than 3 high."
                                             },
                                             "destination_name": {
-                                                "type": "string"
+                                                "type": "string",
+                                                "description": "The name of the job destination.",
+                                                "example": "ACME Inc. Philadelphia HQ"
                                             },
                                             "destination_address": {
-                                                "type": "string"
+                                                "type": "string",
+                                                "description": "The address of the job destination, as it would be recognized if provided to maps.google.com",
+                                                "example": "123 Main St, Philadelphia, PA 19106"
                                             },
                                             "destination_lat": {
                                                 "type": "number",
-                                                "format": "float"
+                                                "format": "float",
+                                                "description": "Latitude of the destination in decimal degrees.",
+                                                "example": 123.456
                                             },
                                             "destination_lng": {
                                                 "type": "number",
-                                                "format": "float"
+                                                "format": "float",
+                                                "description": "Latitude of the destination in decimal degrees.",
+                                                "example": 37.459
                                             }
                                         }
                                     }
@@ -839,15 +999,18 @@
                 "id": {
                     "type": "integer",
                     "description": "ID of the sensor.",
-                    "format": "int64"
+                    "format": "int64",
+                    "example": 123
                 },
                 "name": {
                     "type": "string",
-                    "description": "Name of the sensor."
+                    "description": "Name of the sensor.",
+                    "example": "Freezer ABC"
                 },
                 "macAddress": {
                     "type": "string",
-                    "description": "MAC address of the sensor."
+                    "description": "MAC address of the sensor.",
+                    "example": "11:11:11:11:11:11"
                 }
             }
         },
@@ -861,14 +1024,17 @@
                 "id": {
                     "type": "integer",
                     "description": "ID of the vehicle.",
-                    "format": "int64"
+                    "format": "int64",
+                    "example": 112
                 },
                 "name": {
                     "type": "string",
-                    "description": "Name of the vehicle."
+                    "description": "Name of the vehicle.",
+                    "example": "Truck A7"
                 },
                 "note": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Red truck 2015 M16"
                 }
             }
         },
@@ -882,29 +1048,35 @@
                 "id": {
                     "type": "integer",
                     "description": "ID of the vehicle.",
-                    "format": "int64"
+                    "format": "int64",
+                    "example": 112
                 },
                 "name": {
                     "type": "string",
-                    "description": "Name of the vehicle."
+                    "description": "Name of the vehicle.",
+                    "example": "Truck A7"
                 },
                 "latitude": {
                     "type": "number",
                     "format": "float",
-                    "description": "Latitude in decimal degrees."
+                    "description": "Latitude in decimal degrees.",
+                    "example": 123.456
                 },
                 "longitude": {
                     "type": "number",
                     "format": "float",
-                    "description": "Longitude in decimal degrees."
+                    "description": "Longitude in decimal degrees.",
+                    "example": 32.897
                 },
                 "location": {
                     "type": "string",
-                    "description": "Text representation of nearest identifiable location to (latitude, longitude) coordinates."
+                    "description": "Text representation of nearest identifiable location to (latitude, longitude) coordinates.",
+                    "example": "1 Main St, Dallas, TX"
                 },
                 "time": {
                     "type": "integer",
-                    "description": "The time the reported location was logged, reported as a UNIX timestamp in milliseconds."
+                    "description": "The time the reported location was logged, reported as a UNIX timestamp in milliseconds.",
+                    "example": 1462881998034
                 }
             }
         },
@@ -914,7 +1086,8 @@
             "properties": {
                 "groupId": {
                     "type": "integer",
-                    "format": "int64"
+                    "format": "int64",
+                    "example": 101
                 },
                 "sensors": {
                     "type": "array",
@@ -924,15 +1097,18 @@
                             "id": {
                                 "type": "integer",
                                 "format": "int64",
-                                "description": "ID of the sensor."
+                                "description": "ID of the sensor.",
+                                "example": 122
                             },
                             "ambientTemperature": {
                                 "type": "integer",
-                                "description": "Currently reported ambient temperature in millidegrees celsius."
+                                "description": "Currently reported ambient temperature in millidegrees celsius.",
+                                "example": 11057
                             },
                             "probeTemperature": {
                                 "type": "integer",
-                                "description": "Currently reported probe temperature in millidegrees celsius. If no probe is connected, this parameter will not be reported."
+                                "description": "Currently reported probe temperature in millidegrees celsius. If no probe is connected, this parameter will not be reported.",
+                                "example": -20145
                             }
                         }
                     }
@@ -945,7 +1121,8 @@
             "properties": {
                 "groupId": {
                     "type": "integer",
-                    "format": "int64"
+                    "format": "int64",
+                    "example": 101
                 },
                 "sensors": {
                     "type": "array",
@@ -955,11 +1132,13 @@
                             "id": {
                                 "type": "integer",
                                 "description": "ID of the sensor.",
-                                "format": "int64"
+                                "format": "int64",
+                                "example": 122
                             },
                             "humidity": {
                                 "type": "integer",
-                                "description": "Currently reported relative humidity in percent, from 0-100."
+                                "description": "Currently reported relative humidity in percent, from 0-100.",
+                                "example": 53
                             }
                         }
                     }
@@ -977,7 +1156,8 @@
                         "properties": {
                             "startMs": {
                                 "type": "integer",
-                                "description": "Beginning of the trip in UNIX milliseconds."
+                                "description": "Beginning of the trip in UNIX milliseconds.",
+                                "example": 1462878398034
                             },
                             "startCoordinates": {
                                 "type": "object",
@@ -985,21 +1165,25 @@
                                 "properties": {
                                     "latitude": {
                                         "type": "number",
-                                        "format": "float"
+                                        "format": "float",
+                                        "example": 29.443702345
                                     },
                                     "longitude": {
                                         "type": "number",
-                                        "format": "float"
+                                        "format": "float",
+                                        "example": -98.502888123
                                     }
                                 }
                             },
                             "startLocation": {
                                 "type": "string",
-                                "description": "Text representation of nearest identifiable location to the start (latitude, longitude) coordinates."
+                                "description": "Text representation of nearest identifiable location to the start (latitude, longitude) coordinates.",
+                                "example": "Woodland Lane, Dallas, TX"
                             },
                             "endMs": {
                                 "type": "integer",
-                                "description": "End of the trip in UNIX milliseconds."
+                                "description": "End of the trip in UNIX milliseconds.",
+                                "example": 1462881998034
                             },
                             "endCoordinates": {
                                 "type": "object",
@@ -1007,17 +1191,25 @@
                                 "properties": {
                                     "latitude": {
                                         "type": "number",
-                                        "format": "float"
+                                        "format": "float",
+                                        "example": 23.413702345
                                     },
                                     "longitude": {
                                         "type": "number",
-                                        "format": "float"
+                                        "format": "float",
+                                        "example": -91.502888123
                                     }
                                 }
                             },
                             "endLocation": {
                                 "type": "string",
-                                "description": "Text representation of nearest identifiable location to the end (latitude, longitude) coordinates."
+                                "description": "Text representation of nearest identifiable location to the end (latitude, longitude) coordinates.",
+                                "example": "FC Elementary School"
+                            },
+                            "distanceMeters": {
+                                "type": "integer",
+                                "description": "Length of the trip in meters.",
+                                "example": 2500
                             }
                         }
                     }
@@ -1034,10 +1226,14 @@
                         "properties": {
                             "id": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "ID of the driver.",
+                                "example": 444
                             },
                             "name": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Name of the driver.",
+                                "example": "Fred Jacobs"
                             }
                         }
                     }
@@ -1054,36 +1250,54 @@
                         "properties": {
                             "groupId": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "ID of the group.",
+                                "example": 101
                             },
                             "vehicleId": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "ID of the vehicle.",
+                                "example": 112
                             },
                             "driverId": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "ID of the driver.",
+                                "example": 444
                             },
                             "logStartMs": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "The time at which the log/HOS status started in UNIX milliseconds.",
+                                "example": 1462881998034
                             },
                             "statusType": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The Hours of Service status type. One of 'OFF_DUTY', 'SLEEPER_BED', 'DRIVING', 'ON_DUTY'.",
+                                "example": "OFF_DUTY"
                             },
                             "locCity": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "City in which the log was recorded.",
+                                "example": "Ahwatukee"
                             },
                             "locState": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "State in which the log was recorded.",
+                                "example": "Arizona"
                             },
                             "locLat": {
                                 "type": "number",
-                                "format": "float"
+                                "format": "float",
+                                "description": "Latitude at which the log was recorded.",
+                                "example": 23.413702345
                             },
                             "locLng": {
                                 "type": "number",
-                                "format": "float"
+                                "format": "float",
+                                "description": "Longitude at which the log was recorded.",
+                                "example": -98.502888123
                             }
                         }
                     }
@@ -1116,14 +1330,16 @@
                         "properties": {
                             "timeMs": {
                                 "type": "integer",
-                                "description": "Timestamp in UNIX milliseconds."
+                                "description": "Timestamp in UNIX milliseconds.",
+                                "example": 1453449599999
                             },
                             "series": {
                                 "type": "array",
                                 "description": "List of datapoints, one for each requested (sensor, field) pair.",
                                 "items": {
                                     "type": "integer",
-                                    "format": "int64"
+                                    "format": "int64",
+                                    "example": 1
                                 }
                             }
                         }
@@ -1141,10 +1357,14 @@
                         "properties": {
                             "id": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "ID of the Samsara dispatch job to be updated.",
+                                "example": 773
                             },
                             "external_identifier": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "New= string that can be used to map jobs in the Samsara database to jobs in an external database.",
+                                "example": "mysql_dispatch_job_id_2379"
                             },
                             "org_id": {
                                 "type": "integer",
@@ -1156,11 +1376,15 @@
                             },
                             "driver_id": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description":  "ID of the driver assigned to the dispatch job.",
+                                "example": 444
                             },
                             "vehicle_id": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "ID of the vehicle used for the dispatch job.",
+                                "example": 112
                             },
                             "job_state": {
                                 "type": "string",
@@ -1170,44 +1394,66 @@
                                     "JobState_Started",
                                     "JobState_Completed",
                                     "JobState_Cancelled"
-                                ]
+                                ],
+                                "description": "The current state of the dispatch job.",
+                                "example": "JobState_Unassigned"
                             },
                             "scheduled_arrival_time_ms": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                 "description": "The time at which the assigned driver is scheduled to arrive at the job destination.",
+                                 "example": 1462881998034
                             },
                             "started_at_ms": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "The time at which the assigned driver started fulfilling the job (e.g. started driving to the destination).",
+                                "example": 1462881998034
                             },
                             "completed_at_ms": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "The time at which the job was marked complete.",
+                                "example": 1462881998034
                             },
                             "cancelled_at_ms": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "The time at which the job was marked cancelled.",
+                                "example": 1462881998034
                             },
                             "job_created_at_ms": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "The time at which the job was created.",
+                                "example": 1462881998034
                             },
                             "notes": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Notes regarding the details of this job.",
+                                "example": "Ensure crates are stacked no more than 3 high."
                             },
                             "destination_name": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The name of the job destination.",
+                                "example": "ACME Inc. Philadelphia HQ"
                             },
                             "destination_address": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The address of the job destination, as it would be recognized if provided to maps.google.com",
+                                "example": "123 Main St, Philadelphia, PA 19106"
                             },
                             "destination_lat": {
                                 "type": "number",
-                                "format": "float"
+                                "format": "float",
+                                "description": "Latitude of the destination in decimal degrees.",
+                                "example": 123.456
                             },
                             "destination_lng": {
                                 "type": "number",
-                                "format": "float"
+                                "format": "float",
+                                "description": "Latitude of the destination in decimal degrees.",
+                                "example": 37.459
                             }
                         }
                     }
@@ -1237,7 +1483,8 @@
                     "groupId": {
                         "type": "integer",
                         "description": "Group ID to query.",
-                        "format": "int64"
+                        "format": "int64",
+                        "example": 101
                     }
                 }
             }
@@ -1257,7 +1504,8 @@
                     "groupId": {
                         "type": "integer",
                         "description": "Group ID to query.",
-                        "format": "int64"
+                        "format": "int64",
+                        "example": 101
                     },
                     "sensors": {
                         "type": "array",
@@ -1265,7 +1513,10 @@
                         "items": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": [
+                            122
+                        ]
                     }
                 }
             }
