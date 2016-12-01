@@ -22,6 +22,10 @@
     },
     "tags": [
         {
+            "name": "Default",
+            "description": "All Samsara API endpoints"
+        },
+        {
             "name": "Fleet",
             "description": "Access to fleet data"
         },
@@ -34,7 +38,7 @@
         "/sensors/list": {
             "post": {
                 "tags": [
-                    "Sensors"
+                    "Sensors", "Default"
                 ],
                 "summary": "/sensors/list",
                 "description": "Get sensor objects. This method returns a list of the sensor objects in the Samsara Cloud and information about them.",
@@ -74,7 +78,7 @@
         "/sensors/temperature": {
             "post": {
                 "tags": [
-                    "Sensors"
+                    "Sensors", "Default"
                 ],
                 "summary": "/sensors/temperature",
                 "description": "Get temperature for requested sensors. This method returns the current ambient temperature (and probe temperature if applicable) for the requested sensors.",
@@ -106,7 +110,7 @@
         "/sensors/humidity": {
             "post": {
                 "tags": [
-                    "Sensors"
+                    "Sensors", "Default"
                 ],
                 "summary": "/sensors/humidity",
                 "description": "Get humidity for requested sensors. This method returns the current relative humidity for the requested sensors.",
@@ -138,7 +142,7 @@
         "/sensors/history": {
             "post": {
                 "tags": [
-                    "Sensors"
+                    "Sensors", "Default"
                 ],
                 "summary": "/sensors/history",
                 "description": "Get historical data for specified sensors. This method returns a set of historical data for the specified sensors in the specified time range and at the specified time resolution.",
@@ -253,7 +257,7 @@
         "/fleet/list": {
             "post": {
                 "tags": [
-                    "Fleet"
+                    "Fleet", "Default"
                 ],
                 "summary": "/fleet/list",
                 "description": "Get list of the vehicles. This method returns a list of the vehicles in the Samsara Cloud and information about them.",
@@ -299,7 +303,7 @@
         "/fleet/locations": {
             "post": {
                 "tags": [
-                    "Fleet"
+                    "Fleet", "Default"
                 ],
                 "summary": "/fleet/locations",
                 "description": "Get current location of vehicles in a group. This method returns the current location in latitude and longitude of all vehicles in a requested group.",
@@ -345,7 +349,7 @@
         "/fleet/trips": {
             "post": {
                 "tags": [
-                    "Fleet"
+                    "Fleet", "Default"
                 ],
                 "summary": "/fleet/trips",
                 "description": "Get historical trips data for specified vehicle. This method returns a set of historical trips data for the specified vehicle in the specified time range.",
@@ -413,7 +417,7 @@
         "/fleet/drivers": {
             "post": {
                 "tags": [
-                    "Fleet"
+                    "Fleet", "Default"
                 ],
                 "summary": "/fleet/drivers",
                 "description": "Get all the drivers for the specified group.",
@@ -461,7 +465,7 @@
         "/fleet/hos_logs": {
             "post": {
                 "tags": [
-                    "Fleet"
+                    "Fleet", "Default"
                 ],
                 "summary": "/fleet/hos_logs",
                 "description": "Get the HOS (hours of service) logs for the specified driver.",
@@ -528,7 +532,7 @@
         "/fleet/add_address": {
             "post": {
                 "tags": [
-                    "Fleet"
+                    "Fleet", "Default"
                 ],
                 "summary": "/fleet/add_address",
                 "description": "This method adds an address book entry to the specified group.",
@@ -591,7 +595,7 @@
         "/fleet/set_data": {
             "post": {
                 "tags": [
-                    "Fleet"
+                    "Fleet", "Default"
                 ],
                 "summary": "/fleet/set_data",
                 "description": "This method enables the mutation of metadata for vehicles in the Samsara Cloud.",
@@ -643,7 +647,7 @@
         "/fleet/dispatch_jobs": {
             "post": {
                 "tags": [
-                    "Fleet"
+                    "Fleet", "Default"
                 ],
                 "summary": "/fleet/dispatch_jobs",
                 "description": "Get the dispatch jobs for the specified group.",
@@ -704,7 +708,7 @@
         "/fleet/dispatch_jobs/create": {
             "post": {
                 "tags": [
-                    "Fleet"
+                    "Fleet", "Default"
                 ],
                 "summary": "/fleet/dispatch_jobs/create",
                 "description": "Create dispatch jobs in the specified group.",
@@ -847,7 +851,7 @@
         "/fleet/dispatch_jobs/update": {
             "post": {
                 "tags": [
-                    "Fleet"
+                    "Fleet", "Default"
                 ],
                 "summary": "/fleet/dispatch_jobs/update",
                 "description": "Update dispatch jobs in the specified group.",
