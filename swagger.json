@@ -462,6 +462,69 @@
                 }
             }
         },
+        "/fleet/drivers/summary": {
+          "post": {
+            "tags": [
+              "Fleet", "Default"
+            ],
+            "summary": "/fleet/drivers/summary",
+            "description": "Get the distance and time each driver in an organization has driven in a given time period.",
+            "operationId": "get_fleet_drivers_summary",
+            "parameters": [
+              {
+                "$ref": "#/parameters/accessTokenParam"
+              },
+              {
+                "name": "driversSummaryParam",
+                "description": "Org ID and time range to query.",
+                "required": true,
+                "in": "body",
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "orgId",
+                    "startMs",
+                    "endMs"
+                  ],
+                  "properties": {
+                    "orgId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Org ID to query.",
+                      "example": 101
+                    },
+                    "startMs": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Start time (ms) of queried time period.",
+                      "example": 1481076243389
+                    },
+                    "endMs": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "End time (ms) of queried time period.",
+                      "example": 1481076244389
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Distance traveled and time active for each driver in the organization over the specified time period.",
+                "schema": {
+                  "$ref": "#/definitions/DriversSummaryResponse"
+                }
+              },
+              "default": {
+                "description": "Unexpected error.",
+                "schema": {
+                  "$ref": "#/definitions/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
         "/fleet/hos_logs": {
             "post": {
                 "tags": [
@@ -1244,8 +1307,50 @@
                 }
             }
         },
+        "DriversSummaryResponse": {
+          "type": "object",
+          "properties": {
+            "summaries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "driverId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "ID of the driver.",
+                    "example": 444
+                  },
+                  "driverName": {
+                    "type": "string",
+                    "description": "Name of the driver.",
+                    "example": "Fred Jacobs"
+                  },
+                  "groupId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Group of the driver.",
+                    "example": 111
+                  },
+                  "activeMs": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Milliseconds spent on duty or driving.",
+                    "example": 3600000
+                  },
+                  "distanceMeters": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Distance driven in meters.",
+                    "example": 25000
+                  }
+                }
+              }
+            }
+          }
+        },
         "HosLogsResponse": {
-            "type": "object",
+          "type": "object",
             "properties": {
                 "logs": {
                     "type": "array",
