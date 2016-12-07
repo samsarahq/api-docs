@@ -1326,23 +1326,28 @@
                     "description": "Name of the driver.",
                     "example": "Fred Jacobs"
                   },
+                  "driverUsername": {
+                    "type": "string",
+                    "description": "Username of the driver.",
+                    "example": "fjacobs"
+                  },
                   "groupId": {
                     "type": "integer",
                     "format": "int64",
                     "description": "Group of the driver.",
                     "example": 111
                   },
-                  "activeMs": {
-                    "type": "integer",
-                    "format": "int64",
-                    "description": "Milliseconds spent on duty or driving.",
-                    "example": 3600000
+                  "activeHours": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Hours spent on duty or driving, rounded to two decimal places.",
+                    "example": 5.40
                   },
-                  "distanceMeters": {
-                    "type": "integer",
-                    "format": "int64",
-                    "description": "Distance driven in meters.",
-                    "example": 25000
+                  "distanceMiles": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Distance driven in miles, rounded to two decimal places.",
+                    "example": 123.24
                   }
                 }
               }
