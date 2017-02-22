@@ -592,6 +592,46 @@
                 }
             }
         },
+        "/fleet/maintenance/list": {
+            "post": {
+                "tags": [
+                    "Fleet", "Default"
+                ],
+                "summary": "/fleet/maintenance/list",
+                "description": "Get list of the vehicles with any engine faults or check light data.",
+                "operationId": "get_fleet_maintenance_list",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "$ref": "#/parameters/groupParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of vehicles and maintenance information about each.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "vehicles": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/VehicleMaintenance"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/fleet/add_address": {
             "post": {
                 "tags": [
@@ -1155,6 +1195,105 @@
                     "type": "integer",
                     "description": "The time the reported location was logged, reported as a UNIX timestamp in milliseconds.",
                     "example": 1462881998034
+                }
+            }
+        },
+        "VehicleMaintenance": {
+            "type": "object",
+            "description": "Contains any J1939/Passenger engine light warnings and engine faults.",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "ID of the vehicle.",
+                    "format": "int64",
+                    "example": 112
+                },
+                "j1939": {
+                    "type": "object",
+                    "description": "J1939 based data. Null if no data is available.",
+                    "properties": {
+                      "checkEngineLight": {
+                          "type": "object",
+                          "description": "J1939 check engine lights.",
+                          "properties": {
+                            "emissionsIsOn": {
+                              "type": "boolean"
+                            },
+                            "protectIsOn": {
+                              "type": "boolean"
+                            },
+                            "stopIsOn": {
+                              "type": "boolean"
+                            },
+                            "warningIsOn": {
+                              "type": "boolean"
+                            }
+                        },
+                      },
+                      "diagnosticTroubleCodes": {
+                        "type": "array",
+                        "description": "J1939 DTCs.",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "fmiId": {
+                              "type": "integer"
+                            },
+                            "fmiText": {
+                              "type": "string"
+                            },
+                            "occurrenceCount": {
+                              "type": "integer"
+                            },
+                            "spnDescription": {
+                              "type": "string"
+                            },
+                            "spnId": {
+                              "type": "integer"
+                            },
+                            "txId": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    }
+                },
+                "passenger": {
+                    "type": "object",
+                    "description": "Passenger vehicle data. Null if no data is available.",
+                    "properties": {
+                      "checkEngineLight": {
+                          "type": "object",
+                          "description": "Passenger vehicle check engine light.",
+                          "properties": {
+                            "isOn": {
+                              "type": "boolean"
+                            }
+                        },
+                      },
+                      "diagnosticTroubleCodes": {
+                        "type": "array",
+                        "description": "Passenger vehicle DTCs.",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "dtcId": {
+                              "type": "integer"
+                            },
+                            "dtcDescription": {
+                              "type": "string"
+                            },
+                            "dtcShortCode": {
+                              "type": "string"
+                            },
+                          }
+                        }
+                      }
+                    }
                 }
             }
         },
