@@ -659,6 +659,54 @@
                 }
             }
         },
+        "/fleet/hos_logs_summary": {
+            "post": {
+                "tags": [
+                    "Fleet", "Default"
+                ],
+                "summary": "/fleet/hos_logs_summary",
+                "description": "Get the current HOS status for all drivers in the group.",
+                "operationId": "get_fleet_hos_logs_summary",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "hosLogsParam",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "groupId"
+                            ],
+                            "properties": {
+                                "groupId": {
+                                    "type": "integer",
+                                    "format": "int64",
+                                    "description": "Group ID to query.",
+                                    "example": 101
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "HOS logs for the specified driver.",
+                        "schema": {
+                            "$ref": "#/definitions/HosLogsSummaryResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/fleet/maintenance/list": {
             "post": {
                 "tags": [
@@ -1576,6 +1624,88 @@
             }
           }
         },
+        "HosLogsSummaryResponse": {
+          "type": "object",
+          "properties": {
+            "drivers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "driverId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "ID of the driver.",
+                    "example": 444
+                  },
+                  "driverName": {
+                    "type": "string",
+                    "description": "Name of the driver.",
+                    "example": "Fred Jacobs"
+                  },
+                  "vehicleName": {
+                    "type": "string",
+                    "description": "Name of the vehicle.",
+                    "example": "Vehicle 1"
+                  },
+                  "dutyStatus": {
+                    "type": "string",
+                    "description": "The Hours of Service status type. One of `OFF_DUTY`, `SLEEPER_BED`, `DRIVING`, `ON_DUTY`, `YARD_MOVE`, `PERSONAL_CONVEYANCE`.",
+                    "example": "OFF_DUTY"
+                  },
+                  "timeInCurrentStatus": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The amount of time (in ms) that the driver has been in the current `dutyStatus`.",
+                    "example": 5000
+                  },
+                  "timeUntilBreak": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The amount of time (in ms) remaining until the driver cannot drive without a rest break.",
+                    "example": 28800000
+                  },
+                  "shiftDriveRemaining": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The amount of remaining shift drive time (in ms).",
+                    "example": 39600000
+                  },
+                  "shiftRemaining": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The amount of remaining shift time (in ms).",
+                    "example": 50400000
+                  },
+                  "cycleRemaining": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The amount of remaining cycle time (in ms).",
+                    "example": 252000000
+                  },
+                  "cycleTomorrow": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The amount of cycle time (in ms) available tomorrow.",
+                    "example": 252000000
+                  },
+                  "drivingInViolationToday": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The amount of driving time in violation today (in ms).",
+                    "example": 39600000
+                  },
+                  "drivingInViolationCycle": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The amount of driving time in violation in this cycle (in ms).",
+                    "example": 50400000
+                  }
+                }
+              }
+            }
+          }
+        },
         "HosLogsResponse": {
           "type": "object",
             "properties": {
@@ -1610,7 +1740,7 @@
                             },
                             "statusType": {
                                 "type": "string",
-                                "description": "The Hours of Service status type. One of 'OFF_DUTY', 'SLEEPER_BED', 'DRIVING', 'ON_DUTY'.",
+                                "description": "The Hours of Service status type. One of `OFF_DUTY`, `SLEEPER_BED`, `DRIVING`, `ON_DUTY`, `YARD_MOVE`, `PERSONAL_CONVEYANCE`.",
                                 "example": "OFF_DUTY"
                             },
                             "locCity": {
