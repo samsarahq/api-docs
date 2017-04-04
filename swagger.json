@@ -592,6 +592,73 @@
                 }
             }
         },
+        "/fleet/hos_authentication_logs": {
+            "post": {
+                "tags": [
+                    "Fleet", "Default"
+                ],
+                "summary": "/fleet/hos_authentication_logs",
+                "description": "Get the HOS (hours of service) signin and signout logs for the specified driver. Only signout logs include location information.",
+                "operationId": "get_fleet_hos_authentication_logs",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "hosAuthenticationLogsParam",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "groupId",
+                                "driverId",
+                                "startMs",
+                                "endMs"
+                            ],
+                            "properties": {
+                                "groupId": {
+                                    "type": "integer",
+                                    "format": "int64",
+                                    "description": "Group ID to query.",
+                                    "example": 101
+                                },
+                                "driverId": {
+                                    "type": "integer",
+                                    "format": "int64",
+                                    "description": "Driver ID to query.",
+                                    "example": 444
+                                },
+                                "startMs": {
+                                    "type": "integer",
+                                    "description": "Beginning of the time range, specified in milliseconds UNIX time.",
+                                    "example": 1462878398034
+                                },
+                                "endMs": {
+                                    "type": "integer",
+                                    "description": "End of the time range, specified in milliseconds UNIX time.",
+                                    "example": 1462881998034
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "HOS authentication logs for the specified driver.",
+                        "schema": {
+                            "$ref": "#/definitions/HosAuthenticationLogsResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/fleet/maintenance/list": {
             "post": {
                 "tags": [
@@ -1236,7 +1303,7 @@
                             "warningIsOn": {
                               "type": "boolean"
                             }
-                        },
+                        }
                       },
                       "diagnosticTroubleCodes": {
                         "type": "array",
@@ -1278,7 +1345,7 @@
                             "isOn": {
                               "type": "boolean"
                             }
-                        },
+                        }
                       },
                       "diagnosticTroubleCodes": {
                         "type": "array",
@@ -1294,7 +1361,7 @@
                             },
                             "dtcShortCode": {
                               "type": "string"
-                            },
+                            }
                           }
                         }
                       }
@@ -1572,6 +1639,50 @@
                                 "type": "string",
                                 "description": "Name of location at which the log was recorded.",
                                 "example": "McLean Site A"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "HosAuthenticationLogsResponse": {
+            "type": "object",
+            "properties": {
+                "authenticationLogs": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "actionType": {
+                                "type": "string",
+                                "description": "The log type - one of 'signin' or 'signout'",
+                                "example": "signin"
+                            },
+                            "happenedAtMs": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "The time at which the event was recorded in UNIX milliseconds.",
+                                "example": 1462881998034
+                            },
+                            "city": {
+                                "type": "string",
+                                "description": "City in which the log was recorded, if applicable.",
+                                "example": "Ahwatukee"
+                            },
+                            "state": {
+                                "type": "string",
+                                "description": "State in which the log was recorded, if applicable.",
+                                "example": "Arizona"
+                            },
+                            "addressName": {
+                                "type": "string",
+                                "description": "Address name from the group address book at which the log was recorded, if applicable.",
+                                "example": "Garage Number 3"
+                            },
+                            "address": {
+                                "type": "string",
+                                "description": "Address at which the log was recorded, if applicable.",
+                                "example": "123 Main St., Ahwatukee, Arizona 85044"
                             }
                         }
                     }
