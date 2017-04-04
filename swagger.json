@@ -592,6 +592,54 @@
                 }
             }
         },
+        "/fleet/hos_logs_summary": {
+            "post": {
+                "tags": [
+                    "Fleet", "Default"
+                ],
+                "summary": "/fleet/hos_logs_summary",
+                "description": "Get the current HOS status for all drivers in the group.",
+                "operationId": "get_fleet_hos_logs_summary",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "hosLogsParam",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "groupId"
+                            ],
+                            "properties": {
+                                "groupId": {
+                                    "type": "integer",
+                                    "format": "int64",
+                                    "description": "Group ID to query.",
+                                    "example": 101
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "HOS logs for the specified driver.",
+                        "schema": {
+                            "$ref": "#/definitions/HosLogsSummaryResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/fleet/hos_authentication_logs": {
             "post": {
                 "tags": [
@@ -648,54 +696,6 @@
                         "description": "HOS authentication logs for the specified driver.",
                         "schema": {
                             "$ref": "#/definitions/HosAuthenticationLogsResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Unexpected error.",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/fleet/hos_logs_summary": {
-            "post": {
-                "tags": [
-                    "Fleet", "Default"
-                ],
-                "summary": "/fleet/hos_logs_summary",
-                "description": "Get the current HOS status for all drivers in the group.",
-                "operationId": "get_fleet_hos_logs_summary",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/accessTokenParam"
-                    },
-                    {
-                        "name": "hosLogsParam",
-                        "required": true,
-                        "in": "body",
-                        "schema": {
-                            "type": "object",
-                            "required": [
-                                "groupId"
-                            ],
-                            "properties": {
-                                "groupId": {
-                                    "type": "integer",
-                                    "format": "int64",
-                                    "description": "Group ID to query.",
-                                    "example": 101
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "HOS logs for the specified driver.",
-                        "schema": {
-                            "$ref": "#/definitions/HosLogsSummaryResponse"
                         }
                     },
                     "default": {
