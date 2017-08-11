@@ -640,6 +640,56 @@
                 }
             }
         },
+        "/fleet/maintenance/dvirs": {
+            "get": {
+                "tags": [
+                    "Fleet","Default"
+                ],
+                "summary": "/fleet/maintenance/dvirs",
+                "description": "Get the DVIR for the org with the time constraints",
+                "operationId": "get_dvirs",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "end_ms",
+                        "description": "time in millis until the last dvir log.",
+                        "required": true,
+                        "in": "query",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "duration_ms",
+                        "description": "time in millis which corresponds to the duration before the end_ms.",
+                        "required": true,
+                        "in": "query",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "group_id",
+                        "description": "Group ID to query.",
+                        "required": false,
+                        "in": "query",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "DVIR's for the specified group and duration.",
+                        "schema": {
+                            "$ref": "#/definitions/DvirListResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/fleet/hos_authentication_logs": {
             "post": {
                 "tags": [
@@ -1710,6 +1760,206 @@
                     "format": "int64",
                     "description": "The amount of driving time in violation in this cycle (in ms).",
                     "example": 50400000
+                  }
+                }
+              }
+            }
+          }
+        },
+        "DvirListResponse": {
+          "type": "object",
+          "properties": {
+            "dvirs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "inspectionType": {
+                    "type": "string",
+                    "description": "Inspection type of the DVIR.",
+                    "example": "pre trip"
+                  },
+                  "vehicle": {
+                    "type": "object",
+                    "description": "The vehicle on which DVIR was done.",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "The vehicle id on which DVIR was done.",
+                            "example": 19
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "The vehicle on which DVIR was done.",
+                            "example": "Storer's vehicle 19"
+                        }
+                    }
+                  },
+                  "vehicleDefects": {
+                    "type": "array",
+                    "description": "Defects registered for the vehicle which was part of the DVIR.",
+                    "items" : {
+                        "type" : "object",
+                        "properties" : {
+                            "defectType": {
+                                "type": "string",
+                                "description": "The type of DVIR defect",
+                                "example": "Air Compressor"
+                            },
+                            "comment": {
+                                "type": "string",
+                                "description": "The comment describing the type of DVIR defect",
+                                "example": "Air Compressor not working"
+                            }
+                        }
+                    }
+                  },
+                  "odometerMiles": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The odometer reading in miles for the vehicle when the DVIR was done.",
+                    "example": 49912
+                  },
+                  "trailerName": {
+                    "type": "string",
+                    "description": "The name of the trailer which was part of the DVIR.",
+                    "example": "Storer's Trailer 19"
+                  },
+                  "trailerDefects": {
+                    "type": "array",
+                    "description": "Defects registered for the trailer which was part of the DVIR.",
+                    "items" : {
+                        "type" : "object",
+                        "properties" : {
+                            "defectType": {
+                                "type": "string",
+                                "description": "The type of DVIR defect",
+                                "example": "Air Compressor"
+                            },
+                            "comment": {
+                                "type": "string",
+                                "description": "The comment describing the type of DVIR defect",
+                                "example": "Air Compressor not working"
+                            }
+                        }
+                    }
+                  },
+                  "mechanicNotes": {
+                    "type": "string",
+                    "description": "The mechanics notes on the DVIR.",
+                    "example": "The vehicle is now safe."
+                  },
+                  "vehicleCondition": {
+                    "type": "string",
+                    "description": "The condition of vechile on which DVIR was done.",
+                    "example": "SATISFACTORY"
+                  },
+                  "defectsCorrected": {
+                    "type": "boolean",
+                    "description": "Signifies if the defects on the vehicle corrected after the DVIR is done.",
+                    "example": true
+                  },
+                  "defectsNeedNotBeCorrected": {
+                    "type": "boolean",
+                    "description": "Signifies if the defects on this vehicle can be ignored.",
+                    "example": false
+                  },
+                  "authorSignature": {
+                    "type": "object",
+                    "description": "The authors signature for the DVIR.",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "description": "Type corresponds to whether the signature corresponds to driver|mechanic.",
+                            "example": "driver"
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "The name of the driver or mechanic who signed the DVIR.",
+                            "example": "driver"
+                        },
+                        "username": {
+                            "type": "string",
+                            "description": "Username of the  driver|mechanic who signed the DVIR.",
+                            "example": "driver"
+                        },
+                        "email": {
+                            "type": "string",
+                            "description": "Email of the  driver|mechanic who signed the DVIR.",
+                            "example": "driver"
+                        },
+                        "signedAt": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "The time in millis when the DVIR was signed",
+                            "example": 12535500000 
+                        }
+                    }
+                  },
+                  "mechanicOrAgentSignature": {
+                    "type": "object",
+                    "description": "The mechanic's or agent's signature for the DVIR.",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "description": "Type corresponds to whether the signature corresponds to driver|mechanic.",
+                            "example": "driver"
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "The name of the agent or mechanic who signed the DVIR.",
+                            "example": "driver"
+                        },
+                        "username": {
+                            "type": "string",
+                            "description": "Username of the  agent|mechanic who signed the DVIR.",
+                            "example": "driver"
+                        },
+                        "email": {
+                            "type": "string",
+                            "description": "Email of the  agent|mechanic who signed the DVIR.",
+                            "example": "driver"
+                        },
+                        "signedAt": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "The time in millis when the DVIR was signed",
+                            "example": 12535500000 
+                        }
+                    }
+                  },
+                  "nextDriverSignature": {
+                    "type": "object",
+                    "description": "The next driver signature for the DVIR.",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "description": "Type corresponds to driver.",
+                            "example": "driver"
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "The name of the driver who signed the next DVIR on this vehicle.",
+                            "example": "driver"
+                        },
+                        "username": {
+                            "type": "string",
+                            "description": "Username of the  driver who signed the next DVIR on this vehicle.",
+                            "example": "driver"
+                        },
+                        "email": {
+                            "type": "string",
+                            "description": "Email of the  driver who signed the next DVIR on this vehicle.",
+                            "example": "driver"
+                        },
+                        "signedAt": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "The time in millis when the next driver signed the DVIR on this vehicle.",
+                            "example": 12535500000 
+                        }
+                    }
                   }
                 }
               }
