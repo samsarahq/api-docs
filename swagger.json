@@ -529,6 +529,80 @@
             }
           }
         },
+        "/fleet/drivers/{driver_id}/hos_daily_logs": {
+          "post": {
+            "tags": [
+              "Fleet", "Default"
+            ],
+            "summary": "/fleet/drivers/{driver_id:[0-9]+}/hos_daily_logs",
+            "description": "Get summarized daily HOS charts for a specified driver.",
+            "operationId": "get_fleet_drivers_hos_daily_logs",
+            "parameters": [
+                {
+                    "$ref": "#/parameters/accessTokenParam"
+                },
+                {
+                    "name": "driver_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "The driver ID.",
+                    "type": "integer"
+                },
+                {
+                    "name": "hosLogsParam",
+                    "required": true,
+                    "in": "body",
+                    "schema": {
+                        "type": "object",
+                        "required": [
+                            "groupId",
+                            "driverId",
+                            "startMs",
+                            "endMs"
+                        ],
+                        "properties": {
+                            "groupId": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "Group ID to query.",
+                                "example": 101
+                            },
+                            "driverId": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "Driver ID to query.",
+                                "example": 444
+                            },
+                            "startMs": {
+                                "type": "integer",
+                                "description": "Beginning of the time range, specified in milliseconds UNIX time.",
+                                "example": 1462878398034
+                            },
+                            "endMs": {
+                                "type": "integer",
+                                "description": "End of the time range, specified in milliseconds UNIX time.",
+                                "example": 1462881998034
+                            }
+                        }
+                    }
+                }
+            ],
+            "responses": {
+              "200": {
+                "description": "Distance traveled and time active for each driver in the organization over the specified time period.",
+                "schema": {
+                  "$ref": "#/definitions/DriverDailyLogResponse"
+                }
+              },
+              "default": {
+                "description": "Unexpected error.",
+                "schema": {
+                  "$ref": "#/definitions/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
         "/fleet/hos_logs": {
             "post": {
                 "tags": [
@@ -1810,6 +1884,62 @@
                     "format": "float",
                     "description": "Distance driven in miles, rounded to two decimal places.",
                     "example": 123.24
+                  }
+                }
+              }
+            }
+          }
+        },
+        "DriverDailyLogResponse": {
+          "type": "object",
+          "properties": {
+            "summaries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "activeHours": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Hours spent on duty or driving, rounded to two decimal places.",
+                    "example": 5.40
+                  },
+                  "certified": {
+                    "type": "boolean",
+                    "description": "Whether this HOS day chart was certified by the driver."
+                  },
+                  "certifiedAtMs": {
+                    "type": "number",
+                    "format": "int64",
+                    "description": "Unix epoch time (in ms) of time when this chart was certified. If this chart is uncertified, 0."
+                  },
+                  "distanceMiles": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Distance driven in miles, rounded to two decimal places.",
+                    "example": 123.24
+                  },
+                  "startMs": {
+                    "type": "integer",
+                    "description": "End of the HOS day, specified in milliseconds UNIX time.",
+                    "example": 1473750000000
+                  },                  
+                  "endMs": {
+                    "type": "integer",
+                    "description": "End of the HOS day, specified in milliseconds UNIX time.",
+                    "example": 1473836400000
+                  },
+                  "trailerIds": {
+                    "type": "object",
+                    "format": "int64",
+                    "description": "List of trailer ID's associated with the driver for the day.",
+                    "example": [010293, 192933]
+                  },
+                  "vehicleIds": {
+                    "type": "object",
+                    "format": "int64",
+                    "description": "List of vehicle ID's associated with the driver for the day.",
+                    "example": [192319, 012958]
                   }
                 }
               }
