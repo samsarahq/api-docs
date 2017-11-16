@@ -1046,7 +1046,7 @@
                     "200": {
                         "description": "Dispatch jobs for the specified group.",
                         "schema": {
-                            "$ref": "#/definitions/DispatchJobsResponse"
+                            "$ref": "#/definitions/DispatchJobsV1Response"
                         }
                     },
                     "default": {
@@ -1090,95 +1090,7 @@
                                 "dispatch_jobs": {
                                     "type": "array",
                                     "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "external_identifier": {
-                                                "type": "string",
-                                                "description": "A string that can be used to map jobs in the Samsara database to jobs in an external database.",
-                                                "example": "mysql_dispatch_job_id_2379"
-                                            },
-                                            "driver_id": {
-                                                "type": "integer",
-                                                "format": "int64",
-                                                "description":  "ID of the driver assigned to the dispatch job.",
-                                                "example": 444
-                                            },
-                                            "vehicle_id": {
-                                                "type": "integer",
-                                                "format": "int64",
-                                                "description": "ID of the vehicle used for the dispatch job.",
-                                                "example": 112
-                                            },
-                                            "job_state": {
-                                                "type": "string",
-                                                "enum": [
-                                                    "JobState_Unassigned",
-                                                    "JobState_Assigned",
-                                                    "JobState_Started",
-                                                    "JobState_Completed",
-                                                    "JobState_Cancelled"
-                                                ],
-                                                "description": "The current state of the dispatch job.",
-                                                "example": "JobState_Unassigned"
-                                            },
-                                            "scheduled_arrival_time_ms": {
-                                                "type": "integer",
-                                                "format": "int64",
-                                                "description": "The time at which the assigned driver is scheduled to arrive at the job destination.",
-                                                "example": 1462881998034
-                                            },
-                                            "started_at_ms": {
-                                                "type": "integer",
-                                                "format": "int64",
-                                                "description": "The time at which the assigned driver started fulfilling the job (e.g. started driving to the destination).",
-                                                "example": 1462881998034
-                                            },
-                                            "completed_at_ms": {
-                                                "type": "integer",
-                                                "format": "int64",
-                                                "description": "The time at which the job was marked complete.",
-                                                "example": 1462881998034
-                                            },
-                                            "cancelled_at_ms": {
-                                                "type": "integer",
-                                                "format": "int64",
-                                                "description": "The time at which the job was marked cancelled.",
-                                                "example": 1462881998034
-                                            },
-                                            "job_created_at_ms": {
-                                                "type": "integer",
-                                                "format": "int64",
-                                                "description": "The time at which the job was created.",
-                                                "example": 1462881998034
-                                            },
-                                            "notes": {
-                                                "type": "string",
-                                                "description": "Notes regarding the details of this job.",
-                                                "example": "Ensure crates are stacked no more than 3 high."
-                                            },
-                                            "destination_name": {
-                                                "type": "string",
-                                                "description": "The name of the job destination.",
-                                                "example": "ACME Inc. Philadelphia HQ"
-                                            },
-                                            "destination_address": {
-                                                "type": "string",
-                                                "description": "The address of the job destination, as it would be recognized if provided to maps.google.com",
-                                                "example": "123 Main St, Philadelphia, PA 19106"
-                                            },
-                                            "destination_lat": {
-                                                "type": "number",
-                                                "format": "float",
-                                                "description": "Latitude of the destination in decimal degrees.",
-                                                "example": 123.456
-                                            },
-                                            "destination_lng": {
-                                                "type": "number",
-                                                "format": "float",
-                                                "description": "Latitude of the destination in decimal degrees.",
-                                                "example": 37.459
-                                            }
-                                        }
+                                        "$ref": "#/definitions/DispatchJobV1Create"
                                     }
                                 }
                             }
@@ -1189,7 +1101,7 @@
                     "200": {
                         "description": "Dispatch jobs created for the specified group as a result of the request.",
                         "schema": {
-                            "$ref": "#/definitions/DispatchJobsResponse"
+                            "$ref": "#/definitions/DispatchJobsV1Response"
                         }
                     },
                     "default": {
@@ -1233,95 +1145,7 @@
                                 "dispatch_jobs": {
                                     "type": "array",
                                     "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "id": {
-                                                "type": "integer",
-                                                "format": "int64",
-                                                "description": "ID of the Samsara dispatch job to be updated.",
-                                                "example": 773
-                                            },
-                                            "external_identifier": {
-                                                "type": "string",
-                                                "description": "New= string that can be used to map jobs in the Samsara database to jobs in an external database.",
-                                                "example": "mysql_dispatch_job_id_2379"
-                                            },
-                                            "driver_id": {
-                                                "type": "integer",
-                                                "format": "int64",
-                                                "description": "New ID of the driver assigned to the dispatch job.",
-                                                "example": 444
-                                            },
-                                            "vehicle_id": {
-                                                "type": "integer",
-                                                "format": "int64",
-                                                "description": "New ID of the vehicle used for the dispatch job.",
-                                                "example": 112
-                                            },
-                                            "job_state": {
-                                                "type": "string",
-                                                "enum": [
-                                                    "JobState_Unassigned",
-                                                    "JobState_Assigned",
-                                                    "JobState_Started",
-                                                    "JobState_Completed",
-                                                    "JobState_Cancelled"
-                                                ],
-                                                "description": "The current state of the dispatch job.",
-                                                "example": "JobState_Unassigned"
-                                            },
-                                            "scheduled_arrival_time_ms": {
-                                                "type": "integer",
-                                                "format": "int64",
-                                                "description": "The time at which the assigned driver is scheduled to arrive at the job destination.",
-                                                "example": 1462881998034
-                                            },
-                                            "started_at_ms": {
-                                                "type": "integer",
-                                                "format": "int64",
-                                                "description": "The time at which the assigned driver started fulfilling the job (e.g. started driving to the destination).",
-                                                "example": 1462881998034
-                                            },
-                                            "completed_at_ms": {
-                                                "type": "integer",
-                                                "format": "int64",
-                                                "description": "The time at which the job was marked complete.",
-                                                "example": 1462881998034
-                                            },
-                                            "cancelled_at_ms": {
-                                                "type": "integer",
-                                                "format": "int64",
-                                                "description": "The time at which the job was marked cancelled.",
-                                                "example": 1462881998034
-                                            },
-                                            "notes": {
-                                                "type": "string",
-                                                "description": "Notes regarding the details of this job.",
-                                                "example": "Ensure crates are stacked no more than 3 high."
-                                            },
-                                            "destination_name": {
-                                                "type": "string",
-                                                "description": "The name of the job destination.",
-                                                "example": "ACME Inc. Philadelphia HQ"
-                                            },
-                                            "destination_address": {
-                                                "type": "string",
-                                                "description": "The address of the job destination, as it would be recognized if provided to maps.google.com",
-                                                "example": "123 Main St, Philadelphia, PA 19106"
-                                            },
-                                            "destination_lat": {
-                                                "type": "number",
-                                                "format": "float",
-                                                "description": "Latitude of the destination in decimal degrees.",
-                                                "example": 123.456
-                                            },
-                                            "destination_lng": {
-                                                "type": "number",
-                                                "format": "float",
-                                                "description": "Latitude of the destination in decimal degrees.",
-                                                "example": 37.459
-                                            }
-                                        }
+                                      "$ref": "#/definitions/DispatchJobV1"
                                     }
                                 }
                             }
@@ -1332,7 +1156,7 @@
                     "200": {
                         "description": "Dispatch jobs updated for the specified group as a result of the request.",
                         "schema": {
-                            "$ref": "#/definitions/DispatchJobsResponse"
+                            "$ref": "#/definitions/DispatchJobsV1Response"
                         }
                     },
                     "default": {
@@ -2391,115 +2215,143 @@
                 }
             }
         },
-        "DispatchJobsResponse": {
+        "DispatchJobV1Create": {
+            "type": "object",
+            "required": [
+                "scheduled_arrival_time_ms",
+                "destination_lat",
+                "destination_lng"
+            ],
+            "properties": {
+                "org_id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "group_id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "external_identifier": {
+                    "type": "string",
+                    "description": "A string that can be used to map jobs in the Samsara database to jobs in an external database.",
+                    "example": "mysql_dispatch_job_id_2379"
+                },
+                "driver_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description":  "ID of the driver assigned to the dispatch job.",
+                    "example": 444
+                },
+                "vehicle_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "ID of the vehicle used for the dispatch job.",
+                    "example": 112
+                },
+                "scheduled_arrival_time_ms": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The time at which the assigned driver is scheduled to arrive at the job destination.",
+                    "example": 1462881998034
+                },
+                "started_at_ms": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The time at which the assigned driver started fulfilling the job (e.g. started driving to the destination).",
+                    "example": 1462881998034
+                },
+                "completed_at_ms": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The time at which the job was marked complete.",
+                    "example": 1462881998034
+                },
+                "cancelled_at_ms": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The time at which the job was marked cancelled.",
+                    "example": 1462881998034
+                },
+                "job_created_at_ms": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The time at which the job was created.",
+                    "example": 1462881998034
+                },
+                "notes": {
+                    "type": "string",
+                    "description": "Notes regarding the details of this job.",
+                    "example": "Ensure crates are stacked no more than 3 high."
+                },
+                "destination_name": {
+                    "type": "string",
+                    "description": "The name of the job destination.",
+                    "example": "ACME Inc. Philadelphia HQ"
+                },
+                "destination_address": {
+                    "type": "string",
+                    "description": "The address of the job destination, as it would be recognized if provided to maps.google.com",
+                    "example": "123 Main St, Philadelphia, PA 19106"
+                },
+                "destination_lat": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Latitude of the destination in decimal degrees.",
+                    "example": 123.456
+                },
+                "destination_lng": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Latitude of the destination in decimal degrees.",
+                    "example": 37.459
+                }
+            }
+        },
+        "DispatchJobV1": {
+            "required": [
+                "org_id",
+                "group_id"
+            ],
+            "allOf": [
+                {
+                    "type": "object",
+                    "required": [
+                        "id",
+                        "job_state"
+                    ],
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "ID of the Samsara dispatch job.",
+                            "example": 773
+                        },
+                        "job_state": {
+                            "type": "string",
+                            "enum": [
+                                "JobState_Unassigned",
+                                "JobState_Assigned",
+                                "JobState_Started",
+                                "JobState_Completed",
+                                "JobState_Cancelled"
+                            ],
+                            "description": "The current state of the dispatch job.",
+                            "example": "JobState_Unassigned"
+                        }
+                    }
+                },
+                {
+                    "$ref": "#/definitions/DispatchJobV1Create"
+                }
+            ]
+        },
+        "DispatchJobsV1Response": {
             "type": "object",
             "properties": {
                 "dispatch_jobs": {
                     "type": "array",
                     "items": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "type": "integer",
-                                "format": "int64",
-                                "description": "ID of the Samsara dispatch job to be updated.",
-                                "example": 773
-                            },
-                            "external_identifier": {
-                                "type": "string",
-                                "description": "New= string that can be used to map jobs in the Samsara database to jobs in an external database.",
-                                "example": "mysql_dispatch_job_id_2379"
-                            },
-                            "org_id": {
-                                "type": "integer",
-                                "format": "int64"
-                            },
-                            "group_id": {
-                                "type": "integer",
-                                "format": "int64"
-                            },
-                            "driver_id": {
-                                "type": "integer",
-                                "format": "int64",
-                                "description":  "ID of the driver assigned to the dispatch job.",
-                                "example": 444
-                            },
-                            "vehicle_id": {
-                                "type": "integer",
-                                "format": "int64",
-                                "description": "ID of the vehicle used for the dispatch job.",
-                                "example": 112
-                            },
-                            "job_state": {
-                                "type": "string",
-                                "enum": [
-                                    "JobState_Unassigned",
-                                    "JobState_Assigned",
-                                    "JobState_Started",
-                                    "JobState_Completed",
-                                    "JobState_Cancelled"
-                                ],
-                                "description": "The current state of the dispatch job.",
-                                "example": "JobState_Unassigned"
-                            },
-                            "scheduled_arrival_time_ms": {
-                                "type": "integer",
-                                "format": "int64",
-                                 "description": "The time at which the assigned driver is scheduled to arrive at the job destination.",
-                                 "example": 1462881998034
-                            },
-                            "started_at_ms": {
-                                "type": "integer",
-                                "format": "int64",
-                                "description": "The time at which the assigned driver started fulfilling the job (e.g. started driving to the destination).",
-                                "example": 1462881998034
-                            },
-                            "completed_at_ms": {
-                                "type": "integer",
-                                "format": "int64",
-                                "description": "The time at which the job was marked complete.",
-                                "example": 1462881998034
-                            },
-                            "cancelled_at_ms": {
-                                "type": "integer",
-                                "format": "int64",
-                                "description": "The time at which the job was marked cancelled.",
-                                "example": 1462881998034
-                            },
-                            "job_created_at_ms": {
-                                "type": "integer",
-                                "format": "int64",
-                                "description": "The time at which the job was created.",
-                                "example": 1462881998034
-                            },
-                            "notes": {
-                                "type": "string",
-                                "description": "Notes regarding the details of this job.",
-                                "example": "Ensure crates are stacked no more than 3 high."
-                            },
-                            "destination_name": {
-                                "type": "string",
-                                "description": "The name of the job destination.",
-                                "example": "ACME Inc. Philadelphia HQ"
-                            },
-                            "destination_address": {
-                                "type": "string",
-                                "description": "The address of the job destination, as it would be recognized if provided to maps.google.com",
-                                "example": "123 Main St, Philadelphia, PA 19106"
-                            },
-                            "destination_lat": {
-                                "type": "number",
-                                "format": "float",
-                                "description": "Latitude of the destination in decimal degrees.",
-                                "example": 123.456
-                            },
-                            "destination_lng": {
-                                "type": "number",
-                                "format": "float",
-                                "description": "Latitude of the destination in decimal degrees.",
-                                "example": 37.459
-                            }
-                        }
+                        "$ref": "#/definitions/DispatchJobV1"
                     }
                 }
             }
