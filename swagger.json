@@ -2356,6 +2356,132 @@
                 }
             }
         },
+        "DispatchJobCreate": {
+            "type": "object",
+            "required": [
+                "scheduled_arrival_time_ms",
+                "destination_lat",
+                "destination_lng"
+            ],
+            "properties": {
+                "driver_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description":  "ID of the driver assigned to the dispatch job.",
+                    "example": 444
+                },
+                "vehicle_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "ID of the vehicle used for the dispatch job.",
+                    "example": 112
+                },
+                "scheduled_arrival_time_ms": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The time at which the assigned driver is scheduled to arrive at the job destination.",
+                    "example": 1462881998034
+                },
+                "notes": {
+                    "type": "string",
+                    "description": "Notes regarding the details of this job.",
+                    "example": "Ensure crates are stacked no more than 3 high."
+                },
+                "destination_name": {
+                    "type": "string",
+                    "description": "The name of the job destination.",
+                    "example": "ACME Inc. Philadelphia HQ"
+                },
+                "destination_address": {
+                    "type": "string",
+                    "description": "The address of the job destination, as it would be recognized if provided to maps.google.com",
+                    "example": "123 Main St, Philadelphia, PA 19106"
+                },
+                "destination_lat": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Latitude of the destination in decimal degrees.",
+                    "example": 123.456
+                },
+                "destination_lng": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Latitude of the destination in decimal degrees.",
+                    "example": 37.459
+                }
+            }
+        },
+        "DispatchJob": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "required": [
+                        "id",
+                        "group_id",
+                        "dispatch_route_id",
+                        "job_state"
+                    ],
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "ID of the Samsara dispatch job.",
+                            "example": 773
+                        },
+                        "group_id": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "dispatch_route_id": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "ID of the route that this job belongs to.",
+                            "example": 55
+                        },
+                        "job_state": {
+                            "type": "string",
+                            "enum": [
+                                "JobState_Unassigned",
+                                "JobState_Scheduled",
+                                "JobState_EnRoute",
+                                "JobState_Arrived",
+                                "JobState_Completed",
+                                "JobState_Skipped"
+                            ],
+                            "description": "The current state of the dispatch job.",
+                            "example": "JobState_Unassigned"
+                        },
+                        "en_route_at_ms": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "The time at which the assigned driver started fulfilling the job (e.g. started driving to the destination).",
+                            "example": 1462881998034
+                        },
+                        "arrived_at_ms": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "The time at which the driver arrived at the job destination.",
+                            "example": 1462881998034
+                        },
+                        "completed_at_ms": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "The time at which the job was marked complete (e.g. started driving to the next destination).",
+                            "example": 1462881998034
+                        },
+                        "skipped_at_ms": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "The time at which the job was marked skipped.",
+                            "example": 1462881998034
+                        }
+                    }
+                },
+                {
+                    "$ref": "#/definitions/DispatchJobCreate"
+                }
+            ]
+        },
         "Machine": {
             "type": "object",
             "description": "Contains information about a machine.",
