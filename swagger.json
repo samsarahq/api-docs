@@ -2482,6 +2482,128 @@
                 }
             ]
         },
+        "DispatchRouteBase": {
+            "type": "object",
+            "required": [
+                "name",
+                "scheduled_start_ms",
+                "scheduled_end_ms",
+                "start_location_lat",
+                "start_location_lng"
+            ],
+            "properties": {
+                "vehicle_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description":  "ID of the vehicle assigned to the dispatch route. One of driver_id OR vehicle_id is required.",
+                    "example": 444
+                },
+                "driver_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description":  "ID of the driver assigned to the dispatch route. One of driver_id OR vehicle_id is required.",
+                    "example": 555
+                },
+                "scheduled_start_ms": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The time in Unix epoch milliseconds that the route is scheduled to start.",
+                    "example": 1462881998034
+                },
+                "scheduled_end_ms": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The time in Unix epoch milliseconds that the last job in the route is scheduled to end.",
+                    "example": 1462881998034
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Descriptive name of this route.",
+                    "example": "Bid #123"
+                },
+                "group_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "ID of the group if the organization has multiple groups (optional)."
+                },
+                "start_location_name": {
+                    "type": "string",
+                    "description": "The name of the route's starting location.",
+                    "example": "ACME Inc. Philadelphia HQ"
+                },
+                "start_location_address": {
+                    "type": "string",
+                    "description": "The address of the route's starting location, as it would be recognized if provided to maps.google.com",
+                    "example": "123 Main St, Philadelphia, PA 19106"
+                },
+                "start_location_lat": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Latitude of the destination in decimal degrees.",
+                    "example": 123.456
+                },
+                "start_location_lng": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Latitude of the destination in decimal degrees.",
+                    "example": 37.459
+                }
+            }
+        },
+        "DispatchRouteCreate": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "required": [
+                        "dispatch_jobs"
+                    ],
+                    "properties": {
+                        "dispatch_jobs": {
+                            "description": "The dispatch jobs to create for this route.",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/DispatchJobCreate"
+                            }
+                        }
+                    }
+                },
+                {
+                    "$ref": "#/definitions/DispatchRouteBase"
+                }
+            ]
+        },
+        "DispatchRoute": {
+            "required": [
+                "group_id"
+            ],
+            "allOf": [
+                {
+                    "type": "object",
+                    "required": [
+                        "id",
+                        "dispatch_jobs"
+                    ],
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "ID of the Samsara dispatch route.",
+                            "example": 556
+                        },
+                        "dispatch_jobs": {
+                            "description": "The dispatch jobs associated with this route.",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/DispatchJob"
+                            }
+                        }
+                    }
+                },
+                {
+                    "$ref": "#/definitions/DispatchRouteBase"
+                }
+            ]
+        },
         "Machine": {
             "type": "object",
             "description": "Contains information about a machine.",
