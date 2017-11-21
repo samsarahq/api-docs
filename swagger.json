@@ -997,6 +997,45 @@
                 }
             }
         },
+        "/fleet/dispatch/routes": {
+            "get": {
+                "tags": [
+                    "Default", "Fleet", "Routes"
+                ],
+                "summary": "/fleet/dispatch/routes",
+                "description": "Fetch all of the dispatch routes for the group.",
+                "operationId": "fetchAllDispatchRoutes",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/routeGroupIdParam" },
+                    { "$ref": "#/parameters/routeEndTimeParam" },
+                    { "$ref": "#/parameters/routeDurationParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "All dispatch route objects for the group.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/DispatchRoute"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/fleet/dispatch_jobs": {
             "post": {
                 "tags": [
@@ -2742,6 +2781,27 @@
                     }
                 }
             }
+        },
+        "routeEndTimeParam": {
+            "name": "end_time",
+            "description": "Time in unix milliseconds that represents the oldest routes to return. Used in combination with duration. Defaults to now.",
+            "required": false,
+            "in": "query",
+            "type": "integer"
+        },
+        "routeDurationParam": {
+            "name": "duration",
+            "description": "Time in milliseconds that represents the duration before end_time to query. Defaults to one day.",
+            "required": false,
+            "in": "query",
+            "type": "integer"
+        },
+        "routeGroupIdParam": {
+            "name": "group_id",
+            "description": "Optional group ID if the organization has multiple groups (uncommon).",
+            "required": false,
+            "in": "query",
+            "type": "integer"
         }
     }
 }
