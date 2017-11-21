@@ -1034,6 +1034,47 @@
                         }
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Default", "Fleet", "Routes"
+                ],
+                "summary": "/fleet/dispatch/routes",
+                "description": "Create a new dispatch route.",
+                "operationId": "createDispatchRoute",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "createDispatchRouteParams",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/DispatchRouteCreate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Created route object including the new route ID.",
+                        "schema": {
+                            "$ref": "#/definitions/DispatchRoute"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
             }
         },
         "/fleet/dispatch_jobs": {
