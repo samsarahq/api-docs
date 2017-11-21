@@ -1150,6 +1150,39 @@
                         }
                     }
                 }
+            },
+            "delete": {
+                "tags": [
+                    "Default", "Fleet", "Routes"
+                ],
+                "summary": "/fleet/dispatch/routes/{route_id:[0-9]+}/",
+                "description": "Delete a dispatch route and its associated jobs.",
+                "operationId": "deleteDispatchRouteById",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "$ref": "#/parameters/routeIdParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully deleted the dispatch route. No response body is returned."
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
             }
         },
         "/fleet/dispatch_jobs": {
