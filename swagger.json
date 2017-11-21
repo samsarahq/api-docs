@@ -1021,10 +1021,7 @@
                     "200": {
                         "description": "All dispatch route objects for the group.",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/DispatchRoute"
-                            }
+                            "$ref": "#/definitions/DispatchRoutes"
                         }
                     },
                     "default": {
@@ -1175,6 +1172,44 @@
                 "responses": {
                     "200": {
                         "description": "Successfully deleted the dispatch route. No response body is returned."
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/drivers/{driver_id}/dispatch/routes": {
+            "get": {
+                "tags": [
+                    "Default",
+                    "Fleet",
+                    "Routes"
+                ],
+                "summary": "/fleet/drivers/{driver_id:[0-9]+}/dispatch/routes",
+                "description": "Fetch all of the dispatch routes for a given driver.",
+                "operationId": "getDispatchRoutesByDriverId",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/driverIdParam" },
+                    { "$ref": "#/parameters/routeEndTimeParam" },
+                    { "$ref": "#/parameters/routeDurationParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns the dispatch routes for the given driver_id.",
+                        "schema": {
+                            "$ref": "#/definitions/DispatchRoutes"
+                        }
                     },
                     "default": {
                         "description": "Unexpected error.",
@@ -2792,6 +2827,12 @@
                 }
             ]
         },
+        "DispatchRoutes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/DispatchRoute"
+            }
+        },
         "Machine": {
             "type": "object",
             "description": "Contains information about a machine.",
@@ -2930,6 +2971,13 @@
                     }
                 }
             }
+        },
+        "driverIdParam": {
+            "name": "driver_id",
+            "in": "path",
+            "required": true,
+            "description": "The driver ID.",
+            "type": "integer"
         },
         "routeIdParam": {
             "name": "route_id",
