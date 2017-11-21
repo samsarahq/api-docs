@@ -3088,7 +3088,8 @@
             "in": "path",
             "required": true,
             "description": "The driver ID.",
-            "type": "integer"
+            "type": "integer",
+            "format": "int64"
         },
         "vehicleIdParam": {
             "name": "vehicle_id",
@@ -3103,7 +3104,8 @@
             "in": "path",
             "required": true,
             "description": "The route ID.",
-            "type": "integer"
+            "type": "integer",
+            "format": "int64"
         },
         "routeCreateParam": {
             "name": "createDispatchRouteParams",
@@ -3126,21 +3128,24 @@
             "description": "Time in unix milliseconds that represents the oldest routes to return. Used in combination with duration. Defaults to now.",
             "required": false,
             "in": "query",
-            "type": "integer"
+            "type": "integer",
+            "format": "int64"
         },
         "routeDurationParam": {
             "name": "duration",
             "description": "Time in milliseconds that represents the duration before end_time to query. Defaults to one day.",
             "required": false,
             "in": "query",
-            "type": "integer"
+            "type": "integer",
+            "format": "int64"
         },
         "routeGroupIdParam": {
             "name": "group_id",
             "description": "Optional group ID if the organization has multiple groups (uncommon).",
             "required": false,
             "in": "query",
-            "type": "integer"
+            "type": "integer",
+            "format": "int64"
         }
     }
 }
