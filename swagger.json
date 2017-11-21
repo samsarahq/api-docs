@@ -1111,6 +1111,45 @@
                         }
                     }
                 }
+            },
+            "put": {
+                "tags": [
+                    "Default", "Fleet", "Routes"
+                ],
+                "summary": "/fleet/dispatch/routes/{route_id:[0-9]+}/",
+                "description": "Update a dispatch route and its associated jobs.",
+                "operationId": "updateDispatchRouteById",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "$ref": "#/parameters/routeIdParam"
+                    },
+                    {
+                        "$ref": "#/parameters/routeUpdateParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Update the dispatch route. Allowable updates include setting job state, adding or removing jobs, and changing job locations and times.",
+                        "schema": {
+                            "$ref": "#/definitions/DispatchRoute"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
             }
         },
         "/fleet/dispatch_jobs": {
@@ -2865,6 +2904,14 @@
             "required": true,
             "description": "The route ID.",
             "type": "integer"
+        },
+        "routeUpdateParam": {
+            "name": "updateDispatchRouteParams",
+            "required": true,
+            "in": "body",
+            "schema": {
+                "$ref": "#/definitions/DispatchRoute"
+            }
         },
         "routeEndTimeParam": {
             "name": "end_time",
