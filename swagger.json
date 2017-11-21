@@ -1050,12 +1050,7 @@
                         "$ref": "#/parameters/accessTokenParam"
                     },
                     {
-                        "name": "createDispatchRouteParams",
-                        "required": true,
-                        "in": "body",
-                        "schema": {
-                            "$ref": "#/definitions/DispatchRouteCreate"
-                        }
+                        "$ref": "#/parameters/routeCreateParam"
                     }
                 ],
                 "responses": {
@@ -1209,6 +1204,45 @@
                         "description": "Returns the dispatch routes for the given driver_id.",
                         "schema": {
                             "$ref": "#/definitions/DispatchRoutes"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Default", "Fleet", "Routes"
+                ],
+                "summary": "/fleet/drivers/{driver_id:[0-9]+}/dispatch/routes",
+                "description": "Create a new dispatch route for the driver with driver_id.",
+                "operationId": "createDriverDispatchRoute",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "$ref": "#/parameters/driverIdParam"
+                    },
+                    {
+                        "$ref": "#/parameters/routeCreateParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Created route object including the new route ID.",
+                        "schema": {
+                            "$ref": "#/definitions/DispatchRoute"
                         }
                     },
                     "default": {
@@ -2985,6 +3019,14 @@
             "required": true,
             "description": "The route ID.",
             "type": "integer"
+        },
+        "routeCreateParam": {
+            "name": "createDispatchRouteParams",
+            "required": true,
+            "in": "body",
+            "schema": {
+                "$ref": "#/definitions/DispatchRouteCreate"
+            }
         },
         "routeUpdateParam": {
             "name": "updateDispatchRouteParams",
