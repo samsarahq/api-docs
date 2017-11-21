@@ -1077,6 +1077,42 @@
                 }
             }
         },
+        "/fleet/dispatch/routes/{route_id}": {
+            "get": {
+                "tags": [
+                    "Default",
+                    "Fleet",
+                    "Routes"
+                ],
+                "summary": "/fleet/dispatch/routes/{route_id:[0-9]+}",
+                "description": "Fetch a dispatch route by id.",
+                "operationId": "getDispatchRouteById",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/routeIdParam" }
+               ],
+                "responses": {
+                    "200": {
+                        "description": "The dispatch route corresponding to route_id.",
+                        "schema": {
+                            "$ref": "#/definitions/DispatchRoute"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/fleet/dispatch_jobs": {
             "post": {
                 "tags": [
@@ -2822,6 +2858,13 @@
                     }
                 }
             }
+        },
+        "routeIdParam": {
+            "name": "route_id",
+            "in": "path",
+            "required": true,
+            "description": "The route ID.",
+            "type": "integer"
         },
         "routeEndTimeParam": {
             "name": "end_time",
