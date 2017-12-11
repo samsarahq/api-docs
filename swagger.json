@@ -2386,18 +2386,6 @@
                 "destination_lng"
             ],
             "properties": {
-                "driver_id": {
-                    "type": "integer",
-                    "format": "int64",
-                    "description":  "ID of the driver assigned to the dispatch job.",
-                    "example": 444
-                },
-                "vehicle_id": {
-                    "type": "integer",
-                    "format": "int64",
-                    "description": "ID of the vehicle used for the dispatch job.",
-                    "example": 112
-                },
                 "scheduled_arrival_time_ms": {
                     "type": "integer",
                     "format": "int64",
@@ -2460,6 +2448,18 @@
                             "description": "ID of the route that this job belongs to.",
                             "example": 55
                         },
+                        "driver_id": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description":  "ID of the driver assigned to the dispatch job.",
+                            "example": 444
+                        },
+                        "vehicle_id": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "ID of the vehicle used for the dispatch job.",
+                            "example": 112
+                        },
                         "job_state": {
                             "type": "string",
                             "enum": [
@@ -2517,13 +2517,13 @@
                 "vehicle_id": {
                     "type": "integer",
                     "format": "int64",
-                    "description":  "ID of the vehicle assigned to the dispatch route. One of driver_id OR vehicle_id is required.",
+                    "description":  "ID of the vehicle assigned to the dispatch route. Note that vehicle_id and driver_id are mutually exclusive. If neither is specified, then the route is unassigned.",
                     "example": 444
                 },
                 "driver_id": {
                     "type": "integer",
                     "format": "int64",
-                    "description":  "ID of the driver assigned to the dispatch route. One of driver_id OR vehicle_id is required.",
+                    "description":  "ID of the driver assigned to the dispatch route. Note that driver_id and vehicle_id are mutually exclusive. If neither is specified, then the route is unassigned.",
                     "example": 555
                 },
                 "scheduled_start_ms": {
