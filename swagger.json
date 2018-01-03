@@ -552,8 +552,9 @@
                     "name": "driver_id",
                     "in": "path",
                     "required": true,
-                    "description": "The driver ID.",
-                    "type": "integer"
+                    "description": "ID of the driver with HOS logs.",
+                    "type": "integer",
+                    "format": "int64"
                 },
                 {
                     "name": "hosLogsParam",
@@ -1070,6 +1071,19 @@
             }
         },
         "/fleet/dispatch/routes/{route_id}": {
+            "parameters": [
+                {
+                    "$ref": "#/parameters/accessTokenParam"
+                },
+                {
+                    "name": "route_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the dispatch route.",
+                    "type": "integer",
+                    "format": "int64"
+                }
+            ],
             "get": {
                 "tags": [
                     "Default",
@@ -1085,10 +1099,6 @@
                 "produces": [
                     "application/json"
                 ],
-                "parameters": [
-                    { "$ref": "#/parameters/accessTokenParam" },
-                    { "$ref": "#/parameters/routeIdParam" }
-               ],
                 "responses": {
                     "200": {
                         "description": "The dispatch route corresponding to route_id.",
@@ -1118,12 +1128,6 @@
                     "application/json"
                 ],
                 "parameters": [
-                    {
-                        "$ref": "#/parameters/accessTokenParam"
-                    },
-                    {
-                        "$ref": "#/parameters/routeIdParam"
-                    },
                     {
                         "$ref": "#/parameters/routeUpdateParam"
                     }
@@ -1156,14 +1160,6 @@
                 "produces": [
                     "application/json"
                 ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/accessTokenParam"
-                    },
-                    {
-                        "$ref": "#/parameters/routeIdParam"
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Successfully deleted the dispatch route. No response body is returned."
@@ -1178,6 +1174,19 @@
             }
         },
         "/fleet/drivers/{driver_id}/dispatch/routes": {
+            "parameters": [
+                {
+                    "$ref": "#/parameters/accessTokenParam"
+                },
+                {
+                    "name": "driver_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the driver with the associated routes.",
+                    "type": "integer",
+                    "format": "int64"
+                }
+            ],
             "get": {
                 "tags": [
                     "Default",
@@ -1194,8 +1203,6 @@
                     "application/json"
                 ],
                 "parameters": [
-                    { "$ref": "#/parameters/accessTokenParam" },
-                    { "$ref": "#/parameters/driverIdParam" },
                     { "$ref": "#/parameters/routeEndTimeParam" },
                     { "$ref": "#/parameters/routeDurationParam" }
                 ],
@@ -1228,15 +1235,7 @@
                     "application/json"
                 ],
                 "parameters": [
-                    {
-                        "$ref": "#/parameters/accessTokenParam"
-                    },
-                    {
-                        "$ref": "#/parameters/driverIdParam"
-                    },
-                    {
-                        "$ref": "#/parameters/routeCreateParam"
-                    }
+                    { "$ref": "#/parameters/routeCreateParam" }
                 ],
                 "responses": {
                     "200": {
@@ -1255,6 +1254,19 @@
             }
         },
         "/fleet/vehicles/{vehicle_id}/dispatch/routes": {
+            "parameters": [
+                {
+                    "$ref": "#/parameters/accessTokenParam"
+                },
+                {
+                    "name": "vehicle_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the vehicle with the associated routes.",
+                    "type": "integer",
+                    "format": "int64"
+                }
+            ],
             "get": {
                 "tags": [
                     "Default",
@@ -1271,8 +1283,6 @@
                     "application/json"
                 ],
                 "parameters": [
-                    { "$ref": "#/parameters/accessTokenParam" },
-                    { "$ref": "#/parameters/vehicleIdParam" },
                     { "$ref": "#/parameters/routeEndTimeParam" },
                     { "$ref": "#/parameters/routeDurationParam" }
                 ],
@@ -1305,15 +1315,7 @@
                     "application/json"
                 ],
                 "parameters": [
-                    {
-                        "$ref": "#/parameters/accessTokenParam"
-                    },
-                    {
-                        "$ref": "#/parameters/vehicleIdParam"
-                    },
-                    {
-                        "$ref": "#/parameters/routeCreateParam"
-                    }
+                    { "$ref": "#/parameters/routeCreateParam" }
                 ],
                 "responses": {
                     "200": {
@@ -2770,30 +2772,6 @@
                     }
                 }
             }
-        },
-        "driverIdParam": {
-            "name": "driver_id",
-            "in": "path",
-            "required": true,
-            "description": "The driver ID.",
-            "type": "integer",
-            "format": "int64"
-        },
-        "vehicleIdParam": {
-            "name": "vehicle_id",
-            "in": "path",
-            "required": true,
-            "description": "The vehicle ID.",
-            "type": "integer",
-            "format": "int64"
-        },
-        "routeIdParam": {
-            "name": "route_id",
-            "in": "path",
-            "required": true,
-            "description": "The route ID.",
-            "type": "integer",
-            "format": "int64"
         },
         "routeCreateParam": {
             "name": "createDispatchRouteParams",
