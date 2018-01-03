@@ -1173,6 +1173,51 @@
                 }
             }
         },
+        "/fleet/dispatch/routes/{route_id}/history": {
+            "get": {
+                "tags": [
+                    "Default",
+                    "Fleet",
+                    "Routes"
+                ],
+                "summary": "/fleet/dispatch/routes/{route_id:[0-9]+}/history",
+                "description": "Fetch the history of a dispatch route.",
+                "operationId": "getDispatchRouteHistory",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/routeHistoryStartTimeParam" },
+                    { "$ref": "#/parameters/routeHistoryEndTimeParam" },
+                    {
+                        "name": "route_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the route with history.",
+                        "type": "integer",
+                        "format": "int64"
+                    }
+               ],
+                "responses": {
+                    "200": {
+                        "description": "The historical route state changes between start_time and end_time.",
+                        "schema": {
+                            "$ref": "#/definitions/DispatchRouteHistory"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/fleet/drivers/{driver_id}/dispatch/routes": {
             "parameters": [
                 {
@@ -2634,6 +2679,32 @@
                 "$ref": "#/definitions/DispatchRoute"
             }
         },
+        "DispatchRouteHistoricalEntry": {
+            "type": "object",
+            "properties": {
+                "changed_at_ms": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Timestamp that the route was updated, represented as Unix milliseconds since epoch.",
+                    "example": 1499411220000
+                },
+                "route": {
+                    "$ref": "#/definitions/DispatchRoute"
+                }
+            }
+        },
+        "DispatchRouteHistory": {
+            "type": "object",
+            "properties": {
+                "history": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/DispatchRouteHistoricalEntry"
+                    },
+                    "description":  "History of the route's state changes."
+                }
+            }
+        },
         "Machine": {
             "type": "object",
             "description": "Contains information about a machine.",
@@ -2800,6 +2871,22 @@
         "routeDurationParam": {
             "name": "duration",
             "description": "Time in milliseconds that represents the duration before end_time to query. Defaults to one day.",
+            "required": false,
+            "in": "query",
+            "type": "integer",
+            "format": "int64"
+        },
+        "routeHistoryStartTimeParam": {
+            "name": "start_time",
+            "description": "Timestamp representing the start of the period to fetch, inclusive. Used in combination with end_time. Defaults to 0.",
+            "required": false,
+            "in": "query",
+            "type": "integer",
+            "format": "int64"
+        },
+        "routeHistoryEndTimeParam": {
+            "name": "end_time",
+            "description": "Timestamp representing the end of the period to fetch, inclusive. Used in combination with start_time. Defaults to nowMs.",
             "required": false,
             "in": "query",
             "type": "integer",
