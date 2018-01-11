@@ -501,6 +501,19 @@
             }
         },
         "/fleet/drivers/{driver_id}": {
+            "parameters": [
+                {
+                    "$ref": "#/parameters/accessTokenParam"
+                },
+                {
+                    "name": "driver_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the driver.",
+                    "type": "integer",
+                    "format": "int64"
+                }
+            ],
             "get": {
                 "tags": [
                     "Default", "Fleet", "Drivers"
@@ -513,10 +526,6 @@
                 ],
                 "produces": [
                     "application/json"
-                ],
-                "parameters": [
-                    { "$ref": "#/parameters/accessTokenParam" },
-                    { "$ref": "#/parameters/driverIdParam" }
                 ],
                 "responses": {
                     "200": {
@@ -545,14 +554,6 @@
                 ],
                 "produces": [
                     "application/json"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/accessTokenParam"
-                    },
-                    {
-                        "$ref": "#/parameters/driverIdParam"
-                    }
                 ],
                 "responses": {
                     "200": {
@@ -605,6 +606,19 @@
             }
         },
         "/fleet/drivers/inactive/{driver_id}": {
+            "parameters": [
+                {
+                    "$ref": "#/parameters/accessTokenParam"
+                },
+                {
+                    "name": "driver_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the deactivated driver.",
+                    "type": "integer",
+                    "format": "int64"
+                }
+            ],
             "get": {
                 "tags": [
                     "Default", "Fleet", "Drivers"
@@ -617,10 +631,6 @@
                 ],
                 "produces": [
                     "application/json"
-                ],
-                "parameters": [
-                    { "$ref": "#/parameters/accessTokenParam" },
-                    { "$ref": "#/parameters/driverIdParam" }
                 ],
                 "responses": {
                     "200": {
@@ -651,8 +661,6 @@
                     "application/json"
                 ],
                 "parameters": [
-                    { "$ref": "#/parameters/accessTokenParam" },
-                    { "$ref": "#/parameters/driverIdParam" },
                     { "$ref": "#/parameters/reactivateDriverParam" }
                 ],
                 "responses": {
