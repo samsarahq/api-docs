@@ -533,6 +533,110 @@
                 }
             }
         },
+        "/fleet/drivers/inactive": {
+            "get": {
+                "tags": [
+                    "Default", "Fleet", "Drivers"
+                ],
+                "summary": "/fleet/drivers/inactive",
+                "description": "Fetch all deactivated drivers for the group.",
+                "operationId": "getAllDeactivatedDrivers",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/groupIdParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns an array of all deactivated drivers for the group. Deactivated drivers are referenced at /fleet/drivers/inactive/{driver_id}",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Driver"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/drivers/inactive/{driver_id}": {
+            "get": {
+                "tags": [
+                    "Default", "Fleet", "Drivers"
+                ],
+                "summary": "/fleet/drivers/inactive/{driver_id:[0-9]+}",
+                "description": "Fetch deactivated driver by driver_id.",
+                "operationId": "getDeactivatedDriverById",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/driverIdParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns the deactivated driver with the given driver_id.",
+                        "schema": {
+                            "$ref": "#/definitions/Driver"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Default", "Fleet", "Drivers"
+                ],
+                "summary": "/fleet/drivers/inactive/{driver_id:[0-9]+}",
+                "description": "Reactivate the inactive driver having driver_id.",
+                "operationId": "reactivateDriverById",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/driverIdParam" },
+                    { "$ref": "#/parameters/reactivateDriverParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns the reactivated driver, which is now available at /fleet/drivers/{driver_id}.",
+                        "schema": {
+                            "$ref": "#/definitions/Driver"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/fleet/drivers/summary": {
           "post": {
             "tags": [
