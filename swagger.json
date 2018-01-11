@@ -2963,6 +2963,24 @@
                 }
             }
         },
+        "reactivateDriverParam": {
+            "name": "reactivateDriverParam",
+            "description": "Driver reactivation body",
+            "required": true,
+            "in": "body",
+            "schema": {
+                "type": "object",
+                "required": [
+                    "reactivate"
+                ],
+                "properties": {
+                    "reactivate": {
+                        "type": "boolean",
+                        "description": "True indicates that this driver should be reactivated."
+                    }
+                }
+            }
+        },
         "routeCreateParam": {
             "name": "createDispatchRouteParams",
             "required": true,
