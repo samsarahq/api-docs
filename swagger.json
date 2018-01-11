@@ -1860,6 +1860,126 @@
                 }
             }
         },
+        "DriverBase": {
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Driver's name.",
+                    "example": "Susan Jones"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "Driver's login username into the driver app.",
+                    "example": "Susan Jones"
+                },
+                "phone": {
+                    "type": "string",
+                    "description": "Driver's phone number.",
+                    "example": "5558234327"
+                },
+                "licenseNumber": {
+                    "type": "string",
+                    "description": "Driver's state issued license number.",
+                    "example": "E1234567"
+                },
+                "licenseState": {
+                    "type": "string",
+                    "description": "Abbreviation of state that issued driver's license.",
+                    "example": "CA"
+                },
+                "eldExempt": {
+                    "type": "boolean",
+                    "description": "Flag indicating this driver is exempt from the Electronic Logging Mandate."
+                },
+                "eldExemptReason": {
+                    "type": "string",
+                    "description": "Reason that this driver is exempt from the Electronic Logging Mandate (see eldExempt)."
+                },
+                "eldBigDayExemptionEnabled": {
+                    "type": "boolean",
+                    "description": "Flag indicating this driver may use Big Day excemptions in ELD logs."
+                },
+                "eldAdverseWeatherExemptionEnabled": {
+                    "type": "boolean",
+                    "description": "Flag indicating this driver may use Adverse Weather exemptions in ELD logs."
+                },
+                "eldPcEnabled": {
+                    "type": "boolean",
+                    "description": "Flag indicating this driver may select the Personal Conveyance duty status in ELD logs.",
+                    "default": false
+                },
+                "eldYmEnabled": {
+                    "type": "boolean",
+                    "description": "Flag indicating this driver may select the Yard Move duty status in ELD logs.",
+                    "default": false
+                },
+                "eldDayStartHour": {
+                    "type": "integer",
+                    "description": "0 indicating midnight-to-midnight ELD driving hours, 12 to indicate noon-to-noon driving hours."
+                },
+                "vehicle_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description":  "ID of the vehicle assigned to the driver for static vehicle assignments. (uncommon).",
+                    "example": 444
+                },
+                "group_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "ID of the group if the organization has multiple groups (uncommon).",
+                    "example": 101
+                }
+            }
+        },
+        "DriverForCreate": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "required": [
+                        "password"
+                    ],
+                    "properties": {
+                        "password": {
+                            "type": "string",
+                            "description": "Driver's password for the driver app.",
+                            "example": "mypassword"
+                        }
+                    }
+                },
+                {
+                    "$ref": "#/definitions/DriverBase"
+                }
+            ]
+        },
+        "Driver": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "required": [
+                        "id"
+                    ],
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "ID of the driver.",
+                            "example": 556
+                        },
+                        "isDeactivated": {
+                            "type": "boolean",
+                            "description": "True if the driver account has been deactivated."
+                        }
+                    }
+                },
+                {
+                    "$ref": "#/definitions/DriverBase"
+                }
+            ]
+        },
         "DriversRespose": {
             "type": "object",
             "properties": {
