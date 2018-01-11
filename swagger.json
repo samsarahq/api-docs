@@ -466,6 +466,73 @@
                 }
             }
         },
+        "/fleet/drivers/{driver_id}": {
+            "get": {
+                "tags": [
+                    "Default", "Fleet", "Drivers"
+                ],
+                "summary": "/fleet/drivers/{driver_id:[0-9]+}",
+                "description": "Fetch driver by id.",
+                "operationId": "getDriverById",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/driverIdParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns the driver for the given driver_id.",
+                        "schema": {
+                            "$ref": "#/definitions/Driver"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Default", "Fleet", "Drivers"
+                ],
+                "summary": "/fleet/drivers/{driver_id:[0-9]+}",
+                "description": "Deactivate a driver with the given driver_id.",
+                "operationId": "deactivateDriver",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "$ref": "#/parameters/driverIdParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully deactivated the driver, which is now referenced by /fleet/drivers/inactive/{driver_id}."
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/fleet/drivers/summary": {
           "post": {
             "tags": [
