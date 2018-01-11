@@ -466,6 +466,40 @@
                 }
             }
         },
+        "/fleet/drivers/create": {
+            "post": {
+                "tags": [
+                    "Default", "Fleet", "Drivers"
+                ],
+                "summary": "/fleet/drivers/create",
+                "description": "Create a new driver.",
+                "operationId": "createDriver",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/createDriverParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns the successfully created the driver.",
+                        "schema": {
+                            "$ref": "#/definitions/Driver"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/fleet/drivers/{driver_id}": {
             "get": {
                 "tags": [
@@ -3150,6 +3184,15 @@
                         "description": "True indicates that this driver should be reactivated."
                     }
                 }
+            }
+        },
+        "createDriverParam": {
+            "name": "createDriverParam",
+            "description": "Driver creation body",
+            "required": true,
+            "in": "body",
+            "schema": {
+                "$ref": "#/definitions/DriverForCreate"
             }
         },
         "routeCreateParam": {
