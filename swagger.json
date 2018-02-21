@@ -36,6 +36,10 @@
         {
             "name": "Sensors",
             "description": "Access to sensor data"
+        },
+        {
+            "name": "Assets",
+            "description": "Access to asset-specific data"
         }
     ],
     "paths": {
@@ -1691,6 +1695,79 @@
                     }
                 }
             }
+        },
+        "/fleet/assets": {
+            "get": {
+                "tags": [
+                    "Default", "Fleet", "Assets"
+                ],
+                "summary": "/v1/fleet/assets",
+                "description": "Fetch all of the assets for the group.",
+                "operationId": "GetAllAssets",
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/groupParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of assets.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "assets": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Asset"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/assets/{asset_id}/reefer": {
+            "get": {
+                "tags": [
+                    "Default", "Fleet", "Assets"
+                ],
+                "summary": "/fleet/assets/{assetId:[0-9]+}/reefer",
+                "description": "Fetch the reefer-specific stats of an asset.",
+                "operationId": "GetAssetReefer",
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    {
+                        "name": "asset_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the asset",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    { "$ref": "#/parameters/routeHistoryStartTimeParam" },
+                    { "$ref": "#/parameters/routeHistoryEndTimeParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Reefer-specific asset details.",
+                        "schema": {
+                            "$ref": "#/definitions/AssetReeferResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -3112,6 +3189,215 @@
                                             "format": "float",
                                             "example": 2.55
                                         }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "Asset": {
+            "type": "object",
+            "description": "Basic information of an asset",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "Asset ID",
+                    "format": "int64",
+                    "example": 1
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Asset name",
+                    "example": "Trailer 123"
+                },
+                "cable": {
+                    "type": "array",
+                    "description": "The cable connected to the asset",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "assetType": {
+                                "type": "string",
+                                "description": "Asset type",
+                                "example": "Reefer (Thermo King)"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "AssetReeferResponse": {
+            "type": "object",
+            "description": "Reefer-specific asset details",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "Asset ID",
+                    "example": 1
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Asset name",
+                    "example": "Reefer 123"
+                },
+                "assetType": {
+                    "type": "string",
+                    "description": "Asset type",
+                    "example": "Reefer (Thermo King)"
+                },
+                "reeferStats": {
+                    "type": "object",
+                    "properties": {
+                        "alarms": {
+                            "type": "array",
+                            "description": "Reefer alarms",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "changedAtMs": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "description": "Timestamp when the alarms were reported, in Unix milliseconds since epoch",
+                                        "example": 1453449599999
+                                    },
+                                    "alarms": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "alarmCode": {
+                                                    "type": "integer",
+                                                    "format": "int64",
+                                                    "description": "ID of the alarm",
+                                                    "example": 102
+                                                },
+                                                "severity": {
+                                                    "type": "integer",
+                                                    "format": "int64",
+                                                    "description": "Severity of the alarm: 1: OK to run, 2: Check as specified, 3: Take immediate action",
+                                                    "example": 1
+                                                },
+                                                "description": {
+                                                    "type": "string",
+                                                    "description": "Description of the alarm",
+                                                    "example": "Check Return Air Sensor"
+                                                },
+                                                "operatorAction": {
+                                                    "type": "string",
+                                                    "description": "Recommended operator action",
+                                                    "example": "Check and repair at end of trip"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "engineHours": {
+                            "type": "array",
+                            "description": "Engine hours of the reefer",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "changedAtMs": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "description": "Timestamp in Unix milliseconds since epoch.",
+                                        "example": 1453449599999
+                                    },
+                                    "engineHours": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "description": "Engine hours of the reefer.",
+                                        "example": 1200
+                                    }
+                                }
+                            }
+                        },
+                        "fuelPercentage": {
+                            "type": "array",
+                            "description": "Fuel percentage of the reefer",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "changedAtMs": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "description": "Timestamp in Unix milliseconds since epoch.",
+                                        "example": 1453449599999
+                                    },
+                                    "fuelPercentage": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "description": "Fuel percentage of the reefer.",
+                                        "example": 99
+                                    }
+                                }
+                            }
+                        },
+                        "powerStatus": {
+                            "type": "array",
+                            "description": "Power status of the reefer",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "changedAtMs": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "description": "Timestamp in Unix milliseconds since epoch.",
+                                        "example": 1453449599999
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "description": "Power status of the reefer.",
+                                        "example": "Active (Continuous)"
+                                    }
+                                }
+                            }
+                        },
+                        "returnAirTemp": {
+                            "type": "array",
+                            "description": "Return air temperature of the reefer",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "changedAtMs": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "description": "Timestamp in Unix milliseconds since epoch.",
+                                        "example": 1453449599999
+                                    },
+                                    "tempInMilliC": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "description": "Return air temperature in millidegree Celsius.",
+                                        "example": 31110
+                                    }
+                                }
+                            }
+                        },
+                        "setPoint": {
+                            "type": "array",
+                            "description": "Set point temperature of the reefer",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "changedAtMs": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "description": "Timestamp in Unix milliseconds since epoch.",
+                                        "example": 1453449599999
+                                    },
+                                    "tempInMilliC": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "description": "Set point temperature in millidegree Celsius.",
+                                        "example": 31110
                                     }
                                 }
                             }
