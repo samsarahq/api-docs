@@ -1742,14 +1742,7 @@
                 "operationId": "GetAssetReefer",
                 "parameters": [
                     { "$ref": "#/parameters/accessTokenParam" },
-                    {
-                        "name": "asset_id",
-                        "in": "path",
-                        "required": true,
-                        "description": "ID of the asset",
-                        "type": "integer",
-                        "format": "int64"
-                    },
+                    { "$ref": "#/parameters/assetIdParam" },
                     { "$ref": "#/parameters/routeHistoryStartTimeParam" },
                     { "$ref": "#/parameters/routeHistoryEndTimeParam" }
                 ],
@@ -1758,6 +1751,36 @@
                         "description": "Reefer-specific asset details.",
                         "schema": {
                             "$ref": "#/definitions/AssetReeferResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/assets/{asset_id}/location": {
+            "get": {
+                "tags": [
+                    "Default", "Fleet", "Assets"
+                ],
+                "summary": "/fleet/assets/{assetId:[0-9]+}/location",
+                "description": "Fetch the historical locations for the asset.",
+                "operationId": "GetAssetLocation",
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/assetIdParam" },
+                    { "$ref": "#/parameters/routeHistoryStartTimeParam" },
+                    { "$ref": "#/parameters/routeHistoryEndTimeParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Asset location details.",
+                        "schema": {
+                            "$ref": "#/definitions/AssetLocationResponse"
                         }
                     },
                     "default": {
@@ -3405,6 +3428,37 @@
                     }
                 }
             }
+        },
+        "AssetLocationResponse": {
+            "type": "object",
+            "description": "Asset location details.",
+            "properties": {
+                "location": {
+                    "type": "string",
+                    "description": "The best effort (street,city,state) for the latititude and longitude.",
+                    "example": "525 York, San Francisco, CA"
+                },
+                "latitude": {
+                    "type": "number",
+                    "description": "The latitude of the location in degrees.",
+                    "example": "37"
+                },
+                "longitude": {
+                    "type": "number",
+                    "description": "The longitude of the location in degrees.",
+                    "example": "-122"
+                },
+                "speedMilesPerHour": {
+                    "type": "number",
+                    "description": "The speed calculated from GPS that the asset was traveling at in miles per hour.",
+                    "example": "35"
+                },
+                "time": {
+                    "type": "number",
+                    "description": "Time in milliseconds when the asset was at the location.",
+                    "example": "12314151"
+                }
+            }
         }
     },
     "parameters": {
@@ -3547,6 +3601,14 @@
             "description": "Optional group ID if the organization has multiple groups (uncommon).",
             "required": false,
             "in": "query",
+            "type": "integer",
+            "format": "int64"
+        },
+        "assetIdParam": {
+            "name": "asset_id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the asset",
             "type": "integer",
             "format": "int64"
         }
