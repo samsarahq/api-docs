@@ -1762,12 +1762,12 @@
                 }
             }
         },
-        "/fleet/assets/{asset_id}/location": {
+        "/fleet/assets/{asset_id}/locations": {
             "get": {
                 "tags": [
                     "Default", "Fleet", "Assets"
                 ],
-                "summary": "/fleet/assets/{assetId:[0-9]+}/location",
+                "summary": "/fleet/assets/{assetId:[0-9]+}/locations",
                 "description": "Fetch the historical locations for the asset.",
                 "operationId": "GetAssetLocation",
                 "parameters": [
@@ -3430,33 +3430,37 @@
             }
         },
         "AssetLocationResponse": {
-            "type": "object",
-            "description": "Asset location details.",
-            "properties": {
-                "location": {
-                    "type": "string",
-                    "description": "The best effort (street,city,state) for the latititude and longitude.",
-                    "example": "525 York, San Francisco, CA"
-                },
-                "latitude": {
-                    "type": "number",
-                    "description": "The latitude of the location in degrees.",
-                    "example": "37"
-                },
-                "longitude": {
-                    "type": "number",
-                    "description": "The longitude of the location in degrees.",
-                    "example": "-122"
-                },
-                "speedMilesPerHour": {
-                    "type": "number",
-                    "description": "The speed calculated from GPS that the asset was traveling at in miles per hour.",
-                    "example": "35"
-                },
-                "time": {
-                    "type": "number",
-                    "description": "Time in milliseconds when the asset was at the location.",
-                    "example": "12314151"
+            "type": "array",
+            "description": "A list of historical asset locations.",
+            "items": {
+                "type": "object",
+                "description": "Asset location details.",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "The best effort (street,city,state) for the latitude and longitude.",
+                        "example": "525 York, San Francisco, CA"
+                    },
+                    "latitude": {
+                        "type": "number",
+                        "description": "The latitude of the location in degrees.",
+                        "example": "37"
+                    },
+                    "longitude": {
+                        "type": "number",
+                        "description": "The longitude of the location in degrees.",
+                        "example": "-122"
+                    },
+                    "speedMilesPerHour": {
+                        "type": "number",
+                        "description": "The speed calculated from GPS that the asset was traveling at in miles per hour.",
+                        "example": "35"
+                    },
+                    "time": {
+                        "type": "number",
+                        "description": "Time in Unix milliseconds since epoch when the asset was at the location.",
+                        "example": "12314151"
+                    }
                 }
             }
         }
