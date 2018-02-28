@@ -1743,8 +1743,8 @@
                 "parameters": [
                     { "$ref": "#/parameters/accessTokenParam" },
                     { "$ref": "#/parameters/assetIdParam" },
-                    { "$ref": "#/parameters/routeHistoryStartTimeParam" },
-                    { "$ref": "#/parameters/routeHistoryEndTimeParam" }
+                    { "$ref": "#/parameters/assetHistoryStartTimeParam" },
+                    { "$ref": "#/parameters/assetHistoryEndTimeParam" }
                 ],
                 "responses": {
                     "200": {
@@ -1773,8 +1773,8 @@
                 "parameters": [
                     { "$ref": "#/parameters/accessTokenParam" },
                     { "$ref": "#/parameters/assetIdParam" },
-                    { "$ref": "#/parameters/routeHistoryStartTimeParam" },
-                    { "$ref": "#/parameters/routeHistoryEndTimeParam" }
+                    { "$ref": "#/parameters/assetHistoryStartTimeParam" },
+                    { "$ref": "#/parameters/assetHistoryEndTimeParam" }
                 ],
                 "responses": {
                     "200": {
@@ -3604,6 +3604,22 @@
             "name": "group_id",
             "description": "Optional group ID if the organization has multiple groups (uncommon).",
             "required": false,
+            "in": "query",
+            "type": "integer",
+            "format": "int64"
+        },
+        "assetHistoryEndTimeParam": {
+            "name": "endMs",
+            "description": "Timestamp in milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs.",
+            "required": true,
+            "in": "query",
+            "type": "integer",
+            "format": "int64"
+        },
+        "assetHistoryStartTimeParam": {
+            "name": "startMs",
+            "description": "Timestamp in milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs.",
+            "required": true,
             "in": "query",
             "type": "integer",
             "format": "int64"
