@@ -147,6 +147,70 @@
                 }
             }
         },
+        "/sensors/cargo": {
+            "post": {
+                "tags": [
+                    "Sensors", "Default"
+                ],
+                "summary": "/sensors/cargo",
+                "description": "Get cargo monitor status (empty / full) for requested sensors.",
+                "operationId": "get_sensors_cargo",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "$ref": "#/parameters/sensorParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of sensor objects containing the current cargo status reported by each sensor.",
+                        "schema": {
+                            "$ref": "#/definitions/CargoResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/sensors/door": {
+            "post": {
+                "tags": [
+                    "Sensors", "Default"
+                ],
+                "summary": "/sensors/door",
+                "description": "Get door monitor status (closed / open) for requested sensors.",
+                "operationId": "get_sensors_door",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "$ref": "#/parameters/sensorParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of sensor objects containing the current door status reported by each sensor.",
+                        "schema": {
+                            "$ref": "#/definitions/DoorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/sensors/history": {
             "post": {
                 "tags": [
@@ -2092,6 +2156,76 @@
                                 "type": "integer",
                                 "description": "Currently reported relative humidity in percent, from 0-100.",
                                 "example": 53
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "CargoResponse": {
+            "type": "object",
+            "description": "Contains the current cargo status of a sensor.",
+            "properties": {
+                "groupId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 101
+                },
+                "sensors": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "description": "ID of the sensor.",
+                                "format": "int64",
+                                "example": 122
+                            },
+                            "name": {
+                                "type": "string",
+                                "description": "Name of the sensor.",
+                                "example": "Trailer Cargo Sensor"
+                            },
+                            "cargoEmpty": {
+                                "type": "boolean",
+                                "description": "Flag indicating whether the current cargo is empty or loaded.",
+                                "example": true
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "DoorResponse": {
+            "type": "object",
+            "description": "Contains the current door status of a sensor.",
+            "properties": {
+                "groupId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 101
+                },
+                "sensors": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "description": "ID of the sensor.",
+                                "format": "int64",
+                                "example": 122
+                            },
+                            "name": {
+                                "type": "string",
+                                "description": "Name of the sensor.",
+                                "example": "Trailer Door Sensor"
+                            },
+                            "doorClosed": {
+                                "type": "boolean",
+                                "description": "Flag indicating whether the current door is closed or open.",
+                                "example": true
                             }
                         }
                     }
