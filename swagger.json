@@ -1796,6 +1796,42 @@
                 }
             }
         },
+        "/fleet/assets/locations": {
+            "get": {
+                "tags": [
+                    "Default", "Fleet", "Assets"
+                ],
+                "summary": "/fleet/assets/locations",
+                "description": "Fetch current locations of all assets for the group.",
+                "operationId": "GetAllAssetCurrentLocations",
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/groupParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of assets and their current locations.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "assets": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/AssetCurrentLocationsResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/fleet/assets/{asset_id}/reefer": {
             "get": {
                 "tags": [
@@ -3406,6 +3442,86 @@
                             }
                         }
                     }
+                }
+            }
+        },
+        "AssetCurrentLocationsResponse": {
+            "type": "object",
+            "description": "Basic information of an asset",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "Asset ID",
+                    "format": "int64",
+                    "example": 1
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Asset name",
+                    "example": "Trailer 123"
+                },
+                "engineHours": {
+                    "type": "integer",
+                    "description": "Engine hours",
+                    "example": "104"
+                },
+                "cable": {
+                    "type": "array",
+                    "description": "The cable connected to the asset",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "assetType": {
+                                "type": "string",
+                                "description": "Asset type",
+                                "example": "Reefer (Thermo King)"
+                            }
+                        }
+                    }
+                },
+                "location": {
+                    "type": "array",
+                    "description": "Current location of an asset",
+                    "items": {
+                        "$ref": "#/definitions/AssetCurrentLocation"
+                    }
+                }
+            }
+        },
+        "AssetCurrentLocation": {
+            "type": "object",
+            "description": "Current location of an asset",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "location": {
+                    "type": "string",
+                    "description": "The best effort (street,city,state) for the latitude and longitude.",
+                    "example": "525 York, San Francisco, CA"
+                },
+                "latitude": {
+                    "type": "number",
+                    "description": "The latitude of the location in degrees.",
+                    "example": "37"
+                },
+                "longitude": {
+                    "type": "number",
+                    "description": "The longitude of the location in degrees.",
+                    "example": "-122"
+                },
+                "speedMilesPerHour": {
+                    "type": "number",
+                    "description": "The speed calculated from GPS that the asset was traveling at in miles per hour.",
+                    "example": "35"
+                },
+                "timeMs": {
+                    "type": "number",
+                    "description": "Time in Unix milliseconds since epoch when the asset was at the location.",
+                    "example": "12314151"
                 }
             }
         },
