@@ -1800,6 +1800,38 @@
                         }
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Default"
+                ],
+                "summary": "/tags",
+                "description": "Create a new tag for the group.",
+                "operationId": "CreateTag",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/tagCreateParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Newly created tag object, including the new tag ID.",
+                        "schema": {
+                            "$ref": "#/definitions/Tag"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
             }
         },
         "/fleet/assets": {
@@ -4089,6 +4121,14 @@
             "in": "query",
             "type": "integer",
             "format": "int64"
+        },
+        "tagCreateParam": {
+            "name": "tagCreateParams",
+            "required": true,
+            "in": "body",
+            "schema": {
+                "$ref": "#/definitions/TagBase"
+            }
         },
         "assetHistoryEndTimeParam": {
             "name": "endMs",
