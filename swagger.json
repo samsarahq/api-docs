@@ -1908,6 +1908,31 @@
                         }
                     }
                 }
+            },
+            "delete": {
+                "tags": [
+                    "Default"
+                ],
+                "summary": "/tags/{tag_id:[0-9]+}",
+                "description": "Permanently deletes a tag.",
+                "operationId": "deleteTagById",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully deleted the tag. No response body is returned."
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
             }
         },
         "/fleet/assets": {
