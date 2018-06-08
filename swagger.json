@@ -1834,6 +1834,49 @@
                 }
             }
         },
+        "/tags/{tag_id}": {
+            "parameters": [
+                {
+                    "$ref": "#/parameters/accessTokenParam"
+                },
+                {
+                    "name": "tag_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the tag.",
+                    "type": "integer",
+                    "format": "int64"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Default"
+                ],
+                "summary": "/tags/{tag_id:[0-9]+}",
+                "description": "Fetch a tag by id.",
+                "operationId": "getTagById",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The tag corresponding to tag_id.",
+                        "schema": {
+                            "$ref": "#/definitions/Tag"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/fleet/assets": {
             "get": {
                 "tags": [
