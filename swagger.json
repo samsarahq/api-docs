@@ -1760,6 +1760,48 @@
                 }
             }
         },
+        "/tags": {
+            "get": {
+                "tags": [
+                    "Default"
+                ],
+                "summary": "/tags",
+                "description": "Fetch all of the tags for a group.",
+                "operationId": "GetAllTags",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/groupParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of tags.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "tags": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Tag"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/fleet/assets": {
             "get": {
                 "tags": [
@@ -3048,6 +3090,175 @@
                     }
                 }
             }
+        },
+        "TaggedVehicle": {
+            "type": "object",
+            "required": [
+                "id",
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The ID of the Vehicle being tagged.",
+                    "example": 123
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the vehicle being tagged.",
+                    "example": "Truck 123"
+                }
+            }
+        },
+        "TaggedAsset": {
+            "type": "object",
+            "required": [
+                "id",
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The ID of the Asset being tagged.",
+                    "example": 456
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the Asset being tagged.",
+                    "example": "Cargo Box 456"
+                }
+            }
+        },
+        "TaggedDriver": {
+            "type": "object",
+            "required": [
+                "id",
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The ID of the Driver being tagged.",
+                    "example": 567
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the Driver being tagged.",
+                    "example": "John Smith"
+                }
+            }
+        },
+        "TaggedMachine": {
+            "type": "object",
+            "required": [
+                "id",
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The ID of the Machine being tagged.",
+                    "example": 789
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the Machine being tagged.",
+                    "example": "Machine 789"
+                }
+            }
+        },
+        "TaggedSensor": {
+            "type": "object",
+            "required": [
+                "id",
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The ID of the Sensor being tagged.",
+                    "example": 345
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the Sensor being tagged.",
+                    "example": "Temperature Sensor 345"
+                }
+            }
+        },
+        "TagBase": {
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name of this tag.",
+                    "example": "Broken Vehicles"
+                },
+                "vehicles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TaggedVehicle"
+                    },
+                    "description": "The vehicles that belong to this tag."
+                },
+                "drivers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TaggedDriver"
+                    },
+                    "description": "The drivers that belong to this tag."
+                },
+                "assets": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TaggedAsset"
+                    },
+                    "description": "The assets that belong to this tag."
+                },
+                "machines": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TaggedMachine"
+                    },
+                    "description": "The machines that belong to this tag."
+                },
+                "sensors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TaggedSensor"
+                    },
+                    "description": "The sensors that belong to this tag."
+                }
+            }
+        },
+        "Tag": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "required": [
+                        "id"
+                    ],
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "The ID of this tag.",
+                            "example": 12345
+                        }
+                    }
+                },
+                {
+                    "$ref": "#/definitions/TagBase"
+                }
+            ]
         },
         "DispatchJobCreate": {
             "type": "object",
