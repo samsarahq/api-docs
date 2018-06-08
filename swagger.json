@@ -1875,6 +1875,39 @@
                         }
                     }
                 }
+            },
+            "put": {
+                "tags": [
+                    "Default"
+                ],
+                "summary": "/tags/{tag_id:[0-9]+}",
+                "description": "Update a tag with a new name and new members.",
+                "operationId": "updateTagById",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/tagUpdateParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The updated tag data.",
+                        "schema": {
+                            "$ref": "#/definitions/Tag"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
             }
         },
         "/fleet/assets": {
@@ -4171,6 +4204,14 @@
             "in": "body",
             "schema": {
                 "$ref": "#/definitions/TagBase"
+            }
+        },
+        "tagUpdateParam": {
+            "name": "updateTagParams",
+            "required": true,
+            "in": "body",
+            "schema": {
+                "$ref": "#/definitions/Tag"
             }
         },
         "assetHistoryEndTimeParam": {
