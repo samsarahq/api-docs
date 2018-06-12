@@ -30,8 +30,8 @@
             "description": "Access to fleet data"
         },
         {
-            "name": "Machines",
-            "description": "Access to machine data"
+            "name": "Industrial",
+            "description": "Access to industrial data"
         },
         {
             "name": "Sensors",
@@ -1662,7 +1662,7 @@
         "/machines/list": {
             "post": {
                 "tags": [
-                    "Machines", "Default"
+                    "Industrial", "Default"
                 ],
                 "summary": "/machines/list",
                 "description": "Get machine objects. This method returns a list of the machine objects in the Samsara Cloud and information about them.",
@@ -1702,7 +1702,7 @@
         "/machines/history": {
             "post": {
                 "tags": [
-                    "Machines", "Default"
+                    "Industrial", "Default"
                 ],
                 "summary": "/machines/history",
                 "description": "Get historical data for machine objects. This method returns a set of historical data for all machines in a group",
@@ -1749,6 +1749,50 @@
                         "description": "List of machine results objects, each containing a time and a datapoint.",
                         "schema": {
                             "$ref": "#/definitions/MachineHistoryResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/industrial/data": {
+            "get": {
+                "tags": [
+                    "Industrial", "Default"
+                ],
+                "summary": "/industrial/data",
+                "description": "Fetch all of the data inputs for a group.",
+                "operationId": "GetAllDataInputs",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/groupParam" },
+                    { "$ref": "#/parameters/dataInputStartTimeParam"},
+                    { "$ref": "#/parameters/dataInputEndTimeParam"}
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of data inputs.",
+                        "schema": {
+                            "type": "object",
+                            "properties":{
+                                "dataInputs":{
+                                    "type": "array",
+                                    "items":{
+                                        "$ref": "#/definitions/DataInputHistoryResponse"
+                                    }
+                                }
+                            }
                         }
                     },
                     "default": {
@@ -3760,6 +3804,44 @@
                 }
             }
         },
+        "DataInputHistoryResponse": {
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description":"The ID of this data input",
+                    "example": 12345
+                },
+                "name": {
+                    "type": "string",
+                    "description":"Name of this data input",
+                    "example":"Pump Flow"
+                },
+                "points": {
+                    "type": "array",
+                    "description": "Data points from this data input",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "timeMs":{
+                                "type":"integer",
+                                "format": "int64",
+                                "example": 1453449599999
+                            },
+                            "value":{
+                                "type":"number",
+                                "format": "float",
+                                "example": 12.332
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "Machine": {
             "type": "object",
             "description": "Contains information about a machine.",
@@ -4348,6 +4430,21 @@
             "in": "path",
             "required": true,
             "description": "ID of the asset",
+            "type": "integer",
+            "format": "int64"
+        "dataInputEndTimeParam": {
+            "name": "endMs",
+            "description": "Timestamp in unix milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs. Defaults to nowMs.",
+            "required": false,
+            "in": "query",
+            "type": "integer",
+            "format": "int64"
+        },
+        "dataInputStartTimeParam": {
+            "name": "startMs",
+            "description": "Timestamp in unix milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs. defaults to nowMs.",
+            "required": false,
+            "in": "query",
             "type": "integer",
             "format": "int64"
         }
