@@ -1804,6 +1804,42 @@
                 }
             }
         },
+        "/industrial/data/{data_input_id}": {
+            "get": {
+                "tags": [
+                    "Industrial", "Default"
+                ],
+                "summary": "/industrial/data/{data_input_id:[0-9]+}",
+                "description": "Fetch datapoints from a given data input.",
+                "operationId": "GetDataInput",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/dataInputIdParam"},
+                    { "$ref": "#/parameters/dataInputStartTimeParam"},
+                    { "$ref": "#/parameters/dataInputEndTimeParam"}
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns datapoints for the given data input",
+                        "schema": {
+                            "$ref": "#/definitions/DataInputHistoryResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/tags": {
             "get": {
                 "tags": [
@@ -4432,6 +4468,15 @@
             "description": "ID of the asset",
             "type": "integer",
             "format": "int64"
+        },
+        "dataInputIdParam": {
+            "name": "data_input_id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the data input",
+            "type": "integer",
+            "format": "int64"
+        },
         "dataInputEndTimeParam": {
             "name": "endMs",
             "description": "Timestamp in unix milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs. Defaults to nowMs.",
