@@ -1961,7 +1961,7 @@
                     "Default"
                 ],
                 "summary": "/tags/{tag_id:[0-9]+}",
-                "description": "Update a tag with a new name and new members.",
+                "description": "Update a tag with a new name and new members. This API call would replace all old members of a tag with new members specified in the request body.",
                 "operationId": "updateTagById",
                 "consumes": [
                     "application/json"
@@ -2698,9 +2698,6 @@
             "allOf": [
                 {
                     "type": "object",
-                    "required": [
-                        "password"
-                    ],
                     "properties": {
                         "password": {
                             "type": "string",
