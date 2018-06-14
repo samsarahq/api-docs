@@ -1351,6 +1351,41 @@
                 }
             }
         },
+        "/fleet/dispatch/routes/job_updates": {
+            "get": {
+                "tags": [
+                    "Fleet", "Routes", "Default"
+                ],
+                "summary": "/fleet/dispatch/routes/job_updates",
+                "description": "Fetch all updates to a job including route data in the last 24 hours or subsequent to an event ID",
+                "operationId": "fetchAllRouteJobUpdates",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/groupIdParam" },
+                    {"$ref": "#/parameters/lastReceivedEventIDParam"}
+                ],
+                "responses": {
+                    "200": {
+                        "description": "All job updates on routes.",
+                        "schema": {
+                            "$ref": "#/definitions/allRouteJobUpdates"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/fleet/dispatch/routes/{route_id}": {
             "parameters": [
                 {
@@ -3601,6 +3636,32 @@
                 }
             }
         },
+        "prevJobStatus": {
+            "type": "string",
+            "enum": [
+                "JobState_Unassigned",
+                "JobState_Scheduled",
+                "JobState_EnRoute",
+                "JobState_Arrived",
+                "JobState_Completed",
+                "JobState_Skipped"
+            ],
+            "description": "The previous state of the dispatch job.",
+            "example": "JobState_EnRoute"
+        },
+        "jobStatus": {
+            "type": "string",
+            "enum": [
+                "JobState_Unassigned",
+                "JobState_Scheduled",
+                "JobState_EnRoute",
+                "JobState_Arrived",
+                "JobState_Completed",
+                "JobState_Skipped"
+            ],
+            "description": "The current state of the dispatch job.",
+            "example": "JobState_Arrived"
+        },
         "DispatchJob": {
             "allOf": [
                 {
@@ -3642,17 +3703,7 @@
                             "example": 112
                         },
                         "job_state": {
-                            "type": "string",
-                            "enum": [
-                                "JobState_Unassigned",
-                                "JobState_Scheduled",
-                                "JobState_EnRoute",
-                                "JobState_Arrived",
-                                "JobState_Completed",
-                                "JobState_Skipped"
-                            ],
-                            "description": "The current state of the dispatch job.",
-                            "example": "JobState_Scheduled"
+                            "$ref": "#/definitions/jobStatus"
                         },
                         "en_route_at_ms": {
                             "type": "integer",
@@ -3809,6 +3860,55 @@
             "type": "array",
             "items": {
                 "$ref": "#/definitions/DispatchRoute"
+            }
+        },
+        "jobUpdateObject": {
+            "type": "object",
+            "properties": {
+                "changed_at_ms": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Timestamp that this event was updated, represented as Unix milliseconds since epoch.",
+                    "example": 1462881998034
+                },
+                "route_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "ID of the Samsara dispatch route.",
+                    "example": 556
+                },
+                "job_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "ID of the Samsara job.",
+                    "example": 773
+                },
+                "prev_job_state": {
+                    "$ref": "#/definitions/prevJobStatus",
+                },
+                "job_state": {
+                    "$ref": "#/definitions/jobStatus"
+                },
+                "route": {
+                    "$ref": "#/definitions/DispatchRoute"
+                }
+            }
+        },
+        "allRouteJobUpdates": {
+            "type": "object",
+            "properties": {
+                "job_updates": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/jobUpdateObject"
+                    }
+                },
+                "event_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Event ID of the latest event update returned in the response",
+                    "example": 28723
+                }
             }
         },
         "DispatchRouteHistoricalEntry": {
@@ -4389,6 +4489,14 @@
         "routeEndTimeParam": {
             "name": "end_time",
             "description": "Time in unix milliseconds that represents the oldest routes to return. Used in combination with duration. Defaults to now.",
+            "required": false,
+            "in": "query",
+            "type": "integer",
+            "format": "int64"
+        },
+        "lastReceivedEventIDParam": {
+            "name": "last_event_id_received",
+            "description": "Event ID of the last event from where updates should be shared. Defaults to fetching updates from last 24 hours.",
             "required": false,
             "in": "query",
             "type": "integer",
