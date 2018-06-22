@@ -1353,7 +1353,7 @@
                     "Fleet", "Routes", "Default"
                 ],
                 "summary": "/fleet/dispatch/routes/job_updates",
-                "description": "Fetch all updates to a job including route data in the last 24 hours or subsequent to an event ID",
+                "description": "Fetch all updates to a job including route data in the last 24 hours or subsequent to an sequence ID",
                 "operationId": "fetchAllRouteJobUpdates",
                 "consumes": [
                     "application/json"
@@ -1364,7 +1364,7 @@
                 "parameters": [
                     { "$ref": "#/parameters/accessTokenParam" },
                     { "$ref": "#/parameters/groupIdParam" },
-                    {"$ref": "#/parameters/lastReceivedEventIDParam"}
+                    {"$ref": "#/parameters/lastReceivedSequenceIDParam"}
                 ],
                 "responses": {
                     "200": {
@@ -3953,9 +3953,6 @@
                 },
                 "job_state": {
                     "$ref": "#/definitions/jobStatus"
-                },
-                "route": {
-                    "$ref": "#/definitions/DispatchRoute"
                 }
             }
         },
@@ -3968,11 +3965,10 @@
                         "$ref": "#/definitions/jobUpdateObject"
                     }
                 },
-                "event_id": {
-                    "type": "integer",
-                    "format": "int64",
-                    "description": "Event ID of the latest event update returned in the response",
-                    "example": 28723
+                "sequence_id": {
+                    "type": "string",
+                    "description": "Sequence ID of the last update returned in the response",
+                    "example": "eyJpZCI6MywiY3JlYXRlZF9hdCI6MTQ5OTQyOTIyMDAwMn0="
                 }
             }
         },
@@ -4559,13 +4555,12 @@
             "type": "integer",
             "format": "int64"
         },
-        "lastReceivedEventIDParam": {
-            "name": "last_event_id_received",
-            "description": "Event ID of the last event from where updates should be shared. Defaults to fetching updates from last 24 hours.",
+        "lastReceivedSequenceIDParam": {
+            "name": "sequence_id",
+            "description": "Sequence ID from the response payload of the last request. Defaults to fetching updates from last 24 hours.",
             "required": false,
             "in": "query",
-            "type": "integer",
-            "format": "int64"
+            "type": "string"
         },
         "routeDurationParam": {
             "name": "duration",
