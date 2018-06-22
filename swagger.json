@@ -3,7 +3,7 @@
     "info": {
         "title": "Samsara API",
         "version": "1.0.0",
-        "description": "# Introduction\nThe Samsara REST API lets you interact with the Samsara Cloud from anything that can send an HTTP request. With the Samsara API you can build powerful applications and custom solutions with sensor data.\n\nSamsara has endpoints available to track and analyze sensors, vehicles, and entire fleets. If you’re familiar with what you can build with a REST API, the following API reference guide will be your go-to resource.\n\nAPI access to the Samsara cloud is available to all Samsara administrators. If you’d like to try the API, [contact us](https://www.samsara.com/free-trial).\n\n# Connecting to the API\nThere are two ways to connect to the API. If you prefer to use the API in Javascript or Python, we supply SDKs which you can download here: [Javascript SDK](https://github.com/samsarahq/samsara-js), [Python SDK](https://github.com/samsarahq/samsara-python).\n\nIf you’d rather use another language to interact with the Samsara API, the endpoints and examples are in the reference guide below. \n"
+        "description": "# Introduction\nThe Samsara REST API lets you interact with the Samsara Cloud from anything that can send an HTTP request. With the Samsara API you can build powerful applications and custom solutions with sensor data.\n\nSamsara has endpoints available to track and analyze sensors, vehicles, and entire fleets. If you’re familiar with what you can build with a REST API, the following API reference guide will be your go-to resource.\n\nAPI access to the Samsara cloud is available to all Samsara administrators. If you’d like to try the API, [contact us](https://www.samsara.com/free-trial)."
     },
     "host": "api.samsara.com",
     "schemes": [
@@ -16,15 +16,7 @@
     "produces": [
         "application/json"
     ],
-    "externalDocs": {
-        "description": "Documentation for the Samsara API",
-        "url": "https://www.samsara.com/api"
-    },
     "tags": [
-        {
-            "name": "Default",
-            "description": "All Samsara API endpoints"
-        },
         {
             "name": "Fleet",
             "description": "Access to fleet data"
@@ -40,6 +32,10 @@
         {
             "name": "Assets",
             "description": "Access to asset specific data"
+        },
+        {
+            "name": "Default",
+            "description": "All Samsara API endpoints"
         }
     ],
     "paths": {
@@ -3539,6 +3535,51 @@
                 }
             }
         },
+        "TagUpdate": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Updated name of this tag.",
+                    "example": "Broken Vehicles"
+                },
+                "vehicles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TaggedVehicleBase"
+                    },
+                    "description": "The vehicles that belong to this tag."
+                },
+                "drivers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TaggedDriverBase"
+                    },
+                    "description": "The drivers that belong to this tag."
+                },
+                "assets": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TaggedAssetBase"
+                    },
+                    "description": "The assets that belong to this tag."
+                },
+                "machines": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TaggedMachineBase"
+                    },
+                    "description": "The machines that belong to this tag."
+                },
+                "sensors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TaggedSensorBase"
+                    },
+                    "description": "The sensors that belong to this tag."
+                }
+            }
+        },
         "Tag": {
                 "type": "object",
                 "required": [
@@ -4547,7 +4588,7 @@
             "required": true,
             "in": "body",
             "schema": {
-                "$ref": "#/definitions/Tag"
+                "$ref": "#/definitions/TagUpdate"
             }
         },
         "assetHistoryEndTimeParam": {
