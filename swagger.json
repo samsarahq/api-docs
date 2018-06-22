@@ -1946,19 +1946,6 @@
             }
         },
         "/tags/{tag_id}": {
-            "parameters": [
-                {
-                    "$ref": "#/parameters/accessTokenParam"
-                },
-                {
-                    "name": "tag_id",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of the tag.",
-                    "type": "integer",
-                    "format": "int64"
-                }
-            ],
             "get": {
                 "tags": [
                     "Default"
@@ -1971,6 +1958,19 @@
                 ],
                 "produces": [
                     "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "tag_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the tag.",
+                        "type": "integer",
+                        "format": "int64"
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -2002,6 +2002,17 @@
                 ],
                 "parameters": [
                     {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "tag_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the tag.",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
                         "$ref": "#/parameters/tagUpdateParam"
                     }
                 ],
@@ -2032,6 +2043,19 @@
                 ],
                 "produces": [
                     "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "tag_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the tag.",
+                        "type": "integer",
+                        "format": "int64"
+                    }
                 ],
                 "responses": {
                     "200": {
