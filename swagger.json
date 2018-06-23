@@ -1364,7 +1364,8 @@
                 "parameters": [
                     { "$ref": "#/parameters/accessTokenParam" },
                     { "$ref": "#/parameters/groupIdParam" },
-                    {"$ref": "#/parameters/lastReceivedSequenceIDParam"}
+                    { "$ref": "#/parameters/lastReceivedSequenceIDParam" },
+                    { "$ref": "#/parameters/jobUpdatesIncludeParam" }
                 ],
                 "responses": {
                     "200": {
@@ -3942,6 +3943,9 @@
                     "description": "ID of the Samsara dispatch route.",
                     "example": 556
                 },
+                "route": {
+                    "$ref": "#/definitions/DispatchRoute"
+                },
                 "job_id": {
                     "type": "integer",
                     "format": "int64",
@@ -3949,7 +3953,7 @@
                     "example": 773
                 },
                 "prev_job_state": {
-                    "$ref": "#/definitions/prevJobStatus",
+                    "$ref": "#/definitions/prevJobStatus"
                 },
                 "job_state": {
                     "$ref": "#/definitions/jobStatus"
@@ -4558,6 +4562,13 @@
         "lastReceivedSequenceIDParam": {
             "name": "sequence_id",
             "description": "Sequence ID from the response payload of the last request. Defaults to fetching updates from last 24 hours.",
+            "required": false,
+            "in": "query",
+            "type": "string"
+        },
+        "jobUpdatesIncludeParam": {
+            "name": "include",
+            "description": "Optionally set include=route to include route object in response payload.",
             "required": false,
             "in": "query",
             "type": "string"
