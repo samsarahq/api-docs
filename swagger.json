@@ -595,7 +595,7 @@
                     "200": {
                         "description": "Returns the driver for the given driver_id.",
                         "schema": {
-                            "$ref": "#/definitions/Driver"
+                            "$ref": "#/definitions/CurrentDriver"
                         }
                     },
                     "default": {
@@ -731,7 +731,7 @@
                     "200": {
                         "description": "Returns the reactivated driver, which is now available at /fleet/drivers/{driver_id}.",
                         "schema": {
-                            "$ref": "#/definitions/Driver"
+                            "$ref": "#/definitions/CurrentDriver"
                         }
                     },
                     "default": {
@@ -2788,7 +2788,36 @@
                     }
                 },
                 {
+                    "type": "object",
+                    "properties": {
+                        "currentVehicleId": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "ID of the vehicle that this driver is currently assigned to. Omitted if there is no current vehicle assignment for this driver.",
+                            "example": 879
+                        }
+                    }
+                },
+                {
                     "$ref": "#/definitions/DriverBase"
+                }
+            ]
+        },
+        "CurrentDriver": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "currentVehicleId": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "ID of the vehicle that this driver is currently assigned to. Omitted if there is no current vehicle assignment for this driver.",
+                            "example": 879
+                        }
+                    }
+                },
+                {
+                    "$ref": "#/definitions/Driver"
                 }
             ]
         },
