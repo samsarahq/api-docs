@@ -18,31 +18,43 @@
     ],
     "tags": [
         {
-            "name": "Fleet",
-            "description": "Access to fleet data"
+            "name": "Fleet General",
+            "description": "Acess general datapoints for fleets"
         },
         {
-            "name": "Industrial",
-            "description": "Access to industrial data"
+            "name": "Fleet Drivers",
+            "description": "Acess datapoints for fleet drivers"
         },
         {
-            "name": "Sensors",
-            "description": "Access to sensor data"
+            "name": "Fleet HoS",
+            "description": "Acess datapoints related to hours of service for fleets"
+        },
+        {
+            "name": "Fleet Routes",
+            "description": "Acess datapoints for fleet routes"
         },
         {
             "name": "Assets",
-            "description": "Access to asset specific data"
+            "description": "Access asset specific datapoints"
         },
         {
-            "name": "Default",
-            "description": "All Samsara API endpoints"
+            "name": "Sensors",
+            "description": "Access sensor data"
+        },
+        {
+            "name": "Industrial",
+            "description": "Access industrial data"
+        },
+        {
+            "name": "Administrative",
+            "description": "Administrative endpoints to modify overall org/group level data"
         }
     ],
     "paths": {
         "/sensors/list": {
             "post": {
                 "tags": [
-                    "Sensors", "Default"
+                    "Sensors"
                 ],
                 "summary": "/sensors/list",
                 "description": "Get sensor objects. This method returns a list of the sensor objects in the Samsara Cloud and information about them.",
@@ -82,7 +94,7 @@
         "/sensors/temperature": {
             "post": {
                 "tags": [
-                    "Sensors", "Default"
+                    "Sensors"
                 ],
                 "summary": "/sensors/temperature",
                 "description": "Get temperature for requested sensors. This method returns the current ambient temperature (and probe temperature if applicable) for the requested sensors.",
@@ -114,7 +126,7 @@
         "/sensors/humidity": {
             "post": {
                 "tags": [
-                    "Sensors", "Default"
+                    "Sensors"
                 ],
                 "summary": "/sensors/humidity",
                 "description": "Get humidity for requested sensors. This method returns the current relative humidity for the requested sensors.",
@@ -146,7 +158,7 @@
         "/sensors/cargo": {
             "post": {
                 "tags": [
-                    "Sensors", "Default"
+                    "Sensors"
                 ],
                 "summary": "/sensors/cargo",
                 "description": "Get cargo monitor status (empty / full) for requested sensors.",
@@ -178,7 +190,7 @@
         "/sensors/door": {
             "post": {
                 "tags": [
-                    "Sensors", "Default"
+                    "Sensors"
                 ],
                 "summary": "/sensors/door",
                 "description": "Get door monitor status (closed / open) for requested sensors.",
@@ -210,7 +222,7 @@
         "/sensors/history": {
             "post": {
                 "tags": [
-                    "Sensors", "Default"
+                    "Sensors"
                 ],
                 "summary": "/sensors/history",
                 "description": "Get historical data for specified sensors. This method returns a set of historical data for the specified sensors in the specified time range and at the specified time resolution.",
@@ -325,7 +337,7 @@
         "/fleet/list": {
             "post": {
                 "tags": [
-                    "Fleet", "Default"
+                    "Fleet General"
                 ],
                 "summary": "/fleet/list",
                 "description": "Get list of the vehicles. This method returns a list of the vehicles in the Samsara Cloud and information about them.",
@@ -371,7 +383,7 @@
         "/fleet/locations": {
             "post": {
                 "tags": [
-                    "Fleet", "Default"
+                    "Fleet General"
                 ],
                 "summary": "/fleet/locations",
                 "description": "Get current location of vehicles in a group. This method returns the current location in latitude and longitude of all vehicles in a requested group.",
@@ -417,7 +429,7 @@
         "/fleet/trips": {
             "post": {
                 "tags": [
-                    "Fleet", "Default"
+                    "Fleet General"
                 ],
                 "summary": "/fleet/trips",
                 "description": "Get historical trips data for specified vehicle. This method returns a set of historical trips data for the specified vehicle in the specified time range.",
@@ -485,7 +497,7 @@
         "/fleet/drivers": {
             "post": {
                 "tags": [
-                    "Fleet", "Default"
+                    "Fleet Drivers"
                 ],
                 "summary": "/fleet/drivers",
                 "description": "Get all the drivers for the specified group.",
@@ -533,7 +545,7 @@
         "/fleet/drivers/create": {
             "post": {
                 "tags": [
-                    "Default", "Fleet", "Drivers"
+                    "Fleet Drivers"
                 ],
                 "summary": "/fleet/drivers/create",
                 "description": "Create a new driver.",
@@ -580,7 +592,7 @@
             ],
             "get": {
                 "tags": [
-                    "Default", "Fleet", "Drivers"
+                    "Fleet Drivers"
                 ],
                 "summary": "/fleet/drivers/{driver_id:[0-9]+}",
                 "description": "Fetch driver by id.",
@@ -608,7 +620,7 @@
             },
             "delete": {
                 "tags": [
-                    "Default", "Fleet", "Drivers"
+                    "Fleet Drivers"
                 ],
                 "summary": "/fleet/drivers/{driver_id:[0-9]+}",
                 "description": "Deactivate a driver with the given driver_id.",
@@ -635,7 +647,7 @@
         "/fleet/drivers/inactive": {
             "get": {
                 "tags": [
-                    "Default", "Fleet", "Drivers"
+                    "Fleet Drivers"
                 ],
                 "summary": "/fleet/drivers/inactive",
                 "description": "Fetch all deactivated drivers for the group.",
@@ -685,7 +697,7 @@
             ],
             "get": {
                 "tags": [
-                    "Default", "Fleet", "Drivers"
+                    "Fleet Drivers"
                 ],
                 "summary": "/fleet/drivers/inactive/{driver_id:[0-9]+}",
                 "description": "Fetch deactivated driver by driver_id.",
@@ -713,7 +725,7 @@
             },
             "put": {
                 "tags": [
-                    "Default", "Fleet", "Drivers"
+                    "Fleet Drivers"
                 ],
                 "summary": "/fleet/drivers/inactive/{driver_id:[0-9]+}",
                 "description": "Reactivate the inactive driver having driver_id.",
@@ -746,7 +758,7 @@
         "/fleet/drivers/summary": {
           "post": {
             "tags": [
-              "Fleet", "Default"
+              "Fleet Drivers"
             ],
             "summary": "/fleet/drivers/summary",
             "description": "Get the distance and time each driver in an organization has driven in a given time period.",
@@ -813,10 +825,125 @@
             }
           }
         },
+        "/fleet/hos_logs": {
+            "post": {
+                "tags": [
+                    "Fleet HoS"
+                ],
+                "summary": "/fleet/hos_logs",
+                "description": "Get the HOS (hours of service) logs for the specified driver.",
+                "operationId": "get_fleet_hos_logs",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "hosLogsParam",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "groupId",
+                                "driverId",
+                                "startMs",
+                                "endMs"
+                            ],
+                            "properties": {
+                                "groupId": {
+                                    "type": "integer",
+                                    "format": "int64",
+                                    "description": "Group ID to query.",
+                                    "example": 101
+                                },
+                                "driverId": {
+                                    "type": "integer",
+                                    "format": "int64",
+                                    "description": "Driver ID to query.",
+                                    "example": 444
+                                },
+                                "startMs": {
+                                    "type": "integer",
+                                    "description": "Beginning of the time range, specified in milliseconds UNIX time.",
+                                    "example": 1462878398034
+                                },
+                                "endMs": {
+                                    "type": "integer",
+                                    "description": "End of the time range, specified in milliseconds UNIX time.",
+                                    "example": 1462881998034
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "HOS logs for the specified driver.",
+                        "schema": {
+                            "$ref": "#/definitions/HosLogsResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/hos_logs_summary": {
+            "post": {
+                "tags": [
+                    "Fleet HoS"
+                ],
+                "summary": "/fleet/hos_logs_summary",
+                "description": "Get the current HOS status for all drivers in the group.",
+                "operationId": "get_fleet_hos_logs_summary",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "hosLogsParam",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "groupId"
+                            ],
+                            "properties": {
+                                "groupId": {
+                                    "type": "integer",
+                                    "format": "int64",
+                                    "description": "Group ID to query.",
+                                    "example": 101
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "HOS logs for the specified driver.",
+                        "schema": {
+                            "$ref": "#/definitions/HosLogsSummaryResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/fleet/drivers/{driver_id}/hos_daily_logs": {
           "post": {
             "tags": [
-              "Fleet", "Default"
+              "Fleet HoS"
             ],
             "summary": "/fleet/drivers/{driver_id:[0-9]+}/hos_daily_logs",
             "description": "Get summarized daily HOS charts for a specified driver.",
@@ -888,125 +1015,10 @@
             }
           }
         },
-        "/fleet/hos_logs": {
-            "post": {
-                "tags": [
-                    "Fleet", "Default"
-                ],
-                "summary": "/fleet/hos_logs",
-                "description": "Get the HOS (hours of service) logs for the specified driver.",
-                "operationId": "get_fleet_hos_logs",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/accessTokenParam"
-                    },
-                    {
-                        "name": "hosLogsParam",
-                        "required": true,
-                        "in": "body",
-                        "schema": {
-                            "type": "object",
-                            "required": [
-                                "groupId",
-                                "driverId",
-                                "startMs",
-                                "endMs"
-                            ],
-                            "properties": {
-                                "groupId": {
-                                    "type": "integer",
-                                    "format": "int64",
-                                    "description": "Group ID to query.",
-                                    "example": 101
-                                },
-                                "driverId": {
-                                    "type": "integer",
-                                    "format": "int64",
-                                    "description": "Driver ID to query.",
-                                    "example": 444
-                                },
-                                "startMs": {
-                                    "type": "integer",
-                                    "description": "Beginning of the time range, specified in milliseconds UNIX time.",
-                                    "example": 1462878398034
-                                },
-                                "endMs": {
-                                    "type": "integer",
-                                    "description": "End of the time range, specified in milliseconds UNIX time.",
-                                    "example": 1462881998034
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "HOS logs for the specified driver.",
-                        "schema": {
-                            "$ref": "#/definitions/HosLogsResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Unexpected error.",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/fleet/hos_logs_summary": {
-            "post": {
-                "tags": [
-                    "Fleet", "Default"
-                ],
-                "summary": "/fleet/hos_logs_summary",
-                "description": "Get the current HOS status for all drivers in the group.",
-                "operationId": "get_fleet_hos_logs_summary",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/accessTokenParam"
-                    },
-                    {
-                        "name": "hosLogsParam",
-                        "required": true,
-                        "in": "body",
-                        "schema": {
-                            "type": "object",
-                            "required": [
-                                "groupId"
-                            ],
-                            "properties": {
-                                "groupId": {
-                                    "type": "integer",
-                                    "format": "int64",
-                                    "description": "Group ID to query.",
-                                    "example": 101
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "HOS logs for the specified driver.",
-                        "schema": {
-                            "$ref": "#/definitions/HosLogsSummaryResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Unexpected error.",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
         "/fleet/maintenance/dvirs": {
             "get": {
                 "tags": [
-                    "Fleet","Default"
+                    "Fleet General"
                 ],
                 "summary": "/fleet/maintenance/dvirs",
                 "description": "Get the DVIR for the org with the time constraints",
@@ -1056,7 +1068,7 @@
         "/fleet/hos_authentication_logs": {
             "post": {
                 "tags": [
-                    "Fleet", "Default"
+                    "Fleet HoS"
                 ],
                 "summary": "/fleet/hos_authentication_logs",
                 "description": "Get the HOS (hours of service) signin and signout logs for the specified driver. Only signout logs include location information.",
@@ -1123,7 +1135,7 @@
         "/fleet/maintenance/list": {
             "post": {
                 "tags": [
-                    "Fleet", "Default"
+                    "Fleet General"
                 ],
                 "summary": "/fleet/maintenance/list",
                 "description": "Get list of the vehicles with any engine faults or check light data.",
@@ -1163,7 +1175,7 @@
         "/fleet/add_address": {
             "post": {
                 "tags": [
-                    "Fleet", "Default"
+                    "Fleet General"
                 ],
                 "summary": "/fleet/add_address",
                 "description": "This method adds an address book entry to the specified group.",
@@ -1226,7 +1238,7 @@
         "/fleet/set_data": {
             "post": {
                 "tags": [
-                    "Fleet", "Default"
+                    "Fleet General"
                 ],
                 "summary": "/fleet/set_data",
                 "description": "This method enables the mutation of metadata for vehicles in the Samsara Cloud.",
@@ -1278,7 +1290,7 @@
         "/fleet/dispatch/routes": {
             "get": {
                 "tags": [
-                    "Default", "Fleet", "Routes"
+                    "Fleet Routes"
                 ],
                 "summary": "/fleet/dispatch/routes",
                 "description": "Fetch all of the dispatch routes for the group.",
@@ -1312,7 +1324,7 @@
             },
             "post": {
                 "tags": [
-                    "Default", "Fleet", "Routes"
+                    "Fleet Routes"
                 ],
                 "summary": "/fleet/dispatch/routes",
                 "description": "Create a new dispatch route.",
@@ -1350,7 +1362,7 @@
         "/fleet/dispatch/routes/job_updates": {
             "get": {
                 "tags": [
-                    "Fleet", "Routes", "Default"
+                    "Fleet Routes"
                 ],
                 "summary": "/fleet/dispatch/routes/job_updates",
                 "description": "Fetch all updates to a job including route data in the last 24 hours or subsequent to an sequence ID",
@@ -1399,9 +1411,7 @@
             ],
             "get": {
                 "tags": [
-                    "Default",
-                    "Fleet",
-                    "Routes"
+                    "Fleet Routes"
                 ],
                 "summary": "/fleet/dispatch/routes/{route_id:[0-9]+}",
                 "description": "Fetch a dispatch route by id.",
@@ -1429,7 +1439,7 @@
             },
             "put": {
                 "tags": [
-                    "Default", "Fleet", "Routes"
+                   "Fleet Routes"
                 ],
                 "summary": "/fleet/dispatch/routes/{route_id:[0-9]+}/",
                 "description": "Update a dispatch route and its associated jobs.",
@@ -1462,7 +1472,7 @@
             },
             "delete": {
                 "tags": [
-                    "Default", "Fleet", "Routes"
+                    "Fleet Routes"
                 ],
                 "summary": "/fleet/dispatch/routes/{route_id:[0-9]+}/",
                 "description": "Delete a dispatch route and its associated jobs.",
@@ -1489,9 +1499,7 @@
         "/fleet/dispatch/routes/{route_id}/history": {
             "get": {
                 "tags": [
-                    "Default",
-                    "Fleet",
-                    "Routes"
+                    "Fleet Routes"
                 ],
                 "summary": "/fleet/dispatch/routes/{route_id:[0-9]+}/history",
                 "description": "Fetch the history of a dispatch route.",
@@ -1547,9 +1555,7 @@
             ],
             "get": {
                 "tags": [
-                    "Default",
-                    "Fleet",
-                    "Routes"
+                    "Fleet Routes"
                 ],
                 "summary": "/fleet/drivers/{driver_id:[0-9]+}/dispatch/routes",
                 "description": "Fetch all of the dispatch routes for a given driver.",
@@ -1581,7 +1587,7 @@
             },
             "post": {
                 "tags": [
-                    "Default", "Fleet", "Routes"
+                    "Fleet Routes"
                 ],
                 "summary": "/fleet/drivers/{driver_id:[0-9]+}/dispatch/routes",
                 "description": "Create a new dispatch route for the driver with driver_id.",
@@ -1627,9 +1633,7 @@
             ],
             "get": {
                 "tags": [
-                    "Default",
-                    "Fleet",
-                    "Routes"
+                    "Fleet Routes"
                 ],
                 "summary": "/fleet/vehicles/{vehicle_id:[0-9]+}/dispatch/routes",
                 "description": "Fetch all of the dispatch routes for a given vehicle.",
@@ -1661,7 +1665,7 @@
             },
             "post": {
                 "tags": [
-                    "Default", "Fleet", "Routes"
+                   "Fleet Routes"
                 ],
                 "summary": "/fleet/vehicles/{vehicle_id:[0-9]+}/dispatch/routes",
                 "description": "Create a new dispatch route for the vehicle with vehicle_id.",
@@ -1694,7 +1698,7 @@
         "/machines/list": {
             "post": {
                 "tags": [
-                    "Industrial", "Default"
+                    "Industrial"
                 ],
                 "summary": "/machines/list",
                 "description": "Get machine objects. This method returns a list of the machine objects in the Samsara Cloud and information about them.",
@@ -1734,7 +1738,7 @@
         "/machines/history": {
             "post": {
                 "tags": [
-                    "Industrial", "Default"
+                    "Industrial"
                 ],
                 "summary": "/machines/history",
                 "description": "Get historical data for machine objects. This method returns a set of historical data for all machines in a group",
@@ -1795,7 +1799,7 @@
         "/industrial/data": {
             "get": {
                 "tags": [
-                    "Industrial", "Default"
+                    "Industrial"
                 ],
                 "summary": "/industrial/data",
                 "description": "Fetch all of the data inputs for a group.",
@@ -1839,7 +1843,7 @@
         "/industrial/data/{data_input_id}": {
             "get": {
                 "tags": [
-                    "Industrial", "Default"
+                    "Industrial"
                 ],
                 "summary": "/industrial/data/{data_input_id:[0-9]+}",
                 "description": "Fetch datapoints from a given data input.",
@@ -1875,7 +1879,7 @@
         "/tags": {
             "get": {
                 "tags": [
-                    "Default"
+                    "Administrative"
                 ],
                 "summary": "/tags",
                 "description": "Fetch all of the tags for a group.",
@@ -1915,7 +1919,7 @@
             },
             "post": {
                 "tags": [
-                    "Default"
+                    "Administrative"
                 ],
                 "summary": "/tags",
                 "description": "Create a new tag for the group.",
@@ -1949,7 +1953,7 @@
         "/tags/{tag_id}": {
             "get": {
                 "tags": [
-                    "Default"
+                    "Administrative"
                 ],
                 "summary": "/tags/{tag_id:[0-9]+}",
                 "description": "Fetch a tag by id.",
@@ -1985,7 +1989,7 @@
             },
             "patch": {
                 "tags": [
-                    "Default"
+                    "Administrative"
                 ],
                 "summary": "/tags/{tag_id:[0-9]+}",
                 "description": "Add or delete specific members from a tag, or modify the name of a tag.",
@@ -2024,7 +2028,7 @@
             },
             "put": {
                 "tags": [
-                    "Default"
+                    "Administrative"
                 ],
                 "summary": "/tags/{tag_id:[0-9]+}",
                 "description": "Update a tag with a new name and new members. This API call would replace all old members of a tag with new members specified in the request body. To modify only a few devices associated with a tag use the PATCH endpoint.",
@@ -2063,7 +2067,7 @@
             },
             "delete": {
                 "tags": [
-                    "Default"
+                    "Administrative"
                 ],
                 "summary": "/tags/{tag_id:[0-9]+}",
                 "description": "Permanently deletes a tag.",
@@ -2098,7 +2102,7 @@
         "/fleet/assets": {
             "get": {
                 "tags": [
-                    "Default", "Fleet", "Assets"
+                    "Assets"
                 ],
                 "summary": "/fleet/assets",
                 "description": "Fetch all of the assets for the group.",
@@ -2134,7 +2138,7 @@
         "/fleet/assets/locations": {
             "get": {
                 "tags": [
-                    "Default", "Fleet", "Assets"
+                    "Assets"
                 ],
                 "summary": "/fleet/assets/locations",
                 "description": "Fetch current locations of all assets for the group.",
@@ -2170,7 +2174,7 @@
         "/fleet/assets/{asset_id}/reefer": {
             "get": {
                 "tags": [
-                    "Default", "Fleet", "Assets"
+                    "Assets"
                 ],
                 "summary": "/fleet/assets/{assetId:[0-9]+}/reefer",
                 "description": "Fetch the reefer-specific stats of an asset.",
@@ -2200,7 +2204,7 @@
         "/fleet/assets/{asset_id}/locations": {
             "get": {
                 "tags": [
-                    "Default", "Fleet", "Assets"
+                    "Assets"
                 ],
                 "summary": "/fleet/assets/{assetId:[0-9]+}/locations",
                 "description": "Fetch the historical locations for the asset.",
