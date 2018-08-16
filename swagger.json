@@ -1691,6 +1691,41 @@
                 }
             }
         },
+        "/fleet/drivers/documents": {
+            "get": {
+                "tags": [
+                    "Default",
+                    "Fleet"
+                ],
+                "summary": "/fleet/drivers/documents",
+                "description": "Fetch all of the documents.",
+                "operationId": "getDriverDocumentsByOrgId",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    { "$ref": "#/parameters/documentsEndMsParam" },
+                    { "$ref": "#/parameters/documentsDurationMsParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns all of the documents.",
+                        "schema": {
+                            "$ref": "#/definitions/Documents"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/machines/list": {
             "post": {
                 "tags": [
@@ -4602,6 +4637,84 @@
                     }
                 }
             }
+        },
+        "DocumentField": {
+            "type": "object",
+            "required": [
+                "label",
+                "value"
+            ],
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "Descriptive name of this field.",
+                    "example": "Fuel Cost ($)"
+                },
+                "value": {
+                    "description":  "Value of this field. Depending on what kind of field it is, this may be one of the following: an array of image urls, a float, an integer, or a string.",
+                    "example": 23.45
+                }
+            }
+        },
+        "DocumentFields": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/DocumentField"
+            }
+        },
+        "Document": {            
+            "type": "object",
+            "required": [
+                "driver_id",
+                "driver_created_at_ms",
+                "document_type",
+                "dispatch_job_id",
+                "notes",
+                "fields"
+            ],
+            "properties": {
+                "driver_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description":  "ID of the driver that submitted this document.",
+                    "example": 555
+                },
+                "driver_created_at_ms": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The time in Unix epoch milliseconds that the document was created by the driver.",
+                    "example": 1462881998034
+                },
+                "document_type": {
+                    "type": "string",
+                    "description": "Descriptive name of this type of document.",
+                    "example": "Fuel Receipt"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "ID of the Samsara dispatch job.",
+                    "example": 773
+                },
+                "notes": {
+                    "type": "string",
+                    "description": "Notes submitted with this document.",
+                    "example": "Fueled up before delivery."
+                },
+                "fields": {
+                    "description": "The fields associated with this document.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/DocumentFields"
+                    }
+                }
+            }
+        },
+        "Documents": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Document"
+            }
         }
     },
     "parameters": {
@@ -4836,6 +4949,22 @@
         "dataInputStartTimeParam": {
             "name": "startMs",
             "description": "Timestamp in unix milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs. defaults to nowMs.",
+            "required": false,
+            "in": "query",
+            "type": "integer",
+            "format": "int64"
+        },
+        "documentsEndMsParam": {
+            "name": "endMs",
+            "description": "Time in unix milliseconds that represents the oldest documents to return. Used in combination with durationMs. Defaults to now.",
+            "required": false,
+            "in": "query",
+            "type": "integer",
+            "format": "int64"
+        },
+        "documentsDurationMsParam": {
+            "name": "durationMs",
+            "description": "Time in milliseconds that represents the duration before endMs to query. Defaults to 24 hours.",
             "required": false,
             "in": "query",
             "type": "integer",
