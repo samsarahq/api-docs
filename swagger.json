@@ -1692,28 +1692,23 @@
             }
         },
         "/fleet/drivers/documents": {
-            "parameters": [
-                {
-                    "$ref": "#/parameters/accessTokenParam"
-                }
-            ],
             "get": {
                 "tags": [
-                    "Default",
-                    "Fleet"
+                    "Default", "Fleet"
                 ],
                 "summary": "/fleet/drivers/documents",
                 "description": "Fetch all of the documents.",
                 "operationId": "getDriverDocumentsByOrgId",
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/documentsEndMsParam" },
+                    { "$ref": "#/parameters/documentsDurationMsParam" }
+                ],
                 "consumes": [
                     "application/json"
                 ],
                 "produces": [
                     "application/json"
-                ],
-                "parameters": [
-                    { "$ref": "#/parameters/documentsEndMsParam" },
-                    { "$ref": "#/parameters/documentsDurationMsParam" }
                 ],
                 "responses": {
                     "200": {
