@@ -1611,6 +1611,56 @@
                 }
             }
         },
+      "/fleet/vehicles/locations": {
+          "parameters": [
+            {
+              "$ref": "#/parameters/accessTokenParam"
+            },
+            {
+              "name": "startMs",
+              "description": "Time in Unix epoch milliseconds for the start of the query (cannot exceed 30 minutes)",
+              "required": true,
+              "in": "query",
+              "type": "integer"
+            },
+            {
+              "name": "endMs",
+              "description": "Time in Unix epoch milliseconds for the end of the query (cannot exceed 30 minutes)",
+              "required": true,
+              "in": "query",
+              "type": "integer"
+            }
+          ],
+          "get": {
+            "tags": [
+              "Default",
+              "Fleet"
+            ],
+            "summary": "/fleet/vehicles/locations",
+            "description": "Fetch locations for a given vehicle between a start/end time. The maximum query duration is 30 minutes.",
+            "operationId": "getVehiclesLocations",
+            "consumes": [
+              "application/json"
+            ],
+            "produces": [
+              "application/json"
+            ],
+            "responses": {
+              "200": {
+                "description": "Returns locations for a given vehicle between a start/end time, with a maximum query duration of 30 minutes.",
+                "schema": {
+                  "$ref": "#/definitions/FleetVehiclesLocations"
+                }
+              },
+              "default": {
+                "description": "Unexpected error.",
+                "schema": {
+                  "$ref": "#/definitions/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
         "/fleet/vehicles/{vehicle_id}/dispatch/routes": {
             "parameters": [
                 {
@@ -1690,6 +1740,66 @@
                     }
                 }
             }
+        },
+        "/fleet/vehicles/{vehicle_id}/locations": {
+          "parameters": [
+            {
+              "$ref": "#/parameters/accessTokenParam"
+            },
+            {
+              "name": "vehicle_id",
+              "in": "path",
+              "required": true,
+              "description": "ID of the vehicle with the associated routes.",
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "startMs",
+              "description": "Time in Unix epoch milliseconds for the start of the query (cannot exceed 1 hour)",
+              "required": true,
+              "in": "query",
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "endMs",
+              "description": "Time in Unix epoch milliseconds for the end of the query (cannot exceed 1 hour)",
+              "required": true,
+              "in": "query",
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "get": {
+            "tags": [
+              "Default",
+              "Fleet"
+            ],
+            "summary": "/fleet/vehicles/{vehicle_id:[0-9]+}/locations",
+            "description": "Fetch locations for a given vehicle between a start/end time. The maximum query duration is one hour.",
+            "operationId": "getVehicleLocations",
+            "consumes": [
+              "application/json"
+            ],
+            "produces": [
+              "application/json"
+            ],
+            "responses": {
+              "200": {
+                "description": "Returns locations for a given vehicle between a start/end time, with a maximum query duration of one hour.",
+                "schema": {
+                  "$ref": "#/definitions/FleetVehicleLocations"
+                }
+              },
+              "default": {
+                "description": "Unexpected error.",
+                "schema": {
+                  "$ref": "#/definitions/ErrorResponse"
+                }
+              }
+            }
+          }
         },
         "/fleet/drivers/documents": {
             "parameters": [
@@ -2293,6 +2403,69 @@
                     "example": "11:11:11:11:11:11"
                 }
             }
+        },
+        "FleetVehiclesLocations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "description": "ID of the vehicle.",
+                "format": "int64",
+                "example": 112
+              },
+              "name": {
+                "type": "string",
+                "description": "Name of the vehicle.",
+                "example": "Truck A7"
+              },
+              "locations": {
+                "$ref": "#/definitions/FleetVehicleLocations"
+              }
+            }
+          }
+        },
+        "FleetVehicleLocations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FleetVehicleLocation"
+          }
+        },
+        "FleetVehicleLocation": {
+          "type": "object",
+          "description": "Contains the location and speed of a vehicle at a particular time",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "The best effort (street,city,state) for the latitude and longitude.",
+              "example": "525 York, San Francisco, CA"
+            },
+            "latitude": {
+              "type": "number",
+              "format": "float",
+              "description": "The latitude of the location in degrees.",
+              "example": "37.2"
+            },
+            "longitude": {
+              "type": "number",
+              "format": "float",
+              "description": "The longitude of the location in degrees.",
+              "example": "-122.5"
+            },
+            "speedMilesPerHour": {
+              "type": "number",
+              "format": "float",
+              "description": "The speed calculated from GPS that the asset was traveling at in miles per hour.",
+              "example": "35.2"
+            },
+            "timeMs": {
+              "type": "number",
+              "format": "int64",
+              "description": "Time in Unix milliseconds since epoch when the asset was at the location.",
+              "example": "1535586471332"
+            }
+          }
         },
         "Vehicle": {
             "type": "object",
