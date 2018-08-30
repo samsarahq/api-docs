@@ -34,6 +34,10 @@
             "description": "Access to asset specific data"
         },
         {
+            "name": "Safety",
+            "description": "Access to safety specific data"
+        },
+        {
             "name": "Default",
             "description": "All Samsara API endpoints"
         }
@@ -2366,6 +2370,84 @@
                         "description": "Asset location details.",
                         "schema": {
                             "$ref": "#/definitions/AssetLocationResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/vehicles/{vehicleId}/safety/score": {
+            "parameters": [
+                {
+                    "name": "vehicleId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the vehicle",
+                    "type": "integer",
+                    "format": "int64"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Default", "Fleet", "Safety"
+                ],
+                "summary": "/fleet/vehicles/{vehicleId:[0-9]+}/safety/score",
+                "description": "Fetch the safety score for the vehicle.",
+                "operationId": "GetVehicleSafetyScore",
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/safetyScoreStartMsParam" },
+                    { "$ref": "#/parameters/safetyScoreEndMsParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Safety score details.",
+                        "schema": {
+                            "$ref": "#/definitions/VehicleSafetyScoreResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/drivers/{driverId}/safety/score": {
+            "parameters": [
+                {
+                    "name": "driverId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the driver",
+                    "type": "integer",
+                    "format": "int64"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Default", "Fleet", "Safety"
+                ],
+                "summary": "/fleet/drivers/{driverId:[0-9]+}/safety/score",
+                "description": "Fetch the safety score for the driver.",
+                "operationId": "GetDriverSafetyScore",
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/safetyScoreStartMsParam" },
+                    { "$ref": "#/parameters/safetyScoreEndMsParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Safety score details.",
+                        "schema": {
+                            "$ref": "#/definitions/DriverSafetyScoreResponse"
                         }
                     },
                     "default": {
@@ -4822,6 +4904,156 @@
                 }
             }
         },
+        "SafetyReportHarshEvent": {
+            "type": "object",
+            "description": "List of harsh events",
+            "properties": {
+                "timestampMs": {
+                    "type": "integer",
+                    "description": "Timestamp that the harsh event occurred in Unix milliseconds since epoch",
+                    "example": 1535590776000
+                },
+                "harshEventType": {
+                    "type": "string",
+                    "description": "Type of the harsh event",
+                    "example": "Harsh Braking"
+                }
+            }
+        },
+        "VehicleSafetyScoreResponse": {
+            "type": "object",
+            "description": "Safety score details for a vehicle",
+            "properties": {
+                "vehicleId": {
+                    "type": "integer",
+                    "description": "Vehicle ID",
+                    "example": 4321
+                },
+                "safetyScore": {
+                    "type": "integer",
+                    "description": "Safety Score",
+                    "example": 97
+                },
+                "safetyScoreRank": {
+                    "type": "string",
+                    "description": "Safety Score Rank",
+                    "example": "26"
+                },
+                "totalDistanceDrivenMeters": {
+                    "type": "integer",
+                    "description": "Total distance driven in meters",
+                    "example": 291836
+                },
+                "totalTimeDrivenMs": {
+                    "type": "integer",
+                    "description": "Amount of time driven in milliseconds",
+                    "example": 19708293
+                },
+                "timeOverSpeedLimitMs": {
+                    "type": "integer",
+                    "description": "Amount of time driven over the speed limit in milliseconds",
+                    "example": 3769
+                },
+                "totalHarshEventCount": {
+                    "type": "integer",
+                    "description": "Total harsh event count",
+                    "example": 3
+                },
+                "harshEvents": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/SafetyReportHarshEvent"
+                    }       
+                },
+                "harshBrakingCount": {
+                    "type": "integer",
+                    "description": "Harsh braking event count",
+                    "example": 2
+                },
+                "harshAccelCount": {
+                    "type": "integer",
+                    "description": "Harsh acceleration event count",
+                    "example": 1
+                },
+                "harshTurningCount": {
+                    "type": "integer",
+                    "description": "Harsh turning event count",
+                    "example": 0
+                },
+                "crashCount": {
+                    "type": "integer",
+                    "description": "Crash event count",
+                    "example": 0
+                }
+            }
+        },
+        "DriverSafetyScoreResponse": {
+            "type": "object",
+            "description": "Safety score details for a driver",
+            "properties": {
+                "driverId": {
+                    "type": "integer",
+                    "description": "Driver ID",
+                    "example": 1234
+                },
+                "safetyScore": {
+                    "type": "integer",
+                    "description": "Safety Score",
+                    "example": 97
+                },
+                "safetyScoreRank": {
+                    "type": "string",
+                    "description": "Safety Score Rank",
+                    "example": "26"
+                },
+                "totalDistanceDrivenMeters": {
+                    "type": "integer",
+                    "description": "Total distance driven in meters",
+                    "example": 291836
+                },
+                "totalTimeDrivenMs": {
+                    "type": "integer",
+                    "description": "Amount of time driven in milliseconds",
+                    "example": 19708293
+                },
+                "timeOverSpeedLimitMs": {
+                    "type": "integer",
+                    "description": "Amount of time driven over the speed limit in milliseconds",
+                    "example": 3769
+                },
+                "totalHarshEventCount": {
+                    "type": "integer",
+                    "description": "Total harsh event count",
+                    "example": 3
+                },
+                "harshEvents": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/SafetyReportHarshEvent"
+                    }       
+                },
+                "harshBrakingCount": {
+                    "type": "integer",
+                    "description": "Harsh braking event count",
+                    "example": 2
+                },
+                "harshAccelCount": {
+                    "type": "integer",
+                    "description": "Harsh acceleration event count",
+                    "example": 1
+                },
+                "harshTurningCount": {
+                    "type": "integer",
+                    "description": "Harsh turning event count",
+                    "example": 0
+                },
+                "crashCount": {
+                    "type": "integer",
+                    "description": "Crash event count",
+                    "example": 0
+                }
+            }
+        },
         "DocumentField": {
             "type": "object",
             "required": [
@@ -5150,6 +5382,22 @@
             "name": "durationMs",
             "description": "Time in milliseconds that represents the duration before endMs to query. Defaults to 24 hours.",
             "required": false,
+            "in": "query",
+            "type": "integer",
+            "format": "int64"
+        },
+        "safetyScoreStartMsParam": {
+            "name": "startMs",
+            "description": "Timestamp in milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs.",
+            "required": true,
+            "in": "query",
+            "type": "integer",
+            "format": "int64"
+        },
+        "safetyScoreEndMsParam": {
+            "name": "endMs",
+            "description": "Timestamp in milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs.",
+            "required": true,
             "in": "query",
             "type": "integer",
             "format": "int64"
