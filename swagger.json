@@ -3253,7 +3253,7 @@
         },
         "TripResponse": {
             "type": "object",
-            "description": "Contains the trips for the vehicle in the requested timeframe. A trip is represented as an object that contains startMs, startLocation, startCoordinates, endMs, endLocation, and endCoordinates.",
+            "description": "Contains the trips for the vehicle in the requested timeframe. A trip is represented as an object that contains startMs, startLocation, startAddress, startCoordinates, endMs, endLocation, endAddress and endCoordinates.",
             "properties": {
                 "trips": {
                     "type": "array",
@@ -3283,8 +3283,13 @@
                             },
                             "startLocation": {
                                 "type": "string",
+                                "description": "Geocoded street address of start (latitude, longitude) coordinates.",
+                                "example": "16 N Fair Oaks Ave, Pasadena, CA 91103"
+                            },
+                            "startAddress": {
+                                "type": "string",
                                 "description": "Text representation of nearest identifiable location to the start (latitude, longitude) coordinates.",
-                                "example": "Woodland Lane, Dallas, TX"
+                                "example": "Ramen Tatsunoya"
                             },
                             "endMs": {
                                 "type": "integer",
@@ -3309,8 +3314,13 @@
                             },
                             "endLocation": {
                                 "type": "string",
+                                "description": "Geocoded street address of start (latitude, longitude) coordinates.",
+                                "example": "571 S Lake Ave, Pasadena, CA 91101"
+                            },
+                            "endAddress": {
+                                "type": "string",
                                 "description": "Text representation of nearest identifiable location to the end (latitude, longitude) coordinates.",
-                                "example": "FC Elementary School"
+                                "example": "Winchell's Donuts House"
                             },
                             "distanceMeters": {
                                 "type": "integer",
