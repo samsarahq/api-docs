@@ -5078,30 +5078,30 @@
                 "$ref": "#/definitions/DocumentField"
             }
         },
-        "Document": {            
+        "Document": {
             "type": "object",
             "required": [
-                "driver_id",
-                "driver_created_at_ms",
-                "document_type",
-                "dispatch_job_id",
-                "notes",
-                "fields"
+              "driverId",
+              "driverCreatedAtMs",
+              "documentType",
+              "dispatchJobId",
+              "notes",
+              "fields"
             ],
             "properties": {
-                "driver_id": {
+                "driverId": {
                     "type": "integer",
                     "format": "int64",
-                    "description":  "ID of the driver that submitted this document.",
+                    "description": "ID of the driver that submitted this document.",
                     "example": 555
                 },
-                "driver_created_at_ms": {
+                "driverCreatedAtMs": {
                     "type": "integer",
                     "format": "int64",
                     "description": "The time in Unix epoch milliseconds that the document was created by the driver.",
                     "example": 1462881998034
                 },
-                "document_type": {
+                "documentType": {
                     "type": "string",
                     "description": "Descriptive name of this type of document.",
                     "example": "Fuel Receipt"
@@ -5111,6 +5111,12 @@
                     "format": "int64",
                     "description": "ID of the Samsara dispatch job.",
                     "example": 773
+                },
+                "vehicleId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "VehicleID of the driver at document creation.",
+                    "example": 222
                 },
                 "notes": {
                     "type": "string",
