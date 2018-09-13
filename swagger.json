@@ -3194,17 +3194,29 @@
                     "description": "Group of the driver.",
                     "example": 111
                   },
-                  "activeHours": {
-                    "type": "number",
-                    "format": "float",
-                    "description": "Hours spent on duty or driving, rounded to two decimal places.",
-                    "example": 5.40
-                  },
                   "distanceMiles": {
                     "type": "number",
                     "format": "float",
                     "description": "Distance driven in miles, rounded to two decimal places.",
                     "example": 123.24
+                  },
+                  "activeMs": {
+                    "type": "number",
+                    "format": "int64",
+                    "description": "Duration in milliseconds that driver was on duty or driving during the requested time range",
+                    "example": 43200000
+                  },
+                  "onDutyMs": {
+                    "type": "number",
+                    "format": "int64",
+                    "description": "Duration in milliseconds that driver was on duty during the requested time range",
+                    "example": 21600000
+                  },
+                  "driveMs": {
+                    "type": "number",
+                    "format": "int64",
+                    "description": "Duration in milliseconds that driver was driving during the requested time range",
+                    "example": 21600000
                   }
                 }
               }
