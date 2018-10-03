@@ -5141,8 +5141,9 @@
             "type": "object",
             "required": [
                 "label",
-                "value"
+                "valueType"
             ],
+            "description": "A field of a document. A field can be a string type, number type, or photo type, which you can identify from its valueType. Between stringValue, numberValue, and photoValue, only one can exist for a single document field depending on the valueType.",
             "properties": {
                 "label": {
                     "type": "string",
@@ -5150,8 +5151,39 @@
                     "example": "Fuel Cost ($)"
                 },
                 "value": {
-                    "description":  "Value of this field. Depending on what kind of field it is, this may be one of the following: an array of image urls, a float, an integer, or a string.",
-                    "example": 23.45
+                    "description":  "DEPRECATED: Please use stringValue, numberValue, or photoValue instead. Value of this field. Depending on what kind of field it is, this may be one of the following: an array of image urls, a float, an integer, or a string.",
+                    "example": 23.45,
+                    "deprecated": true
+                },
+                "valueType": {
+                    "type": "string",
+                    "description": "Determines the type of this field and what type of value this field has. It should be either ValueType_Number, ValueType_String, or ValueType_Photo.",
+                    "example": "ValueType_Number"
+                },
+                "stringValue": {
+                    "type": "string",
+                    "description": "Value of this field if this document field has valueType: ValueType_String.",
+                    "example": "This is a string."
+                },
+                "numberValue": {
+                    "type": "number",
+                    "format": "double",
+                    "description": "Value of this field if this document field has valueType: ValueType_Number.",
+                     "example": 12.34
+                },
+                "photoValue": {
+                    "type": "array",
+                    "description": "Value of this field if this document field has valueType: ValueType_Photo. Array of photo objects where each object contains a URL for a photo.",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "url": {
+                                "type": "string",
+                                "description": "Photo URL for a JPG image"
+                            }
+                        }
+                    },
+                  "example": [{ "url": "https://www.samsara.com/photo1" }, { "url": "https://www.samsara.com/photo2"}]
                 }
             }
         },
