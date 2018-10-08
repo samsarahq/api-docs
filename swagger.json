@@ -1845,6 +1845,37 @@
                 }
             }
         },
+        "/fleet/drivers/document_types": {
+            "get": {
+                "tags": [
+                    "Default",
+                    "Fleet"
+                ],
+                "summary": "/fleet/drivers/document_types",
+                "description": "Fetch all of the document types.",
+                "operationId": "getDriverDocumentTypesByOrgId",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns all of the document types.",
+                        "schema": {
+                            "$ref": "#/definitions/DocumentTypes"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/machines/list": {
             "post": {
                 "tags": [
@@ -5177,6 +5208,82 @@
             "type": "array",
             "items": {
                 "$ref": "#/definitions/Document"
+            }
+        },
+        "DocumentFieldType": {
+            "type": "object",
+            "required": [
+                "label",
+                "valueType"
+            ],
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "Descriptive name of this field type.",
+                    "example": "Fuel Cost ($)"
+                },
+                "valueType": {
+                    "type": "string",
+                    "description": "The kind of value that can be submitted for this fieldType. It should be either ValueType_Number, ValueType_String, or ValueType_Photo.",
+                    "example": "ValueType_Number"
+                },
+                "numberValueTypeMetadata": {
+                    "type": "object",
+                    "description": "Additional metadata information for a number field type. Only defined when a field type has valueType: ValueType_Number.",
+                    "properties": {
+                        "numDecimalPlaces": {
+                            "type": "number",
+                            "format": "int64",
+                            "description": "Number of decimal places that values for this field type can have.",
+                            "example": 2
+                        }
+                    }
+                }
+            }
+        },
+        "DocumentFieldTypes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/DocumentFieldType"
+            }
+        },
+        "DocumentType": {
+            "type": "object",
+            "required": [
+                "name",
+                "orgId",
+                "uuid"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name of the document type.",
+                    "example": "Fuel Receipt"
+                },
+                "orgId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "ID for the organization this document belongs to.",
+                    "example": 773
+                },
+                "uuid": {
+                    "type": "string",
+                    "description": "Universally unique identifier for the document type. Can be passed in as a documentTypeUuid when creating a document for this document type.",
+                    "example": "4aff772c-a7bb-45e6-8e41-6a53e34feb83"
+                },
+                "fieldTypes": {
+                    "description": "The field types determine the names of fields for this document type. They also determine the types of values a document submitted for this document type can have.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/DocumentFieldTypes"
+                    }
+                }
+            }
+        },
+        "DocumentTypes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/DocumentType"
             }
         }
     },
