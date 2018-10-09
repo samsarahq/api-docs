@@ -1876,6 +1876,53 @@
                 }
             }
         },
+        "/fleet/drivers/{driver_id}/documents": {
+            "parameters": [
+                {
+                    "$ref": "#/parameters/accessTokenParam"
+                },
+                {
+                    "name": "driver_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the driver for whom the document is created.",
+                    "type": "integer",
+                    "format": "int64"
+                }
+            ],
+            "post": {
+                "tags": [
+                    "Default",
+                    "Fleet"
+                ],
+                "summary": "/fleet/drivers/{driver_id:[0-9]+}/documents",
+                "description": "Create a driver document for the given driver.",
+                "operationId": "createDriverDocument",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    { "$ref": "#/parameters/documentCreateParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns the created document.",
+                        "schema": {
+                            "$ref": "#/definitions/Document"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/machines/list": {
             "post": {
                 "tags": [
@@ -5745,6 +5792,15 @@
             "in": "query",
             "type": "integer",
             "format": "int64"
+        },
+        "documentCreateParam": {
+            "name": "createDocumentParams",
+            "description": "To create a document for a given document type, the document type's uuid needs to be passed in to documentTypeUuid. The list of fields passed in should match the document type’s list of field types in the correct order. In other words, a field's valueType and value (i.e. only one of: stringValue, numberValue, or photoValue) at index _i_ should match with the document field type’s valueType at index _i_.",
+            "required": true,
+            "in": "body",
+            "schema": {
+                "$ref": "#/definitions/DocumentCreate"
+            }
         },
         "safetyScoreStartMsParam": {
             "name": "startMs",
