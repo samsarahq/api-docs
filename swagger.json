@@ -5138,23 +5138,34 @@
             }
         },
         "DocumentField": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "required": [
+                        "label"
+                    ],
+                    "description": "A field of a document. A field can be a string type, number type, or photo type, which can be identified from its valueType. Between stringValue, numberValue, and photoValue, only one can exist for a single document field depending on the valueType.",
+                    "properties": {
+                        "label": {
+                            "type": "string",
+                            "description": "Descriptive name of this field.",
+                            "example": "Fuel Cost ($)"
+                        },
+                        "value": {
+                            "description":  "DEPRECATED: Please use stringValue, numberValue, or photoValue instead. Value of this field. Depending on what kind of field it is, this may be one of the following: an array of image urls, a float, an integer, or a string.",
+                            "example": 23.45
+                        }
+                    }
+                },
+                { "$ref": "#/definitions/DocumentFieldCreate"}
+            ]
+        },
+        "DocumentFieldCreate": {
             "type": "object",
             "required": [
-                "label",
                 "valueType"
             ],
-            "description": "A field of a document. A field can be a string type, number type, or photo type, which you can identify from its valueType. Between stringValue, numberValue, and photoValue, only one can exist for a single document field depending on the valueType.",
             "properties": {
-                "label": {
-                    "type": "string",
-                    "description": "Descriptive name of this field.",
-                    "example": "Fuel Cost ($)"
-                },
-                "value": {
-                    "description":  "DEPRECATED: Please use stringValue, numberValue, or photoValue instead. Value of this field. Depending on what kind of field it is, this may be one of the following: an array of image urls, a float, an integer, or a string.",
-                    "example": 23.45,
-                    "deprecated": true
-                },
                 "valueType": {
                     "type": "string",
                     "description": "Determines the type of this field and what type of value this field has. It should be either ValueType_Number, ValueType_String, or ValueType_Photo.",
