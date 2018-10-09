@@ -5301,63 +5301,114 @@
         },
         "DocumentFields": {
             "type": "array",
+            "example": [
+                {"label": "Photos", "valueType": "ValueType_Photo", "photoValue": []},
+                {"label": "Gallons", "valueType": "ValueType_Number", "numberValue": 12.34 },
+                {"label": "City", "valueType": "ValueType_String", "stringValue": "San Francisco, CA" }
+            ],
             "items": {
                 "$ref": "#/definitions/DocumentField"
             }
         },
-        "Document": {
-            "type": "object",
-            "required": [
-              "driverId",
-              "driverCreatedAtMs",
-              "documentType",
-              "dispatchJobId",
-              "notes",
-              "fields"
+        "DocumentFieldCreates": {
+            "type": "array",
+            "example": [
+                {"valueType": "ValueType_Photo", "photoValue": []},
+                {"valueType": "ValueType_Number", "numberValue": 12.34 },
+                {"valueType": "ValueType_String", "stringValue": "San Francisco, CA" }
             ],
+            "items": {
+                "$ref": "#/definitions/DocumentFieldCreate"
+            }
+        },
+        "DocumentBase": {
+            "type": "object",
             "properties": {
-                "driverId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "description": "ID of the driver that submitted this document.",
-                    "example": 555
-                },
-                "driverCreatedAtMs": {
-                    "type": "integer",
-                    "format": "int64",
-                    "description": "The time in Unix epoch milliseconds that the document was created by the driver.",
-                    "example": 1462881998034
-                },
-                "documentType": {
-                    "type": "string",
-                    "description": "Descriptive name of this type of document.",
-                    "example": "Fuel Receipt"
-                },
                 "dispatchJobId": {
                     "type": "integer",
                     "format": "int64",
-                    "description": "ID of the Samsara dispatch job that the document was submitted for.",
+                    "description": "ID of the Samsara dispatch job for which the document is submitted",
                     "example": 773
-                },
-                "vehicleId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "description": "VehicleID of the driver at document creation.",
-                    "example": 222
                 },
                 "notes": {
                     "type": "string",
                     "description": "Notes submitted with this document.",
                     "example": "Fueled up before delivery."
-                },
-                "fields": {
-                    "description": "The fields associated with this document.",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/DocumentFields"
-                    }
                 }
             }
+        },
+        "Document": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "required": [
+                        "driverId",
+                        "driverCreatedAtMs",
+                        "documentType",
+                        "fields"
+                    ],
+                    "properties": {
+                        "driverId": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "ID of the driver for whom the document is submitted",
+                            "example": 555
+                        },
+                        "driverCreatedAtMs": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "The time in Unix epoch milliseconds that the document is created.",
+                            "example": 1462881998034
+                        },
+                        "documentType": {
+                            "type": "string",
+                            "description": "Descriptive name of this type of document.",
+                            "example": "Fuel Receipt"
+                        },
+                        "vehicleId": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "VehicleID of the driver at document creation.",
+                            "example": 222
+                        },
+                        "fields": {
+                            "description": "The fields associated with this document.",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/DocumentFields"
+                            }
+                        }
+                    }
+                },
+                { "$ref": "#/definitions/DocumentBase"}
+            ]
+        },
+        "DocumentCreate": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "description": "Arguments to create a document.",
+                    "required": [
+                        "documentTypeUuid",
+                        "fields"
+                    ],
+                    "properties": {
+                        "documentTypeUuid": {
+                            "type": "string",
+                            "description": "Universally unique identifier for the document type this document is being created for.",
+                            "example": "4aff772c-a7bb-45e6-8e41-6a53e34feb83"
+                        },
+                        "fields": {
+                            "description": "List of fields should match the document type’s list of field types in the correct order. In other words, a field's valueType and value (i.e. only one of: stringValue, numberValue, or photoValue) at index _i_ should match with the document field type’s valueType at index _i_.",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/DocumentFieldCreates"
+                            }
+                        }
+                    }
+                },
+                { "$ref": "#/definitions/DocumentBase"}
+            ]
         },
         "Documents": {
             "type": "array",
