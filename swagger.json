@@ -2489,6 +2489,44 @@
                     }
                 }
             }
+        },
+        "/fleet/vehicles/{vehicleId}/safety/harsh_event": {
+            "parameters": [
+                {
+                    "name": "vehicleId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the vehicle",
+                    "type": "integer",
+                    "format": "int64"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Default", "Fleet", "Safety"
+                ],
+                "summary": "/fleet/vehicles/{vehicleId:[0-9]+}/safety/harsh_event",
+                "description": "Fetch harsh event details for a vehicle.",
+                "operationId": "GetVehicleHarshEvent",
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/harshEventMsParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Harsh event details.",
+                        "schema": {
+                            "$ref": "#/definitions/VehicleHarshEventResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -5143,6 +5181,63 @@
                 }
             }
         },
+        "VehicleHarshEventResponse": {
+            "type": "object",
+            "description": "Harsh event details for a vehicle",
+            "required": ["incidentReportUrl", "harshEventType"],
+            "properties": {
+                "downloadForwardVideoUrl": {
+                    "type": "string",
+                    "description": "URL for downloading the forward facing video",
+                    "example": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com/123/212123456789012/1539201872984/abC123De4-camera-video-segment-123456789.mp4?..."
+                },
+                "downloadInwardVideoUrl": {
+                    "type": "string",
+                    "description": "URL for downloading the inward facing video",
+                    "example": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com/123/212123456789012/1539201872984/abC123De4-camera-video-segment-driver-123456789.mp4?..."
+                },
+                "downloadTrackedInwardVideoUrl": {
+                    "type": "string",
+                    "description": "URL for downloading the tracked inward facing video",
+                    "example": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com/123/212123456789012/1539201872984/abC123De4-camera-video-segment-driver-123456789.tracked.mp4?..."
+                },
+                "incidentReportUrl": {
+                    "type": "string",
+                    "description": "URL of the associated incident report page",
+                    "example": "https://cloud.samsara.com/groups/1234/fleet/reports/safety/vehicle/212123456789012/incident/1539201882984"
+                },
+                "harshEventType": {
+                    "type": "string",
+                    "description": "Type of the harsh event",
+                    "example": "Harsh Braking"
+                },
+                "location": {
+                    "type": "object",
+                    "properties": {
+                        "latitude": {
+                            "type": "string",
+                            "description": "Latitude of location where the harsh event occurred",
+                            "example": "33.07614328"
+                        }, 
+                        "longitude": {
+                            "type": "string",
+                            "description": "Longitude of location where the harsh event occurred",
+                            "example": "-96.14907287"
+                        }, 
+                        "address": {
+                            "type": "string",
+                            "description": "Address of location where the harsh event occurred",
+                            "example": "350 Rhode Island St, San Francisco, CA"
+                        }
+                    }
+                },
+                "isDistracted": {
+                    "type": "boolean",
+                    "description": "Whether the driver was deemed distracted during this harsh event",
+                    "example": true
+                }
+            }
+        },
         "DocumentField": {
             "type": "object",
             "required": [
@@ -5600,6 +5695,14 @@
         "safetyScoreEndMsParam": {
             "name": "endMs",
             "description": "Timestamp in milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs.",
+            "required": true,
+            "in": "query",
+            "type": "integer",
+            "format": "int64"
+        },
+        "harshEventMsParam": {
+            "name": "timestamp",
+            "description": "Timestamp in milliseconds representing the timestamp of a harsh event.",
             "required": true,
             "in": "query",
             "type": "integer",
