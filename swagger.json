@@ -2574,9 +2574,240 @@
                     }
                 }
             }
+        },
+        "/addresses": {
+            "get": {
+                "tags": [
+                    "Default", "Fleet"
+                ],
+                "summary": "/addresses",
+                "description": "Fetch all addresses/geofences for the organization. An address contains either a circle or polygon geofence describing the address boundaries.",
+                "operationId": "GetOrganizationAddresses",
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of addresses/geofences. For each address entry, the geofence field will only be populated with either 'circle' or 'polygon', depending on the geofence type.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Address"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Default", "Fleet"
+                ],
+                "summary": "/addresses",
+                "description": "Add one or more addresses to the organization",
+                "operationId": "AddOrganizationAddresses",
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/addressAddParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Addresses were successfully added. No response body is returned."
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/addresses/{addressId}": {
+            "get": {
+                "tags": [
+                    "Default", "Fleet"
+                ],
+                "summary": "/addresses/{addressId}",
+                "description": "Fetch an address by its id.",
+                "operationId": "GetOrganizationAddress",
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    {
+                        "name": "addressId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the address/geofence",
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The address/geofence. The geofence field will only be populated with either 'circle' or 'polygon', depending on the geofence type.",
+                        "schema": {
+                            "$ref": "#/definitions/Address"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Default", "Fleet"
+                ],
+                "summary": "/addresses/{addressId}",
+                "description": "Update the name, formatted address, or geofence of an address.",
+                "operationId": "UpdateOrganizationAddress",
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/addressUpdateParam" },
+                    {
+                        "name": "addressId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the address/geofence",
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Address was successfully updated. No response body is returned."
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Default", "Fleet"
+                ],
+                "summary": "/addresses/{addressId}",
+                "description": "Delete an address.",
+                "operationId": "DeleteOrganizationAddress",
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    {
+                        "name": "addressId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the address/geofence",
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Address was successfully deleted. No response body is returned."
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
+        "Address": {
+            "type": "object",
+            "description": "Information about an address/geofence. Geofences are either a circle or a polygon.",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "ID of the address",
+                    "format": "int64",
+                    "example": 123
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the address or geofence",
+                    "example": "Samsara HQ"
+                },
+                "formattedAddress": {
+                    "type": "string",
+                    "description": "The full address associated with this address/geofence, as it might be recognized by maps.google.com",
+                    "example": "350 Rhode Island St, San Francisco, CA"
+                },
+                "geofence": {
+                    "$ref": "#/definitions/AddressGeofence"
+                }
+            }
+        },
+        "AddressGeofence": {
+            "type": "object",
+            "description": "The geofence that defines this address and its bounds. This can either be a circle, or a polygon - only one key should be provided, depending on the geofence type.",
+            "properties": {
+                "circle": {
+                    "type": "object",
+                    "description": "Information about a circular geofence. This field is only populated if the geofence is a circle.",
+                    "properties": {
+                        "latitude": {
+                            "type": "number",
+                            "format": "float",
+                            "description": "The latitude of the center of the circular geofence",
+                            "example": 37.765363
+                        },
+                        "longitude": {
+                            "type": "number",
+                            "format": "float",
+                            "description": "The longitude of the center of the circular geofence",
+                            "example": -122.403098
+                        },
+                        "radiusMeters": {
+                            "type": "number",
+                            "format": "integer",
+                            "description": "The radius of the circular geofence",
+                            "example": 250
+                        }
+                    }
+                },
+                "polygon": {
+                    "type": "object",
+                    "description": "Information about a polygon geofence. This field is only populated if the geofence is a polygon.",
+                    "properties": {
+                        "vertices": {
+                            "type": "array",
+                            "description": "The vertices of the polygon geofence. These geofence vertices describe the perimeter of the polygon, and must consist of at least 3 vertices and less than 40.",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "latitude": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "description": "The longitude of a geofence vertex",
+                                        "example": 37.765363
+                                    },
+                                    "longitude": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "description": "The longitude of a geofence vertex",
+                                        "example": -122.403098
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "Sensor": {
             "type": "object",
             "description": "Contains information about a sensor.",
@@ -5547,6 +5778,59 @@
             "required": true,
             "in": "query",
             "type": "string"
+        },
+        "addressAddParam": {
+            "name": "addresses",
+            "description": "Addresses/Geofences to add. Geofences can be circular or a polygon. \nFor each address, only one of 'circle' or 'polygon' should be provided. If both are provided, the geofence will be saved as a polygon.",
+            "required": true,
+            "in": "body",
+            "schema": {
+                "type": "object",
+                "required": [
+                    "name",
+                    "formattedAddress",
+                    "geofence"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The name of this address/geofence",
+                        "example": "Samsara HQ"
+                    },
+                    "formattedAddress": {
+                        "type": "string",
+                        "description": "The full address associated with this address/geofence, as it might be recognized by maps.google.com",
+                        "example": "350 Rhode Island St, San Francisco, CA"
+                    },
+                    "geofence": {
+                        "$ref": "#/definitions/AddressGeofence"
+                    }
+                }
+            }
+        },
+        "addressUpdateParam": {
+            "name": "address",
+            "description": "Update parts of an address's value. If the geofence 'circle' or 'polygon' key is specified, the update will change the type of geofence accordingly.",
+            "required": true,
+            "in": "body",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The name of this address/geofence",
+                        "example": "Samsara HQ"
+                    },
+                    "formattedAddress": {
+                        "type": "string",
+                        "description": "The full address associated with this address/geofence, as it might be recognized by maps.google.com",
+                        "example": "350 Rhode Island St, San Francisco, CA"
+                    },
+                    "geofence": {
+                        "$ref": "#/definitions/AddressGeofence"
+                    }
+                }
+            }
         },
         "groupParam": {
             "name": "groupParam",
