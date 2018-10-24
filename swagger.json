@@ -5781,29 +5781,38 @@
         },
         "addressAddParam": {
             "name": "addresses",
-            "description": "Addresses/Geofences to add. Geofences can be circular or a polygon. \nFor each address, only one of 'circle' or 'polygon' should be provided. If both are provided, the geofence will be saved as a polygon.",
+            "description": "List of addresses/geofences to add. Geofences can be circular or a polygon. \nFor each address, only one of 'circle' or 'polygon' should be provided. If both are provided, the geofence will be saved as a polygon.",
             "required": true,
             "in": "body",
             "schema": {
                 "type": "object",
-                "required": [
-                    "name",
-                    "formattedAddress",
-                    "geofence"
-                ],
+                "required": ["addresses"],
                 "properties": {
-                    "name": {
-                        "type": "string",
-                        "description": "The name of this address/geofence",
-                        "example": "Samsara HQ"
-                    },
-                    "formattedAddress": {
-                        "type": "string",
-                        "description": "The full address associated with this address/geofence, as it might be recognized by maps.google.com",
-                        "example": "350 Rhode Island St, San Francisco, CA"
-                    },
-                    "geofence": {
-                        "$ref": "#/definitions/AddressGeofence"
+                    "addresses": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "name",
+                                "formattedAddress",
+                                "geofence"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "The name of this address/geofence",
+                                    "example": "Samsara HQ"
+                                },
+                                "formattedAddress": {
+                                    "type": "string",
+                                    "description": "The full address associated with this address/geofence, as it might be recognized by maps.google.com",
+                                    "example": "350 Rhode Island St, San Francisco, CA"
+                                },
+                                "geofence": {
+                                    "$ref": "#/definitions/AddressGeofence"
+                                }
+                            }
+                        }
                     }
                 }
             }
