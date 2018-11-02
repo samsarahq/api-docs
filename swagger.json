@@ -1009,6 +1009,176 @@
                 }
             }
         },
+        "/fleet/vehicles/{vehicle_id}/unassigned_driving_segments": {
+            "get": {
+                "tags": [
+                    "Fleet", "Default"
+                ],
+                "summary": "/fleet/vehicles/{vehicle_id:[0-9]+}/unassigned_driving_segments",
+                "description": "Get the unassigned driving segments for a specified range.",
+                "operationId": "getUnassignedDrivingSegmentsByVehicleId",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "vehicle_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the vehicle with the associated unassigned driving segments.",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "start_ms",
+                        "in": "query",
+                        "required": true,
+                        "description": "Beginning of the time range, specified in milliseconds UNIX time.",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "end_ms",
+                        "in": "query",
+                        "required": true,
+                        "description": "End of the time range, specified in milliseconds UNIX time.",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Unassigned driving segments for provided duration and vehicle.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "unassigned_driving_segments": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/UnassignedDrivingSegment"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/vehicles/{vehicle_id}/unassigned_driving_segments/{segment_id}": {
+            "get": {
+                "tags": [
+                    "Fleet", "Default"
+                ],
+                "summary": "/fleet/vehicles/{vehicle_id:[0-9]+}/unassigned_driving_segments/{segment_id}",
+                "description": "Fetch an unassigned driving segment by vehicle ID and segment ID.",
+                "operationId": "getUnassignedDrivingSegmentByVehicleIdAndSegmentId",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "vehicle_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the vehicle with the associated unassigned driving segments.",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "segment_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the unassigned driving segment.",
+                        "type": "string",
+                        "format": "string"
+                    },
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Unassigned driving segment log for the specified vehicle ID and segment ID.",
+                        "schema": {
+                            "$ref": "#/definitions/UnassignedDrivingSegment"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Fleet", "Default"
+                ],
+                "summary": "/fleet/vehicles/{vehicle_id:[0-9]+}/unassigned_driving_segments/{segment_id}",
+                "description": "Update an unassigned driving segment.",
+                "operationId": "patchUnassignedDrivingSegment",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "name": "vehicle_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the vehicle with the associated unassigned driving segments.",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "segment_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the unassigned driving segment.",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "unassignedDrivingSegmentParams",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "annotation": {
+                                    "type": "string",
+                                    "description": "Annotation to give this segment.",
+                                    "example": "Drive time"
+                                },
+                                "driverId": {
+                                    "type": "integer",
+                                    "format": "int64",
+                                    "description": "Driver ID to assign to this segment.",
+                                    "example": 719
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The unassigned driving segment that was updated.",
+                        "schema": {
+                            "$ref": "#/definitions/UnassignedDrivingSegment"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/fleet/hos_logs_summary": {
             "post": {
                 "tags": [
@@ -3281,6 +3451,47 @@
                       }
                     }
                 }
+            }
+        },
+        "UnassignedDrivingSegment": {
+            "type": "object",
+            "description": "A driving segment that has no associated driver.",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "format": "string",
+                    "example": "MTU0MjE1NzkzNDAwMA",
+                },
+                "vehicle_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 212014918086169,
+                },
+                "start_ms": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1523059200000,
+                },
+                "end_ms": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1523059200000,
+                },
+                "annotation": {
+                    "type": "string",
+                    "description": "Annotation for the driving segment.",
+                    "example": "Drive time"
+                },
+                "pending_driver_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 719,
+                },
+                "created_at_ms": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1523059200000,
+                },
             }
         },
         "TemperatureResponse": {
