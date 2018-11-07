@@ -1054,7 +1054,7 @@
             },
             "post": {
                 "tags": [
-                    "Fleet"
+                    "Fleet","Default"
                 ],
                 "summary": "/fleet/maintenance/dvirs",
                 "description": "Create a new dvir, marking a vehicle or trailer safe or unsafe.",
@@ -4494,6 +4494,7 @@
                     }
                   }
                 }
+              
         },
         "TaggedVehicleBase": {
             "type": "object",
@@ -6492,18 +6493,14 @@
             "schema": {
                 "type": "object",
                 "required": [
-                    "safe",
+                    "vehicleIsSafe",
                     "inspectionType"
                 ],
                 "properties": {
-                    "safe" : {
-                        "type": "string",
-                        "enum": [
-                            "safe",
-                            "unsafe"
-                        ],
+                    "vehicleIsSafe" : {
+                        "type": "boolean",
                         "description": "Whether or not this vehicle or trailer is safe to drive.",
-                        "example": "safe"
+                        "example": true
                     },
                     "inspectionType": {
                         "type": "string",
