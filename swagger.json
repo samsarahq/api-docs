@@ -1013,7 +1013,7 @@
                     "Fleet","Default"
                 ],
                 "summary": "/fleet/maintenance/dvirs",
-                "description": "Get the DVIR for the org with the time constraints",
+                "description": "Get DVIRs for the org within provided time constraints",
                 "operationId": "get_dvirs",
                 "parameters": [
                     {
@@ -1043,9 +1043,35 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "DVIR's for the specified group and duration.",
+                        "description": "DVIRs for the specified duration.",
                         "schema": {
                             "$ref": "#/definitions/DvirListResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Fleet","Default"
+                ],
+                "summary": "/fleet/maintenance/dvirs",
+                "description": "Create a new dvir, marking a vehicle or trailer safe or unsafe.",
+                "operationId": "create_dvir",
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/createDvirParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Newly created DVIR.",
+                        "schema": {
+                            "$ref": "#/definitions/DvirBase"
                         }
                     },
                     "default": {
@@ -3825,6 +3851,173 @@
             "dvirs": {
               "type": "array",
               "items": {
+                "$ref": "#/definitions/DvirBase"
+              }
+            }
+          }
+        },
+        "HosLogsResponse": {
+          "type": "object",
+            "properties": {
+                "logs": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "groupId": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "ID of the group.",
+                                "example": 101
+                            },
+                            "vehicleId": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "ID of the vehicle.",
+                                "example": 112
+                            },
+                            "driverId": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "ID of the driver.",
+                                "example": 444
+                            },
+                            "logStartMs": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "The time at which the log/HOS status started in UNIX milliseconds.",
+                                "example": 1462881998034
+                            },
+                            "statusType": {
+                                "type": "string",
+                                "description": "The Hours of Service status type. One of `OFF_DUTY`, `SLEEPER_BED`, `DRIVING`, `ON_DUTY`, `YARD_MOVE`, `PERSONAL_CONVEYANCE`.",
+                                "example": "OFF_DUTY"
+                            },
+                            "locCity": {
+                                "type": "string",
+                                "description": "City in which the log was recorded.",
+                                "example": "Ahwatukee"
+                            },
+                            "locState": {
+                                "type": "string",
+                                "description": "State in which the log was recorded.",
+                                "example": "Arizona"
+                            },
+                            "locLat": {
+                                "type": "number",
+                                "format": "float",
+                                "description": "Latitude at which the log was recorded.",
+                                "example": 23.413702345
+                            },
+                            "locLng": {
+                                "type": "number",
+                                "format": "float",
+                                "description": "Longitude at which the log was recorded.",
+                                "example": -98.502888123
+                            },
+                            "locName": {
+                                "type": "string",
+                                "description": "Name of location at which the log was recorded.",
+                                "example": "McLean Site A"
+                            },
+                            "remark":{
+                                "type": "string",
+                                "description": "Remark associated with the log entry.",
+                                "example": "Lunch Break"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "HosAuthenticationLogsResponse": {
+            "type": "object",
+            "properties": {
+                "authenticationLogs": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "actionType": {
+                                "type": "string",
+                                "description": "The log type - one of 'signin' or 'signout'",
+                                "example": "signin"
+                            },
+                            "happenedAtMs": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "The time at which the event was recorded in UNIX milliseconds.",
+                                "example": 1462881998034
+                            },
+                            "city": {
+                                "type": "string",
+                                "description": "City in which the log was recorded, if applicable.",
+                                "example": "Ahwatukee"
+                            },
+                            "state": {
+                                "type": "string",
+                                "description": "State in which the log was recorded, if applicable.",
+                                "example": "Arizona"
+                            },
+                            "addressName": {
+                                "type": "string",
+                                "description": "Address name from the group address book at which the log was recorded, if applicable.",
+                                "example": "Garage Number 3"
+                            },
+                            "address": {
+                                "type": "string",
+                                "description": "Address at which the log was recorded, if applicable.",
+                                "example": "123 Main St., Ahwatukee, Arizona 85044"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "ErrorResponse": {
+            "type": "object",
+            "description": "Contains the error response when a request fails.",
+            "properties": {
+                "status_code": {
+                    "type": "integer",
+                    "description": "HTTP status code returned.",
+                    "format": "int64"
+                },
+                "message": {
+                    "type": "string",
+                    "description": "Error message returned."
+                }
+            }
+        },
+        "SensorHistoryResponse": {
+            "type": "object",
+            "description": "Contains the results for a sensor history request. Each result contains a timestamp and datapoint for each requested (sensor, field) pair.",
+            "properties": {
+                "results": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "timeMs": {
+                                "type": "integer",
+                                "description": "Timestamp in UNIX milliseconds.",
+                                "example": 1453449599999
+                            },
+                            "series": {
+                                "type": "array",
+                                "description": "List of datapoints, one for each requested (sensor, field) pair.",
+                                "items": {
+                                    "type": "integer",
+                                    "format": "int64",
+                                    "example": 1
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "DvirBase": {
                 "type": "object",
                 "properties": {
                   "id": {
@@ -4032,170 +4225,7 @@
                     }
                   }
                 }
-              }
-            }
-          }
-        },
-        "HosLogsResponse": {
-          "type": "object",
-            "properties": {
-                "logs": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "groupId": {
-                                "type": "integer",
-                                "format": "int64",
-                                "description": "ID of the group.",
-                                "example": 101
-                            },
-                            "vehicleId": {
-                                "type": "integer",
-                                "format": "int64",
-                                "description": "ID of the vehicle.",
-                                "example": 112
-                            },
-                            "driverId": {
-                                "type": "integer",
-                                "format": "int64",
-                                "description": "ID of the driver.",
-                                "example": 444
-                            },
-                            "logStartMs": {
-                                "type": "integer",
-                                "format": "int64",
-                                "description": "The time at which the log/HOS status started in UNIX milliseconds.",
-                                "example": 1462881998034
-                            },
-                            "statusType": {
-                                "type": "string",
-                                "description": "The Hours of Service status type. One of `OFF_DUTY`, `SLEEPER_BED`, `DRIVING`, `ON_DUTY`, `YARD_MOVE`, `PERSONAL_CONVEYANCE`.",
-                                "example": "OFF_DUTY"
-                            },
-                            "locCity": {
-                                "type": "string",
-                                "description": "City in which the log was recorded.",
-                                "example": "Ahwatukee"
-                            },
-                            "locState": {
-                                "type": "string",
-                                "description": "State in which the log was recorded.",
-                                "example": "Arizona"
-                            },
-                            "locLat": {
-                                "type": "number",
-                                "format": "float",
-                                "description": "Latitude at which the log was recorded.",
-                                "example": 23.413702345
-                            },
-                            "locLng": {
-                                "type": "number",
-                                "format": "float",
-                                "description": "Longitude at which the log was recorded.",
-                                "example": -98.502888123
-                            },
-                            "locName": {
-                                "type": "string",
-                                "description": "Name of location at which the log was recorded.",
-                                "example": "McLean Site A"
-                            },
-                            "remark":{
-                                "type": "string",
-                                "description": "Remark associated with the log entry.",
-                                "example": "Lunch Break"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "HosAuthenticationLogsResponse": {
-            "type": "object",
-            "properties": {
-                "authenticationLogs": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "actionType": {
-                                "type": "string",
-                                "description": "The log type - one of 'signin' or 'signout'",
-                                "example": "signin"
-                            },
-                            "happenedAtMs": {
-                                "type": "integer",
-                                "format": "int64",
-                                "description": "The time at which the event was recorded in UNIX milliseconds.",
-                                "example": 1462881998034
-                            },
-                            "city": {
-                                "type": "string",
-                                "description": "City in which the log was recorded, if applicable.",
-                                "example": "Ahwatukee"
-                            },
-                            "state": {
-                                "type": "string",
-                                "description": "State in which the log was recorded, if applicable.",
-                                "example": "Arizona"
-                            },
-                            "addressName": {
-                                "type": "string",
-                                "description": "Address name from the group address book at which the log was recorded, if applicable.",
-                                "example": "Garage Number 3"
-                            },
-                            "address": {
-                                "type": "string",
-                                "description": "Address at which the log was recorded, if applicable.",
-                                "example": "123 Main St., Ahwatukee, Arizona 85044"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "ErrorResponse": {
-            "type": "object",
-            "description": "Contains the error response when a request fails.",
-            "properties": {
-                "status_code": {
-                    "type": "integer",
-                    "description": "HTTP status code returned.",
-                    "format": "int64"
-                },
-                "message": {
-                    "type": "string",
-                    "description": "Error message returned."
-                }
-            }
-        },
-        "SensorHistoryResponse": {
-            "type": "object",
-            "description": "Contains the results for a sensor history request. Each result contains a timestamp and datapoint for each requested (sensor, field) pair.",
-            "properties": {
-                "results": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "timeMs": {
-                                "type": "integer",
-                                "description": "Timestamp in UNIX milliseconds.",
-                                "example": 1453449599999
-                            },
-                            "series": {
-                                "type": "array",
-                                "description": "List of datapoints, one for each requested (sensor, field) pair.",
-                                "items": {
-                                    "type": "integer",
-                                    "format": "int64",
-                                    "example": 1
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+              
         },
         "TaggedVehicleBase": {
             "type": "object",
@@ -6066,6 +6096,64 @@
             "in": "body",
             "schema": {
                 "$ref": "#/definitions/DriverForCreate"
+            }
+        },
+        "createDvirParam": {
+            "name": "createDvirParam",
+            "description": "DVIR creation body",
+            "required": true,
+            "in": "body",
+            "schema": {
+                "type": "object",
+                "required": [
+                    "vehicleIsSafe",
+                    "inspectionType"
+                ],
+                "properties": {
+                    "vehicleIsSafe" : {
+                        "type": "boolean",
+                        "description": "Whether or not this vehicle or trailer is safe to drive.",
+                        "example": true
+                    },
+                    "inspectionType": {
+                        "type": "string",
+                        "enum": [
+                            "mechanic"
+                        ],
+                        "description": "Only type 'mechanic' is currently accepted.",
+                        "example": "mechanic"
+                    },
+                    "vehicleId" : {
+                        "type": "integer",
+                        "description": "Id of vehicle being inspected. Either vehicleId or trailerId must be provided.",
+                        "example": 10
+                    },
+                    "trailerId" : {
+                        "type": "integer",
+                        "description": "Id of trailer being inspected. Either vehicleId or trailerId must be provided.",
+                        "example": 11
+                    },
+                    "previousDefectsCorrected": {
+                        "type": "boolean",
+                        "description": "Whether any previous defects were corrected. If this vehicle or trailer was previously marked unsafe, and this DVIR marks it as safe, either previousDefectsCorrected or previousDefectsIgnored must be true.",
+                        "example": true
+                    },
+                    "previousDefectsIgnored": {
+                        "type": "boolean",
+                        "description": "Whether any previous defects were ignored. If this vehicle or trailer was previously marked unsafe, and this DVIR marks it as safe, either previousDefectsCorrected or previousDefectsIgnored must be true.",
+                        "example": false
+                    },
+                    "odometerMiles": {
+                        "type": "integer",
+                        "description": "The current odometer of the vehicle.",
+                        "example": 38426
+                    },
+                    "mechanicNotes": {
+                        "type": "string",
+                        "description": "Any notes from the mechanic.",
+                        "example": "Replaced headlight on passenger side."
+                    }
+                }
             }
         },
         "routeCreateParam": {
