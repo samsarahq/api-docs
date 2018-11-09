@@ -568,25 +568,24 @@
                 }
             }
         },
-        "/fleet/drivers/{driver_id}": {
-            "parameters": [
+        "/fleet/drivers/{driver_id | external_id}": {
+            "get": {
+              "parameters": [
                 {
                     "$ref": "#/parameters/accessTokenParam"
                 },
                 {
-                    "name": "driver_id",
+                    "name": "driver_id | external_id",
                     "in": "path",
                     "required": true,
-                    "description": "ID of the driver.",
-                    "type": "integer",
-                    "format": "int64"
+                    "description": "Either the ID of the driver (integer) or corresponding external ID (alphanumeric string). One of these two parameters must be specified to identify the driver.",
+                    "type": "string"
                 }
             ],
-            "get": {
                 "tags": [
                     "Default", "Fleet", "Drivers"
                 ],
-                "summary": "/fleet/drivers/{driver_id:[0-9]+}",
+                "summary": "/fleet/drivers/{driver_id:[0-9]+ | external_id:[a-zA-Z0-9]+}",
                 "description": "Fetch driver by id.",
                 "operationId": "getDriverById",
                 "consumes": [
@@ -610,11 +609,64 @@
                     }
                 }
             },
-            "delete": {
+            "patch": {
+              "parameters": [
+                {
+                    "$ref": "#/parameters/accessTokenParam"
+                },
+                {
+                    "name": "driver_id | external_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "Either the ID of the driver (integer) or corresponding external ID (alphanumeric string). One of these two parameters must be specified to identify the driver.",
+                    "type": "string"
+                },
+                { "$ref": "#/parameters/driverParam" }
+            ],
                 "tags": [
                     "Default", "Fleet", "Drivers"
                 ],
-                "summary": "/fleet/drivers/{driver_id:[0-9]+}",
+                "summary": "/fleet/drivers/{driver_id:[0-9]+ | external_id:[a-zA-Z0-9]+}",
+                "description": "Update driver by id.",
+                "operationId": "patchDriverById",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns the driver for the given driver_id or external_id.",
+                        "schema": {
+                            "$ref": "#/definitions/CurrentDriver"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+              "parameters": [
+                {
+                    "$ref": "#/parameters/accessTokenParam"
+                },
+                {
+                    "name": "driver_id | external_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "Either the ID of the driver (integer) or corresponding external ID (alphanumeric string). One of these two parameters must be specified to identify the driver.",
+                    "type": "string"
+                }
+            ],
+                "tags": [
+                    "Default", "Fleet", "Drivers"
+                ],
+                "summary": "/fleet/drivers/{driver_id:[0-9]+ | external_id:[a-zA-Z0-9]+}",
                 "description": "Deactivate a driver with the given driver_id.",
                 "operationId": "deactivateDriver",
                 "consumes": [
@@ -625,7 +677,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successfully deactivated the driver, which is now referenced by /fleet/drivers/inactive/{driver_id}."
+                        "description": "Successfully deactivated the driver, which is now referenced by /fleet/drivers/inactive/{driver_id | external_id}."
                     },
                     "default": {
                         "description": "Unexpected error.",
@@ -673,25 +725,24 @@
                 }
             }
         },
-        "/fleet/drivers/inactive/{driver_id}": {
+        "/fleet/drivers/inactive/{driver_id | external_id}": {
             "parameters": [
                 {
                     "$ref": "#/parameters/accessTokenParam"
                 },
                 {
-                    "name": "driver_id",
+                    "name": "driver_id | external_id",
                     "in": "path",
                     "required": true,
-                    "description": "ID of the deactivated driver.",
-                    "type": "integer",
-                    "format": "int64"
+                    "description": "ID (integer) of the deactivated driver or corresponding external ID (alphanumeric string).",
+                    "type": "string"
                 }
             ],
             "get": {
                 "tags": [
                     "Default", "Fleet", "Drivers"
                 ],
-                "summary": "/fleet/drivers/inactive/{driver_id:[0-9]+}",
+                "summary": "/fleet/drivers/inactive/{driver_id:[0-9]+ | external_id:[a-zA-Z0-9]+}",
                 "description": "Fetch deactivated driver by driver_id.",
                 "operationId": "getDeactivatedDriverById",
                 "consumes": [
@@ -719,7 +770,7 @@
                 "tags": [
                     "Default", "Fleet", "Drivers"
                 ],
-                "summary": "/fleet/drivers/inactive/{driver_id:[0-9]+}",
+                "summary": "/fleet/drivers/inactive/{driver_id:[0-9]+ | external_id:[a-zA-Z0-9]+}",
                 "description": "Reactivate the inactive driver having driver_id.",
                 "operationId": "reactivateDriverById",
                 "consumes": [
@@ -817,12 +868,12 @@
             }
           }
         },
-        "/fleet/drivers/{driver_id}/hos_daily_logs": {
+        "/fleet/drivers/{driver_id | external_id}/hos_daily_logs": {
           "post": {
             "tags": [
               "Fleet", "Default"
             ],
-            "summary": "/fleet/drivers/{driver_id:[0-9]+}/hos_daily_logs",
+            "summary": "/fleet/drivers/{driver_id:[0-9]+ | external_id:[a-zA-Z0-9]+}/hos_daily_logs",
             "description": "Get summarized daily HOS charts for a specified driver.",
             "operationId": "get_fleet_drivers_hos_daily_logs",
             "parameters": [
@@ -830,12 +881,11 @@
                     "$ref": "#/parameters/accessTokenParam"
                 },
                 {
-                    "name": "driver_id",
+                    "name": "driver_id | external_id",
                     "in": "path",
                     "required": true,
-                    "description": "ID of the driver with HOS logs.",
-                    "type": "integer",
-                    "format": "int64"
+                    "description": "ID (integer) of the driver with HOS logs or corresponding external ID (alphanumeric string).",
+                    "type": "string"
                 },
                 {
                     "name": "hosLogsParam",
@@ -1561,18 +1611,17 @@
                 }
             }
         },
-        "/fleet/drivers/{driver_id}/dispatch/routes": {
+        "/fleet/drivers/{driver_id | external_id}/dispatch/routes": {
             "parameters": [
                 {
                     "$ref": "#/parameters/accessTokenParam"
                 },
                 {
-                    "name": "driver_id",
+                    "name": "driver_id | external_id",
                     "in": "path",
                     "required": true,
-                    "description": "ID of the driver with the associated routes.",
-                    "type": "integer",
-                    "format": "int64"
+                    "description": "ID (integer) of the driver with the associated routes or corresponding external ID (alphanumeric string).",
+                    "type": "string"
                 }
             ],
             "get": {
@@ -1581,7 +1630,7 @@
                     "Fleet",
                     "Routes"
                 ],
-                "summary": "/fleet/drivers/{driver_id:[0-9]+}/dispatch/routes",
+                "summary": "/fleet/drivers/{driver_id:[0-9]+ | external_id:[a-zA-Z0-9]+}/dispatch/routes",
                 "description": "Fetch all of the dispatch routes for a given driver.",
                 "operationId": "getDispatchRoutesByDriverId",
                 "consumes": [
@@ -1613,7 +1662,7 @@
                 "tags": [
                     "Default", "Fleet", "Routes"
                 ],
-                "summary": "/fleet/drivers/{driver_id:[0-9]+}/dispatch/routes",
+                "summary": "/fleet/drivers/{driver_id:[0-9]+ | external_id:[a-zA-Z0-9]+}/dispatch/routes",
                 "description": "Create a new dispatch route for the driver with driver_id.",
                 "operationId": "createDriverDispatchRoute",
                 "consumes": [
@@ -1640,6 +1689,46 @@
                     }
                 }
             }
+        },
+      "/fleet/vehicles/{vehicle_id | external_id}": {
+          "parameters": [
+            {
+              "$ref": "#/parameters/accessTokenParam"
+            },
+            {
+              "name": "vehicle_id | external_id",
+              "in": "path",
+              "required": true,
+              "description": "ID (integer) of the vehicle or corresponding external ID (alphanumeric string).",
+              "type": "string"
+            }
+          ],
+          "patch": {
+            "tags": [
+              "Default",
+              "Fleet"
+            ],
+            "summary": "/fleet/vehicles/{vehicle_id | external_id}",
+            "description": "Updates a vehicle given either a vehicle ID or external ID (alphanumeric string)",
+            "operationId": "updateVehicle",
+            "consumes": [
+              "application/json"
+            ],
+            "produces": [
+              "application/json"
+            ],
+            "responses": {
+              "200": {
+                "description": "Returns updated vehicle."
+              },
+              "default": {
+                "description": "Unexpected error.",
+                "schema": {
+                  "$ref": "#/definitions/ErrorResponse"
+                }
+              }
+            }
+          }
         },
       "/fleet/vehicles/locations": {
           "parameters": [
@@ -1691,18 +1780,17 @@
             }
           }
         },
-        "/fleet/vehicles/{vehicle_id}/dispatch/routes": {
+        "/fleet/vehicles/{vehicle_id | external_id}/dispatch/routes": {
             "parameters": [
                 {
                     "$ref": "#/parameters/accessTokenParam"
                 },
                 {
-                    "name": "vehicle_id",
+                    "name": "vehicle_id | external_id",
                     "in": "path",
                     "required": true,
-                    "description": "ID of the vehicle with the associated routes.",
-                    "type": "integer",
-                    "format": "int64"
+                    "description": "ID (integer) of the vehicle with the associated routes or corresponding external ID (alphanumeric string).",
+                    "type": "string"
                 }
             ],
             "get": {
@@ -1711,7 +1799,7 @@
                     "Fleet",
                     "Routes"
                 ],
-                "summary": "/fleet/vehicles/{vehicle_id:[0-9]+}/dispatch/routes",
+                "summary": "/fleet/vehicles/{{vehicle_id:[0-9]+ | external_id:[a-zA-Z0-9]+}/dispatch/routes",
                 "description": "Fetch all of the dispatch routes for a given vehicle.",
                 "operationId": "getDispatchRoutesByVehicleId",
                 "consumes": [
@@ -1726,7 +1814,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Returns all of the dispatch routes for the given vehicle_id.",
+                        "description": "Returns all of the dispatch routes for the given vehicle_id or external_id.",
                         "schema": {
                             "$ref": "#/definitions/DispatchRoutes"
                         }
@@ -1743,8 +1831,8 @@
                 "tags": [
                     "Default", "Fleet", "Routes"
                 ],
-                "summary": "/fleet/vehicles/{vehicle_id:[0-9]+}/dispatch/routes",
-                "description": "Create a new dispatch route for the vehicle with vehicle_id.",
+                "summary": "/fleet/vehicles/{{vehicle_id:[0-9]+ | external_id:[a-zA-Z0-9]+}/dispatch/routes",
+                "description": "Create a new dispatch route for the vehicle with vehicle_id or external_id.",
                 "operationId": "createVehicleDispatchRoute",
                 "consumes": [
                     "application/json"
@@ -1771,18 +1859,17 @@
                 }
             }
         },
-        "/fleet/vehicles/{vehicle_id}/locations": {
+        "/fleet/vehicles/{vehicle_id | external_id}/locations": {
           "parameters": [
             {
               "$ref": "#/parameters/accessTokenParam"
             },
             {
-              "name": "vehicle_id",
+              "name": "vehicle_id | external_id",
               "in": "path",
               "required": true,
-              "description": "ID of the vehicle with the associated routes.",
-              "type": "integer",
-              "format": "int64"
+              "description": "ID (integer) of the vehicle with the associated routes or corresponding external ID (alphanumeric string).",
+              "type": "string"
             },
             {
               "name": "startMs",
@@ -1806,7 +1893,7 @@
               "Default",
               "Fleet"
             ],
-            "summary": "/fleet/vehicles/{vehicle_id:[0-9]+}/locations",
+            "summary": "/fleet/vehicles/{{vehicle_id:[0-9]+ | external_id:[a-zA-Z0-9]+}/locations",
             "description": "Fetch locations for a given vehicle between a start/end time. The maximum query duration is one hour.",
             "operationId": "getVehicleLocations",
             "consumes": [
@@ -1902,18 +1989,17 @@
                 }
             }
         },
-        "/fleet/drivers/{driver_id}/documents": {
+        "/fleet/drivers/{driver_id | external_id}/documents": {
             "parameters": [
                 {
                     "$ref": "#/parameters/accessTokenParam"
                 },
                 {
-                    "name": "driver_id",
+                    "name": "driver_id | external_id",
                     "in": "path",
                     "required": true,
-                    "description": "ID of the driver for whom the document is created.",
-                    "type": "integer",
-                    "format": "int64"
+                    "description": "ID (integer) of the driver for whom the document is created or corresponding external ID (alphanumeric string).",
+                    "type": "string"
                 }
             ],
             "post": {
@@ -1921,7 +2007,7 @@
                     "Default",
                     "Fleet"
                 ],
-                "summary": "/fleet/drivers/{driver_id:[0-9]+}/documents",
+                "summary": "/fleet/drivers/{driver_id:[0-9]+ | external_id:[a-zA-Z0-9]+}/documents",
                 "description": "Create a driver document for the given driver.",
                 "operationId": "createDriverDocument",
                 "consumes": [
@@ -3342,6 +3428,45 @@
                 }
             }
         },
+        "ExternalDriverResponse" : {
+            "type": "object",
+            "description": "Driver object",
+            "properties": {
+                "driverId": {
+                    "type": "integer",
+                    "description": "ID of the driver.",
+                    "example": 719
+                },
+                "externalIds" : {
+                    "type": "object",
+                    "description": "Dictionary of external IDs (string key-value pairs)",
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "example": {"payrollId": "123", "internalDriverId": "250020"}
+                  }
+            }
+        },
+        "ExternalVehicleResponse": {
+            "type": "object",
+            "description": "Vehicle object",
+            "properties": {
+                "vehicle_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "ID of the vehicle used for the dispatch job.",
+                    "example": 112
+                },
+                "externalIds" : {
+                  "type": "object",
+                  "description": "Dictionary of external IDs (string key-value pairs)",
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "example": {"internalVehicleId": "ABFS18600"}
+                }
+            }
+        },
         "TripResponse": {
             "type": "object",
             "description": "Contains the trips for the vehicle in the requested timeframe. A trip is represented as an object that contains startMs, startLocation, startAddress, startCoordinates, endMs, endLocation, endAddress and endCoordinates.",
@@ -3428,10 +3553,8 @@
                                 "description": "Length in meters trip spent on toll roads.",
                                 "example": 32000
                             },
-                            "driverId": {
-                                "type": "integer",
-                                "description": "ID of the driver.",
-                                "example": 719
+                            "driver": {
+                                "$ref": "#/definitions/ExternalDriverResponse"
                             },
                             "startOdometer": {
                                 "type": "integer",
@@ -3520,6 +3643,9 @@
                     "format": "int64",
                     "description": "ID of the group if the organization has multiple groups (uncommon).",
                     "example": 101
+                },
+                "driver": {
+                    "$ref": "#/definitions/ExternalDriverResponse"
                 }
             }
         },
@@ -3612,6 +3738,14 @@
                                 "type": "string",
                                 "description": "Name of the driver.",
                                 "example": "Fred Jacobs"
+                            },
+                            "externalIds" : {
+                              "type": "object",
+                              "description": "Dictionary of external IDs (string key-value pairs)",
+                              "additionalProperties": {
+                                "type": "string"
+                              },
+                              "example": {"payrollId": "123", "internalDriverId": "250020"}
                             }
                         }
                     }
@@ -4038,21 +4172,7 @@
                     "example": "pre trip"
                   },
                   "vehicle": {
-                    "type": "object",
-                    "description": "The vehicle on which DVIR was done.",
-                    "properties": {
-                        "id": {
-                            "type": "integer",
-                            "format": "int64",
-                            "description": "The vehicle id on which DVIR was done.",
-                            "example": 19
-                        },
-                        "name": {
-                            "type": "string",
-                            "description": "The vehicle on which DVIR was done.",
-                            "example": "Storer's vehicle 19"
-                        }
-                    }
+                    "$ref": "#/definitions/ExternalVehicleResponse"
                   },
                   "vehicleDefects": {
                     "type": "array",
@@ -4730,17 +4850,11 @@
                             "description": "ID of the route that this job belongs to.",
                             "example": 55
                         },
-                        "driver_id": {
-                            "type": "integer",
-                            "format": "int64",
-                            "description":  "ID of the driver assigned to the dispatch job.",
-                            "example": 444
+                        "driver": {
+                          "$ref": "#/definitions/ExternalDriverResponse"
                         },
-                        "vehicle_id": {
-                            "type": "integer",
-                            "format": "int64",
-                            "description": "ID of the vehicle used for the dispatch job.",
-                            "example": 112
+                        "vehicle": {
+                          "$ref": "#/definitions/ExternalVehicleResponse"
                         },
                         "fleet_viewer_url": {
                             "type": "string",
@@ -4803,17 +4917,11 @@
                 "start_location_lng"
             ],
             "properties": {
-                "vehicle_id": {
-                    "type": "integer",
-                    "format": "int64",
-                    "description":  "ID of the vehicle assigned to the dispatch route. Note that vehicle_id and driver_id are mutually exclusive. If neither is specified, then the route is unassigned.",
-                    "example": 444
+                "vehicle": {
+                  "$ref": "#/definitions/ExternalVehicleResponse"
                 },
-                "driver_id": {
-                    "type": "integer",
-                    "format": "int64",
-                    "description":  "ID of the driver assigned to the dispatch route. Note that driver_id and vehicle_id are mutually exclusive. If neither is specified, then the route is unassigned.",
-                    "example": 555
+                "driver": {
+                  "$ref": "#/definitions/ExternalDriverResponse"
                 },
                 "actual_start_ms": {
                     "type": "integer",
@@ -6098,6 +6206,15 @@
                 "$ref": "#/definitions/DriverForCreate"
             }
         },
+        "driverParam" : {
+          "name": "driverParam",
+          "description": "Driver update body",
+          "required": true,
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/Driver"
+          }
+        },  
         "createDvirParam": {
             "name": "createDvirParam",
             "description": "DVIR creation body",
