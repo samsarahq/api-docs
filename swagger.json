@@ -1799,7 +1799,7 @@
                     "Fleet",
                     "Routes"
                 ],
-                "summary": "/fleet/vehicles/{{vehicle_id:[0-9]+ | external_id:[a-zA-Z0-9]+}/dispatch/routes",
+                "summary": "/fleet/vehicles/{vehicle_id:[0-9]+ | external_id:[a-zA-Z0-9]+}/dispatch/routes",
                 "description": "Fetch all of the dispatch routes for a given vehicle.",
                 "operationId": "getDispatchRoutesByVehicleId",
                 "consumes": [
@@ -1831,7 +1831,7 @@
                 "tags": [
                     "Default", "Fleet", "Routes"
                 ],
-                "summary": "/fleet/vehicles/{{vehicle_id:[0-9]+ | external_id:[a-zA-Z0-9]+}/dispatch/routes",
+                "summary": "/fleet/vehicles/{vehicle_id:[0-9]+ | external_id:[a-zA-Z0-9]+}/dispatch/routes",
                 "description": "Create a new dispatch route for the vehicle with vehicle_id or external_id.",
                 "operationId": "createVehicleDispatchRoute",
                 "consumes": [
@@ -1893,7 +1893,7 @@
               "Default",
               "Fleet"
             ],
-            "summary": "/fleet/vehicles/{{vehicle_id:[0-9]+ | external_id:[a-zA-Z0-9]+}/locations",
+            "summary": "/fleet/vehicles/{vehicle_id:[0-9]+ | external_id:[a-zA-Z0-9]+}/locations",
             "description": "Fetch locations for a given vehicle between a start/end time. The maximum query duration is one hour.",
             "operationId": "getVehicleLocations",
             "consumes": [
