@@ -2723,6 +2723,71 @@
                     }
                 }
             }
+        },
+        "/contacts": {
+            "get": {
+                "tags": [
+                    "Default", "Fleet"
+                ],
+                "summary": "/contacts",
+                "description": "Fetch all contacts for the organization.",
+                "operationId": "ListContacts",
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of contacts.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Contact"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/contacts/{contact_id}": {
+            "get": {
+                "tags": [
+                    "Default", "Fleet"
+                ],
+                "summary": "/contacts/{contactId}",
+                "description": "Fetch a contact by its id.",
+                "operationId": "GetOrganizationContact",
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    {
+                        "name": "contactId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the contact",
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The contact.",
+                        "schema": {
+                            "$ref": "#/definitions/Contact"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -5795,6 +5860,38 @@
             "type": "array",
             "items": {
                 "$ref": "#/definitions/DocumentType"
+            }
+        },
+        "Contact": {
+            "type": "object",
+            "description": "Information about a notification contact for alerts.",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "ID of the contact",
+                    "format": "int64",
+                    "example": 123
+                },
+                "firstName": {
+                    "type": "string",
+                    "description": "First name of the contact",
+                    "example": "Jane"
+                },
+                "lastName": {
+                    "type": "string",
+                    "description": "Last name of the contact",
+                    "example": "Jones"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Email address of the contact",
+                    "example": "jane.jones@yahoo.com"
+                },
+                "phone": {
+                    "type": "string",
+                    "description": "Phone number of the contact",
+                    "example": "111-222-3344"
+                }
             }
         }
     },
