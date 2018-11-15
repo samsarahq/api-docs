@@ -6434,14 +6434,18 @@
             "schema": {
                 "type": "object",
                 "required": [
-                    "vehicleIsSafe",
+                    "safe",
                     "inspectionType"
                 ],
                 "properties": {
-                    "vehicleIsSafe" : {
-                        "type": "boolean",
+                    "safe" : {
+                        "type": "string",
+                        "enum": [
+                            "safe",
+                            "unsafe"
+                        ],
                         "description": "Whether or not this vehicle or trailer is safe to drive.",
-                        "example": true
+                        "example": "safe"
                     },
                     "inspectionType": {
                         "type": "string",
