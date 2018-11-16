@@ -4570,8 +4570,6 @@
             "type": "object",
             "required": [
                 "scheduled_arrival_time_ms",
-                "destination_lat",
-                "destination_lng"
             ],
             "properties": {
                 "scheduled_arrival_time_ms": {
@@ -4593,30 +4591,30 @@
                 },
                 "destination_name": {
                     "type": "string",
-                    "description": "The name of the job destination.",
+                    "description": "The name of the job destination. If provided, it will take precedence over the name of the address book entry.",
                     "example": "ACME Inc. Philadelphia HQ"
                 },
                 "destination_address": {
                     "type": "string",
-                    "description": "The address of the job destination, as it would be recognized if provided to maps.google.com",
+                    "description": "The address of the job destination, as it would be recognized if provided to maps.google.com. Optional if a valid destination address ID or destination latitude/longitude pair is provided.",
                     "example": "123 Main St, Philadelphia, PA 19106"
                 },
                 "destination_address_id": {
                     "type": "integer",
                     "format": "int64",
-                    "description": "ID of the job destination associated with an address book entry.",
+                    "description": "ID of the job destination associated with an address book entry. Optional if valid values are provided for destination name, address, latitude and longitude. If a valid destination address ID is provided, address/latitude/longitude will be used from the address book entry. Name of the address book entry will only be used if the destination name is not provided.",
                     "example": 67890
                 },
                 "destination_lat": {
                     "type": "number",
-                    "format": "double",
-                    "description": "Latitude of the destination in decimal degrees.",
+                    "format": "float",
+                    "description": "Latitude of the destination in decimal degrees. Optional if a valid destination address ID or destination address is provided.",
                     "example": 123.456
                 },
                 "destination_lng": {
                     "type": "number",
-                    "format": "double",
-                    "description": "Latitude of the destination in decimal degrees.",
+                    "format": "float",
+                    "description": "Longitude of the destination in decimal degrees. Optional if a valid destination address ID or destination address is provided.",
                     "example": 37.459
                 }
             }
