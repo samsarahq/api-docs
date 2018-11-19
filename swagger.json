@@ -2813,6 +2813,15 @@
                 },
                 "geofence": {
                     "$ref": "#/definitions/AddressGeofence"
+                },
+                "contacts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Contact"
+                    }
+                },
+                "notes": {
+                    "$ref": "#/definitions/AddressNotes"
                 }
             }
         },
@@ -2872,6 +2881,11 @@
                     }
                 }
             }
+        },
+        "AddressNotes": {
+            "type": "string",
+            "description": "Notes associated with an address.",
+            "example": "Delivery site 1"
         },
         "Sensor": {
             "type": "object",
@@ -5893,6 +5907,15 @@
                     "example": "111-222-3344"
                 }
             }
+        },
+        "ContactIds": {
+            "type": "array",
+            "description": "A list of IDs for contact book entries.",
+            "items": {
+                "type": "number",
+                "format": "int64",
+                "example": 123
+            }
         }
     },
     "parameters": {
@@ -5934,6 +5957,12 @@
                                 },
                                 "geofence": {
                                     "$ref": "#/definitions/AddressGeofence"
+                                },
+                                "contactIds": {
+                                    "$ref": "#/definitions/ContactIds"
+                                },
+                                "notes": {
+                                    "$ref": "#/definitions/AddressNotes"
                                 }
                             }
                         }
@@ -5961,6 +5990,12 @@
                     },
                     "geofence": {
                         "$ref": "#/definitions/AddressGeofence"
+                    },
+                    "contactIds": {
+                        "$ref": "#/definitions/ContactIds"
+                    },
+                    "notes": {
+                        "$ref": "#/definitions/AddressNotes"
                     }
                 }
             }
