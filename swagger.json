@@ -3449,6 +3449,14 @@
                     "format": "int64",
                     "example": 112
                 },
+                "externalIds": {
+                  "type": "object",
+                  "description": "Map of all external ids for vehicle",
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "example": {"maintenanceId": "123", "internalVehicleId": "BNUN2798"}
+                },
                 "name": {
                     "type": "string",
                     "description": "Name of the vehicle.",
@@ -3495,6 +3503,14 @@
                     "description": "ID of the vehicle.",
                     "format": "int64",
                     "example": 112
+                },
+                "externalIds" : {
+                    "type": "object",
+                    "description": "Dictionary of external IDs (string key-value pairs)",
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "example": {"maintenanceId": "123", "internalVehicleId": "BNUN2798"}
                 },
                 "name": {
                     "type": "string",
@@ -3559,6 +3575,14 @@
                     "description": "ID of the vehicle.",
                     "format": "int64",
                     "example": 112
+                },
+                "externalIds": {
+                    "type": "object",
+                    "description": "Map of all external ids for vehicle",
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "example": {"maintenanceId": "123", "internalVehicleId": "BNUN2798"}
                 },
                 "j1939": {
                     "type": "object",
@@ -3659,6 +3683,9 @@
                     "type": "integer",
                     "format": "int64",
                     "example": 212014918086169,
+                },
+                "vehicle": {
+                  "$ref": "#/definitions/ExternalVehicleResponse"
                 },
                 "start_ms": {
                     "type": "integer",
@@ -3832,11 +3859,21 @@
                 }
             }
         },
+        "VehicleIdResponse": {
+            "type": "integer",
+            "description": "ID of the vehicle.",
+            "example": 444
+        },
+        "DriverIdResponse": {
+          "type": "integer",
+          "description": "ID of the driver.",
+          "example": 719
+        },
         "ExternalDriverResponse" : {
             "type": "object",
             "description": "Driver object",
             "properties": {
-                "driverId": {
+                "id": {
                     "type": "integer",
                     "description": "ID of the driver.",
                     "example": 719
@@ -3855,11 +3892,31 @@
             "type": "object",
             "description": "Vehicle object",
             "properties": {
-                "vehicle_id": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "ID of the vehicle.",
+                    "example": 444
+                },
+                "externalIds" : {
+                  "type": "object",
+                  "description": "Dictionary of external IDs (string key-value pairs)",
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "example": {"internalVehicleId": "CITY320025"}
+                }
+            }
+        },
+        "ExternalCurrentVehicleResponse": {
+            "type": "object",
+            "description": "Vehicle object",
+            "properties": {
+                "id": {
                     "type": "integer",
                     "format": "int64",
                     "description": "ID of the vehicle used for the dispatch job.",
-                    "example": 112
+                    "example": 879
                 },
                 "externalIds" : {
                   "type": "object",
@@ -3957,6 +4014,9 @@
                                 "description": "Length in meters trip spent on toll roads.",
                                 "example": 32000
                             },
+                            "driverId": {
+                                "$ref": "#/definitions/DriverIdResponse"
+                            },
                             "driver": {
                                 "$ref": "#/definitions/ExternalDriverResponse"
                             },
@@ -4042,11 +4102,20 @@
                     "description":  "ID of the vehicle assigned to the driver for static vehicle assignments. (uncommon).",
                     "example": 444
                 },
+                "vehicle": {
+                    "$ref": "#/definitions/ExternalVehicleResponse"
+                },
                 "groupId": {
                     "type": "integer",
                     "format": "int64",
                     "description": "ID of the group if the organization has multiple groups (uncommon).",
                     "example": 101
+                },
+                "driverId": {
+                  "type": "integer",
+                  "format": "int64",
+                  "description": "ID of the driver",
+                  "example": 719
                 },
                 "driver": {
                     "$ref": "#/definitions/ExternalDriverResponse"
@@ -4098,7 +4167,10 @@
                             "format": "int64",
                             "description": "ID of the vehicle that this driver is currently assigned to. Omitted if there is no current vehicle assignment for this driver.",
                             "example": 879
-                        }
+                        }, 
+                        "currentVehicle": {
+                            "$ref": "#/definitions/ExternalCurrentVehicleResponse"
+                        },
                     }
                 },
                 {
@@ -4168,7 +4240,10 @@
                     "type": "integer",
                     "format": "int64",
                     "description": "ID of the driver.",
-                    "example": 444
+                    "example": 719
+                  },
+                  "driver": {
+                    "$ref": "#/definitions/ExternalDriverResponse"
                   },
                   "driverName": {
                     "type": "string",
@@ -4313,7 +4388,10 @@
                     "type": "integer",
                     "format": "int64",
                     "description": "ID of the driver.",
-                    "example": 444
+                    "example": 719
+                  },
+                  "driver": {
+                    "$ref": "#/definitions/ExternalDriverResponse"
                   },
                   "driverName": {
                     "type": "string",
@@ -4412,13 +4490,19 @@
                                 "type": "integer",
                                 "format": "int64",
                                 "description": "ID of the vehicle.",
-                                "example": 112
+                                "example": 444
+                            },
+                            "vehicle": {
+                              "$ref": "#/definitions/ExternalVehicleResponse"
                             },
                             "driverId": {
                                 "type": "integer",
                                 "format": "int64",
                                 "description": "ID of the driver.",
-                                "example": 444
+                                "example": 719
+                            },
+                            "driver": {
+                              "$ref": "#/definitions/ExternalDriverResponse"
                             },
                             "logStartMs": {
                                 "type": "integer",
@@ -5254,8 +5338,14 @@
                             "description": "ID of the route that this job belongs to.",
                             "example": 55
                         },
+                        "driver_id": {
+                          "$ref": "#/definitions/DriverIdResponse"
+                        },
                         "driver": {
                           "$ref": "#/definitions/ExternalDriverResponse"
+                        },
+                        "vehicle_id": {
+                          "$ref": "#/definitions/VehicleIdResponse"
                         },
                         "vehicle": {
                           "$ref": "#/definitions/ExternalVehicleResponse"
@@ -5321,8 +5411,14 @@
                 "start_location_lng"
             ],
             "properties": {
+                "vehicle_id": {
+                  "$ref": "#/definitions/VehicleIdResponse"
+                },
                 "vehicle": {
                   "$ref": "#/definitions/ExternalVehicleResponse"
+                },
+                "driver_id": {
+                  "$ref": "#/definitions/DriverIdResponse"
                 },
                 "driver": {
                   "$ref": "#/definitions/ExternalDriverResponse"
@@ -5971,6 +6067,9 @@
                     "description": "Vehicle associated with the harsh event",
                     "example": 212014918086169
                 },
+                "vehicle": {
+                  "$ref": "#/definitions/ExternalVehicleResponse"
+                },
                 "timestampMs": {
                     "type": "integer",
                     "description": "Timestamp that the harsh event occurred in Unix milliseconds since epoch",
@@ -6290,6 +6389,9 @@
                             "description": "ID of the driver for whom the document is submitted",
                             "example": 555
                         },
+                        "driver": {
+                          "$ref": "#/definitions/ExternalDriverResponse"
+                        },
                         "driverCreatedAtMs": {
                             "type": "integer",
                             "format": "int64",
@@ -6305,7 +6407,10 @@
                             "type": "integer",
                             "format": "int64",
                             "description": "VehicleID of the driver at document creation.",
-                            "example": 222
+                            "example": 444
+                        },
+                        "vehicle": {
+                          "$ref": "#/definitions/ExternalVehicleResponse"
                         },
                         "fields": {
                             "description": "The fields associated with this document.",
