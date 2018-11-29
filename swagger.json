@@ -2120,7 +2120,7 @@
                 ],
                 "parameters": [
                     { "$ref": "#/parameters/accessTokenParam" },
-                    { "$ref": "#/parameters/groupParam" }
+                    { "$ref": "#/parameters/groupIdParam" }
                 ],
                 "responses": {
                     "200": {
@@ -4130,19 +4130,8 @@
             }
         },
         "ErrorResponse": {
-            "type": "object",
-            "description": "Contains the error response when a request fails.",
-            "properties": {
-                "status_code": {
-                    "type": "integer",
-                    "description": "HTTP status code returned.",
-                    "format": "int64"
-                },
-                "message": {
-                    "type": "string",
-                    "description": "Error message returned."
-                }
-            }
+            "type": "string",
+            "description": "Error message describing why the request failed."
         },
         "SensorHistoryResponse": {
             "type": "object",
@@ -4338,6 +4327,12 @@
                     "description": "Name of this tag.",
                     "example": "Broken Vehicles"
                 },
+                "parentTagId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "If this tag is part a hierarchical tag tree as a child tag, the parentTagId is the ID of this tag's parent tag.",
+                    "example": 8389
+                },
                 "vehicles": {
                     "type": "array",
                     "items": {
@@ -4382,6 +4377,12 @@
                     "type": "string",
                     "description": "Updated name of this tag.",
                     "example": "Broken Vehicles"
+                },
+                "parentTagId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "If this tag is part a hierarchical tag tree as a child tag, the parentTagId is the ID of this tag's parent tag.",
+                    "example": 8389
                 },
                 "add": {
                     "type": "object",
@@ -4475,6 +4476,12 @@
                     "description": "Updated name of this tag.",
                     "example": "Broken Vehicles"
                 },
+                "parentTagId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "If this tag is part a hierarchical tag tree as a child tag, the parentTagId is the ID of this tag's parent tag.",
+                    "example": 8389
+                },
                 "vehicles": {
                     "type": "array",
                     "items": {
@@ -4515,6 +4522,7 @@
         "Tag": {
                 "type": "object",
                 "required": [
+                    "id",
                     "name"
                 ],
                 "properties": {
@@ -4523,6 +4531,18 @@
                         "format": "int64",
                         "description": "The ID of this tag.",
                         "example": 12345
+                    },
+                    "groupId": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "The GroupID that this tag belongs to.",
+                        "example": 2348
+                    },
+                    "parentTagId": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "If this tag is part a hierarchical tag tree as a child tag, the parentTagId is the ID of this tag's parent tag.",
+                        "example": 8389
                     },
                     "name": {
                         "type": "string",
