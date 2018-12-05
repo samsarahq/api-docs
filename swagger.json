@@ -4187,28 +4187,24 @@
                 "drivers": {
                     "type": "array",
                     "items": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "type": "integer",
-                                "format": "int64",
-                                "description": "ID of the driver.",
-                                "example": 444
+                        "allOf": [
+                            {
+                                "$ref": "#/definitions/Driver"
                             },
-                            "name": {
-                                "type": "string",
-                                "description": "Name of the driver.",
-                                "example": "Fred Jacobs"
-                            },
-                            "externalIds" : {
-                              "type": "object",
-                              "description": "Dictionary of external IDs (string key-value pairs)",
-                              "additionalProperties": {
-                                "type": "string"
-                              },
-                              "example": {"payrollId": "123", "internalDriverId": "250020"}
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "externalIds" : {
+                                    "type": "object",
+                                    "description": "Dictionary of external IDs (string key-value pairs)",
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "example": {"payrollId": "123", "internalDriverId": "250020"}
+                                    }
+                                }
                             }
-                        }
+                        ]
                     }
                 }
             }
