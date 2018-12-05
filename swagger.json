@@ -4214,33 +4214,27 @@
                     "type": "string",
                     "description": "Reason that this driver is exempt from the Electronic Logging Mandate (see eldExempt)."
                 },
-                "eldBigDayExemptionEnabled": {
+                "usBigDayExemptionEnabled": {
                     "type": "boolean",
-                    "description": "Flag indicating this driver may use Big Day excemptions in ELD logs."
+                    "description": "Flag indicating this driver may use Big Day exemptions in HOS logs."
                 },
-                "eldAdverseWeatherExemptionEnabled": {
+                "usAdverseDrivingExemptionEnabled": {
                     "type": "boolean",
-                    "description": "Flag indicating this driver may use Adverse Weather exemptions in ELD logs."
+                    "description": "Flag indicating this driver may use Adverse Driving exemptions in HOS logs."
                 },
                 "eldPcEnabled": {
                     "type": "boolean",
-                    "description": "Flag indicating this driver may select the Personal Conveyance duty status in ELD logs.",
+                    "description": "Flag indicating this driver may select the Personal Conveyance duty status in HOS logs.",
                     "default": false
                 },
                 "eldYmEnabled": {
                     "type": "boolean",
-                    "description": "Flag indicating this driver may select the Yard Move duty status in ELD logs.",
+                    "description": "Flag indicating this driver may select the Yard Move duty status in HOS logs.",
                     "default": false
                 },
-                "eldDayStartHour": {
+                "hosDayStartHour": {
                     "type": "integer",
-                    "description": "0 indicating midnight-to-midnight ELD driving hours, 12 to indicate noon-to-noon driving hours."
-                },
-                "vehicleId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "description":  "ID of the vehicle assigned to the driver for static vehicle assignments. (uncommon).",
-                    "example": 444
+                    "description": "0 indicating midnight-to-midnight HOS driving hours, 12 to indicate noon-to-noon driving hours."
                 },
                 "groupId": {
                     "type": "integer",
