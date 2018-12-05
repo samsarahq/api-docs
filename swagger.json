@@ -4242,6 +4242,69 @@
                     "description": "ID of the group if the organization has multiple groups (uncommon).",
                     "example": 101
                 },
+                "timezone": {
+                    "type": "string",
+                    "description": "Timezone used by the driver for daily logs (e.g. America/New_York, Europe/Paris), if different from the organization default.",
+                    "example": "America/New_York"
+                },
+                "carrierNameOverride": {
+                    "type": "string",
+                    "description": "Carrier’s name, if different from the organization default.",
+                    "example": "Samsara"
+                },
+                "mainOfficeAddressOverride": {
+                    "type": "string",
+                    "description": "Carrier’s office address, if different from the organization default.",
+                    "example": "444 De Haro St, San Francisco"
+                },
+                "carrierUsDotNumberOverride": {
+                    "type": "integer",
+                    "description": "Carrier’s US DOT number (max: 999999999), if different from the organization default.",
+                    "example": "999999999"
+                },
+                "tags": {
+                    "type": "array",
+                    "description": "An array of tags that the driver belongs to.",
+                    "items": {
+                        "type": "string",
+                        "example": "R05_004"
+                    }
+                },
+                "notes": {
+                    "type": "string",
+                    "description": "Notes about the driver.",
+                    "example": "Driver operates in the West."
+                },
+                "vehicleSelectionTags": {
+                    "type": "string",
+                    "description": "Tag containing vehicles a driver may select from in the Driver app.",
+                    "example": "West"
+                },
+                "caOffDutyDeferralExemptionEnabled": {
+                    "type": "boolean",
+                    "description": "Flag indicating this driver may select Off Duty Deferal Exemptions in Canada. (default: false)",
+                    "example": false
+                },
+                "caAdverseDrivingExemptionEnabled": {
+                    "type": "boolean",
+                    "description": "Flag indicating this driver may select Adverse Driving Exemptions in Canada. (default: false)",
+                    "example": false
+                },
+                "localeOverride": {
+                    "type": "string",
+                    "description": "The customer locale the driver belongs to, if different from the organization default (e.g. “us”, “ca”, “gb”, “fr”).",
+                    "example": "us"
+                },
+                "languageOverride": {
+                    "type": "string",
+                    "description": "Language presented to the driver by default, if different from the organization default (e.g. “en-us”, “en-ca”, “fr-fr”, “fr-ca”).",
+                    "example": "en-us"
+                },
+                "permanentVehicleId": {
+                    "type": "integer",
+                    "description": "ID of the vehicle that has been permanently assigned to this driver.",
+                    "example": "879"
+                },
                 "driver": {
                     "$ref": "#/definitions/ExternalDriverResponse"
                 }
