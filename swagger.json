@@ -725,6 +725,38 @@
                         }
                     }
                 }
+            },
+            "get": {
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/groupIdParam" }
+                ],
+                "tags": [
+                    "Fleet", "Default"
+                ],
+                "summary": "/fleet/drivers",
+                "description": "List all the drivers in the fleet.",
+                "operationId": "listFleetDrivers",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "All drivers in the group.",
+                        "schema": {
+                            "$ref": "#/definitions/DriversResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
             }
         },
         "/fleet/drivers/create": {
