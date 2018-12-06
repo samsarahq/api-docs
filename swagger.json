@@ -680,52 +680,6 @@
             }
         },
         "/fleet/drivers": {
-            "post": {
-                "tags": [
-                    "Fleet", "Default"
-                ],
-                "summary": "/fleet/drivers",
-                "description": "Get all the drivers for the specified group.",
-                "operationId": "get_fleet_drivers",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/accessTokenParam"
-                    },
-                    {
-                        "name": "groupDriversParam",
-                        "required": true,
-                        "in": "body",
-                        "schema": {
-                            "type": "object",
-                            "required": [
-                                "groupId"
-                            ],
-                            "properties": {
-                                "groupId": {
-                                    "type": "integer",
-                                    "format": "int64",
-                                    "description": "Group ID to query.",
-                                    "example": 101
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "All drivers in the group.",
-                        "schema": {
-                            "$ref": "#/definitions/DriversResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Unexpected error.",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            },
             "get": {
                 "parameters": [
                     { "$ref": "#/parameters/accessTokenParam" },
