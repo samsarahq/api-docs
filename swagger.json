@@ -2104,6 +2104,308 @@
                 }
             }
         },
+        "/industrial/mes/runs": {
+            "get": {
+                "tags": [
+                    "Industrial", "Default"
+                ],
+                "summary": "/industrial/mes/runs",
+                "description": "Fetch all of the MES runs for a group.",
+                "operationId": "GetAllMesRuns",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/groupIdParam" },
+                    { "$ref": "#/parameters/mesRunStartTimeParam"},
+                    { "$ref": "#/parameters/mesRunEndTimeParam"}
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of mes runs.",
+                        "schema": {
+                            "type": "object",
+                            "properties":{
+                                "runs":{
+                                    "type": "array",
+                                    "items":{
+                                        "$ref": "#/definitions/MesRunHistoryResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/industrial/mes/runs/{run_id}": {
+            "get": {
+                "tags": [
+                    "Industrial", "Default"
+                ],
+                "summary": "/industrial/mes/runs/{run_id:[0-9]+}",
+                "description": "Fetch information from a given MES run.",
+                "operationId": "GetMesRun",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/mesRunIdParam"}
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns information for the given MES run",
+                        "schema": {
+                            "$ref": "#/definitions/MesRunHistoryResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/industrial/mes/work_orders": {
+            "get": {
+                "tags": [
+                    "Industrial", "Default"
+                ],
+                "summary": "/industrial/mes/work_orders",
+                "description": "Fetch all of the MES work orders for a group.",
+                "operationId": "GetAllMesWorkOrders",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/groupIdParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of MES work orders.",
+                        "schema": {
+                            "type": "object",
+                            "properties":{
+                                "work_orders":{
+                                    "type": "array",
+                                    "items":{
+                                        "$ref": "#/definitions/MesWorkOrderResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Industrial", "Default"
+                ],
+                "summary": "/industrial/mes/work_orders",
+                "description": "Create a new MES work order.",
+                "operationId": "createMesWorkOrder",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "$ref": "#/parameters/mesWorkOrderCreateParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Created MES work order including the new work order ID.",
+                        "schema": {
+                            "$ref": "#/definitions/MesWorkOrderResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/industrial/mes/work_orders/{work_order_id}": {
+            "get": {
+                "tags": [
+                    "Industrial", "Default"
+                ],
+                "summary": "/industrial/mes/work_orders/{work_order_id:[0-9]+}",
+                "description": "Fetch information from a given MES work order.",
+                "operationId": "GetMesWorkOrder",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/mesRunWorkOrderParam"}
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns information for the given MES work order",
+                        "schema": {
+                            "$ref": "#/definitions/MesWorkOrderResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/industrial/mes/recipes": {
+            "get": {
+                "tags": [
+                    "Industrial", "Default"
+                ],
+                "summary": "/industrial/mes/recipes",
+                "description": "Fetch all of the MES recipes for a group.",
+                "operationId": "GetAllMesRecipes",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/groupIdParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of MES recipes.",
+                        "schema": {
+                            "type": "object",
+                            "properties":{
+                                "recipes":{
+                                    "type": "array",
+                                    "items":{
+                                        "$ref": "#/definitions/MesRecipeResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Industrial", "Default"
+                ],
+                "summary": "/industrial/mes/recipes",
+                "description": "Create a new MES recipe.",
+                "operationId": "createMesRecipe",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "$ref": "#/parameters/mesRecipeCreateParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Created MES recipe including the new recipe ID.",
+                        "schema": {
+                            "$ref": "#/definitions/MesRecipeResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/industrial/mes/recipes/{recipe_id}": {
+            "get": {
+                "tags": [
+                    "Industrial", "Default"
+                ],
+                "summary": "/industrial/mes/recipes/{recipe_id:[0-9]+}",
+                "description": "Fetch information from a given MES recipe.",
+                "operationId": "GetMesRecipe",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    { "$ref": "#/parameters/mesRecipeIdParam"}
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns information for the given MES recipe",
+                        "schema": {
+                            "$ref": "#/definitions/MesRecipeResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/tags": {
             "get": {
                 "tags": [
@@ -5004,6 +5306,129 @@
                 }
             }
         },
+        "MesRunHistoryResponse": {
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description":"The ID of this MES run",
+                    "example": 12345
+                },
+                "name": {
+                    "type": "string",
+                    "description":"Name of this MES run",
+                    "example":"Widget Run 5"
+                },
+                "startMs": {
+                    "type":"integer",
+                    "format": "int64",
+                    "example": 1453449599999
+                },
+                "endMs": {
+                    "type":"integer",
+                    "format": "int64",
+                    "example": 1453449599999
+                },
+                "count":{
+                    "type":"integer",
+                    "format": "int64",
+                    "example": 1000
+                }
+            }
+        },
+        "MesWorkOrderResponse": {
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description":"The ID of this MES run",
+                    "example": 12345
+                },
+                "name": {
+                    "type": "string",
+                    "description":"Name of this MES run",
+                    "example":"Widget Run 5"
+                },
+                "recipeId": {
+                    "type":"integer",
+                    "format": "int64",
+                    "example": 5
+                },
+                "quantity": {
+                    "type":"integer",
+                    "format": "int64",
+                    "example": 10
+                },
+                "complete":{
+                    "type":"boolean"
+                }
+            }
+        },
+        "MesWorkOrderCreate": {
+            "type": "object",
+            "required": [
+                "name",
+                "recipeId",
+                "quantity"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description":"Name of this Work Order",
+                    "example":"Widget Run 5"
+                },
+                "recipeId": {
+                    "type":"integer",
+                    "format": "int64",
+                    "example": 5
+                },
+                "quantity": {
+                    "type":"integer",
+                    "format": "int64",
+                    "example": 10
+                }
+            }
+        },
+        "MesRecipeResponse": {
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description":"The ID of this MES recipe",
+                    "example": 12345
+                },
+                "name": {
+                    "type": "string",
+                    "description":"Name of this MES recipe",
+                    "example": "Widgets"
+                }
+            }
+        },
+        "MesRecipeCreate": {
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description":"Name of this MES recipe",
+                    "example":"Widgets"
+                }
+            }
+        },
         "Machine": {
             "type": "object",
             "description": "Contains information about a machine.",
@@ -6226,6 +6651,62 @@
             "in": "query",
             "type": "integer",
             "format": "int64"
+        },
+        "mesRunIdParam": {
+            "name": "mes_run_id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the MES run",
+            "type": "integer",
+            "format": "int64"
+        },
+        "mesRunEndTimeParam": {
+            "name": "endMs",
+            "description": "Timestamp in unix milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs. Defaults to nowMs.",
+            "required": false,
+            "in": "query",
+            "type": "integer",
+            "format": "int64"
+        },
+        "mesRunStartTimeParam": {
+            "name": "startMs",
+            "description": "Timestamp in unix milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs. defaults to nowMs.",
+            "required": false,
+            "in": "query",
+            "type": "integer",
+            "format": "int64"
+        },
+        "mesWorkOrderIdParam": {
+            "name": "mes_work_order_id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the MES work order",
+            "type": "integer",
+            "format": "int64"
+        },
+        "mesWorkOrderCreateParam": {
+            "name": "createMesWorkOrderParams",
+            "required": true,
+            "in": "body",
+            "schema": {
+                "$ref": "#/definitions/MesWorkOrderCreate"
+            }
+        },
+        "mesRecipeIdParam": {
+            "name": "mes_recipe_id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the MES recipe",
+            "type": "integer",
+            "format": "int64"
+        },
+        "mesRecipeCreateParam": {
+            "name": "createMesRecipeParams",
+            "required": true,
+            "in": "body",
+            "schema": {
+                "$ref": "#/definitions/MesRecipeCreate"
+            }
         },
         "documentsEndMsParam": {
             "name": "endMs",
