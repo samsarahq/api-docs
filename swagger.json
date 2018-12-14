@@ -3963,9 +3963,6 @@
         },
         "DriverBase": {
             "type": "object",
-            "required": [
-                "name"
-            ],
             "properties": {
                 "name": {
                     "type": "string",
@@ -4100,6 +4097,9 @@
             "allOf": [
                 {
                     "type": "object",
+                    "required": [
+                        "name"
+                    ],
                     "properties": {
                         "password": {
                             "type": "string",
@@ -4140,7 +4140,8 @@
                 {
                     "type": "object",
                     "required": [
-                        "id"
+                        "id",
+                        "name"
                     ],
                     "properties": {
                         "id": {
