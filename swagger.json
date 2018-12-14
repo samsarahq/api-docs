@@ -4113,6 +4113,28 @@
                 }
             ]
         },
+        "DriverForUpdate": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "isDeactivated": {
+                            "type": "boolean",
+                            "description": "True if the driver account has been deactivated."
+                        },
+                        "currentVehicleId": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "ID of the vehicle that this driver is currently assigned to. Omitted if there is no current vehicle assignment for this driver.",
+                            "example": 879
+                        }
+                    }
+                },
+                {
+                    "$ref": "#/definitions/DriverBase"
+                }
+            ]
+        },
         "Driver": {
             "allOf": [
                 {
@@ -6771,7 +6793,7 @@
           "required": true,
           "in": "body",
           "schema": {
-            "$ref": "#/definitions/Driver"
+            "$ref": "#/definitions/DriverForUpdate"
           }
         },  
         "createDvirParam": {
