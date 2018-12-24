@@ -36,17 +36,13 @@
         {
             "name": "Safety",
             "description": "Access to safety specific data"
-        },
-        {
-            "name": "Default",
-            "description": "All Samsara API endpoints"
         }
     ],
     "paths": {
         "/sensors/list": {
             "post": {
                 "tags": [
-                    "Sensors", "Default"
+                    "Sensors"
                 ],
                 "summary": "/sensors/list",
                 "description": "Get sensor objects. This method returns a list of the sensor objects in the Samsara Cloud and information about them.",
@@ -86,7 +82,7 @@
         "/sensors/temperature": {
             "post": {
                 "tags": [
-                    "Sensors", "Default"
+                    "Sensors"
                 ],
                 "summary": "/sensors/temperature",
                 "description": "Get temperature for requested sensors. This method returns the current ambient temperature (and probe temperature if applicable) for the requested sensors.",
@@ -118,7 +114,7 @@
         "/sensors/humidity": {
             "post": {
                 "tags": [
-                    "Sensors", "Default"
+                    "Sensors"
                 ],
                 "summary": "/sensors/humidity",
                 "description": "Get humidity for requested sensors. This method returns the current relative humidity for the requested sensors.",
@@ -150,7 +146,7 @@
         "/sensors/cargo": {
             "post": {
                 "tags": [
-                    "Sensors", "Default"
+                    "Sensors"
                 ],
                 "summary": "/sensors/cargo",
                 "description": "Get cargo monitor status (empty / full) for requested sensors.",
@@ -182,7 +178,7 @@
         "/sensors/door": {
             "post": {
                 "tags": [
-                    "Sensors", "Default"
+                    "Sensors"
                 ],
                 "summary": "/sensors/door",
                 "description": "Get door monitor status (closed / open) for requested sensors.",
@@ -214,7 +210,7 @@
         "/sensors/history": {
             "post": {
                 "tags": [
-                    "Sensors", "Default"
+                    "Sensors"
                 ],
                 "summary": "/sensors/history",
                 "description": "Get historical data for specified sensors. This method returns a set of historical data for the specified sensors in the specified time range and at the specified time resolution.",
@@ -329,7 +325,7 @@
         "/fleet/list": {
             "post": {
                 "tags": [
-                    "Fleet", "Default"
+                    "Fleet"
                 ],
                 "summary": "/fleet/list",
                 "description": "Get list of the vehicles. This method returns a list of the vehicles in the Samsara Cloud and information about them.",
@@ -375,7 +371,7 @@
         "/fleet/locations": {
             "post": {
                 "tags": [
-                    "Fleet", "Default"
+                    "Fleet"
                 ],
                 "summary": "/fleet/locations",
                 "description": "Get current location of vehicles in a group. This method returns the current location in latitude and longitude of all vehicles in a requested group.",
@@ -421,7 +417,7 @@
         "/fleet/trips": {
             "post": {
                 "tags": [
-                    "Fleet", "Default"
+                    "Fleet"
                 ],
                 "summary": "/fleet/trips",
                 "description": "Get historical trips data for specified vehicle. This method returns a set of historical trips data for the specified vehicle in the specified time range.",
@@ -489,7 +485,7 @@
         "/fleet/drivers": {
             "post": {
                 "tags": [
-                    "Fleet", "Default"
+                    "Fleet"
                 ],
                 "summary": "/fleet/drivers",
                 "description": "Get all the drivers for the specified group.",
@@ -537,7 +533,7 @@
         "/fleet/drivers/create": {
             "post": {
                 "tags": [
-                    "Default", "Fleet", "Drivers"
+                    "Fleet", "Drivers"
                 ],
                 "summary": "/fleet/drivers/create",
                 "description": "Create a new driver.",
@@ -584,7 +580,7 @@
             ],
             "get": {
                 "tags": [
-                    "Default", "Fleet", "Drivers"
+                    "Fleet", "Drivers"
                 ],
                 "summary": "/fleet/drivers/{driver_id:[0-9]+}",
                 "description": "Fetch driver by id.",
@@ -612,7 +608,7 @@
             },
             "delete": {
                 "tags": [
-                    "Default", "Fleet", "Drivers"
+                    "Fleet", "Drivers"
                 ],
                 "summary": "/fleet/drivers/{driver_id:[0-9]+}",
                 "description": "Deactivate a driver with the given driver_id.",
@@ -639,7 +635,7 @@
         "/fleet/drivers/inactive": {
             "get": {
                 "tags": [
-                    "Default", "Fleet", "Drivers"
+                    "Fleet", "Drivers"
                 ],
                 "summary": "/fleet/drivers/inactive",
                 "description": "Fetch all deactivated drivers for the group.",
@@ -689,7 +685,7 @@
             ],
             "get": {
                 "tags": [
-                    "Default", "Fleet", "Drivers"
+                    "Fleet", "Drivers"
                 ],
                 "summary": "/fleet/drivers/inactive/{driver_id:[0-9]+}",
                 "description": "Fetch deactivated driver by driver_id.",
@@ -717,7 +713,7 @@
             },
             "put": {
                 "tags": [
-                    "Default", "Fleet", "Drivers"
+                    "Fleet", "Drivers"
                 ],
                 "summary": "/fleet/drivers/inactive/{driver_id:[0-9]+}",
                 "description": "Reactivate the inactive driver having driver_id.",
@@ -750,7 +746,7 @@
         "/fleet/drivers/summary": {
           "post": {
             "tags": [
-              "Fleet", "Default"
+              "Fleet"
             ],
             "summary": "/fleet/drivers/summary",
             "description": "Get the distance and time each driver in an organization has driven in a given time period.",
@@ -820,7 +816,7 @@
         "/fleet/drivers/{driver_id}/hos_daily_logs": {
           "post": {
             "tags": [
-              "Fleet", "Default"
+              "Fleet"
             ],
             "summary": "/fleet/drivers/{driver_id:[0-9]+}/hos_daily_logs",
             "description": "Get summarized daily HOS charts for a specified driver.",
@@ -895,7 +891,7 @@
         "/fleet/hos_logs": {
             "post": {
                 "tags": [
-                    "Fleet", "Default"
+                    "Fleet"
                 ],
                 "summary": "/fleet/hos_logs",
                 "description": "Get the HOS (hours of service) logs for the specified driver.",
@@ -962,7 +958,7 @@
         "/fleet/hos_logs_summary": {
             "post": {
                 "tags": [
-                    "Fleet", "Default"
+                    "Fleet"
                 ],
                 "summary": "/fleet/hos_logs_summary",
                 "description": "Get the current HOS status for all drivers in the group.",
@@ -1010,7 +1006,7 @@
         "/fleet/maintenance/dvirs": {
             "get": {
                 "tags": [
-                    "Fleet","Default"
+                    "Fleet"
                 ],
                 "summary": "/fleet/maintenance/dvirs",
                 "description": "Get DVIRs for the org within provided time constraints",
@@ -1058,7 +1054,7 @@
             },
             "post": {
                 "tags": [
-                    "Fleet","Default"
+                    "Fleet"
                 ],
                 "summary": "/fleet/maintenance/dvirs",
                 "description": "Create a new dvir, marking a vehicle or trailer safe or unsafe.",
@@ -1086,7 +1082,7 @@
         "/fleet/hos_authentication_logs": {
             "post": {
                 "tags": [
-                    "Fleet", "Default"
+                    "Fleet"
                 ],
                 "summary": "/fleet/hos_authentication_logs",
                 "description": "Get the HOS (hours of service) signin and signout logs for the specified driver. Only signout logs include location information.",
@@ -1153,7 +1149,7 @@
         "/fleet/maintenance/list": {
             "post": {
                 "tags": [
-                    "Fleet", "Default"
+                    "Fleet"
                 ],
                 "summary": "/fleet/maintenance/list",
                 "description": "Get list of the vehicles with any engine faults or check light data.",
@@ -1193,7 +1189,7 @@
         "/fleet/add_address": {
             "post": {
                 "tags": [
-                    "Fleet", "Default"
+                    "Fleet"
                 ],
                 "summary": "/fleet/add_address",
                 "description": "This method adds an address book entry to the specified group.",
@@ -1256,7 +1252,7 @@
         "/fleet/set_data": {
             "post": {
                 "tags": [
-                    "Fleet", "Default"
+                    "Fleet"
                 ],
                 "summary": "/fleet/set_data",
                 "description": "This method enables the mutation of metadata for vehicles in the Samsara Cloud.",
@@ -1308,7 +1304,7 @@
         "/fleet/dispatch/routes": {
             "get": {
                 "tags": [
-                    "Default", "Fleet", "Routes"
+                    "Fleet", "Routes"
                 ],
                 "summary": "/fleet/dispatch/routes",
                 "description": "Fetch all of the dispatch routes for the group.",
@@ -1342,7 +1338,7 @@
             },
             "post": {
                 "tags": [
-                    "Default", "Fleet", "Routes"
+                    "Fleet", "Routes"
                 ],
                 "summary": "/fleet/dispatch/routes",
                 "description": "Create a new dispatch route.",
@@ -1380,7 +1376,7 @@
         "/fleet/dispatch/routes/job_updates": {
             "get": {
                 "tags": [
-                    "Fleet", "Routes", "Default"
+                    "Fleet", "Routes"
                 ],
                 "summary": "/fleet/dispatch/routes/job_updates",
                 "description": "Fetch all updates to a job including route data in the last 24 hours or subsequent to an sequence ID",
@@ -1429,7 +1425,6 @@
             ],
             "get": {
                 "tags": [
-                    "Default",
                     "Fleet",
                     "Routes"
                 ],
@@ -1459,7 +1454,7 @@
             },
             "put": {
                 "tags": [
-                    "Default", "Fleet", "Routes"
+                    "Fleet", "Routes"
                 ],
                 "summary": "/fleet/dispatch/routes/{route_id:[0-9]+}/",
                 "description": "Update a dispatch route and its associated jobs.",
@@ -1492,7 +1487,7 @@
             },
             "delete": {
                 "tags": [
-                    "Default", "Fleet", "Routes"
+                    "Fleet", "Routes"
                 ],
                 "summary": "/fleet/dispatch/routes/{route_id:[0-9]+}/",
                 "description": "Delete a dispatch route and its associated jobs.",
@@ -1519,7 +1514,6 @@
         "/fleet/dispatch/routes/{route_id}/history": {
             "get": {
                 "tags": [
-                    "Default",
                     "Fleet",
                     "Routes"
                 ],
@@ -1577,7 +1571,6 @@
             ],
             "get": {
                 "tags": [
-                    "Default",
                     "Fleet",
                     "Routes"
                 ],
@@ -1611,7 +1604,7 @@
             },
             "post": {
                 "tags": [
-                    "Default", "Fleet", "Routes"
+                    "Fleet", "Routes"
                 ],
                 "summary": "/fleet/drivers/{driver_id:[0-9]+}/dispatch/routes",
                 "description": "Create a new dispatch route for the driver with driver_id.",
@@ -1663,7 +1656,6 @@
           ],
           "get": {
             "tags": [
-              "Default",
               "Fleet"
             ],
             "summary": "/fleet/vehicles/locations",
@@ -1707,7 +1699,6 @@
             ],
             "get": {
                 "tags": [
-                    "Default",
                     "Fleet",
                     "Routes"
                 ],
@@ -1741,7 +1732,7 @@
             },
             "post": {
                 "tags": [
-                    "Default", "Fleet", "Routes"
+                    "Fleet", "Routes"
                 ],
                 "summary": "/fleet/vehicles/{vehicle_id:[0-9]+}/dispatch/routes",
                 "description": "Create a new dispatch route for the vehicle with vehicle_id.",
@@ -1803,7 +1794,6 @@
           ],
           "get": {
             "tags": [
-              "Default",
               "Fleet"
             ],
             "summary": "/fleet/vehicles/{vehicle_id:[0-9]+}/locations",
@@ -1839,7 +1829,6 @@
             ],
             "get": {
                 "tags": [
-                    "Default",
                     "Fleet"
                 ],
                 "summary": "/fleet/drivers/documents",
@@ -1874,7 +1863,6 @@
         "/fleet/drivers/document_types": {
             "get": {
                 "tags": [
-                    "Default",
                     "Fleet"
                 ],
                 "summary": "/fleet/drivers/document_types",
@@ -1918,7 +1906,6 @@
             ],
             "post": {
                 "tags": [
-                    "Default",
                     "Fleet"
                 ],
                 "summary": "/fleet/drivers/{driver_id:[0-9]+}/documents",
@@ -1952,7 +1939,7 @@
         "/machines/list": {
             "post": {
                 "tags": [
-                    "Industrial", "Default"
+                    "Industrial"
                 ],
                 "summary": "/machines/list",
                 "description": "Get machine objects. This method returns a list of the machine objects in the Samsara Cloud and information about them.",
@@ -1992,7 +1979,7 @@
         "/machines/history": {
             "post": {
                 "tags": [
-                    "Industrial", "Default"
+                    "Industrial"
                 ],
                 "summary": "/machines/history",
                 "description": "Get historical data for machine objects. This method returns a set of historical data for all machines in a group",
@@ -2053,7 +2040,7 @@
         "/industrial/data": {
             "get": {
                 "tags": [
-                    "Industrial", "Default"
+                    "Industrial"
                 ],
                 "summary": "/industrial/data",
                 "description": "Fetch all of the data inputs for a group.",
@@ -2097,7 +2084,7 @@
         "/industrial/data/{data_input_id}": {
             "get": {
                 "tags": [
-                    "Industrial", "Default"
+                    "Industrial"
                 ],
                 "summary": "/industrial/data/{data_input_id:[0-9]+}",
                 "description": "Fetch datapoints from a given data input.",
@@ -2133,7 +2120,7 @@
         "/tags": {
             "get": {
                 "tags": [
-                    "Default"
+                    "Fleet", "Industrial"
                 ],
                 "summary": "/tags",
                 "description": "Fetch all of the tags for a group.",
@@ -2173,7 +2160,7 @@
             },
             "post": {
                 "tags": [
-                    "Default"
+                    "Fleet", "Industrial"
                 ],
                 "summary": "/tags",
                 "description": "Create a new tag for the group.",
@@ -2207,7 +2194,7 @@
         "/tags/{tag_id}": {
             "get": {
                 "tags": [
-                    "Default"
+                    "Fleet", "Industrial"
                 ],
                 "summary": "/tags/{tag_id:[0-9]+}",
                 "description": "Fetch a tag by id.",
@@ -2243,7 +2230,7 @@
             },
             "patch": {
                 "tags": [
-                    "Default"
+                    "Fleet", "Industrial"
                 ],
                 "summary": "/tags/{tag_id:[0-9]+}",
                 "description": "Add or delete specific members from a tag, or modify the name of a tag.",
@@ -2282,7 +2269,7 @@
             },
             "put": {
                 "tags": [
-                    "Default"
+                    "Fleet", "Industrial"
                 ],
                 "summary": "/tags/{tag_id:[0-9]+}",
                 "description": "Update a tag with a new name and new members. This API call would replace all old members of a tag with new members specified in the request body. To modify only a few devices associated with a tag use the PATCH endpoint.",
@@ -2321,7 +2308,7 @@
             },
             "delete": {
                 "tags": [
-                    "Default"
+                    "Fleet", "Industrial"
                 ],
                 "summary": "/tags/{tag_id:[0-9]+}",
                 "description": "Permanently deletes a tag.",
@@ -2356,7 +2343,7 @@
         "/fleet/assets": {
             "get": {
                 "tags": [
-                    "Default", "Fleet", "Assets"
+                    "Fleet", "Assets"
                 ],
                 "summary": "/fleet/assets",
                 "description": "Fetch all of the assets for the group.",
@@ -2392,7 +2379,7 @@
         "/fleet/assets/locations": {
             "get": {
                 "tags": [
-                    "Default", "Fleet", "Assets"
+                    "Fleet", "Assets"
                 ],
                 "summary": "/fleet/assets/locations",
                 "description": "Fetch current locations of all assets for the group.",
@@ -2428,7 +2415,7 @@
         "/fleet/assets/{asset_id}/reefer": {
             "get": {
                 "tags": [
-                    "Default", "Fleet", "Assets"
+                    "Fleet", "Assets"
                 ],
                 "summary": "/fleet/assets/{assetId:[0-9]+}/reefer",
                 "description": "Fetch the reefer-specific stats of an asset.",
@@ -2458,7 +2445,7 @@
         "/fleet/assets/{asset_id}/locations": {
             "get": {
                 "tags": [
-                    "Default", "Fleet", "Assets"
+                    "Fleet", "Assets"
                 ],
                 "summary": "/fleet/assets/{assetId:[0-9]+}/locations",
                 "description": "Fetch the historical locations for the asset.",
@@ -2498,7 +2485,7 @@
             ],
             "get": {
                 "tags": [
-                    "Default", "Fleet", "Safety"
+                    "Fleet", "Safety"
                 ],
                 "summary": "/fleet/vehicles/{vehicleId:[0-9]+}/safety/score",
                 "description": "Fetch the safety score for the vehicle.",
@@ -2537,7 +2524,7 @@
             ],
             "get": {
                 "tags": [
-                    "Default", "Fleet", "Safety"
+                    "Fleet", "Safety"
                 ],
                 "summary": "/fleet/drivers/{driverId:[0-9]+}/safety/score",
                 "description": "Fetch the safety score for the driver.",
@@ -2576,7 +2563,7 @@
             ],
             "get": {
                 "tags": [
-                    "Default", "Fleet", "Safety"
+                    "Fleet", "Safety"
                 ],
                 "summary": "/fleet/vehicles/{vehicleId:[0-9]+}/safety/harsh_event",
                 "description": "Fetch harsh event details for a vehicle.",
@@ -2604,7 +2591,7 @@
         "/addresses": {
             "get": {
                 "tags": [
-                    "Default", "Fleet"
+                    "Fleet"
                 ],
                 "summary": "/addresses",
                 "description": "Fetch all addresses/geofences for the organization. An address contains either a circle or polygon geofence describing the address boundaries.",
@@ -2632,7 +2619,7 @@
             },
             "post": {
                 "tags": [
-                    "Default", "Fleet"
+                    "Fleet"
                 ],
                 "summary": "/addresses",
                 "description": "Add one or more addresses to the organization",
@@ -2657,7 +2644,7 @@
         "/addresses/{addressId}": {
             "get": {
                 "tags": [
-                    "Default", "Fleet"
+                    "Fleet"
                 ],
                 "summary": "/addresses/{addressId}",
                 "description": "Fetch an address by its id.",
@@ -2690,7 +2677,7 @@
             },
             "patch": {
                 "tags": [
-                    "Default", "Fleet"
+                    "Fleet"
                 ],
                 "summary": "/addresses/{addressId}",
                 "description": "Update the name, formatted address, geofence, notes, or tag and contact Ids for an address. The set of tags or contacts associated with this address will be updated to exactly match the list of IDs passed in. To remove all tags or contacts from an address, pass an empty list; to remove notes, pass an empty string.",
@@ -2721,7 +2708,7 @@
             },
             "delete": {
                 "tags": [
-                    "Default", "Fleet"
+                    "Fleet"
                 ],
                 "summary": "/addresses/{addressId}",
                 "description": "Delete an address.",
@@ -2753,7 +2740,7 @@
         "/contacts": {
             "get": {
                 "tags": [
-                    "Default", "Fleet"
+                    "Fleet"
                 ],
                 "summary": "/contacts",
                 "description": "Fetch all contacts for the organization.",
@@ -2783,7 +2770,7 @@
         "/contacts/{contact_id}": {
             "get": {
                 "tags": [
-                    "Default", "Fleet"
+                    "Fleet"
                 ],
                 "summary": "/contacts/{contact_id}",
                 "description": "Fetch a contact by its id.",
