@@ -1641,7 +1641,94 @@
                 }
             }
         },
-      "/fleet/vehicles/locations": {
+        "/fleet/vehicles/{vehicle_id_or_external_id}": {
+            "get": {
+                "tags": [
+                    "Fleet"
+                ],
+                "summary": "/fleet/vehicles/{vehicle_id_or_external_id}",
+                "description": "Gets a specific vehicle.",
+                "operationId": "getFleetVehicle",
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "$ref": "#/parameters/vehicleIdOrExternalId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The specified vehicle.",
+                        "schema": {
+                            "$ref": "#/definitions/FleetVehicleResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": ["Fleet"],
+                "summary": "/fleet/vehicles/{vehicle_id_or_external_id}",
+                "description": "Updates the specified vehicle using JSON merge patch format. See IETF RFC 7396: https://tools.ietf.org/html/rfc7396.",
+                "operationId": "patchFleetVehicle",
+                "consumes": [
+                    "application/json",
+                    "application/merge-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "$ref": "#/parameters/vehicleIdOrExternalId"
+                    },
+                    {
+                        "in": "body",
+                        "name": "data",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties":
+                            {
+                                "name": {
+                                    "description": "Name",
+                                    "type": "string"
+                                },
+                                "harsh_accel_setting": {
+                                    "description": "Harsh Acceleration Setting",
+                                    "type": "integer",
+                                    "format": "int64"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The updated vehicle.",
+                        "schema": {
+                            "$ref": "#/definitions/FleetVehicleResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/vehicles/locations": {
           "parameters": [
             {
               "$ref": "#/parameters/accessTokenParam"
@@ -3006,6 +3093,64 @@
               "example": 1535586471332
             }
           }
+        },
+        "FleetVehicleResponse": {
+            "type": "object",
+            "description": "A vehicle object as returned for fleet/vehicle",
+            "required": [
+                "id",
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "ID of the vehicle.",
+                    "format": "int64",
+                    "example": 112
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the vehicle.",
+                    "example": "Truck A7"
+                },
+                "vehicleInfo": {
+                    "type": "object",
+                    "description": "",
+                    "properties": {
+                        "vin": {
+                            "type": "string",
+                            "description": "Vehicle Identification Number.",
+                            "example": "1FUJA6BD31LJ09646"
+                        },
+                        "make": {
+                            "type": "string",
+                            "description": "Make of the vehicle.",
+                            "example": "Honda"
+                        },
+                        "model": {
+                            "type": "string",
+                            "description": "Model of the Vehicle.",
+                            "example": "Odyssey"
+                        },
+                        "year": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "Year of the vehicle.",
+                            "example": 1997
+                        }
+                    }
+                },
+                "harshAccelSetting": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Harsh acceleration setting.",
+                    "example": 1
+                },
+                "externalIds": {
+                    "type": "object",
+                    "additionalProperties": true
+                }
+            }
         },
         "Vehicle": {
             "type": "object",
@@ -6418,6 +6563,13 @@
             "in": "query",
             "type": "integer",
             "format": "int64"
+        },
+        "vehicleIdOrExternalId": {
+            "name": "vehicle_id_or_external_id",
+            "description": "ID of the vehicle.  This must be either the numeric ID generated by Samsara or the external ID of the vehicle.  External IDs are customer specified key-value pairs.",
+            "required": true,
+            "in": "path",
+            "type": "string"
         }
     }
 }
