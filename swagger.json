@@ -1909,6 +1909,84 @@
             }
           }
         },
+        "/fleet/vehicles/stats": {
+              "get": {
+                  "tags": ["Fleet"],
+                  "summary": "/fleet/vehicles/stats",
+                  "description": "Fetch engine state and aux input data for all vehicles in the group between a start/end time. Data returned may be affected by device connectivity and processing time.",
+                  "operationId": "GetVehicleStats",
+                  "parameters": [
+                    {
+                      "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                      "name": "startMs",
+                      "description": "Time in Unix epoch milliseconds for the start of the query.",
+                      "required": true,
+                      "in": "query",
+                      "type": "integer"
+                    },
+                    {
+                      "name": "endMs",
+                      "description": "Time in Unix epoch milliseconds for the end of the query.",
+                      "required": true,
+                      "in": "query",
+                      "type": "integer"
+                    },
+                    { 
+                      "name": "series",
+                      "description": "Comma-separated list of stat types. Options are engineState, auxInput1, and auxInput2. If this parameter is excluded, all 3 stat types will be returned. Example: series=engineState,auxInput2",
+                      "type": "string",
+                      "in": "query",
+                      "enum": ["engineState", "auxInput1", "auxInput2"]
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Returns engine state and/or aux input data for all vehicles in the group between a start/end time.",
+                      "schema": {
+                        "type": "object",
+                        "required": ["vehicleStats"],
+                        "properties": {
+                            "vehicleStats": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "required": ["vehicleId"],
+                                    "properties": {
+                                        "vehicleId": {
+                                            "type": "integer",
+                                            "description": "ID of the vehicle.",
+                                            "format": "int64",
+                                            "example": 112
+                                        },
+                                        "engineState": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/EngineState"
+                                            }
+                                        },
+                                        "auxInput1": {
+                                            "$ref": "#/definitions/AuxInputSeries"
+                                        },
+                                        "auxInput2": {
+                                            "$ref": "#/definitions/AuxInputSeries"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                      }
+                    },
+                    "default": {
+                      "description": "Unexpected error.",
+                      "schema": {
+                        "$ref": "#/definitions/ErrorResponse"
+                      }
+                    }
+                  }
+              }
+        },
         "/fleet/drivers/documents": {
             "parameters": [
                 {
@@ -3248,6 +3326,59 @@
                     "format": "double",
                     "description": "Heading in degrees.",
                     "example": 246.42
+                }
+            }
+        },
+        "AuxInput": {
+            "type": "object",
+            "description": "Digital value of an aux input.",
+            "required": ["timeMs", "value"],
+            "properties": {
+                "timeMs": {
+                    "type": "number",
+                    "description": "Timestamp in Unix epoch milliseconds.",
+                    "format": "int64",
+                    "example": "1546542978484"
+                },
+                "value": {
+                    "type": "boolean",
+                    "description": "Boolean representing the digital value of the aux input.",
+                    "example": true
+                }
+            }
+        },
+        "AuxInputSeries": {
+            "type": "object",
+            "description": "A list of aux input values over a timerange.",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the aux input.",
+                    "example": "Boom",
+                    "enum": ["Emergency Lights", "Emergency Alarm", "Stop Paddle", "Power Take-Off", "Plow", "Sweeper", "Salter", "Boom"]
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AuxInput"
+                    }
+                }
+            }
+        },
+        "EngineState": {
+            "type": "object",
+            "description": "The state of the vehicle over time. State can be Running, Off, or Idle.",
+            "required": ["timeMs", "value"],
+            "properties": {
+                "timeMs": {
+                    "type": "number",
+                    "description": "Timestamp in Unix epoch milliseconds.",
+                    "format": "int64",
+                    "example": "1546542978484"
+                },
+                "value": {
+                    "type": "string",
+                    "enum": ["Running", "Off", "Idle"]
                 }
             }
         },
