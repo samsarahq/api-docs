@@ -2067,7 +2067,7 @@
                   "200": {
                       "description": "Returns vehicle.",
                       "schema": {
-                          "$ref": "#/definitions/VehicleResponse"
+                          "$ref": "#/definitions/FleetVehicleResponse"
                       }
                   },
                   "default": {
@@ -2085,6 +2085,29 @@
             ],
             "summary": "/fleet/vehicles/{vehicle_id | external_id}",
             "description": "Updates a vehicle given either a vehicle ID or external ID key:value pair (ex. payroll:1)",
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "data",
+                    "required": true,
+                    "schema": {
+                        "type": "object",
+                        "properties":
+                        {
+                            "name": {
+                                "description": "Name",
+                                "type": "string"
+                            },
+                            "harsh_accel_setting": {
+                                "description": "Harsh Acceleration Setting\n* 0: Passenger\n* 1: Light Truck\n* 2: Heavy\n* 3: Off\n* 4: Auto",
+                                "type": "integer",
+                                "format": "int64",
+                                "enum": [ 0, 1, 2, 3, 4 ]
+                            }
+                        }
+                    }
+                }
+            ],
             "operationId": "updateVehicle",
             "consumes": [
               "application/json"
@@ -2096,7 +2119,7 @@
               "200": {
                 "description": "Returns updated vehicle.",
                 "schema": {
-                    "$ref": "#/definitions/VehicleResponse"
+                    "$ref": "#/definitions/FleetVehicleResponse"
                 }
               },
               "default": {
@@ -3542,64 +3565,6 @@
               "example": 1535586471332
             }
           }
-        },
-        "FleetVehicleResponse": {
-            "type": "object",
-            "description": "A vehicle object as returned for fleet/vehicle",
-            "required": [
-                "id",
-                "name"
-            ],
-            "properties": {
-                "id": {
-                    "type": "integer",
-                    "description": "ID of the vehicle.",
-                    "format": "int64",
-                    "example": 112
-                },
-                "name": {
-                    "type": "string",
-                    "description": "Name of the vehicle.",
-                    "example": "Truck A7"
-                },
-                "vehicleInfo": {
-                    "type": "object",
-                    "description": "",
-                    "properties": {
-                        "vin": {
-                            "type": "string",
-                            "description": "Vehicle Identification Number.",
-                            "example": "1FUJA6BD31LJ09646"
-                        },
-                        "make": {
-                            "type": "string",
-                            "description": "Make of the vehicle.",
-                            "example": "Honda"
-                        },
-                        "model": {
-                            "type": "string",
-                            "description": "Model of the Vehicle.",
-                            "example": "Odyssey"
-                        },
-                        "year": {
-                            "type": "integer",
-                            "format": "int64",
-                            "description": "Year of the vehicle.",
-                            "example": 1997
-                        }
-                    }
-                },
-                "harshAccelSetting": {
-                    "type": "integer",
-                    "format": "int64",
-                    "description": "Harsh acceleration setting.",
-                    "example": 1
-                },
-                "externalIds": {
-                    "type": "object",
-                    "additionalProperties": true
-                }
-            }
         },
         "Vehicle": {
             "type": "object",
@@ -5901,60 +5866,65 @@
                 }
             }
         },
-        "VehicleResponse": {
+        "FleetVehicleResponse": {
             "type": "object",
-            "description": "Contains information about the vehicle",
+            "description": "A vehicle object as returned for fleet/vehicle",
+            "required": [
+                "id",
+                "name"
+            ],
             "properties": {
                 "id": {
                     "type": "integer",
                     "description": "ID of the vehicle.",
                     "format": "int64",
-                    "example": 123
+                    "example": 112
                 },
                 "name": {
                     "type": "string",
-                    "description": "Name of the vehicle",
-                    "format": "string",
-                    "example": "Bob's Truck"
+                    "description": "Name of the vehicle.",
+                    "example": "Truck A7"
                 },
-                "make": {
-                    "type": "string",
-                    "description": "Make of the vehicle",
-                    "format": "string",
-                    "example": "Toyota"
+                "vehicleInfo": {
+                    "type": "object",
+                    "description": "",
+                    "properties": {
+                        "vin": {
+                            "type": "string",
+                            "description": "Vehicle Identification Number.",
+                            "example": "1FUJA6BD31LJ09646"
+                        },
+                        "make": {
+                            "type": "string",
+                            "description": "Make of the vehicle.",
+                            "example": "Honda"
+                        },
+                        "model": {
+                            "type": "string",
+                            "description": "Model of the Vehicle.",
+                            "example": "Odyssey"
+                        },
+                        "year": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "Year of the vehicle.",
+                            "example": 1997
+                        }
+                    }
                 },
-                "model": {
-                    "type": "string",
-                    "description": "Model of the vehicle",
-                    "format": "string",
-                    "example": "Corolla"
-                },              
-                "vin": {
-                    "type": "string",
-                    "description": "VIN of the vehicle",
-                    "format": "string",
-                    "example": "1HGBH41JXMN109186"
-                },
-                "year": {
-                    "type": "integer",
-                    "description": "Year the vehicle was made.",
-                    "format": "int64",
-                    "example": "2017"
-                },     
                 "harshAccelSetting": {
                     "type": "integer",
-                    "description": "A number from 1-10 indicating the harsh acceleration setting of the vehicle",
                     "format": "int64",
-                    "example": "2017"
-                },                            
-                "externalIds" : {
+                    "description": "Harsh acceleration setting.",
+                    "example": 1
+                },
+                "externalIds": {
                     "type": "object",
-                    "description": "Dictionary of external IDs (string key-value pairs)",
                     "additionalProperties": {
-                      "type": "string"
-                    },
-                    "example": {"maintenanceId": "ABFS18600"}
-                  }
+                        "type": "string"
+                      },
+                      "example": {"maintenanceId": "ABFS18600"}
+                }            
             }
         },
         "MachineHistoryResponse": {
