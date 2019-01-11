@@ -3828,6 +3828,9 @@
                             "type": "string",
                             "description": "Driver's password for the driver app.",
                             "example": "mypassword"
+                        },
+                        "tagIds": {
+                            "$ref": "#/definitions/TagIds"
                         }
                     }
                 },
@@ -3853,6 +3856,12 @@
                         "isDeactivated": {
                             "type": "boolean",
                             "description": "True if the driver account has been deactivated."
+                        },
+                        "tags": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/TagMetadata"
+                            }
                         }
                     }
                 },
