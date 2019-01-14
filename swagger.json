@@ -1188,25 +1188,17 @@
                 }
             }
         },
-        "/fleet/vehicles/{vehicle_id}/unassigned_driving_segments": {
+        "/fleet/unassigned_driving_segments": {
             "get": {
                 "tags": [
                     "Fleet", "Default"
                 ],
-                "summary": "/fleet/vehicles/{vehicle_id:[0-9]+}/unassigned_driving_segments",
+                "summary": "/fleet/unassigned_driving_segments",
                 "description": "Get the unassigned driving segments for a specified range.",
-                "operationId": "getUnassignedDrivingSegmentsByVehicleId",
+                "operationId": "getUnassignedDrivingSegments",
                 "parameters": [
                     {
                         "$ref": "#/parameters/accessTokenParam"
-                    },
-                    {
-                        "name": "vehicle_id",
-                        "in": "path",
-                        "required": true,
-                        "description": "ID of the vehicle with the associated unassigned driving segments.",
-                        "type": "integer",
-                        "format": "int64"
                     },
                     {
                         "name": "created_at_start_ms",
@@ -1227,7 +1219,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Unassigned driving segments for provided time range and vehicle.",
+                        "description": "Unassigned driving segments for provided time range.",
                         "schema": {
                             "type": "object",
                             "properties": {
@@ -1249,25 +1241,17 @@
                 }
             }
         },
-        "/fleet/vehicles/{vehicle_id}/unassigned_driving_segments/{segment_id}": {
+        "/fleet/unassigned_driving_segments/{segment_id}": {
             "get": {
                 "tags": [
                     "Fleet", "Default"
                 ],
-                "summary": "/fleet/vehicles/{vehicle_id:[0-9]+}/unassigned_driving_segments/{segment_id}",
-                "description": "Fetch an unassigned driving segment by vehicle ID and segment ID.",
-                "operationId": "getUnassignedDrivingSegmentByVehicleIdAndSegmentId",
+                "summary": "/fleet/unassigned_driving_segments/{segment_id}",
+                "description": "Fetch an unassigned driving segment by segment ID.",
+                "operationId": "getUnassignedDrivingSegmentBySegmentId",
                 "parameters": [
                     {
                         "$ref": "#/parameters/accessTokenParam"
-                    },
-                    {
-                        "name": "vehicle_id",
-                        "in": "path",
-                        "required": true,
-                        "description": "ID of the vehicle with the associated unassigned driving segments.",
-                        "type": "integer",
-                        "format": "int64"
                     },
                     {
                         "name": "segment_id",
@@ -1297,20 +1281,12 @@
                 "tags": [
                     "Fleet", "Default"
                 ],
-                "summary": "/fleet/vehicles/{vehicle_id:[0-9]+}/unassigned_driving_segments/{segment_id}",
+                "summary": "/fleet/unassigned_driving_segments/{segment_id}",
                 "description": "Update an unassigned driving segment.",
                 "operationId": "patchUnassignedDrivingSegment",
                 "parameters": [
                     {
                         "$ref": "#/parameters/accessTokenParam"
-                    },
-                    {
-                        "name": "vehicle_id",
-                        "in": "path",
-                        "required": true,
-                        "description": "ID of the vehicle with the associated unassigned driving segments.",
-                        "type": "integer",
-                        "format": "int64"
                     },
                     {
                         "name": "segment_id",
