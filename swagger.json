@@ -329,13 +329,22 @@
                 ],
                 "summary": "/fleet/list",
                 "description": "Get list of the vehicles. This method returns a list of the vehicles in the Samsara Cloud and information about them.",
-                "operationId": "get_fleet",
+                "operationId": "list_fleet",
                 "parameters": [
                     {
                         "$ref": "#/parameters/accessTokenParam"
                     },
                     {
                         "$ref": "#/parameters/groupParam"
+                    },
+                    {
+                        "$ref": "#/parameters/paginationStartingAfterParam"
+                    },
+                    {
+                        "$ref": "#/parameters/paginationEndingBeforeParam"
+                    },
+                    {
+                        "$ref": "#/parameters/paginationLimitParam"
                     }
                 ],
                 "responses": {
@@ -355,6 +364,9 @@
                                     "items": {
                                         "$ref": "#/definitions/Vehicle"
                                     }
+                                },
+                                "pagination": {
+                                    "$ref": "#/definitions/Pagination"
                                 }
                             }
                         }
@@ -6240,6 +6252,35 @@
                 "$ref": "#/definitions/DocumentType"
             }
         },
+        "Pagination": {
+            "type": "object",
+            "required": [
+                "hasNextPage",
+                "hasPrevPage",
+                "startCursor",
+                "endCursor"
+            ],
+            "properties": {
+                "hasNextPage": {
+                    "type": "boolean",
+                    "description": "True if there are more pages of results after this response."
+                },
+                "hasPrevPage": {
+                    "type": "boolean",
+                    "description": "True if there are more pages of results before this response."
+                },
+                "startCursor": {
+                    "type": "string",
+                    "description": "Cursor identifier representing the first element in the response. This value should be used in conjunction with a subsequent request's 'ending_before' query parameter.",
+                    "example": "MTU5MTEzNjA2OTU0MzQ3"
+                },
+                "endCursor": {
+                    "type": "string",
+                    "description": "Cursor identifier representing the last element in the response. This value should be used in conjunction with a subsequent request's 'starting_after' query parameter.",
+                    "example": "MTU5MTEzNjA2OTU0MzQ3"
+                }
+            }
+        },
         "Contact": {
             "type": "object",
             "description": "Information about a notification contact for alerts.",
@@ -6389,6 +6430,28 @@
                     }
                 }
             }
+        },
+        "paginationStartingAfterParam": {
+            "name": "startingAfter",
+            "description": "Pagination parameter indicating the cursor position to continue returning results after. Used in conjunction with the 'limit' parameter. Mutually exclusive with 'endingBefore' parameter.",
+            "required": false,
+            "in": "query",
+            "type": "string"
+        },
+        "paginationEndingBeforeParam": {
+            "name": "endingBefore",
+            "description": "Pagination parameter indicating the cursor position to return results before. Used in conjunction with the 'limit' parameter. Mutually exclusive with 'startingAfter' parameter.",
+            "required": false,
+            "in": "query",
+            "type": "string"
+        },
+        "paginationLimitParam": {
+            "name": "limit",
+            "description": "Pagination parameter indicating the number of results to return in this request. Used in conjunction with either 'startingAfter' or 'endingBefore'.",
+            "required": false,
+            "in": "query",
+            "type": "number",
+            "format": "int64"
         },
         "sensorParam": {
             "name": "sensorParam",
