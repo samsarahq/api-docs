@@ -610,25 +610,20 @@
                 }
             }
         },
-        "/fleet/drivers/{driver_id}": {
+        "/fleet/drivers/{driver_id_or_external_id}": {
             "parameters": [
                 {
                     "$ref": "#/parameters/accessTokenParam"
                 },
                 {
-                    "name": "driver_id",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of the driver.",
-                    "type": "integer",
-                    "format": "int64"
+                    "$ref": "#/parameters/driverIdOrExternalIdParam"
                 }
             ],
             "get": {
                 "tags": [
                     "Fleet", "Drivers"
                 ],
-                "summary": "/fleet/drivers/{driver_id:[0-9]+}",
+                "summary": "/fleet/drivers/{driver_id:[0-9]+ | external_id:[a-zA-Z0-9]+}",
                 "description": "Fetch driver by id.",
                 "operationId": "getDriverById",
                 "consumes": [
@@ -656,8 +651,8 @@
                 "tags": [
                     "Fleet", "Drivers"
                 ],
-                "summary": "/fleet/drivers/{driver_id:[0-9]+}",
-                "description": "Deactivate a driver with the given driver_id.",
+                "summary": "/fleet/drivers/{driver_id:[0-9]+ | external_id:[a-zA-Z0-9]+}",
+                "description": "Deactivate a driver with the given id.",
                 "operationId": "deactivateDriver",
                 "consumes": [
                     "application/json"
@@ -715,26 +710,21 @@
                 }
             }
         },
-        "/fleet/drivers/inactive/{driver_id}": {
+        "/fleet/drivers/inactive/{driver_id_or_external_id}": {
             "parameters": [
                 {
                     "$ref": "#/parameters/accessTokenParam"
                 },
                 {
-                    "name": "driver_id",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of the deactivated driver.",
-                    "type": "integer",
-                    "format": "int64"
+                    "$ref": "#/parameters/driverIdOrExternalIdParam"
                 }
             ],
             "get": {
                 "tags": [
                     "Fleet", "Drivers"
                 ],
-                "summary": "/fleet/drivers/inactive/{driver_id:[0-9]+}",
-                "description": "Fetch deactivated driver by driver_id.",
+                "summary": "/fleet/drivers/inactive/{driver_id:[0-9]+ | external_id:[a-zA-Z0-9]+}",
+                "description": "Fetch deactivated driver by id.",
                 "operationId": "getDeactivatedDriverById",
                 "consumes": [
                     "application/json"
@@ -761,8 +751,8 @@
                 "tags": [
                     "Fleet", "Drivers"
                 ],
-                "summary": "/fleet/drivers/inactive/{driver_id:[0-9]+}",
-                "description": "Reactivate the inactive driver having driver_id.",
+                "summary": "/fleet/drivers/inactive/{driver_id:[0-9]+ | external_id:[a-zA-Z0-9]+}",
+                "description": "Reactivate the inactive driver having id.",
                 "operationId": "reactivateDriverById",
                 "consumes": [
                     "application/json"
@@ -1685,7 +1675,7 @@
                 "tags": [
                     "Fleet"
                 ],
-                "summary": "/fleet/vehicles/{vehicle_id_or_external_id}",
+                "summary": "/fleet/vehicles/{vehicle_id:[0-9]+ | external_id:[a-zA-Z0-9]+}",
                 "description": "Gets a specific vehicle.",
                 "operationId": "getFleetVehicle",
                 "consumes": [
@@ -1696,7 +1686,7 @@
                         "$ref": "#/parameters/accessTokenParam"
                     },
                     {
-                        "$ref": "#/parameters/vehicleIdOrExternalId"
+                        "$ref": "#/parameters/vehicleIdOrExternalIdParam"
                     }
                 ],
                 "responses": {
@@ -1716,7 +1706,7 @@
             },
             "patch": {
                 "tags": ["Fleet"],
-                "summary": "/fleet/vehicles/{vehicle_id_or_external_id}",
+                "summary": "/fleet/vehicles/{vehicle_id:[0-9]+ | external_id:[a-zA-Z0-9]+}",
                 "description": "Updates the specified vehicle using JSON merge patch format. See IETF RFC 7396: https://tools.ietf.org/html/rfc7396.",
                 "operationId": "patchFleetVehicle",
                 "consumes": [
@@ -1728,7 +1718,7 @@
                         "$ref": "#/parameters/accessTokenParam"
                     },
                     {
-                        "$ref": "#/parameters/vehicleIdOrExternalId"
+                        "$ref": "#/parameters/vehicleIdOrExternalIdParam"
                     },
                     {
                         "in": "body",
@@ -1750,8 +1740,11 @@
                                 },
                                 "externalIds": {
                                     "type": "object",
-                                    "additionalProperties": true
-                                }
+                                    "additionalProperties": {
+                                        "type": "string"
+                                      },
+                                      "example": {"maintenanceId": "ABFS18600"}
+                                }  
                             }
                         }
                     }
@@ -3263,8 +3256,11 @@
                 },
                 "externalIds": {
                     "type": "object",
-                    "additionalProperties": true
-                }
+                    "additionalProperties": {
+                        "type": "string"
+                      },
+                      "example": {"maintenanceId": "ABFS18600"}
+                }  
             }
         },
         "Vehicle": {
@@ -3853,7 +3849,15 @@
                     "format": "int64",
                     "description": "ID of the group if the organization has multiple groups (uncommon).",
                     "example": 101
-                }
+                },
+                "externalIds" : {
+                    "type": "object",
+                    "description": "Dictionary of external IDs (string key-value pairs)",
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "example": {"payrollId": "123", "maintenanceId": "250020"}
+                  }
             }
         },
         "DriverForCreate": {
@@ -6903,9 +6907,16 @@
             "type": "integer",
             "format": "int64"
         },
-        "vehicleIdOrExternalId": {
+        "vehicleIdOrExternalIdParam": {
             "name": "vehicle_id_or_external_id",
             "description": "ID of the vehicle.  This must be either the numeric ID generated by Samsara or the external ID of the vehicle.  External IDs are customer specified key-value pairs.",
+            "required": true,
+            "in": "path",
+            "type": "string"
+        },
+        "driverIdOrExternalIdParam": {
+            "name": "driver_id_or_external_id",
+            "description": "ID of the driver.  This must be either the numeric ID generated by Samsara or the external ID of the driver.  External IDs are customer specified key-value pairs.",
             "required": true,
             "in": "path",
             "type": "string"
