@@ -1745,8 +1745,12 @@
                                 "harsh_accel_setting": {
                                     "description": "Harsh Event Detection Setting\n* 0: Passenger\n* 1: Light Truck\n* 2: Heavy\n* 3: Off\n* 4: Automatic",
                                     "type": "integer",
-                                    "format": "int64",
-                                    "enum": [ 0, 1, 2, 3, 4 ]
+                                    "format": "string",
+                                    "enum": [ "Passenger", "Light Truck", "Heavy", "Off", "Auto" ]
+                                },
+                                "externalIds": {
+                                    "type": "object",
+                                    "additionalProperties": true
                                 }
                             }
                         }
@@ -3253,10 +3257,9 @@
                     }
                 },
                 "harshAccelSetting": {
-                    "type": "integer",
-                    "format": "int64",
+                    "type": "string",
                     "description": "Harsh event detection setting.",
-                    "example": 1
+                    "example": "Heavy"
                 },
                 "externalIds": {
                     "type": "object",
@@ -3862,6 +3865,9 @@
                             "type": "string",
                             "description": "Driver's password for the driver app.",
                             "example": "mypassword"
+                        },
+                        "tagIds": {
+                            "$ref": "#/definitions/TagIds"
                         }
                     }
                 },
@@ -3887,6 +3893,12 @@
                         "isDeactivated": {
                             "type": "boolean",
                             "description": "True if the driver account has been deactivated."
+                        },
+                        "tags": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/TagMetadata"
+                            }
                         }
                     }
                 },
@@ -3915,20 +3927,7 @@
                 "drivers": {
                     "type": "array",
                     "items": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "type": "integer",
-                                "format": "int64",
-                                "description": "ID of the driver.",
-                                "example": 444
-                            },
-                            "name": {
-                                "type": "string",
-                                "description": "Name of the driver.",
-                                "example": "Fred Jacobs"
-                            }
-                        }
+                        "$ref": "#/definitions/Driver"
                     }
                 }
             }
@@ -4420,17 +4419,17 @@
                         "name": {
                             "type": "string",
                             "description": "The name of the driver or mechanic who signed the DVIR.",
-                            "example": "John Smith"
+                            "example": "driver"
                         },
                         "username": {
                             "type": "string",
                             "description": "Username of the  driver|mechanic who signed the DVIR.",
-                            "example": "jsmith"
+                            "example": "driver"
                         },
                         "email": {
                             "type": "string",
                             "description": "Email of the  driver|mechanic who signed the DVIR.",
-                            "example": "j.smith@yahoo.com"
+                            "example": "driver"
                         },
                         "signedAt": {
                             "type": "integer",
@@ -4452,17 +4451,17 @@
                         "name": {
                             "type": "string",
                             "description": "The name of the agent or mechanic who signed the DVIR.",
-                            "example": "John Smith"
+                            "example": "driver"
                         },
                         "username": {
                             "type": "string",
                             "description": "Username of the  agent|mechanic who signed the DVIR.",
-                            "example": "jsmith"
+                            "example": "driver"
                         },
                         "email": {
                             "type": "string",
                             "description": "Email of the  agent|mechanic who signed the DVIR.",
-                            "example": "j.smith@yahoo.com"
+                            "example": "driver"
                         },
                         "signedAt": {
                             "type": "integer",
@@ -4484,17 +4483,17 @@
                         "name": {
                             "type": "string",
                             "description": "The name of the driver who signed the next DVIR on this vehicle.",
-                            "example": "John Smith"
+                            "example": "driver"
                         },
                         "username": {
                             "type": "string",
                             "description": "Username of the  driver who signed the next DVIR on this vehicle.",
-                            "example": "jsmith"
+                            "example": "driver"
                         },
                         "email": {
                             "type": "string",
                             "description": "Email of the  driver who signed the next DVIR on this vehicle.",
-                            "example": "j.smith@yahoo.com"
+                            "example": "driver"
                         },
                         "signedAt": {
                             "type": "integer",
@@ -6646,8 +6645,7 @@
                 "type": "object",
                 "required": [
                     "safe",
-                    "inspectionType",
-                    "userEmail"
+                    "inspectionType"
                 ],
                 "properties": {
                     "safe" : {
@@ -6696,11 +6694,6 @@
                         "type": "string",
                         "description": "Any notes from the mechanic.",
                         "example": "Replaced headlight on passenger side."
-                    }, 
-                    "userEmail": {
-                        "type": "string",
-                        "description": "The Samsara login email for the person creating the DVIR. The email must correspond to a Samsara user's email.",
-                        "example": "j.smith@yahoo.com"
                     }
                 }
             }
