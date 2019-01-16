@@ -4419,17 +4419,17 @@
                         "name": {
                             "type": "string",
                             "description": "The name of the driver or mechanic who signed the DVIR.",
-                            "example": "driver"
+                            "example": "John Smith"
                         },
                         "username": {
                             "type": "string",
                             "description": "Username of the  driver|mechanic who signed the DVIR.",
-                            "example": "driver"
+                            "example": "jsmith"
                         },
                         "email": {
                             "type": "string",
                             "description": "Email of the  driver|mechanic who signed the DVIR.",
-                            "example": "driver"
+                            "example": "j.smith@yahoo.com"
                         },
                         "signedAt": {
                             "type": "integer",
@@ -4451,17 +4451,17 @@
                         "name": {
                             "type": "string",
                             "description": "The name of the agent or mechanic who signed the DVIR.",
-                            "example": "driver"
+                            "example": "John Smith"
                         },
                         "username": {
                             "type": "string",
                             "description": "Username of the  agent|mechanic who signed the DVIR.",
-                            "example": "driver"
+                            "example": "jsmith"
                         },
                         "email": {
                             "type": "string",
                             "description": "Email of the  agent|mechanic who signed the DVIR.",
-                            "example": "driver"
+                            "example": "j.smith@yahoo.com"
                         },
                         "signedAt": {
                             "type": "integer",
@@ -4483,17 +4483,17 @@
                         "name": {
                             "type": "string",
                             "description": "The name of the driver who signed the next DVIR on this vehicle.",
-                            "example": "driver"
+                            "example": "John Smith"
                         },
                         "username": {
                             "type": "string",
                             "description": "Username of the  driver who signed the next DVIR on this vehicle.",
-                            "example": "driver"
+                            "example": "jsmith"
                         },
                         "email": {
                             "type": "string",
                             "description": "Email of the  driver who signed the next DVIR on this vehicle.",
-                            "example": "driver"
+                            "example": "j.smith@yahoo.com"
                         },
                         "signedAt": {
                             "type": "integer",
@@ -6645,7 +6645,8 @@
                 "type": "object",
                 "required": [
                     "safe",
-                    "inspectionType"
+                    "inspectionType",
+                    "userEmail"
                 ],
                 "properties": {
                     "safe" : {
@@ -6694,6 +6695,11 @@
                         "type": "string",
                         "description": "Any notes from the mechanic.",
                         "example": "Replaced headlight on passenger side."
+                    },
+                    "userEmail": {
+                        "type": "string",
+                        "description": "The Samsara login email for the person creating the DVIR. The email must correspond to a Samsara user's email.",
+                        "example": "j.smith@yahoo.com"
                     }
                 }
             }
