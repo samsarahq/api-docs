@@ -73,6 +73,71 @@
                 }
             }
         },
+        "/users/{userId}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "/users/{userId:[0-9]+}",
+                "description": "Get a user.",
+                "operationId": "getUserById",
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the user.",
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User record.",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Default", "Users"
+                ],
+                "summary": "/users/{userId:[0-9]+}",
+                "description": "Remove a user from the organization.",
+                "operationId": "deleteUserById",
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" },
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the user.",
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The user was successfully removed."
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/sensors/list": {
             "post": {
                 "tags": [
