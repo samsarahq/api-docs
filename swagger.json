@@ -1121,6 +1121,122 @@
             }
           }
         },
+        "/fleet/drivers/{driver_id}/hos_certified_daily_logs/{time_ms}": {
+            "get": {
+                "tags": [
+                    "Fleet", "Drivers"
+                ],
+                "summary": "/fleet/drivers/{driver_id:[0-9]+}/hos_certified_daily_logs/{time_ms:[0-9]+}",
+                "description": "Fetch a certified daily log for driver by driver_id and timestamp.",
+                "operationId": "get_hos_certified_daily_logs",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                      "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                      "description": "Identifier of the driver whose certified daily log is being updated",
+                      "in": "path",
+                      "name": "driver_id",
+                      "required": true,
+                      "type": "integer"
+                    },
+                    {
+                        "description": "A specified timestamp within the bounds of a driver's certified daily log, specified in milliseconds UNIX time.",
+                        "in": "path",
+                        "name": "time_ms",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns a certified daily log for the driver, if one exists",
+                        "schema": {
+                            "$ref": "#/definitions/HosCertifiedDailyLogResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+              "summary": "/fleet/drivers/{driver_id:[0-9]+}/hos_certified_daily_logs/{time_ms:[0-9]+}",
+              "description": "Modify details, such as trailer number or shipping ID, for a driver's certified daily log",
+              "operationId": "patch_hos_certified_daily_log",
+              "tags": [
+                "Fleet", "Drivers"
+              ],
+              "produces": [
+                "application/json"
+              ],
+              "consumes": [
+                "application/json"
+              ],
+              "parameters": [
+                {
+                  "$ref": "#/parameters/accessTokenParam"
+                },
+                {
+                  "description": "ID (integer) of the driver with certified daily log.",
+                  "in": "path",
+                  "name": "driver_id",
+                  "required": true,
+                  "type": "integer"
+                },
+                {
+                    "description": "A specified timestamp within the bounds of a driver's certified daily log, specified in milliseconds UNIX time.",
+                    "in": "path",
+                    "name": "time_ms",
+                    "required": true,
+                    "type": "integer"
+                },
+                {
+                  "in": "body",
+                  "name": "hosCertifiedDailyLogParams",
+                  "required": true,
+                  "schema": {
+                    "properties": {
+                      "shippingDocIds": {
+                        "description": "One or more customer shipping document IDs to add to driver's daily certified log. Multiple values must be delimited by a comma or space. Max of 255 characters",
+                        "example": "101, 104",
+                        "type": "string"
+                      },
+                      "trailerNames": {
+                        "description": "One or more trailer names to add to driver's daily certified log. Multiple names must be delimited by a comma or space. Max of 255 characters",
+                        "example": "80111, 80112",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "Returns the edited certified daily log",
+                  "schema": {
+                    "$ref": "#/definitions/HosCertifiedDailyLogResponse"
+                  }
+                },
+                "default": {
+                  "description": "Unexpected error.",
+                  "schema": {
+                    "$ref": "#/definitions/ErrorResponse"
+                  }
+                }
+              }
+            }
+        },
         "/fleet/hos_logs": {
             "post": {
                 "tags": [
@@ -4507,6 +4623,27 @@
               }
             }
           }
+        },
+        "HosCertifiedDailyLogResponse": {
+            "type": "object",
+            "properties": {
+                "dayStartMs": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Unix epoch time (in ms) of time of when this certified daily log starts",
+                    "example": 1462881998034
+                },
+                "shippingDocIds": {
+                    "type": "string",
+                    "description": "One or more customer shipping document IDs to add to driver's daily certified log. Multiple values must be delimited by a comma or space. Max of 255 characters",
+                    "example": "101, 104"
+                },
+                "trailerNames": {
+                    "type": "string",
+                    "description": "One or more trailer names to add to driver's daily certified log. Multiple names must be delimited by a comma or space. Max of 255 characters",
+                    "example": "80111, 80112"
+                }
+            }
         },
         "HosLogsSummaryResponse": {
           "type": "object",
