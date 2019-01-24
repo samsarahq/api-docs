@@ -4200,14 +4200,6 @@
                 "carrierUsDotNumberOverride": {
                     "type": "integer",
                     "description": "Carrier’s US DOT number (max: 999999999), if different from the organization default.",
-                },
-                "tags": {
-                    "type": "array",
-                    "description": "An array of tags that the driver belongs to.",
-                    "items": {
-                        "type": "string",
-                        "example": "R05_004"
-                    }
                     "example": 999999999
                 },
                 "notes": {
@@ -4267,6 +4259,9 @@
                             "type": "string",
                             "description": "Driver's password for the driver app.",
                             "example": "mypassword"
+                        },
+                        "tagIds": {
+                            "$ref": "#/definitions/TagIds"
                         }
                     }
                 },
@@ -4285,6 +4280,9 @@
                             "format": "int64",
                             "description": "ID of the vehicle that this driver is currently assigned to. Omitted if there is no current vehicle assignment for this driver.",
                             "example": 879
+                        },
+                        "tagIds": {
+                            "$ref": "#/definitions/TagIds"
                         }
                     }
                 },
@@ -4353,6 +4351,11 @@
                                         "type": "string"
                                     },
                                     "example": {"payrollId": "123", "maintenanceId": "250020"}
+                                    "tags": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/TagMetadata"
+                                        }
                                     }
                                 }
                             }
