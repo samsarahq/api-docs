@@ -4124,7 +4124,7 @@
                 "username": {
                     "type": "string",
                     "description": "Driver's login username into the driver app.",
-                    "example": "Susan Jones"
+                    "example": "susanjones"
                 },
                 "phone": {
                     "type": "string",
@@ -4143,24 +4143,28 @@
                 },
                 "eldExempt": {
                     "type": "boolean",
-                    "description": "Flag indicating this driver is exempt from the Electronic Logging Mandate."
+                    "description": "Flag indicating this driver is exempt from the Electronic Logging Mandate.",
+                    "example": false
                 },
                 "eldExemptReason": {
                     "type": "string",
-                    "description": "Reason that this driver is exempt from the Electronic Logging Mandate (see eldExempt)."
+                    "description": "Reason that this driver is exempt from the Electronic Logging Mandate (see eldExempt).",
+                    "example": "Some reason."
                 },
                 "usBigDayExemptionEnabled": {
                     "type": "boolean",
-                    "description": "Flag indicating this driver may use Big Day exemptions in HOS logs."
+                    "description": "Flag indicating this driver may use Big Day exemptions in HOS logs.",
+                    "example": true
                 },
                 "usAdverseDrivingExemptionEnabled": {
                     "type": "boolean",
-                    "description": "Flag indicating this driver may use Adverse Driving exemptions in HOS logs."
+                    "description": "Flag indicating this driver may use Adverse Driving exemptions in HOS logs.",
+                    "example": true
                 },
                 "eldPcEnabled": {
                     "type": "boolean",
                     "description": "Flag indicating this driver may select the Personal Conveyance duty status in HOS logs.",
-                    "default": false
+                    "default": false,
                 },
                 "eldYmEnabled": {
                     "type": "boolean",
@@ -4169,7 +4173,8 @@
                 },
                 "hosDayStartHour": {
                     "type": "integer",
-                    "description": "0 indicating midnight-to-midnight HOS driving hours, 12 to indicate noon-to-noon driving hours."
+                    "description": "0 indicating midnight-to-midnight HOS driving hours, 12 to indicate noon-to-noon driving hours.",
+                    "example": 12
                 },
                 "groupId": {
                     "type": "integer",
@@ -4195,7 +4200,6 @@
                 "carrierUsDotNumberOverride": {
                     "type": "integer",
                     "description": "Carrier’s US DOT number (max: 999999999), if different from the organization default.",
-                    "example": "999999999"
                 },
                 "tags": {
                     "type": "array",
@@ -4204,6 +4208,7 @@
                         "type": "string",
                         "example": "R05_004"
                     }
+                    "example": 999999999
                 },
                 "notes": {
                     "type": "string",
@@ -4238,7 +4243,7 @@
                 "permanentVehicleId": {
                     "type": "integer",
                     "description": "ID of the vehicle that has been permanently assigned to this driver.",
-                    "example": "879"
+                    "example": 879
                 },
                 "externalIds" : {
                     "type": "object",
