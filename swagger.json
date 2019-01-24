@@ -4192,7 +4192,7 @@
                     "description": "Carrier’s name, if different from the organization default.",
                     "example": "Samsara"
                 },
-                "mainOfficeAddressOverride": {
+                "carrierAddressOverride": {
                     "type": "string",
                     "description": "Carrier’s office address, if different from the organization default.",
                     "example": "444 De Haro St, San Francisco"
@@ -4215,10 +4215,10 @@
                     "description": "Notes about the driver.",
                     "example": "Driver operates in the West."
                 },
-                "vehicleSelectionTags": {
-                    "type": "string",
-                    "description": "Tag containing vehicles a driver may select from in the Driver app.",
-                    "example": "West"
+                "vehicleGroupTagId": {
+                    "type": "integer",
+                    "description": "Tag Id containing vehicles a driver may select from in the Driver app. Omitted if there is no current tag id set. If deleting an existing tag id, use `null`.",
+                    "example": 22
                 },
                 "caOffDutyDeferralExemptionEnabled": {
                     "type": "boolean",
