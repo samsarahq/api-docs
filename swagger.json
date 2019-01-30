@@ -6185,17 +6185,6 @@
                 "$ref": "#/definitions/DocumentField"
             }
         },
-        "DocumentFieldCreates": {
-            "type": "array",
-            "example": [
-                {"valueType": "ValueType_Photo", "photoValue": []},
-                {"valueType": "ValueType_Number", "numberValue": 12.34 },
-                {"valueType": "ValueType_String", "stringValue": "San Francisco, CA" }
-            ],
-            "items": {
-                "$ref": "#/definitions/DocumentFieldCreate"
-            }
-        },
         "DocumentBase": {
             "type": "object",
             "properties": {
@@ -6277,8 +6266,13 @@
                             "description": "List of fields should match the document type’s list of field types in the correct order. In other words, a field's valueType and value (i.e. only one of: stringValue, numberValue, or photoValue) at index _i_ should match with the document field type’s valueType at index _i_.",
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/DocumentFieldCreates"
-                            }
+                                "$ref": "#/definitions/DocumentField"
+                            },
+                            "example": [
+                                {"valueType": "ValueType_Photo", "photoValue": []},
+                                {"valueType": "ValueType_Number", "numberValue": 12.34 },
+                                {"valueType": "ValueType_String", "stringValue": "San Francisco, CA" }
+                            ]
                         }
                     }
                 },
