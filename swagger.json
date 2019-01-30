@@ -1118,6 +1118,62 @@
             }
           }
         },
+        "/fleet/drivers/{driver_id}/hos/audit_logs": {
+            "get": {
+                "tags": [
+                    "Fleet"
+                ],
+                "summary": "/fleet/drivers/{driver_id:[0-9]+}/hos/audit_logs",
+                "description": "List HOS (hours of service) audit logs for the specified driver and time range.",
+                "operationId": "list_driver_hos_audit_logs",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    { 
+                        "$ref": "#/parameters/groupIdParam" 
+                    },
+                    {
+                        "name": "driver_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID (integer) of the driver with hos audit logs.",
+                        "type": "number",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "start_ms",
+                        "description": "Beginning of the time range (inclusive), specified in milliseconds Unix epoch time.",
+                        "required": true,
+                        "in": "query",
+                        "type": "number",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "end_ms",
+                        "description": "End of the time range (exclusive), specified in milliseconds Unix epoch time.",
+                        "required": true,
+                        "in": "query",
+                        "type": "number",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The list of hos audit logs for the specified time range.",
+                        "schema": {
+                            "$ref": "#/definitions/HosAuditLogListResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/fleet/drivers/{driver_id}/hos_certified_daily_logs/{time_ms}": {
             "get": {
                 "tags": [
@@ -1508,6 +1564,54 @@
                         "description": "HOS logs for the specified driver.",
                         "schema": {
                             "$ref": "#/definitions/HosLogsSummaryResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/drivers/hos/audit_logs": {
+            "get": {
+                "tags": [
+                    "Fleet"
+                ],
+                "summary": "/fleet/drivers/hos/audit_logs",
+                "description": "List of HOS (hours of service) audit logs for the specified time range.",
+                "operationId": "list_hos_audit_logs",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    { 
+                        "$ref": "#/parameters/groupIdParam" 
+                    },
+                    {
+                        "name": "start_ms",
+                        "description": "Beginning of the time range (inclusive), specified in milliseconds Unix epoch time.",
+                        "required": true,
+                        "in": "query",
+                        "type": "number",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "end_ms",
+                        "description": "End of the time range (exclusive), specified in milliseconds Unix epoch time.",
+                        "required": true,
+                        "in": "query",
+                        "type": "number",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The list of hos audit logs for the specified time range.",
+                        "schema": {
+                            "$ref": "#/definitions/HosAuditLogListResponse"
                         }
                     },
                     "default": {
@@ -4764,6 +4868,17 @@
             }
           }
         },
+        "HosAuditLogListResponse": {
+            "type": "object",
+            "properties": {
+                "auditLogs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/HosAuditLogBase"
+                    }
+                }
+            }
+        },
         "HosLogsResponse": {
           "type": "object",
             "properties": {
@@ -5117,6 +5232,85 @@
                   }
                 }
               
+        },
+        "HosAuditLogBase": {
+            "type": "object",
+            "properties": {
+                "driverId": {
+                    "type": "number",
+                    "format": "int64",
+                    "description": "Driver ID",
+                    "example": 1234
+                },
+                "vehicleId": {
+                    "type": "number",
+                    "format": "int64",
+                    "description": "Vehicle ID",
+                    "example": 212014918086169
+                },
+                "statusType": {
+                    "type": "string",
+                    "description": "The log status for this event.",
+                    "enum": [
+                        "OFF_DUTY", 
+                        "SLEEPER_BED", 
+                        "DRIVING",
+                        "AUTO_DUTY",
+                        "ON_DUTY", 
+                        "YARD_MOVE", 
+                        "PERSONAL_CONVEYANCE"
+                    ],
+                    "example": "OFF_DUTY"
+                },
+                "statusTypeCode": {
+                    "type": "number",
+                    "format": "int64",
+                    "description": "A numerical identifier for the status type with 0 corresponding to the first entry in the above \"statusType\" list.",
+                    "example": 1
+                },
+                "action": {
+                    "type": "string",
+                    "description": "The audited log change.",
+                    "enum": [
+                        "Created",
+                        "Deleted",
+                        "Updated",
+                        "Created (Auto Duty)",
+                        "Deleted (Auto Duty)",
+                        "Vehicle Assignment Created",
+                        "Vehicle Assignment Deleted",
+                        "Vehicle Assignment Updated",
+                        "Signed In",
+                        "Signed Out",
+                        "Pending Vehicle Assignment Created",
+                        "Pending Vehicle Assignment Deleted",
+                        "Pending Vehicle Assignment Updated",
+                        "Driver Signout",
+                        "Force Sign Out",
+                        "Cascade Signout",
+                        "Vehicle Driver Changed"
+                    ],
+                    "example": "Created"
+                },
+                "actionCode": {
+                    "type": "number",
+                    "format": "int64",
+                    "description": "A numerical identifier for the action with 0 corresponding to the first entry in the above \"action\" list.",
+                    "example": 1
+                },
+                "logStartMs": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The time at which the log/HOS started in Unix epoch milliseconds.",
+                    "example": 1462881998034
+                },
+                "createdAtMs": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The time in Unix epoch milliseconds that the audit entry was created in the Samsara cloud. The created time may be behind the log start time if a vehicle gateway does not have a cellular connection at the time the event occurs.",
+                    "example": 1462881998034
+                }
+            }
         },
         "TaggedVehicleBase": {
             "type": "object",
