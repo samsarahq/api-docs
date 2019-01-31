@@ -2047,6 +2047,12 @@
                       "type": "string",
                       "in": "query",
                       "enum": ["engineState", "auxInput1", "auxInput2"]
+                    },
+                    {
+                        "name": "tagIds",
+                        "description": "Comma-separated list of tag ids. Example: tagIds=1,2,3",
+                        "type": "string",
+                        "in": "query"
                     }
                   ],
                   "responses": {
@@ -3460,6 +3466,7 @@
         "AuxInputSeries": {
             "type": "object",
             "description": "A list of aux input values over a timerange.",
+            "required": ["name", "values"],
             "properties": {
                 "name": {
                     "type": "string",
