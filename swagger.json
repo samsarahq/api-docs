@@ -1118,6 +1118,59 @@
             }
           }
         },
+        "/fleet/drivers/{driver_id}/log_edits": {
+            "get": {
+              "tags": [
+                "Fleet"
+              ],
+              "summary": "/fleet/drivers/{driver_id:[0-9]+}/log_edits",
+              "description": "Get a summary of the carrier edits for a specified driver. Note: This does not include edits made by driver",
+              "operationId": "getLogEdits",
+              "parameters": [
+                {
+                    "$ref": "#/parameters/accessTokenParam"
+                },
+                {
+                    "name": "driver_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID (integer) of the driver with HOS logs.",
+                    "type": "number",
+                    "format": "int64"
+                },
+                {
+                "name": "created_at_start_ms",
+                    "in": "query",
+                    "required": true,
+                    "description": "Beginning of the time range (record creation), specified in milliseconds UNIX time.",
+                    "type": "number",
+                    "format": "int64"
+                },
+                {
+                    "name": "created_at_end_ms",
+                    "in": "query",
+                    "required": true,
+                    "description": "End of the time range (record creation), specified in milliseconds UNIX time.",
+                    "type": "number",
+                    "format": "int64"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "Log edits with status of the logs.",
+                  "schema": {
+                    "$ref": "#/definitions/LogEditResponse"
+                  }
+                },
+                "default": {
+                  "description": "Unexpected error.",
+                  "schema": {
+                    "$ref": "#/definitions/ErrorResponse"
+                  }
+                }
+              }
+            }
+        },
         "/fleet/drivers/{driver_id}/hos/audit_logs": {
             "get": {
                 "tags": [
@@ -4729,6 +4782,65 @@
               }
             }
           }
+        },
+        "LogEditResponse": {
+            "type": "object",
+            "properties": {
+                "log_edits": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                    "vehicleId": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "ID of the vehicle.",
+                        "example": 112
+                    },
+                    "driverId": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "ID of the driver.",
+                        "example": 444
+                    },
+                    "logStartMs": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "The time at which the log/HOS status started in UNIX milliseconds.",
+                        "example": 1462881998034
+                    },
+                    "statusType": {
+                        "type": "string",
+                        "description": "The Hours of Service status type. One of `OFF_DUTY`, `SLEEPER_BED`, `DRIVING`, `ON_DUTY`, `YARD_MOVE`, `PERSONAL_CONVEYANCE`.",
+                        "example": "OFF_DUTY"
+                    },
+                    "logStatus": {
+                        "type": "string",
+                        "description": "The status of the carrier edit, it can have one of the following value `ACCEPTED`, `PENDING_ASSIGNMENT`, `REJECTED`",
+                        "example": "PENDING_ASSIGNMENT"
+                    },
+                    "createdAtMs": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "The time at which the log/HOS status started in UNIX milliseconds.",
+                        "example": 1462881998034
+                    },
+                    "acceptedAtMs": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "The time at which the log/HOS status started in UNIX milliseconds.",
+                        "example": 1462881998034
+                    },
+                    "rejectedAtMs": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "The time at which the log/HOS status started in UNIX milliseconds.",
+                        "example": 1462881998034
+                    }                  
+                    }
+                }
+                }
+            }
         },
         "HosCertifiedDailyLogResponse": {
             "type": "object",
