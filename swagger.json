@@ -4532,6 +4532,18 @@
                             "format": "int64",
                             "description": "The time in millis when the DVIR was signed",
                             "example": 12535500000 
+                        },
+                        "driverId": {
+                          "type": "integer",
+                          "format": "int64",
+                          "description": "ID of the driver who signed the DVIR. Will not be returned if mechanicUserId is returned.",
+                          "example": 2581
+                        },
+                        "mechanicUserId": {
+                          "type": "integer",
+                          "format": "int64",
+                          "description": "ID of the mechanic who signed the DVIR. Will not be returned if driverId is returned.",
+                          "example": 14849
                         }
                     }
                   },
@@ -4564,6 +4576,18 @@
                             "format": "int64",
                             "description": "The time in millis when the DVIR was signed",
                             "example": 12535500000 
+                        },
+                        "driverId": {
+                          "type": "integer",
+                          "format": "int64",
+                          "description": "ID of the driver who signed the DVIR. Will not be returned if mechanicUserId is returned.",
+                          "example": 2581
+                        },
+                        "mechanicUserId": {
+                          "type": "integer",
+                          "format": "int64",
+                          "description": "ID of the mechanic who signed the DVIR. Will not be returned if driverId is returned.",
+                          "example": 14849
                         }
                     }
                   },
@@ -4596,6 +4620,12 @@
                             "format": "int64",
                             "description": "The time in millis when the next driver signed the DVIR on this vehicle.",
                             "example": 12535500000 
+                        },
+                        "driverId": {
+                          "type": "integer",
+                          "format": "int64",
+                          "description": "ID of the driver who signed the DVIR",
+                          "example": 2581
                         }
                     }
                   }
