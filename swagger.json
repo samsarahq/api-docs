@@ -3882,6 +3882,11 @@
                     "description": "Driver's phone number. Please include only digits, ex. 4157771234",
                     "example": "5558234327"
                 },
+                "notes": {
+                    "type": "string",
+                    "description": "Notes about the driver.",
+                    "example": "Also goes by the nickname 'Furious Fred'."
+                },
                 "licenseNumber": {
                     "type": "string",
                     "description": "Driver's state issued license number.",
@@ -3948,6 +3953,9 @@
             "allOf": [
                 {
                     "type": "object",
+                    "required": [
+                        "password"
+                    ],
                     "properties": {
                         "password": {
                             "type": "string",
