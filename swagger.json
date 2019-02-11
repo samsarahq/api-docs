@@ -2922,7 +2922,13 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Addresses were successfully added. No response body is returned."
+                        "description": "List of added addresses/geofences. For each address entry, the geofence field will only be populated with either 'circle' or 'polygon', depending on the geofence type.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Address"
+                            }
+                        }
                     },
                     "default": {
                         "description": "Unexpected error.",
