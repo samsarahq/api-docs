@@ -2922,7 +2922,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "List of added addresses/geofences. For each address entry, the geofence field will only be populated with either 'circle' or 'polygon', depending on the geofence type.",
+                        "description": "List of added addresses/geofences. For each address entry, the geofence field will only be populated with either 'circle' or 'polygon', depending on the geofence type. Circle geofences added without a specific lat/lng are geocoded asynchronously, and will be 0,0 in the immediate response.",
                         "schema": {
                             "type": "array",
                             "items": {
