@@ -43,6 +43,36 @@
         }
     ],
     "paths": {
+        "/user_roles": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "/user_roles",
+                "description": "Get all roles in the organization.",
+                "operationId": "listUserRoles",
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of user roles.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/UserRole"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/users": {
             "get": {
                 "tags": [
@@ -6556,6 +6586,19 @@
                     }
                 }
             ]
+        },
+        "UserRole": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "Full Admin"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
+                }
+            }
         },
         "UserTagRole": {
             "type": "object",
