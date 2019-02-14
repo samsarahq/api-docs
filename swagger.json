@@ -6557,8 +6557,13 @@
                 },
                 "organizationRole" : {
                     "type": "string",
-                    "description": "The name of the role the user is assigned to for the organization. This will be blank for users that only have access to specific tags.",
-                    "example": "Read-Only Admin"
+                    "description": "The name of the role the user is assigned to at the organization level. This will be blank for users that only have access to specific tags.",
+                    "example": "Full Admin"
+                },
+                "organizationRoleId" : {
+                    "type": "string",
+                    "description": "The id of the role the user is assigned to at the organization level. This will be blank for users that only have access to specific tags.",
+                    "example": "23d4d8d3-dc10-4e7a-a183-69968751f23e"
                 }
             }
         },
@@ -6602,7 +6607,7 @@
         },
         "UserTagRole": {
             "type": "object",
-            "required": ["tag", "role"],
+            "required": ["tag", "roleId"],
             "properties": {
                 "tag": {
                     "type": "object",
@@ -6629,8 +6634,13 @@
                 },
                 "role": {
                     "type": "string",
-                    "description": "The role the user has been granted on this tag.",
+                    "description": "The name of the role the user has been granted on this tag.",
                     "example": "Full Admin"
+                },
+                "roleId": {
+                    "type": "string",
+                    "description": "The id of the role the user has been granted on this tag.",
+                    "example": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
                 }
             }
         }
