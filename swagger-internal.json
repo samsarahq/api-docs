@@ -3214,6 +3214,36 @@
             }
           }
         }
+      },
+      "post": {
+        "description": "Add a user to the organization.",
+        "tags": [
+          "Users"
+        ],
+        "summary": "/users",
+        "operationId": "create_user",
+        "parameters": [
+          {
+            "$ref": "#/parameters/accessTokenParam"
+          },
+          {
+            "$ref": "#/parameters/createUserParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User successfully created.",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
       }
     },
     "/users/{userId}": {
@@ -3275,6 +3305,44 @@
         "responses": {
           "200": {
             "description": "The user was successfully removed."
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Update some fields on a user. Only fields to be changed need to be supplied. Note that if you change an object or collection, you must supply the complete collection. For example, to add a tag role to a user, you must specify all tag roles that the user should have.",
+        "tags": [
+          "Users"
+        ],
+        "summary": "/users/{userId:[0-9]+}",
+        "operationId": "update_user",
+        "parameters": [
+          {
+            "$ref": "#/parameters/accessTokenParam"
+          },
+          {
+            "$ref": "#/parameters/updateUserParam"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of the user.",
+            "name": "userId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User successfully updated.",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
           },
           "default": {
             "description": "Unexpected error.",
@@ -6337,6 +6405,38 @@
         }
       }
     },
+    "UpsertUserBase": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/UserBase"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "tagRoles": {
+              "description": "If specified, the user will be an administrator for these tags. If left blank, the user has access to the entire organization.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "roleId": {
+                    "description": "The id of the role",
+                    "type": "string",
+                    "example": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
+                  },
+                  "tagId": {
+                    "description": "The id of the tag to grant this user access to.",
+                    "type": "number",
+                    "format": "int64",
+                    "example": "123"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "User": {
       "allOf": [
         {
@@ -7066,6 +7166,25 @@
         }
       }
     },
+    "createUserParam": {
+      "description": "User properties. Only one of organizationRoleId or tagRoles is required.",
+      "name": "user",
+      "in": "body",
+      "required": true,
+      "schema": {
+        "type": "object",
+        "required": [
+          "name",
+          "email",
+          "authType"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/definitions/UpsertUserBase"
+          }
+        ]
+      }
+    },
     "dataInputEndTimeParam": {
       "type": "integer",
       "format": "int64",
@@ -7324,6 +7443,15 @@
       "required": true,
       "schema": {
         "$ref": "#/definitions/TagUpdate"
+      }
+    },
+    "updateUserParam": {
+      "description": "User properties. Note that when updating tagRoles, the complete list of tag roles must be supplied for the user. To delete all tag roles set the value to null or an empty array.",
+      "name": "user",
+      "in": "body",
+      "required": true,
+      "schema": {
+        "$ref": "#/definitions/UpsertUserBase"
       }
     },
     "vehicleIdOrExternalIdParam": {
