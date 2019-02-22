@@ -3314,7 +3314,7 @@
           "Users"
         ],
         "summary": "/users",
-        "operationId": "create_user",
+        "operationId": "createUser",
         "parameters": [
           {
             "$ref": "#/parameters/accessTokenParam"
@@ -3413,7 +3413,7 @@
           "Users"
         ],
         "summary": "/users/{userId:[0-9]+}",
-        "operationId": "update_user",
+        "operationId": "patchUser",
         "parameters": [
           {
             "$ref": "#/parameters/accessTokenParam"
@@ -6540,36 +6540,52 @@
       }
     },
     "UpsertUserBase": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/UserBase"
+      "type": "object",
+      "properties": {
+        "authType": {
+          "description": "The authentication type the user uses to authenticate. To use SAML this organization must have a configured SAML integration.",
+          "type": "string",
+          "enum": [
+            "default",
+            "saml"
+          ]
         },
-        {
-          "type": "object",
-          "properties": {
-            "tagRoles": {
-              "description": "If specified, the user will be an administrator for these tags. If left blank, the user has access to the entire organization.",
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "roleId": {
-                    "description": "The id of the role",
-                    "type": "string",
-                    "example": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
-                  },
-                  "tagId": {
-                    "description": "The id of the tag to grant this user access to.",
-                    "type": "number",
-                    "format": "int64",
-                    "example": "123"
-                  }
-                }
+        "email": {
+          "description": "The email address of this user.",
+          "type": "string",
+          "example": "user@company.com"
+        },
+        "name": {
+          "description": "The first and last name of the user.",
+          "type": "string",
+          "example": "Jane Doe"
+        },
+        "organizationRoleId": {
+          "description": "The id of the role the user is assigned to at the organization level. This will be blank for users that only have access to specific tags.",
+          "type": "string",
+          "example": "23d4d8d3-dc10-4e7a-a183-69968751f23e"
+        },
+        "tagRoles": {
+          "description": "If specified, the user will be an administrator for these tags. If left blank, the user has access to the entire organization.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "roleId": {
+                "description": "The id of the role",
+                "type": "string",
+                "example": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
+              },
+              "tagId": {
+                "description": "The id of the tag to grant this user access to.",
+                "type": "number",
+                "format": "int64",
+                "example": "123"
               }
             }
           }
         }
-      ]
+      }
     },
     "User": {
       "allOf": [
@@ -6584,6 +6600,11 @@
               "type": "integer",
               "format": "int64",
               "example": 123
+            },
+            "organizationRole": {
+              "description": "The name of the role the user is assigned to at the organization level. This will be blank for users that only have access to specific tags.",
+              "type": "string",
+              "example": "Full Admin"
             },
             "tagRoles": {
               "description": "The specific tags this user has access to. This will be blank for users that have full access to the organization.",
@@ -6620,11 +6641,6 @@
           "description": "The first and last name of the user.",
           "type": "string",
           "example": "Jane Doe"
-        },
-        "organizationRole": {
-          "description": "The name of the role the user is assigned to at the organization level. This will be blank for users that only have access to specific tags.",
-          "type": "string",
-          "example": "Full Admin"
         },
         "organizationRoleId": {
           "description": "The id of the role the user is assigned to at the organization level. This will be blank for users that only have access to specific tags.",
