@@ -47,6 +47,36 @@
         }
     ],
     "paths": {
+        "/user_roles": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "/user_roles",
+                "description": "Get all roles in the organization.",
+                "operationId": "listUserRoles",
+                "parameters": [
+                    { "$ref": "#/parameters/accessTokenParam" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of user roles.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/UserRole"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/users": {
             "get": {
                 "tags": [
@@ -78,26 +108,30 @@
             },
             "post": {
                 "tags": [
-                    "Default", "Users"
+                    "Users"
                 ],
                 "summary": "/users",
                 "description": "Add a user to the organization.",
-                "operationId": "create_user",
+                "operationId": "createUser",
                 "parameters": [
-                    { "$ref": "#/parameters/accessTokenParam" },
-                    { "$ref": "#/parameters/createUserParam" }
+                    {
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "$ref": "#/parameters/createUserParam"
+                    }
                 ],
                 "responses": {
                     "200": {
                         "description": "User successfully created.",
                         "schema": {
-                            "$ref": "#/definitions/User"
+                        "$ref": "#/definitions/User"
                         }
                     },
                     "default": {
                         "description": "Unexpected error.",
                         "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
+                        "$ref": "#/definitions/ErrorResponse"
                         }
                     }
                 }
@@ -169,16 +203,20 @@
             },
             "patch": {
                 "tags": [
-                    "Default", "Users"
+                  "Users"
                 ],
-                "summary": "/users/{user_id:[0-9]+}",
+                "summary": "/users/{userId:[0-9]+}",
                 "description": "Update some fields on a user. Only fields to be changed need to be supplied. Note that if you change an object or collection, you must supply the complete collection. For example, to add a tag role to a user, you must specify all tag roles that the user should have.",
-                "operationId": "update_user",
+                "operationId": "patchUser",
                 "parameters": [
-                    { "$ref": "#/parameters/accessTokenParam" },
-                    { "$ref": "#/parameters/updateUserParam" },
                     {
-                        "name": "user_id",
+                        "$ref": "#/parameters/accessTokenParam"
+                    },
+                    {
+                        "$ref": "#/parameters/updateUserParam"
+                    },
+                    {
+                        "name": "userId",
                         "in": "path",
                         "required": true,
                         "description": "ID of the user.",
@@ -187,52 +225,18 @@
                     }
                 ],
                 "responses": {
-                    "200": {
+                  "200": {
                         "description": "User successfully updated.",
                         "schema": {
                             "$ref": "#/definitions/User"
                         }
-                    },
-                    "default": {
+                  },
+                  "default": {
                         "description": "Unexpected error.",
                         "schema": {
                             "$ref": "#/definitions/ErrorResponse"
                         }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "Default", "Users"
-                ],
-                "summary": "/users/{user_id:[0-9]+}",
-                "description": "Replace all fields on a user with the supplied fields. Any fields not supplied will be set to null.",
-                "operationId": "replace_user",
-                "parameters": [
-                    { "$ref": "#/parameters/accessTokenParam" },
-                    { "$ref": "#/parameters/createUserParam" },
-                    {
-                        "name": "user_id",
-                        "in": "path",
-                        "required": true,
-                        "description": "ID of the user.",
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "User successfully created.",
-                        "schema": {
-                            "$ref": "#/definitions/User"
-                        }
-                    },
-                    "default": {
-                        "description": "Unexpected error.",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
+                  }
                 }
             }
         },
@@ -7314,43 +7318,60 @@
                     ],
                     "description": "The authentication type the user uses to authenticate. To use SAML this organization must have a configured SAML integration."
                 },
-                "organizationRole" : {
+                "organizationRoleId" : {
                     "type": "string",
-                    "description": "The name of the role the user is assigned to for the organization. This will be blank for users that only have access to specific tags.",
-                    "example": "Read-Only Admin"
+                    "description": "The id of the role the user is assigned at the organization level.",
+                    "example": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
                 }
             }
         },
         "UpsertUserBase": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/UserBase"
+            "type": "object",
+            "properties": {
+                "name" : {
+                    "type": "string",
+                    "description": "The first and last name of the user.",
+                    "example": "Jane Doe"
                 },
-                {
+                "email": {
+                    "type": "string",
+                    "description": "The email address of this user.",
+                    "example": "user@company.com"
+                },
+                "authType": {
+                    "type": "string",
+                    "enum": [
+                    "default",
+                    "saml"
+                    ],
+                    "description": "The authentication type the user uses to authenticate. To use SAML this organization must have a configured SAML integration."
+                },
+                "organizationRoleId" : {
+                    "type": "string",
+                    "description": "The id of the role the user is assigned to at the organization level. This will be blank for users that only have access to specific tags.",
+                    "example": "23d4d8d3-dc10-4e7a-a183-69968751f23e"
+                },
+                "tagRoles" : {
+                    "type": "array",
+                    "description": "If specified, the user will be an administrator for these tags. If left blank, the user has access to the entire organization.",
+                    "items": {
                     "type": "object",
                     "properties": {
-                        "tagRoles" : {
-                            "type": "array",
-                            "description": "If specified, the user will be a tag administrator for these tags. If left blank, the user has access to the entire organization.",
-                            "items": {
-                                "type": "object",
-                                "properties": {
-                                    "tagName": {
-                                        "type": "string",
-                                        "description": "The name of the tag to grant this user access to.",
-                                        "example": "North Carolina Distribution"
-                                    },
-                                    "role" : {
-                                        "type": "string",
-                                        "description": "The name of the role the user is assigned to for this tag. This must match one of the preset roles or the name of a custom role in the organization. This value is case insensitive.",
-                                        "example": "Read-Only Admin"
-                                    }
-                                }
-                            }
+                        "tagId": {
+                        "type": "number",
+                        "format": "int64",
+                        "description": "The id of the tag to grant this user access to.",
+                        "example": "123"
+                        },
+                        "roleId" : {
+                        "type": "string",
+                        "description": "The id of the role",
+                        "example": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
                         }
                     }
+                    }
                 }
-            ]
+            }
         },
         "User": {
             "allOf": [
@@ -7365,6 +7386,11 @@
                             "format": "int64",
                             "description": "The ID of the User record.",
                             "example": 123
+                        },
+                        "organizationRoleName" : {
+                            "type": "string",
+                            "description": "The name of the role the user is assigned to for the organization. This will be blank for users that only have access to specific tags.",
+                            "example": "Read-Only Admin"
                         },
                         "tagRoles" : {
                             "type": "array",
@@ -7406,6 +7432,19 @@
                     "type": "string",
                     "description": "The role the user has been granted on this tag.",
                     "example": "Full Admin"
+                }
+            }
+        },
+        "UserRole": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "Full Admin"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
                 }
             }
         }
