@@ -1948,6 +1948,99 @@
         }
       }
     },
+    "/fleet/unassigned_driving_segments/{segment_id}": {
+      "get": {
+        "description": "Fetch an unassigned driving segment by segment ID.",
+        "tags": [
+          "Fleet"
+        ],
+        "summary": "/fleet/unassigned_driving_segments/{segment_id:[a-zA-Z0-9]+}",
+        "operationId": "getUnassignedDrivingSegmentBySegmentId",
+        "parameters": [
+          {
+            "$ref": "#/parameters/accessTokenParam"
+          },
+          {
+            "type": "string",
+            "format": "string",
+            "description": "ID of the unassigned driving segment.",
+            "name": "segment_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Unassigned driving segment log for the segment ID.",
+            "schema": {
+              "$ref": "#/definitions/UnassignedDrivingSegment"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Update an unassigned driving segment.",
+        "tags": [
+          "Fleet"
+        ],
+        "summary": "/fleet/unassigned_driving_segments/{segment_id:[a-zA-Z0-9]+}",
+        "operationId": "patchUnassignedDrivingSegment",
+        "parameters": [
+          {
+            "$ref": "#/parameters/accessTokenParam"
+          },
+          {
+            "type": "string",
+            "format": "string",
+            "description": "ID of the unassigned driving segment.",
+            "name": "segment_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "unassignedDrivingSegmentParams",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "annotation": {
+                  "description": "Annotation to give this segment.",
+                  "type": "string",
+                  "example": "Drive time"
+                },
+                "driverId": {
+                  "description": "Driver ID to assign to this segment.",
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 719
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The unassigned driving segment that was updated.",
+            "schema": {
+              "$ref": "#/definitions/UnassignedDrivingSegment"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/fleet/vehicles/locations": {
       "get": {
         "description": "Fetch locations for a given vehicle between a start/end time. The maximum query duration is 30 minutes.",
@@ -6402,6 +6495,47 @@
               }
             }
           }
+        }
+      }
+    },
+    "UnassignedDrivingSegment": {
+      "description": "An unassigned driving segment.",
+      "type": "object",
+      "properties": {
+        "annotation": {
+          "description": "Annotation for the driving segment.",
+          "type": "string",
+          "example": "Drive time"
+        },
+        "createdAtMs": {
+          "type": "integer",
+          "format": "int64",
+          "example": 1523059200000
+        },
+        "endMs": {
+          "type": "integer",
+          "format": "int64",
+          "example": 1523059200000
+        },
+        "id": {
+          "type": "string",
+          "format": "string",
+          "example": "08b3aeada5f4ab3010c0b4efa28d2d1890dbf8d48d2d"
+        },
+        "pendingDriverId": {
+          "type": "integer",
+          "format": "int64",
+          "example": 719
+        },
+        "startMs": {
+          "type": "integer",
+          "format": "int64",
+          "example": 1523059200000
+        },
+        "vehicleId": {
+          "type": "integer",
+          "format": "int64",
+          "example": 212014918086169
         }
       }
     },
