@@ -1948,6 +1948,66 @@
         }
       }
     },
+    "/fleet/unassigned_driving_segments": {
+      "get": {
+        "description": "Get the unassigned driving segments for a specified range.",
+        "tags": [
+          "Fleet"
+        ],
+        "summary": "/fleet/unassigned_driving_segments",
+        "operationId": "getUnassignedDrivingSegments",
+        "parameters": [
+          {
+            "$ref": "#/parameters/accessTokenParam"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Beginning of the filter time range, specified in milliseconds UNIX time.",
+            "name": "startMs",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "End of the filter time range, specified in milliseconds UNIX time.",
+            "name": "endMs",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Determines the property that the startMs/endMs time range filter applies to. Currently only 'createdAtMs' is supported",
+            "name": "filterType",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Unassigned driving segments for provided time range.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "unassignedDrivingSegments": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/UnassignedDrivingSegmentListResponse"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/fleet/unassigned_driving_segments/{segment_id}": {
       "get": {
         "description": "Fetch an unassigned driving segment by segment ID.",
@@ -6526,6 +6586,42 @@
           "type": "integer",
           "format": "int64",
           "example": 719
+        },
+        "startMs": {
+          "type": "integer",
+          "format": "int64",
+          "example": 1523059200000
+        },
+        "vehicleId": {
+          "type": "integer",
+          "format": "int64",
+          "example": 212014918086169
+        }
+      }
+    },
+    "UnassignedDrivingSegmentListResponse": {
+      "description": "A driving segment that has no associated driver.",
+      "type": "object",
+      "properties": {
+        "annotation": {
+          "description": "Annotation for the driving segment.",
+          "type": "string",
+          "example": "Drive time"
+        },
+        "createdAtMs": {
+          "type": "integer",
+          "format": "int64",
+          "example": 1523059200000
+        },
+        "endMs": {
+          "type": "integer",
+          "format": "int64",
+          "example": 1523059200000
+        },
+        "id": {
+          "type": "string",
+          "format": "string",
+          "example": "08b3aeada5f4ab3010c0b4efa28d2d1890dbf8d48d2d"
         },
         "startMs": {
           "type": "integer",
