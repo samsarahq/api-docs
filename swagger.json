@@ -1417,7 +1417,7 @@
         "/fleet/unassigned_driving_segments": {
             "get": {
                 "tags": [
-                    "Fleet", "Default"
+                    "Fleet"
                 ],
                 "summary": "/fleet/unassigned_driving_segments",
                 "description": "Get the unassigned driving segments for a specified range.",
@@ -1427,20 +1427,29 @@
                         "$ref": "#/parameters/accessTokenParam"
                     },
                     {
-                        "name": "created_at_start_ms",
+                        "name": "startMs",
                         "in": "query",
                         "required": true,
-                        "description": "Beginning of the time range (record creation), specified in milliseconds UNIX time.",
+                        "description": "Beginning of the filter time range, specified in milliseconds UNIX time.",
                         "type": "integer",
                         "format": "int64"
                     },
                     {
-                        "name": "created_at_end_ms",
+                        "name": "endMs",
                         "in": "query",
                         "required": true,
-                        "description": "End of the time range (record creation), specified in milliseconds UNIX time.",
+                        "description": "End of the filter time range, specified in milliseconds UNIX time.",
                         "type": "integer",
                         "format": "int64"
+                    },
+                    {
+                        "name": "filterType",
+                        "in": "query",
+                        "required": true,
+                        "description": "Determines the property that the startMs/endMs time range filter applies to. Currently only 'createdAtMs' is supported",
+                        "type": "string",
+                        "enum": [ "createdAtMs" ],
+                        "example": "createdAtMs"
                     }
                 ],
                 "responses": {
