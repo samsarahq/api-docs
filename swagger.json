@@ -407,7 +407,7 @@
           "Fleet",
           "Assets"
         ],
-        "summary": "/fleet/assets/{assetId:[0-9]+}/locations",
+        "summary": "/fleet/assets/{assetId}/locations",
         "operationId": "GetAssetLocation",
         "parameters": [
           {
@@ -446,7 +446,7 @@
           "Fleet",
           "Assets"
         ],
-        "summary": "/fleet/assets/{assetId:[0-9]+}/reefer",
+        "summary": "/fleet/assets/{assetId}/reefer",
         "operationId": "GetAssetReefer",
         "parameters": [
           {
@@ -618,7 +618,7 @@
           "Fleet",
           "Routes"
         ],
-        "summary": "/fleet/dispatch/routes/{route_id:[0-9]+}",
+        "summary": "/fleet/dispatch/routes/{route_id}",
         "operationId": "getDispatchRouteById",
         "responses": {
           "200": {
@@ -647,7 +647,7 @@
           "Fleet",
           "Routes"
         ],
-        "summary": "/fleet/dispatch/routes/{route_id:[0-9]+}/",
+        "summary": "/fleet/dispatch/routes/{route_id}/",
         "operationId": "updateDispatchRouteById",
         "parameters": [
           {
@@ -681,7 +681,7 @@
           "Fleet",
           "Routes"
         ],
-        "summary": "/fleet/dispatch/routes/{route_id:[0-9]+}/",
+        "summary": "/fleet/dispatch/routes/{route_id}/",
         "operationId": "deleteDispatchRouteById",
         "responses": {
           "200": {
@@ -702,7 +702,7 @@
         {
           "type": "integer",
           "format": "int64",
-          "description": "ID of the dispatch route.",
+          "description": "ID of the dispatch route. Must contain only digits 0-9.",
           "name": "route_id",
           "in": "path",
           "required": true
@@ -722,7 +722,7 @@
           "Fleet",
           "Routes"
         ],
-        "summary": "/fleet/dispatch/routes/{route_id:[0-9]+}/history",
+        "summary": "/fleet/dispatch/routes/{route_id}/history",
         "operationId": "getDispatchRouteHistory",
         "parameters": [
           {
@@ -737,7 +737,7 @@
           {
             "type": "integer",
             "format": "int64",
-            "description": "ID of the route with history.",
+            "description": "ID of the route with history. Must contain only digits 0-9.",
             "name": "route_id",
             "in": "path",
             "required": true
@@ -974,7 +974,7 @@
           "Fleet",
           "Drivers"
         ],
-        "summary": "/fleet/drivers/inactive/{driver_id:[0-9]+ | external_id:[a-zA-Z0-9]+}",
+        "summary": "/fleet/drivers/inactive/{driver_id or external_id}",
         "operationId": "getDeactivatedDriverById",
         "responses": {
           "200": {
@@ -1003,7 +1003,7 @@
           "Fleet",
           "Drivers"
         ],
-        "summary": "/fleet/drivers/inactive/{driver_id:[0-9]+ | external_id:[a-zA-Z0-9]+}",
+        "summary": "/fleet/drivers/inactive/{driver_id or external_id}",
         "operationId": "reactivateDriverById",
         "parameters": [
           {
@@ -1110,7 +1110,7 @@
           "Fleet",
           "Safety"
         ],
-        "summary": "/fleet/drivers/{driverId:[0-9]+}/safety/score",
+        "summary": "/fleet/drivers/{driverId}/safety/score",
         "operationId": "GetDriverSafetyScore",
         "parameters": [
           {
@@ -1142,7 +1142,7 @@
         {
           "type": "integer",
           "format": "int64",
-          "description": "ID of the driver",
+          "description": "ID of the driver. Must contain only digits 0-9.",
           "name": "driverId",
           "in": "path",
           "required": true
@@ -1162,7 +1162,7 @@
           "Fleet",
           "Drivers"
         ],
-        "summary": "/fleet/drivers/{driver_id:[0-9]+ | external_id:[a-zA-Z0-9]+}",
+        "summary": "/fleet/drivers/{driver_id or external_id}",
         "operationId": "getDriverById",
         "responses": {
           "200": {
@@ -1191,7 +1191,7 @@
           "Fleet",
           "Drivers"
         ],
-        "summary": "/fleet/drivers/{driver_id:[0-9]+ | external_id:[a-zA-Z0-9]+}",
+        "summary": "/fleet/drivers/{driver_id or external_id}",
         "operationId": "deactivateDriver",
         "responses": {
           "200": {
@@ -1227,7 +1227,7 @@
           "Fleet",
           "Routes"
         ],
-        "summary": "/fleet/drivers/{driver_id:[0-9]+}/dispatch/routes",
+        "summary": "/fleet/drivers/{driver_id}/dispatch/routes",
         "operationId": "getDispatchRoutesByDriverId",
         "parameters": [
           {
@@ -1264,7 +1264,7 @@
           "Fleet",
           "Routes"
         ],
-        "summary": "/fleet/drivers/{driver_id:[0-9]+}/dispatch/routes",
+        "summary": "/fleet/drivers/{driver_id}/dispatch/routes",
         "operationId": "createDriverDispatchRoute",
         "parameters": [
           {
@@ -1293,7 +1293,7 @@
         {
           "type": "integer",
           "format": "int64",
-          "description": "ID of the driver with the associated routes.",
+          "description": "ID of the driver with the associated routes. Must contain only digits 0-9.",
           "name": "driver_id",
           "in": "path",
           "required": true
@@ -1312,7 +1312,7 @@
         "tags": [
           "Fleet"
         ],
-        "summary": "/fleet/drivers/{driver_id:[0-9]+}/documents",
+        "summary": "/fleet/drivers/{driver_id}/documents",
         "operationId": "createDriverDocument",
         "parameters": [
           {
@@ -1341,7 +1341,7 @@
         {
           "type": "integer",
           "format": "int64",
-          "description": "ID of the driver for whom the document is created.",
+          "description": "ID of the driver for whom the document is created. Must contain only digits 0-9.",
           "name": "driver_id",
           "in": "path",
           "required": true
@@ -2110,7 +2110,7 @@
           "Fleet",
           "Safety"
         ],
-        "summary": "/fleet/vehicles/{vehicleId:[0-9]+}/safety/harsh_event",
+        "summary": "/fleet/vehicles/{vehicleId}/safety/harsh_event",
         "operationId": "GetVehicleHarshEvent",
         "parameters": [
           {
@@ -2139,7 +2139,7 @@
         {
           "type": "integer",
           "format": "int64",
-          "description": "ID of the vehicle",
+          "description": "ID of the vehicle. Must contain only digits 0-9.",
           "name": "vehicleId",
           "in": "path",
           "required": true
@@ -2153,7 +2153,7 @@
           "Fleet",
           "Safety"
         ],
-        "summary": "/fleet/vehicles/{vehicleId:[0-9]+}/safety/score",
+        "summary": "/fleet/vehicles/{vehicleId}/safety/score",
         "operationId": "GetVehicleSafetyScore",
         "parameters": [
           {
@@ -2185,7 +2185,7 @@
         {
           "type": "integer",
           "format": "int64",
-          "description": "ID of the vehicle",
+          "description": "ID of the vehicle. Must contain only digits 0-9.",
           "name": "vehicleId",
           "in": "path",
           "required": true
@@ -2201,7 +2201,7 @@
         "tags": [
           "Fleet"
         ],
-        "summary": "/fleet/vehicles/{vehicle_id:[0-9]+ | external_id:[a-zA-Z0-9]+}",
+        "summary": "/fleet/vehicles/{driver_id or external_id}",
         "operationId": "getFleetVehicle",
         "parameters": [
           {
@@ -2235,7 +2235,7 @@
         "tags": [
           "Fleet"
         ],
-        "summary": "/fleet/vehicles/{vehicle_id:[0-9]+ | external_id:[a-zA-Z0-9]+}",
+        "summary": "/fleet/vehicles/{driver_id or external_id}",
         "operationId": "patchFleetVehicle",
         "parameters": [
           {
@@ -2309,7 +2309,7 @@
           "Fleet",
           "Routes"
         ],
-        "summary": "/fleet/vehicles/{vehicle_id:[0-9]+}/dispatch/routes",
+        "summary": "/fleet/vehicles/{vehicle_id}/dispatch/routes",
         "operationId": "getDispatchRoutesByVehicleId",
         "parameters": [
           {
@@ -2346,7 +2346,7 @@
           "Fleet",
           "Routes"
         ],
-        "summary": "/fleet/vehicles/{vehicle_id:[0-9]+}/dispatch/routes",
+        "summary": "/fleet/vehicles/{vehicle_id}/dispatch/routes",
         "operationId": "createVehicleDispatchRoute",
         "parameters": [
           {
@@ -2375,7 +2375,7 @@
         {
           "type": "integer",
           "format": "int64",
-          "description": "ID of the vehicle with the associated routes.",
+          "description": "ID of the vehicle with the associated routes. Must contain only digits 0-9.",
           "name": "vehicle_id",
           "in": "path",
           "required": true
@@ -2394,7 +2394,7 @@
         "tags": [
           "Fleet"
         ],
-        "summary": "/fleet/vehicles/{vehicle_id:[0-9]+}/locations",
+        "summary": "/fleet/vehicles/{vehicle_id}/locations",
         "operationId": "getVehicleLocations",
         "responses": {
           "200": {
@@ -2418,7 +2418,7 @@
         {
           "type": "integer",
           "format": "int64",
-          "description": "ID of the vehicle with the associated routes.",
+          "description": "ID of the vehicle with the associated routes. Must contain only digits 0-9.",
           "name": "vehicle_id",
           "in": "path",
           "required": true
@@ -2505,7 +2505,7 @@
         "tags": [
           "Industrial"
         ],
-        "summary": "/industrial/data/{data_input_id:[0-9]+}",
+        "summary": "/industrial/data/{data_input_id}",
         "operationId": "GetDataInput",
         "parameters": [
           {
@@ -3015,7 +3015,7 @@
         "tags": [
           "Tags"
         ],
-        "summary": "/tags/{tag_id:[0-9]+}",
+        "summary": "/tags/{tag_id}",
         "operationId": "getTagById",
         "parameters": [
           {
@@ -3051,7 +3051,7 @@
         "tags": [
           "Tags"
         ],
-        "summary": "/tags/{tag_id:[0-9]+}",
+        "summary": "/tags/{tag_id}",
         "operationId": "updateTagById",
         "parameters": [
           {
@@ -3090,7 +3090,7 @@
         "tags": [
           "Tags"
         ],
-        "summary": "/tags/{tag_id:[0-9]+}",
+        "summary": "/tags/{tag_id}",
         "operationId": "deleteTagById",
         "parameters": [
           {
@@ -3123,7 +3123,7 @@
         "tags": [
           "Tags"
         ],
-        "summary": "/tags/{tag_id:[0-9]+}",
+        "summary": "/tags/{tag_id}",
         "operationId": "modifyTagById",
         "parameters": [
           {
@@ -3222,7 +3222,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "/users/{userId:[0-9]+}",
+        "summary": "/users/{userId}",
         "operationId": "getUserById",
         "parameters": [
           {
@@ -3231,7 +3231,7 @@
           {
             "type": "integer",
             "format": "int64",
-            "description": "ID of the user.",
+            "description": "ID of the user. Must contain only digits 0-9.",
             "name": "userId",
             "in": "path",
             "required": true
@@ -3257,7 +3257,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "/users/{userId:[0-9]+}",
+        "summary": "/users/{userId}",
         "operationId": "deleteUserById",
         "parameters": [
           {
@@ -3266,7 +3266,7 @@
           {
             "type": "integer",
             "format": "int64",
-            "description": "ID of the user.",
+            "description": "ID of the user. Must contain only digits 0-9.",
             "name": "userId",
             "in": "path",
             "required": true
@@ -6993,7 +6993,7 @@
     "assetIdParam": {
       "type": "integer",
       "format": "int64",
-      "description": "ID of the asset",
+      "description": "ID of the asset. Must contain only digits 0-9.",
       "name": "asset_id",
       "in": "path",
       "required": true
@@ -7085,7 +7085,7 @@
     "dataInputIdParam": {
       "type": "integer",
       "format": "int64",
-      "description": "ID of the data input",
+      "description": "ID of the data input. Must contain only digits 0-9.",
       "name": "data_input_id",
       "in": "path",
       "required": true
@@ -7122,7 +7122,7 @@
     },
     "driverIdOrExternalIdParam": {
       "type": "string",
-      "description": "ID of the driver.  This must be either the numeric ID generated by Samsara or the external ID of the driver.  External IDs are customer specified key-value pairs.",
+      "description": "ID of the driver.  This must be either the numeric ID generated by Samsara or the external ID of the driver. Driver ID must contain only digits 0-9. External IDs are customer specified key-value pairs and must contain only alphanumeric characters.",
       "name": "driver_id_or_external_id",
       "in": "path",
       "required": true
@@ -7322,7 +7322,7 @@
     "tagPathParam": {
       "type": "integer",
       "format": "int64",
-      "description": "ID of the tag.",
+      "description": "ID of the tag. Must contain only digits 0-9.",
       "name": "tag_id",
       "in": "path",
       "required": true
@@ -7337,7 +7337,7 @@
     },
     "vehicleIdOrExternalIdParam": {
       "type": "string",
-      "description": "ID of the vehicle.  This must be either the numeric ID generated by Samsara or the external ID of the vehicle.  External IDs are customer specified key-value pairs.",
+      "description": "ID of the vehicle.  This must be either the numeric ID generated by Samsara or the external ID of the vehicle. Vehicle ID must contain only digits 0-9. External IDs are customer specified key-value pairs and must contain only alphanumeric characters.",
       "name": "vehicle_id_or_external_id",
       "in": "path",
       "required": true
