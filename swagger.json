@@ -4093,6 +4093,16 @@
           "type": "string",
           "example": "Bid #123"
         },
+        "odometer_end_meters": {
+          "description": "Odometer reading at the end of the route. Will not be returned if Route is not completed or if Odometer information is not available for the relevant vehicle.",
+          "type": "number",
+          "format": "int64"
+        },
+        "odometer_start_meters": {
+          "description": "Odometer reading at the start of the route. Will not be returned if Route has not started or if Odometer information is not available for the relevant vehicle.",
+          "type": "number",
+          "format": "int64"
+        },
         "scheduled_end_ms": {
           "description": "The time in Unix epoch milliseconds that the last job in the route is scheduled to end.",
           "type": "integer",
