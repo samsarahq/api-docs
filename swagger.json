@@ -562,7 +562,7 @@
     },
     "/fleet/dispatch/routes/job_updates": {
       "get": {
-        "description": "Fetch all updates to a job including route data in the last 24 hours or subsequent to an sequence ID",
+        "description": "Fetch all updates to a job including route data in the last 24 hours or subsequent to an sequence ID. Returns a maximum of 500 job updates. If more than 500 job updates are available, another request made with the prior request's sequence_id will return the next set of available job updates.",
         "consumes": [
           "application/json"
         ],
@@ -4095,13 +4095,15 @@
         },
         "odometer_end_meters": {
           "description": "Odometer reading at the end of the route. Will not be returned if Route is not completed or if Odometer information is not available for the relevant vehicle.",
-          "type": "number",
-          "format": "int64"
+          "type": "integer",
+          "format": "int64",
+          "example": 2000000
         },
         "odometer_start_meters": {
           "description": "Odometer reading at the start of the route. Will not be returned if Route has not started or if Odometer information is not available for the relevant vehicle.",
-          "type": "number",
-          "format": "int64"
+          "type": "integer",
+          "format": "int64",
+          "example": 1000000
         },
         "scheduled_end_ms": {
           "description": "The time in Unix epoch milliseconds that the last job in the route is scheduled to end.",
@@ -4181,9 +4183,93 @@
           }
         },
         {
-          "$ref": "#/definitions/DispatchRouteBase"
+          "$ref": "#/definitions/DispatchRouteCreateBase"
         }
       ]
+    },
+    "DispatchRouteCreateBase": {
+      "type": "object",
+      "required": [
+        "name",
+        "scheduled_start_ms"
+      ],
+      "properties": {
+        "driver_id": {
+          "description": "ID of the driver assigned to the dispatch route. Note that driver_id and vehicle_id are mutually exclusive. If neither is specified, then the route is unassigned.",
+          "type": "integer",
+          "format": "int64",
+          "example": 555
+        },
+        "group_id": {
+          "description": "ID of the group if the organization has multiple groups (optional).",
+          "type": "integer",
+          "format": "int64",
+          "example": 101
+        },
+        "name": {
+          "description": "Descriptive name of this route.",
+          "type": "string",
+          "example": "Bid #123"
+        },
+        "scheduled_end_ms": {
+          "description": "The time in Unix epoch milliseconds that the last job in the route is scheduled to end.",
+          "type": "integer",
+          "format": "int64",
+          "example": 1462881998034
+        },
+        "scheduled_meters": {
+          "description": "The distance expected to be traveled for this route in meters.",
+          "type": "integer",
+          "format": "int64",
+          "example": 10000
+        },
+        "scheduled_start_ms": {
+          "description": "The time in Unix epoch milliseconds that the route is scheduled to start.",
+          "type": "integer",
+          "format": "int64",
+          "example": 1462881998034
+        },
+        "start_location_address": {
+          "description": "The address of the route's starting location, as it would be recognized if provided to maps.google.com. Optional if a valid start location address ID is provided.",
+          "type": "string",
+          "example": "123 Main St, Philadelphia, PA 19106"
+        },
+        "start_location_address_id": {
+          "description": "ID of the start location associated with an address book entry. Optional if valid values are provided for start location address or latitude/longitude. If a valid start location address ID is provided, address/latitude/longitude will be used from the address book entry. Name of the address book entry will only be used if the start location name is not provided.",
+          "type": "integer",
+          "format": "int64",
+          "example": 67890
+        },
+        "start_location_lat": {
+          "description": "Latitude of the start location in decimal degrees. Optional if a valid start location address ID is provided.",
+          "type": "number",
+          "format": "double",
+          "example": 123.456
+        },
+        "start_location_lng": {
+          "description": "Longitude of the start location in decimal degrees. Optional if a valid start location address ID is provided.",
+          "type": "number",
+          "format": "double",
+          "example": 37.459
+        },
+        "start_location_name": {
+          "description": "The name of the route's starting location. If provided, it will take precedence over the name of the address book entry.",
+          "type": "string",
+          "example": "ACME Inc. Philadelphia HQ"
+        },
+        "trailer_id": {
+          "description": "ID of the trailer assigned to the dispatch route. Note that trailers can only be assigned to routes that have a Vehicle or Driver assigned to them.",
+          "type": "integer",
+          "format": "int64",
+          "example": 666
+        },
+        "vehicle_id": {
+          "description": "ID of the vehicle assigned to the dispatch route. Note that vehicle_id and driver_id are mutually exclusive. If neither is specified, then the route is unassigned.",
+          "type": "integer",
+          "format": "int64",
+          "example": 444
+        }
+      }
     },
     "DispatchRouteHistoricalEntry": {
       "type": "object",
