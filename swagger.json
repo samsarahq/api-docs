@@ -4314,17 +4314,12 @@
               "example": "4aff772c-a7bb-45e6-8e41-6a53e34feb83"
             },
             "fields": {
-              "description": "List of fields should match the document type’s list of field types in the correct order. In other words, a field's valueType and value (i.e. only one of: stringValue, numberValue, or photoValue) at index _i_ should match with the document field type’s valueType at index _i_.",
+              "description": "List of fields and associated values for a given document. The fields must be listed in the order that that they appear in the specificied document type. Today `stringValue` and `numberValue` are the two supported document upload field types.",
               "type": "array",
               "items": {
                 "$ref": "#/definitions/DocumentField"
               },
               "example": [
-                {
-                  "label": "Driver Photo",
-                  "photoValue": [],
-                  "valueType": "ValueType_Photo"
-                },
                 {
                   "label": "Gallons",
                   "numberValue": 12.34,
