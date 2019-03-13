@@ -1205,6 +1205,40 @@
           }
         }
       },
+      "patch": {
+        "description": "Update a driver by id or by external id",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Fleet",
+          "Drivers"
+        ],
+        "summary": "/fleet/drivers/{driver_id or external_id}",
+        "operationId": "updateDriverById",
+        "parameters": [
+          {
+            "$ref": "#/parameters/createDriverParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the updated driver.",
+            "schema": {
+              "$ref": "#/definitions/CurrentDriver"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
       "parameters": [
         {
           "$ref": "#/parameters/accessTokenParam"
