@@ -1881,20 +1881,28 @@
             "schema": {
               "type": "object",
               "required": [
-                "groupId",
                 "vehicles"
               ],
               "properties": {
-                "groupId": {
-                  "description": "Group ID to query.",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
-                },
                 "vehicles": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/Vehicle"
+                    "description": "A vehicle object.",
+                    "type": "object",
+                    "required": [
+                      "id"
+                    ],
+                    "properties": {
+                      "id": {
+                        "$ref": "#/definitions/Vehicle/properties/id"
+                      },
+                      "name": {
+                        "$ref": "#/definitions/Vehicle/properties/name"
+                      },
+                      "note": {
+                        "$ref": "#/definitions/Vehicle/properties/note"
+                      }
+                    }
                   }
                 }
               }
