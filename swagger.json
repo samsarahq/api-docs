@@ -1221,7 +1221,7 @@
         "operationId": "updateDriverById",
         "parameters": [
           {
-            "$ref": "#/parameters/createDriverParam"
+            "$ref": "#/parameters/updateDriverParam"
           }
         ],
         "responses": {
@@ -4878,6 +4878,21 @@
         }
       ]
     },
+    "DriverForUpdate": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "tagIds": {
+              "$ref": "#/definitions/TagIds"
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/DriverBase"
+        }
+      ]
+    },
     "DriverSafetyScoreResponse": {
       "description": "Safety score details for a driver",
       "type": "object",
@@ -7495,6 +7510,15 @@
       "required": true,
       "schema": {
         "$ref": "#/definitions/TagUpdate"
+      }
+    },
+    "updateDriverParam": {
+      "description": "Driver update body",
+      "name": "updateDriverParam",
+      "in": "body",
+      "required": true,
+      "schema": {
+        "$ref": "#/definitions/DriverForUpdate"
       }
     },
     "vehicleIdOrExternalIdParam": {
