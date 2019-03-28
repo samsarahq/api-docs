@@ -1922,6 +1922,100 @@
         }
       }
     },
+    "/fleet/trailers/assignments": {
+      "get": {
+        "description": "Fetch trailer assignment data for all trailers in your organization.",
+        "tags": [
+          "Fleet"
+        ],
+        "summary": "/fleet/trailers/assignments",
+        "operationId": "getAllTrailerAssignments",
+        "parameters": [
+          {
+            "$ref": "#/parameters/accessTokenParam"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp in Unix epoch miliseconds representing the start of the period to fetch. Omitting both startMs and endMs only returns current assignments.",
+            "name": "startMs",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp in Unix epoch miliseconds representing the end of the period to fetch. Omitting endMs sets endMs as the current time",
+            "name": "endMs",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns trailer assignment data for all trailers in your organization",
+            "schema": {
+              "$ref": "#/definitions/TrailersAssignmentsResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/trailers/{trailerId}/assignments": {
+      "get": {
+        "description": "Fetch trailer assignment data for a single trailer.",
+        "tags": [
+          "Fleet"
+        ],
+        "summary": "/fleet/trailers/{trailerId}/assignments",
+        "operationId": "getFleetTrailerAssignments",
+        "parameters": [
+          {
+            "$ref": "#/parameters/accessTokenParam"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of trailer. Must contain only digits 0-9.",
+            "name": "trailerId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp in Unix epoch miliseconds representing the start of the period to fetch. Omitting both startMs and endMs only returns current assignments.",
+            "name": "startMs",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp in Unix epoch miliseconds representing the end of the period to fetch. Omitting endMs sets endMs as the current time",
+            "name": "endMs",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns trailer assignment data for a single trailer",
+            "schema": {
+              "$ref": "#/definitions/TrailerAssignmentsResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/fleet/trips": {
       "get": {
         "description": "Get historical trips data for specified vehicle. This method returns a set of historical trips data for the specified vehicle in the specified time range.",
@@ -6384,6 +6478,84 @@
                 "example": -20145
               }
             }
+          }
+        }
+      }
+    },
+    "TrailerAssignmentResponse": {
+      "type": "object",
+      "properties": {
+        "driverId": {
+          "description": "The ID of the driver associated with this trailer.",
+          "type": "integer",
+          "format": "int64",
+          "example": 2047
+        },
+        "endMs": {
+          "description": "The time at which the driver ended the assignment",
+          "type": "integer",
+          "format": "int64",
+          "example": 1462881998034
+        },
+        "sessionUuid": {
+          "description": "Unique indentifier for this session",
+          "type": "string",
+          "example": "23d4d8d3-dc10-4e7a-a183-69968751f23e"
+        },
+        "startMs": {
+          "description": "The time at which the driver started the assignment",
+          "type": "integer",
+          "format": "int64",
+          "example": 1462878398034
+        }
+      }
+    },
+    "TrailerAssignmentsResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/TrailerBase"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "trailerAssignments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TrailerAssignmentResponse"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "TrailerBase": {
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "description": "ID of the trailer",
+          "type": "integer",
+          "format": "int64",
+          "example": 2041
+        },
+        "name": {
+          "description": "Assignment trailer name (given when creating trailer via the trailer portal)",
+          "type": "string",
+          "format": "string",
+          "example": "myTrailer"
+        }
+      }
+    },
+    "TrailersAssignmentsResponse": {
+      "type": "object",
+      "properties": {
+        "trailers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TrailerAssignmentsResponse"
           }
         }
       }
