@@ -1862,6 +1862,52 @@
         }
       }
     },
+    "/fleet/messages": {
+      "post": {
+        "description": "Send a message to a list of driver ids.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Messages"
+        ],
+        "summary": "/fleet/messages",
+        "operationId": "createMessages",
+        "parameters": [
+          {
+            "$ref": "#/parameters/createMessagesParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the created messages.",
+            "schema": {
+              "description": "A list of created messages.",
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/Messages"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/parameters/accessTokenParam"
+        }
+      ]
+    },
     "/fleet/set_data": {
       "post": {
         "description": "This method enables the mutation of metadata for vehicles in the Samsara Cloud.",
@@ -5847,6 +5893,32 @@
         }
       }
     },
+    "Message": {
+      "type": "object",
+      "required": [
+        "driverId",
+        "text"
+      ],
+      "properties": {
+        "driverId": {
+          "description": "ID of the driver for whom the message is sent to or sent by.",
+          "type": "integer",
+          "format": "int64",
+          "example": 555
+        },
+        "text": {
+          "description": "The text sent in the message.",
+          "type": "string",
+          "example": "This is a message."
+        }
+      }
+    },
+    "Messages": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Message"
+      }
+    },
     "Pagination": {
       "type": "object",
       "required": [
@@ -7432,6 +7504,40 @@
             "description": "Id of vehicle being inspected. Either vehicleId or trailerId must be provided.",
             "type": "integer",
             "example": 10
+          }
+        }
+      }
+    },
+    "createMessagesParam": {
+      "description": "Text to send to a list of driverIds.",
+      "name": "createMessages",
+      "in": "body",
+      "required": true,
+      "schema": {
+        "type": "object",
+        "required": [
+          "driverIds",
+          "text"
+        ],
+        "properties": {
+          "driverIds": {
+            "description": "IDs of the drivers for whom the messages are sent to.",
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "int64",
+              "example": 555
+            },
+            "example": [
+              111,
+              222,
+              333
+            ]
+          },
+          "text": {
+            "description": "The text sent in the message.",
+            "type": "string",
+            "example": "This is a message."
           }
         }
       }
