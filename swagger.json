@@ -2719,6 +2719,214 @@
         }
       }
     },
+    "/industrial/vision/cameras": {
+      "get": {
+        "description": "Fetch all cameras.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Industrial"
+        ],
+        "summary": "/industrial/vision/cameras",
+        "operationId": "getCameras",
+        "parameters": [
+          {
+            "$ref": "#/parameters/accessTokenParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns details about a camera.",
+            "schema": {
+              "$ref": "#/definitions/VisionCamerasResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/industrial/vision/cameras/{camera_id}/programs": {
+      "get": {
+        "description": "Fetch configured programs on the camera.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Industrial"
+        ],
+        "summary": "/industrial/vision/cameras/{camera_id}/programs",
+        "operationId": "getVisionProgramsByCamera",
+        "parameters": [
+          {
+            "$ref": "#/parameters/accessTokenParam"
+          },
+          {
+            "$ref": "#/parameters/visionCameraIdParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns programs configured on the camera.",
+            "schema": {
+              "$ref": "#/definitions/ProgramsForTheCameraResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/industrial/vision/run/camera/{camera_id}": {
+      "get": {
+        "description": "Fetch the latest run for a camera or program by default. If startedAtMs is supplied, fetch the specific run that corresponds to that start time.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Industrial"
+        ],
+        "summary": "/industrial/vision/run/camera/{camera_id}",
+        "operationId": "getVisionLatestRunCamera",
+        "parameters": [
+          {
+            "$ref": "#/parameters/accessTokenParam"
+          },
+          {
+            "$ref": "#/parameters/visionCameraIdParam"
+          },
+          {
+            "$ref": "#/parameters/visionProgramIdParam"
+          },
+          {
+            "$ref": "#/parameters/visionStartAtMsParam"
+          },
+          {
+            "$ref": "#/parameters/visionIncludeParam"
+          },
+          {
+            "$ref": "#/parameters/visionLimitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the details for this run.",
+            "schema": {
+              "$ref": "#/definitions/VisionRunByCameraResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/industrial/vision/runs": {
+      "get": {
+        "description": "Fetch runs.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Industrial"
+        ],
+        "summary": "/industrial/vision/runs",
+        "operationId": "getVisionRuns",
+        "parameters": [
+          {
+            "$ref": "#/parameters/accessTokenParam"
+          },
+          {
+            "$ref": "#/parameters/visionDurationMsParam"
+          },
+          {
+            "$ref": "#/parameters/visionEndMsParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return runs.",
+            "schema": {
+              "$ref": "#/definitions/VisionRunsResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/industrial/vision/runs/{camera_id}": {
+      "get": {
+        "description": "Fetch runs by camera.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Industrial"
+        ],
+        "summary": "/industrial/vision/runs/{camera_id}",
+        "operationId": "getVisionRunsByCamera",
+        "parameters": [
+          {
+            "$ref": "#/parameters/accessTokenParam"
+          },
+          {
+            "$ref": "#/parameters/visionCameraIdParam"
+          },
+          {
+            "$ref": "#/parameters/visionDurationMsParam"
+          },
+          {
+            "$ref": "#/parameters/visionEndMsParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return runs by cameraId.",
+            "schema": {
+              "$ref": "#/definitions/VisionRunsByCameraResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/machines/history": {
       "post": {
         "description": "Get historical data for machine objects. This method returns a set of historical data for all machines in a group",
@@ -5948,6 +6156,24 @@
         }
       }
     },
+    "ProgramsForTheCameraResponse": {
+      "description": "Contains the list of Programs configured on the given Camera.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "programId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "programName": {
+            "type": "string",
+            "example": "Barcode verification program"
+          }
+        }
+      }
+    },
     "SafetyReportHarshEvent": {
       "description": "List of harsh events",
       "type": "object",
@@ -7242,6 +7468,232 @@
         }
       }
     },
+    "VisionCamerasResponse": {
+      "description": "Contains the list of Cameras installed in the org.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "cameraId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1234512345999
+          },
+          "cameraName": {
+            "type": "string",
+            "example": "Line 32"
+          },
+          "ethernetIp": {
+            "type": "string",
+            "example": "10.1.2.34"
+          },
+          "wifiIp": {
+            "type": "string",
+            "example": "10.1.2.35"
+          }
+        }
+      }
+    },
+    "VisionRunByCameraResponse": {
+      "type": "object",
+      "properties": {
+        "cameraId": {
+          "type": "integer",
+          "format": "int64",
+          "example": 1234512345123
+        },
+        "endedAtMs": {
+          "type": "integer",
+          "format": "int64",
+          "example": 0
+        },
+        "inspectionResults": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "captureAtMs": {
+                "type": "number",
+                "format": "float64",
+                "example": 1553811994730
+              },
+              "result": {
+                "type": "string",
+                "example": "PASS"
+              }
+            }
+          }
+        },
+        "isOnging": {
+          "type": "boolean",
+          "example": true
+        },
+        "program": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1
+            },
+            "name": {
+              "type": "string",
+              "example": "Barcode verification program"
+            }
+          }
+        },
+        "runSummary": {
+          "type": "object",
+          "properties": {
+            "itemsPerMinute": {
+              "type": "number",
+              "format": "float64",
+              "example": 0.1
+            },
+            "noReadCount": {
+              "type": "integer",
+              "format": "int64",
+              "example": 0
+            },
+            "rejectCount": {
+              "type": "integer",
+              "format": "int64",
+              "example": 0
+            },
+            "successCount": {
+              "type": "integer",
+              "format": "int64",
+              "example": 181
+            }
+          }
+        },
+        "startedAtMs": {
+          "type": "integer",
+          "format": "int64",
+          "example": 1553808606097
+        }
+      }
+    },
+    "VisionRunsByCameraResponse": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1234512345123
+          },
+          "endedAtMs": {
+            "type": "integer",
+            "format": "int64",
+            "example": 0
+          },
+          "program": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64",
+                "example": 1
+              },
+              "name": {
+                "type": "string",
+                "example": "Barcode verification program"
+              }
+            }
+          },
+          "reportMetadata": {
+            "type": "object",
+            "properties": {
+              "itemsPerMinute": {
+                "type": "number",
+                "format": "float64",
+                "example": 0.1
+              },
+              "noReadCount": {
+                "type": "integer",
+                "format": "int64",
+                "example": 0
+              },
+              "rejectCount": {
+                "type": "integer",
+                "format": "int64",
+                "example": 0
+              },
+              "successCount": {
+                "type": "integer",
+                "format": "int64",
+                "example": 181
+              }
+            }
+          },
+          "startedAtMs": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1553808606097
+          }
+        }
+      }
+    },
+    "VisionRunsResponse": {
+      "type": "object",
+      "properties": {
+        "visionRuns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "deviceId": {
+                "type": "integer",
+                "format": "int64",
+                "example": 1234512345123
+              },
+              "endedAtMs": {
+                "type": "integer",
+                "format": "int64",
+                "example": 0
+              },
+              "programId": {
+                "type": "integer",
+                "format": "int64",
+                "example": 1
+              },
+              "reportMetadata": {
+                "type": "object",
+                "properties": {
+                  "failedScansCount": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 0
+                  },
+                  "noReadScansCount": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 181
+                  },
+                  "scanRate": {
+                    "type": "number",
+                    "format": "float64",
+                    "example": 0.1
+                  },
+                  "successfulScansCount": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 181
+                  }
+                }
+              },
+              "startedAtMs": {
+                "type": "integer",
+                "format": "int64",
+                "example": 1553808606097
+              }
+            }
+          }
+        }
+      }
+    },
     "allRouteJobUpdates": {
       "type": "object",
       "properties": {
@@ -7817,6 +8269,56 @@
       "name": "vehicle_id_or_external_id",
       "in": "path",
       "required": true
+    },
+    "visionCameraIdParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The camera_id should be valid for the given accessToken.",
+      "name": "camera_id",
+      "in": "path",
+      "required": true
+    },
+    "visionDurationMsParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "DurationMs is a required param. This works with the EndMs parameter. Indicates the duration in which the visionRuns will be fetched",
+      "name": "durationMs",
+      "in": "query",
+      "required": true
+    },
+    "visionEndMsParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "EndMs is an optional param. It will default to the current time.",
+      "name": "endMs",
+      "in": "query"
+    },
+    "visionIncludeParam": {
+      "type": "string",
+      "description": "Include is a filter parameter. Accepts 'pass', 'reject' or 'no_read'.",
+      "name": "include",
+      "in": "query"
+    },
+    "visionLimitParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Limit is an integer value from 1 to 1,000.",
+      "name": "limit",
+      "in": "query"
+    },
+    "visionProgramIdParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The configured program's ID on the camera.",
+      "name": "program_id",
+      "in": "query"
+    },
+    "visionStartAtMsParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "EndMs is an optional param. It will default to the current time.",
+      "name": "startedAtMs",
+      "in": "query"
     }
   },
   "tags": [
