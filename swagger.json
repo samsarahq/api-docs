@@ -1053,14 +1053,13 @@
             "in": "query"
           },
           {
-            "description": "Org ID and time range to query.",
+            "description": "Time range to query.",
             "name": "driversSummaryParam",
             "in": "body",
             "required": true,
             "schema": {
               "type": "object",
               "required": [
-                "orgId",
                 "startMs",
                 "endMs"
               ],
@@ -1070,12 +1069,6 @@
                   "type": "integer",
                   "format": "int64",
                   "example": 1481076244389
-                },
-                "orgId": {
-                  "description": "Org ID to query.",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
                 },
                 "startMs": {
                   "description": "Start time (ms) of queried time period.",
