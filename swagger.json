@@ -1993,13 +1993,33 @@
             "description": "Timestamp in Unix epoch miliseconds representing the end of the period to fetch. Omitting endMs sets endMs as the current time",
             "name": "endMs",
             "in": "query"
+          },
+          {
+            "$ref": "#/parameters/paginationLimitParam"
+          },
+          {
+            "$ref": "#/parameters/paginationStartingAfterParam"
+          },
+          {
+            "$ref": "#/parameters/paginationEndingBeforeParam"
           }
         ],
         "responses": {
           "200": {
             "description": "Returns trailer assignment data for all trailers in your organization",
             "schema": {
-              "$ref": "#/definitions/TrailersAssignmentsResponse"
+              "type": "object",
+              "properties": {
+                "pagination": {
+                  "$ref": "#/definitions/Pagination"
+                },
+                "trailers": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/TrailerAssignmentsResponse"
+                  }
+                }
+              }
             }
           },
           "default": {
@@ -6844,17 +6864,6 @@
           "type": "string",
           "format": "string",
           "example": "myTrailer"
-        }
-      }
-    },
-    "TrailersAssignmentsResponse": {
-      "type": "object",
-      "properties": {
-        "trailers": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TrailerAssignmentsResponse"
-          }
         }
       }
     },
