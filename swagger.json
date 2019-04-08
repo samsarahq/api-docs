@@ -2054,14 +2054,14 @@
           {
             "type": "integer",
             "format": "int64",
-            "description": "Timestamp in Unix epoch miliseconds representing the start of the period to fetch. Omitting both startMs and endMs only returns current assignments.",
+            "description": "Timestamp in Unix epoch milliseconds representing the start of the period to fetch. Omitting both startMs and endMs only returns current assignments.",
             "name": "startMs",
             "in": "query"
           },
           {
             "type": "integer",
             "format": "int64",
-            "description": "Timestamp in Unix epoch miliseconds representing the end of the period to fetch. Omitting endMs sets endMs as the current time",
+            "description": "Timestamp in Unix epoch milliseconds representing the end of the period to fetch. Omitting endMs sets endMs as the current time",
             "name": "endMs",
             "in": "query"
           }
@@ -2095,43 +2095,34 @@
             "$ref": "#/parameters/accessTokenParam"
           },
           {
-            "description": "Group ID, vehicle ID and time range to query.",
-            "name": "tripsParam",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": [
-                "groupId",
-                "vehicleId",
-                "startMs",
-                "endMs"
-              ],
-              "properties": {
-                "endMs": {
-                  "description": "End of the time range, specified in milliseconds UNIX time.",
-                  "type": "integer",
-                  "example": 1462881998034
-                },
-                "groupId": {
-                  "description": "Group ID to query.",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
-                },
-                "startMs": {
-                  "description": "Beginning of the time range, specified in milliseconds UNIX time. Limited to a 90 day window with respect to startMs and endMs",
-                  "type": "integer",
-                  "example": 1462878398034
-                },
-                "vehicleId": {
-                  "description": "Vehicle ID to query.",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 112
-                }
-              }
-            }
+            "type": "integer",
+            "format": "int64",
+            "description": "Group ID to query.",
+            "name": "groupId",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Vehicle ID to query.",
+            "name": "vehicleId",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "description": "Beginning of the time range, specified in milliseconds UNIX time. Limited to a 90 day window with respect to startMs and endMs",
+            "name": "startMs",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "description": "End of the time range, specified in milliseconds UNIX time.",
+            "name": "endMs",
+            "in": "query",
+            "required": true
           }
         ],
         "responses": {
