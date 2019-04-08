@@ -1863,6 +1863,48 @@
       }
     },
     "/fleet/messages": {
+      "get": {
+        "description": "Get all messages.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Messages"
+        ],
+        "summary": "/fleet/messages",
+        "operationId": "getMessages",
+        "parameters": [
+          {
+            "$ref": "#/parameters/getMessagesEndMsParam"
+          },
+          {
+            "$ref": "#/parameters/getMessagesDurationMsParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the fetched messages from most recently sent to least recently sent.",
+            "schema": {
+              "description": "A list of messages.",
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/MessagesResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
       "post": {
         "description": "Send a message to a list of driver ids.",
         "consumes": [
@@ -6203,10 +6245,72 @@
         }
       }
     },
+    "MessageResponse": {
+      "type": "object",
+      "required": [
+        "driverId",
+        "text",
+        "sentAtMs",
+        "sender",
+        "isRead"
+      ],
+      "properties": {
+        "driverId": {
+          "description": "ID of the driver for whom the message is sent to or sent by.",
+          "type": "integer",
+          "format": "int64",
+          "example": 555
+        },
+        "isRead": {
+          "description": "True if the message was read by the recipient.",
+          "type": "boolean",
+          "example": true
+        },
+        "sender": {
+          "$ref": "#/definitions/MessageSender"
+        },
+        "sentAtMs": {
+          "description": "The time in Unix epoch milliseconds that the message is sent to the recipient.",
+          "type": "integer",
+          "format": "int64",
+          "example": 1462881998034
+        },
+        "text": {
+          "description": "The text sent in the message.",
+          "type": "string",
+          "example": "This is a message."
+        }
+      }
+    },
+    "MessageSender": {
+      "type": "object",
+      "required": [
+        "type",
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "description": "Name of user that is sending the message.",
+          "type": "string",
+          "example": "John Doe"
+        },
+        "type": {
+          "description": "Type of user that is sending the message. It will be either dispatch or driver.",
+          "type": "string",
+          "example": "dispatch"
+        }
+      }
+    },
     "Messages": {
       "type": "array",
       "items": {
         "$ref": "#/definitions/Message"
+      }
+    },
+    "MessagesResponse": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/MessageResponse"
       }
     },
     "Pagination": {
@@ -8188,6 +8292,20 @@
       "name": "driver_id_or_external_id",
       "in": "path",
       "required": true
+    },
+    "getMessagesDurationMsParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Time in milliseconds that represents the duration before endMs to query. Defaults to 24 hours.",
+      "name": "durationMs",
+      "in": "query"
+    },
+    "getMessagesEndMsParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Time in unix milliseconds that represents the end of time range of messages to return. Used in combination with durationMs. Defaults to now.",
+      "name": "endMs",
+      "in": "query"
     },
     "groupIdParam": {
       "type": "integer",
