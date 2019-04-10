@@ -4866,6 +4866,20 @@
                   "label": "City",
                   "stringValue": "San Francisco, CA",
                   "valueType": "ValueType_String"
+                },
+                {
+                  "label": "Fuel Type",
+                  "multipleChoiceValue": [
+                    {
+                      "selected": true,
+                      "value": "Diesel"
+                    },
+                    {
+                      "selected": false,
+                      "value": "Gas"
+                    }
+                  ],
+                  "valueType": "ValueType_MultipleChoice"
                 }
               ]
             },
@@ -4929,6 +4943,20 @@
                   "label": "City",
                   "stringValue": "San Francisco, CA",
                   "valueType": "ValueType_String"
+                },
+                {
+                  "label": "Fuel Type",
+                  "multipleChoiceValue": [
+                    {
+                      "selected": true,
+                      "value": "Diesel"
+                    },
+                    {
+                      "selected": false,
+                      "value": "Gas"
+                    }
+                  ],
+                  "valueType": "ValueType_MultipleChoice"
                 }
               ]
             }
@@ -4970,6 +4998,21 @@
         "valueType"
       ],
       "properties": {
+        "multipleChoiceValue": {
+          "description": "Value of this field if this document field has valueType: ValueType_MultipleChoice. Array of objects containing two fields: the string value of the multiple choice option and a boolean representing whether or not the choice was selected",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "selected": {
+                "type": "boolean"
+              },
+              "value": {
+                "type": "string"
+              }
+            }
+          }
+        },
         "numberValue": {
           "description": "Value of this field if this document field has valueType: ValueType_Number.",
           "type": "number",
