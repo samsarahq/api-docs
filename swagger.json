@@ -1382,6 +1382,56 @@
         }
       ]
     },
+    "/fleet/drivers/{driver_id}/documents/{document_id}": {
+      "get": {
+        "description": "Fetches a single document submission by driver.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Fleet"
+        ],
+        "summary": "/fleet/drivers/{driver_id}/documents/{document_id}",
+        "operationId": "getDriverDocumentByIdAndDriverId",
+        "responses": {
+          "200": {
+            "description": "Returns the specified document.",
+            "schema": {
+              "$ref": "#/definitions/Document"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/parameters/accessTokenParam"
+        },
+        {
+          "type": "integer",
+          "format": "int64",
+          "description": "ID of the driver who submitted the document. Must contain only digits 0-9.",
+          "name": "driver_id",
+          "in": "path",
+          "required": true
+        },
+        {
+          "type": "string",
+          "description": "ID of document.",
+          "name": "document_id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
     "/fleet/drivers/{driver_id}/hos_daily_logs": {
       "get": {
         "description": "Get summarized daily HOS charts for a specified driver.",
@@ -4822,6 +4872,8 @@
         {
           "type": "object",
           "required": [
+            "id",
+            "orgId",
             "driverId",
             "driverCreatedAtMs",
             "documentType",
@@ -4883,6 +4935,17 @@
                 }
               ]
             },
+            "id": {
+              "description": "ID of the document",
+              "type": "string",
+              "example": "2018_42424242"
+            },
+            "orgId": {
+              "description": "Organization ID that the document \u0026 driver who submitted the doc belongs to",
+              "type": "integer",
+              "format": "int64",
+              "example": 555
+            },
             "vehicleId": {
               "description": "VehicleID of the driver at document creation.",
               "type": "integer",
@@ -4898,6 +4961,10 @@
     },
     "DocumentBase": {
       "type": "object",
+      "required": [
+        "dispatchJobId",
+        "notes"
+      ],
       "properties": {
         "dispatchJobId": {
           "description": "ID of the Samsara dispatch job for which the document is submitted",
@@ -4963,9 +5030,25 @@
           }
         },
         {
-          "$ref": "#/definitions/DocumentBase"
+          "$ref": "#/definitions/DocumentCreateBase"
         }
       ]
+    },
+    "DocumentCreateBase": {
+      "type": "object",
+      "properties": {
+        "dispatchJobId": {
+          "description": "ID of the Samsara dispatch job for which the document is submitted",
+          "type": "integer",
+          "format": "int64",
+          "example": 773
+        },
+        "notes": {
+          "description": "Notes submitted with this document.",
+          "type": "string",
+          "example": "Fueled up before delivery."
+        }
+      }
     },
     "DocumentField": {
       "allOf": [
