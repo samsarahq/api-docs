@@ -4591,6 +4591,28 @@
         }
       }
     },
+    "DispatchJobUpdate": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "dispatch_jobs"
+          ],
+          "properties": {
+            "id": {
+              "description": "ID of the Samsara dispatch job to update",
+              "type": "integer",
+              "format": "int64",
+              "example": 42
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/DispatchJobCreate"
+        }
+      ]
+    },
     "DispatchRoute": {
       "allOf": [
         {
@@ -4860,6 +4882,49 @@
           }
         }
       }
+    },
+    "DispatchRouteUpdate": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "dispatch_jobs"
+          ],
+          "properties": {
+            "dispatch_jobs": {
+              "description": "The dispatch jobs for the route.",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DispatchJobUpdate"
+              }
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/DispatchRouteUpdateBase"
+        }
+      ]
+    },
+    "DispatchRouteUpdateBase": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "description": "ID of route. This must match the route ID passed in URL.",
+              "type": "integer",
+              "format": "int64",
+              "example": "42"
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/DispatchRouteCreateBase"
+        }
+      ]
     },
     "DispatchRoutes": {
       "type": "array",
@@ -8553,7 +8618,7 @@
       "in": "body",
       "required": true,
       "schema": {
-        "$ref": "#/definitions/DispatchRoute"
+        "$ref": "#/definitions/DispatchRouteUpdate"
       }
     },
     "safetyScoreEndMsParam": {
