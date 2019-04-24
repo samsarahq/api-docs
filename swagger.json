@@ -2002,7 +2002,7 @@
     },
     "/fleet/set_data": {
       "post": {
-        "description": "This method enables the mutation of metadata for vehicles in the Samsara Cloud.",
+        "description": "This API allows you to update metadata for a single vehicle.",
         "tags": [
           "Fleet"
         ],
@@ -2284,7 +2284,7 @@
     },
     "/fleet/vehicles/stats": {
       "get": {
-        "description": "Fetch engine state and aux input data for all vehicles in the group between a start/end time. Data returned may be affected by device connectivity and processing time.",
+        "description": "Fetch engine state and aux input data for all vehicles in the group between a start/end time. This endpoint provides the current state of all vehicles, not just the state changes, during the requested time period. Data returned may be affected by device connectivity and processing time.",
         "tags": [
           "Fleet"
         ],
@@ -3267,18 +3267,21 @@
                         "type": "string",
                         "enum": [
                           "ambientTemperature",
-                          "probeTemperature",
+                          "cargoPercent",
                           "currentLoop1Raw",
                           "currentLoop1Mapped",
                           "currentLoop2Raw",
                           "currentLoop2Mapped",
+                          "doorClosed",
+                          "humidity",
                           "pmPowerTotal",
                           "pmPhase1Power",
                           "pmPhase2Power",
                           "pmPhase3Power",
                           "pmPhase1PowerFactor",
                           "pmPhase2PowerFactor",
-                          "pmPhase3PowerFactor"
+                          "pmPhase3PowerFactor",
+                          "probeTemperature"
                         ],
                         "example": "ambientTemperature"
                       },
@@ -7292,7 +7295,7 @@
                 "example": 1462881998034
               },
               "endOdometer": {
-                "description": "Odometer reading at the end of the trip.",
+                "description": "Odometer reading (in meters) at the end of the trip.",
                 "type": "integer",
                 "example": 210430500
               },
@@ -7333,7 +7336,7 @@
                 "example": 1462878398034
               },
               "startOdometer": {
-                "description": "Odometer reading at the beginning of the trip.",
+                "description": "Odometer reading (in meters) at the beginning of the trip.",
                 "type": "integer",
                 "example": 210430450
               },
