@@ -4496,6 +4496,13 @@
               "format": "int64",
               "example": 55
             },
+            "documents": {
+              "description": "Document submissions associated with this job.",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DispatchJobDocumentInfo"
+              }
+            },
             "driver_id": {
               "description": "ID of the driver assigned to the dispatch job.",
               "type": "integer",
@@ -4564,7 +4571,7 @@
           "example": "123 Main St, Philadelphia, PA 19106"
         },
         "destination_address_id": {
-          "description": "ID of the job destination associated with an address book entry. Optional if valid values are provided for destination address or latitude/longitude. If a valid destination address ID is provided, address/latitude/longitude will be used from the address book entry. Name of the address book entry will only be used if the destination name is not provided.",
+          "description": "ID of the job destination associated with an address book entry. Optional if valid values are provided for destination address and latitude/longitude. If a valid destination address ID is provided, address/latitude/longitude will be used from the address book entry. Name of the address book entry will only be used if the destination name is not provided.",
           "type": "integer",
           "format": "int64",
           "example": 67890
@@ -4602,6 +4609,25 @@
           "type": "integer",
           "format": "int64",
           "example": 1462881998034
+        }
+      }
+    },
+    "DispatchJobDocumentInfo": {
+      "type": "object",
+      "required": [
+        "driverId",
+        "id"
+      ],
+      "properties": {
+        "driverId": {
+          "description": "ID of driver that submitted the document.",
+          "type": "integer",
+          "example": 1234
+        },
+        "id": {
+          "description": "ID of document. This can be used to query for the document's info via the /v1/fleet/drivers/{driver_id}/documents/{document_id} endpoint",
+          "type": "string",
+          "example": "2018_42424242"
         }
       }
     },
@@ -4729,7 +4755,7 @@
           "example": "123 Main St, Philadelphia, PA 19106"
         },
         "start_location_address_id": {
-          "description": "ID of the start location associated with an address book entry. Optional if valid values are provided for start location address or latitude/longitude. If a valid start location address ID is provided, address/latitude/longitude will be used from the address book entry. Name of the address book entry will only be used if the start location name is not provided.",
+          "description": "ID of the start location associated with an address book entry. Optional if valid values are provided for start location address and latitude/longitude. If a valid start location address ID is provided, address/latitude/longitude will be used from the address book entry. Name of the address book entry will only be used if the start location name is not provided.",
           "type": "integer",
           "format": "int64",
           "example": 67890
@@ -4835,7 +4861,7 @@
           "example": "123 Main St, Philadelphia, PA 19106"
         },
         "start_location_address_id": {
-          "description": "ID of the start location associated with an address book entry. Optional if valid values are provided for start location address or latitude/longitude. If a valid start location address ID is provided, address/latitude/longitude will be used from the address book entry. Name of the address book entry will only be used if the start location name is not provided.",
+          "description": "ID of the start location associated with an address book entry. Optional if valid values are provided for start location address and latitude/longitude. If a valid start location address ID is provided, address/latitude/longitude will be used from the address book entry. Name of the address book entry will only be used if the start location name is not provided.",
           "type": "integer",
           "format": "int64",
           "example": 67890
