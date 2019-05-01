@@ -28,6 +28,9 @@
         "parameters": [
           {
             "$ref": "#/parameters/accessTokenParam"
+          },
+          {
+            "$ref": "#/parameters/groupIdQueryParam"
           }
         ],
         "responses": {
@@ -286,7 +289,7 @@
                   "example": "501 York St"
                 },
                 "groupId": {
-                  "description": "Group ID to query.",
+                  "description": "Optional group ID if the organization has multiple groups (uncommon).",
                   "type": "integer",
                   "format": "int64",
                   "example": 101
@@ -332,7 +335,7 @@
             "$ref": "#/parameters/accessTokenParam"
           },
           {
-            "$ref": "#/parameters/groupIdParam"
+            "$ref": "#/parameters/groupIdQueryParam"
           }
         ],
         "responses": {
@@ -373,7 +376,7 @@
             "$ref": "#/parameters/accessTokenParam"
           },
           {
-            "$ref": "#/parameters/groupIdParam"
+            "$ref": "#/parameters/groupIdQueryParam"
           }
         ],
         "responses": {
@@ -772,23 +775,7 @@
             "$ref": "#/parameters/accessTokenParam"
           },
           {
-            "name": "groupDriversParam",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": [
-                "groupId"
-              ],
-              "properties": {
-                "groupId": {
-                  "description": "Group ID to query.",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
-                }
-              }
-            }
+            "$ref": "#/parameters/groupIdQueryParam"
           }
         ],
         "responses": {
@@ -860,6 +847,11 @@
         ],
         "summary": "/fleet/drivers/document_types",
         "operationId": "getDriverDocumentTypesByOrgId",
+        "parameters": [
+          {
+            "$ref": "#/parameters/accessTokenParam"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Returns all of the document types.",
@@ -892,6 +884,9 @@
         "operationId": "getDriverDocumentsByOrgId",
         "parameters": [
           {
+            "$ref": "#/parameters/accessTokenParam"
+          },
+          {
             "$ref": "#/parameters/documentsEndMsParam"
           },
           {
@@ -912,12 +907,7 @@
             }
           }
         }
-      },
-      "parameters": [
-        {
-          "$ref": "#/parameters/accessTokenParam"
-        }
-      ]
+      }
     },
     "/fleet/drivers/inactive": {
       "get": {
@@ -939,7 +929,7 @@
             "$ref": "#/parameters/accessTokenParam"
           },
           {
-            "$ref": "#/parameters/groupIdParam"
+            "$ref": "#/parameters/groupIdQueryParam"
           }
         ],
         "responses": {
@@ -1053,38 +1043,20 @@
             "in": "query"
           },
           {
-            "description": "Org ID and time range to query.",
-            "name": "driversSummaryParam",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": [
-                "orgId",
-                "startMs",
-                "endMs"
-              ],
-              "properties": {
-                "endMs": {
-                  "description": "End time (ms) of queried time period. Must be greater than startMs.",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 1481076244389
-                },
-                "orgId": {
-                  "description": "Org ID to query.",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
-                },
-                "startMs": {
-                  "description": "Start time (ms) of queried time period.",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 1481076243389
-                }
-              }
-            }
+            "type": "integer",
+            "format": "int64",
+            "description": "Start time (ms) of queried time period.",
+            "name": "startMs",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "End time (ms) of queried time period. Must be greater than startMs.",
+            "name": "endMs",
+            "in": "query",
+            "required": true
           }
         ],
         "responses": {
@@ -1121,6 +1093,9 @@
           },
           {
             "$ref": "#/parameters/safetyScoreEndMsParam"
+          },
+          {
+            "$ref": "#/parameters/groupIdQueryParam"
           }
         ],
         "responses": {
@@ -1350,6 +1325,9 @@
         "operationId": "createDriverDocument",
         "parameters": [
           {
+            "$ref": "#/parameters/accessTokenParam"
+          },
+          {
             "$ref": "#/parameters/documentCreateParam"
           }
         ],
@@ -1369,9 +1347,6 @@
         }
       },
       "parameters": [
-        {
-          "$ref": "#/parameters/accessTokenParam"
-        },
         {
           "type": "integer",
           "format": "int64",
@@ -1438,7 +1413,7 @@
         "tags": [
           "Fleet"
         ],
-        "summary": "/fleet/drivers/{driver_id:[0-9]+}/hos_daily_logs",
+        "summary": "/fleet/drivers/{driver_id}/hos_daily_logs",
         "operationId": "getFleetDriversHosDailyLogs",
         "parameters": [
           {
@@ -1453,42 +1428,23 @@
             "required": true
           },
           {
-            "name": "hosLogsParam",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": [
-                "groupId",
-                "driverId",
-                "startMs",
-                "endMs"
-              ],
-              "properties": {
-                "driverId": {
-                  "description": "Driver ID to query.",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 444
-                },
-                "endMs": {
-                  "description": "End of the time range, specified in milliseconds UNIX time.",
-                  "type": "integer",
-                  "example": 1462881998034
-                },
-                "groupId": {
-                  "description": "Group ID to query.",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
-                },
-                "startMs": {
-                  "description": "Beginning of the time range, specified in milliseconds UNIX time.",
-                  "type": "integer",
-                  "example": 1462878398034
-                }
-              }
-            }
+            "type": "integer",
+            "format": "int64",
+            "description": "Beginning of the time range, specified in milliseconds UNIX time.",
+            "name": "startMs",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "End of the time range, specified in milliseconds UNIX time.",
+            "name": "endMs",
+            "in": "query",
+            "required": true
+          },
+          {
+            "$ref": "#/parameters/groupIdQueryParam"
           }
         ],
         "responses": {
@@ -1520,42 +1476,31 @@
             "$ref": "#/parameters/accessTokenParam"
           },
           {
-            "name": "hosAuthenticationLogsParam",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": [
-                "groupId",
-                "driverId",
-                "startMs",
-                "endMs"
-              ],
-              "properties": {
-                "driverId": {
-                  "description": "Driver ID to query.",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 444
-                },
-                "endMs": {
-                  "description": "End of the time range, specified in milliseconds UNIX time.",
-                  "type": "integer",
-                  "example": 1462881998034
-                },
-                "groupId": {
-                  "description": "Group ID to query.",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
-                },
-                "startMs": {
-                  "description": "Beginning of the time range, specified in milliseconds UNIX time.",
-                  "type": "integer",
-                  "example": 1462878398034
-                }
-              }
-            }
+            "$ref": "#/parameters/groupIdQueryParam"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Driver ID to query.",
+            "name": "driverId",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Beginning of the time range, specified in milliseconds UNIX time.",
+            "name": "startMs",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "End of the time range, specified in milliseconds UNIX time.",
+            "name": "endMs",
+            "in": "query",
+            "required": true
           }
         ],
         "responses": {
@@ -1611,7 +1556,7 @@
                   "example": 1462881998034
                 },
                 "groupId": {
-                  "description": "Group ID to query.",
+                  "description": "Optional group ID if the organization has multiple groups (uncommon).",
                   "type": "integer",
                   "format": "int64",
                   "example": 101
@@ -1654,23 +1599,7 @@
             "$ref": "#/parameters/accessTokenParam"
           },
           {
-            "name": "hosLogsParam",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": [
-                "groupId"
-              ],
-              "properties": {
-                "groupId": {
-                  "description": "Group ID to query.",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
-                }
-              }
-            }
+            "$ref": "#/parameters/groupIdQueryParam"
           }
         ],
         "responses": {
@@ -1702,7 +1631,7 @@
             "$ref": "#/parameters/accessTokenParam"
           },
           {
-            "$ref": "#/parameters/groupParam"
+            "$ref": "#/parameters/groupIdQueryParam"
           },
           {
             "$ref": "#/parameters/paginationStartingAfterParam"
@@ -1721,7 +1650,7 @@
               "type": "object",
               "properties": {
                 "groupId": {
-                  "description": "Group ID to query.",
+                  "description": "Optional group ID if the organization has multiple groups (uncommon).",
                   "type": "integer",
                   "format": "int64",
                   "example": 101
@@ -1760,7 +1689,7 @@
             "$ref": "#/parameters/accessTokenParam"
           },
           {
-            "$ref": "#/parameters/groupParam"
+            "$ref": "#/parameters/groupIdQueryParam"
           }
         ],
         "responses": {
@@ -1770,7 +1699,7 @@
               "type": "object",
               "properties": {
                 "groupId": {
-                  "description": "Group ID to query.",
+                  "description": "Optional group ID if the organization has multiple groups (uncommon).",
                   "type": "integer",
                   "format": "int64",
                   "example": 101
@@ -1820,10 +1749,7 @@
             "required": true
           },
           {
-            "type": "integer",
-            "description": "Group ID to query.",
-            "name": "group_id",
-            "in": "query"
+            "$ref": "#/parameters/groupIdQueryParam"
           }
         ],
         "responses": {
@@ -1885,7 +1811,7 @@
             "$ref": "#/parameters/accessTokenParam"
           },
           {
-            "$ref": "#/parameters/groupParam"
+            "$ref": "#/parameters/groupIdQueryParam"
           }
         ],
         "responses": {
@@ -2187,12 +2113,7 @@
             "$ref": "#/parameters/accessTokenParam"
           },
           {
-            "type": "integer",
-            "format": "int64",
-            "description": "Group ID to query.",
-            "name": "groupId",
-            "in": "query",
-            "required": true
+            "$ref": "#/parameters/groupIdQueryParam"
           },
           {
             "type": "integer",
@@ -2460,6 +2381,9 @@
           },
           {
             "$ref": "#/parameters/safetyScoreEndMsParam"
+          },
+          {
+            "$ref": "#/parameters/groupIdQueryParam"
           }
         ],
         "responses": {
@@ -3072,7 +2996,7 @@
                   "example": 1462881998034
                 },
                 "groupId": {
-                  "description": "Group ID to query.",
+                  "description": "Optional group ID if the organization has multiple groups (uncommon).",
                   "type": "integer",
                   "format": "int64",
                   "example": 101
@@ -3115,7 +3039,7 @@
             "$ref": "#/parameters/accessTokenParam"
           },
           {
-            "$ref": "#/parameters/groupParam"
+            "$ref": "#/parameters/groupIdBodyParam"
           }
         ],
         "responses": {
@@ -3247,7 +3171,7 @@
                   ]
                 },
                 "groupId": {
-                  "description": "Group ID to query.",
+                  "description": "Optional group ID if the organization has multiple groups (uncommon).",
                   "type": "integer",
                   "format": "int64",
                   "example": 101
@@ -3369,7 +3293,7 @@
             "$ref": "#/parameters/accessTokenParam"
           },
           {
-            "$ref": "#/parameters/groupParam"
+            "$ref": "#/parameters/groupIdBodyParam"
           }
         ],
         "responses": {
@@ -3447,7 +3371,7 @@
             "$ref": "#/parameters/accessTokenParam"
           },
           {
-            "$ref": "#/parameters/groupIdParam"
+            "$ref": "#/parameters/groupIdQueryParam"
           }
         ],
         "responses": {
@@ -8540,18 +8464,10 @@
       "name": "endMs",
       "in": "query"
     },
-    "groupIdParam": {
-      "type": "integer",
-      "format": "int64",
+    "groupIdBodyParam": {
       "description": "Optional group ID if the organization has multiple groups (uncommon).",
-      "name": "group_id",
-      "in": "query"
-    },
-    "groupParam": {
-      "description": "Group ID to query.",
-      "name": "groupParam",
+      "name": "groupIdBodyParam",
       "in": "body",
-      "required": true,
       "schema": {
         "type": "object",
         "required": [
@@ -8559,13 +8475,27 @@
         ],
         "properties": {
           "groupId": {
-            "description": "Group ID to query.",
+            "description": "Optional group ID if the organization has multiple groups (uncommon).",
             "type": "integer",
             "format": "int64",
             "example": 101
           }
         }
       }
+    },
+    "groupIdParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Optional group ID if the organization has multiple groups (uncommon).",
+      "name": "group_id",
+      "in": "query"
+    },
+    "groupIdQueryParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Optional group ID if the organization has multiple groups (uncommon).",
+      "name": "groupId",
+      "in": "query"
     },
     "harshEventMsParam": {
       "type": "integer",
@@ -8697,7 +8627,7 @@
         ],
         "properties": {
           "groupId": {
-            "description": "Group ID to query.",
+            "description": "Optional group ID if the organization has multiple groups (uncommon).",
             "type": "integer",
             "format": "int64",
             "example": 101
