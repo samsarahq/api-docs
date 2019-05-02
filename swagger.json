@@ -2155,7 +2155,7 @@
     },
     "/v1/fleet/vehicles/locations": {
       "get": {
-        "description": "Fetch locations for a given vehicle between a start/end time. The maximum query duration is 30 minutes.",
+        "description": "Fetch locations for all vehicles between a start/end time. The maximum query duration is 30 minutes (1800000 ms).",
         "consumes": [
           "application/json"
         ],
@@ -2169,7 +2169,7 @@
         "operationId": "getVehiclesLocations",
         "responses": {
           "200": {
-            "description": "Returns locations for a given vehicle between a start/end time, with a maximum query duration of 30 minutes.",
+            "description": "Returns locations for all vehicles between a start/end time, with a maximum query duration of 30 minutes (1800000 ms).",
             "schema": {
               "$ref": "#/definitions/FleetVehiclesLocations"
             }
