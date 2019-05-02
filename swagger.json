@@ -1407,7 +1407,7 @@
       ]
     },
     "/v1/fleet/drivers/{driver_id}/hos_daily_logs": {
-      "get": {
+      "post": {
         "description": "Get summarized daily HOS charts for a specified driver.",
         "tags": [
           "Fleet"
@@ -1427,23 +1427,36 @@
             "required": true
           },
           {
-            "type": "integer",
-            "format": "int64",
-            "description": "Beginning of the time range, specified in milliseconds UNIX time.",
-            "name": "startMs",
-            "in": "query",
-            "required": true
-          },
-          {
-            "type": "integer",
-            "format": "int64",
-            "description": "End of the time range, specified in milliseconds UNIX time.",
-            "name": "endMs",
-            "in": "query",
-            "required": true
-          },
-          {
-            "$ref": "#/parameters/groupIdQueryParam"
+            "name": "hosLogsParam",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "required": [
+                "groupId",
+                "startMs",
+                "endMs"
+              ],
+              "properties": {
+                "endMs": {
+                  "description": "End of the time range, specified in milliseconds UNIX time.",
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 1462881998034
+                },
+                "groupId": {
+                  "description": "Group ID to query.",
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 101
+                },
+                "startMs": {
+                  "description": "Beginning of the time range, specified in milliseconds UNIX time.",
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 1462878398034
+                }
+              }
+            }
           }
         ],
         "responses": {
