@@ -192,7 +192,7 @@
       "get": {
         "description": "Fetch all contacts for the organization.",
         "tags": [
-          "Fleet"
+          "Contacts"
         ],
         "summary": "/contacts",
         "operationId": "listContacts",
@@ -218,13 +218,43 @@
             }
           }
         }
+      },
+      "post": {
+        "description": "Add a contact to the organization.",
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "/contacts",
+        "operationId": "addOrganizationContact",
+        "parameters": [
+          {
+            "$ref": "#/parameters/accessTokenParam"
+          },
+          {
+            "$ref": "#/parameters/addContactParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contact was successfully added.",
+            "schema": {
+              "$ref": "#/definitions/ContactData"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
       }
     },
     "/v1/contacts/{contact_id}": {
       "get": {
         "description": "Fetch a contact by its id.",
         "tags": [
-          "Fleet"
+          "Contacts"
         ],
         "summary": "/contacts/{contact_id}",
         "operationId": "getOrganizationContact",
@@ -235,7 +265,7 @@
           {
             "type": "integer",
             "format": "int64",
-            "description": "ID of the contact",
+            "description": "ID of the contact. Must contain only digits 0-9.",
             "name": "contact_id",
             "in": "path",
             "required": true
@@ -246,6 +276,76 @@
             "description": "The contact.",
             "schema": {
               "$ref": "#/definitions/Contact"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Remove a contact from the organization.",
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "/contacts/{contact_id}",
+        "operationId": "deleteOrganizationContact",
+        "parameters": [
+          {
+            "$ref": "#/parameters/accessTokenParam"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of the contact. Must contain only digits 0-9.",
+            "name": "contact_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contact was successfully deleted."
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Update the name, phone number or email of a contact using the contact id. Only fields to be changed need to be supplied.",
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "/contacts/{contact_id}",
+        "operationId": "updateOrganizationContact",
+        "parameters": [
+          {
+            "$ref": "#/parameters/accessTokenParam"
+          },
+          {
+            "$ref": "#/parameters/updateContactParam"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of the contact. Must contain only digits 0-9.",
+            "name": "contact_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contact was successfully updated.",
+            "schema": {
+              "$ref": "#/definitions/ContactData"
             }
           },
           "default": {
@@ -4326,30 +4426,39 @@
       "type": "object",
       "properties": {
         "email": {
-          "description": "Email address of the contact",
+          "description": "Email address of the contact.",
           "type": "string",
           "example": "jane.jones@yahoo.com"
         },
         "firstName": {
-          "description": "First name of the contact",
+          "description": "First name of the contact.",
           "type": "string",
           "example": "Jane"
         },
         "id": {
-          "description": "ID of the contact",
+          "description": "ID of the contact.",
           "type": "integer",
           "format": "int64",
           "example": 123
         },
         "lastName": {
-          "description": "Last name of the contact",
+          "description": "Last name of the contact.",
           "type": "string",
           "example": "Jones"
         },
         "phone": {
-          "description": "Phone number of the contact",
+          "description": "Phone number of the contact.",
           "type": "string",
           "example": "111-222-3344"
+        }
+      }
+    },
+    "ContactData": {
+      "description": "Information about a notification contact for alerts.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/Contact"
         }
       }
     },
@@ -4360,6 +4469,32 @@
         "type": "number",
         "format": "int64",
         "example": 123
+      }
+    },
+    "ContactInput": {
+      "description": "Information for adding a notification contact for alerts.",
+      "type": "object",
+      "properties": {
+        "email": {
+          "description": "Email address of the contact.",
+          "type": "string",
+          "example": "jane.jones@yahoo.com"
+        },
+        "firstName": {
+          "description": "First name of the contact.",
+          "type": "string",
+          "example": "Jane"
+        },
+        "lastName": {
+          "description": "Last name of the contact.",
+          "type": "string",
+          "example": "Jones"
+        },
+        "phone": {
+          "description": "Phone number of the contact.",
+          "type": "string",
+          "example": "111-222-3344"
+        }
       }
     },
     "CurrentDriver": {
@@ -8164,6 +8299,15 @@
       "in": "query",
       "required": true
     },
+    "addContactParam": {
+      "description": "Add a contact.",
+      "name": "contact",
+      "in": "body",
+      "required": true,
+      "schema": {
+        "$ref": "#/definitions/ContactInput"
+      }
+    },
     "addressAddParam": {
       "description": "List of addresses/geofences to add. Geofences can be circular or a polygon. \nFor each address, only one of 'circle' or 'polygon' should be provided. If both are provided, the geofence will be saved as a polygon.",
       "name": "addresses",
@@ -8690,6 +8834,15 @@
         "$ref": "#/definitions/TagUpdate"
       }
     },
+    "updateContactParam": {
+      "description": "Update the email, first name, last name, or phone number of a contact using the contact_id.",
+      "name": "contact",
+      "in": "body",
+      "required": true,
+      "schema": {
+        "$ref": "#/definitions/ContactInput"
+      }
+    },
     "updateDriverParam": {
       "description": "Driver update body",
       "name": "updateDriverParam",
@@ -8790,6 +8943,10 @@
     {
       "description": "Access to user data",
       "name": "Users"
+    },
+    {
+      "description": "Contacts can be setup in order to send alerts via SMS text or email to individuals in your organization. You can retrieve a list of all contacts, or you can fetch each contact individually.",
+      "name": "Contacts"
     }
   ]
 }
