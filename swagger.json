@@ -1700,7 +1700,7 @@
     },
     "/v1/fleet/hos_logs_summary": {
       "get": {
-        "description": "Get the current HOS status for all drivers in the group.",
+        "description": "Get the current HOS status for all drivers in the group. Note that this includes inactive as well as active drivers.",
         "tags": [
           "Fleet"
         ],
@@ -6340,6 +6340,21 @@
           "items": {
             "type": "object",
             "properties": {
+              "currentDutyStatusCode": {
+                "description": "The Hours of Service status type.",
+                "type": "string",
+                "enum": [
+                  "AUTO_DUTY",
+                  "DRIVING",
+                  "OFF_DUTY",
+                  "ON_DUTY",
+                  "PERSONAL_CONVEYANCE",
+                  "SLEEPER_BED",
+                  "YARD_MOVE",
+                  "WAITING_TIME"
+                ],
+                "example": "OFF_DUTY"
+              },
               "cycleRemaining": {
                 "description": "The amount of remaining cycle time (in ms).",
                 "type": "integer",
@@ -6349,6 +6364,12 @@
               "cycleTomorrow": {
                 "description": "The amount of cycle time (in ms) available tomorrow.",
                 "type": "integer",
+                "format": "int64",
+                "example": 252000000
+              },
+              "driveMsToday": {
+                "description": "The amount of driving time today (in ms).",
+                "type": "number",
                 "format": "int64",
                 "example": 252000000
               },
@@ -6375,10 +6396,23 @@
                 "format": "int64",
                 "example": 39600000
               },
-              "dutyStatus": {
-                "description": "The Hours of Service status type. One of `OFF_DUTY`, `SLEEPER_BED`, `DRIVING`, `ON_DUTY`, `YARD_MOVE`, `PERSONAL_CONVEYANCE`.",
-                "type": "string",
-                "example": "OFF_DUTY"
+              "onDutyMsToday": {
+                "description": "The amount of on duty time today (in ms).",
+                "type": "number",
+                "format": "int64",
+                "example": 252000000
+              },
+              "pendingDriveMsToday": {
+                "description": "The amount of driving time today for pending logs (in ms).",
+                "type": "number",
+                "format": "int64",
+                "example": 252000000
+              },
+              "pendingOnDutyMsToday": {
+                "description": "The amount of on duty time today for pending logs (in ms).",
+                "type": "number",
+                "format": "int64",
+                "example": 252000000
               },
               "shiftDriveRemaining": {
                 "description": "The amount of remaining shift drive time (in ms).",
