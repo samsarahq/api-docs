@@ -738,7 +738,7 @@
         }
       },
       "put": {
-        "description": "Update a dispatch route and its associated jobs.",
+        "description": "Update the dispatch route. Allowable updates include adding or removing jobs, and changing job locations and times.",
         "consumes": [
           "application/json"
         ],
@@ -758,7 +758,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Update the dispatch route. Allowable updates include setting job state, adding or removing jobs, and changing job locations and times.",
+            "description": "The updated route corresponding to route_id.",
             "schema": {
               "$ref": "#/definitions/DispatchRoute"
             }
