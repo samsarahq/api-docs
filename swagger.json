@@ -1577,7 +1577,7 @@
     },
     "/v1/fleet/hos_authentication_logs": {
       "get": {
-        "description": "Get the HOS (hours of service) signin and signout logs for the specified driver. Signout logs will not have location fields populated.",
+        "description": "Get the HOS (hours of service) signin and signout logs for the specified driver. The response includes 4 fields that are now deprecated.",
         "tags": [
           "Fleet"
         ],
@@ -6220,19 +6220,19 @@
                 "example": "signin"
               },
               "address": {
-                "description": "Address at which the log was recorded, if applicable.",
+                "description": "DEPRECATED: THIS FIELD IS NOT POPULATED",
                 "type": "string",
-                "example": "123 Main St., Ahwatukee, Arizona 85044"
+                "example": "THIS FIELD IS NOT USED"
               },
               "addressName": {
-                "description": "Address name from the group address book at which the log was recorded, if applicable.",
+                "description": "DEPRECATED: THIS FIELD IS NOT POPULATED",
                 "type": "string",
-                "example": "Garage Number 3"
+                "example": "THIS FIELD IS NOT USED"
               },
               "city": {
-                "description": "City in which the log was recorded, if applicable.",
+                "description": "DEPRECATED: THIS FIELD IS NOT POPULATED",
                 "type": "string",
-                "example": "Ahwatukee"
+                "example": "THIS FIELD IS NOT USED"
               },
               "happenedAtMs": {
                 "description": "The time at which the event was recorded in UNIX milliseconds.",
@@ -6241,9 +6241,9 @@
                 "example": 1462881998034
               },
               "state": {
-                "description": "State in which the log was recorded, if applicable.",
+                "description": "DEPRECATED: THIS FIELD IS NOT POPULATED",
                 "type": "string",
-                "example": "Arizona"
+                "example": "THIS FIELD IS NOT USED"
               }
             }
           }
