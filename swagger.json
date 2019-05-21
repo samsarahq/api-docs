@@ -1129,7 +1129,7 @@
               ],
               "summary": "/fleet/drivers/{driver_id:[0-9]+}/log_edits",
               "description": "Get a summary of the carrier edits for a specified driver. Note: This does not include edits made by driver",
-              "operationId": "getLogEdits",
+              "operationId": "getDriverLogEdits",
               "parameters": [
                 {
                     "$ref": "#/parameters/accessTokenParam"
@@ -1164,6 +1164,57 @@
                   "description": "Log edits with status of the logs.",
                   "schema": {
                     "$ref": "#/definitions/LogEditResponse"
+                  }
+                },
+                "default": {
+                  "description": "Unexpected error.",
+                  "schema": {
+                    "$ref": "#/definitions/ErrorResponse"
+                  }
+                }
+              }
+            }
+        },
+        "/fleet/hos/log_edits": {
+            "get": {
+              "tags": [
+                "Fleet"
+              ],
+              "summary": "/fleet/hos/log_edits",
+              "description": "Get a summary of the carrier edits for all drivers. The maximum requested time range for this endpoint is 60 minutes. Note: This does not include edits made by driver.",
+              "operationId": "getLogEdits",
+              "parameters": [
+                {
+                    "$ref": "#/parameters/accessTokenParam"
+                },
+                {
+                "name": "created_at_start_ms",
+                    "in": "query",
+                    "required": true,
+                    "description": "Beginning of the time range (record creation), specified in milliseconds UNIX time.",
+                    "type": "number",
+                    "format": "int64"
+                },
+                {
+                    "name": "created_at_end_ms",
+                    "in": "query",
+                    "required": true,
+                    "description": "End of the time range (record creation), specified in milliseconds UNIX time. The maximum requested time range for this endpoint is 60 minutes.",
+                    "type": "number",
+                    "format": "int64"
+                },
+                {
+                    "name": "starting_after",
+                    "in": "query",
+                    "type": "string",
+                    "description": "Pagination parameter indicating the cursor position to continue returning results after. Used in conjunction with the 'limit' parameter or when a response for a range of data is paginated. Mutually exclusive with 'endingBefore' parameter."
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "Log edits with status of the logs.",
+                  "schema": {
+                    "$ref": "#/definitions/OrgWideLogEditResponse"
                   }
                 },
                 "default": {
@@ -4819,6 +4870,28 @@
               }
             }
           }
+        },
+        "OrgWideLogEditResponse": {
+            "type": "object",
+            "properties": {
+                "pagination": {
+                    "type": "object",
+                    "properties": {
+                        "hasNextPage": {
+                            "type": "boolean",
+                            "description": "True if there are more pages of results after this response."
+                        },
+                        "endCursor": {
+                            "description": "Cursor identifier representing the last element in the response. This value should be used in conjunction with a subsequent request's 'starting_after' query parameter.",
+                            "type": "string",
+                            "example": "MTU5MTEzNjA2OTU0MzQ3"
+                        }
+                    }
+                },
+                "data": {
+                    "$ref": "#/definitions/LogEditResponse"
+                }
+            }
         },
         "LogEditResponse": {
             "type": "object",
