@@ -502,6 +502,62 @@
         }
       }
     },
+    "/v1/fleet/assets/reefers": {
+      "get": {
+        "description": "Fetches all reefers and reefer-specific stats.",
+        "tags": [
+          "Fleet",
+          "Assets"
+        ],
+        "summary": "/fleet/assets/reefers",
+        "operationId": "getAssetsReefers",
+        "parameters": [
+          {
+            "$ref": "#/parameters/accessTokenParam"
+          },
+          {
+            "$ref": "#/parameters/assetHistoryStartTimeParam"
+          },
+          {
+            "$ref": "#/parameters/assetHistoryEndTimeParam"
+          },
+          {
+            "$ref": "#/parameters/paginationStartingAfterParam"
+          },
+          {
+            "$ref": "#/parameters/paginationEndingBeforeParam"
+          },
+          {
+            "$ref": "#/parameters/paginationLimitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All org reefers and reefer-specific details.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/AssetsReefer"
+                  }
+                },
+                "pagination": {
+                  "$ref": "#/definitions/Pagination"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/v1/fleet/assets/{asset_id}/locations": {
       "get": {
         "description": "Fetch the historical locations for the asset.",
@@ -4289,6 +4345,223 @@
               }
             },
             "returnAirTemp": {
+              "description": "Return air temperature of the reefer",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "changedAtMs": {
+                    "description": "Timestamp in Unix milliseconds since epoch.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1453449599999
+                  },
+                  "tempInMilliC": {
+                    "description": "Return air temperature in millidegree Celsius.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 31110
+                  }
+                }
+              }
+            },
+            "setPoint": {
+              "description": "Set point temperature of the reefer",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "changedAtMs": {
+                    "description": "Timestamp in Unix milliseconds since epoch.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1453449599999
+                  },
+                  "tempInMilliC": {
+                    "description": "Set point temperature in millidegree Celsius.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 31110
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "AssetsReefer": {
+      "description": "Reefer-specific details",
+      "type": "object",
+      "properties": {
+        "assetType": {
+          "description": "Asset type",
+          "type": "string",
+          "example": "Thermo King"
+        },
+        "id": {
+          "description": "Asset ID",
+          "type": "integer",
+          "example": 1
+        },
+        "name": {
+          "description": "Asset name",
+          "type": "string",
+          "example": "Reefer 123"
+        },
+        "reeferStats": {
+          "type": "object",
+          "properties": {
+            "ambientAirTemperature": {
+              "description": "Ambient temperature of the reefer",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "changedAtMs": {
+                    "description": "Timestamp in Unix milliseconds since epoch.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1453449599999
+                  },
+                  "tempInMilliC": {
+                    "description": "Set point temperature in millidegree Celsius.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 31110
+                  }
+                }
+              }
+            },
+            "dischargeAirTemperature": {
+              "description": "Discharge air temperature of the reefer",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "changedAtMs": {
+                    "description": "Timestamp in Unix milliseconds since epoch.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1453449599999
+                  },
+                  "tempInMilliC": {
+                    "description": "Set point temperature in millidegree Celsius.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 31110
+                  }
+                }
+              }
+            },
+            "engineHours": {
+              "description": "Engine hours of the reefer",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "changedAtMs": {
+                    "description": "Timestamp in Unix milliseconds since epoch.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1453449599999
+                  },
+                  "engineHours": {
+                    "description": "Engine hours of the reefer.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1200
+                  }
+                }
+              }
+            },
+            "fuelPercentage": {
+              "description": "Fuel percentage of the reefer",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "changedAtMs": {
+                    "description": "Timestamp in Unix milliseconds since epoch.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1453449599999
+                  },
+                  "fuelPercentage": {
+                    "description": "Fuel percentage of the reefer.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 99
+                  }
+                }
+              }
+            },
+            "powerStatus": {
+              "description": "Power status of the reefer",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "changedAtMs": {
+                    "description": "Timestamp in Unix milliseconds since epoch.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1453449599999
+                  },
+                  "status": {
+                    "description": "Power status of the reefer.",
+                    "type": "string",
+                    "example": "Active (Continuous)"
+                  }
+                }
+              }
+            },
+            "reeferAlarms": {
+              "description": "Reefer alarms",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "alarms": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "alarmCode": {
+                          "description": "ID of the alarm",
+                          "type": "integer",
+                          "format": "int64",
+                          "example": 102
+                        },
+                        "description": {
+                          "description": "Description of the alarm",
+                          "type": "string",
+                          "example": "Check Return Air Sensor"
+                        },
+                        "operatorAction": {
+                          "description": "Recommended operator action",
+                          "type": "string",
+                          "example": "Check and repair at end of trip"
+                        },
+                        "severity": {
+                          "description": "Severity of the alarm: 1: OK to run, 2: Check as specified, 3: Take immediate action",
+                          "type": "integer",
+                          "format": "int64",
+                          "example": 1
+                        }
+                      }
+                    }
+                  },
+                  "changedAtMs": {
+                    "description": "Timestamp when the alarms were reported, in Unix milliseconds since epoch",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1453449599999
+                  }
+                }
+              }
+            },
+            "returnAirTemperature": {
               "description": "Return air temperature of the reefer",
               "type": "array",
               "items": {
