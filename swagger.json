@@ -5454,7 +5454,7 @@
               "example": "4aff772c-a7bb-45e6-8e41-6a53e34feb83"
             },
             "fields": {
-              "description": "List of fields and associated values for a given document. The fields must be listed in the order that that they appear in the specificied document type. Today `stringValue` and `numberValue` are the two supported document upload field types.",
+              "description": "List of fields and associated values for a given document. The fields must be listed in the order that that they appear in the specificied document type. Today `stringValue`, `numberValue`, and `multipleChoiceValue` are the supported document upload field types.",
               "type": "array",
               "items": {
                 "$ref": "#/definitions/DocumentField"
@@ -5588,7 +5588,7 @@
           "example": "This is a string."
         },
         "valueType": {
-          "description": "Determines the type of this field and what type of value this field has. It should be either ValueType_Number, ValueType_String, or ValueType_Photo.",
+          "description": "Determines the type of this field and what type of value this field has. It should be either ValueType_Number, ValueType_String, ValueType_Photo, or ValueType_MultipleChoice.",
           "type": "string",
           "example": "ValueType_Number"
         }
