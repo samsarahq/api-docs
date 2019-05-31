@@ -4141,17 +4141,19 @@
         "id"
       ],
       "properties": {
+        "assetSerialNumber": {
+          "description": "Asset serial number",
+          "type": "string",
+          "example": "8dka2810"
+        },
         "cable": {
           "description": "The cable connected to the asset",
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "assetType": {
-                "description": "Asset type",
-                "type": "string",
-                "example": "Reefer (Thermo King)"
-              }
+          "type": "object",
+          "properties": {
+            "assetType": {
+              "description": "Asset type",
+              "type": "string",
+              "example": "Reefer (Thermo King)"
             }
           }
         },
@@ -7709,8 +7711,25 @@
               },
               "endAddress": {
                 "description": "Text representation of nearest identifiable location to the end (latitude, longitude) coordinates.",
-                "type": "string",
-                "example": "Winchell's Donuts House"
+                "type": "object",
+                "properties": {
+                  "address": {
+                    "description": "The formatted address",
+                    "type": "string",
+                    "example": "123 Main St, Sunnyvale, CA 94089"
+                  },
+                  "id": {
+                    "description": "The ID of the address",
+                    "type": "number",
+                    "format": "int64",
+                    "example": 581
+                  },
+                  "name": {
+                    "description": "The name of the address",
+                    "type": "string",
+                    "example": "Ramen Tatsunoya"
+                  }
+                }
               },
               "endCoordinates": {
                 "description": "End (latitude, longitude) in decimal degrees.",
@@ -7750,8 +7769,25 @@
               },
               "startAddress": {
                 "description": "Text representation of nearest identifiable location to the start (latitude, longitude) coordinates.",
-                "type": "string",
-                "example": "Ramen Tatsunoya"
+                "type": "object",
+                "properties": {
+                  "address": {
+                    "description": "The formatted address",
+                    "type": "string",
+                    "example": "123 Main St, Sunnyvale, CA 94089"
+                  },
+                  "id": {
+                    "description": "The ID of the address",
+                    "type": "number",
+                    "format": "int64",
+                    "example": 581
+                  },
+                  "name": {
+                    "description": "The name of the address",
+                    "type": "string",
+                    "example": "Ramen Tatsunoya"
+                  }
+                }
               },
               "startCoordinates": {
                 "description": "Start (latitude, longitude) in decimal degrees.",
