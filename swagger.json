@@ -1180,7 +1180,7 @@
       ]
     },
     "/v1/fleet/drivers/summary": {
-      "get": {
+      "post": {
         "description": "Get the distance and time each driver in an organization has driven in a given time period.",
         "tags": [
           "Fleet"
@@ -1198,20 +1198,36 @@
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int64",
-            "description": "Start time (ms) of queried time period.",
-            "name": "startMs",
-            "in": "query",
-            "required": true
-          },
-          {
-            "type": "integer",
-            "format": "int64",
-            "description": "End time (ms) of queried time period. Must be greater than startMs.",
-            "name": "endMs",
-            "in": "query",
-            "required": true
+            "name": "driversSummaryParam",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "required": [
+                "orgId",
+                "startMs",
+                "endMs"
+              ],
+              "properties": {
+                "endMs": {
+                  "description": "End time (ms) of queried time period. Must be greater than startMs.",
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 1462881998034
+                },
+                "orgId": {
+                  "description": "Organization ID that the drivers belong to",
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 555
+                },
+                "startMs": {
+                  "description": "Start time (ms) of queried time period.",
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 1462878398034
+                }
+              }
+            }
           }
         ],
         "responses": {
