@@ -5204,7 +5204,7 @@
           "example": 555
         },
         "group_id": {
-          "description": "ID of the group if the organization has multiple groups (optional).",
+          "description": "ID of the group. This can be found on the API Tokens page.",
           "type": "integer",
           "format": "int64",
           "example": 101
@@ -5310,7 +5310,8 @@
         {
           "type": "object",
           "required": [
-            "dispatch_jobs"
+            "dispatch_jobs",
+            "group_id"
           ],
           "properties": {
             "dispatch_jobs": {
