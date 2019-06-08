@@ -9161,7 +9161,7 @@
     "safetyScoreEndMsParam": {
       "type": "integer",
       "format": "int64",
-      "description": "Timestamp in milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs.",
+      "description": "Timestamp in milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs. Total duration (endMs - startMs) must be greater than or equal to 1 hour.",
       "name": "endMs",
       "in": "query",
       "required": true
@@ -9169,7 +9169,7 @@
     "safetyScoreStartMsParam": {
       "type": "integer",
       "format": "int64",
-      "description": "Timestamp in milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs.",
+      "description": "Timestamp in milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs. Total duration (endMs - startMs) must be greater than or equal to 1 hour.",
       "name": "startMs",
       "in": "query",
       "required": true
