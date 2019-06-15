@@ -3143,6 +3143,53 @@
         }
       }
     },
+    "/v1/industrial/vision/runs/{camera_id}/{program_id}/{started_at_ms}": {
+      "get": {
+        "description": "Fetch runs by camera and program.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Industrial"
+        ],
+        "summary": "/industrial/vision/runs/{camera_id}/{program_id}/{started_at_ms}",
+        "operationId": "getVisionRunsByCameraAndProgram",
+        "parameters": [
+          {
+            "$ref": "#/parameters/accessTokenParam"
+          },
+          {
+            "$ref": "#/parameters/visionCameraIdParam"
+          },
+          {
+            "$ref": "#/parameters/visionProgramIdPathParam"
+          },
+          {
+            "$ref": "#/parameters/visionStartAtMsPathParam"
+          },
+          {
+            "$ref": "#/parameters/visionIncludeParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return runs by camera ID and program ID.",
+            "schema": {
+              "$ref": "#/definitions/VisionRunsByCameraAndProgramResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/v1/machines/history": {
       "post": {
         "description": "Get historical data for machine objects. This method returns a set of historical data for all machines in a group",
@@ -8457,6 +8504,9 @@
               "result": {
                 "type": "string",
                 "example": "PASS"
+              },
+              "stepResults": {
+                "$ref": "#/definitions/VisionStepResults"
               }
             }
           }
@@ -8501,6 +8551,76 @@
               "type": "integer",
               "format": "int64",
               "example": 181
+            }
+          }
+        },
+        "startedAtMs": {
+          "type": "integer",
+          "format": "int64",
+          "example": 1553808606097
+        }
+      }
+    },
+    "VisionRunsByCameraAndProgramResponse": {
+      "type": "object",
+      "properties": {
+        "deviceId": {
+          "type": "integer",
+          "format": "int64",
+          "example": 1234512345123
+        },
+        "endedAtMs": {
+          "type": "integer",
+          "format": "int64",
+          "example": 0
+        },
+        "programId": {
+          "type": "integer",
+          "format": "int64",
+          "example": 1
+        },
+        "reportMetadata": {
+          "type": "object",
+          "properties": {
+            "itemsPerMinute": {
+              "type": "number",
+              "format": "float64",
+              "example": 0.1
+            },
+            "noReadCount": {
+              "type": "integer",
+              "format": "int64",
+              "example": 0
+            },
+            "rejectCount": {
+              "type": "integer",
+              "format": "int64",
+              "example": 0
+            },
+            "successCount": {
+              "type": "integer",
+              "format": "int64",
+              "example": 181
+            }
+          }
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "captureAtMs": {
+                "type": "number",
+                "format": "float64",
+                "example": 1553811994730
+              },
+              "result": {
+                "type": "string",
+                "example": "PASS"
+              },
+              "stepResults": {
+                "$ref": "#/definitions/VisionStepResults"
+              }
             }
           }
         },
@@ -8625,6 +8745,157 @@
                 "type": "integer",
                 "format": "int64",
                 "example": 1553808606097
+              }
+            }
+          }
+        }
+      }
+    },
+    "VisionStepResults": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "barcode": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "contents": {
+                  "type": "string",
+                  "example": "10855639004823"
+                },
+                "matchString": {
+                  "type": "string",
+                  "example": "10855639004823"
+                },
+                "type": {
+                  "type": "string",
+                  "example": "EAN8"
+                }
+              }
+            }
+          },
+          "booleanLogic": {
+            "type": "object",
+            "properties": {
+              "operator": {
+                "type": "string",
+                "example": "AND"
+              },
+              "steps": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Expiration Date"
+                    },
+                    "result": {
+                      "type": "string",
+                      "example": "PASS"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "expirationDate": {
+            "type": "object",
+            "properties": {
+              "dateOffset": {
+                "type": "integer",
+                "format": "int64",
+                "example": 1
+              },
+              "foundDate": {
+                "type": "string",
+                "example": "06/13/2019"
+              },
+              "matchDate": {
+                "type": "string",
+                "example": "06/13/2019"
+              }
+            }
+          },
+          "fixture": {
+            "type": "object",
+            "properties": {
+              "coordinates": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 10
+                  },
+                  "y": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 10
+                  }
+                }
+              },
+              "found": {
+                "type": "boolean",
+                "example": true
+              },
+              "rotationDegrees": {
+                "type": "integer",
+                "format": "int64",
+                "example": 90
+              }
+            }
+          },
+          "labelMatch": {
+            "type": "object",
+            "properties": {
+              "score": {
+                "type": "integer",
+                "format": "int64",
+                "example": 10
+              },
+              "threshold": {
+                "type": "integer",
+                "format": "int64",
+                "example": 10
+              }
+            }
+          },
+          "name": {
+            "type": "string",
+            "example": "Chicken Caesar Label"
+          },
+          "presenceAbsence": {
+            "type": "object",
+            "properties": {
+              "score": {
+                "type": "integer",
+                "format": "int64",
+                "example": 50
+              },
+              "threshold": {
+                "type": "integer",
+                "format": "int64",
+                "example": 50
+              }
+            }
+          },
+          "result": {
+            "type": "string",
+            "example": "PASS"
+          },
+          "textMatch": {
+            "type": "object",
+            "properties": {
+              "foundText": {
+                "type": "string",
+                "example": "TFNJ"
+              },
+              "matchString": {
+                "type": "string",
+                "example": "TFNJ"
               }
             }
           }
@@ -9326,12 +9597,28 @@
       "name": "program_id",
       "in": "query"
     },
+    "visionProgramIdPathParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The configured program's ID on the camera.",
+      "name": "program_id",
+      "in": "path",
+      "required": true
+    },
     "visionStartAtMsParam": {
       "type": "integer",
       "format": "int64",
       "description": "EndMs is an optional param. It will default to the current time.",
       "name": "startedAtMs",
       "in": "query"
+    },
+    "visionStartAtMsPathParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Started_at_ms is a required param. Indicates the start time of the run to be fetched.",
+      "name": "started_at_ms",
+      "in": "path",
+      "required": true
     }
   },
   "tags": [
