@@ -10,7 +10,7 @@
   ],
   "swagger": "2.0",
   "info": {
-    "description": "# Introduction\n\nSamsara provides API endpoints for interacting with Samsara Cloud, so that you can build powerful applications and custom solutions with sensor data. Samsara has endpoints available to track and analyze sensors, vehicles, and entire fleets.\n\nThe Samsara Cloud API is a [RESTful API](https://en.wikipedia.org/wiki/Representational_state_transfer) accessed by an [HTTP](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) client such as wget or curl, or HTTP libraries of most modern programming languages including python, ruby, java. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which are understood by off-the-shelf HTTP clients. We allow you to interact securely with our API from a client-side web application (though you should never expose your secret API key). [JSON](http://www.json.org/) is returned by all API responses, including errors. If you’re familiar with what you can build with a REST API, the following API reference guide will be your go-to resource.\n\nAPI access to the Samsara cloud is available to all Samsara administrators. To start developing with Samsara APIs you will need to [obtain your API keys](#section/Authentication) to authenticate your API requests.\n\nIf you have any questions you can reach out to us on [support@samsara.com](mailto:support@samsara.com)\n\n# Endpoints\n\nAll our APIs can be accessed through HTTP requests to URLs like:\n\n```curl\nhttps://api.samsara.com/\u003cversion\u003e/\u003cendpoint\u003e\n```\n\nAll our APIs are [versioned](#section/Versioning). If we intend to make breaking changes to an API which either changes the response format or request parameter, we will increment the version.\n\n# Authentication\n\nTo authenticate your API request you will need to include your secret token. You can manage your API tokens in the [Dashboard](https://cloud.samsara.com). They are visible under `Settings-\u003eOrganization-\u003eAPI Tokens`.\n\nYour API tokens carry many privileges, so be sure to keep them secure. Do not share your secret API tokens in publicly accessible areas such as GitHub, client-side code, and so on.\n\nAuthentication to the API is performed via [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Provide your API token as the basic access_token value in the URL. You do not need to provide a password.\n\n```curl\nhttps://api.samsara.com/\u003cversion\u003e/\u003cendpoint\u003e?access_token={access_token}\n```\n\nAll API requests must be made over [HTTPS](https://en.wikipedia.org/wiki/HTTPS). Calls made over plain HTTP or without authentication will fail.\n\n# Request Methods\n\nOur API endpoints use [HTTP request methods](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods) to specify the desired operation to be performed. The documentation below specified request method supported by each endpoint and the resulting action.\n\n## GET\n\nGET requests are typically used for fetching data (like data for a particular driver).\n\n## POST\n\nPOST requests are typically used for creating or updating a record (like adding new tags to the system). With that being said, a few of our POST requests can be used for fetching data (like current location data of your fleet).\n\n## PUT\n\nPUT requests are typically used for updating an existing record (like updating all devices associated with a particular tag).\n\n## PATCH\n\nPATCH requests are typically used for modifying an existing record (like modifying a few devices associated with a particular tag).\n\n## DELETE\n\nDELETE requests are used for deleting a record (like deleting a tag from the system).\n\n# Response Codes\n\nAll API requests will respond with appropriate [HTTP status code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes). Your API client should handle each response class differently.\n\n## 2XX\n\nThese are successful responses and indicate that the API request returned the expected response.\n\n## 4XX\n\nThese indicate that there was a problem with the request like a missing parameter or invalid values. Check the response for specific [error details](#section/Error-Responses). Requests that respond with a 4XX status code, should be modified before retrying.\n\n## 5XX\n\nThese indicate server errors when the server is unreachable or is misconfigured. In this case, you should retry the API request after some delay.\n\n# Error Responses\n\nIn case of a 4XX status code, the body of the response will contain information to briefly explain the error reported. To help debugging the error, you can refer to the following table for understanding the error message.\n\n| Status Code | Message | Description |\n|-------------|----------------|-------------------------------------------------------------------|\n| 401 | Invalid token | The API token is invalid and could not be authenticated. Please refer to the [authentication section](#section/Authentication). |\n| 404 | Page not found | The API endpoint being accessed is invalid. |\n| 400 | Bad request | Default response for an invalid request. Please check the request to make sure it follows the format specified in the documentation. |\n\n# Versioning\n\nAll our APIs are versioned. Our current API version is v1 and we are continuously working on improving it further and providing additional endpoints. If we intend to make breaking changes in a backwards-incompatible way, we release a new dated version to your API. Thus, you can use our current API version worry free. For a detailed guide on how to upgrade your API token, please check out this [Knowledge Base article](https://kb.samsara.com/hc/en-us/articles/360026132972-Upgrading-API-Tokens).\n\n# FAQs\n\nCheck out our [responses to FAQs here](https://kb.samsara.com/hc/en-us/sections/360000538054-APIs). Don’t see an answer to your question? Reach out to us on [support@samsara.com](mailto:support@samsara.com).",
+    "description": "# Introduction\n\nSamsara provides API endpoints for interacting with Samsara Cloud, so that you can build powerful applications and custom solutions with sensor data. Samsara has endpoints available to track and analyze sensors, vehicles, and entire fleets.\n\nThe Samsara Cloud API is a [RESTful API](https://en.wikipedia.org/wiki/Representational_state_transfer) accessed by an [HTTP](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) client such as wget or curl, or HTTP libraries of most modern programming languages including python, ruby, java. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which are understood by off-the-shelf HTTP clients. We allow you to interact securely with our API from a client-side web application (though you should never expose your secret API key). [JSON](http://www.json.org/) is returned by all API responses, including errors. If you’re familiar with what you can build with a REST API, the following API reference guide will be your go-to resource.\n\nAPI access to the Samsara cloud is available to all Samsara administrators. To start developing with Samsara APIs you will need to [obtain your API keys](#section/Authentication) to authenticate your API requests.\n\nIf you have any questions you can reach out to us on [support@samsara.com](mailto:support@samsara.com)\n\n# Endpoints\n\nAll our APIs can be accessed through HTTP requests to URLs like:\n\n```curl\nhttps://api.samsara.com/\u003cversion\u003e/\u003cendpoint\u003e\n```\n\nAll our APIs are [versioned](#section/Versioning). If we intend to make breaking changes to an API which either changes the response format or request parameter, we will increment the version.\n\n# Authentication\n\nTo authenticate your API request you will need to include your secret token. You can manage your API tokens in the [Dashboard](https://cloud.samsara.com). They are visible under `Settings-\u003eOrganization-\u003eAPI Tokens`.\n\nYour API tokens carry many privileges, so be sure to keep them secure. Do not share your secret API tokens in publicly accessible areas such as GitHub, client-side code, and so on.\n\nAuthentication to the API is performed via [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Provide your API token as the access_token value in an Authorization: Bearer header. You do not need to provide a password.\n```curl\nAuthorization: Bearer {access_token}\n```\n\nAnother available (but less recommended) method is to pass your access token as the access_token value in the URL.\n```curl\nhttps://api.samsara.com/\u003cversion\u003e/\u003cendpoint\u003e?access_token={access_token}\n```\n\nAll API requests must be made over [HTTPS](https://en.wikipedia.org/wiki/HTTPS). Calls made over plain HTTP or without authentication will fail.\n\n# Request Methods\n\nOur API endpoints use [HTTP request methods](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods) to specify the desired operation to be performed. The documentation below specified request method supported by each endpoint and the resulting action.\n\n## GET\n\nGET requests are typically used for fetching data (like data for a particular driver).\n\n## POST\n\nPOST requests are typically used for creating or updating a record (like adding new tags to the system). With that being said, a few of our POST requests can be used for fetching data (like current location data of your fleet).\n\n## PUT\n\nPUT requests are typically used for updating an existing record (like updating all devices associated with a particular tag).\n\n## PATCH\n\nPATCH requests are typically used for modifying an existing record (like modifying a few devices associated with a particular tag).\n\n## DELETE\n\nDELETE requests are used for deleting a record (like deleting a tag from the system).\n\n# Response Codes\n\nAll API requests will respond with appropriate [HTTP status code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes). Your API client should handle each response class differently.\n\n## 2XX\n\nThese are successful responses and indicate that the API request returned the expected response.\n\n## 4XX\n\nThese indicate that there was a problem with the request like a missing parameter or invalid values. Check the response for specific [error details](#section/Error-Responses). Requests that respond with a 4XX status code, should be modified before retrying.\n\n## 5XX\n\nThese indicate server errors when the server is unreachable or is misconfigured. In this case, you should retry the API request after some delay.\n\n# Error Responses\n\nIn case of a 4XX status code, the body of the response will contain information to briefly explain the error reported. To help debugging the error, you can refer to the following table for understanding the error message.\n\n| Status Code | Message | Description |\n|-------------|----------------|-------------------------------------------------------------------|\n| 401 | Invalid token | The API token is invalid and could not be authenticated. Please refer to the [authentication section](#section/Authentication). |\n| 404 | Page not found | The API endpoint being accessed is invalid. |\n| 400 | Bad request | Default response for an invalid request. Please check the request to make sure it follows the format specified in the documentation. |\n\n# Versioning\n\nAll our APIs are versioned. Our current API version is v1 and we are continuously working on improving it further and providing additional endpoints. If we intend to make breaking changes in a backwards-incompatible way, we release a new dated version to your API. Thus, you can use our current API version worry free. For a detailed guide on how to upgrade your API token, please check out this [Knowledge Base article](https://kb.samsara.com/hc/en-us/articles/360026132972-Upgrading-API-Tokens).\n\n# FAQs\n\nCheck out our [responses to FAQs here](https://kb.samsara.com/hc/en-us/sections/360000538054-APIs). Don’t see an answer to your question? Reach out to us on [support@samsara.com](mailto:support@samsara.com).",
     "title": "Samsara API",
     "version": "1.0.0"
   },
@@ -25,9 +25,6 @@
         "summary": "/addresses",
         "operationId": "getOrganizationAddresses",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/groupIdQueryParam"
           }
@@ -58,9 +55,6 @@
         "summary": "/addresses",
         "operationId": "addOrganizationAddresses",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/addressAddParam"
           }
@@ -94,9 +88,6 @@
         "operationId": "getOrganizationAddress",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "type": "integer",
             "format": "int64",
             "description": "ID of the address/geofence",
@@ -129,9 +120,6 @@
         "operationId": "deleteOrganizationAddress",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "type": "integer",
             "format": "int64",
             "description": "ID of the address/geofence",
@@ -160,9 +148,6 @@
         "summary": "/addresses/{addressId}",
         "operationId": "updateOrganizationAddress",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/addressUpdateParam"
           },
@@ -196,11 +181,6 @@
         ],
         "summary": "/contacts",
         "operationId": "listContacts",
-        "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          }
-        ],
         "responses": {
           "200": {
             "description": "List of contacts.",
@@ -227,9 +207,6 @@
         "summary": "/contacts",
         "operationId": "addOrganizationContact",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/addContactParam"
           }
@@ -259,9 +236,6 @@
         "summary": "/contacts/{contact_id}",
         "operationId": "getOrganizationContact",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "type": "integer",
             "format": "int64",
@@ -295,9 +269,6 @@
         "operationId": "deleteOrganizationContact",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "type": "integer",
             "format": "int64",
             "description": "ID of the contact. Must contain only digits 0-9.",
@@ -326,9 +297,6 @@
         "summary": "/contacts/{contact_id}",
         "operationId": "updateOrganizationContact",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/updateContactParam"
           },
@@ -366,9 +334,6 @@
         "summary": "/fleet/add_address",
         "operationId": "addFleetAddress",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "name": "addressParam",
             "in": "body",
@@ -431,9 +396,6 @@
         "operationId": "getAllAssets",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "$ref": "#/parameters/groupIdQueryParam"
           }
         ],
@@ -472,9 +434,6 @@
         "operationId": "getAllAssetCurrentLocations",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "$ref": "#/parameters/groupIdQueryParam"
           }
         ],
@@ -512,9 +471,6 @@
         "summary": "/fleet/assets/reefers",
         "operationId": "getAssetsReefers",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/assetHistoryStartTimeParam"
           },
@@ -569,9 +525,6 @@
         "operationId": "getAssetLocation",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "$ref": "#/parameters/assetIdParam"
           },
           {
@@ -607,9 +560,6 @@
         "summary": "/fleet/assets/{assetId}/reefer",
         "operationId": "getAssetReefer",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/assetIdParam"
           },
@@ -653,9 +603,6 @@
         "operationId": "fetchAllDispatchRoutes",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "$ref": "#/parameters/groupIdParam"
           },
           {
@@ -696,9 +643,6 @@
         "operationId": "createDispatchRoute",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "$ref": "#/parameters/routeCreateParam"
           }
         ],
@@ -734,9 +678,6 @@
         "summary": "/fleet/dispatch/routes/job_updates",
         "operationId": "fetchAllRouteJobUpdates",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/groupIdParam"
           },
@@ -855,9 +796,6 @@
       },
       "parameters": [
         {
-          "$ref": "#/parameters/accessTokenParam"
-        },
-        {
           "type": "integer",
           "format": "int64",
           "description": "ID of the dispatch route. Must contain only digits 0-9.",
@@ -883,9 +821,6 @@
         "summary": "/fleet/dispatch/routes/{route_id}/history",
         "operationId": "getDispatchRouteHistory",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/routeHistoryStartTimeParam"
           },
@@ -927,9 +862,6 @@
         "operationId": "getFleetDrivers",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "$ref": "#/parameters/groupIdQueryParam"
           }
         ],
@@ -966,9 +898,6 @@
         "operationId": "createDriver",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "$ref": "#/parameters/createDriverParam"
           }
         ],
@@ -1002,11 +931,6 @@
         ],
         "summary": "/fleet/drivers/document_types",
         "operationId": "getDriverDocumentTypesByOrgId",
-        "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          }
-        ],
         "responses": {
           "200": {
             "description": "Returns all of the document types.",
@@ -1038,9 +962,6 @@
         "summary": "/fleet/drivers/documents",
         "operationId": "getDriverDocumentsByOrgId",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/documentsEndMsParam"
           },
@@ -1080,9 +1001,6 @@
         "summary": "/fleet/drivers/inactive",
         "operationId": "getAllDeactivatedDrivers",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/groupIdQueryParam"
           }
@@ -1172,9 +1090,6 @@
       },
       "parameters": [
         {
-          "$ref": "#/parameters/accessTokenParam"
-        },
-        {
           "$ref": "#/parameters/driverIdOrExternalIdParam"
         }
       ]
@@ -1188,9 +1103,6 @@
         "summary": "/fleet/drivers/summary",
         "operationId": "getFleetDriversSummary",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "type": "boolean",
             "description": "Snap query result to HOS day boundaries.",
@@ -1256,9 +1168,6 @@
         "summary": "/fleet/drivers/{driverId}/safety/score",
         "operationId": "getDriverSafetyScore",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/safetyScoreStartMsParam"
           },
@@ -1384,9 +1293,6 @@
       },
       "parameters": [
         {
-          "$ref": "#/parameters/accessTokenParam"
-        },
-        {
           "$ref": "#/parameters/driverIdOrExternalIdParam"
         }
       ]
@@ -1465,9 +1371,6 @@
       },
       "parameters": [
         {
-          "$ref": "#/parameters/accessTokenParam"
-        },
-        {
           "type": "integer",
           "format": "int64",
           "description": "ID of the driver with the associated routes. Must contain only digits 0-9.",
@@ -1492,9 +1395,6 @@
         "summary": "/fleet/drivers/{driver_id}/documents",
         "operationId": "createDriverDocument",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/documentCreateParam"
           }
@@ -1556,9 +1456,6 @@
       },
       "parameters": [
         {
-          "$ref": "#/parameters/accessTokenParam"
-        },
-        {
           "type": "integer",
           "format": "int64",
           "description": "ID of the driver who submitted the document. Must contain only digits 0-9.",
@@ -1584,9 +1481,6 @@
         "summary": "/fleet/drivers/{driver_id}/hos_daily_logs",
         "operationId": "getFleetDriversHosDailyLogs",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "type": "integer",
             "format": "int64",
@@ -1654,9 +1548,6 @@
         "operationId": "getFleetHosAuthenticationLogs",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "$ref": "#/parameters/groupIdQueryParam"
           },
           {
@@ -1709,9 +1600,6 @@
         "summary": "/fleet/hos_logs",
         "operationId": "getFleetHosLogs",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "name": "hosLogsParam",
             "in": "body",
@@ -1777,9 +1665,6 @@
         "operationId": "getFleetHosLogsSummary",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "$ref": "#/parameters/groupIdQueryParam"
           }
         ],
@@ -1808,9 +1693,6 @@
         "summary": "/fleet/list",
         "operationId": "listFleet",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/groupIdQueryParam"
           },
@@ -1867,9 +1749,6 @@
         "operationId": "getFleetLocations",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "$ref": "#/parameters/groupIdQueryParam"
           }
         ],
@@ -1913,9 +1792,6 @@
         "operationId": "getDvirs",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "type": "integer",
             "description": "time in millis until the last dvir log.",
             "name": "end_ms",
@@ -1957,9 +1833,6 @@
         "operationId": "createDvir",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "$ref": "#/parameters/createDvirParam"
           }
         ],
@@ -1988,9 +1861,6 @@
         "summary": "/fleet/maintenance/list",
         "operationId": "getFleetMaintenanceList",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/groupIdQueryParam"
           }
@@ -2100,12 +1970,7 @@
             }
           }
         }
-      },
-      "parameters": [
-        {
-          "$ref": "#/parameters/accessTokenParam"
-        }
-      ]
+      }
     },
     "/v1/fleet/set_data": {
       "post": {
@@ -2116,9 +1981,6 @@
         "summary": "/fleet/set_data",
         "operationId": "updateVehicles",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "name": "vehicleUpdateParam",
             "in": "body",
@@ -2176,9 +2038,6 @@
         "summary": "/fleet/trailers/assignments",
         "operationId": "getAllTrailerAssignments",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "type": "integer",
             "format": "int64",
@@ -2240,9 +2099,6 @@
         "operationId": "getFleetTrailerAssignments",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "type": "integer",
             "format": "int64",
             "description": "ID of trailer. Must contain only digits 0-9.",
@@ -2290,9 +2146,6 @@
         "summary": "/fleet/trips",
         "operationId": "getFleetTrips",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/groupIdQueryParam"
           },
@@ -2366,9 +2219,6 @@
       },
       "parameters": [
         {
-          "$ref": "#/parameters/accessTokenParam"
-        },
-        {
           "type": "integer",
           "description": "Time in Unix epoch milliseconds for the start of the query (cannot exceed 30 minutes)",
           "name": "startMs",
@@ -2393,9 +2243,6 @@
         "summary": "/fleet/vehicles/stats",
         "operationId": "getVehicleStats",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "type": "integer",
             "description": "Time in Unix epoch milliseconds for the start of the query.",
@@ -2512,9 +2359,6 @@
         "operationId": "getVehicleHarshEvent",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "$ref": "#/parameters/harshEventMsParam"
           }
         ],
@@ -2554,9 +2398,6 @@
         "summary": "/fleet/vehicles/{vehicleId}/safety/score",
         "operationId": "getVehicleSafetyScore",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/safetyScoreStartMsParam"
           },
@@ -2603,9 +2444,6 @@
         "operationId": "getFleetVehicle",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "$ref": "#/parameters/vehicleIdOrExternalIdParam"
           }
         ],
@@ -2636,9 +2474,6 @@
         "summary": "/fleet/vehicles/{vehicle_id or external_id}",
         "operationId": "patchFleetVehicle",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/vehicleIdOrExternalIdParam"
           },
@@ -2768,9 +2603,6 @@
       },
       "parameters": [
         {
-          "$ref": "#/parameters/accessTokenParam"
-        },
-        {
           "type": "integer",
           "format": "int64",
           "description": "ID of the vehicle with the associated routes. Must contain only digits 0-9.",
@@ -2810,9 +2642,6 @@
         }
       },
       "parameters": [
-        {
-          "$ref": "#/parameters/accessTokenParam"
-        },
         {
           "type": "integer",
           "format": "int64",
@@ -2854,9 +2683,6 @@
         "summary": "/industrial/data",
         "operationId": "getAllDataInputs",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/groupIdParam"
           },
@@ -2907,9 +2733,6 @@
         "operationId": "getDataInput",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "$ref": "#/parameters/dataInputIdParam"
           },
           {
@@ -2949,11 +2772,6 @@
         ],
         "summary": "/industrial/vision/cameras",
         "operationId": "getCameras",
-        "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          }
-        ],
         "responses": {
           "200": {
             "description": "Returns details about a camera.",
@@ -2985,9 +2803,6 @@
         "summary": "/industrial/vision/cameras/{camera_id}/programs",
         "operationId": "getVisionProgramsByCamera",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/visionCameraIdParam"
           }
@@ -3023,9 +2838,6 @@
         "summary": "/industrial/vision/run/camera/{camera_id}",
         "operationId": "getVisionLatestRunCamera",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/visionCameraIdParam"
           },
@@ -3074,9 +2886,6 @@
         "operationId": "getVisionRuns",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "$ref": "#/parameters/visionDurationMsParam"
           },
           {
@@ -3114,9 +2923,6 @@
         "summary": "/industrial/vision/runs/{camera_id}",
         "operationId": "getVisionRunsByCamera",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/visionCameraIdParam"
           },
@@ -3159,9 +2965,6 @@
         "operationId": "getVisionRunsByCameraAndProgram",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "$ref": "#/parameters/visionCameraIdParam"
           },
           {
@@ -3199,9 +3002,6 @@
         "summary": "/machines/history",
         "operationId": "getMachinesHistory",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "description": "Group ID and time range to query for events",
             "name": "historyParam",
@@ -3261,9 +3061,6 @@
         "operationId": "getMachines",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "$ref": "#/parameters/groupIdBodyParam"
           }
         ],
@@ -3301,9 +3098,6 @@
         "operationId": "getSensorsCargo",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "$ref": "#/parameters/sensorParam"
           }
         ],
@@ -3333,9 +3127,6 @@
         "operationId": "getSensorsDoor",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "$ref": "#/parameters/sensorParam"
           }
         ],
@@ -3364,9 +3155,6 @@
         "summary": "/sensors/history",
         "operationId": "getSensorsHistory",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "description": "Group ID, time range and resolution, and list of sensor ID, field pairs to query.",
             "name": "historyParam",
@@ -3483,9 +3271,6 @@
         "operationId": "getSensorsHumidity",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "$ref": "#/parameters/sensorParam"
           }
         ],
@@ -3514,9 +3299,6 @@
         "summary": "/sensors/list",
         "operationId": "getSensors",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/groupIdBodyParam"
           }
@@ -3555,9 +3337,6 @@
         "operationId": "getSensorsTemperature",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "$ref": "#/parameters/sensorParam"
           }
         ],
@@ -3592,9 +3371,6 @@
         "summary": "/tags",
         "operationId": "getAllTags",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/groupIdQueryParam"
           }
@@ -3637,9 +3413,6 @@
         "operationId": "createTag",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "$ref": "#/parameters/tagCreateParam"
           }
         ],
@@ -3675,9 +3448,6 @@
         "operationId": "getTagById",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "$ref": "#/parameters/tagPathParam"
           }
         ],
@@ -3710,9 +3480,6 @@
         "summary": "/tags/{tag_id}",
         "operationId": "updateTagById",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/tagPathParam"
           },
@@ -3750,9 +3517,6 @@
         "operationId": "deleteTagById",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "$ref": "#/parameters/tagPathParam"
           }
         ],
@@ -3782,9 +3546,6 @@
         "summary": "/tags/{tag_id}",
         "operationId": "modifyTagById",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/tagPathParam"
           },
@@ -3816,11 +3577,6 @@
         ],
         "summary": "/user_roles",
         "operationId": "listUserRoles",
-        "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          }
-        ],
         "responses": {
           "200": {
             "description": "List of user roles.",
@@ -3848,11 +3604,6 @@
         ],
         "summary": "/users",
         "operationId": "listUsers",
-        "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          }
-        ],
         "responses": {
           "200": {
             "description": "List of users.",
@@ -3879,9 +3630,6 @@
         "summary": "/users",
         "operationId": "createUser",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/createUserParam"
           }
@@ -3911,9 +3659,6 @@
         "summary": "/users/{userId}",
         "operationId": "getUserById",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/createUserParam"
           },
@@ -3950,9 +3695,6 @@
         "operationId": "deleteUserById",
         "parameters": [
           {
-            "$ref": "#/parameters/accessTokenParam"
-          },
-          {
             "type": "integer",
             "format": "int64",
             "description": "ID of the user. Must contain only digits 0-9.",
@@ -3981,9 +3723,6 @@
         "summary": "/users/{userId}",
         "operationId": "patchUser",
         "parameters": [
-          {
-            "$ref": "#/parameters/accessTokenParam"
-          },
           {
             "$ref": "#/parameters/updateUserParam"
           },
@@ -8978,13 +8717,6 @@
     }
   },
   "parameters": {
-    "accessTokenParam": {
-      "type": "string",
-      "description": "Samsara API access token.",
-      "name": "access_token",
-      "in": "query",
-      "required": true
-    },
     "addContactParam": {
       "description": "Add a contact.",
       "name": "contact",
@@ -9619,6 +9351,18 @@
       "name": "started_at_ms",
       "in": "path",
       "required": true
+    }
+  },
+  "securityDefinitions": {
+    "AccessTokenHeader": {
+      "type": "apiKey",
+      "name": "Authorization: Bearer",
+      "in": "header"
+    },
+    "AccessTokenParameter": {
+      "type": "apiKey",
+      "name": "access_token",
+      "in": "query"
     }
   },
   "tags": [
