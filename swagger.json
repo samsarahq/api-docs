@@ -4757,7 +4757,7 @@
           "example": "ACME Inc. Philadelphia HQ"
         },
         "notes": {
-          "description": "Notes regarding the details of this job.",
+          "description": "Notes regarding the details of this job, maximum of 2000 characters; newline characters ('\\n')can be used for formatting.",
           "type": "string",
           "example": "Ensure crates are stacked no more than 3 high."
         },
@@ -5257,7 +5257,7 @@
           "example": "Fueled up before delivery."
         },
         "state": {
-          "description": "The current condition of the driver document.",
+          "description": "The condition of the document created for the driver. Can be either `Required` or `Submitted`, if no value is specified, `state` defaults to `Required`. `Required` documents are pre-populated documents for the Driver to fill out in the Driver App.",
           "type": "string",
           "default": "Required",
           "enum": [
@@ -5338,7 +5338,7 @@
           "example": "Fueled up before delivery."
         },
         "state": {
-          "description": "The current condition of the driver document.",
+          "description": "The condition of the document created for the driver. Can be either `Required` or `Submitted`, if no value is specified, `state` defaults to `Required`. `Required` documents are pre-populated documents for the Driver to fill out in the Driver App.",
           "type": "string",
           "default": "Required",
           "enum": [
@@ -5684,6 +5684,12 @@
           "description": "Driver's login username into the driver app.",
           "type": "string",
           "example": "Susan Jones"
+        },
+        "vehicleGroupTagId": {
+          "description": "ID of the tag which determines which vehicles a driver will see when selecting vehicles",
+          "type": "integer",
+          "format": "int64",
+          "example": 171
         },
         "vehicleId": {
           "description": "ID of the vehicle assigned to the driver for static vehicle assignments. (uncommon).",
@@ -8600,6 +8606,26 @@
               "matchDate": {
                 "type": "string",
                 "example": "06/13/2019"
+              }
+            }
+          },
+          "findShapes": {
+            "type": "object",
+            "properties": {
+              "foundCount": {
+                "type": "integer",
+                "format": "int32",
+                "example": 1
+              },
+              "maxCount": {
+                "type": "integer",
+                "format": "int32",
+                "example": 5
+              },
+              "minCount": {
+                "type": "integer",
+                "format": "int32",
+                "example": 1
               }
             }
           },
