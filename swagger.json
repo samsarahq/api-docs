@@ -96,8 +96,8 @@
         "tags": [
           "Contacts"
         ],
-        "summary": "/contacts",
-        "operationId": "createContactKondo",
+        "summary": "Add a contact to the organization.",
+        "operationId": "createContact",
         "parameters": [
           {
             "description": "Add a contact.",
@@ -105,7 +105,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ContactInputKondo"
+              "$ref": "#/definitions/ContactInput"
             }
           }
         ],
@@ -116,7 +116,7 @@
               "type": "object",
               "properties": {
                 "data": {
-                  "$ref": "#/definitions/ContactKondo"
+                  "$ref": "#/definitions/Contact"
                 }
               }
             }
@@ -129,6 +129,54 @@
           }
         }
       }
+    },
+    "/contacts/{id}": {
+      "patch": {
+        "description": "Update a specific contact's information.",
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Update a contact's information",
+        "operationId": "updateContactById",
+        "parameters": [
+          {
+            "description": "Updates to the contact.",
+            "name": "contact",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/ContactInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated contact object with given ID.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/Contact"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "Unique identifier for the contact.",
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
     },
     "/fleet/drivers/safety-scores": {
       "get": {
@@ -698,25 +746,7 @@
               "description": "An array of all contact mini-objects that are associated with the given address entry.",
               "type": "array",
               "items": {
-                "description": "A minified contact object",
-                "type": "object",
-                "properties": {
-                  "firstName": {
-                    "description": "First name of the contact.",
-                    "type": "string",
-                    "example": "Jane"
-                  },
-                  "id": {
-                    "description": "ID of the contact.",
-                    "type": "string",
-                    "example": "123"
-                  },
-                  "lastName": {
-                    "description": "Last name of the contact.",
-                    "type": "string",
-                    "example": "Jones"
-                  }
-                }
+                "$ref": "#/definitions/contactTinyResponse"
               }
             },
             "id": {
@@ -886,7 +916,38 @@
         }
       }
     },
-    "ContactInputKondo": {
+    "Contact": {
+      "description": "Information about a notification contact for alerts.",
+      "type": "object",
+      "properties": {
+        "email": {
+          "description": "Email address of the contact.",
+          "type": "string",
+          "example": "jane.jones@yahoo.com"
+        },
+        "firstName": {
+          "description": "First name of the contact.",
+          "type": "string",
+          "example": "Jane"
+        },
+        "id": {
+          "description": "ID of the contact.",
+          "type": "string",
+          "example": "123"
+        },
+        "lastName": {
+          "description": "Last name of the contact.",
+          "type": "string",
+          "example": "Jones"
+        },
+        "phone": {
+          "description": "Phone number of the contact.",
+          "type": "string",
+          "example": "555-222-3344"
+        }
+      }
+    },
+    "ContactInput": {
       "description": "Information for adding a notification contact for alerts.",
       "type": "object",
       "properties": {
@@ -908,51 +969,8 @@
         "phone": {
           "description": "Phone number of the contact.",
           "type": "string",
+          "maxLength": 20,
           "example": "111-222-3344"
-        }
-      }
-    },
-    "ContactKondo": {
-      "description": "Information about a notification contact for alerts.",
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/ContactTinyResponse"
-        },
-        {
-          "properties": {
-            "email": {
-              "description": "Email address of the contact.",
-              "type": "string",
-              "example": "jane.jones@yahoo.com"
-            },
-            "phone": {
-              "description": "Phone number of the contact.",
-              "type": "string",
-              "example": "555-222-3344"
-            }
-          }
-        }
-      ]
-    },
-    "ContactTinyResponse": {
-      "description": "A minified contact object",
-      "type": "object",
-      "properties": {
-        "firstName": {
-          "description": "First name of the contact.",
-          "type": "string",
-          "example": "Jane"
-        },
-        "id": {
-          "description": "ID of the contact.",
-          "type": "string",
-          "example": "123"
-        },
-        "lastName": {
-          "description": "Last name of the contact.",
-          "type": "string",
-          "example": "Jones"
         }
       }
     },
@@ -1522,6 +1540,27 @@
       "format": "string",
       "example": "Yard move."
     },
+    "contactTinyResponse": {
+      "description": "A minified contact object",
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "description": "First name of the contact.",
+          "type": "string",
+          "example": "Jane"
+        },
+        "id": {
+          "description": "ID of the contact.",
+          "type": "string",
+          "example": "123"
+        },
+        "lastName": {
+          "description": "Last name of the contact.",
+          "type": "string",
+          "example": "Jones"
+        }
+      }
+    },
     "driverId": {
       "description": "ID of Driver to assign this segment to. The driver assignment is a tentative assignment until the ID is 'ACCEPTED'.",
       "type": "string",
@@ -1615,7 +1654,7 @@
       "in": "body",
       "required": true,
       "schema": {
-        "$ref": "#/definitions/ContactInputKondo"
+        "$ref": "#/definitions/ContactInput"
       }
     },
     "createMessagesParam": {
