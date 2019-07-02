@@ -131,6 +131,26 @@
       }
     },
     "/contacts/{id}": {
+      "delete": {
+        "description": "Delete the given contact.",
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Delete a contact",
+        "operationId": "deleteContactById",
+        "responses": {
+          "204": {
+            "description": "Returns an empty success response.",
+            "schema": {}
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
       "patch": {
         "description": "Update a specific contact's information.",
         "tags": [
