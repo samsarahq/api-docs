@@ -240,6 +240,71 @@
         }
       }
     },
+    "/fleet/drivers/{id}": {
+      "get": {
+        "description": "Get information about a driver.",
+        "tags": [
+          "Drivers"
+        ],
+        "summary": "Get a driver",
+        "operationId": "getDriverById",
+        "responses": {
+          "200": {
+            "description": "Returns the specified driver.",
+            "schema": {
+              "$ref": "#/definitions/Driver"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Update a specific driver's information. This can also be used to activate or de-activate a given driver",
+        "tags": [
+          "Drivers"
+        ],
+        "summary": "Update driver properties",
+        "operationId": "updateDriverById",
+        "parameters": [
+          {
+            "description": "Updates to the driver properties.",
+            "name": "driver",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/DriverUpdate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated driver object, with ID.",
+            "schema": {
+              "$ref": "#/definitions/Driver"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "ID of the driver. This can either be the Samsara-specified ID, or an external ID.",
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
     "/fleet/unassigned-driving-segments": {
       "get": {
         "description": "Get the unassigned driving segments for a specified range.",
@@ -994,6 +1059,196 @@
         }
       }
     },
+    "Driver": {
+      "description": "A driver object",
+      "type": "object",
+      "allOf": [
+        {
+          "properties": {
+            "id": {
+              "description": "Samsara ID for the driver.",
+              "type": "string",
+              "example": "123"
+            },
+            "tags": {
+              "description": "The tags this driver belongs to.",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/tagTinyResponse"
+              }
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/DriverBase"
+        }
+      ]
+    },
+    "DriverBase": {
+      "description": "A driver object",
+      "type": "object",
+      "properties": {
+        "carrierSettings": {
+          "description": "Carrier for a given driver. If the driver's carrier differs from the general organization's carrier settings, the override value is used. Updating this value only updates the override setting for this driver.",
+          "type": "object",
+          "properties": {
+            "carrierName": {
+              "description": "???",
+              "type": "string",
+              "example": "Acme Inc."
+            },
+            "dotNumber": {
+              "description": "Carrier US DOT Number. If this differs from the general organization's settings, the override value is used. Updating this value only updates the override setting for this driver.",
+              "type": "integer",
+              "format": "int64",
+              "example": 98231
+            },
+            "mainOfficeAddress": {
+              "description": "Main office address for a given driver. If this differs from the general organization's settings, the override value is used. ",
+              "type": "string",
+              "example": "1234 Pear St., Scranton, PA 62814"
+            }
+          }
+        },
+        "currentVehicle": {
+          "$ref": "#/definitions/vehicleTinyResponse"
+        },
+        "eldAdverseWeatherExemptionEnabled": {
+          "description": "Flag indicating this driver may use Adverse Weather exemptions in ELD logs.",
+          "type": "boolean"
+        },
+        "eldBigDayExemptionEnabled": {
+          "description": "Flag indicating this driver may use Big Day exemption in ELD logs.",
+          "type": "boolean"
+        },
+        "eldDayStartHour": {
+          "description": "`0` indicating midnight-to-midnight ELD driving hours, `12` to indicate noon-to-noon driving hours.",
+          "type": "integer"
+        },
+        "eldExempt": {
+          "description": "Flag indicating this driver is exempt from the Electronic Logging Mandate.",
+          "type": "boolean"
+        },
+        "eldExemptReason": {
+          "description": "Reason that this driver is exempt from the Electronic Logging Mandate (see eldExempt).",
+          "type": "string",
+          "example": "Bad driver"
+        },
+        "eldPcEnabled": {
+          "description": "Flag indicating this driver may select the Personal Conveyance duty status in ELD logs.",
+          "type": "boolean",
+          "default": false
+        },
+        "eldYmEnabled": {
+          "description": "Flag indicating this driver may select the Yard Move duty status in ELD logs.",
+          "type": "boolean",
+          "default": false
+        },
+        "externalIds": {
+          "description": "User-defined dictionary of external IDs (string key-value pairs).",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "example": {
+            "maintenanceId": "250020",
+            "payrollId": "123"
+          }
+        },
+        "isDeactivated": {
+          "description": "A boolean that indicates whether or not this driver is deactivated.",
+          "type": "boolean",
+          "example": false
+        },
+        "licenseNumber": {
+          "description": "Driver's state issued license number.",
+          "type": "string",
+          "example": "E1234567"
+        },
+        "licenseState": {
+          "description": "Abbreviation of state that issued driver's license.",
+          "type": "string",
+          "example": "CA"
+        },
+        "locale": {
+          "description": "Locale override (uncommon).",
+          "type": "string",
+          "enum": [
+            "United States",
+            "Austria",
+            "Belgium",
+            "Canada",
+            "United Kingdom",
+            "France",
+            "Germany",
+            "Ireland",
+            "Luxembourg",
+            "Mexico",
+            "Netherlands",
+            "Spain",
+            "Switzerland"
+          ]
+        },
+        "name": {
+          "description": "Driver's name.",
+          "type": "string",
+          "example": "Susan Jones"
+        },
+        "notes": {
+          "description": "Notes about the driver.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "Also goes by the nickname Furious Fred."
+        },
+        "phone": {
+          "description": "Driver's phone number. Please include only digits, ex. 4157771234",
+          "type": "string",
+          "example": "5558234327"
+        },
+        "staticVehicleAssignment": {
+          "$ref": "#/definitions/vehicleTinyResponse"
+        },
+        "timezone": {
+          "description": "Home terminal timezone, in order to indicate what time zone should be used to calculate the ELD logs.",
+          "type": "string",
+          "example": "New York - EST/EDT"
+        },
+        "username": {
+          "description": "Driver's login username into the driver app.",
+          "type": "string",
+          "example": "Susan Jones"
+        },
+        "vehicleGroupTag": {
+          "$ref": "#/definitions/tagTinyResponse"
+        }
+      }
+    },
+    "DriverUpdate": {
+      "description": "Driver that should be updated.",
+      "type": "object",
+      "allOf": [
+        {
+          "properties": {
+            "password": {
+              "description": "Password that the driver can use to login to the Samsara driver app.",
+              "type": "string",
+              "example": "aSecurePassword1234"
+            },
+            "tags": {
+              "description": "IDs of tags the driver is associated with.",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "147"
+              }
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/DriverBase"
+        }
+      ]
+    },
     "Message": {
       "type": "object",
       "required": [
@@ -1400,20 +1655,7 @@
           "example": "PENDING"
         },
         "vehicle": {
-          "description": "A minified vehicle object.",
-          "type": "object",
-          "properties": {
-            "id": {
-              "description": "ID of the vehicle.",
-              "type": "string",
-              "example": "123456789"
-            },
-            "name": {
-              "description": "Name of the vehicle.",
-              "type": "string",
-              "example": "Midwest Truck #4"
-            }
-          }
+          "$ref": "#/definitions/vehicleTinyResponse"
         }
       }
     },
@@ -1538,22 +1780,6 @@
         }
       }
     },
-    "VehicleTinyResponse": {
-      "description": "A minified vehicle object.",
-      "type": "object",
-      "properties": {
-        "id": {
-          "description": "ID of the vehicle.",
-          "type": "string",
-          "example": "123456789"
-        },
-        "name": {
-          "description": "Name of the vehicle.",
-          "type": "string",
-          "example": "Midwest Truck #4"
-        }
-      }
-    },
     "annotation": {
       "description": "Annotation for the driving segment.",
       "type": "string",
@@ -1663,6 +1889,22 @@
           "description": "Name of the tag.",
           "type": "string",
           "example": "East Coast"
+        }
+      }
+    },
+    "vehicleTinyResponse": {
+      "description": "A minified vehicle object.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "ID of the vehicle.",
+          "type": "string",
+          "example": "123456789"
+        },
+        "name": {
+          "description": "Name of the vehicle.",
+          "type": "string",
+          "example": "Midwest Truck #4"
         }
       }
     }
