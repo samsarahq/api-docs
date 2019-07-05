@@ -2174,7 +2174,7 @@
         ],
         "responses": {
           "200": {
-            "description": "List of trips taken by the requested vehicle within the specified timeframe.",
+            "description": "List of trips taken by the requested vehicle within the specified timeframe. Ongoing trips will be returned with 9223372036854775807 as their endMs.",
             "schema": {
               "$ref": "#/definitions/TripResponse"
             }
@@ -7538,7 +7538,7 @@
       }
     },
     "TripResponse": {
-      "description": "Contains the trips for the vehicle in the requested timeframe. A trip is represented as an object that contains startMs, startLocation, startAddress, startCoordinates, endMs, endLocation, endAddress and endCoordinates.",
+      "description": "Contains the trips for the vehicle in the requested timeframe. A trip is represented as an object that contains startMs, startLocation, startAddress, startCoordinates, endMs, endLocation, endAddress and endCoordinates. Ongoing trips will be returned with 9223372036854775807 as their endMs.",
       "type": "object",
       "properties": {
         "trips": {
@@ -7622,7 +7622,7 @@
                 "example": "571 S Lake Ave, Pasadena, CA 91101"
               },
               "endMs": {
-                "description": "End of the trip in UNIX milliseconds.",
+                "description": "End of the trip in UNIX milliseconds. Ongoing trips are indicated by an endMs value of 9223372036854775807.",
                 "type": "integer",
                 "example": 1462881998034
               },
