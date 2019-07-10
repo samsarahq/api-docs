@@ -198,6 +198,45 @@
         }
       ]
     },
+    "/fleet/drivers": {
+      "post": {
+        "description": "Add a driver to the organization.",
+        "tags": [
+          "Drivers"
+        ],
+        "summary": "Create a driver",
+        "operationId": "createDriver",
+        "parameters": [
+          {
+            "description": "The driver to create.",
+            "name": "driver",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/DriverCreate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Newly created driver object, with Samsara-generated ID.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/Driver"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/fleet/drivers/safety-scores": {
       "get": {
         "description": "Fetch safety scores for all drivers in the organization in a given time period.",
@@ -252,7 +291,12 @@
           "200": {
             "description": "Returns the specified driver.",
             "schema": {
-              "$ref": "#/definitions/Driver"
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/Driver"
+                }
+              }
             }
           },
           "default": {
@@ -284,7 +328,12 @@
           "200": {
             "description": "Updated driver object, with ID.",
             "schema": {
-              "$ref": "#/definitions/Driver"
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/Driver"
+                }
+              }
             }
           },
           "default": {
@@ -1065,10 +1114,16 @@
       "allOf": [
         {
           "properties": {
+            "currentVehicle": {
+              "$ref": "#/definitions/vehicleTinyResponse"
+            },
             "id": {
               "description": "Samsara ID for the driver.",
               "type": "string",
               "example": "123"
+            },
+            "staticVehicleAssignment": {
+              "$ref": "#/definitions/vehicleTinyResponse"
             },
             "tags": {
               "description": "The tags this driver belongs to.",
@@ -1076,6 +1131,9 @@
               "items": {
                 "$ref": "#/definitions/tagTinyResponse"
               }
+            },
+            "vehicleGroupTag": {
+              "$ref": "#/definitions/tagTinyResponse"
             }
           }
         },
@@ -1109,9 +1167,6 @@
               "example": "1234 Pear St., Scranton, PA 62814"
             }
           }
-        },
-        "currentVehicle": {
-          "$ref": "#/definitions/vehicleTinyResponse"
         },
         "eldAdverseWeatherExemptionEnabled": {
           "description": "Flag indicating this driver may use Adverse Weather exemptions in ELD logs.",
@@ -1205,8 +1260,163 @@
           "type": "string",
           "example": "5558234327"
         },
-        "staticVehicleAssignment": {
-          "$ref": "#/definitions/vehicleTinyResponse"
+        "timezone": {
+          "description": "Home terminal timezone, in order to indicate what time zone should be used to calculate the ELD logs.",
+          "type": "string",
+          "example": "New York - EST/EDT"
+        },
+        "username": {
+          "description": "Driver's login username into the driver app.",
+          "type": "string",
+          "example": "Susan Jones"
+        }
+      }
+    },
+    "DriverCreate": {
+      "description": "Driver that should be created.",
+      "type": "object",
+      "required": [
+        "name",
+        "username",
+        "password"
+      ],
+      "properties": {
+        "carrierSettings": {
+          "description": "Carrier for a given driver. If the driver's carrier differs from the general organization's carrier settings, the override value is used. Updating this value only updates the override setting for this driver.",
+          "type": "object",
+          "properties": {
+            "carrierName": {
+              "description": "???",
+              "type": "string",
+              "example": "Acme Inc."
+            },
+            "dotNumber": {
+              "description": "Carrier US DOT Number. If this differs from the general organization's settings, the override value is used. Updating this value only updates the override setting for this driver.",
+              "type": "integer",
+              "format": "int64",
+              "example": 98231
+            },
+            "mainOfficeAddress": {
+              "description": "Main office address for a given driver. If this differs from the general organization's settings, the override value is used. ",
+              "type": "string",
+              "example": "1234 Pear St., Scranton, PA 62814"
+            }
+          }
+        },
+        "currentVehicleId": {
+          "description": "ID of vehicle that driver is currently assigned to.",
+          "type": "string",
+          "example": "123"
+        },
+        "eldAdverseWeatherExemptionEnabled": {
+          "description": "Flag indicating this driver may use Adverse Weather exemptions in ELD logs.",
+          "type": "boolean"
+        },
+        "eldBigDayExemptionEnabled": {
+          "description": "Flag indicating this driver may use Big Day exemption in ELD logs.",
+          "type": "boolean"
+        },
+        "eldDayStartHour": {
+          "description": "`0` indicating midnight-to-midnight ELD driving hours, `12` to indicate noon-to-noon driving hours.",
+          "type": "integer"
+        },
+        "eldExempt": {
+          "description": "Flag indicating this driver is exempt from the Electronic Logging Mandate.",
+          "type": "boolean"
+        },
+        "eldExemptReason": {
+          "description": "Reason that this driver is exempt from the Electronic Logging Mandate (see eldExempt).",
+          "type": "string",
+          "example": "Bad driver"
+        },
+        "eldPcEnabled": {
+          "description": "Flag indicating this driver may select the Personal Conveyance duty status in ELD logs.",
+          "type": "boolean",
+          "default": false
+        },
+        "eldYmEnabled": {
+          "description": "Flag indicating this driver may select the Yard Move duty status in ELD logs.",
+          "type": "boolean",
+          "default": false
+        },
+        "externalIds": {
+          "description": "User-defined dictionary of external IDs (string key-value pairs).",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "example": {
+            "maintenanceId": "250020",
+            "payrollId": "123"
+          }
+        },
+        "isDeactivated": {
+          "description": "A boolean that indicates whether or not this driver is deactivated.",
+          "type": "boolean",
+          "example": false
+        },
+        "licenseNumber": {
+          "description": "Driver's state issued license number.",
+          "type": "string",
+          "example": "E1234567"
+        },
+        "licenseState": {
+          "description": "Abbreviation of state that issued driver's license.",
+          "type": "string",
+          "example": "CA"
+        },
+        "locale": {
+          "description": "Locale override (uncommon).",
+          "type": "string",
+          "enum": [
+            "United States",
+            "Austria",
+            "Belgium",
+            "Canada",
+            "United Kingdom",
+            "France",
+            "Germany",
+            "Ireland",
+            "Luxembourg",
+            "Mexico",
+            "Netherlands",
+            "Spain",
+            "Switzerland"
+          ]
+        },
+        "name": {
+          "description": "Driver's name.",
+          "type": "string",
+          "example": "Susan Jones"
+        },
+        "notes": {
+          "description": "Notes about the driver.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "Also goes by the nickname Furious Fred."
+        },
+        "password": {
+          "description": "Password that the driver can use to login to the Samsara driver app.",
+          "type": "string",
+          "example": "aSecurePassword1234"
+        },
+        "phone": {
+          "description": "Driver's phone number. Please include only digits, ex. 4157771234",
+          "type": "string",
+          "example": "5558234327"
+        },
+        "staticVehicleAssignmentId": {
+          "description": "ID of vehicle assigned to the driver for static vehicle assignments. (uncommon).",
+          "type": "string",
+          "example": "456"
+        },
+        "tags": {
+          "description": "IDs of tags the driver is associated with.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "147"
+          }
         },
         "timezone": {
           "description": "Home terminal timezone, in order to indicate what time zone should be used to calculate the ELD logs.",
@@ -1218,8 +1428,10 @@
           "type": "string",
           "example": "Susan Jones"
         },
-        "vehicleGroupTag": {
-          "$ref": "#/definitions/tagTinyResponse"
+        "vehicleGroupTagId": {
+          "description": "Tag ID which determines which vehicles a driver will see when selecting vehicles.",
+          "type": "string",
+          "example": "East Coast"
         }
       }
     },
@@ -1229,10 +1441,20 @@
       "allOf": [
         {
           "properties": {
+            "currentVehicleId": {
+              "description": "ID of vehicle that driver is currently assigned to.",
+              "type": "string",
+              "example": "123"
+            },
             "password": {
               "description": "Password that the driver can use to login to the Samsara driver app.",
               "type": "string",
               "example": "aSecurePassword1234"
+            },
+            "staticVehicleAssignmentId": {
+              "description": "ID of vehicle assigned to the driver for static vehicle assignments. (uncommon).",
+              "type": "string",
+              "example": "456"
             },
             "tags": {
               "description": "IDs of tags the driver is associated with.",
@@ -1241,6 +1463,11 @@
                 "type": "string",
                 "example": "147"
               }
+            },
+            "vehicleGroupTagId": {
+              "description": "Tag ID which determines which vehicles a driver will see when selecting vehicles.",
+              "type": "string",
+              "example": "East Coast"
             }
           }
         },
