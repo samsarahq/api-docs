@@ -34,7 +34,7 @@
           },
           {
             "type": "string",
-            "description": "The cursor position to use to return results after.",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
             "name": "after",
             "in": "query"
           }
@@ -365,7 +365,7 @@
         "parameters": [
           {
             "type": "string",
-            "description": "The cursor position to use to return results after.",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
             "name": "after",
             "in": "query"
           },
@@ -497,13 +497,13 @@
           },
           {
             "type": "string",
-            "description": "The cursor position to use to return results after.",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
             "name": "after",
             "in": "query"
           },
           {
             "type": "string",
-            "description": "A comma delimited list of tagIds.",
+            "description": "A comma-separated list of tag IDs",
             "name": "tagIds",
             "in": "query"
           }
@@ -555,6 +555,75 @@
             "description": "Harsh events for the organization",
             "schema": {
               "$ref": "#/definitions/OrgHarshEventsKondoResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/vehicles/locations": {
+      "get": {
+        "description": "This endpoint allows you to both fetch historical locations for a vehicle, as well as a feed of all new vehicle locations.\n\nIf you wish to just fetch the historical location data for a vehicle, you can pass in a `startTime` and `endTime` range. This will return all known locations for a vehicle during a given time range.\n\nIf an `endTime` is not provided, then this will provide a continuous feed of all vehicle locations. In order to follow the feed, you can follow the pagination `endCursor` cursor continuously.  If there is not yet a `hasNextPage=true` for the feed follow, then we recommend you wait and retry in 5 seconds.",
+        "tags": [
+          "Vehicles"
+        ],
+        "summary": "Fetch vehicle locations",
+        "operationId": "getVehicleLocationsHistory",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "The limit for how many objects will be in the response.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "A start time in RFC 3339 format. Defaults to now if not provided. (Example: 2019-06-13T19:08:25Z)",
+            "name": "startTime",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "An end time in RFC 3339 format. Defaults to infinity if not provided. (Example: 2019-06-13T19:08:25Z)",
+            "name": "endTime",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "A comma-separated list of tag IDs",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of vehicle IDs.",
+            "name": "vehicleIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all locations for the specified vehicles and time range.",
+            "schema": {
+              "$ref": "#/definitions/VehicleLocationsListResponse"
             }
           },
           "default": {
@@ -698,7 +767,7 @@
           },
           {
             "type": "string",
-            "description": "The cursor position to use to return results after.",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
             "name": "after",
             "in": "query"
           }
@@ -1476,6 +1545,32 @@
         }
       ]
     },
+    "LocationsWrapper": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "vehicle": {
+              "$ref": "#/definitions/vehicleTinyResponse"
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/location"
+        },
+        {
+          "type": "object",
+          "required": [
+            "time"
+          ],
+          "properties": {
+            "time": {
+              "$ref": "#/definitions/time"
+            }
+          }
+        }
+      ]
+    },
     "Message": {
       "type": "object",
       "required": [
@@ -1923,6 +2018,21 @@
         }
       }
     },
+    "VehicleLocationsListResponse": {
+      "description": "List of vehicle locations for the specified time period.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LocationsWrapper"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
     "VehiclePatch": {
       "description": "All the editable portions of the vehicle object.",
       "type": "object",
@@ -2061,6 +2171,48 @@
       "format": "date-time",
       "example": "2019-04-17T16:42:55Z"
     },
+    "location": {
+      "description": "Location object",
+      "type": "object",
+      "required": [
+        "latitude",
+        "longitude"
+      ],
+      "properties": {
+        "addresses": {
+          "description": "Array of address mini-objects, in which the given lat/long coordinates falls within the address's geofence borders. If the location is not within any geofence, then this value will not appear",
+          "type": "array",
+          "items": {
+            "description": "Address book entry, if one exists",
+            "type": "object",
+            "properties": {
+              "id": {
+                "description": "Address book identifier",
+                "type": "string",
+                "example": "123"
+              },
+              "name": {
+                "description": "Name of this address book entry",
+                "type": "string",
+                "example": "Main Distribution Warehouse"
+              }
+            }
+          }
+        },
+        "latitude": {
+          "description": "GPS latitude represented in degrees",
+          "type": "number",
+          "format": "double",
+          "example": 122.142
+        },
+        "longitude": {
+          "description": "GPS longitude represented in degrees",
+          "type": "number",
+          "format": "double",
+          "example": -93.343
+        }
+      }
+    },
     "paginationResponse": {
       "description": "Pagination parameters.",
       "type": "object",
@@ -2119,9 +2271,17 @@
         }
       }
     },
+    "time": {
+      "description": "UTC timestamp in RFC3339 milliseconds format.",
+      "type": "string",
+      "example": "2019-05-03T04:30:31.492Z"
+    },
     "vehicleTinyResponse": {
       "description": "A minified vehicle object.",
       "type": "object",
+      "required": [
+        "id"
+      ],
       "properties": {
         "id": {
           "description": "ID of the vehicle.",
