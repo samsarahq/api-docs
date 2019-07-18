@@ -8597,6 +8597,62 @@
               }
             }
           },
+          "distance": {
+            "type": "object",
+            "properties": {
+              "distanceFound": {
+                "description": "The distance (in pixels) found between the start and end references",
+                "type": "integer",
+                "format": "int64",
+                "example": 1000
+              },
+              "endStepName": {
+                "description": "The name of the second reference step that we're checking the distances between",
+                "type": "string",
+                "example": "Bottom Right Square"
+              },
+              "enforceOffsetAngleRange": {
+                "description": "Whether an offset angle range is enforced",
+                "type": "boolean",
+                "example": true
+              },
+              "maxDistance": {
+                "description": "The maximum allowed distance threshold (in pixels)",
+                "type": "integer",
+                "format": "int64",
+                "example": 900
+              },
+              "maxOffsetAngle": {
+                "description": "The maximum angle allowance (in degrees) if enforceOffsetAngleRange is true",
+                "type": "integer",
+                "format": "int64",
+                "example": 90
+              },
+              "minDistance": {
+                "description": "The minumum allowed distance threshold (in pixels)",
+                "type": "integer",
+                "format": "int64",
+                "example": 1500
+              },
+              "minOffsetAngle": {
+                "description": "The minimum angle allowance (in degrees) if enforceOffsetAngleRange is true",
+                "type": "integer",
+                "format": "int64",
+                "example": 45
+              },
+              "offsetAngleFound": {
+                "description": "The counter-clockwise angle (in degrees) found between the horizontal axis of the start reference step and the last",
+                "type": "integer",
+                "format": "int64",
+                "example": 50
+              },
+              "startStepName": {
+                "description": "The name of the first reference step that we're checking the distances between",
+                "type": "string",
+                "example": "Top Left Square"
+              }
+            }
+          },
           "expirationDate": {
             "type": "object",
             "properties": {
