@@ -91,6 +91,47 @@
       }
     },
     "/contacts": {
+      "get": {
+        "description": "Returns a list of all contacts in an organization.",
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "List all contacts",
+        "operationId": "getContacts",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "The limit for how many objects will be in the response.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all contacts",
+            "schema": {
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Contact"
+                  }
+                },
+                "pagination": {
+                  "$ref": "#/definitions/paginationResponse"
+                }
+              }
+            }
+          }
+        }
+      },
       "post": {
         "description": "Add a contact to the organization.",
         "tags": [
