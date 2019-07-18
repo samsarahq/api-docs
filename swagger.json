@@ -576,13 +576,6 @@
         "operationId": "getVehicleLocationsHistory",
         "parameters": [
           {
-            "type": "integer",
-            "format": "int64",
-            "description": "The limit for how many objects will be in the response.",
-            "name": "limit",
-            "in": "query"
-          },
-          {
             "type": "string",
             "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
             "name": "after",
@@ -2029,7 +2022,7 @@
           }
         },
         "pagination": {
-          "$ref": "#/definitions/paginationResponse"
+          "$ref": "#/definitions/timeseriesPaginationResponse"
         }
       }
     },
@@ -2216,6 +2209,10 @@
     "paginationResponse": {
       "description": "Pagination parameters.",
       "type": "object",
+      "required": [
+        "endCursor",
+        "hasNextPage"
+      ],
       "properties": {
         "endCursor": {
           "description": "Cursor identifier representing the last element in the response. This value should be used in conjunction with a subsequent request's 'after' query parameter.",
@@ -2224,14 +2221,14 @@
           "example": "MjkY"
         },
         "hasNextPage": {
-          "description": "True if there are more pages of results after this response.",
+          "description": "True if there are more pages of results immediately available after this endCursor. Otherwise, wait nextPageAfter seconds before fetching the next page with endCursor.",
           "type": "boolean",
           "example": true
         },
         "nextPageUrl": {
           "description": "URL of the request to make to fetch the next page of data.",
           "type": "string",
-          "example": "https://api.samsara.com/fleet/vehicles/engine-gauge-history\u0026after=cmVhyI"
+          "example": "https://api.samsara.com/fleet/vehicles/locations\u0026after=cmVhyI"
         }
       }
     },
@@ -2275,6 +2272,48 @@
       "description": "UTC timestamp in RFC3339 milliseconds format.",
       "type": "string",
       "example": "2019-05-03T04:30:31.492Z"
+    },
+    "timeseriesPaginationResponse": {
+      "description": "Pagination parameters for timeseries pages where results may be delayed.",
+      "type": "object",
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "nextPageAfter": {
+              "description": "The number of seconds to wait before fetching the next page of results. Only populated if hasNextPage is false and additional pages may be available in the future. For example, if nextPageAfter=5, then wait 5 seconds before fetching the next page of results. If pagination is complete or hasNextPage=true, then nextPageAfter will be omitted.",
+              "type": "integer",
+              "example": 5
+            }
+          }
+        },
+        {
+          "description": "Pagination parameters.",
+          "type": "object",
+          "required": [
+            "endCursor",
+            "hasNextPage"
+          ],
+          "properties": {
+            "endCursor": {
+              "description": "Cursor identifier representing the last element in the response. This value should be used in conjunction with a subsequent request's 'after' query parameter.",
+              "type": "string",
+              "format": "string",
+              "example": "MjkY"
+            },
+            "hasNextPage": {
+              "description": "True if there are more pages of results immediately available after this endCursor. Otherwise, wait nextPageAfter seconds before fetching the next page with endCursor.",
+              "type": "boolean",
+              "example": true
+            },
+            "nextPageUrl": {
+              "description": "URL of the request to make to fetch the next page of data.",
+              "type": "string",
+              "example": "https://api.samsara.com/fleet/vehicles/locations\u0026after=cmVhyI"
+            }
+          }
+        }
+      ]
     },
     "vehicleTinyResponse": {
       "description": "A minified vehicle object.",
