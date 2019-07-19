@@ -8671,6 +8671,41 @@
               }
             }
           },
+          "findCopies": {
+            "type": "object",
+            "properties": {
+              "angleTolerance": {
+                "description": "The orientation angle tolerance (+/- °)",
+                "type": "integer",
+                "format": "int64",
+                "example": 10
+              },
+              "foundCount": {
+                "description": "The number of copies found",
+                "type": "integer",
+                "format": "int64",
+                "example": 1
+              },
+              "maxCount": {
+                "description": "The maximum number of copies allowed",
+                "type": "integer",
+                "format": "int64",
+                "example": 5
+              },
+              "minCount": {
+                "description": "The minimum number of copies allowed",
+                "type": "integer",
+                "format": "int64",
+                "example": 1
+              },
+              "threshold": {
+                "description": "The minimum required similarity (in %) of a found copy compared to the configured match region",
+                "type": "integer",
+                "format": "int64",
+                "example": 70
+              }
+            }
+          },
           "findShapes": {
             "type": "object",
             "properties": {
