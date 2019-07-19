@@ -967,6 +967,9 @@
           },
           {
             "$ref": "#/parameters/documentsDurationMsParam"
+          },
+          {
+            "$ref": "#/parameters/documentQueryByParam"
           }
         ],
         "responses": {
@@ -9170,6 +9173,17 @@
       "schema": {
         "$ref": "#/definitions/DocumentCreate"
       }
+    },
+    "documentQueryByParam": {
+      "enum": [
+        "created",
+        "updated"
+      ],
+      "type": "string",
+      "format": "string",
+      "description": "Retrieve most recent documents based on either driverCreatedAtMs or serverUpdatedAtMs. If no value is provided, the default is driverCreatedAtMs.",
+      "name": "queryBy",
+      "in": "query"
     },
     "documentsDurationMsParam": {
       "type": "integer",
