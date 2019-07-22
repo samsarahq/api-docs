@@ -28,7 +28,7 @@
           {
             "type": "integer",
             "format": "int64",
-            "description": "The limit for how many objects will be in the response.",
+            "description": "The limit for how many objects will be in the response. Default and max for this value is 250 objects.",
             "name": "limit",
             "in": "query"
           },
@@ -102,7 +102,7 @@
           {
             "type": "integer",
             "format": "int64",
-            "description": "The limit for how many objects will be in the response.",
+            "description": "The limit for how many objects will be in the response. Default and max for this value is 250 objects.",
             "name": "limit",
             "in": "query"
           },
@@ -240,12 +240,71 @@
       ]
     },
     "/fleet/drivers": {
+      "get": {
+        "description": "Get all drivers in organization.",
+        "tags": [
+          "Drivers"
+        ],
+        "summary": "Get all drivers.",
+        "operationId": "getDrivers",
+        "parameters": [
+          {
+            "type": "boolean",
+            "description": "Filter only for inactive drivers. This parameter will default to false if not provided.",
+            "name": "inactive",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "The limit for how many objects will be in the response. Default and max for this value is 250 objects.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "A comma-separated list of tag IDs.",
+            "name": "tagIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all driver objects.",
+            "schema": {
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Driver"
+                  }
+                },
+                "pagination": {
+                  "$ref": "#/definitions/paginationResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
       "post": {
         "description": "Add a driver to the organization.",
         "tags": [
           "Drivers"
         ],
-        "summary": "Create a driver",
+        "summary": "Create a driver.",
         "operationId": "createDriver",
         "parameters": [
           {
@@ -532,7 +591,7 @@
           {
             "type": "integer",
             "format": "int64",
-            "description": "The limit for how many objects will be in the response.",
+            "description": "The limit for how many objects will be in the response. Default and max for this value is 250 objects.",
             "name": "limit",
             "in": "query"
           },
@@ -544,7 +603,7 @@
           },
           {
             "type": "string",
-            "description": "A comma-separated list of tag IDs",
+            "description": "A comma-separated list of tag IDs.",
             "name": "tagIds",
             "in": "query"
           }
@@ -638,7 +697,7 @@
           },
           {
             "type": "string",
-            "description": "A comma-separated list of tag IDs",
+            "description": "A comma-separated list of tag IDs.",
             "name": "tagIds",
             "in": "query"
           },
@@ -795,7 +854,7 @@
           {
             "type": "integer",
             "format": "int64",
-            "description": "The limit for how many objects will be in the response.",
+            "description": "The limit for how many objects will be in the response. Default and max for this value is 250 objects.",
             "name": "limit",
             "in": "query"
           },
@@ -1453,11 +1512,6 @@
             "payrollId": "123"
           }
         },
-        "isDeactivated": {
-          "description": "A boolean that indicates whether or not this driver is deactivated.",
-          "type": "boolean",
-          "example": false
-        },
         "licenseNumber": {
           "description": "Driver's state issued license number.",
           "type": "string",
@@ -1513,7 +1567,7 @@
           "type": "string",
           "example": "456"
         },
-        "tags": {
+        "tagIds": {
           "description": "IDs of tags the driver is associated with.",
           "type": "array",
           "items": {
@@ -1559,7 +1613,7 @@
               "type": "string",
               "example": "456"
             },
-            "tags": {
+            "tagIds": {
               "description": "IDs of tags the driver is associated with.",
               "type": "array",
               "items": {
@@ -2359,9 +2413,6 @@
     "vehicleTinyResponse": {
       "description": "A minified vehicle object.",
       "type": "object",
-      "required": [
-        "id"
-      ],
       "properties": {
         "id": {
           "description": "ID of the vehicle.",
