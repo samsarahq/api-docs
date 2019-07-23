@@ -530,6 +530,160 @@
         }
       ]
     },
+    "/fleet/equipment/locations": {
+      "get": {
+        "description": "This endpoint allows you to both fetch historical locations for all equipment as well as a feed of all new equipment locations.\n\nIf you wish to just fetch historical location data, you can pass in a `startTime` and `endTime` range. This will return all known location points for equipment during a given time range.\n\nIf an `endTime` is not provided, then this will provide a continuous feed of all equipment locations. In order to follow the feed, you can follow the pagination `endCursor` cursor continuously.  If there is not yet a `hasNextPage=true` for the feed follow, then we recommend you wait and retry in 5 seconds.",
+        "tags": [
+          "Equipment"
+        ],
+        "summary": "Fetch locations for all equipment",
+        "operationId": "getEquipmentLocationsHistory",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "A start time in RFC 3339 format. Defaults to now if not provided. (Example: 2019-06-13T19:08:25Z)",
+            "name": "startTime",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "An end time in RFC 3339 format. Defaults to infinity if not provided. (Example: 2019-06-13T19:08:25Z)",
+            "name": "endTime",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "A comma-separated list of tag IDs.",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of equipment IDs.",
+            "name": "equipmentIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all equipment location objects and pagination parameters",
+            "schema": {
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/EquipmentLocationsResponse"
+                  }
+                },
+                "pagination": {
+                  "type": "object",
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/EquipmentTimeSeriesPaginationResponse"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/equipment/stats": {
+      "get": {
+        "description": "This endpoint allows you to both fetch historical stats for all equipment as well as a feed of all new equipment stats.\n\nIf you wish to just fetch historical stat data, you can pass in a `startTime` and `endTime` range. This will return all known stat points for equipment during a given time range.\n\nIf an `endTime` is not provided, then this will provide a continuous feed of all equipment stats. In order to follow the feed, you can follow the pagination `endCursor` cursor continuously.  If there is not yet a `hasNextPage=true` for the feed follow, then we recommend you wait and retry in 5 seconds.",
+        "tags": [
+          "Equipment"
+        ],
+        "summary": "Fetch stats for all equipment",
+        "operationId": "getEquipmentStatsHistory",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "A start time in RFC 3339 format. Defaults to now if not provided. (Example: 2019-06-13T19:08:25Z)",
+            "name": "startTime",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "An end time in RFC 3339 format. Defaults to infinity if not provided. (Example: 2019-06-13T19:08:25Z)",
+            "name": "endTime",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "A comma-separated list of tag IDs.",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of equipment IDs.",
+            "name": "equipmentIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all equipment stat objects and pagination parameters",
+            "schema": {
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/EquipmentStatsResponse"
+                  }
+                },
+                "pagination": {
+                  "type": "object",
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/EquipmentTimeSeriesPaginationResponse"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/fleet/unassigned-driving-segments": {
       "get": {
         "description": "Get the unassigned driving segments for a specified range.",
@@ -1760,6 +1914,123 @@
         }
       ]
     },
+    "EquipmentEngineState": {
+      "description": "Stat point for the state of the engine.",
+      "type": "object",
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/time"
+        },
+        "value": {
+          "type": "string",
+          "enum": [
+            "Running",
+            "Off",
+            "Idle"
+          ],
+          "example": "Running"
+        }
+      }
+    },
+    "EquipmentLocation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/location"
+        },
+        {
+          "type": "object",
+          "required": [
+            "time"
+          ],
+          "properties": {
+            "time": {
+              "$ref": "#/definitions/time"
+            }
+          }
+        }
+      ]
+    },
+    "EquipmentLocationsResponse": {
+      "description": "List of equipment locations for the specified time period.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/equipmentTinyResponse"
+        },
+        {
+          "description": "Location point for the equipment.",
+          "type": "object",
+          "properties": {
+            "locations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EquipmentLocation"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "EquipmentPaginationResponse": {
+      "description": "Pagination parameters.",
+      "type": "object",
+      "required": [
+        "endCursor",
+        "hasNextPage"
+      ],
+      "properties": {
+        "endCursor": {
+          "description": "Cursor identifier representing the last element in the response. This value should be used in conjunction with a subsequent request's 'after' query parameter.",
+          "type": "string",
+          "format": "string",
+          "example": "MjkY"
+        },
+        "hasNextPage": {
+          "description": "True if there are more pages of results immediately available after this endCursor. Otherwise, wait nextPageAfter seconds before fetching the next page with endCursor.",
+          "type": "boolean",
+          "example": true
+        }
+      }
+    },
+    "EquipmentStatsResponse": {
+      "description": "List of equipment stats for the specified time period.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/equipmentTinyResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "engineStates": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EquipmentEngineState"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "EquipmentTimeSeriesPaginationResponse": {
+      "description": "Pagination parameters for timeseries pages where results may be delayed.",
+      "type": "object",
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "nextPageAfter": {
+              "description": "The number of seconds to wait before fetching the next page of results. Only populated if hasNextPage is false and additional pages may be available in the future. For example, if nextPageAfter=5, then wait 5 seconds before fetching the next page of results. If pagination is complete or hasNextPage=true, then nextPageAfter will be omitted.",
+              "type": "integer",
+              "example": 5
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/EquipmentPaginationResponse"
+        }
+      ]
+    },
     "LocationsWrapper": {
       "allOf": [
         {
@@ -2385,6 +2656,25 @@
       "type": "string",
       "format": "date-time",
       "example": "2019-04-17T16:42:55Z"
+    },
+    "equipmentTinyResponse": {
+      "description": "A minified equipment object.",
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "description": "ID of the equipment.",
+          "type": "string",
+          "example": "123456789"
+        },
+        "name": {
+          "description": "Name of the equipment.",
+          "type": "string",
+          "example": "40' crane #5"
+        }
+      }
     },
     "location": {
       "description": "Location object",
