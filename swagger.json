@@ -1669,6 +1669,13 @@
         "parameters": [
           {
             "$ref": "#/parameters/groupIdQueryParam"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp in Unix epoch miliseconds representing the end of the period to fetch. Omitting endMs sets endMs as the current time",
+            "name": "endMs",
+            "in": "query"
           }
         ],
         "responses": {
