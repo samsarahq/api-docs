@@ -90,6 +90,82 @@
         }
       }
     },
+    "/addresses/{id}": {
+      "get": {
+        "description": "Returns a specific address.",
+        "tags": [
+          "Addresses"
+        ],
+        "summary": "Get information about a specific address.",
+        "operationId": "getAddressById",
+        "responses": {
+          "200": {
+            "description": "Newly created address object with ID.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/Address"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete a specific address.",
+        "tags": [
+          "Addresses"
+        ],
+        "summary": "Delete a specific address.",
+        "operationId": "deleteAddressById",
+        "responses": {
+          "204": {
+            "description": "Empty success body"
+          }
+        }
+      },
+      "patch": {
+        "description": "Update a specific address.",
+        "tags": [
+          "Addresses"
+        ],
+        "summary": "Update information about a specific address.",
+        "operationId": "updateAddressById",
+        "parameters": [
+          {
+            "description": "The address fields to update.",
+            "name": "address",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/AddressPatch"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Newly created address object with ID.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/Address"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "Unique Samsara ID for the address.",
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
     "/contacts": {
       "get": {
         "description": "Returns a list of all contacts in an organization.",
@@ -1097,7 +1173,7 @@
           "$ref": "#/definitions/AddressGeofence"
         },
         "name": {
-          "description": "Name of the address",
+          "description": "Name of the address. At most 1024 characters.",
           "type": "string",
           "example": "Samsara HQ"
         },
@@ -1121,7 +1197,7 @@
           ],
           "properties": {
             "contactIds": {
-              "description": "An array of IDs of contacts we want to associate with this address",
+              "description": "An array of IDs of contacts to associate with this address",
               "type": "array",
               "items": {
                 "type": "string",
@@ -1141,11 +1217,11 @@
               "example": 37.765363
             },
             "tagIds": {
-              "description": "An array of IDs of tags we want to associate with this address",
+              "description": "An array of IDs of tags to associate with this address",
               "type": "array",
               "items": {
                 "type": "string",
-                "example": "123"
+                "example": "321"
               }
             }
           }
@@ -1194,7 +1270,7 @@
                 "type": "object",
                 "properties": {
                   "latitude": {
-                    "description": "The longitude of a geofence vertex in decimal degrees",
+                    "description": "The latitude of a geofence vertex in decimal degrees",
                     "type": "number",
                     "format": "double",
                     "example": 37.765363
@@ -1208,6 +1284,57 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "AddressPatch": {
+      "description": "Information about an address/geofence. Geofences are either a circle or a polygon.",
+      "type": "object",
+      "properties": {
+        "contactIds": {
+          "description": "An array of all contact ids to be associated with the given address entry.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "123"
+          }
+        },
+        "externalIds": {
+          "description": "Dictionary of external IDs (string key-value pairs)",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "example": {
+            "customerId": "JSD8MKS"
+          }
+        },
+        "formattedAddress": {
+          "description": "The full address associated with this address/geofence, as it might be recognized by maps.google.com",
+          "type": "string",
+          "example": "350 Rhode Island St, San Francisco, CA"
+        },
+        "geofence": {
+          "$ref": "#/definitions/AddressGeofence"
+        },
+        "name": {
+          "description": "Name of the address",
+          "type": "string",
+          "example": "Samsara HQ"
+        },
+        "notes": {
+          "description": "A notes field for addresses",
+          "type": "string",
+          "maxLength": 255,
+          "example": "This is a great address."
+        },
+        "tagIds": {
+          "description": "An array of IDs of tags to associate with this address",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "321"
           }
         }
       }
