@@ -5158,6 +5158,8 @@
             "orgId",
             "driverId",
             "driverCreatedAtMs",
+            "serverCreatedAtMs",
+            "serverUpdatedAtMs",
             "documentType",
             "fields"
           ],
@@ -5168,7 +5170,7 @@
               "example": "Fuel Receipt"
             },
             "driverCreatedAtMs": {
-              "description": "The time in Unix epoch milliseconds that the document is created.",
+              "description": "The time in Unix epoch milliseconds that the document is created on the driver app.",
               "type": "integer",
               "format": "int64",
               "example": 1462881998034
@@ -5227,6 +5229,18 @@
               "type": "integer",
               "format": "int64",
               "example": 555
+            },
+            "serverCreatedAtMs": {
+              "description": "The time in Unix epoch milliseconds that the document is created on the server.",
+              "type": "integer",
+              "format": "int64",
+              "example": 1462881998034
+            },
+            "serverUpdatedAtMs": {
+              "description": "The time in Unix epoch milliseconds that the document is updated on the server.",
+              "type": "integer",
+              "format": "int64",
+              "example": 1462881998034
             },
             "vehicleId": {
               "description": "VehicleID of the driver at document creation.",
