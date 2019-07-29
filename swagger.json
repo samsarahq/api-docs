@@ -1120,6 +1120,80 @@
                 }
               }
             }
+          },
+          "patch": {
+              "summary": "/fleet/drivers/{driver_id:[0-9]+}/hos_daily_logs",
+              "description": "Modify details, such as trailer number or shipping ID, for a driver's daily log",
+              "operationId": "patch_hos_daily_log",
+              "tags": [
+                  "Fleet", "Drivers"
+              ],
+              "produces": [
+                  "application/json"
+              ],
+              "consumes": [
+                  "application/json"
+              ],
+              "parameters": [
+                  {
+                      "$ref": "#/parameters/accessTokenParam"
+                  },
+                  {
+                      "description": "ID (integer) of the driver with certified daily log.",
+                      "in": "path",
+                      "name": "driver_id",
+                      "required": true,
+                      "type": "integer"
+                  },
+                  {
+                      "description": "A specified timestamp within the bounds of a driver's daily log, specified in milliseconds UNIX time.",
+                      "in": "query",
+                      "name": "timeMs",
+                      "required": true,
+                      "type": "integer"
+                  },
+                  {
+                      "in": "body",
+                      "name": "hosUpdateLogParams",
+                      "schema": {
+                          "type": "object",
+                          "properties": {
+                              "shippingDocIds": {
+                                  "type": "array",
+                                  "description": "A list of customer shipping document IDs to add to a driver's log.",
+                                  "items": {
+                                      "type": "integer",
+                                      "format": "int64",
+                                      "example": 123
+                                  }
+                              },
+                              "trailerIds": {
+                                  "type": "array",
+                                  "description": "A list of trailer names to add to a driver's log.",
+                                  "items": {
+                                      "type": "integer",
+                                      "format": "int64",
+                                      "example": 456
+                                  }
+                              }
+                          }
+                      }
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "Returns the edited daily log.",
+                      "schema": {
+                          "$ref": "#/definitions/DriverDailyLogResponse"
+                      }
+                  },
+                  "default": {
+                      "description": "Unexpected error.",
+                      "schema": {
+                          "$ref": "#/definitions/ErrorResponse"
+                      }
+                  }
+              }
           }
         },
         "/fleet/drivers/{driver_id}/log_edits": {
