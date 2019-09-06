@@ -1079,131 +1079,6 @@
         }
       }
     },
-    "/fleet/unassigned-driving-segments": {
-      "get": {
-        "description": "Get the unassigned driving segments for a specified range.",
-        "tags": [
-          "Unassigned Driving Segments"
-        ],
-        "summary": "Get all unassigned driving segments",
-        "operationId": "getUnassignedDrivingSegments",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
-            "name": "after",
-            "in": "query"
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "uuid"
-            },
-            "collectionFormat": "csv",
-            "description": "ID(s) of a specific unassigned driving segment(s). Takes precedent over filter time range params. Supports multiple comma-separated IDs using csv format (ex. ?id=1,2,3).",
-            "name": "id",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "format": "date-time",
-            "description": "Beginning of the filter time range, specified in RFC 3339 format. (Example: 2019-06-13T18:08:25Z) Filters based on the server timestamp, i.e. createAtTime.",
-            "name": "startTime",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "format": "date-time",
-            "description": "End of the filter time range, specified in RFC 3339 format. (Example: 2019-06-13T19:08:25Z) Filters based on the server timestamp, i.e. createAtTime.",
-            "name": "endTime",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Unassigned driving segments for provided time range.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "$ref": "#/definitions/UnassignedDrivingSegmentListResponse"
-                },
-                "pagination": {
-                  "$ref": "#/definitions/paginationResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "Error response",
-            "schema": {
-              "$ref": "#/definitions/standardErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/fleet/unassigned-driving-segments/{id}": {
-      "patch": {
-        "description": "Assign an unassigned driving segment to a driver.",
-        "tags": [
-          "Unassigned Driving Segments"
-        ],
-        "summary": "Assign an unassigned driving segment",
-        "operationId": "patchUnassignedDrivingSegments",
-        "parameters": [
-          {
-            "type": "string",
-            "format": "uuid",
-            "description": "ID of a specific unassigned driving segment.",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "description": "Driver ID to assign this driving segment to, and/or an annotation reason.",
-            "name": "updateUnassignedDrivingSegment",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": [
-                "annotation",
-                "driverId"
-              ],
-              "properties": {
-                "annotation": {
-                  "$ref": "#/definitions/annotation"
-                },
-                "driverId": {
-                  "$ref": "#/definitions/driverId"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The updated unassigned driving segment.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "$ref": "#/definitions/UnassignedDrivingSegmentResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "Error response",
-            "schema": {
-              "$ref": "#/definitions/standardErrorResponse"
-            }
-          }
-        }
-      }
-    },
     "/fleet/vehicles": {
       "get": {
         "description": "Returns a list of all vehicles in an organization, ordered by vehicle ID.",
@@ -5888,59 +5763,6 @@
         }
       }
     },
-    "UnassignedDrivingSegmentListResponse": {
-      "description": "A list of driving segments with no associated driver(s).",
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/UnassignedDrivingSegmentResponse"
-      }
-    },
-    "UnassignedDrivingSegmentResponse": {
-      "description": "A driving segment with no associated driver(s) that may or may not be in a unassigned, pending, rejected, or assigned states.",
-      "type": "object",
-      "properties": {
-        "annotation": {
-          "$ref": "#/definitions/annotation"
-        },
-        "createdAtTime": {
-          "description": "The time that the server created the driving segment, specified in RFC 3339 format.",
-          "type": "string",
-          "format": "date-time",
-          "example": "2019-04-17T16:43:00Z"
-        },
-        "driver": {
-          "$ref": "#/definitions/driverTinyResponse"
-        },
-        "endTime": {
-          "$ref": "#/definitions/endTimeBodyParam"
-        },
-        "id": {
-          "description": "Unique identifier for the unassigned driving segment.",
-          "type": "string",
-          "format": "uuid",
-          "example": "08b3aeada5f4ab3010c0b4efa28d2d1890dbf8d48d2d"
-        },
-        "startTime": {
-          "$ref": "#/definitions/startTimeBodyParam"
-        },
-        "status": {
-          "description": "Status of assignment for this segment.",
-          "type": "string",
-          "format": "string",
-          "enum": [
-            "PENDING",
-            "ACCEPTED",
-            "REJECTED",
-            "UNASSIGNED",
-            "UNKNOWN"
-          ],
-          "example": "PENDING"
-        },
-        "vehicle": {
-          "$ref": "#/definitions/vehicleTinyResponse"
-        }
-      }
-    },
     "User": {
       "description": "A user object",
       "type": "object",
@@ -6403,12 +6225,6 @@
         }
       }
     },
-    "annotation": {
-      "description": "Annotation for the driving segment.",
-      "type": "string",
-      "format": "string",
-      "example": "Yard move."
-    },
     "contactTinyResponse": {
       "description": "A minified contact object",
       "type": "object",
@@ -6448,11 +6264,6 @@
           "example": "112"
         }
       }
-    },
-    "driverId": {
-      "description": "ID of Driver to assign this segment to. The driver assignment is a tentative assignment until the ID is 'ACCEPTED'.",
-      "type": "string",
-      "example": "1234"
     },
     "driverTinyResponse": {
       "description": "A minified driver object.",
