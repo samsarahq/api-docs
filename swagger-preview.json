@@ -326,8 +326,7 @@
         "operationId": "deleteContactById",
         "responses": {
           "204": {
-            "description": "Returns an empty success response.",
-            "schema": {}
+            "description": "Returns an empty success response."
           },
           "default": {
             "description": "Error response",
@@ -3558,7 +3557,7 @@
           "description": "Phone number of the contact.",
           "type": "string",
           "maxLength": 255,
-          "example": "555-222-3344"
+          "example": "111-222-3344"
         }
       }
     },
@@ -3723,7 +3722,7 @@
           "example": false
         },
         "licenseNumber": {
-          "description": "Driver's state issued license number.",
+          "description": "Driver's state issued license number. The combination of this number and `licenseState` must be unique.",
           "type": "string",
           "example": "E1234567"
         },
@@ -3775,9 +3774,10 @@
           "example": "New York - EST/EDT"
         },
         "username": {
-          "description": "Driver's login username into the driver app.",
+          "description": "Driver's login username into the driver app. The username may not contain spaces or the '@' symbol. The username must be unique.",
           "type": "string",
           "maxLength": 189,
+          "minLength": 1,
           "example": "SusanJones"
         }
       }
@@ -3867,7 +3867,7 @@
           }
         },
         "licenseNumber": {
-          "description": "Driver's state issued license number. Must be unique.",
+          "description": "Driver's state issued license number. The combination of this number and `licenseState` must be unique.",
           "type": "string",
           "example": "E1234567"
         },
@@ -4590,11 +4590,24 @@
           "example": "Bob Smith"
         },
         "roles": {
-          "description": "The roles for this user. Users must have at least a single role to be a part of an organization.",
+          "description": "The roles for this user. Users must have at least a single role to be a part of an organization. Roles without an associated `tagId` are considered \"Organization Level\" roles and will apply to the user at the organization level. Each user can only have one \"Organization Level\" role. Roles with a `tagId` will be roles specific to that tag. Users can only have one role per tag. Users can have different roles at the organization and tag level, and users can have different roles for different tags.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/UserRoleInput"
-          }
+          },
+          "example": [
+            {
+              "roleId": "717fe0f3-f87f-4a57-b3ce-33a5a9f394cd"
+            },
+            {
+              "roleId": "23d4d8d3-dc10-4e7a-a183-69968751f23e",
+              "tagId": "3914"
+            },
+            {
+              "roleId": "23d4d8d3-dc10-4e7a-a183-69968751f23e",
+              "tagId": "5151"
+            }
+          ]
         }
       }
     },
@@ -4621,7 +4634,7 @@
         "tagId": {
           "description": "The id of the tag used to grant a role. If no tag is specified, this role applies at the organization level.",
           "type": "string",
-          "example": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
+          "example": "3914"
         }
       }
     },
@@ -4633,9 +4646,44 @@
           "$ref": "#/definitions/userRoleTinyResponse"
         },
         "tag": {
-          "$ref": "#/definitions/tagTinyResponse"
+          "allOf": [
+            {
+              "description": "The id of the tag used to grant a role. If no tag is specified, this role applies at the organization level."
+            },
+            {
+              "$ref": "#/definitions/tagTinyResponse"
+            }
+          ]
         }
-      }
+      },
+      "example": [
+        {
+          "role": {
+            "id": "717fe0f3-f87f-4a57-b3ce-33a5a9f394cd",
+            "name": "Read-only Admin"
+          }
+        },
+        {
+          "role": {
+            "id": "23d4d8d3-dc10-4e7a-a183-69968751f23e",
+            "name": "Full Admin"
+          },
+          "tag": {
+            "id": "3914",
+            "name": "East Coast"
+          }
+        },
+        {
+          "role": {
+            "id": "23d4d8d3-dc10-4e7a-a183-69968751f23e",
+            "name": "Full Admin"
+          },
+          "tag": {
+            "id": "5151",
+            "name": "Midwest"
+          }
+        }
+      ]
     },
     "UserUpdate": {
       "description": "The user update arguments",
@@ -4656,11 +4704,24 @@
           "example": "Bob Smith"
         },
         "roles": {
-          "description": "The roles for this user. Users must have at least a single role to be a part of an organization.",
+          "description": "The roles for this user. Users must have at least a single role to be a part of an organization. Roles without an associated `tagId` are considered \"Organization Level\" roles and will apply to the user at the organization level. Each user can only have one \"Organization Level\" role. Roles with a `tagId` will be roles specific to that tag. Users can only have one role per tag. Users can have different roles at the organization and tag level, and users can have different roles for different tags.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/UserRoleInput"
-          }
+          },
+          "example": [
+            {
+              "roleId": "717fe0f3-f87f-4a57-b3ce-33a5a9f394cd"
+            },
+            {
+              "roleId": "23d4d8d3-dc10-4e7a-a183-69968751f23e",
+              "tagId": "3914"
+            },
+            {
+              "roleId": "23d4d8d3-dc10-4e7a-a183-69968751f23e",
+              "tagId": "5151"
+            }
+          ]
         }
       }
     },
