@@ -1230,7 +1230,7 @@
           "Vehicles"
         ],
         "summary": "Fetch vehicle locations",
-        "operationId": "getVehicleLocationsHistory",
+        "operationId": "getVehicleLocations",
         "parameters": [
           {
             "type": "string",
@@ -1328,6 +1328,72 @@
         "responses": {
           "200": {
             "description": "List of all locations for the specified vehicles.",
+            "schema": {
+              "$ref": "#/definitions/VehicleLocationsListResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/vehicles/locations/history": {
+      "get": {
+        "description": "This endpoint allows you to both fetch historical locations for a vehicle.\n\nYou must pass in a `startTime` and `endTime` range. This will return all known locations for a vehicle during a given time range.",
+        "tags": [
+          "Vehicles"
+        ],
+        "summary": "Fetch vehicle locations history",
+        "operationId": "getVehicleLocationsHistory",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "startTime",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "An end time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "endTime",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of tag IDs.",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of vehicle IDs.",
+            "name": "vehicleIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all locations for the specified vehicles and time range.",
             "schema": {
               "$ref": "#/definitions/VehicleLocationsListResponse"
             }
@@ -4530,7 +4596,8 @@
         "id",
         "authType",
         "name",
-        "roles"
+        "roles",
+        "email"
       ],
       "properties": {
         "authType": {
@@ -4540,6 +4607,11 @@
             "default",
             "saml"
           ]
+        },
+        "email": {
+          "description": "The email address of this user.",
+          "type": "string",
+          "example": "user@company.com"
         },
         "id": {
           "description": "Unique ID for the user.",
@@ -4581,7 +4653,7 @@
           "description": "The email address of this user. This cannot be changed after creation.",
           "type": "string",
           "maxLength": 191,
-          "example": "example@email.com"
+          "example": "user@company.com"
         },
         "name": {
           "description": "The first and last name of the user.",
