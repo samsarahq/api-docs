@@ -908,6 +908,23 @@
             "description": "A comma-separated list of equipment IDs.",
             "name": "equipmentIds",
             "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "enum": [
+                "engineStates",
+                "fuelPercents",
+                "engineRpm",
+                "engineSeconds"
+              ],
+              "type": "string",
+              "format": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma separated list of stat types.",
+            "name": "types",
+            "in": "query"
           }
         ],
         "responses": {
@@ -974,6 +991,23 @@
             "collectionFormat": "csv",
             "description": "A comma-separated list of equipment IDs.",
             "name": "equipmentIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "enum": [
+                "engineStates",
+                "fuelPercents",
+                "engineRpm",
+                "engineSeconds"
+              ],
+              "type": "string",
+              "format": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma separated list of stat types.",
+            "name": "types",
             "in": "query"
           }
         ],
@@ -1057,6 +1091,23 @@
             "collectionFormat": "csv",
             "description": "A comma-separated list of equipment IDs.",
             "name": "equipmentIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "enum": [
+                "engineStates",
+                "fuelPercents",
+                "engineRpm",
+                "engineSeconds"
+              ],
+              "type": "string",
+              "format": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma separated list of stat types.",
+            "name": "types",
             "in": "query"
           }
         ],
@@ -1592,9 +1643,20 @@
         ],
         "responses": {
           "200": {
-            "description": "Returns the successfully updated vehicle object.",
+            "description": "Returns the specified vehicle object.",
             "schema": {
-              "$ref": "#/definitions/VehicleResponse"
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/VehicleResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
             }
           }
         }
@@ -2797,6 +2859,116 @@
         }
       }
     },
+    "/v1/fleet/messages": {
+      "get": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nGet all messages.",
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Get all messages.",
+        "operationId": "getMessages",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Time in unix milliseconds that represents the end of time range of messages to return. Used in combination with durationMs. Defaults to now.",
+            "name": "endMs",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Time in milliseconds that represents the duration before endMs to query. Defaults to 24 hours.",
+            "name": "durationMs",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the fetched messages from most recently sent to least recently sent.",
+            "schema": {
+              "description": "A list of messages.",
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/V1MessagesResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nSend a message to a list of driver ids.",
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Send a message to a list of driver ids.",
+        "operationId": "createMessages",
+        "parameters": [
+          {
+            "description": "Text to send to a list of driverIds.",
+            "name": "createMessages",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "driverIds",
+                "text"
+              ],
+              "properties": {
+                "driverIds": {
+                  "description": "IDs of the drivers for whom the messages are sent to.",
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "format": "int64",
+                    "example": 555
+                  },
+                  "example": [
+                    111,
+                    222,
+                    333
+                  ]
+                },
+                "text": {
+                  "description": "The text sent in the message.",
+                  "type": "string",
+                  "example": "This is a message."
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the created messages.",
+            "schema": {
+              "description": "A list of created messages.",
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/V1Messages"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/v1/fleet/trips": {
       "get": {
         "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nGet historical trips data for specified vehicle. This method returns a set of historical trips data for the specified vehicle in the specified time range.",
@@ -3312,7 +3484,7 @@
             "type": "string",
             "enum": [
               "yard",
-              "short_haul"
+              "shortHaul"
             ],
             "example": "yard"
           }
@@ -3943,22 +4115,23 @@
           "example": "CA"
         },
         "locale": {
-          "description": "Locale override (uncommon).",
+          "description": "Locale override (uncommon). These are specified by ISO 3166-2 country codes for supported locales.",
           "type": "string",
           "enum": [
-            "United States",
-            "Austria",
-            "Belgium",
-            "Canada",
-            "United Kingdom",
-            "France",
-            "Germany",
-            "Ireland",
-            "Luxembourg",
-            "Mexico",
-            "Netherlands",
-            "Spain",
-            "Switzerland"
+            "us",
+            "at",
+            "be",
+            "ca",
+            "gb",
+            "fr",
+            "de",
+            "ie",
+            "it",
+            "lu",
+            "mx",
+            "nl",
+            "es",
+            "ch"
           ]
         },
         "name": {
@@ -4058,6 +4231,32 @@
         }
       ]
     },
+    "EquipmentEngineRpm": {
+      "description": "Stat point for the RPM of the engine.",
+      "type": "object",
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "type": "integer",
+          "example": 1800
+        }
+      }
+    },
+    "EquipmentEngineSeconds": {
+      "description": "Stat point for the on time of the engine.",
+      "type": "object",
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "type": "integer",
+          "example": 22374000
+        }
+      }
+    },
     "EquipmentEngineState": {
       "description": "Stat point for the state of the engine.",
       "type": "object",
@@ -4072,6 +4271,19 @@
             "On"
           ],
           "example": "On"
+        }
+      }
+    },
+    "EquipmentFuelPercent": {
+      "description": "Stat point for the fuel level of the engine as a percentage.",
+      "type": "object",
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "type": "integer",
+          "example": 54
         }
       }
     },
@@ -4151,6 +4363,19 @@
         }
       ]
     },
+    "EquipmentOdometerMeters": {
+      "description": "Stat point for the odometer of the engine in meters.",
+      "type": "object",
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "type": "integer",
+          "example": 3200
+        }
+      }
+    },
     "EquipmentResponse": {
       "description": "The equipment object.",
       "type": "object",
@@ -4198,10 +4423,28 @@
         {
           "type": "object",
           "properties": {
+            "engineRpm": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EquipmentEngineRpm"
+              }
+            },
+            "engineSeconds": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EquipmentEngineSeconds"
+              }
+            },
             "engineStates": {
               "type": "array",
               "items": {
                 "$ref": "#/definitions/EquipmentEngineState"
+              }
+            },
+            "fuelPercents": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EquipmentFuelPercent"
               }
             }
           }
@@ -4218,11 +4461,35 @@
         {
           "type": "object",
           "properties": {
+            "engineRpm": {
+              "type": "object",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/EquipmentEngineRpm"
+                }
+              ]
+            },
+            "engineSeconds": {
+              "type": "object",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/EquipmentEngineSeconds"
+                }
+              ]
+            },
             "engineState": {
               "type": "object",
               "allOf": [
                 {
                   "$ref": "#/definitions/EquipmentEngineState"
+                }
+              ]
+            },
+            "fuelPercent": {
+              "type": "object",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/EquipmentFuelPercent"
                 }
               ]
             }
@@ -6429,6 +6696,94 @@
         }
       }
     },
+    "V1Message": {
+      "type": "object",
+      "required": [
+        "driverId",
+        "text"
+      ],
+      "properties": {
+        "driverId": {
+          "description": "ID of the driver for whom the message is sent to or sent by.",
+          "type": "integer",
+          "format": "int64",
+          "example": 555
+        },
+        "text": {
+          "description": "The text sent in the message.",
+          "type": "string",
+          "example": "This is a message."
+        }
+      }
+    },
+    "V1MessageResponse": {
+      "type": "object",
+      "required": [
+        "driverId",
+        "text",
+        "sentAtMs",
+        "sender",
+        "isRead"
+      ],
+      "properties": {
+        "driverId": {
+          "description": "ID of the driver for whom the message is sent to or sent by.",
+          "type": "integer",
+          "format": "int64",
+          "example": 555
+        },
+        "isRead": {
+          "description": "True if the message was read by the recipient.",
+          "type": "boolean",
+          "example": true
+        },
+        "sender": {
+          "$ref": "#/definitions/V1MessageSender"
+        },
+        "sentAtMs": {
+          "description": "The time in Unix epoch milliseconds that the message is sent to the recipient.",
+          "type": "integer",
+          "format": "int64",
+          "example": 1462881998034
+        },
+        "text": {
+          "description": "The text sent in the message.",
+          "type": "string",
+          "example": "This is a message."
+        }
+      }
+    },
+    "V1MessageSender": {
+      "type": "object",
+      "required": [
+        "type",
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "description": "Name of user that is sending the message.",
+          "type": "string",
+          "example": "John Doe"
+        },
+        "type": {
+          "description": "Type of user that is sending the message. It will be either dispatch or driver.",
+          "type": "string",
+          "example": "dispatch"
+        }
+      }
+    },
+    "V1Messages": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/V1Message"
+      }
+    },
+    "V1MessagesResponse": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/V1MessageResponse"
+      }
+    },
     "V1Sensor": {
       "description": "Contains information about a sensor.",
       "type": "object",
@@ -7008,42 +7363,54 @@
       "type": "object",
       "properties": {
         "auxInputType1": {
-          "description": "The type of aux input that this vehicle has connected to port 1.",
+          "description": "The type of aux input that this vehicle has connected to port 1. Setting to \"none\" will remove the configured aux input.",
           "type": "string",
           "enum": [
-            "Emergency Lights",
-            "Emergency Alarm",
-            "Stop Paddle",
-            "Power Take-Off",
-            "Plow",
-            "Sweeper",
-            "Salter",
-            "Boom"
+            "none",
+            "emergencyLights",
+            "emergencyAlarm",
+            "stopPaddle",
+            "powerTakeOff",
+            "plow",
+            "sweeper",
+            "salter",
+            "reefer",
+            "door",
+            "boom",
+            "auxiliaryEngine",
+            "generator",
+            "eightWayLights"
           ],
-          "example": "Boom"
+          "example": "boom"
         },
         "auxInputType2": {
-          "description": "The type of aux input that this vehicle has connected to port 2.",
+          "description": "The type of aux input that this vehicle has connected to port 2. Setting to \"none\" will remove the configured aux input.",
           "type": "string",
           "enum": [
-            "Emergency Lights",
-            "Emergency Alarm",
-            "Stop Paddle",
-            "Power Take-Off",
-            "Plow",
-            "Sweeper",
-            "Salter",
-            "Boom"
+            "none",
+            "emergencyLights",
+            "emergencyAlarm",
+            "stopPaddle",
+            "powerTakeOff",
+            "plow",
+            "sweeper",
+            "salter",
+            "reefer",
+            "door",
+            "boom",
+            "auxiliaryEngine",
+            "generator",
+            "eightWayLights"
           ],
-          "example": "Plow"
+          "example": "plow"
         },
         "engineHours": {
-          "description": "Current engine hours value of the vehicle. This is typically pulled automaticlaly from the vehicle, but can be manually overriden.",
+          "description": "Current engine hours value of the vehicle. This is typically pulled automaticlaly from the vehicle, but can be manually overriden when it's not read automatically.",
           "type": "integer",
           "example": 10943
         },
         "externalIds": {
-          "description": "Dictionary of external IDs (key-value string pairs)",
+          "description": "Dictionary of external IDs (key-value string pairs). Setting a value to \"\" will delete that external ID.",
           "type": "object",
           "additionalProperties": {
             "type": "string"
@@ -7053,16 +7420,16 @@
           }
         },
         "harshAccelerationSettingType": {
-          "description": "Enumeration of the harsh acceleration setting types. This setting influences the accelereation sensitivity from which a harsh event is triggered. If set to `Off`, then no acceleration based harsh events are triggered for the vehicle.",
+          "description": "Enumeration of the harsh acceleration setting types. This setting influences the accelereation sensitivity from which a harsh event is triggered. If set to `off`, then no acceleration based harsh events are triggered for the vehicle.",
           "type": "string",
           "enum": [
-            "Passenger",
-            "Light Truck",
-            "Heavy",
-            "Off",
-            "Auto"
+            "passengerCar",
+            "lightTruck",
+            "heavyDuty",
+            "off",
+            "automatic"
           ],
-          "example": "Off"
+          "example": "off"
         },
         "licensePlate": {
           "description": "License plate number for the vehicle.",
@@ -7082,7 +7449,7 @@
           "example": "These are notes about this given vehicle."
         },
         "odometerMeters": {
-          "description": "Current odometer value of the vehicle. This is typically pulled automaticlaly from the vehicle, but can be manually overriden.",
+          "description": "Current odometer value of the vehicle. This is typically pulled automaticlaly from the vehicle, but can be manually overidden when it's not read automatically.",
           "type": "integer",
           "example": 9182
         },
@@ -7115,46 +7482,68 @@
       ],
       "properties": {
         "auxInputType1": {
-          "description": "The type of aux input that this vehicle has connected to port 1.",
+          "description": "The type of aux input that this vehicle has connected to port 1. Setting to \"none\" will remove the configured aux input.",
           "type": "string",
           "enum": [
-            "Emergency Lights",
-            "Emergency Alarm",
-            "Stop Paddle",
-            "Power Take-Off",
-            "Plow",
-            "Sweeper",
-            "Salter",
-            "Boom"
+            "none",
+            "emergencyLights",
+            "emergencyAlarm",
+            "stopPaddle",
+            "powerTakeOff",
+            "plow",
+            "sweeper",
+            "salter",
+            "reefer",
+            "door",
+            "boom",
+            "auxiliaryEngine",
+            "generator",
+            "eightWayLights"
           ],
-          "example": "Boom"
+          "example": "boom"
         },
         "auxInputType2": {
-          "description": "The type of aux input that this vehicle has connected to port 2.",
+          "description": "The type of aux input that this vehicle has connected to port 2. Setting to \"none\" will remove the configured aux input.",
           "type": "string",
           "enum": [
-            "Emergency Lights",
-            "Emergency Alarm",
-            "Stop Paddle",
-            "Power Take-Off",
-            "Plow",
-            "Sweeper",
-            "Salter",
-            "Boom"
+            "none",
+            "emergencyLights",
+            "emergencyAlarm",
+            "stopPaddle",
+            "powerTakeOff",
+            "plow",
+            "sweeper",
+            "salter",
+            "reefer",
+            "door",
+            "boom",
+            "auxiliaryEngine",
+            "generator",
+            "eightWayLights"
           ],
-          "example": "Plow"
+          "example": "plow"
+        },
+        "externalIds": {
+          "description": "Dictionary of external IDs (key-value string pairs).",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "example": {
+            "maintenanceId": "98KJ81F"
+          }
         },
         "harshAccelerationSettingType": {
-          "description": "Enumeration of the harsh acceleration setting types. This setting influences the acceleration sensitivity from which a harsh event is triggered. If set to `Off`, then no acceleration based harsh events are triggered for the vehicle.",
+          "description": "Enumeration of the harsh acceleration setting types. This setting influences the acceleration sensitivity from which a harsh event is triggered. If set to `off`, then no acceleration based harsh events are triggered for the vehicle.",
           "type": "string",
           "enum": [
-            "Passenger",
-            "Light Truck",
-            "Heavy",
-            "Off",
-            "Auto"
+            "passengerCar",
+            "lightTruck",
+            "heavyDuty",
+            "off",
+            "automatic"
           ],
-          "example": "Off"
+          "example": "off"
         },
         "id": {
           "description": "Unique Samsara ID for the vehicle.",
@@ -7164,7 +7553,7 @@
         "licensePlate": {
           "description": "The license plate of this vehicle.",
           "type": "string",
-          "maxLength": 255,
+          "maxLength": 12,
           "example": "XHK1234"
         },
         "make": {
@@ -7517,6 +7906,40 @@
         }
       }
     },
+    "V1createMessagesParam": {
+      "description": "Text to send to a list of driverIds.",
+      "name": "createMessages",
+      "in": "body",
+      "required": true,
+      "schema": {
+        "type": "object",
+        "required": [
+          "driverIds",
+          "text"
+        ],
+        "properties": {
+          "driverIds": {
+            "description": "IDs of the drivers for whom the messages are sent to.",
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "int64",
+              "example": 555
+            },
+            "example": [
+              111,
+              222,
+              333
+            ]
+          },
+          "text": {
+            "description": "The text sent in the message.",
+            "type": "string",
+            "example": "This is a message."
+          }
+        }
+      }
+    },
     "V1documentCreateParam": {
       "description": "To create a document for a given document type, the document type's uuid needs to be passed in to documentTypeUuid. The list of fields passed in should match the document type’s list of field types in the correct order. In other words, a field's valueType and value (i.e. only one of: stringValue, numberValue, or photoValue) at index _i_ should match with the document field type’s valueType at index _i_.",
       "name": "createDocumentParams",
@@ -7548,6 +7971,20 @@
       "type": "integer",
       "format": "int64",
       "description": "Time in unix milliseconds that represents the oldest documents to return. Used in combination with durationMs. Defaults to now.",
+      "name": "endMs",
+      "in": "query"
+    },
+    "V1getMessagesDurationMsParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Time in milliseconds that represents the duration before endMs to query. Defaults to 24 hours.",
+      "name": "durationMs",
+      "in": "query"
+    },
+    "V1getMessagesEndMsParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Time in unix milliseconds that represents the end of time range of messages to return. Used in combination with durationMs. Defaults to now.",
       "name": "endMs",
       "in": "query"
     },
@@ -7680,6 +8117,23 @@
       "schema": {
         "$ref": "#/definitions/ContactInput"
       }
+    },
+    "equipmentStatTypes": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "engineStates",
+          "fuelPercents",
+          "engineRpm",
+          "engineSeconds"
+        ],
+        "type": "string",
+        "format": "string"
+      },
+      "collectionFormat": "csv",
+      "description": "A comma separated list of stat types.",
+      "name": "types",
+      "in": "query"
     }
   },
   "tags": [
