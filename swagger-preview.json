@@ -615,270 +615,6 @@
         }
       }
     },
-    "/fleet/vehicles/locations": {
-      "get": {
-        "description": "This endpoint allows you to both fetch historical locations for a vehicle, as well as a feed of all new vehicle locations.\n\nIf you wish to just fetch the historical location data for a vehicle, you can pass in a `startTime` and `endTime` range. This will return all known locations for a vehicle during a given time range.\n\nIf an `endTime` is not provided, then this will provide a continuous feed of all vehicle locations. In order to follow the feed, you can follow the pagination `endCursor` cursor continuously.  If there is not yet a `hasNextPage=true` for the feed follow, then we recommend you wait and retry in 5 seconds.",
-        "tags": [
-          "Vehicles"
-        ],
-        "summary": "Fetch vehicle locations",
-        "operationId": "getVehicleLocations",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
-            "name": "after",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "format": "date-time",
-            "description": "A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
-            "name": "startTime",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "format": "date-time",
-            "description": "An end time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
-            "name": "endTime",
-            "in": "query"
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "description": "A comma-separated list of tag IDs.",
-            "name": "tagIds",
-            "in": "query"
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "description": "A comma-separated list of vehicle IDs.",
-            "name": "vehicleIds",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of all locations for the specified vehicles and time range.",
-            "schema": {
-              "$ref": "#/definitions/VehicleLocationsListResponse"
-            }
-          },
-          "default": {
-            "description": "Error response",
-            "schema": {
-              "$ref": "#/definitions/standardErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/fleet/vehicles/locations/feed": {
-      "get": {
-        "description": "This endpoint allows you to fetch a continuous feed of all vehicle locations. In order to follow the feed, you can follow the pagination `endCursor` cursor continuously.  If there is not yet a `hasNextPage=true` for the feed follow, then we recommend you wait and retry in 5 seconds.\n\nPlease note that you cannot provide both the pagination `after` parameter *and* scoping parameters like `tagIds` or `ids`.",
-        "tags": [
-          "Vehicles"
-        ],
-        "summary": "Fetch vehicle locations as an on-going feed",
-        "operationId": "getVehicleLocationsFeed",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
-            "name": "after",
-            "in": "query"
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "description": "A comma-separated list of tag IDs.",
-            "name": "tagIds",
-            "in": "query"
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "description": "A comma-separated list of vehicle IDs.",
-            "name": "vehicleIds",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of all locations for the specified vehicles.",
-            "schema": {
-              "$ref": "#/definitions/VehicleLocationsListResponse"
-            }
-          },
-          "default": {
-            "description": "Error response",
-            "schema": {
-              "$ref": "#/definitions/standardErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/fleet/vehicles/locations/history": {
-      "get": {
-        "description": "This endpoint allows you to both fetch historical locations for a vehicle.\n\nYou must pass in a `startTime` and `endTime` range. This will return all known locations for a vehicle during a given time range.",
-        "tags": [
-          "Vehicles"
-        ],
-        "summary": "Fetch vehicle locations history",
-        "operationId": "getVehicleLocationsHistory",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
-            "name": "after",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "format": "date-time",
-            "description": "A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
-            "name": "startTime",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "format": "date-time",
-            "description": "An end time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
-            "name": "endTime",
-            "in": "query"
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "description": "A comma-separated list of tag IDs.",
-            "name": "tagIds",
-            "in": "query"
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "description": "A comma-separated list of vehicle IDs.",
-            "name": "vehicleIds",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of all locations for the specified vehicles and time range.",
-            "schema": {
-              "$ref": "#/definitions/VehicleLocationsListResponse"
-            }
-          },
-          "default": {
-            "description": "Error response",
-            "schema": {
-              "$ref": "#/definitions/standardErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/fleet/vehicles/stats/feed": {
-      "get": {
-        "description": "This endpoint returns the stat values from a start time for specified vehicles. Passing the cursor on subsequent calls allows you to fetch all new data coming into the system.",
-        "tags": [
-          "Vehicles"
-        ],
-        "summary": "Fetch stats as a feed from a start time to the present.",
-        "operationId": "getVehicleStatsFeed",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
-            "name": "after",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "format": "date-time",
-            "description": "A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
-            "name": "startTime",
-            "in": "query"
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "description": "A comma-separated list of tag IDs.",
-            "name": "tagIds",
-            "in": "query"
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "description": "A comma-separated list of vehicle IDs.",
-            "name": "vehicleIds",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "A stat type. This is used to specify the stats you want to query for on stats endpoints.",
-            "name": "types",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of all vehicle stats for the specified vehicles and time range.",
-            "schema": {
-              "properties": {
-                "data": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/VehicleStatsResponse"
-                  }
-                },
-                "pagination": {
-                  "type": "object",
-                  "allOf": [
-                    {
-                      "$ref": "#/definitions/timeseriesPaginationResponse"
-                    }
-                  ]
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "Error response",
-            "schema": {
-              "$ref": "#/definitions/standardErrorResponse"
-            }
-          }
-        }
-      }
-    },
     "/fleet/vehicles/{id}": {
       "get": {
         "description": "Get information about a specific vehicle.",
@@ -1400,7 +1136,7 @@
           "Routes"
         ],
         "summary": "Get all routes",
-        "operationId": "fetchAllDispatchRoutes",
+        "operationId": "V1fetchAllDispatchRoutes",
         "parameters": [
           {
             "type": "integer",
@@ -1445,7 +1181,7 @@
           "Routes"
         ],
         "summary": "Create a new route",
-        "operationId": "createDispatchRoute",
+        "operationId": "V1createDispatchRoute",
         "parameters": [
           {
             "name": "createDispatchRouteParams",
@@ -1479,7 +1215,7 @@
           "Routes"
         ],
         "summary": "Get route updates",
-        "operationId": "fetchAllRouteJobUpdates",
+        "operationId": "V1fetchAllRouteJobUpdates",
         "parameters": [
           {
             "type": "integer",
@@ -1524,7 +1260,7 @@
           "Routes"
         ],
         "summary": "Get a route",
-        "operationId": "getDispatchRouteById",
+        "operationId": "V1getDispatchRouteById",
         "responses": {
           "200": {
             "description": "The dispatch route corresponding to route_id.",
@@ -1546,7 +1282,7 @@
           "Routes"
         ],
         "summary": "Update a route",
-        "operationId": "updateDispatchRouteById",
+        "operationId": "V1updateDispatchRouteById",
         "parameters": [
           {
             "name": "updateDispatchRouteParams",
@@ -1578,7 +1314,7 @@
           "Routes"
         ],
         "summary": "Delete a route",
-        "operationId": "deleteDispatchRouteById",
+        "operationId": "V1deleteDispatchRouteById",
         "responses": {
           "200": {
             "description": "Successfully deleted the dispatch route. No response body is returned."
@@ -1609,7 +1345,7 @@
           "Routes"
         ],
         "summary": "Get route history",
-        "operationId": "getDispatchRouteHistory",
+        "operationId": "V1getDispatchRouteHistory",
         "parameters": [
           {
             "type": "integer",
@@ -1657,7 +1393,7 @@
           "Documents"
         ],
         "summary": "Fetch document types",
-        "operationId": "getDriverDocumentTypesByOrgId",
+        "operationId": "V1getDriverDocumentTypesByOrgId",
         "responses": {
           "200": {
             "description": "Returns all of the document types.",
@@ -1681,7 +1417,7 @@
           "Documents"
         ],
         "summary": "Fetch all documents",
-        "operationId": "getDriverDocumentsByOrgId",
+        "operationId": "V1getDriverDocumentsByOrgId",
         "parameters": [
           {
             "type": "integer",
@@ -1725,6 +1461,58 @@
         }
       }
     },
+    "/v1/fleet/drivers/{driverId}/safety/score": {
+      "get": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch the safety score for the driver.",
+        "tags": [
+          "Safety"
+        ],
+        "summary": "Fetch driver safety score",
+        "operationId": "V1getDriverSafetyScore",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp in milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs. Total duration (endMs - startMs) must be greater than or equal to 1 hour.",
+            "name": "startMs",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp in milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs. Total duration (endMs - startMs) must be greater than or equal to 1 hour.",
+            "name": "endMs",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Safety score details.",
+            "schema": {
+              "$ref": "#/definitions/V1DriverSafetyScoreResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "integer",
+          "format": "int64",
+          "description": "ID of the driver. Must contain only digits 0-9.",
+          "name": "driverId",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
     "/v1/fleet/drivers/{driver_id}/documents": {
       "post": {
         "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nCreate a document for the given driver.",
@@ -1732,7 +1520,7 @@
           "Documents"
         ],
         "summary": "Create a document",
-        "operationId": "createDriverDocument",
+        "operationId": "V1createDriverDocument",
         "parameters": [
           {
             "description": "To create a document for a given document type, the document type's uuid needs to be passed in to documentTypeUuid. The list of fields passed in should match the document type’s list of field types in the correct order. In other words, a field's valueType and value (i.e. only one of: stringValue, numberValue, or photoValue) at index _i_ should match with the document field type’s valueType at index _i_.",
@@ -1777,7 +1565,7 @@
           "Documents"
         ],
         "summary": "Fetches a document",
-        "operationId": "getDriverDocumentByIdAndDriverId",
+        "operationId": "V1getDriverDocumentByIdAndDriverId",
         "responses": {
           "200": {
             "description": "Returns the specified document.",
@@ -1818,7 +1606,7 @@
           "Hours of Service"
         ],
         "summary": "Get HOS signin and signout",
-        "operationId": "getFleetHosAuthenticationLogs",
+        "operationId": "V1getFleetHosAuthenticationLogs",
         "parameters": [
           {
             "type": "integer",
@@ -1875,7 +1663,7 @@
           "Hours of Service"
         ],
         "summary": "Get HOS logs for a specific driver",
-        "operationId": "getFleetHosLogs",
+        "operationId": "V1getFleetHosLogs",
         "parameters": [
           {
             "name": "hosLogsParam",
@@ -1939,7 +1727,7 @@
           "Hours of Service"
         ],
         "summary": "Get current HOS status for all drivers",
-        "operationId": "getFleetHosLogsSummary",
+        "operationId": "V1getFleetHosLogsSummary",
         "parameters": [
           {
             "type": "integer",
@@ -1978,6 +1766,53 @@
         }
       }
     },
+    "/v1/fleet/locations": {
+      "get": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nGet current location of vehicles in a group. This method returns the current location in latitude and longitude of all vehicles in a requested group.",
+        "tags": [
+          "Vehicles"
+        ],
+        "summary": "Get current vehicle locations",
+        "operationId": "V1getFleetLocations",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Optional group ID if the organization has multiple groups (uncommon).",
+            "name": "groupId",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of vehicle objects containing their location and the time at which that location was logged.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "groupId": {
+                  "description": "Optional group ID if the organization has multiple groups (uncommon).",
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 101
+                },
+                "vehicles": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/V1VehicleLocation"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/v1/fleet/maintenance/dvirs": {
       "get": {
         "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nGet DVIRs for the org within provided time constraints",
@@ -1985,7 +1820,7 @@
           "Maintenance"
         ],
         "summary": "Get DVIRs",
-        "operationId": "getDvirs",
+        "operationId": "V1getDvirs",
         "parameters": [
           {
             "type": "integer",
@@ -2030,7 +1865,7 @@
           "Maintenance"
         ],
         "summary": "Create a new DVIR",
-        "operationId": "createDvir",
+        "operationId": "V1createDvir",
         "parameters": [
           {
             "description": "DVIR creation body",
@@ -2124,7 +1959,7 @@
           "Maintenance"
         ],
         "summary": "Get vehicles with engine faults or check lights",
-        "operationId": "getFleetMaintenanceList",
+        "operationId": "V1getFleetMaintenanceList",
         "parameters": [
           {
             "type": "integer",
@@ -2165,7 +2000,7 @@
           "Messages"
         ],
         "summary": "Get all messages.",
-        "operationId": "getMessages",
+        "operationId": "V1getMessages",
         "parameters": [
           {
             "type": "integer",
@@ -2209,7 +2044,7 @@
           "Messages"
         ],
         "summary": "Send a message to a list of driver ids.",
-        "operationId": "createMessages",
+        "operationId": "V1createMessages",
         "parameters": [
           {
             "description": "Text to send to a list of driverIds.",
@@ -2275,7 +2110,7 @@
           "Trips"
         ],
         "summary": "Get vehicle trips",
-        "operationId": "getFleetTrips",
+        "operationId": "V1getFleetTrips",
         "parameters": [
           {
             "type": "integer",
@@ -2323,6 +2158,192 @@
         }
       }
     },
+    "/v1/fleet/vehicles/locations": {
+      "get": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch locations for all vehicles between a start/end time. The maximum query duration is 30 minutes (1800000 ms).",
+        "tags": [
+          "Vehicles"
+        ],
+        "summary": "Get historical vehicle locations",
+        "operationId": "V1getVehiclesLocations",
+        "responses": {
+          "200": {
+            "description": "Returns locations for all vehicles between a start/end time, with a maximum query duration of 30 minutes (1800000 ms).",
+            "schema": {
+              "$ref": "#/definitions/V1FleetVehiclesLocations"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "integer",
+          "description": "Time in Unix epoch milliseconds for the start of the query (cannot exceed 30 minutes)",
+          "name": "startMs",
+          "in": "query",
+          "required": true
+        },
+        {
+          "type": "integer",
+          "description": "Time in Unix epoch milliseconds for the end of the query (cannot exceed 30 minutes)",
+          "name": "endMs",
+          "in": "query",
+          "required": true
+        }
+      ]
+    },
+    "/v1/fleet/vehicles/{vehicleId}/safety/harsh_event": {
+      "get": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch harsh event details for a vehicle.",
+        "tags": [
+          "Safety"
+        ],
+        "summary": "Fetch harsh events",
+        "operationId": "V1getVehicleHarshEvent",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp in milliseconds representing the timestamp of a harsh event.",
+            "name": "timestamp",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Harsh event details.",
+            "schema": {
+              "$ref": "#/definitions/V1VehicleHarshEventResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "integer",
+          "format": "int64",
+          "description": "ID of the vehicle. Must contain only digits 0-9.",
+          "name": "vehicleId",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/v1/fleet/vehicles/{vehicleId}/safety/score": {
+      "get": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch the safety score for the vehicle.",
+        "tags": [
+          "Safety"
+        ],
+        "summary": "Fetch vehicle safety scores",
+        "operationId": "V1getVehicleSafetyScore",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp in milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs. Total duration (endMs - startMs) must be greater than or equal to 1 hour.",
+            "name": "startMs",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp in milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs. Total duration (endMs - startMs) must be greater than or equal to 1 hour.",
+            "name": "endMs",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Safety score details.",
+            "schema": {
+              "$ref": "#/definitions/V1VehicleSafetyScoreResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "integer",
+          "format": "int64",
+          "description": "ID of the vehicle. Must contain only digits 0-9.",
+          "name": "vehicleId",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/v1/fleet/vehicles/{vehicle_id}/locations": {
+      "get": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch locations for a given vehicle between a start/end time. The maximum query duration is one hour.",
+        "tags": [
+          "Vehicles"
+        ],
+        "summary": "Get historical vehicle locations for a specific vehicle",
+        "operationId": "V1getVehicleLocations",
+        "responses": {
+          "200": {
+            "description": "Returns locations for a given vehicle between a start/end time, with a maximum query duration of one hour.",
+            "schema": {
+              "$ref": "#/definitions/V1FleetVehicleLocations"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "integer",
+          "format": "int64",
+          "description": "ID of the vehicle with the associated routes. Must contain only digits 0-9.",
+          "name": "vehicle_id",
+          "in": "path",
+          "required": true
+        },
+        {
+          "type": "integer",
+          "format": "int64",
+          "description": "Time in Unix epoch milliseconds for the start of the query (cannot exceed 1 hour)",
+          "name": "startMs",
+          "in": "query",
+          "required": true
+        },
+        {
+          "type": "integer",
+          "format": "int64",
+          "description": "Time in Unix epoch milliseconds for the end of the query (cannot exceed 1 hour)",
+          "name": "endMs",
+          "in": "query",
+          "required": true
+        }
+      ]
+    },
     "/v1/sensors/cargo": {
       "post": {
         "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nGet cargo monitor status (empty / full) for requested sensors.",
@@ -2330,7 +2351,7 @@
           "Sensors"
         ],
         "summary": "Get cargo status",
-        "operationId": "getSensorsCargo",
+        "operationId": "V1getSensorsCargo",
         "parameters": [
           {
             "description": "Group ID and list of sensor IDs to query.",
@@ -2388,7 +2409,7 @@
           "Sensors"
         ],
         "summary": "Get door status",
-        "operationId": "getSensorsDoor",
+        "operationId": "V1getSensorsDoor",
         "parameters": [
           {
             "description": "Group ID and list of sensor IDs to query.",
@@ -2446,7 +2467,7 @@
           "Sensors"
         ],
         "summary": "Get sensor history",
-        "operationId": "getSensorsHistory",
+        "operationId": "V1getSensorsHistory",
         "parameters": [
           {
             "description": "Group ID, time range and resolution, and list of sensor ID, field pairs to query.",
@@ -2561,7 +2582,7 @@
           "Sensors"
         ],
         "summary": "Get humidity",
-        "operationId": "getSensorsHumidity",
+        "operationId": "V1getSensorsHumidity",
         "parameters": [
           {
             "description": "Group ID and list of sensor IDs to query.",
@@ -2619,7 +2640,7 @@
           "Sensors"
         ],
         "summary": "Get all sensors",
-        "operationId": "getSensors",
+        "operationId": "V1getSensors",
         "parameters": [
           {
             "description": "Optional group ID if the organization has multiple groups (uncommon).",
@@ -2672,7 +2693,7 @@
           "Sensors"
         ],
         "summary": "Get temperature",
-        "operationId": "getSensorsTemperature",
+        "operationId": "V1getSensorsTemperature",
         "parameters": [
           {
             "description": "Group ID and list of sensor IDs to query.",
@@ -3527,24 +3548,6 @@
         },
         {
           "$ref": "#/definitions/DriverBase"
-        }
-      ]
-    },
-    "LocationsWrapper": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/VehicleLocation"
-        },
-        {
-          "type": "object",
-          "required": [
-            "time"
-          ],
-          "properties": {
-            "time": {
-              "$ref": "#/definitions/time"
-            }
-          }
         }
       ]
     },
@@ -4975,6 +4978,73 @@
         }
       }
     },
+    "V1DriverSafetyScoreResponse": {
+      "description": "Safety score details for a driver",
+      "type": "object",
+      "properties": {
+        "crashCount": {
+          "description": "Crash event count",
+          "type": "integer",
+          "example": 0
+        },
+        "driverId": {
+          "description": "Driver ID",
+          "type": "integer",
+          "example": 1234
+        },
+        "harshAccelCount": {
+          "description": "Harsh acceleration event count",
+          "type": "integer",
+          "example": 1
+        },
+        "harshBrakingCount": {
+          "description": "Harsh braking event count",
+          "type": "integer",
+          "example": 2
+        },
+        "harshEvents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/V1SafetyReportHarshEvent"
+          }
+        },
+        "harshTurningCount": {
+          "description": "Harsh turning event count",
+          "type": "integer",
+          "example": 0
+        },
+        "safetyScore": {
+          "description": "Safety Score",
+          "type": "integer",
+          "example": 97
+        },
+        "safetyScoreRank": {
+          "description": "Safety Score Rank",
+          "type": "string",
+          "example": "26"
+        },
+        "timeOverSpeedLimitMs": {
+          "description": "Amount of time driven over the speed limit in milliseconds",
+          "type": "integer",
+          "example": 3769
+        },
+        "totalDistanceDrivenMeters": {
+          "description": "Total distance driven in meters",
+          "type": "integer",
+          "example": 291836
+        },
+        "totalHarshEventCount": {
+          "description": "Total harsh event count",
+          "type": "integer",
+          "example": 3
+        },
+        "totalTimeDrivenMs": {
+          "description": "Amount of time driven in milliseconds",
+          "type": "integer",
+          "example": 19708293
+        }
+      }
+    },
     "V1DvirBase": {
       "type": "object",
       "properties": {
@@ -5234,6 +5304,69 @@
     "V1ErrorResponse": {
       "description": "Error message describing why the request failed.",
       "type": "string"
+    },
+    "V1FleetVehicleLocation": {
+      "description": "Contains the location and speed of a vehicle at a particular time",
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "description": "The latitude of the location in degrees.",
+          "type": "number",
+          "format": "double",
+          "example": 37.2
+        },
+        "location": {
+          "description": "The best effort (street,city,state) for the latitude and longitude.",
+          "type": "string",
+          "example": "525 York, San Francisco, CA"
+        },
+        "longitude": {
+          "description": "The longitude of the location in degrees.",
+          "type": "number",
+          "format": "double",
+          "example": -122.5
+        },
+        "speedMilesPerHour": {
+          "description": "The speed calculated from GPS that the asset was traveling at in miles per hour.",
+          "type": "number",
+          "format": "double",
+          "example": 35.2
+        },
+        "timeMs": {
+          "description": "Time in Unix milliseconds since epoch when the asset was at the location.",
+          "type": "number",
+          "format": "int64",
+          "example": 1535586471332
+        }
+      }
+    },
+    "V1FleetVehicleLocations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/V1FleetVehicleLocation"
+      }
+    },
+    "V1FleetVehiclesLocations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "ID of the vehicle.",
+            "type": "integer",
+            "format": "int64",
+            "example": 112
+          },
+          "locations": {
+            "$ref": "#/definitions/V1FleetVehicleLocations"
+          },
+          "name": {
+            "description": "Name of the vehicle.",
+            "type": "string",
+            "example": "Truck A7"
+          }
+        }
+      }
     },
     "V1HosAuthenticationLogsResponse": {
       "type": "object",
@@ -5633,6 +5766,27 @@
         "$ref": "#/definitions/V1MessageResponse"
       }
     },
+    "V1SafetyReportHarshEvent": {
+      "description": "List of harsh events",
+      "type": "object",
+      "properties": {
+        "harshEventType": {
+          "description": "Type of the harsh event",
+          "type": "string",
+          "example": "Harsh Braking"
+        },
+        "timestampMs": {
+          "description": "Timestamp that the harsh event occurred in Unix milliseconds since epoch",
+          "type": "integer",
+          "example": 1535590776000
+        },
+        "vehicleId": {
+          "description": "Vehicle associated with the harsh event",
+          "type": "integer",
+          "example": 212014918086169
+        }
+      }
+    },
     "V1Sensor": {
       "description": "Contains information about a sensor.",
       "type": "object",
@@ -5908,6 +6062,162 @@
         }
       }
     },
+    "V1VehicleHarshEventResponse": {
+      "description": "Harsh event details for a vehicle",
+      "type": "object",
+      "required": [
+        "incidentReportUrl",
+        "harshEventType"
+      ],
+      "properties": {
+        "downloadForwardVideoUrl": {
+          "description": "URL for downloading the forward facing video",
+          "type": "string",
+          "example": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com/123/212123456789012/1539201872984/abC123De4-camera-video-segment-123456789.mp4?..."
+        },
+        "downloadInwardVideoUrl": {
+          "description": "URL for downloading the inward facing video",
+          "type": "string",
+          "example": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com/123/212123456789012/1539201872984/abC123De4-camera-video-segment-driver-123456789.mp4?..."
+        },
+        "downloadTrackedInwardVideoUrl": {
+          "description": "URL for downloading the tracked inward facing video",
+          "type": "string",
+          "example": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com/123/212123456789012/1539201872984/abC123De4-camera-video-segment-driver-123456789.tracked.mp4?..."
+        },
+        "harshEventType": {
+          "description": "Type of the harsh event. One of: [Crash, Harsh Acceleration, Harsh Braking, Harsh Turn, ROP Engine, ROP Brake, YC Engine, YC Brake, Harsh Event]",
+          "type": "string",
+          "example": "Harsh Braking"
+        },
+        "incidentReportUrl": {
+          "description": "URL of the associated incident report page",
+          "type": "string",
+          "example": "https://cloud.samsara.com/groups/1234/fleet/reports/safety/vehicle/212123456789012/incident/1539201882984"
+        },
+        "isDistracted": {
+          "description": "Whether the driver was deemed distracted during this harsh event",
+          "type": "boolean",
+          "example": true
+        },
+        "location": {
+          "type": "object",
+          "properties": {
+            "address": {
+              "description": "Address of location where the harsh event occurred",
+              "type": "string",
+              "example": "350 Rhode Island St, San Francisco, CA"
+            },
+            "latitude": {
+              "description": "Latitude of location where the harsh event occurred",
+              "type": "string",
+              "example": "33.07614328"
+            },
+            "longitude": {
+              "description": "Longitude of location where the harsh event occurred",
+              "type": "string",
+              "example": "-96.14907287"
+            }
+          }
+        }
+      }
+    },
+    "V1VehicleLocation": {
+      "description": "Contains the location, in latitude and longitude, of a vehicle.",
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "driverId": {
+          "description": "The ID of the driver currently assigned to this vehicle.",
+          "type": "integer",
+          "example": 1
+        },
+        "heading": {
+          "description": "Heading in degrees.",
+          "type": "number",
+          "format": "double",
+          "example": 246.42
+        },
+        "id": {
+          "description": "ID of the vehicle.",
+          "type": "integer",
+          "format": "int64",
+          "example": 112
+        },
+        "latitude": {
+          "description": "Latitude in decimal degrees.",
+          "type": "number",
+          "format": "double",
+          "example": 123.456
+        },
+        "location": {
+          "description": "Text representation of nearest identifiable location to (latitude, longitude) coordinates.",
+          "type": "string",
+          "example": "1 Main St, Dallas, TX"
+        },
+        "longitude": {
+          "description": "Longitude in decimal degrees.",
+          "type": "number",
+          "format": "double",
+          "example": 32.897
+        },
+        "name": {
+          "description": "Name of the vehicle.",
+          "type": "string",
+          "example": "Truck A7"
+        },
+        "odometerMeters": {
+          "description": "The number of meters reported by the odometer.",
+          "type": "integer",
+          "format": "int64",
+          "example": 71774705
+        },
+        "odometerType": {
+          "description": "The source of data for odometerMeters. Will be either GPS or OBD",
+          "type": "string",
+          "enum": [
+            "GPS",
+            "OBD"
+          ],
+          "example": "GPS"
+        },
+        "onTrip": {
+          "description": "Whether or not a trip is currently in progress for this vehicle. More information available via /fleet/trips endpoint.",
+          "type": "boolean",
+          "example": true
+        },
+        "routeIds": {
+          "description": "A list of currently active route IDs that the vehicle is in.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "example": [
+            2244514,
+            2311654
+          ]
+        },
+        "speed": {
+          "description": "Speed in miles per hour.",
+          "type": "number",
+          "format": "double",
+          "example": 64.37
+        },
+        "time": {
+          "description": "The time the reported location was logged, reported as a UNIX timestamp in milliseconds.",
+          "type": "integer",
+          "example": 1462881998034
+        },
+        "vin": {
+          "description": "Vehicle Identification Number (VIN) of the vehicle.",
+          "type": "string",
+          "example": "JTNBB46KX73011966"
+        }
+      }
+    },
     "V1VehicleMaintenance": {
       "description": "Contains any J1939/Passenger engine light warnings and engine faults.",
       "type": "object",
@@ -6020,6 +6330,73 @@
         }
       }
     },
+    "V1VehicleSafetyScoreResponse": {
+      "description": "Safety score details for a vehicle",
+      "type": "object",
+      "properties": {
+        "crashCount": {
+          "description": "Crash event count",
+          "type": "integer",
+          "example": 0
+        },
+        "harshAccelCount": {
+          "description": "Harsh acceleration event count",
+          "type": "integer",
+          "example": 1
+        },
+        "harshBrakingCount": {
+          "description": "Harsh braking event count",
+          "type": "integer",
+          "example": 2
+        },
+        "harshEvents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/V1SafetyReportHarshEvent"
+          }
+        },
+        "harshTurningCount": {
+          "description": "Harsh turning event count",
+          "type": "integer",
+          "example": 0
+        },
+        "safetyScore": {
+          "description": "Safety Score",
+          "type": "integer",
+          "example": 97
+        },
+        "safetyScoreRank": {
+          "description": "Safety Score Rank",
+          "type": "string",
+          "example": "26"
+        },
+        "timeOverSpeedLimitMs": {
+          "description": "Amount of time driven over the speed limit in milliseconds",
+          "type": "integer",
+          "example": 3769
+        },
+        "totalDistanceDrivenMeters": {
+          "description": "Total distance driven in meters",
+          "type": "integer",
+          "example": 291836
+        },
+        "totalHarshEventCount": {
+          "description": "Total harsh event count",
+          "type": "integer",
+          "example": 3
+        },
+        "totalTimeDrivenMs": {
+          "description": "Amount of time driven in milliseconds",
+          "type": "integer",
+          "example": 19708293
+        },
+        "vehicleId": {
+          "description": "Vehicle ID",
+          "type": "integer",
+          "example": 4321
+        }
+      }
+    },
     "V1allRouteJobUpdates": {
       "type": "object",
       "properties": {
@@ -6094,43 +6471,6 @@
       ],
       "example": "JobState_EnRoute"
     },
-    "VehicleEngineStates": {
-      "description": "Stat point for the state of the engine.",
-      "type": "object",
-      "properties": {
-        "time": {
-          "description": "UTC timestamp of the time the data point was generated by the object stat, in RFC3339 format.",
-          "type": "string",
-          "example": "2019-05-03T04:30:31.492Z"
-        },
-        "value": {
-          "description": "Engine state of the vehicle as read by the vehicle gateway.",
-          "type": "string",
-          "enum": [
-            "Off",
-            "On",
-            "Idle"
-          ],
-          "example": "On"
-        }
-      }
-    },
-    "VehicleFuelPercents": {
-      "description": "Stat point for the fuel percent of the vehicle.",
-      "type": "object",
-      "properties": {
-        "time": {
-          "description": "UTC timestamp of the time the data point was generated by the object stat, in RFC3339 format.",
-          "type": "string",
-          "example": "2019-05-03T04:30:31.492Z"
-        },
-        "value": {
-          "description": "Percent of fuel in the vehicle as read by the vehicle gateway.",
-          "type": "integer",
-          "example": "54"
-        }
-      }
-    },
     "VehicleListResponse": {
       "description": "Response for retreiving a list of vehicles.",
       "type": "object",
@@ -6145,67 +6485,6 @@
           "$ref": "#/definitions/paginationResponse"
         }
       }
-    },
-    "VehicleLocation": {
-      "description": "Location object with heading \u0026 speed",
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/location"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "heading": {
-              "description": "Heading of the vehicle in degrees.",
-              "type": "number",
-              "format": "double",
-              "example": 120
-            },
-            "speed": {
-              "description": "Speed of the vehicle in miles per hour.",
-              "type": "number",
-              "format": "double",
-              "example": 48.3
-            }
-          }
-        }
-      ]
-    },
-    "VehicleLocationsListResponse": {
-      "description": "List of vehicle locations for the specified time period.",
-      "type": "object",
-      "properties": {
-        "data": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/VehicleLocationsWrapper"
-          }
-        },
-        "pagination": {
-          "$ref": "#/definitions/timeseriesPaginationResponse"
-        }
-      }
-    },
-    "VehicleLocationsWrapper": {
-      "description": "List of vehicle locations for the specified time period.",
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/vehicleTinyResponse"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "locations": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/LocationsWrapper"
-              }
-            }
-          }
-        }
-      ]
     },
     "VehiclePatch": {
       "description": "All the editable portions of the vehicle object.",
@@ -6451,37 +6730,6 @@
         }
       }
     },
-    "VehicleStatsResponse": {
-      "description": "List of vehicle stats for the specified time period.",
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/vehicleTinyResponse"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "engineStates": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/VehicleEngineStates"
-              }
-            }
-          }
-        },
-        {
-          "type": "object",
-          "properties": {
-            "fuelPercents": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/VehicleFuelPercents"
-              }
-            }
-          }
-        }
-      ]
-    },
     "contactTinyResponse": {
       "description": "A minified contact object",
       "type": "object",
@@ -6516,28 +6764,6 @@
           "description": "Name of the driver.",
           "type": "string",
           "example": "Susan Bob"
-        }
-      }
-    },
-    "location": {
-      "description": "Location object",
-      "type": "object",
-      "required": [
-        "latitude",
-        "longitude"
-      ],
-      "properties": {
-        "latitude": {
-          "description": "GPS latitude represented in degrees",
-          "type": "number",
-          "format": "double",
-          "example": 122.142
-        },
-        "longitude": {
-          "description": "GPS longitude represented in degrees",
-          "type": "number",
-          "format": "double",
-          "example": -93.343
         }
       }
     },
@@ -6591,48 +6817,6 @@
           "example": "East Coast"
         }
       }
-    },
-    "time": {
-      "description": "UTC timestamp in RFC 3339 milliseconds format.",
-      "type": "string",
-      "example": "2019-05-03T04:30:31.492Z"
-    },
-    "timeseriesPaginationResponse": {
-      "description": "Pagination parameters for timeseries pages where results may be delayed.",
-      "type": "object",
-      "allOf": [
-        {
-          "type": "object",
-          "properties": {
-            "nextPageAfter": {
-              "description": "The number of seconds to wait before fetching the next page of results. Only populated if hasNextPage is false and additional pages may be available in the future. For example, if nextPageAfter=5, then wait 5 seconds before fetching the next page of results. If pagination is complete or hasNextPage=true, then nextPageAfter will be omitted.",
-              "type": "integer",
-              "example": 5
-            }
-          }
-        },
-        {
-          "description": "Pagination parameters.",
-          "type": "object",
-          "required": [
-            "endCursor",
-            "hasNextPage"
-          ],
-          "properties": {
-            "endCursor": {
-              "description": "Cursor identifier representing the last element in the response. This value should be used in conjunction with a subsequent request's 'after' query parameter.",
-              "type": "string",
-              "format": "string",
-              "example": "MjkY"
-            },
-            "hasNextPage": {
-              "description": "True if there are more pages of results immediately available after this endCursor. Otherwise, wait nextPageAfter seconds before fetching the next page with endCursor.",
-              "type": "boolean",
-              "example": true
-            }
-          }
-        }
-      ]
     },
     "userRoleTinyResponse": {
       "description": "A minified user role object.",
@@ -6851,6 +7035,14 @@
       "name": "groupId",
       "in": "query"
     },
+    "V1harshEventMsParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Timestamp in milliseconds representing the timestamp of a harsh event.",
+      "name": "timestamp",
+      "in": "query",
+      "required": true
+    },
     "V1jobUpdatesIncludeParam": {
       "type": "string",
       "description": "Optionally set include=route to include route object in response payload.",
@@ -6906,6 +7098,22 @@
       "schema": {
         "$ref": "#/definitions/V1DispatchRouteUpdate"
       }
+    },
+    "V1safetyScoreEndMsParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Timestamp in milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs. Total duration (endMs - startMs) must be greater than or equal to 1 hour.",
+      "name": "endMs",
+      "in": "query",
+      "required": true
+    },
+    "V1safetyScoreStartMsParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Timestamp in milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs. Total duration (endMs - startMs) must be greater than or equal to 1 hour.",
+      "name": "startMs",
+      "in": "query",
+      "required": true
     },
     "V1sensorParam": {
       "description": "Group ID and list of sensor IDs to query.",
@@ -6975,7 +7183,7 @@
       "name": "Maintenance"
     },
     {
-      "description": "Fleet Admins can send direct free-form messages to drivers. This will send a message to the driver's Samsara driver app, in which you can track whether or not a message has been read by a given driver. For sending structured messages, see the Documents API.",
+      "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThese endpoints are still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFleet Admins can send direct free-form messages to drivers. This will send a message to the driver's Samsara driver app, in which you can track whether or not a message has been read by a given driver. For sending structured messages, see the Documents API.",
       "name": "Messages"
     },
     {
