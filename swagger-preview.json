@@ -4260,10 +4260,10 @@
           "example": "Bob Smith"
         },
         "roles": {
-          "description": "The roles for this user. Users must have at least a single role to be a part of an organization. Roles without an associated `tagId` are considered \"Organization Level\" roles and will apply to the user at the organization level. Each user can only have one \"Organization Level\" role. Roles with a `tagId` will be roles specific to that tag. Users can only have one role per tag. Users can have different roles at the organization and tag level, and users can have different roles for different tags.",
+          "description": "The roles for this user. Users must have at least a single role to be a part of an organization.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/UserRoleInput"
+            "$ref": "#/definitions/UserCreateRoleInput"
           },
           "example": [
             {
@@ -4278,6 +4278,19 @@
               "tagId": "5151"
             }
           ]
+        }
+      }
+    },
+    "UserCreateRoleInput": {
+      "type": "object",
+      "required": [
+        "roleId"
+      ],
+      "properties": {
+        "roleId": {
+          "description": "The id of the role the user has been granted.",
+          "type": "string",
+          "example": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
         }
       }
     },
@@ -4384,12 +4397,7 @@
               "roleId": "717fe0f3-f87f-4a57-b3ce-33a5a9f394cd"
             },
             {
-              "roleId": "23d4d8d3-dc10-4e7a-a183-69968751f23e",
-              "tagId": "3914"
-            },
-            {
-              "roleId": "23d4d8d3-dc10-4e7a-a183-69968751f23e",
-              "tagId": "5151"
+              "roleId": "23d4d8d3-dc10-4e7a-a183-69968751f23e"
             }
           ]
         }
