@@ -1995,7 +1995,7 @@
     },
     "/v1/fleet/messages": {
       "get": {
-        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nGet all messages.",
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nGet all messages.",
         "tags": [
           "Messages"
         ],
@@ -2039,7 +2039,7 @@
         }
       },
       "post": {
-        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nSend a message to a list of driver ids.",
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nSend a message to a list of driver ids.",
         "tags": [
           "Messages"
         ],
@@ -2343,6 +2343,485 @@
           "required": true
         }
       ]
+    },
+    "/v1/industrial/data": {
+      "get": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch all of the data inputs for a group.",
+        "tags": [
+          "Industrial"
+        ],
+        "summary": "Get industrial data",
+        "operationId": "V1getAllDataInputs",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Optional group ID if the organization has multiple groups (uncommon).",
+            "name": "group_id",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp in unix milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs. defaults to nowMs.",
+            "name": "startMs",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp in unix milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs. Defaults to nowMs.",
+            "name": "endMs",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of data inputs.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "dataInputs": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/V1DataInputHistoryResponse"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/industrial/data/{data_input_id}": {
+      "get": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch datapoints from a given data input.",
+        "tags": [
+          "Industrial"
+        ],
+        "summary": "Get industrial data from a specific device",
+        "operationId": "V1getDataInput",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of the data input. Must contain only digits 0-9.",
+            "name": "data_input_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp in unix milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs. defaults to nowMs.",
+            "name": "startMs",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp in unix milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs. Defaults to nowMs.",
+            "name": "endMs",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns datapoints for the given data input",
+            "schema": {
+              "$ref": "#/definitions/V1DataInputHistoryResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/industrial/vision/cameras": {
+      "get": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch all cameras.",
+        "tags": [
+          "Industrial"
+        ],
+        "summary": "Fetch industrial cameras",
+        "operationId": "V1getCameras",
+        "responses": {
+          "200": {
+            "description": "Returns details about a camera.",
+            "schema": {
+              "$ref": "#/definitions/V1VisionCamerasResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/industrial/vision/cameras/{camera_id}/programs": {
+      "get": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch configured programs on the camera.",
+        "tags": [
+          "Industrial"
+        ],
+        "summary": "Fetch industrial camera programs",
+        "operationId": "V1getVisionProgramsByCamera",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "The camera_id should be valid for the given accessToken.",
+            "name": "camera_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns programs configured on the camera.",
+            "schema": {
+              "$ref": "#/definitions/V1ProgramsForTheCameraResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/industrial/vision/run/camera/{camera_id}": {
+      "get": {
+        "description": "Fetch the latest run for a camera or program by default. If startedAtMs is supplied, fetch the specific run that corresponds to that start time.",
+        "tags": [
+          "Industrial"
+        ],
+        "summary": "Fetch the latest run for a camera or program",
+        "operationId": "V1getVisionLatestRunCamera",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "The camera_id should be valid for the given accessToken.",
+            "name": "camera_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "The configured program's ID on the camera.",
+            "name": "program_id",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "EndMs is an optional param. It will default to the current time.",
+            "name": "startedAtMs",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Include is a filter parameter. Accepts 'pass', 'reject' or 'no_read'.",
+            "name": "include",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Limit is an integer value from 1 to 1,000.",
+            "name": "limit",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the details for this run.",
+            "schema": {
+              "$ref": "#/definitions/V1VisionRunByCameraResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/industrial/vision/runs": {
+      "get": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch runs.",
+        "tags": [
+          "Industrial"
+        ],
+        "summary": "Fetch runs",
+        "operationId": "V1getVisionRuns",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "DurationMs is a required param. This works with the EndMs parameter. Indicates the duration in which the visionRuns will be fetched",
+            "name": "durationMs",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "EndMs is an optional param. It will default to the current time.",
+            "name": "endMs",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return runs.",
+            "schema": {
+              "$ref": "#/definitions/V1VisionRunsResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/industrial/vision/runs/{camera_id}": {
+      "get": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch runs by camera.",
+        "tags": [
+          "Industrial"
+        ],
+        "summary": "Fetch runs by camera",
+        "operationId": "getVisionRunsByCamera",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "The camera_id should be valid for the given accessToken.",
+            "name": "camera_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "DurationMs is a required param. This works with the EndMs parameter. Indicates the duration in which the visionRuns will be fetched",
+            "name": "durationMs",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "EndMs is an optional param. It will default to the current time.",
+            "name": "endMs",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return runs by cameraId.",
+            "schema": {
+              "$ref": "#/definitions/V1VisionRunsByCameraResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/industrial/vision/runs/{camera_id}/{program_id}/{started_at_ms}": {
+      "get": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch runs by camera and program.",
+        "tags": [
+          "Industrial"
+        ],
+        "summary": "Fetch runds by camera and program",
+        "operationId": "V1getVisionRunsByCameraAndProgram",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "The camera_id should be valid for the given accessToken.",
+            "name": "camera_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "The configured program's ID on the camera.",
+            "name": "program_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Started_at_ms is a required param. Indicates the start time of the run to be fetched.",
+            "name": "started_at_ms",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Include is a filter parameter. Accepts 'pass', 'reject' or 'no_read'.",
+            "name": "include",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return runs by camera ID and program ID.",
+            "schema": {
+              "$ref": "#/definitions/V1VisionRunsByCameraAndProgramResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/machines/history": {
+      "post": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nGet historical data for machine objects. This method returns a set of historical data for all machines in a group",
+        "tags": [
+          "Industrial"
+        ],
+        "summary": "Get machine history",
+        "operationId": "V1getMachinesHistory",
+        "parameters": [
+          {
+            "description": "Group ID and time range to query for events",
+            "name": "historyParam",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "groupId",
+                "startMs",
+                "endMs"
+              ],
+              "properties": {
+                "endMs": {
+                  "description": "End of the time range, specified in milliseconds UNIX time.",
+                  "type": "integer",
+                  "example": 1462881998034
+                },
+                "groupId": {
+                  "description": "Optional group ID if the organization has multiple groups (uncommon).",
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 101
+                },
+                "startMs": {
+                  "description": "Beginning of the time range, specified in milliseconds UNIX time.",
+                  "type": "integer",
+                  "example": 1462878398034
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of machine results objects, each containing a time and a datapoint.",
+            "schema": {
+              "$ref": "#/definitions/V1MachineHistoryResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/machines/list": {
+      "post": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nGet machine objects. This method returns a list of the machine objects in the Samsara Cloud and information about them.",
+        "tags": [
+          "Industrial"
+        ],
+        "summary": "Get machines",
+        "operationId": "V1getMachines",
+        "parameters": [
+          {
+            "description": "Optional group ID if the organization has multiple groups (uncommon).",
+            "name": "V1groupIdBodyParam",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "required": [
+                "groupId"
+              ],
+              "properties": {
+                "groupId": {
+                  "description": "Optional group ID if the organization has multiple groups (uncommon).",
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 101
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of machine objects.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "machines": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/V1Machine"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      }
     },
     "/v1/sensors/cargo": {
       "post": {
@@ -3960,6 +4439,44 @@
                 "description": "ID of the vehicle associated with the sensor for the data point. If no vehicle is connected, this parameter will not be reported.",
                 "type": "integer",
                 "example": 124
+              }
+            }
+          }
+        }
+      }
+    },
+    "V1DataInputHistoryResponse": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "description": "The ID of this data input",
+          "type": "integer",
+          "format": "int64",
+          "example": 12345
+        },
+        "name": {
+          "description": "Name of this data input",
+          "type": "string",
+          "example": "Pump Flow"
+        },
+        "points": {
+          "description": "Data points from this data input",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "timeMs": {
+                "type": "integer",
+                "format": "int64",
+                "example": 1453449599999
+              },
+              "value": {
+                "type": "number",
+                "format": "double",
+                "example": 12.332
               }
             }
           }
@@ -5678,6 +6195,84 @@
         }
       }
     },
+    "V1Machine": {
+      "description": "Contains information about a machine.",
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "description": "ID of the machine.",
+          "type": "integer",
+          "format": "int64",
+          "example": 123
+        },
+        "name": {
+          "description": "Name of the machine.",
+          "type": "string",
+          "example": "Freezer ABC"
+        },
+        "notes": {
+          "description": "Notes about the machine",
+          "type": "string",
+          "example": "This is in the left hallway behind the conveyor belt"
+        }
+      }
+    },
+    "V1MachineHistoryResponse": {
+      "description": "Contains the results for a machine history request",
+      "type": "object",
+      "properties": {
+        "machines": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "description": "Machine ID",
+                "type": "integer",
+                "example": 1
+              },
+              "name": {
+                "description": "Machine name",
+                "type": "string",
+                "example": "1/3 HP Motor"
+              },
+              "vibrations": {
+                "description": "List of vibration datapoints, with timestamp and vibration measurement for x/y/z axis in mm/s",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "X": {
+                      "type": "number",
+                      "format": "double",
+                      "example": 0.01
+                    },
+                    "Y": {
+                      "type": "number",
+                      "format": "double",
+                      "example": 1.23
+                    },
+                    "Z": {
+                      "type": "number",
+                      "format": "double",
+                      "example": 2.55
+                    },
+                    "time": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 1453449599999
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "V1Message": {
       "type": "object",
       "required": [
@@ -5764,6 +6359,24 @@
       "type": "array",
       "items": {
         "$ref": "#/definitions/V1MessageResponse"
+      }
+    },
+    "V1ProgramsForTheCameraResponse": {
+      "description": "Contains the list of Programs configured on the given Camera.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "programId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "programName": {
+            "type": "string",
+            "example": "Barcode verification program"
+          }
+        }
       }
     },
     "V1SafetyReportHarshEvent": {
@@ -6397,6 +7010,952 @@
         }
       }
     },
+    "V1VisionCamerasResponse": {
+      "description": "Contains the list of Cameras installed in the org.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "cameraId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1234512345999
+          },
+          "cameraName": {
+            "type": "string",
+            "example": "Line 32"
+          },
+          "ethernetIp": {
+            "type": "string",
+            "example": "10.1.2.34"
+          },
+          "wifiIp": {
+            "type": "string",
+            "example": "10.1.2.35"
+          }
+        }
+      }
+    },
+    "V1VisionRunByCameraResponse": {
+      "type": "object",
+      "properties": {
+        "cameraId": {
+          "type": "integer",
+          "format": "int64",
+          "example": 1234512345123
+        },
+        "endedAtMs": {
+          "type": "integer",
+          "format": "int64",
+          "example": 0
+        },
+        "inspectionResults": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "captureAtMs": {
+                "type": "number",
+                "format": "float64",
+                "example": 1553811994730
+              },
+              "result": {
+                "type": "string",
+                "example": "PASS"
+              },
+              "stepResults": {
+                "$ref": "#/definitions/V1VisionStepResults"
+              }
+            }
+          }
+        },
+        "isOngoing": {
+          "type": "boolean",
+          "example": true
+        },
+        "program": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1
+            },
+            "name": {
+              "type": "string",
+              "example": "Barcode verification program"
+            }
+          }
+        },
+        "runSummary": {
+          "type": "object",
+          "properties": {
+            "itemsPerMinute": {
+              "type": "number",
+              "format": "float64",
+              "example": 0.1
+            },
+            "noReadCount": {
+              "type": "integer",
+              "format": "int64",
+              "example": 0
+            },
+            "rejectCount": {
+              "type": "integer",
+              "format": "int64",
+              "example": 0
+            },
+            "successCount": {
+              "type": "integer",
+              "format": "int64",
+              "example": 181
+            }
+          }
+        },
+        "startedAtMs": {
+          "type": "integer",
+          "format": "int64",
+          "example": 1553808606097
+        }
+      }
+    },
+    "V1VisionRunsByCameraAndProgramResponse": {
+      "type": "object",
+      "properties": {
+        "deviceId": {
+          "type": "integer",
+          "format": "int64",
+          "example": 1234512345123
+        },
+        "endedAtMs": {
+          "type": "integer",
+          "format": "int64",
+          "example": 0
+        },
+        "programId": {
+          "type": "integer",
+          "format": "int64",
+          "example": 1
+        },
+        "reportMetadata": {
+          "type": "object",
+          "properties": {
+            "itemsPerMinute": {
+              "type": "number",
+              "format": "float64",
+              "example": 0.1
+            },
+            "noReadCount": {
+              "type": "integer",
+              "format": "int64",
+              "example": 0
+            },
+            "rejectCount": {
+              "type": "integer",
+              "format": "int64",
+              "example": 0
+            },
+            "successCount": {
+              "type": "integer",
+              "format": "int64",
+              "example": 181
+            }
+          }
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "captureAtMs": {
+                "type": "number",
+                "format": "float64",
+                "example": 1553811994730
+              },
+              "result": {
+                "type": "string",
+                "example": "PASS"
+              },
+              "stepResults": {
+                "$ref": "#/definitions/V1VisionStepResults"
+              }
+            }
+          }
+        },
+        "startedAtMs": {
+          "type": "integer",
+          "format": "int64",
+          "example": 1553808606097
+        }
+      }
+    },
+    "V1VisionRunsByCameraResponse": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1234512345123
+          },
+          "endedAtMs": {
+            "type": "integer",
+            "format": "int64",
+            "example": 0
+          },
+          "program": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64",
+                "example": 1
+              },
+              "name": {
+                "type": "string",
+                "example": "Barcode verification program"
+              }
+            }
+          },
+          "reportMetadata": {
+            "type": "object",
+            "properties": {
+              "itemsPerMinute": {
+                "type": "number",
+                "format": "float64",
+                "example": 0.1
+              },
+              "noReadCount": {
+                "type": "integer",
+                "format": "int64",
+                "example": 0
+              },
+              "rejectCount": {
+                "type": "integer",
+                "format": "int64",
+                "example": 0
+              },
+              "successCount": {
+                "type": "integer",
+                "format": "int64",
+                "example": 181
+              }
+            }
+          },
+          "startedAtMs": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1553808606097
+          }
+        }
+      }
+    },
+    "V1VisionRunsResponse": {
+      "type": "object",
+      "properties": {
+        "visionRuns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "deviceId": {
+                "type": "integer",
+                "format": "int64",
+                "example": 1234512345123
+              },
+              "endedAtMs": {
+                "type": "integer",
+                "format": "int64",
+                "example": 0
+              },
+              "programId": {
+                "type": "integer",
+                "format": "int64",
+                "example": 1
+              },
+              "reportMetadata": {
+                "description": "The response includes 4 additional fields that are now deprecated",
+                "type": "object",
+                "properties": {
+                  "itemsPerMinute": {
+                    "description": "Returns average scanned items per minute. Should be used instead of scanRate.",
+                    "type": "number",
+                    "format": "float64",
+                    "example": 0.1
+                  },
+                  "noReadCount": {
+                    "description": "Returns no read count for the run. Should be used instead of noReadScansCount",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 181
+                  },
+                  "rejectCount": {
+                    "description": "Returns reject count for the run. Should be used instead of failedScansCount",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 0
+                  },
+                  "successCount": {
+                    "description": "Returns success count for the run. Should be used instead of successfulScansCount",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 181
+                  }
+                }
+              },
+              "startedAtMs": {
+                "type": "integer",
+                "format": "int64",
+                "example": 1553808606097
+              }
+            }
+          }
+        }
+      }
+    },
+    "V1VisionStepResults": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "angleCheck": {
+            "type": "object",
+            "properties": {
+              "angleConfigured": {
+                "description": "The configured angle allowance range (in degrees)",
+                "type": "object",
+                "properties": {
+                  "high": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 150
+                  },
+                  "low": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 90
+                  }
+                }
+              },
+              "angleFound": {
+                "description": "The counter-clockwise angle detected from the first edge to the second edge",
+                "type": "integer",
+                "format": "int64",
+                "example": 60
+              },
+              "endStepName": {
+                "description": "The name of the second reference step used to check the angle",
+                "type": "string",
+                "example": "Edge 2"
+              },
+              "startStepName": {
+                "description": "The name of the first reference step used to check the angle",
+                "type": "string",
+                "example": "Edge 1"
+              }
+            }
+          },
+          "barcode": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "contents": {
+                  "type": "string",
+                  "example": "10855639004823"
+                },
+                "matchString": {
+                  "type": "string",
+                  "example": "10855639004823"
+                },
+                "type": {
+                  "type": "string",
+                  "example": "EAN8"
+                }
+              }
+            }
+          },
+          "booleanLogic": {
+            "type": "object",
+            "properties": {
+              "operator": {
+                "type": "string",
+                "example": "AND"
+              },
+              "steps": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Expiration Date"
+                    },
+                    "result": {
+                      "type": "string",
+                      "example": "PASS"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "caliper": {
+            "type": "object",
+            "properties": {
+              "angleRange": {
+                "description": "The configured angle allowance range",
+                "type": "object",
+                "properties": {
+                  "high": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 360
+                  },
+                  "low": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 0
+                  }
+                }
+              },
+              "contrastRange": {
+                "description": "The configured contrast allowance range",
+                "type": "object",
+                "properties": {
+                  "high": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 100
+                  },
+                  "low": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 50
+                  }
+                }
+              },
+              "distanceFound": {
+                "description": "The distance found between the found edges",
+                "type": "number",
+                "format": "float",
+                "example": 555.55
+              },
+              "filterPolarity": {
+                "description": "The configured polarity for finding edges",
+                "type": "string",
+                "default": "LIGHT TO DARK",
+                "enum": [
+                  "LIGHT TO DARK",
+                  "DARK TO LIGHT"
+                ],
+                "example": "LIGHT TO DARK"
+              },
+              "maxDistance": {
+                "description": "The maximum allowed distance threshold",
+                "type": "number",
+                "format": "float",
+                "example": 1000
+              },
+              "minDistance": {
+                "description": "The minumum allowed distance threshold",
+                "type": "number",
+                "format": "float",
+                "example": 500
+              },
+              "sharpnessRange": {
+                "description": "The configured sharpness allowance range",
+                "type": "object",
+                "properties": {
+                  "high": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 100
+                  },
+                  "low": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 80
+                  }
+                }
+              },
+              "straightnessRange": {
+                "description": "The configured straightness allowance range",
+                "type": "object",
+                "properties": {
+                  "high": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 100
+                  },
+                  "low": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 80
+                  }
+                }
+              },
+              "unit": {
+                "description": "The measurement unit of the distance found and the min and max distance threshold",
+                "type": "string",
+                "example": "Millimeters"
+              }
+            }
+          },
+          "contour": {
+            "type": "object",
+            "properties": {
+              "angleDegrees": {
+                "description": "The rotation angle found",
+                "type": "integer",
+                "format": "int64",
+                "example": 0
+              },
+              "angleTolerance": {
+                "description": "The rotation angle allowance",
+                "type": "integer",
+                "format": "int64",
+                "example": 50
+              },
+              "matchPercentage": {
+                "description": "The contour match percentage with the configured contour",
+                "type": "integer",
+                "format": "int64",
+                "example": 46
+              },
+              "matchThreshold": {
+                "description": "The configured match threshold for contours",
+                "type": "integer",
+                "format": "int64",
+                "example": 18
+              }
+            }
+          },
+          "distance": {
+            "type": "object",
+            "properties": {
+              "distanceFound": {
+                "description": "The distance found between the start and end references",
+                "type": "integer",
+                "format": "float64",
+                "example": 1000.22
+              },
+              "endStepName": {
+                "description": "The name of the second reference step that we're checking the distances between",
+                "type": "string",
+                "example": "Bottom Right Square"
+              },
+              "enforceOffsetAngleRange": {
+                "description": "Whether an offset angle range is enforced",
+                "type": "boolean",
+                "example": true
+              },
+              "maxDistance": {
+                "description": "The maximum allowed distance threshold",
+                "type": "integer",
+                "format": "float64",
+                "example": 900
+              },
+              "maxOffsetAngle": {
+                "description": "The maximum angle allowance (in degrees) if enforceOffsetAngleRange is true",
+                "type": "integer",
+                "format": "int64",
+                "example": 90
+              },
+              "minDistance": {
+                "description": "The minumum allowed distance threshold",
+                "type": "integer",
+                "format": "float64",
+                "example": 1500
+              },
+              "minOffsetAngle": {
+                "description": "The minimum angle allowance (in degrees) if enforceOffsetAngleRange is true",
+                "type": "integer",
+                "format": "int64",
+                "example": 45
+              },
+              "offsetAngleFound": {
+                "description": "The counter-clockwise angle (in degrees) found between the horizontal axis of the start reference step and the last",
+                "type": "integer",
+                "format": "int64",
+                "example": 50
+              },
+              "startStepName": {
+                "description": "The name of the first reference step that we're checking the distances between",
+                "type": "string",
+                "example": "Top Left Square"
+              },
+              "unit": {
+                "description": "The measurement unit of the distance found and the min and max distance threshold",
+                "type": "string",
+                "example": "Millimeters"
+              }
+            }
+          },
+          "expirationDate": {
+            "type": "object",
+            "properties": {
+              "dateOffset": {
+                "type": "integer",
+                "format": "int64",
+                "example": 1
+              },
+              "foundDate": {
+                "type": "string",
+                "example": "06/13/2019"
+              },
+              "matchDate": {
+                "type": "string",
+                "example": "06/13/2019"
+              }
+            }
+          },
+          "findCopies": {
+            "type": "object",
+            "properties": {
+              "angleTolerance": {
+                "description": "The orientation angle tolerance (+/- °)",
+                "type": "integer",
+                "format": "int64",
+                "example": 10
+              },
+              "foundCount": {
+                "description": "The number of copies found",
+                "type": "integer",
+                "format": "int64",
+                "example": 1
+              },
+              "maxCount": {
+                "description": "The maximum number of copies allowed",
+                "type": "integer",
+                "format": "int64",
+                "example": 5
+              },
+              "minCount": {
+                "description": "The minimum number of copies allowed",
+                "type": "integer",
+                "format": "int64",
+                "example": 1
+              },
+              "threshold": {
+                "description": "The minimum required similarity (in %) of a found copy compared to the configured match region",
+                "type": "integer",
+                "format": "int64",
+                "example": 70
+              }
+            }
+          },
+          "findEdge": {
+            "type": "object",
+            "properties": {
+              "angleFound": {
+                "description": "The detected angle in degrees",
+                "type": "integer",
+                "format": "float64",
+                "example": 90
+              },
+              "angleRange": {
+                "description": "The configured angle allowance range",
+                "type": "object",
+                "properties": {
+                  "high": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 360
+                  },
+                  "low": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 0
+                  }
+                }
+              },
+              "contrastPercent": {
+                "description": "The detected contrast percentage",
+                "type": "integer",
+                "format": "float64",
+                "example": 72.8
+              },
+              "contrastRange": {
+                "description": "The configured contrast allowance range",
+                "type": "object",
+                "properties": {
+                  "high": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 100
+                  },
+                  "low": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 50
+                  }
+                }
+              },
+              "filterPolarity": {
+                "description": "The configured polarity for finding edges",
+                "type": "string",
+                "example": "ANY"
+              },
+              "sharpnessPercent": {
+                "description": "The detected sharpness percentage",
+                "type": "integer",
+                "format": "float64",
+                "example": 95
+              },
+              "sharpnessRange": {
+                "description": "The configured sharpness allowance range",
+                "type": "object",
+                "properties": {
+                  "high": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 100
+                  },
+                  "low": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 80
+                  }
+                }
+              },
+              "straightnessFound": {
+                "description": "The detected straightness percentage",
+                "type": "integer",
+                "format": "float64",
+                "example": 95
+              },
+              "straightnessRange": {
+                "description": "The configured straightness allowance range",
+                "type": "object",
+                "properties": {
+                  "high": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 100
+                  },
+                  "low": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 80
+                  }
+                }
+              }
+            }
+          },
+          "findShapes": {
+            "type": "object",
+            "properties": {
+              "foundCount": {
+                "type": "integer",
+                "format": "int32",
+                "example": 1
+              },
+              "maxCount": {
+                "type": "integer",
+                "format": "int32",
+                "example": 5
+              },
+              "minCount": {
+                "type": "integer",
+                "format": "int32",
+                "example": 1
+              }
+            }
+          },
+          "fixture": {
+            "type": "object",
+            "properties": {
+              "coordinates": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 10
+                  },
+                  "y": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 10
+                  }
+                }
+              },
+              "found": {
+                "type": "boolean",
+                "example": true
+              },
+              "rotationDegrees": {
+                "type": "integer",
+                "format": "int64",
+                "example": 90
+              }
+            }
+          },
+          "labelMatch": {
+            "type": "object",
+            "properties": {
+              "score": {
+                "type": "integer",
+                "format": "int64",
+                "example": 10
+              },
+              "threshold": {
+                "type": "integer",
+                "format": "int64",
+                "example": 10
+              }
+            }
+          },
+          "name": {
+            "type": "string",
+            "example": "Chicken Caesar Label"
+          },
+          "presenceAbsence": {
+            "type": "object",
+            "properties": {
+              "blueRange": {
+                "type": "object",
+                "properties": {
+                  "high": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 150
+                  },
+                  "low": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 90
+                  }
+                }
+              },
+              "checkForAbsence": {
+                "type": "boolean",
+                "example": true
+              },
+              "grayscaleRange": {
+                "type": "object",
+                "properties": {
+                  "high": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 100
+                  },
+                  "low": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 20
+                  }
+                }
+              },
+              "greenRange": {
+                "type": "object",
+                "properties": {
+                  "high": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 150
+                  },
+                  "low": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 90
+                  }
+                }
+              },
+              "hueRange": {
+                "type": "object",
+                "properties": {
+                  "high": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 100
+                  },
+                  "low": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 20
+                  }
+                }
+              },
+              "redRange": {
+                "type": "object",
+                "properties": {
+                  "high": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 150
+                  },
+                  "low": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 90
+                  }
+                }
+              },
+              "saturationRange": {
+                "type": "object",
+                "properties": {
+                  "high": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 50
+                  },
+                  "low": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 10
+                  }
+                }
+              },
+              "score": {
+                "type": "integer",
+                "format": "int64",
+                "example": 50
+              },
+              "threshold": {
+                "type": "integer",
+                "format": "int64",
+                "example": 50
+              },
+              "valueRange": {
+                "type": "object",
+                "properties": {
+                  "high": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 50
+                  },
+                  "low": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 10
+                  }
+                }
+              }
+            }
+          },
+          "result": {
+            "type": "string",
+            "example": "PASS"
+          },
+          "textMatch": {
+            "type": "object",
+            "properties": {
+              "foundText": {
+                "type": "string",
+                "example": "TFNJ"
+              },
+              "matchString": {
+                "type": "string",
+                "example": "TFNJ"
+              }
+            }
+          }
+        }
+      }
+    },
     "V1allRouteJobUpdates": {
       "type": "object",
       "properties": {
@@ -6954,6 +8513,28 @@
         }
       }
     },
+    "V1dataInputEndTimeParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Timestamp in unix milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs. Defaults to nowMs.",
+      "name": "endMs",
+      "in": "query"
+    },
+    "V1dataInputIdParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "ID of the data input. Must contain only digits 0-9.",
+      "name": "data_input_id",
+      "in": "path",
+      "required": true
+    },
+    "V1dataInputStartTimeParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Timestamp in unix milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs. defaults to nowMs.",
+      "name": "startMs",
+      "in": "query"
+    },
     "V1documentCreateParam": {
       "description": "To create a document for a given document type, the document type's uuid needs to be passed in to documentTypeUuid. The list of fields passed in should match the document type’s list of field types in the correct order. In other words, a field's valueType and value (i.e. only one of: stringValue, numberValue, or photoValue) at index _i_ should match with the document field type’s valueType at index _i_.",
       "name": "createDocumentParams",
@@ -7147,6 +8728,72 @@
         }
       }
     },
+    "V1visionCameraIdParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The camera_id should be valid for the given accessToken.",
+      "name": "camera_id",
+      "in": "path",
+      "required": true
+    },
+    "V1visionDurationMsParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "DurationMs is a required param. This works with the EndMs parameter. Indicates the duration in which the visionRuns will be fetched",
+      "name": "durationMs",
+      "in": "query",
+      "required": true
+    },
+    "V1visionEndMsParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "EndMs is an optional param. It will default to the current time.",
+      "name": "endMs",
+      "in": "query"
+    },
+    "V1visionIncludeParam": {
+      "type": "string",
+      "description": "Include is a filter parameter. Accepts 'pass', 'reject' or 'no_read'.",
+      "name": "include",
+      "in": "query"
+    },
+    "V1visionLimitParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Limit is an integer value from 1 to 1,000.",
+      "name": "limit",
+      "in": "query"
+    },
+    "V1visionProgramIdParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The configured program's ID on the camera.",
+      "name": "program_id",
+      "in": "query"
+    },
+    "V1visionProgramIdPathParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The configured program's ID on the camera.",
+      "name": "program_id",
+      "in": "path",
+      "required": true
+    },
+    "V1visionStartAtMsParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "EndMs is an optional param. It will default to the current time.",
+      "name": "startedAtMs",
+      "in": "query"
+    },
+    "V1visionStartAtMsPathParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Started_at_ms is a required param. Indicates the start time of the run to be fetched.",
+      "name": "started_at_ms",
+      "in": "path",
+      "required": true
+    },
     "createContactParam": {
       "description": "Add a contact.",
       "name": "contact",
@@ -7191,7 +8838,7 @@
       "name": "Routes"
     },
     {
-      "description": "Samsara provides you with more visibility on whether or not your fleets are being safe. With the collection of safety endpoints, you can get aggregate metrics around the performance of a particular driver or vehicle, as well as detailed logs of all the harsh events that take place in an organization.",
+      "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThese endpoints are still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nSamsara provides you with more visibility on whether or not your fleets are being safe. With the collection of safety endpoints, you can get aggregate metrics around the performance of a particular driver or vehicle, as well as detailed logs of all the harsh events that take place in an organization.",
       "name": "Safety"
     },
     {
@@ -7212,6 +8859,10 @@
     {
       "description": "The vehicle object describes a vehicle's attributes and settings within Samsara. A vehicle is generated in the Samsara platform when a vehicle gateway is installed. The gateway often auto-populates information such as the VIN, make, model, and year.\nThe vehicle object is often referenced in other objects. For these references, you will see a mini-object of the vehicle, rather than the full vehicle information. The mini-object encompasses a smaller subset of commonly-referenced field, such as the Samsara ID, name, and external ID.",
       "name": "Vehicles"
+    },
+    {
+      "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThese endpoints are still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nAccess to industrial data",
+      "name": "Industrial"
     }
   ]
 }
