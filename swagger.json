@@ -10,7 +10,7 @@
   ],
   "swagger": "2.0",
   "info": {
-    "description": "# Introduction\n\nSamsara provides API endpoints for interacting with Samsara Cloud, so that you can build powerful applications and custom solutions with sensor data. Samsara has endpoints available to track and analyze sensors, vehicles, and entire fleets.\n\nThe Samsara Cloud API is a [RESTful API](https://en.wikipedia.org/wiki/Representational_state_transfer) accessed by an [HTTP](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) client such as wget or curl, or HTTP libraries of most modern programming languages including python, ruby, java. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which are understood by off-the-shelf HTTP clients. We allow you to interact securely with our API from a client-side web application (though you should never expose your secret API key). [JSON](http://www.json.org/) is returned by all API responses, including errors. If you’re familiar with what you can build with a REST API, the following API reference guide will be your go-to resource.\n\nAPI access to the Samsara cloud is available to all Samsara administrators. To start developing with Samsara APIs you will need to [obtain your API keys](#section/Authentication) to authenticate your API requests.\n\nIf you have any questions you can reach out to us on [support@samsara.com](mailto:support@samsara.com)\n\n# Endpoints\n\nAll our APIs can be accessed through HTTP requests to URLs like:\n\n```curl\nhttps://api.samsara.com/\u003cversion\u003e/\u003cendpoint\u003e\n```\n\nAll our APIs are [versioned](#section/Versioning). If we intend to make breaking changes to an API which either changes the response format or request parameter, we will increment the version.\n\n# Authentication\n\nTo authenticate your API request you will need to include your secret token. You can manage your API tokens in the [Dashboard](https://cloud.samsara.com). They are visible under `Settings-\u003eOrganization-\u003eAPI Tokens`.\n\nYour API tokens carry many privileges, so be sure to keep them secure. Do not share your secret API tokens in publicly accessible areas such as GitHub, client-side code, and so on.\n\nAuthentication to the API is performed via [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Provide your API token as the basic access_token value in the URL. You do not need to provide a password.\n\n```curl\nhttps://api.samsara.com/\u003cversion\u003e/\u003cendpoint\u003e?access_token={access_token}\n```\n\nAll API requests must be made over [HTTPS](https://en.wikipedia.org/wiki/HTTPS). Calls made over plain HTTP or without authentication will fail.\n\n# Request Methods\n\nOur API endpoints use [HTTP request methods](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods) to specify the desired operation to be performed. The documentation below specified request method supported by each endpoint and the resulting action.\n\n## GET\n\nGET requests are typically used for fetching data (like data for a particular driver).\n\n## POST\n\nPOST requests are typically used for creating or updating a record (like adding new tags to the system). With that being said, a few of our POST requests can be used for fetching data (like current location data of your fleet).\n\n## PUT\n\nPUT requests are typically used for updating an existing record (like updating all devices associated with a particular tag).\n\n## PATCH\n\nPATCH requests are typically used for modifying an existing record (like modifying a few devices associated with a particular tag).\n\n## DELETE\n\nDELETE requests are used for deleting a record (like deleting a tag from the system).\n\n# Response Codes\n\nAll API requests will respond with appropriate [HTTP status code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes). Your API client should handle each response class differently.\n\n## 2XX\n\nThese are successful responses and indicate that the API request returned the expected response.\n\n## 4XX\n\nThese indicate that there was a problem with the request like a missing parameter or invalid values. Check the response for specific [error details](#section/Error-Responses). Requests that respond with a 4XX status code, should be modified before retrying.\n\n## 5XX\n\nThese indicate server errors when the server is unreachable or is misconfigured. In this case, you should retry the API request after some delay.\n\n# Error Responses\n\nIn case of a 4XX status code, the body of the response will contain information to briefly explain the error reported. To help debugging the error, you can refer to the following table for understanding the error message.\n\n| Status Code | Message | Description |\n|-------------|----------------|-------------------------------------------------------------------|\n| 401 | Invalid token | The API token is invalid and could not be authenticated. Please refer to the [authentication section](#section/Authentication). |\n| 404 | Page not found | The API endpoint being accessed is invalid. |\n| 400 | Bad request | Default response for an invalid request. Please check the request to make sure it follows the format specified in the documentation. |\n\n# Versioning\n\nAll our APIs are versioned. Our current API version is v1 and we are continuously working on improving it further and providing additional endpoints. If we intend to make breaking changes in a backwards-incompatible way, we release a new dated version to your API. Thus, you can use our current API version worry free. For a detailed guide on how to upgrade your API token, please check out this [Knowledge Base article](https://kb.samsara.com/hc/en-us/articles/360026132972-Upgrading-API-Tokens).\n\n# FAQs\n\nCheck out our [responses to FAQs here](https://kb.samsara.com/hc/en-us/sections/360000538054-APIs). Don’t see an answer to your question? Reach out to us on [support@samsara.com](mailto:support@samsara.com).",
+    "description": "\u003cstyle type=\"text/css\"\u003e\nn {\n    padding: 1em;\n    width: 100%;\n    display: block;\n}\nn.info {\n    background-color: rgba(0, 51, 160, 0.1);\n}\nn.warning {\n    background-color: #fdf6e3;\n}\ni:before {\n    margin-right: 6px;\n}\nnh {\n    font-size: 1rem;\n    font-weight: 700;\n    line-height: 1.1;\n    display: block;\n}\nnb {\n    margin-top: 10px;\n    padding-left: 22px;\n    display: block;\n}\n\u003c/style\u003e\n\n\u003cn class=\"info\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-info-circle\"\u003e\u003c/i\u003e\nSomething new!\n\u003c/nh\u003e\n\u003cnb\u003e\nWelcome to the preview release of our newest generation of APIs. This generation features our commitment to improve quality and design across all endpoints of the Samsara API.\u003cbr\u003e\n\u003cbr\u003e\nIf you would like to access the legacy API docs, you can still do so at this link: [Samsara Legacy API](https://www.samsara.com/api-legacy).\u003cbr\u003e\n\u003cbr\u003e\n*Note: This is an API preview, and not a final API spec. Samsara is making this available to outside parties to gather feedback, but we do not recommend coding directly against this API just yet. Samsara reserves the right to make breaking changes until the API’s full release.*\u003cbr\u003e\n\u003cbr\u003e\n*Note: Because this is a still a new set of APIs, we have not transitioned all endpoints over to this standard quite yet. Endpoints that still use the legacy standards will be indicated. If you can't find an API that you're looking for, we encourage you to check the [Legacy API](https://www.samsara.com/api-legacy) as we continue to transition some of those endpoints over. Check back here for updates!*\n\u003c/nb\u003e\n\u003c/n\u003e\n\n# Overview\n\nSamsara provides API endpoints so that you can build powerful applications and custom solutions with sensor data. Samsara has endpoints available to track and analyze sensors, vehicles, and entire fleets.\n\nThe Samsara API is a [RESTful API](https://en.wikipedia.org/wiki/Representational_state_transfer). It uses standard [HTTP](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) authentication, verbs, and response codes, and it returns [JSON](http://www.json.org/) response bodies. If you're familiar with what you can build with a REST API, then this will be your go-to API reference.\n\nIf you have any questions, reach out to us at [support@samsara.com](mailto:support@samsara.com).\n\n## Endpoints\n\nAll our APIs can be accessed through HTTP requests to URLs like:\n\n```\nhttps://api.samsara.com/\u003cendpoint\u003e\n```\n\n\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nNote\n\u003c/nh\u003e\n\u003cnb\u003e\nLegacy endpoints will be prefixed with `/v1`: `https://api.samsara.com/v1/\u003cendpoint\u003e`\n\u003c/nb\u003e\n\u003c/n\u003e\n\n## Authentication\n\nTo authenticate your API request you will need to include your secret token. You can manage your API tokens in the [Dashboard](https://cloud.samsara.com). They are visible under `Settings-\u003eOrganization-\u003eAPI Tokens`.\n\nYour API tokens carry many privileges, so be sure to keep them secure. Do not share your secret API tokens in publicly accessible areas such as GitHub, client-side code, and so on.\n\nAuthentication to the API is performed via Bearer Token in the HTTP Authorization header. Provide your API token as the `access_token` value in an `Authorization: Bearer` header. You do not need to provide a password:\n\n```curl\nAuthorization: Bearer {access_token}\n```\n\nAll API requests must be made over [HTTPS](https://en.wikipedia.org/wiki/HTTPS). Calls made over plain HTTP or without authentication will fail.\n\n## Request Methods\n\nOur API endpoints use [HTTP request methods](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods) to specify the desired operation to be performed. The documentation for each endpoint details what the request method will do, but here are the general patterns:\n  * GET retrieves data.\n  * POST creates new records.\n  * PATCH updates existing records.\n  * DELETE deletes records.\n  * PUT is only used in rare cases that replace all old members of a record with new members. To modify a record rather than replace it, use PATCH.\n\n## Response Codes\n\nAll API requests will respond with an appropriate [HTTP status code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes).\n\nYour API client should handle each response class differently:\n  * 2XX codes are successful responses.\n  * 4XX codes are client error responses, meaning there was an error with the way the request was submitted such as a missing parameter or invalid value. Requests should be modified before retrying.\n  * 5XX codes are server error responses. There may be a temporary issue on the Samsara side, so you may want to retry after some delay. Please use exponential backoff as a retry model - see [here](https://cloud.google.com/storage/docs/exponential-backoff) for an example algorithm.\n\n### Error Codes\n\nHere is a table of error codes that may be helpful in debugging. The error response body may include an error message, but do not hard-code against this message. We reserve the right to change the error message without auto-incrementing the API version. Only use error messages for debugging purposes.\n\n| Status Code | Description |\n|-------------|-------------|\n| 400 | Bad Request - General client error, possibly malformed data. |\n| 401 | Unauthenticated - The API key is missing or invalid. |\n| 404 | Not Found - The API endpoint being accessed is invalid, a path parameter is missing or invalid (e.g. `id` in `/fleet/drivers/{id})`), or you do not have access to this resource. You may expect to see a 403 in these cases, but we do not want to provide *any* information about resources if you do not have access to them. |\n| 405 | Method Not Allowed - The API endpoint does not accept that HTTP method. |\n| 429 | Too Many Requests - The client has reached or exceeded a rate limit, or the server is overloaded. Retry using [exponential backoff](https://cloud.google.com/storage/docs/exponential-backoff). |\n| 499 | Client Canceled - Request was closed before server could send a response. Retry using [exponential backoff](https://cloud.google.com/storage/docs/exponential-backoff). |\n| 5XX | Internal Server errors - something went wrong with Samsara's servers. These responses are likely momentary errors (e.g. temporary unavailability), and as a result, requests should be retried using [exponential backoff](https://cloud.google.com/storage/docs/exponential-backoff). Note that the body of these responses will be strings and not JSON encoded. |\n\n\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nNote\n\u003c/nh\u003e\n\u003cnb\u003e\nLegacy endpoints may differ slightly from the above guidelines.\n\u003c/nb\u003e\n\u003c/n\u003e\n\n## Versioning\n\nIf we intend to make breaking changes to the API in a backwards-incompatible way, we will release a new dated version that is tied to your token. Thus, you can continue to use your version of the API worry-free until you wish to upgrade your version. For a detailed guide on how to upgrade your API token, please check out this [Knowledge Base article](https://kb.samsara.com/hc/en-us/articles/360026132972-Upgrading-API-Tokens).\n\nSamsara only increments the version when there is a breaking change.\n\nExamples of breaking changes include: \n  * Adding a mandatory request parameter to existing API methods\n  * Removing properties from existing API responses\n\nFor non-breaking changes, these will be accessible across all versions of the API. Examples of these include:\n  * Adding new API resources\n  * Adding new optional request parameters to existing API methods\n  * Adding new properties to existing API responses\n  * Changing the order of properties in existing API responses\n  * Changing the length or format of object IDs or other opaque strings\n\n\u003cn class=\"info\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-info-circle\"\u003e\u003c/i\u003e\nA note on this new API.\n\u003c/nh\u003e\n\u003cnb\u003e\nYou're looking at a **new API**. It is an improvement over our [legacy API](https://www.samsara.com/api-legacy), and we're still working on it 🙂. Because we're still working on it, sometimes you may want to use the legacy endpoints while we're working on releasing the equivalent in this new API. Since this is a **new API**, you do not need to upgrade your API token to take advantage of it, and you can continue to use your API token for both sets of endpoints. If we introduce breaking changes to either set of APIs, we will release a new dated version that will apply to both APIs. There will not be independent versioning schemes for either set of APIs, and you can upgrade your token to take advantage of updates to either API.\n\u003c/nb\u003e\n\n## Common Structures\n\n### Pagination\n\nEndpoints that GET a collection are paginated.\n\nThere are two types of collections:\n  * Object collections\n  * Time series collections\n\nBoth are paginated, but have slightly different schemes of pagination.\n\n#### Object Collection Pagination\n\nAn object collection is a collection of objects such as vehicles or drivers. Examples of endpoints that return an object collection are GET `/fleet/vehicles` and GET `/fleet/drivers`.\n\nObject collections follow the following pagination scheme:\n\n1. On submission of the first request, you can optionally provide a `limit` parameter to limit the number of objects returned in the first page. The default and max is `512`.\n\nExample request:\n```curl\ncurl -X GET \\ \n  'https://api.samsara.com/fleet/vehicles?limit=5' \\ \n  -H 'Accept: application/json' \\ \n  -H 'Authorization: Bearer {access_token}'\n```\n\nExample response:\n```json\n{\n  \"data\": [ ... ],\n  \"pagination\": {\n    \"endCursor\": \"MjkY\",\n    \"hasNextPage\": true\n  }\n}\n```\n\n2. The response contains a `data` array and a `pagination` object. The `data` array will contain the first page of data. If `hasNextPage` is `true`, use the `endCursor` to request the next page of data by providing it as the `after` parameter in your next request.\n\nNext request:\n```curl\ncurl -X GET \\ \n  'https://api.samsara.com/fleet/vehicles?limit=5\u0026after=MjkY' \\ \n  -H 'Accept: application/json' \\ \n  -H 'Authorization: Bearer {access_token}'\n```\n\n#### Time Series Pagination\n\nA time series is a collection of objects that have a timestamp such as equipment stats or equipment locations.\n\nTime series resources offer two types of paginated endpoints:\n* Get a historical report of the time series\n* Follow a real-time feed of the time series\n\nThe endpoint to get a historical report will be the path to that time series resource. For example: `/fleet/equipment/stats/history` or `/fleet/equipment/locations/history`.\n\nTo follow a real-time feed of data for that time series, you'll suffix `/feed` to the end of the time series resource. For example: `/fleet/equipment/stats/feed` or `/fleet/equipment/locations/feed`.\n\nNow let's take a look at how to paginate for each example.\n\n##### Historical report of time series data\n\n1. To get a historical report of time series data, you'll submit a request to the resource with `startTime` and `endTime` parameters:\n\nExample request:\n```curl\ncurl -X GET \\ \n  'https://api.samsara.com/fleet/equipment/stats/history?startTime=2019-08-27T11:00:31-07:00\u0026endTime=2019-08-28T11:00:31-07:00' \\ \n  -H 'Accept: application/json' \\ \n  -H 'Authorization: Bearer {access_token}'\n```\n\nExample response:\n```json\n{\n  \"data\": [ ... ],\n  \"pagination\": {\n    \"endCursor\": \"MjkY\",\n    \"hasNextPage\": true\n  }\n}\n```\n\n2. If `hasNextPage` is `true`, then the report is paginated, and you can submit subsequent requests to paginate through the rest of the report. You will submit `endCursor` as the `after` parameter, and no `startTime` or `endTime` parameters are required for the pagination:\n\nNext request:\n```curl\ncurl -X GET \\ \n  'https://api.samsara.com/fleet/equipment/stats/history?after=MjkY' \\ \n  -H 'Accept: application/json' \\ \n  -H 'Authorization: Bearer {access_token}'\n```\n\n##### Real-time feed of time series data\n\n1. Submit the first request to the feed endpoint:\n\nExample request:\n```curl\ncurl -X GET \\ \n  'https://api.samsara.com/fleet/equipment/stats/feed' \\ \n  -H 'Accept: application/json' \\ \n  -H 'Authorization: Bearer {access_token}'\n```\n\nExample response:\n```json\n{\n  \"data\": [ ... ],\n  \"pagination\": {\n    \"nextPageAfter\": 5,\n    \"endCursor\": \"MjkY\",\n    \"hasNextPage\": false,\n  }\n}\n```\n\n2. Wait `nextPageAfter` seconds, and then submit another request to get updates to the feed. Submit the request with `endCursor` as the `after` parameter:\n\nNext request:\n```curl\ncurl -X GET \\ \n  'https://api.samsara.com/fleet/equipment/stats/feed?after=MjkY' \\ \n  -H 'Accept: application/json' \\ \n  -H 'Authorization: Bearer {access_token}'\n```\n\n\n\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nNote\n\u003c/nh\u003e\n\u003cnb\u003e\nLegacy endpoints may differ slightly from the above guidelines.\n\u003c/nb\u003e\n\u003c/n\u003e\n\n### Timestamps\n\nAll timestamps use [RFC 3339](https://tools.ietf.org/html/rfc3339) format. Millisecond precision and timezones are supported.\n\nExamples:\n* `2019-06-13T19:08:25Z`\n* With millisenconds: `2019-06-13T19:08:25.455Z`\n* With timezone: `2015-09-15T14:00:12-04:00`\n\n\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nNote\n\u003c/nh\u003e\n\u003cnb\u003e\nLegacy endpoints may differ slightly from the above guidelines.\n\u003c/nb\u003e\n\u003c/n\u003e\n\n## FAQs\n\nCheck out our [responses to FAQs here](https://kb.samsara.com/hc/en-us/sections/360000538054-APIs). Don’t see an answer to your question? Reach out to us on [support@samsara.com](mailto:support@samsara.com).",
     "title": "Samsara API",
     "version": "1.0.0"
   },
@@ -18,7 +18,7 @@
   "paths": {
     "/addresses": {
       "get": {
-        "description": "Returns a list of all addresses in an organization.",
+        "description": "Returns a list of all addresses in an organization",
         "tags": [
           "Addresses"
         ],
@@ -26,9 +26,12 @@
         "operationId": "getAddresses",
         "parameters": [
           {
+            "maximum": 512,
+            "minimum": 1,
             "type": "integer",
             "format": "int64",
-            "description": "The limit for how many objects will be in the response. Default and max for this value is 250 objects.",
+            "default": 512,
+            "description": "The limit for how many objects will be in the response. Default and max for this value is 512 objects.",
             "name": "limit",
             "in": "query"
           },
@@ -41,7 +44,7 @@
         ],
         "responses": {
           "200": {
-            "description": "List all addresses.",
+            "description": "List of all addresses in the organization",
             "schema": {
               "properties": {
                 "data": {
@@ -55,15 +58,21 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
           }
         }
       },
       "post": {
-        "description": "Creates a new address in the organization.",
+        "description": "Creates a new address in the organization",
         "tags": [
           "Addresses"
         ],
-        "summary": "Create an address.",
+        "summary": "Create an address",
         "operationId": "createAddress",
         "parameters": [
           {
@@ -77,7 +86,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Newly created address object with ID.",
+            "description": "Newly created address object with ID",
             "schema": {
               "type": "object",
               "properties": {
@@ -85,6 +94,12 @@
                   "$ref": "#/definitions/Address"
                 }
               }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
             }
           }
         }
@@ -96,11 +111,11 @@
         "tags": [
           "Addresses"
         ],
-        "summary": "Get information about a specific address.",
+        "summary": "Get information about a specific address",
         "operationId": "getAddressById",
         "responses": {
           "200": {
-            "description": "Newly created address object with ID.",
+            "description": "Newly created address object with ID",
             "schema": {
               "type": "object",
               "properties": {
@@ -108,6 +123,12 @@
                   "$ref": "#/definitions/Address"
                 }
               }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
             }
           }
         }
@@ -117,11 +138,17 @@
         "tags": [
           "Addresses"
         ],
-        "summary": "Delete a specific address.",
+        "summary": "Delete a specific address",
         "operationId": "deleteAddressById",
         "responses": {
           "204": {
             "description": "Empty success body"
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
           }
         }
       },
@@ -130,7 +157,7 @@
         "tags": [
           "Addresses"
         ],
-        "summary": "Update information about a specific address.",
+        "summary": "Update information about a specific address",
         "operationId": "updateAddressById",
         "parameters": [
           {
@@ -144,7 +171,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Newly created address object with ID.",
+            "description": "Updated address object with ID.",
             "schema": {
               "type": "object",
               "properties": {
@@ -153,13 +180,19 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
           }
         }
       },
       "parameters": [
         {
           "type": "string",
-          "description": "Unique Samsara ID for the address.",
+          "description": "Unique Samsara ID for the address",
           "name": "id",
           "in": "path",
           "required": true
@@ -176,9 +209,12 @@
         "operationId": "getContacts",
         "parameters": [
           {
+            "maximum": 512,
+            "minimum": 1,
             "type": "integer",
             "format": "int64",
-            "description": "The limit for how many objects will be in the response. Default and max for this value is 250 objects.",
+            "default": 512,
+            "description": "The limit for how many objects will be in the response. Default and max for this value is 512 objects.",
             "name": "limit",
             "in": "query"
           },
@@ -205,15 +241,21 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
           }
         }
       },
       "post": {
-        "description": "Add a contact to the organization.",
+        "description": "Add a contact to the organization",
         "tags": [
           "Contacts"
         ],
-        "summary": "Add a contact to the organization.",
+        "summary": "Add a contact to the organization",
         "operationId": "createContact",
         "parameters": [
           {
@@ -239,7 +281,7 @@
             }
           },
           "default": {
-            "description": "Unexpected error.",
+            "description": "Error response",
             "schema": {
               "$ref": "#/definitions/standardErrorResponse"
             }
@@ -248,6 +290,33 @@
       }
     },
     "/contacts/{id}": {
+      "get": {
+        "description": "Get a specific contact's information.",
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Get a contact's information",
+        "operationId": "getContactById",
+        "responses": {
+          "200": {
+            "description": "Returns the specified contact.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/Contact"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
       "delete": {
         "description": "Delete the given contact.",
         "tags": [
@@ -257,11 +326,10 @@
         "operationId": "deleteContactById",
         "responses": {
           "204": {
-            "description": "Returns an empty success response.",
-            "schema": {}
+            "description": "Returns an empty success response."
           },
           "default": {
-            "description": "Unexpected error.",
+            "description": "Error response",
             "schema": {
               "$ref": "#/definitions/standardErrorResponse"
             }
@@ -298,7 +366,7 @@
             }
           },
           "default": {
-            "description": "Unexpected error.",
+            "description": "Error response",
             "schema": {
               "$ref": "#/definitions/standardErrorResponse"
             }
@@ -321,19 +389,22 @@
         "tags": [
           "Drivers"
         ],
-        "summary": "Get all drivers.",
+        "summary": "List all drivers",
         "operationId": "getDrivers",
         "parameters": [
           {
             "type": "boolean",
-            "description": "Filter only for inactive drivers. This parameter will default to false if not provided.",
-            "name": "inactive",
+            "description": "If value is true, only drivers that are deactivated will appear in the response. This parameter will default to false if not provided (fetching only active drivers).",
+            "name": "isDeactivated",
             "in": "query"
           },
           {
+            "maximum": 512,
+            "minimum": 1,
             "type": "integer",
             "format": "int64",
-            "description": "The limit for how many objects will be in the response. Default and max for this value is 250 objects.",
+            "default": 512,
+            "description": "The limit for how many objects will be in the response. Default and max for this value is 512 objects.",
             "name": "limit",
             "in": "query"
           },
@@ -344,7 +415,11 @@
             "in": "query"
           },
           {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
             "description": "A comma-separated list of tag IDs.",
             "name": "tagIds",
             "in": "query"
@@ -368,7 +443,7 @@
             }
           },
           "default": {
-            "description": "Unexpected error.",
+            "description": "Error response",
             "schema": {
               "$ref": "#/definitions/standardErrorResponse"
             }
@@ -380,7 +455,7 @@
         "tags": [
           "Drivers"
         ],
-        "summary": "Create a driver.",
+        "summary": "Create a driver",
         "operationId": "createDriver",
         "parameters": [
           {
@@ -405,7 +480,7 @@
             }
           },
           "default": {
-            "description": "Unexpected error.",
+            "description": "Error response",
             "schema": {
               "$ref": "#/definitions/standardErrorResponse"
             }
@@ -419,13 +494,13 @@
         "tags": [
           "Safety"
         ],
-        "summary": "/fleet/drivers/safety-scores",
+        "summary": "Fetch all safety scores by driver",
         "operationId": "getOrgDriverSafetyScores",
         "parameters": [
           {
             "type": "string",
             "format": "string",
-            "description": "Beginning of the time range, specified in ISO 8601 time.",
+            "description": "Beginning of the time range, specified in RFC 3339 time.",
             "name": "startTime",
             "in": "query",
             "required": true
@@ -433,7 +508,7 @@
           {
             "type": "string",
             "format": "string",
-            "description": "End of the time range, specified in ISO 8601 time.",
+            "description": "End of the time range, specified in RFC 3339 time.",
             "name": "endTime",
             "in": "query",
             "required": true
@@ -447,7 +522,7 @@
             }
           },
           "default": {
-            "description": "Unexpected error.",
+            "description": "Error response",
             "schema": {
               "$ref": "#/definitions/standardErrorResponse"
             }
@@ -476,7 +551,7 @@
             }
           },
           "default": {
-            "description": "Unexpected error.",
+            "description": "Error response",
             "schema": {
               "$ref": "#/definitions/standardErrorResponse"
             }
@@ -513,7 +588,7 @@
             }
           },
           "default": {
-            "description": "Unexpected error.",
+            "description": "Error response",
             "schema": {
               "$ref": "#/definitions/standardErrorResponse"
             }
@@ -530,14 +605,66 @@
         }
       ]
     },
-    "/fleet/equipment/locations": {
+    "/fleet/equipment": {
       "get": {
-        "description": "This endpoint allows you to both fetch historical locations for all equipment as well as a feed of all new equipment locations.\n\nIf you wish to just fetch historical location data, you can pass in a `startTime` and `endTime` range. This will return all known location points for equipment during a given time range.\n\nIf an `endTime` is not provided, then this will provide a continuous feed of all equipment locations. In order to follow the feed, you can follow the pagination `endCursor` cursor continuously.  If there is not yet a `hasNextPage=true` for the feed follow, then we recommend you wait and retry in 5 seconds.",
+        "description": "Returns a list of all equipment in an organization, ordered by equipment ID.",
         "tags": [
           "Equipment"
         ],
-        "summary": "Fetch locations for all equipment",
-        "operationId": "getEquipmentLocationsHistory",
+        "summary": "List all equipment",
+        "operationId": "getEquipmentList",
+        "parameters": [
+          {
+            "maximum": 512,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int64",
+            "default": 512,
+            "description": "The limit for how many objects will be in the response. Default and max for this value is 512 objects.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of tag IDs.",
+            "name": "tagIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all equipment objects, and pagination parameters.",
+            "schema": {
+              "$ref": "#/definitions/EquipmentListResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/equipment/locations": {
+      "get": {
+        "description": "This endpoint returns the current equipment location values for all equipment.",
+        "tags": [
+          "Equipment"
+        ],
+        "summary": "Fetch location snapshots for all equipment",
+        "operationId": "getEquipmentLocationSnapshot",
         "parameters": [
           {
             "type": "string",
@@ -546,21 +673,11 @@
             "in": "query"
           },
           {
-            "type": "string",
-            "format": "date-time",
-            "description": "A start time in RFC 3339 format. Defaults to now if not provided. (Example: 2019-06-13T19:08:25Z)",
-            "name": "startTime",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "format": "date-time",
-            "description": "An end time in RFC 3339 format. Defaults to infinity if not provided. (Example: 2019-06-13T19:08:25Z)",
-            "name": "endTime",
-            "in": "query"
-          },
-          {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
             "description": "A comma-separated list of tag IDs.",
             "name": "tagIds",
             "in": "query"
@@ -584,14 +701,14 @@
                 "data": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/EquipmentLocationsResponse"
+                    "$ref": "#/definitions/EquipmentLocationSnapshotResponse"
                   }
                 },
                 "pagination": {
                   "type": "object",
                   "allOf": [
                     {
-                      "$ref": "#/definitions/EquipmentTimeSeriesPaginationResponse"
+                      "$ref": "#/definitions/timeseriesPaginationResponse"
                     }
                   ]
                 }
@@ -599,7 +716,7 @@
             }
           },
           "default": {
-            "description": "Unexpected error.",
+            "description": "Error response",
             "schema": {
               "$ref": "#/definitions/standardErrorResponse"
             }
@@ -607,14 +724,14 @@
         }
       }
     },
-    "/fleet/equipment/stats": {
+    "/fleet/equipment/locations/feed": {
       "get": {
-        "description": "This endpoint allows you to both fetch historical stats for all equipment as well as a feed of all new equipment stats.\n\nIf you wish to just fetch historical stat data, you can pass in a `startTime` and `endTime` range. This will return all known stat points for equipment during a given time range.\n\nIf an `endTime` is not provided, then this will provide a continuous feed of all equipment stats. In order to follow the feed, you can follow the pagination `endCursor` cursor continuously.  If there is not yet a `hasNextPage=true` for the feed follow, then we recommend you wait and retry in 5 seconds.",
+        "description": "This endpoint returns the current equipment locations values for all equipment (AG24s connected with a 7-way cable), as well as all new equipment locations values ingested by Samsara. This endpoint will allow you to fetch all new data coming into the Samsara system.",
         "tags": [
           "Equipment"
         ],
-        "summary": "Fetch stats for all equipment",
-        "operationId": "getEquipmentStatsHistory",
+        "summary": "Fetch current locations for all equipment",
+        "operationId": "getEquipmentLocationsFeed",
         "parameters": [
           {
             "type": "string",
@@ -623,21 +740,11 @@
             "in": "query"
           },
           {
-            "type": "string",
-            "format": "date-time",
-            "description": "A start time in RFC 3339 format. Defaults to now if not provided. (Example: 2019-06-13T19:08:25Z)",
-            "name": "startTime",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "format": "date-time",
-            "description": "An end time in RFC 3339 format. Defaults to infinity if not provided. (Example: 2019-06-13T19:08:25Z)",
-            "name": "endTime",
-            "in": "query"
-          },
-          {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
             "description": "A comma-separated list of tag IDs.",
             "name": "tagIds",
             "in": "query"
@@ -650,6 +757,257 @@
             "collectionFormat": "csv",
             "description": "A comma-separated list of equipment IDs.",
             "name": "equipmentIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all equipment locations objects and pagination parameters",
+            "schema": {
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/EquipmentLocationsResponse"
+                  }
+                },
+                "pagination": {
+                  "type": "object",
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/timeseriesPaginationResponse"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/equipment/locations/history": {
+      "get": {
+        "description": "This endpoint returns all known location changes during the given time range for all powered equipment (AG24s connected with a 7-way cable).",
+        "tags": [
+          "Equipment"
+        ],
+        "summary": "Fetch historical locations for all equipment",
+        "operationId": "getEquipmentLocationsHistory",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "startTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "endTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of tag IDs.",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of equipment IDs.",
+            "name": "equipmentIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all equipment locations and pagination parameters",
+            "schema": {
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/EquipmentLocationsResponse"
+                  }
+                },
+                "pagination": {
+                  "type": "object",
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/timeseriesPaginationResponse"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/equipment/stats": {
+      "get": {
+        "description": "This endpoint returns the current equipment stats values for all equipment.",
+        "tags": [
+          "Equipment"
+        ],
+        "summary": "Fetch stat snapshots for all equipment",
+        "operationId": "getEquipmentStatsSnapshot",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of tag IDs.",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of equipment IDs.",
+            "name": "equipmentIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "enum": [
+                "engineStates",
+                "fuelPercents",
+                "engineRpm",
+                "engineSeconds"
+              ],
+              "type": "string",
+              "format": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma separated list of stat types.",
+            "name": "types",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all equipment stat objects and pagination parameters",
+            "schema": {
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/EquipmentStatsSnapshotResponse"
+                  }
+                },
+                "pagination": {
+                  "type": "object",
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/timeseriesPaginationResponse"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/equipment/stats/feed": {
+      "get": {
+        "description": "This endpoint returns the current equipment stats values for all equipment (AG24s connected with a 7-way cable), as well as all new equipment stats values ingested by Samsara. This endpoint will allow you to fetch all new data coming into the Samsara system.",
+        "tags": [
+          "Equipment"
+        ],
+        "summary": "Fetch current stats for all equipment",
+        "operationId": "getEquipmentStatsFeed",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of tag IDs.",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of equipment IDs.",
+            "name": "equipmentIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "enum": [
+                "engineStates",
+                "fuelPercents",
+                "engineRpm",
+                "engineSeconds"
+              ],
+              "type": "string",
+              "format": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma separated list of stat types.",
+            "name": "types",
             "in": "query"
           }
         ],
@@ -668,7 +1026,7 @@
                   "type": "object",
                   "allOf": [
                     {
-                      "$ref": "#/definitions/EquipmentTimeSeriesPaginationResponse"
+                      "$ref": "#/definitions/timeseriesPaginationResponse"
                     }
                   ]
                 }
@@ -676,7 +1034,7 @@
             }
           },
           "default": {
-            "description": "Unexpected error.",
+            "description": "Error response",
             "schema": {
               "$ref": "#/definitions/standardErrorResponse"
             }
@@ -684,14 +1042,14 @@
         }
       }
     },
-    "/fleet/unassigned-driving-segments": {
+    "/fleet/equipment/stats/history": {
       "get": {
-        "description": "Get the unassigned driving segments for a specified range.",
+        "description": "This endpoint returns all known state changes during the given time range for all powered equipment (AG24s connected with a 7-way cable).",
         "tags": [
-          "Unassigned Driving Segments"
+          "Equipment"
         ],
-        "summary": "/fleet/unassigned-driving-segments",
-        "operationId": "getUnassignedDrivingSegments",
+        "summary": "Fetch historical stats for all equipment",
+        "operationId": "getEquipmentStatsHistory",
         "parameters": [
           {
             "type": "string",
@@ -700,48 +1058,83 @@
             "in": "query"
           },
           {
+            "type": "string",
+            "format": "date-time",
+            "description": "A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "startTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "endTime",
+            "in": "query",
+            "required": true
+          },
+          {
             "type": "array",
             "items": {
-              "type": "string",
-              "format": "uuid"
+              "type": "string"
             },
             "collectionFormat": "csv",
-            "description": "ID(s) of a specific unassigned driving segment(s). Takes precedent over filter time range params. Supports multiple comma-separated IDs using csv format (ex. ?id=1,2,3).",
-            "name": "id",
+            "description": "A comma-separated list of tag IDs.",
+            "name": "tagIds",
             "in": "query"
           },
           {
-            "type": "string",
-            "format": "date-time",
-            "description": "Beginning of the filter time range, specified in RFC 3339 format. (Example: 2019-06-13T18:08:25Z) Filters based on the server timestamp, i.e. createAtTime.",
-            "name": "startTime",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of equipment IDs.",
+            "name": "equipmentIds",
             "in": "query"
           },
           {
-            "type": "string",
-            "format": "date-time",
-            "description": "End of the filter time range, specified in RFC 3339 format. (Example: 2019-06-13T19:08:25Z) Filters based on the server timestamp, i.e. createAtTime.",
-            "name": "endTime",
+            "type": "array",
+            "items": {
+              "enum": [
+                "engineStates",
+                "fuelPercents",
+                "engineRpm",
+                "engineSeconds"
+              ],
+              "type": "string",
+              "format": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma separated list of stat types.",
+            "name": "types",
             "in": "query"
           }
         ],
         "responses": {
           "200": {
-            "description": "Unassigned driving segments for provided time range.",
+            "description": "List of all equipment stat objects and pagination parameters",
             "schema": {
-              "type": "object",
               "properties": {
                 "data": {
-                  "$ref": "#/definitions/UnassignedDrivingSegmentListResponse"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/EquipmentStatsResponse"
+                  }
                 },
                 "pagination": {
-                  "$ref": "#/definitions/paginationResponse"
+                  "type": "object",
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/timeseriesPaginationResponse"
+                    }
+                  ]
                 }
               }
             }
           },
           "default": {
-            "description": "Unexpected error.",
+            "description": "Error response",
             "schema": {
               "$ref": "#/definitions/standardErrorResponse"
             }
@@ -749,59 +1142,37 @@
         }
       }
     },
-    "/fleet/unassigned-driving-segments/{id}": {
-      "patch": {
-        "description": "Assign an unassigned driving segment to a driver.",
+    "/fleet/equipment/{id}": {
+      "get": {
+        "description": "Get information about a specific equipment.",
         "tags": [
-          "Unassigned Driving Segments"
+          "Equipment"
         ],
-        "summary": "/fleet/unassigned-driving-segments/{id}",
-        "operationId": "patchUnassignedDrivingSegments",
+        "summary": "List a single equipment's information",
+        "operationId": "getEquipmentById",
         "parameters": [
           {
             "type": "string",
-            "format": "uuid",
-            "description": "ID of a specific unassigned driving segment.",
+            "description": "Samsara ID of the equipment.",
             "name": "id",
             "in": "path",
             "required": true
-          },
-          {
-            "description": "Driver ID to assign this driving segment to, and/or an annotation reason.",
-            "name": "updateUnassignedDrivingSegment",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": [
-                "annotation",
-                "driverId"
-              ],
-              "properties": {
-                "annotation": {
-                  "$ref": "#/definitions/annotation"
-                },
-                "driverId": {
-                  "$ref": "#/definitions/driverId"
-                }
-              }
-            }
           }
         ],
         "responses": {
           "200": {
-            "description": "The updated unassigned driving segment.",
+            "description": "Returns the specified equipment object.",
             "schema": {
               "type": "object",
               "properties": {
                 "data": {
-                  "$ref": "#/definitions/UnassignedDrivingSegmentResponse"
+                  "$ref": "#/definitions/EquipmentResponse"
                 }
               }
             }
           },
           "default": {
-            "description": "Unexpected error.",
+            "description": "Error response",
             "schema": {
               "$ref": "#/definitions/standardErrorResponse"
             }
@@ -819,9 +1190,12 @@
         "operationId": "listVehiclesKondo",
         "parameters": [
           {
+            "maximum": 512,
+            "minimum": 1,
             "type": "integer",
             "format": "int64",
-            "description": "The limit for how many objects will be in the response. Default and max for this value is 250 objects.",
+            "default": 512,
+            "description": "The limit for how many objects will be in the response. Default and max for this value is 512 objects.",
             "name": "limit",
             "in": "query"
           },
@@ -832,7 +1206,11 @@
             "in": "query"
           },
           {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
             "description": "A comma-separated list of tag IDs.",
             "name": "tagIds",
             "in": "query"
@@ -846,7 +1224,7 @@
             }
           },
           "default": {
-            "description": "Unexpected error.",
+            "description": "Error response",
             "schema": {
               "$ref": "#/definitions/standardErrorResponse"
             }
@@ -860,13 +1238,13 @@
         "tags": [
           "Safety"
         ],
-        "summary": "/fleet/vehicles/harsh-events",
+        "summary": "Fetch all harsh events",
         "operationId": "getOrgHarshEvents",
         "parameters": [
           {
             "type": "string",
             "format": "string",
-            "description": "Beginning of the time range, specified in ISO 8601 time.",
+            "description": "Beginning of the time range, specified in RFC 3339 time.",
             "name": "startTime",
             "in": "query",
             "required": true
@@ -874,7 +1252,7 @@
           {
             "type": "string",
             "format": "string",
-            "description": "End of the time range, specified in ISO 8601 time.",
+            "description": "End of the time range, specified in RFC 3339 time.",
             "name": "endTime",
             "in": "query",
             "required": true
@@ -888,7 +1266,7 @@
             }
           },
           "default": {
-            "description": "Unexpected error.",
+            "description": "Error response",
             "schema": {
               "$ref": "#/definitions/standardErrorResponse"
             }
@@ -898,11 +1276,115 @@
     },
     "/fleet/vehicles/locations": {
       "get": {
-        "description": "This endpoint allows you to both fetch historical locations for a vehicle, as well as a feed of all new vehicle locations.\n\nIf you wish to just fetch the historical location data for a vehicle, you can pass in a `startTime` and `endTime` range. This will return all known locations for a vehicle during a given time range.\n\nIf an `endTime` is not provided, then this will provide a continuous feed of all vehicle locations. In order to follow the feed, you can follow the pagination `endCursor` cursor continuously.  If there is not yet a `hasNextPage=true` for the feed follow, then we recommend you wait and retry in 5 seconds.",
+        "description": "This endpoint returns the latest known locations for all vehicles.",
         "tags": [
           "Vehicles"
         ],
-        "summary": "Fetch vehicle locations",
+        "summary": "Fetch last known vehicle locations",
+        "operationId": "getVehicleLocations",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of tag IDs.",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of vehicle IDs.",
+            "name": "vehicleIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all locations for the specified vehicles and time range.",
+            "schema": {
+              "$ref": "#/definitions/VehicleLocationsSnapshotResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/vehicles/locations/feed": {
+      "get": {
+        "description": "This endpoint allows you to fetch a continuous feed of all vehicle locations. In order to follow the feed, you can follow the pagination `endCursor` cursor continuously.  If there is not yet a `hasNextPage=true` for the feed follow, then we recommend you wait and retry in 5 seconds.\n\nPlease note that you cannot provide both the pagination `after` parameter *and* scoping parameters like `tagIds` or `ids`.",
+        "tags": [
+          "Vehicles"
+        ],
+        "summary": "Fetch vehicle locations as an on-going feed",
+        "operationId": "getVehicleLocationsFeed",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of tag IDs.",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of vehicle IDs.",
+            "name": "vehicleIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all locations for the specified vehicles.",
+            "schema": {
+              "$ref": "#/definitions/VehicleLocationsListResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/vehicles/locations/history": {
+      "get": {
+        "description": "This endpoint allows you to both fetch historical locations for a vehicle.\n\nYou must pass in a `startTime` and `endTime` range. This will return all known locations for a vehicle during a given time range.",
+        "tags": [
+          "Vehicles"
+        ],
+        "summary": "Fetch vehicle locations history",
         "operationId": "getVehicleLocationsHistory",
         "parameters": [
           {
@@ -914,19 +1396,23 @@
           {
             "type": "string",
             "format": "date-time",
-            "description": "A start time in RFC 3339 format. Defaults to now if not provided. (Example: 2019-06-13T19:08:25Z)",
+            "description": "A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
             "name": "startTime",
             "in": "query"
           },
           {
             "type": "string",
             "format": "date-time",
-            "description": "An end time in RFC 3339 format. Defaults to infinity if not provided. (Example: 2019-06-13T19:08:25Z)",
+            "description": "An end time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
             "name": "endTime",
             "in": "query"
           },
           {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
             "description": "A comma-separated list of tag IDs.",
             "name": "tagIds",
             "in": "query"
@@ -950,7 +1436,7 @@
             }
           },
           "default": {
-            "description": "Unexpected error.",
+            "description": "Error response",
             "schema": {
               "$ref": "#/definitions/standardErrorResponse"
             }
@@ -964,13 +1450,13 @@
         "tags": [
           "Safety"
         ],
-        "summary": "/fleet/vehicles/safety-scores",
+        "summary": "Fetch all safety scores by vehicle",
         "operationId": "getOrgVehicleSafetyScores",
         "parameters": [
           {
             "type": "string",
             "format": "string",
-            "description": "Beginning of the time range, specified in ISO 8601 time.",
+            "description": "Beginning of the time range, specified in RFC 3339 time.",
             "name": "startTime",
             "in": "query",
             "required": true
@@ -978,7 +1464,7 @@
           {
             "type": "string",
             "format": "string",
-            "description": "End of the time range, specified in ISO 8601 time.",
+            "description": "End of the time range, specified in RFC 3339 time.",
             "name": "endTime",
             "in": "query",
             "required": true
@@ -992,7 +1478,7 @@
             }
           },
           "default": {
-            "description": "Unexpected error.",
+            "description": "Error response",
             "schema": {
               "$ref": "#/definitions/standardErrorResponse"
             }
@@ -1000,77 +1486,176 @@
         }
       }
     },
-    "/messages": {
-      "post": {
-        "description": "Send a message to a list of driver ids.",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
+    "/fleet/vehicles/stats/feed": {
+      "get": {
+        "description": "This endpoint returns the stat values from a start time for specified vehicles. Passing the cursor on subsequent calls allows you to fetch all new data coming into the system.",
         "tags": [
-          "Messages"
+          "Vehicles"
         ],
-        "summary": "/messages",
-        "operationId": "createMessagesKondo",
+        "summary": "Fetch stats as a feed from a start time to the present.",
+        "operationId": "getVehicleStatsFeed",
         "parameters": [
           {
-            "description": "Text to send to a list of driverIds.",
-            "name": "createMessages",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": [
-                "driverIds",
-                "text"
-              ],
-              "properties": {
-                "driverIds": {
-                  "description": "IDs of the drivers for whom the messages are sent to.",
-                  "type": "array",
-                  "items": {
-                    "type": "number",
-                    "format": "int64",
-                    "example": 555
-                  },
-                  "example": [
-                    111,
-                    222,
-                    333
-                  ]
-                },
-                "text": {
-                  "description": "The text sent in the message.",
-                  "type": "string",
-                  "example": "This is a message."
-                }
-              }
-            }
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "startTime",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of tag IDs.",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of vehicle IDs.",
+            "name": "vehicleIds",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "A stat type. This is used to specify the stats you want to query for on stats endpoints.",
+            "name": "types",
+            "in": "query"
           }
         ],
         "responses": {
           "200": {
-            "description": "Returns the created messages.",
+            "description": "List of all vehicle stats for the specified vehicles and time range.",
             "schema": {
-              "description": "A list of created messages.",
-              "type": "object",
               "properties": {
                 "data": {
-                  "$ref": "#/definitions/Messages"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/VehicleStatsResponse"
+                  }
+                },
+                "pagination": {
+                  "type": "object",
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/timeseriesPaginationResponse"
+                    }
+                  ]
                 }
               }
             }
           },
           "default": {
-            "description": "Unexpected error.",
+            "description": "Error response",
             "schema": {
               "$ref": "#/definitions/standardErrorResponse"
             }
           }
         }
       }
+    },
+    "/fleet/vehicles/{id}": {
+      "get": {
+        "description": "Get information about a specific vehicle.",
+        "tags": [
+          "Vehicles"
+        ],
+        "summary": "Get a vehicle's information",
+        "operationId": "getVehicleById",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID of the vehicle. This can either be the Samsara-specified ID, or an external ID.",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the specified vehicle object.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/VehicleResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Patches the given vehicle object.",
+        "tags": [
+          "Vehicles"
+        ],
+        "summary": "Update a vehicle's information",
+        "operationId": "updateVehicleById",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID of the vehicle. This can either be the Samsara-specified ID, or an external ID.",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "Fields that can be patched on a vehicle.",
+            "name": "vehiclePatchBody",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/VehiclePatch"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the specified vehicle object.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/VehicleResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "Unique identifier for the vehicle.",
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
     },
     "/tags": {
       "get": {
@@ -1082,9 +1667,12 @@
         "operationId": "getAllTags",
         "parameters": [
           {
+            "maximum": 512,
+            "minimum": 1,
             "type": "integer",
             "format": "int64",
-            "description": "The limit for how many objects will be in the response. Default and max for this value is 250 objects.",
+            "default": 512,
+            "description": "The limit for how many objects will be in the response. Default and max for this value is 512 objects.",
             "name": "limit",
             "in": "query"
           },
@@ -1114,7 +1702,7 @@
             }
           },
           "default": {
-            "description": "Unexpected error.",
+            "description": "Error response",
             "schema": {
               "$ref": "#/definitions/standardErrorResponse"
             }
@@ -1126,7 +1714,7 @@
         "tags": [
           "Tags"
         ],
-        "summary": "/tags",
+        "summary": "Create a tag",
         "operationId": "createTag",
         "parameters": [
           {
@@ -1150,7 +1738,7 @@
             }
           },
           "default": {
-            "description": "Unexpected error.",
+            "description": "Error response",
             "schema": {
               "$ref": "#/definitions/standardErrorResponse"
             }
@@ -1185,7 +1773,7 @@
             }
           },
           "default": {
-            "description": "Unexpected error.",
+            "description": "Error response",
             "schema": {
               "$ref": "#/definitions/standardErrorResponse"
             }
@@ -1193,7 +1781,7 @@
         }
       },
       "put": {
-        "description": "Update a tag with a new name and new members. This API call would replace all old members of a tag with new members specified in the request body. To modify only a few devices associated with a tag use the PATCH endpoint.",
+        "description": "Update a tag with a new name and new members. This API call would replace all old members of a tag with new members specified in the request body.",
         "tags": [
           "Tags"
         ],
@@ -1221,7 +1809,7 @@
             }
           },
           "default": {
-            "description": "Unexpected error.",
+            "description": "Error response",
             "schema": {
               "$ref": "#/definitions/standardErrorResponse"
             }
@@ -1240,7 +1828,7 @@
             "description": "Successfully deleted the tag. No response body is returned."
           },
           "default": {
-            "description": "Unexpected error.",
+            "description": "Error response",
             "schema": {
               "$ref": "#/definitions/standardErrorResponse"
             }
@@ -1256,6 +1844,520 @@
           "required": true
         }
       ]
+    },
+    "/user-roles": {
+      "get": {
+        "description": "Returns a list of all user roles in an organization.",
+        "tags": [
+          "Users"
+        ],
+        "summary": "List all user roles",
+        "operationId": "getUserRoles",
+        "parameters": [
+          {
+            "maximum": 512,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int64",
+            "default": 512,
+            "description": "The limit for how many objects will be in the response. Default and max for this value is 512 objects.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List all user roles.",
+            "schema": {
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/UserRole"
+                  }
+                },
+                "pagination": {
+                  "$ref": "#/definitions/paginationResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "description": "Returns a list of all users in an organization.",
+        "tags": [
+          "Users"
+        ],
+        "summary": "List all users",
+        "operationId": "getUsers",
+        "parameters": [
+          {
+            "maximum": 512,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int64",
+            "default": 512,
+            "description": "The limit for how many objects will be in the response. Default and max for this value is 512 objects.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List all users.",
+            "schema": {
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/User"
+                  }
+                },
+                "pagination": {
+                  "$ref": "#/definitions/paginationResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Add a user to the organization.",
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create a user",
+        "operationId": "createUser",
+        "parameters": [
+          {
+            "description": "The user to create.",
+            "name": "user",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/UserCreate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Newly created user object with ID.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/User"
+                }
+              },
+              "example": {
+                "data": {
+                  "authType": "default",
+                  "email": "user@company.com",
+                  "id": "123",
+                  "name": "Bob Smith",
+                  "roles": [
+                    {
+                      "role": {
+                        "id": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+                        "name": "Full Admin"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "description": "Get a specific user's information.",
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get a user's information",
+        "operationId": "getUserById",
+        "responses": {
+          "200": {
+            "description": "Returns the specified user.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/User"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete the given user.",
+        "tags": [
+          "Users"
+        ],
+        "summary": "Delete a user",
+        "operationId": "deleteUserById",
+        "responses": {
+          "204": {
+            "description": "Returns an empty success response."
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Update a specific user's information.",
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update a user's information",
+        "operationId": "updateUserById",
+        "parameters": [
+          {
+            "description": "Updates to the user.",
+            "name": "user",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/UserUpdate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated user object with ID.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/User"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "Unique identifier for the user.",
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/v1/fleet/hos_authentication_logs": {
+      "get": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nGet the HOS (hours of service) signin and signout logs for the specified driver. The response includes 4 fields that are now deprecated.",
+        "tags": [
+          "Hours of Service"
+        ],
+        "summary": "Get HOS signin and signout",
+        "operationId": "getFleetHosAuthenticationLogs",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Optional group ID if the organization has multiple groups (uncommon).",
+            "name": "groupId",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Driver ID to query.",
+            "name": "driverId",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Beginning of the time range, specified in milliseconds UNIX time.",
+            "name": "startMs",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "End of the time range, specified in milliseconds UNIX time.",
+            "name": "endMs",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HOS authentication logs for the specified driver.",
+            "schema": {
+              "$ref": "#/definitions/HosAuthenticationLogsResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/fleet/hos_logs": {
+      "post": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nGet the HOS (hours of service) logs for the specified driver. This method returns all the HOS statuses that the driver was in during this time period.",
+        "tags": [
+          "Hours of Service"
+        ],
+        "summary": "Get HOS logs for a specific driver",
+        "operationId": "getFleetHosLogs",
+        "parameters": [
+          {
+            "name": "hosLogsParam",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "groupId",
+                "driverId",
+                "startMs",
+                "endMs"
+              ],
+              "properties": {
+                "driverId": {
+                  "description": "Driver ID to query.",
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 444
+                },
+                "endMs": {
+                  "description": "End of the time range, specified in milliseconds UNIX time.",
+                  "type": "integer",
+                  "example": 1462881998034
+                },
+                "groupId": {
+                  "description": "Optional group ID if the organization has multiple groups (uncommon).",
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 101
+                },
+                "startMs": {
+                  "description": "Beginning of the time range, specified in milliseconds UNIX time.",
+                  "type": "integer",
+                  "example": 1462878398034
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HOS logs for the specified driver.",
+            "schema": {
+              "$ref": "#/definitions/HosLogsResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/fleet/hos_logs_summary": {
+      "get": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nGet the current HOS status for all drivers in the group. Note that this includes inactive as well as active drivers. You may need to upgrade your API token to version 2019-07-31 or later to leverage response pagination. [See here](https://kb.samsara.com/hc/en-us/articles/360026132972-Upgrading-API-Tokens)",
+        "tags": [
+          "Hours of Service"
+        ],
+        "summary": "Get current HOS status for all drivers",
+        "operationId": "getFleetHosLogsSummary",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Optional group ID if the organization has multiple groups (uncommon).",
+            "name": "groupId",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Pagination parameter indicating the cursor position to continue returning results after. Used in conjunction with the 'limit' parameter.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "number",
+            "format": "int64",
+            "description": "Pagination parameter indicating the number of results to return in this request. Used in conjunction with 'after'.",
+            "name": "limit",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HOS logs for the specified driver.",
+            "schema": {
+              "$ref": "#/definitions/HosLogsSummaryResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/fleet/maintenance/list": {
+      "get": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nGet list of the vehicles with any engine faults or check light data.",
+        "tags": [
+          "Maintenance"
+        ],
+        "summary": "Get vehicles with engine faults or check lights",
+        "operationId": "getFleetMaintenanceList",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Optional group ID if the organization has multiple groups (uncommon).",
+            "name": "groupId",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of vehicles and maintenance information about each.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "vehicles": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/VehicleMaintenance"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/fleet/trips": {
+      "get": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nGet historical trips data for specified vehicle. This method returns a set of historical trips data for the specified vehicle in the specified time range.",
+        "tags": [
+          "Vehicles"
+        ],
+        "summary": "Get vehicle trips",
+        "operationId": "getFleetTrips",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Optional group ID if the organization has multiple groups (uncommon).",
+            "name": "groupId",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Vehicle ID to query.",
+            "name": "vehicleId",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "description": "Beginning of the time range, specified in milliseconds UNIX time. Limited to a 90 day window with respect to startMs and endMs",
+            "name": "startMs",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "description": "End of the time range, specified in milliseconds UNIX time.",
+            "name": "endMs",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of trips taken by the requested vehicle within the specified timeframe. Ongoing trips will be returned with 9223372036854775807 as their endMs.",
+            "schema": {
+              "$ref": "#/definitions/TripResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -1276,9 +2378,21 @@
               }
             },
             "id": {
-              "description": "Unique Samsara ID for the address",
+              "description": "Unique Samsara ID for the address.",
               "type": "string",
-              "example": "123"
+              "example": "7107471"
+            },
+            "latitude": {
+              "description": "Latitude of the address. Either inferred from the formatted address or defined on address creation.",
+              "type": "number",
+              "format": "double",
+              "example": 37.765363
+            },
+            "longitude": {
+              "description": "Longitude of the address. Either inferred from the formatted address or defined on address creation.",
+              "type": "number",
+              "format": "double",
+              "example": 37.765363
             },
             "tags": {
               "description": "An array of all tag mini-objects that are associated with the given address entry.",
@@ -1290,57 +2404,48 @@
           }
         },
         {
-          "$ref": "#/definitions/AddressCore"
+          "$ref": "#/definitions/AddressResponseCore"
         }
       ]
     },
     "AddressCore": {
-      "description": "Core fields used in both address creation and the actual address object",
+      "description": "Core fields used in both address creation and the actual address object.",
       "type": "object",
       "properties": {
-        "addressType": {
-          "description": "Type of address. For customers who use Hours of Service, this will auto-determine if drive time within the geofence should be classified as a Yard Move.",
-          "type": "string",
-          "enum": [
-            "yard",
-            "undefined"
-          ],
-          "example": "yard"
-        },
-        "externalIds": {
-          "description": "Dictionary of external IDs (string key-value pairs)",
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
-          "example": {
-            "customerId": "JSD8MKS"
+        "addressTypes": {
+          "description": "Reporting location type associated with the address (used for ELD reporting purposes).",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "yard",
+              "shortHaul"
+            ],
+            "example": "yard"
           }
         },
         "formattedAddress": {
-          "description": "The full address associated with this address/geofence, as it might be recognized by maps.google.com",
+          "description": "The full street address for this address/geofence, as it might be recognized by Google Maps.",
           "type": "string",
           "maxLength": 1024,
           "example": "350 Rhode Island St, San Francisco, CA"
         },
-        "geofence": {
-          "$ref": "#/definitions/AddressGeofence"
-        },
         "name": {
-          "description": "Name of the address. At most 1024 characters.",
+          "description": "Name of the address.",
           "type": "string",
+          "maxLength": 255,
           "example": "Samsara HQ"
         },
         "notes": {
-          "description": "A notes field for addresses",
+          "description": "Notes about the address.",
           "type": "string",
-          "maxLength": 2048,
+          "maxLength": 280,
           "example": "Hours of operation: 8am - 6pm; Truck entrance on the Rhode Island street side."
         }
       }
     },
     "AddressCreate": {
-      "description": "An address object",
+      "description": "An address object.",
       "type": "object",
       "allOf": [
         {
@@ -1351,42 +2456,111 @@
           ],
           "properties": {
             "contactIds": {
-              "description": "An array of IDs of contacts to associate with this address",
+              "description": "An array of IDs of contacts to associate with this address.",
               "type": "array",
               "items": {
                 "type": "string",
-                "example": "123"
+                "example": "22408"
               }
             },
             "latitude": {
-              "description": "Optional latitude field to override the geocoded latitude from the formatted address",
+              "description": "Optional latitude field to override the geocoded latitude from the formatted address.",
               "type": "number",
               "format": "double",
               "example": 37.765363
             },
             "longitude": {
-              "description": "Optional longitude field to override the geocoded longitude from the formatted address",
+              "description": "Optional longitude field to override the geocoded longitude from the formatted address.",
               "type": "number",
               "format": "double",
               "example": 37.765363
             },
             "tagIds": {
-              "description": "An array of IDs of tags to associate with this address",
+              "description": "An array of IDs of tags to associate with this address.",
               "type": "array",
               "items": {
                 "type": "string",
-                "example": "321"
+                "example": "3914"
               }
             }
           }
         },
         {
-          "$ref": "#/definitions/AddressCore"
+          "$ref": "#/definitions/AddressRequestCore"
         }
       ]
     },
-    "AddressGeofence": {
+    "AddressGeofenceRequest": {
       "description": "The geofence that defines this address and its bounds. This can either be a circle, or a polygon - only one key should be provided, depending on the geofence type.",
+      "type": "object",
+      "properties": {
+        "circle": {
+          "description": "Information about a circular geofence. This field is only needed if the geofence is a circle.",
+          "type": "object",
+          "properties": {
+            "latitude": {
+              "description": "The latitude of the center of the circular geofence in decimal degrees.",
+              "type": "number",
+              "format": "double",
+              "example": 37.765363
+            },
+            "longitude": {
+              "description": "The longitude of the center of the circular geofence in decimal degrees.",
+              "type": "number",
+              "format": "double",
+              "example": -122.403098
+            },
+            "radiusMeters": {
+              "description": "The radius of the circular geofence in meters.",
+              "type": "number",
+              "format": "integer",
+              "example": 250
+            }
+          }
+        },
+        "polygon": {
+          "description": "Information about a polygon geofence. This field is only needed if the geofence is a polygon.",
+          "type": "object",
+          "properties": {
+            "vertices": {
+              "description": "The vertices of the polygon geofence. These geofence vertices describe the perimeter of the polygon, and must consist of at least 3 vertices and less than 40.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "latitude": {
+                    "description": "The latitude of a geofence vertex in decimal degrees.",
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "longitude": {
+                    "description": "The longitude of a geofence vertex in decimal degrees.",
+                    "type": "number",
+                    "format": "double"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "latitude": 37.765363,
+                  "longitude": -122.403098
+                },
+                {
+                  "latitude": 38.765363,
+                  "longitude": -122.403098
+                },
+                {
+                  "latitude": 37.765363,
+                  "longitude": -123.403098
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "AddressGeofenceResponse": {
+      "description": "The geofence that defines this address and its bounds. This can either be a circle, or a polygon",
       "type": "object",
       "properties": {
         "circle": {
@@ -1394,13 +2568,13 @@
           "type": "object",
           "properties": {
             "latitude": {
-              "description": "The latitude of the center of the circular geofence in decimal degrees",
+              "description": "The latitude of the center of the circular geofence in decimal degrees.",
               "type": "number",
               "format": "double",
               "example": 37.765363
             },
             "longitude": {
-              "description": "The longitude of the center of the circular geofence in decimal degrees",
+              "description": "The longitude of the center of the circular geofence in decimal degrees.",
               "type": "number",
               "format": "double",
               "example": -122.403098
@@ -1418,25 +2592,37 @@
           "type": "object",
           "properties": {
             "vertices": {
-              "description": "The vertices of the polygon geofence. These geofence vertices describe the perimeter of the polygon, and must consist of at least 3 vertices and less than 40.",
+              "description": "The vertices of the polygon geofence. These geofence vertices describe the perimeter of the polygon.",
               "type": "array",
               "items": {
                 "type": "object",
                 "properties": {
                   "latitude": {
-                    "description": "The latitude of a geofence vertex in decimal degrees",
+                    "description": "The latitude of a geofence vertex in decimal degrees.",
                     "type": "number",
-                    "format": "double",
-                    "example": 37.765363
+                    "format": "double"
                   },
                   "longitude": {
-                    "description": "The longitude of a geofence vertex in decimal degrees",
+                    "description": "The longitude of a geofence vertex in decimal degrees.",
                     "type": "number",
-                    "format": "double",
-                    "example": -122.403098
+                    "format": "double"
                   }
                 }
-              }
+              },
+              "example": [
+                {
+                  "latitude": 37.765363,
+                  "longitude": -122.403098
+                },
+                {
+                  "latitude": 38.765363,
+                  "longitude": -122.403098
+                },
+                {
+                  "latitude": 37.765363,
+                  "longitude": -123.403098
+                }
+              ]
             }
           }
         }
@@ -1445,53 +2631,73 @@
     "AddressPatch": {
       "description": "Information about an address/geofence. Geofences are either a circle or a polygon.",
       "type": "object",
-      "properties": {
-        "contactIds": {
-          "description": "An array of all contact ids to be associated with the given address entry.",
-          "type": "array",
-          "items": {
-            "type": "string",
-            "example": "123"
+      "allOf": [
+        {
+          "properties": {
+            "contactIds": {
+              "description": "An array of IDs of contacts to associate with this address.",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "123"
+              }
+            },
+            "latitude": {
+              "description": "Optional latitude field to override the geocoded latitude from the formatted address.",
+              "type": "number",
+              "format": "double",
+              "example": 37.765363
+            },
+            "longitude": {
+              "description": "Optional longitude field to override the geocoded longitude from the formatted address.",
+              "type": "number",
+              "format": "double",
+              "example": 37.765363
+            },
+            "tagIds": {
+              "description": "An array of IDs of tags to associate with this address.",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "321"
+              }
+            }
           }
         },
-        "externalIds": {
-          "description": "Dictionary of external IDs (string key-value pairs)",
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
-          "example": {
-            "customerId": "JSD8MKS"
-          }
-        },
-        "formattedAddress": {
-          "description": "The full address associated with this address/geofence, as it might be recognized by maps.google.com",
-          "type": "string",
-          "example": "350 Rhode Island St, San Francisco, CA"
-        },
-        "geofence": {
-          "$ref": "#/definitions/AddressGeofence"
-        },
-        "name": {
-          "description": "Name of the address",
-          "type": "string",
-          "example": "Samsara HQ"
-        },
-        "notes": {
-          "description": "A notes field for addresses",
-          "type": "string",
-          "maxLength": 255,
-          "example": "This is a great address."
-        },
-        "tagIds": {
-          "description": "An array of IDs of tags to associate with this address",
-          "type": "array",
-          "items": {
-            "type": "string",
-            "example": "321"
-          }
+        {
+          "$ref": "#/definitions/AddressRequestCore"
         }
-      }
+      ]
+    },
+    "AddressRequestCore": {
+      "type": "object",
+      "allOf": [
+        {
+          "properties": {
+            "geofence": {
+              "$ref": "#/definitions/AddressGeofenceRequest"
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/AddressCore"
+        }
+      ]
+    },
+    "AddressResponseCore": {
+      "type": "object",
+      "allOf": [
+        {
+          "properties": {
+            "geofence": {
+              "$ref": "#/definitions/AddressGeofenceResponse"
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/AddressCore"
+        }
+      ]
     },
     "Contact": {
       "description": "Information about a notification contact for alerts.",
@@ -1500,27 +2706,31 @@
         "email": {
           "description": "Email address of the contact.",
           "type": "string",
+          "maxLength": 255,
           "example": "jane.jones@yahoo.com"
         },
         "firstName": {
           "description": "First name of the contact.",
           "type": "string",
+          "maxLength": 255,
           "example": "Jane"
         },
         "id": {
           "description": "ID of the contact.",
           "type": "string",
-          "example": "123"
+          "example": "22408"
         },
         "lastName": {
           "description": "Last name of the contact.",
           "type": "string",
+          "maxLength": 255,
           "example": "Jones"
         },
         "phone": {
           "description": "Phone number of the contact.",
           "type": "string",
-          "example": "555-222-3344"
+          "maxLength": 255,
+          "example": "111-222-3344"
         }
       }
     },
@@ -1531,22 +2741,25 @@
         "email": {
           "description": "Email address of the contact.",
           "type": "string",
+          "maxLength": 255,
           "example": "jane.jones@yahoo.com"
         },
         "firstName": {
           "description": "First name of the contact.",
           "type": "string",
+          "maxLength": 255,
           "example": "Jane"
         },
         "lastName": {
           "description": "Last name of the contact.",
           "type": "string",
+          "maxLength": 255,
           "example": "Jones"
         },
         "phone": {
           "description": "Phone number of the contact.",
           "type": "string",
-          "maxLength": 20,
+          "maxLength": 255,
           "example": "111-222-3344"
         }
       }
@@ -1558,15 +2771,29 @@
         {
           "properties": {
             "currentVehicle": {
-              "$ref": "#/definitions/vehicleTinyResponse"
+              "allOf": [
+                {
+                  "description": "Vehicle that driver is currently assigned to."
+                },
+                {
+                  "$ref": "#/definitions/vehicleTinyResponse"
+                }
+              ]
             },
             "id": {
               "description": "Samsara ID for the driver.",
               "type": "string",
               "example": "123"
             },
-            "staticVehicleAssignment": {
-              "$ref": "#/definitions/vehicleTinyResponse"
+            "staticAssignedVehicle": {
+              "allOf": [
+                {
+                  "description": "Vehicle assigned to the driver for static vehicle assignments. (uncommon)."
+                },
+                {
+                  "$ref": "#/definitions/vehicleTinyResponse"
+                }
+              ]
             },
             "tags": {
               "description": "The tags this driver belongs to.",
@@ -1576,7 +2803,14 @@
               }
             },
             "vehicleGroupTag": {
-              "$ref": "#/definitions/tagTinyResponse"
+              "allOf": [
+                {
+                  "description": "Tag which determines which vehicles a driver will see when selecting vehicles."
+                },
+                {
+                  "$ref": "#/definitions/tagTinyResponse"
+                }
+              ]
             }
           }
         },
@@ -1594,8 +2828,9 @@
           "type": "object",
           "properties": {
             "carrierName": {
-              "description": "???",
+              "description": "Carrier for a given driver.",
               "type": "string",
+              "maxLength": 255,
               "example": "Acme Inc."
             },
             "dotNumber": {
@@ -1607,6 +2842,7 @@
             "mainOfficeAddress": {
               "description": "Main office address for a given driver. If this differs from the general organization's settings, the override value is used. ",
               "type": "string",
+              "maxLength": 255,
               "example": "1234 Pear St., Scranton, PA 62814"
             }
           }
@@ -1659,7 +2895,7 @@
           "example": false
         },
         "licenseNumber": {
-          "description": "Driver's state issued license number.",
+          "description": "Driver's state issued license number. The combination of this number and `licenseState` must be unique.",
           "type": "string",
           "example": "E1234567"
         },
@@ -1672,35 +2908,37 @@
           "description": "Locale override (uncommon).",
           "type": "string",
           "enum": [
-            "United States",
-            "Austria",
-            "Belgium",
-            "Canada",
-            "United Kingdom",
-            "France",
-            "Germany",
-            "Ireland",
-            "Luxembourg",
-            "Mexico",
-            "Netherlands",
-            "Spain",
-            "Switzerland"
+            "us",
+            "at",
+            "be",
+            "ca",
+            "gb",
+            "fr",
+            "de",
+            "ie",
+            "it",
+            "lu",
+            "mx",
+            "es",
+            "ch"
           ]
         },
         "name": {
           "description": "Driver's name.",
           "type": "string",
+          "maxLength": 255,
           "example": "Susan Jones"
         },
         "notes": {
           "description": "Notes about the driver.",
           "type": "string",
-          "maxLength": 255,
+          "maxLength": 4096,
           "example": "Also goes by the nickname Furious Fred."
         },
         "phone": {
-          "description": "Driver's phone number. Please include only digits, ex. 4157771234",
+          "description": "Driver's phone number.",
           "type": "string",
+          "maxLength": 255,
           "example": "5558234327"
         },
         "timezone": {
@@ -1709,9 +2947,11 @@
           "example": "New York - EST/EDT"
         },
         "username": {
-          "description": "Driver's login username into the driver app.",
+          "description": "Driver's login username into the driver app. The username may not contain spaces or the '@' symbol. The username must be unique.",
           "type": "string",
-          "example": "Susan Jones"
+          "maxLength": 189,
+          "minLength": 1,
+          "example": "SusanJones"
         }
       }
     },
@@ -1729,8 +2969,9 @@
           "type": "object",
           "properties": {
             "carrierName": {
-              "description": "???",
+              "description": "Carrier for a given driver.",
               "type": "string",
+              "maxLength": 255,
               "example": "Acme Inc."
             },
             "dotNumber": {
@@ -1742,6 +2983,7 @@
             "mainOfficeAddress": {
               "description": "Main office address for a given driver. If this differs from the general organization's settings, the override value is used. ",
               "type": "string",
+              "maxLength": 255,
               "example": "1234 Pear St., Scranton, PA 62814"
             }
           }
@@ -1753,19 +2995,23 @@
         },
         "eldAdverseWeatherExemptionEnabled": {
           "description": "Flag indicating this driver may use Adverse Weather exemptions in ELD logs.",
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "eldBigDayExemptionEnabled": {
           "description": "Flag indicating this driver may use Big Day exemption in ELD logs.",
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "eldDayStartHour": {
           "description": "`0` indicating midnight-to-midnight ELD driving hours, `12` to indicate noon-to-noon driving hours.",
-          "type": "integer"
+          "type": "integer",
+          "default": 0
         },
         "eldExempt": {
           "description": "Flag indicating this driver is exempt from the Electronic Logging Mandate.",
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "eldExemptReason": {
           "description": "Reason that this driver is exempt from the Electronic Logging Mandate (see eldExempt).",
@@ -1794,7 +3040,7 @@
           }
         },
         "licenseNumber": {
-          "description": "Driver's state issued license number.",
+          "description": "Driver's state issued license number. The combination of this number and `licenseState` must be unique.",
           "type": "string",
           "example": "E1234567"
         },
@@ -1804,33 +3050,36 @@
           "example": "CA"
         },
         "locale": {
-          "description": "Locale override (uncommon).",
+          "description": "Locale override (uncommon). These are specified by ISO 3166-2 country codes for supported locales.",
           "type": "string",
           "enum": [
-            "United States",
-            "Austria",
-            "Belgium",
-            "Canada",
-            "United Kingdom",
-            "France",
-            "Germany",
-            "Ireland",
-            "Luxembourg",
-            "Mexico",
-            "Netherlands",
-            "Spain",
-            "Switzerland"
+            "us",
+            "at",
+            "be",
+            "ca",
+            "gb",
+            "fr",
+            "de",
+            "ie",
+            "it",
+            "lu",
+            "mx",
+            "nl",
+            "es",
+            "ch"
           ]
         },
         "name": {
           "description": "Driver's name.",
           "type": "string",
+          "maxLength": 255,
+          "minLength": 1,
           "example": "Susan Jones"
         },
         "notes": {
           "description": "Notes about the driver.",
           "type": "string",
-          "maxLength": 255,
+          "maxLength": 4096,
           "example": "Also goes by the nickname Furious Fred."
         },
         "password": {
@@ -1839,12 +3088,13 @@
           "example": "aSecurePassword1234"
         },
         "phone": {
-          "description": "Driver's phone number. Please include only digits, ex. 4157771234",
+          "description": "Phone number of the driver.",
           "type": "string",
+          "maxLength": 255,
           "example": "5558234327"
         },
-        "staticVehicleAssignmentId": {
-          "description": "ID of vehicle assigned to the driver for static vehicle assignments. (uncommon).",
+        "staticAssignedVehicleId": {
+          "description": "ID of vehicle that the driver is permanently assigned to. (uncommon).",
           "type": "string",
           "example": "456"
         },
@@ -1862,14 +3112,93 @@
           "example": "New York - EST/EDT"
         },
         "username": {
-          "description": "Driver's login username into the driver app.",
+          "description": "Driver's login username into the driver app. The username may not contain spaces or the '@' symbol. The username must be unique.",
           "type": "string",
-          "example": "Susan Jones"
+          "maxLength": 189,
+          "minLength": 1,
+          "example": "SusanJones"
         },
         "vehicleGroupTagId": {
           "description": "Tag ID which determines which vehicles a driver will see when selecting vehicles.",
           "type": "string",
-          "example": "East Coast"
+          "example": "342417"
+        }
+      }
+    },
+    "DriverDailyLogResponse": {
+      "type": "object",
+      "properties": {
+        "days": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "activeHours": {
+                "description": "Hours spent on duty or driving, rounded to two decimal places.",
+                "type": "number",
+                "format": "double",
+                "example": 5.4
+              },
+              "activeMs": {
+                "description": "Milliseconds spent on duty or driving.",
+                "type": "integer",
+                "format": "int64",
+                "example": 691200
+              },
+              "certified": {
+                "description": "Whether this HOS day chart was certified by the driver.",
+                "type": "boolean"
+              },
+              "certifiedAtMs": {
+                "description": "Unix epoch time (in ms) of time when this chart was certified. If this chart is uncertified, 0.",
+                "type": "number",
+                "format": "int64"
+              },
+              "distanceMiles": {
+                "description": "Distance driven in miles, rounded to two decimal places.",
+                "type": "number",
+                "format": "double",
+                "example": 123.24
+              },
+              "endMs": {
+                "description": "End of the HOS day, specified in milliseconds UNIX time.",
+                "type": "integer",
+                "example": 1473836400000
+              },
+              "shippingDocIds": {
+                "description": "List of customer shipping document IDs associated with the driver for the day.",
+                "type": "object",
+                "format": "int64",
+                "example": [
+                  14334,
+                  104920
+                ]
+              },
+              "startMs": {
+                "description": "End of the HOS day, specified in milliseconds UNIX time.",
+                "type": "integer",
+                "example": 1473750000000
+              },
+              "trailerIds": {
+                "description": "List of trailer ID's associated with the driver for the day.",
+                "type": "object",
+                "format": "int64",
+                "example": [
+                  10293,
+                  192933
+                ]
+              },
+              "vehicleIds": {
+                "description": "List of vehicle ID's associated with the driver for the day.",
+                "type": "object",
+                "format": "int64",
+                "example": [
+                  192319,
+                  12958
+                ]
+              }
+            }
+          }
         }
       }
     },
@@ -1889,7 +3218,7 @@
               "type": "string",
               "example": "aSecurePassword1234"
             },
-            "staticVehicleAssignmentId": {
+            "staticAssignedVehicleId": {
               "description": "ID of vehicle assigned to the driver for static vehicle assignments. (uncommon).",
               "type": "string",
               "example": "456"
@@ -1905,7 +3234,7 @@
             "vehicleGroupTagId": {
               "description": "Tag ID which determines which vehicles a driver will see when selecting vehicles.",
               "type": "string",
-              "example": "East Coast"
+              "example": "342417"
             }
           }
         },
@@ -1914,21 +3243,74 @@
         }
       ]
     },
+    "EquipmentEngineRpm": {
+      "description": "Stat point for the RPM of the engine.",
+      "type": "object",
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "type": "integer",
+          "example": 1800
+        }
+      }
+    },
+    "EquipmentEngineSeconds": {
+      "description": "Stat point for the on time of the engine.",
+      "type": "object",
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "type": "integer",
+          "example": 22374000
+        }
+      }
+    },
     "EquipmentEngineState": {
       "description": "Stat point for the state of the engine.",
       "type": "object",
       "properties": {
         "time": {
-          "$ref": "#/definitions/time"
+          "$ref": "#/definitions/EquipmentTime"
         },
         "value": {
           "type": "string",
           "enum": [
-            "Running",
             "Off",
-            "Idle"
+            "On"
           ],
-          "example": "Running"
+          "example": "On"
+        }
+      }
+    },
+    "EquipmentFuelPercent": {
+      "description": "Stat point for the fuel level of the engine as a percentage.",
+      "type": "object",
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "type": "integer",
+          "example": 54
+        }
+      }
+    },
+    "EquipmentListResponse": {
+      "description": "Response for retrieving a list of equipment.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EquipmentResponse"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
         }
       }
     },
@@ -1944,7 +3326,29 @@
           ],
           "properties": {
             "time": {
-              "$ref": "#/definitions/time"
+              "$ref": "#/definitions/EquipmentTime"
+            }
+          }
+        }
+      ]
+    },
+    "EquipmentLocationSnapshotResponse": {
+      "description": "Current equipment location.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/equipmentTinyResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "object",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/EquipmentLocation"
+                }
+              ]
             }
           }
         }
@@ -1971,24 +3375,53 @@
         }
       ]
     },
-    "EquipmentPaginationResponse": {
-      "description": "Pagination parameters.",
+    "EquipmentOdometerMeters": {
+      "description": "Stat point for the odometer of the engine in meters.",
+      "type": "object",
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "type": "integer",
+          "example": 3200
+        }
+      }
+    },
+    "EquipmentResponse": {
+      "description": "The equipment object.",
       "type": "object",
       "required": [
-        "endCursor",
-        "hasNextPage"
+        "id"
       ],
       "properties": {
-        "endCursor": {
-          "description": "Cursor identifier representing the last element in the response. This value should be used in conjunction with a subsequent request's 'after' query parameter.",
+        "assetSerial": {
+          "description": "An equipment identification number.",
           "type": "string",
-          "format": "string",
-          "example": "MjkY"
+          "example": "1FUJA6BD31LJ09646"
         },
-        "hasNextPage": {
-          "description": "True if there are more pages of results immediately available after this endCursor. Otherwise, wait nextPageAfter seconds before fetching the next page with endCursor.",
-          "type": "boolean",
-          "example": true
+        "id": {
+          "description": "Unique Samsara ID for the equipment.",
+          "type": "string",
+          "example": "112"
+        },
+        "name": {
+          "description": "Name of the equipment.",
+          "type": "string",
+          "example": "Crane A7"
+        },
+        "notes": {
+          "description": "Notes about a piece of equipment. Samsara supports a maximum of 255 chars.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "These are notes about this given equipment."
+        },
+        "tags": {
+          "description": "An array of all tag mini-objects that are associated with the given equipment.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/tagTinyResponse"
+          }
         }
       }
     },
@@ -2002,47 +3435,353 @@
         {
           "type": "object",
           "properties": {
+            "engineRpm": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EquipmentEngineRpm"
+              }
+            },
+            "engineSeconds": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EquipmentEngineSeconds"
+              }
+            },
             "engineStates": {
               "type": "array",
               "items": {
                 "$ref": "#/definitions/EquipmentEngineState"
+              }
+            },
+            "fuelPercents": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EquipmentFuelPercent"
               }
             }
           }
         }
       ]
     },
-    "EquipmentTimeSeriesPaginationResponse": {
-      "description": "Pagination parameters for timeseries pages where results may be delayed.",
+    "EquipmentStatsSnapshotResponse": {
+      "description": "List of equipment stats for the specified time period.",
       "type": "object",
       "allOf": [
         {
+          "$ref": "#/definitions/equipmentTinyResponse"
+        },
+        {
           "type": "object",
           "properties": {
-            "nextPageAfter": {
-              "description": "The number of seconds to wait before fetching the next page of results. Only populated if hasNextPage is false and additional pages may be available in the future. For example, if nextPageAfter=5, then wait 5 seconds before fetching the next page of results. If pagination is complete or hasNextPage=true, then nextPageAfter will be omitted.",
-              "type": "integer",
-              "example": 5
+            "engineRpm": {
+              "type": "object",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/EquipmentEngineRpm"
+                }
+              ]
+            },
+            "engineSeconds": {
+              "type": "object",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/EquipmentEngineSeconds"
+                }
+              ]
+            },
+            "engineState": {
+              "type": "object",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/EquipmentEngineState"
+                }
+              ]
+            },
+            "fuelPercent": {
+              "type": "object",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/EquipmentFuelPercent"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "EquipmentTime": {
+      "description": "UTC timestamp of the time the data point was generated by the equipment, in RFC3339 format.",
+      "type": "string",
+      "example": "2019-05-03T04:30:31.492Z"
+    },
+    "ErrorResponse": {
+      "description": "Error message describing why the request failed.",
+      "type": "string"
+    },
+    "HosAuthenticationLogsResponse": {
+      "type": "object",
+      "properties": {
+        "authenticationLogs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "actionType": {
+                "description": "The log type - one of 'signin' or 'signout'",
+                "type": "string",
+                "example": "signin"
+              },
+              "address": {
+                "description": "DEPRECATED: THIS FIELD IS NOT POPULATED",
+                "type": "string",
+                "example": "THIS FIELD IS NOT USED"
+              },
+              "addressName": {
+                "description": "DEPRECATED: THIS FIELD IS NOT POPULATED",
+                "type": "string",
+                "example": "THIS FIELD IS NOT USED"
+              },
+              "city": {
+                "description": "DEPRECATED: THIS FIELD IS NOT POPULATED",
+                "type": "string",
+                "example": "THIS FIELD IS NOT USED"
+              },
+              "happenedAtMs": {
+                "description": "The time at which the event was recorded in UNIX milliseconds.",
+                "type": "integer",
+                "format": "int64",
+                "example": 1462881998034
+              },
+              "state": {
+                "description": "DEPRECATED: THIS FIELD IS NOT POPULATED",
+                "type": "string",
+                "example": "THIS FIELD IS NOT USED"
+              }
+            }
+          }
+        }
+      }
+    },
+    "HosLogsResponse": {
+      "type": "object",
+      "properties": {
+        "logs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "codriverIds": {
+                "type": "array",
+                "items": {
+                  "description": "Ids of codrivers during any of the logged trips",
+                  "type": "number",
+                  "example": 445
+                }
+              },
+              "driverId": {
+                "description": "ID of the driver.",
+                "type": "integer",
+                "format": "int64",
+                "example": 444
+              },
+              "groupId": {
+                "description": "ID of the group.",
+                "type": "integer",
+                "format": "int64",
+                "example": 101
+              },
+              "hosStatusType": {
+                "description": "The Hours of Service status type. One of `OFF_DUTY`, `SLEEPER_BED`, `DRIVING`, `ON_DUTY`, `YARD_MOVE`, `PERSONAL_CONVEYANCE`.",
+                "type": "string",
+                "example": "OFF_DUTY"
+              },
+              "locCity": {
+                "description": "City in which the log was recorded.",
+                "type": "string",
+                "example": "Ahwatukee"
+              },
+              "locLat": {
+                "description": "Latitude at which the log was recorded.",
+                "type": "number",
+                "format": "float",
+                "example": 23.413702345
+              },
+              "locLng": {
+                "description": "Longitude at which the log was recorded.",
+                "type": "number",
+                "format": "float",
+                "example": -98.502888123
+              },
+              "locName": {
+                "description": "Name of location at which the log was recorded.",
+                "type": "string",
+                "example": "McLean Site A"
+              },
+              "locState": {
+                "description": "State in which the log was recorded.",
+                "type": "string",
+                "example": "Arizona"
+              },
+              "logStartMs": {
+                "description": "The time at which the log/HOS status started in UNIX milliseconds.",
+                "type": "integer",
+                "format": "int64",
+                "example": 1462881998034
+              },
+              "remark": {
+                "description": "Remark associated with the log entry.",
+                "type": "string",
+                "example": "Lunch Break"
+              },
+              "vehicleId": {
+                "description": "ID of the vehicle.",
+                "type": "integer",
+                "format": "int64",
+                "example": 112
+              }
+            }
+          }
+        }
+      }
+    },
+    "HosLogsSummaryResponse": {
+      "type": "object",
+      "properties": {
+        "drivers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "currentDutyStatusCode": {
+                "description": "The Hours of Service status type.",
+                "type": "string",
+                "enum": [
+                  "AUTO_DUTY",
+                  "DRIVING",
+                  "OFF_DUTY",
+                  "ON_DUTY",
+                  "PERSONAL_CONVEYANCE",
+                  "SLEEPER_BED",
+                  "YARD_MOVE",
+                  "WAITING_TIME"
+                ],
+                "example": "OFF_DUTY"
+              },
+              "cycleRemaining": {
+                "description": "The amount of remaining cycle time (in ms).",
+                "type": "integer",
+                "format": "int64",
+                "example": 252000000
+              },
+              "cycleTomorrow": {
+                "description": "The amount of cycle time (in ms) available tomorrow.",
+                "type": "integer",
+                "format": "int64",
+                "example": 252000000
+              },
+              "driveMsToday": {
+                "description": "The amount of driving time today (in ms).",
+                "type": "number",
+                "format": "int64",
+                "example": 252000000
+              },
+              "driverId": {
+                "description": "ID of the driver.",
+                "type": "integer",
+                "format": "int64",
+                "example": 444
+              },
+              "driverName": {
+                "description": "Name of the driver.",
+                "type": "string",
+                "example": "Fred Jacobs"
+              },
+              "drivingInViolationCycle": {
+                "description": "The amount of driving time in violation in this cycle (in ms).",
+                "type": "integer",
+                "format": "int64",
+                "example": 50400000
+              },
+              "drivingInViolationToday": {
+                "description": "The amount of driving time in violation today (in ms).",
+                "type": "integer",
+                "format": "int64",
+                "example": 39600000
+              },
+              "onDutyMsToday": {
+                "description": "The amount of on duty time today (in ms).",
+                "type": "number",
+                "format": "int64",
+                "example": 252000000
+              },
+              "pendingDriveMsToday": {
+                "description": "The amount of driving time today for pending logs (in ms).",
+                "type": "number",
+                "format": "int64",
+                "example": 252000000
+              },
+              "pendingOnDutyMsToday": {
+                "description": "The amount of on duty time today for pending logs (in ms).",
+                "type": "number",
+                "format": "int64",
+                "example": 252000000
+              },
+              "shiftDriveRemaining": {
+                "description": "The amount of remaining shift drive time (in ms).",
+                "type": "integer",
+                "format": "int64",
+                "example": 39600000
+              },
+              "shiftRemaining": {
+                "description": "The amount of remaining shift time (in ms).",
+                "type": "integer",
+                "format": "int64",
+                "example": 50400000
+              },
+              "timeInCurrentStatus": {
+                "description": "The amount of time (in ms) that the driver has been in the current `dutyStatus`.",
+                "type": "integer",
+                "format": "int64",
+                "example": 5000
+              },
+              "timeUntilBreak": {
+                "description": "The amount of time (in ms) remaining until the driver cannot drive without a rest break.",
+                "type": "integer",
+                "format": "int64",
+                "example": 28800000
+              },
+              "vehicleName": {
+                "description": "Name of the vehicle.",
+                "type": "string",
+                "example": "Vehicle 1"
+              }
             }
           }
         },
-        {
-          "$ref": "#/definitions/EquipmentPaginationResponse"
+        "pagination": {
+          "type": "object",
+          "required": [
+            "hasNextPage",
+            "endCursor"
+          ],
+          "properties": {
+            "endCursor": {
+              "description": "Cursor identifier representing the last element in the response. This value should be used in conjunction with a subsequent request's 'after' query parameter.",
+              "type": "string",
+              "example": "MTA1MDc5MB=="
+            },
+            "hasNextPage": {
+              "description": "True if there are more pages of results after this response.",
+              "type": "boolean"
+            }
+          }
         }
-      ]
+      }
     },
     "LocationsWrapper": {
       "allOf": [
         {
-          "type": "object",
-          "properties": {
-            "vehicle": {
-              "$ref": "#/definitions/vehicleTinyResponse"
-            }
-          }
-        },
-        {
-          "$ref": "#/definitions/location"
+          "$ref": "#/definitions/VehicleLocation"
         },
         {
           "type": "object",
@@ -2056,32 +3795,6 @@
           }
         }
       ]
-    },
-    "Message": {
-      "type": "object",
-      "required": [
-        "driverId",
-        "text"
-      ],
-      "properties": {
-        "driverId": {
-          "description": "ID of the driver for whom the message is sent to or sent by.",
-          "type": "integer",
-          "format": "int64",
-          "example": 555
-        },
-        "text": {
-          "description": "The text sent in the message.",
-          "type": "string",
-          "example": "This is a message."
-        }
-      }
-    },
-    "Messages": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/Message"
-      }
     },
     "OrgHarshEventsKondoResponse": {
       "type": "object",
@@ -2195,7 +3908,7 @@
                   "type": "object",
                   "properties": {
                     "eventTime": {
-                      "description": "Event time, specified in ISO 8601",
+                      "description": "Event time, specified in RFC 3339",
                       "type": "string",
                       "format": "string",
                       "example": "2019-04-17T16:42:55Z"
@@ -2299,9 +4012,9 @@
               }
             },
             "parentTagId": {
-              "description": "If this tag is part a hierarchical tag tree, this is the ID of the parent tag, otherwise this will be null.",
+              "description": "If this tag is part a hierarchical tag tree, this is the ID of the parent tag, otherwise this will be omitted.",
               "type": "string",
-              "example": "Tag8389"
+              "example": "4815"
             },
             "sensors": {
               "description": "The sensors that belong to this tag.",
@@ -2323,6 +4036,9 @@
     },
     "TagUpdate": {
       "type": "object",
+      "required": [
+        "name"
+      ],
       "properties": {
         "addresses": {
           "description": "The addresses that belong to this tag.",
@@ -2353,14 +4069,16 @@
           }
         },
         "name": {
-          "description": "Name of this tag.",
+          "description": "Name of this tag. Must be unique.",
           "type": "string",
+          "maxLength": 191,
+          "minLength": 1,
           "example": "California"
         },
         "parentTagId": {
-          "description": "If this tag is part a hierarchical tag tree, this is the ID of the parent tag, otherwise this will be null.",
+          "description": "If this tag is part a hierarchical tag tree, this is the ID of the parent tag, otherwise this will be omitted.",
           "type": "string",
-          "example": "Tag8389"
+          "example": "4815"
         },
         "sensors": {
           "description": "The sensors that belong to this tag.",
@@ -2390,14 +4108,14 @@
         "name": {
           "description": "The object name.",
           "type": "string",
-          "example": "My Favorite"
+          "example": "Driver Don"
         }
       }
     },
     "TaggedObjectId": {
       "description": "The object ID.",
       "type": "string",
-      "example": "Sensor1241"
+      "example": "23502866574"
     },
     "TinyTag": {
       "type": "object",
@@ -2405,7 +4123,7 @@
         "id": {
           "description": "Unique Samsara ID of this tag.",
           "type": "string",
-          "example": "Tag6821"
+          "example": "342417"
         },
         "name": {
           "description": "Name of this tag.",
@@ -2414,80 +4132,398 @@
         }
       }
     },
-    "UnassignedDrivingSegmentListResponse": {
-      "description": "A list of driving segments with no associated driver(s).",
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/UnassignedDrivingSegmentResponse"
-      }
-    },
-    "UnassignedDrivingSegmentResponse": {
-      "description": "A driving segment with no associated driver(s) that may or may not be in a unassigned, pending, rejected, or assigned states.",
+    "TripResponse": {
+      "description": "Contains the trips for the vehicle in the requested timeframe. A trip is represented as an object that contains startMs, startLocation, startAddress, startCoordinates, endMs, endLocation, endAddress and endCoordinates. Ongoing trips will be returned with 9223372036854775807 as their endMs.",
       "type": "object",
       "properties": {
-        "annotation": {
-          "$ref": "#/definitions/annotation"
-        },
-        "createdAtTime": {
-          "description": "The time that the server created the driving segment, specified in ISO 8601 format.",
-          "type": "string",
-          "format": "date-time",
-          "example": "2019-04-17T16:43:00Z"
-        },
-        "driver": {
-          "$ref": "#/definitions/driverTinyResponse"
-        },
-        "endTime": {
-          "$ref": "#/definitions/endTimeBodyParam"
-        },
-        "id": {
-          "description": "Unique identifier for the unassigned driving segment.",
-          "type": "string",
-          "format": "uuid",
-          "example": "08b3aeada5f4ab3010c0b4efa28d2d1890dbf8d48d2d"
-        },
-        "startTime": {
-          "$ref": "#/definitions/startTimeBodyParam"
-        },
-        "status": {
-          "description": "Status of assignment for this segment.",
-          "type": "string",
-          "format": "string",
-          "enum": [
-            "PENDING",
-            "ACCEPTED",
-            "REJECTED",
-            "UNASSIGNED",
-            "UNKNOWN"
-          ],
-          "example": "PENDING"
-        },
-        "vehicle": {
-          "$ref": "#/definitions/vehicleTinyResponse"
+        "trips": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "assetIds": {
+                "description": "List of associated asset IDs",
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "example": [
+                  122
+                ]
+              },
+              "codriverIds": {
+                "description": "List of codriver IDs",
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "example": [
+                  122
+                ]
+              },
+              "distanceMeters": {
+                "description": "Length of the trip in meters.",
+                "type": "integer",
+                "example": 2500
+              },
+              "driverId": {
+                "description": "ID of the driver.",
+                "type": "integer",
+                "example": 719
+              },
+              "endAddress": {
+                "description": "Text representation of nearest identifiable location to the end (latitude, longitude) coordinates.",
+                "type": "object",
+                "properties": {
+                  "address": {
+                    "description": "The formatted address",
+                    "type": "string",
+                    "example": "123 Main St, Sunnyvale, CA 94089"
+                  },
+                  "id": {
+                    "description": "The ID of the address",
+                    "type": "number",
+                    "format": "int64",
+                    "example": 581
+                  },
+                  "name": {
+                    "description": "The name of the address",
+                    "type": "string",
+                    "example": "Ramen Tatsunoya"
+                  }
+                }
+              },
+              "endCoordinates": {
+                "description": "End (latitude, longitude) in decimal degrees.",
+                "type": "object",
+                "properties": {
+                  "latitude": {
+                    "type": "number",
+                    "format": "double",
+                    "example": 23.413702345
+                  },
+                  "longitude": {
+                    "type": "number",
+                    "format": "double",
+                    "example": -91.502888123
+                  }
+                }
+              },
+              "endLocation": {
+                "description": "Geocoded street address of start (latitude, longitude) coordinates.",
+                "type": "string",
+                "example": "571 S Lake Ave, Pasadena, CA 91101"
+              },
+              "endMs": {
+                "description": "End of the trip in UNIX milliseconds. Ongoing trips are indicated by an endMs value of 9223372036854775807.",
+                "type": "integer",
+                "example": 1462881998034
+              },
+              "endOdometer": {
+                "description": "Odometer reading (in meters) at the end of the trip.",
+                "type": "integer",
+                "example": 210430500
+              },
+              "fuelConsumedMl": {
+                "description": "Amount in milliliters of fuel consumed on this trip.",
+                "type": "integer",
+                "example": 75700
+              },
+              "startAddress": {
+                "description": "Text representation of nearest identifiable location to the start (latitude, longitude) coordinates.",
+                "type": "object",
+                "properties": {
+                  "address": {
+                    "description": "The formatted address",
+                    "type": "string",
+                    "example": "123 Main St, Sunnyvale, CA 94089"
+                  },
+                  "id": {
+                    "description": "The ID of the address",
+                    "type": "number",
+                    "format": "int64",
+                    "example": 581
+                  },
+                  "name": {
+                    "description": "The name of the address",
+                    "type": "string",
+                    "example": "Ramen Tatsunoya"
+                  }
+                }
+              },
+              "startCoordinates": {
+                "description": "Start (latitude, longitude) in decimal degrees.",
+                "type": "object",
+                "properties": {
+                  "latitude": {
+                    "type": "number",
+                    "format": "double",
+                    "example": 29.443702345
+                  },
+                  "longitude": {
+                    "type": "number",
+                    "format": "double",
+                    "example": -98.502888123
+                  }
+                }
+              },
+              "startLocation": {
+                "description": "Geocoded street address of start (latitude, longitude) coordinates.",
+                "type": "string",
+                "example": "16 N Fair Oaks Ave, Pasadena, CA 91103"
+              },
+              "startMs": {
+                "description": "Beginning of the trip in UNIX milliseconds.",
+                "type": "integer",
+                "example": 1462878398034
+              },
+              "startOdometer": {
+                "description": "Odometer reading (in meters) at the beginning of the trip.",
+                "type": "integer",
+                "example": 210430450
+              },
+              "tollMeters": {
+                "description": "Length in meters trip spent on toll roads.",
+                "type": "integer",
+                "example": 32000
+              }
+            }
+          }
         }
       }
     },
-    "VehicleKondo": {
-      "description": "A vehicle object.",
+    "User": {
+      "description": "A user object",
+      "type": "object",
+      "required": [
+        "id",
+        "authType",
+        "name",
+        "roles",
+        "email"
+      ],
+      "properties": {
+        "authType": {
+          "description": "The authentication type the user uses to authenticate. To use SAML this organization must have a configured SAML integration.",
+          "type": "string",
+          "enum": [
+            "default",
+            "saml"
+          ]
+        },
+        "email": {
+          "description": "The email address of this user.",
+          "type": "string",
+          "example": "user@company.com"
+        },
+        "id": {
+          "description": "Unique ID for the user.",
+          "type": "string",
+          "example": "123"
+        },
+        "name": {
+          "description": "The first and last name of the user.",
+          "type": "string",
+          "example": "Bob Smith"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserRoleResponse"
+          }
+        }
+      }
+    },
+    "UserCreate": {
+      "description": "The user creation arguments",
+      "type": "object",
+      "required": [
+        "name",
+        "email",
+        "authType",
+        "roles"
+      ],
+      "properties": {
+        "authType": {
+          "description": "The authentication type the user uses to authenticate. To use SAML this organization must have a configured SAML integration.",
+          "type": "string",
+          "enum": [
+            "default",
+            "saml"
+          ]
+        },
+        "email": {
+          "description": "The email address of this user. This cannot be changed after creation.",
+          "type": "string",
+          "maxLength": 191,
+          "example": "user@company.com"
+        },
+        "name": {
+          "description": "The first and last name of the user.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "Bob Smith"
+        },
+        "roles": {
+          "description": "The roles for this user. Users must have at least a single role to be a part of an organization.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserCreateRoleInput"
+          }
+        }
+      }
+    },
+    "UserCreateRoleInput": {
+      "type": "object",
+      "required": [
+        "roleId"
+      ],
+      "properties": {
+        "roleId": {
+          "description": "The id of the role the user has been granted.",
+          "type": "string",
+          "example": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
+        }
+      }
+    },
+    "UserRole": {
+      "description": "A user role object.",
       "type": "object",
       "allOf": [
         {
-          "type": "object",
-          "required": [
-            "id"
-          ],
-          "properties": {
-            "id": {
-              "description": "Unique Samsara ID for the vehicle.",
-              "type": "string",
-              "example": "112"
+          "$ref": "#/definitions/userRoleTinyResponse"
+        }
+      ]
+    },
+    "UserRoleInput": {
+      "type": "object",
+      "required": [
+        "roleId"
+      ],
+      "properties": {
+        "roleId": {
+          "description": "The id of the role the user has been granted.",
+          "type": "string",
+          "example": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
+        },
+        "tagId": {
+          "description": "The id of the tag used to grant a role. If no tag is specified, this role applies at the organization level.",
+          "type": "string",
+          "example": "3914"
+        }
+      },
+      "example": [
+        {
+          "roleId": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
+        },
+        {
+          "roleId": "717fe0f3-f87f-4a57-b3ce-33a5a9f394cd",
+          "tagId": "3914"
+        }
+      ]
+    },
+    "UserRoleResponse": {
+      "description": "A user role",
+      "type": "object",
+      "properties": {
+        "role": {
+          "$ref": "#/definitions/userRoleTinyResponse"
+        },
+        "tag": {
+          "allOf": [
+            {
+              "description": "The id of the tag used to grant a role. If no tag is specified, this role applies at the organization level."
+            },
+            {
+              "$ref": "#/definitions/tagTinyResponse"
             }
+          ]
+        }
+      },
+      "example": [
+        {
+          "role": {
+            "id": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+            "name": "Full Admin"
           }
         },
         {
-          "$ref": "#/definitions/VehiclePatch"
+          "role": {
+            "id": "717fe0f3-f87f-4a57-b3ce-33a5a9f394cd",
+            "name": "Read-Only Admin"
+          },
+          "tag": {
+            "id": "3914",
+            "name": "East Coast"
+          }
         }
       ]
+    },
+    "UserUpdate": {
+      "description": "The user update arguments",
+      "type": "object",
+      "properties": {
+        "authType": {
+          "description": "The authentication type the user uses to authenticate. To use SAML this organization must have a configured SAML integration.",
+          "type": "string",
+          "enum": [
+            "default",
+            "saml"
+          ]
+        },
+        "name": {
+          "description": "The first and last name of the user.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "Bob Smith"
+        },
+        "roles": {
+          "description": "The roles for this user. Users must have at least a single role to be a part of an organization.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserRoleInput"
+          }
+        }
+      }
+    },
+    "VehicleEngineStates": {
+      "description": "Stat point for the state of the engine.",
+      "type": "object",
+      "properties": {
+        "time": {
+          "description": "UTC timestamp of the time the data point was generated by the object stat, in RFC3339 format.",
+          "type": "string",
+          "example": "2019-05-03T04:30:31.492Z"
+        },
+        "value": {
+          "description": "Engine state of the vehicle as read by the vehicle gateway.",
+          "type": "string",
+          "enum": [
+            "Off",
+            "On",
+            "Idle"
+          ],
+          "example": "On"
+        }
+      }
+    },
+    "VehicleFuelPercents": {
+      "description": "Stat point for the fuel percent of the vehicle.",
+      "type": "object",
+      "properties": {
+        "time": {
+          "description": "UTC timestamp of the time the data point was generated by the object stat, in RFC3339 format.",
+          "type": "string",
+          "example": "2019-05-03T04:30:31.492Z"
+        },
+        "value": {
+          "description": "Percent of fuel in the vehicle as read by the vehicle gateway.",
+          "type": "integer",
+          "example": "54"
+        }
+      }
     },
     "VehicleListResponse": {
       "description": "Response for retreiving a list of vehicles.",
@@ -2496,13 +4532,57 @@
         "data": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/VehicleKondo"
+            "$ref": "#/definitions/VehicleResponse"
           }
         },
         "pagination": {
           "$ref": "#/definitions/paginationResponse"
         }
       }
+    },
+    "VehicleLocation": {
+      "description": "Location object with heading \u0026 speed",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/location"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "heading": {
+              "description": "Heading of the vehicle in degrees.",
+              "type": "number",
+              "format": "double",
+              "example": 120
+            },
+            "speed": {
+              "description": "Speed of the vehicle in miles per hour.",
+              "type": "number",
+              "format": "double",
+              "example": 48.3
+            }
+          }
+        }
+      ]
+    },
+    "VehicleLocationWrapper": {
+      "description": "Location for a given vehicle.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/vehicleTinyResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "object",
+              "$ref": "#/definitions/LocationsWrapper"
+            }
+          }
+        }
+      ]
     },
     "VehicleLocationsListResponse": {
       "description": "List of vehicle locations for the specified time period.",
@@ -2511,7 +4591,7 @@
         "data": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/LocationsWrapper"
+            "$ref": "#/definitions/VehicleLocationsWrapper"
           }
         },
         "pagination": {
@@ -2519,65 +4599,361 @@
         }
       }
     },
+    "VehicleLocationsSnapshotResponse": {
+      "description": "List of vehicles with location.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VehicleLocationWrapper"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/timeseriesPaginationResponse"
+        }
+      }
+    },
+    "VehicleLocationsWrapper": {
+      "description": "List of vehicle locations for the specified time period.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/vehicleTinyResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "locations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/LocationsWrapper"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "VehicleMaintenance": {
+      "description": "Contains any J1939/Passenger engine light warnings and engine faults.",
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "description": "ID of the vehicle.",
+          "type": "integer",
+          "format": "int64",
+          "example": 112
+        },
+        "j1939": {
+          "description": "J1939 based data. Null if no data is available.",
+          "type": "object",
+          "properties": {
+            "checkEngineLight": {
+              "description": "J1939 check engine lights.",
+              "type": "object",
+              "properties": {
+                "emissionsIsOn": {
+                  "type": "boolean"
+                },
+                "protectIsOn": {
+                  "type": "boolean"
+                },
+                "stopIsOn": {
+                  "type": "boolean"
+                },
+                "warningIsOn": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "diagnosticTroubleCodes": {
+              "description": "J1939 DTCs.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "fmiId",
+                  "fmiText",
+                  "occurrenceCount",
+                  "spnDescription",
+                  "spnId",
+                  "txId"
+                ],
+                "properties": {
+                  "fmiId": {
+                    "type": "integer"
+                  },
+                  "fmiText": {
+                    "type": "string"
+                  },
+                  "occurrenceCount": {
+                    "type": "integer"
+                  },
+                  "spnDescription": {
+                    "type": "string"
+                  },
+                  "spnId": {
+                    "type": "integer"
+                  },
+                  "txId": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "passenger": {
+          "description": "Passenger vehicle data. Null if no data is available.",
+          "type": "object",
+          "properties": {
+            "checkEngineLight": {
+              "description": "Passenger vehicle check engine light.",
+              "type": "object",
+              "properties": {
+                "isOn": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "diagnosticTroubleCodes": {
+              "description": "Passenger vehicle DTCs.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "dtcId",
+                  "dtcDescription",
+                  "dtcShortCode"
+                ],
+                "properties": {
+                  "dtcDescription": {
+                    "type": "string"
+                  },
+                  "dtcId": {
+                    "type": "integer"
+                  },
+                  "dtcShortCode": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "VehiclePatch": {
       "description": "All the editable portions of the vehicle object.",
       "type": "object",
       "properties": {
-        "assignedDriverId": {
-          "description": "The user id of the driver that is currently assigned to the vehicle.",
+        "auxInputType1": {
+          "description": "The type of aux input that this vehicle has connected to port 1. Setting to \"none\" will remove the configured aux input.",
+          "type": "string",
+          "enum": [
+            "none",
+            "emergencyLights",
+            "emergencyAlarm",
+            "stopPaddle",
+            "powerTakeOff",
+            "plow",
+            "sweeper",
+            "salter",
+            "reefer",
+            "door",
+            "boom",
+            "auxiliaryEngine",
+            "generator",
+            "eightWayLights"
+          ],
+          "example": "boom"
+        },
+        "auxInputType2": {
+          "description": "The type of aux input that this vehicle has connected to port 2. Setting to \"none\" will remove the configured aux input.",
+          "type": "string",
+          "enum": [
+            "none",
+            "emergencyLights",
+            "emergencyAlarm",
+            "stopPaddle",
+            "powerTakeOff",
+            "plow",
+            "sweeper",
+            "salter",
+            "reefer",
+            "door",
+            "boom",
+            "auxiliaryEngine",
+            "generator",
+            "eightWayLights"
+          ],
+          "example": "plow"
+        },
+        "engineHours": {
+          "description": "Current engine hours value of the vehicle. This is typically pulled automatically from the vehicle, but can be manually overridden when it's not read automatically.",
+          "type": "integer",
+          "example": 10943
+        },
+        "externalIds": {
+          "description": "Dictionary of external IDs (key-value string pairs). Setting a value to \"\" will delete that external ID.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "example": {
+            "maintenanceId": "98KJ81F"
+          }
+        },
+        "harshAccelerationSettingType": {
+          "description": "Enumeration of the harsh acceleration setting types. This setting influences the accelereation sensitivity from which a harsh event is triggered. If set to `off`, then no acceleration based harsh events are triggered for the vehicle.",
+          "type": "string",
+          "enum": [
+            "passengerCar",
+            "lightTruck",
+            "heavyDuty",
+            "off",
+            "automatic"
+          ],
+          "example": "off"
+        },
+        "licensePlate": {
+          "description": "License plate number for the vehicle.",
+          "type": "string",
+          "maxLength": 12,
+          "example": "8KDB021"
+        },
+        "name": {
+          "description": "Name of the vehicle.",
+          "type": "string",
+          "example": "Truck A7"
+        },
+        "notes": {
+          "description": "Notes about a vehicle with a maximum of 255 characters.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "These are notes about this given vehicle."
+        },
+        "odometerMeters": {
+          "description": "Current odometer value of the vehicle. This is typically pulled automatically from the vehicle, but can be manually overridden when it's not read automatically.",
+          "type": "integer",
+          "example": 9182
+        },
+        "staticAssignedDriverId": {
+          "description": "ID of driver assigned to the vehicle for static vehicle assignments. (uncommon).",
           "type": "string",
           "example": "8921"
         },
+        "tagIds": {
+          "description": "An array of IDs of tags to associate with this vehicle.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "321"
+          }
+        },
+        "vin": {
+          "description": "A vehicle identification number.",
+          "type": "string",
+          "maxLength": 17,
+          "example": "1FUJA6BD31LJ09646"
+        }
+      }
+    },
+    "VehicleResponse": {
+      "description": "The vehicle object.",
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
         "auxInputType1": {
-          "description": "The type of aux input that this vehicle has connected to port 1.",
+          "description": "The type of aux input that this vehicle has connected to port 1. Setting to \"none\" will remove the configured aux input.",
           "type": "string",
           "enum": [
-            "Emergency Lights",
-            "Emergency Alarm",
-            "Stop Paddle",
-            "Power Take-Off",
-            "Plow",
-            "Sweeper",
-            "Salter",
-            "Boom"
+            "none",
+            "emergencyLights",
+            "emergencyAlarm",
+            "stopPaddle",
+            "powerTakeOff",
+            "plow",
+            "sweeper",
+            "salter",
+            "reefer",
+            "door",
+            "boom",
+            "auxiliaryEngine",
+            "generator",
+            "eightWayLights"
           ],
-          "example": "Boom"
+          "example": "boom"
         },
         "auxInputType2": {
-          "description": "The type of aux input that this vehicle has connected to port 2.",
+          "description": "The type of aux input that this vehicle has connected to port 2. Setting to \"none\" will remove the configured aux input.",
           "type": "string",
           "enum": [
-            "Emergency Lights",
-            "Emergency Alarm",
-            "Stop Paddle",
-            "Power Take-Off",
-            "Plow",
-            "Sweeper",
-            "Salter",
-            "Boom"
+            "none",
+            "emergencyLights",
+            "emergencyAlarm",
+            "stopPaddle",
+            "powerTakeOff",
+            "plow",
+            "sweeper",
+            "salter",
+            "reefer",
+            "door",
+            "boom",
+            "auxiliaryEngine",
+            "generator",
+            "eightWayLights"
           ],
-          "example": "Plow"
+          "example": "plow"
         },
-        "harshAccelSetting": {
-          "description": "Enumeration of the harsh acceleration setting types. This setting influences the acceleration sensitivity from which a harsh event is triggered. If set to `Off`, then no harsh events are triggered for the vehicle.",
+        "externalIds": {
+          "description": "Dictionary of external IDs (key-value string pairs).",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "example": {
+            "maintenanceId": "98KJ81F"
+          }
+        },
+        "harshAccelerationSettingType": {
+          "description": "Enumeration of the harsh acceleration setting types. This setting influences the acceleration sensitivity from which a harsh event is triggered. If set to `off`, then no acceleration based harsh events are triggered for the vehicle.",
           "type": "string",
           "enum": [
-            "Passenger",
-            "Light Truck",
-            "Heavy",
-            "Off",
-            "Auto"
+            "passengerCar",
+            "lightTruck",
+            "heavyDuty",
+            "off",
+            "automatic"
           ],
-          "example": "Off"
+          "example": "off"
+        },
+        "id": {
+          "description": "Unique Samsara ID for the vehicle.",
+          "type": "string",
+          "example": "112"
+        },
+        "licensePlate": {
+          "description": "The license plate of this vehicle.",
+          "type": "string",
+          "maxLength": 12,
+          "example": "XHK1234"
         },
         "make": {
           "description": "Vehicle's manufacturing make.",
           "type": "string",
+          "maxLength": 255,
           "example": "Ford"
         },
         "model": {
           "description": "Vehicle's manufacturing model.",
           "type": "string",
+          "maxLength": 255,
           "example": "F150"
         },
         "name": {
@@ -2591,9 +4967,20 @@
           "maxLength": 255,
           "example": "These are notes about this given vehicle."
         },
+        "staticAssignedDriver": {
+          "$ref": "#/definitions/driverTinyResponse"
+        },
+        "tags": {
+          "description": "An array of all tag mini-objects that are associated with the given vehicle.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/tagTinyResponse"
+          }
+        },
         "vin": {
           "description": "A vehicle identification number.",
           "type": "string",
+          "maxLength": 17,
           "example": "1FUJA6BD31LJ09646"
         },
         "year": {
@@ -2603,11 +4990,36 @@
         }
       }
     },
-    "annotation": {
-      "description": "Annotation for the driving segment.",
-      "type": "string",
-      "format": "string",
-      "example": "Yard move."
+    "VehicleStatsResponse": {
+      "description": "List of vehicle stats for the specified time period.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/vehicleTinyResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "engineStates": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/VehicleEngineStates"
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "fuelPercents": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/VehicleFuelPercents"
+              }
+            }
+          }
+        }
+      ]
     },
     "contactTinyResponse": {
       "description": "A minified contact object",
@@ -2621,7 +5033,7 @@
         "id": {
           "description": "ID of the contact.",
           "type": "string",
-          "example": "123"
+          "example": "22408"
         },
         "lastName": {
           "description": "Last name of the contact.",
@@ -2629,11 +5041,6 @@
           "example": "Jones"
         }
       }
-    },
-    "driverId": {
-      "description": "ID of Driver to assign this segment to. The driver assignment is a tentative assignment until the ID is 'ACCEPTED'.",
-      "type": "string",
-      "example": "1234"
     },
     "driverTinyResponse": {
       "description": "A minified driver object.",
@@ -2650,12 +5057,6 @@
           "example": "Susan Bob"
         }
       }
-    },
-    "endTimeBodyParam": {
-      "description": "End time of the driving segment, specified in RFC 3339 format.",
-      "type": "string",
-      "format": "date-time",
-      "example": "2019-04-17T16:42:55Z"
     },
     "equipmentTinyResponse": {
       "description": "A minified equipment object.",
@@ -2684,26 +5085,6 @@
         "longitude"
       ],
       "properties": {
-        "addresses": {
-          "description": "Array of address mini-objects, in which the given lat/long coordinates falls within the address's geofence borders. If the location is not within any geofence, then this value will not appear",
-          "type": "array",
-          "items": {
-            "description": "Address book entry, if one exists",
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Address book identifier",
-                "type": "string",
-                "example": "123"
-              },
-              "name": {
-                "description": "Name of this address book entry",
-                "type": "string",
-                "example": "Main Distribution Warehouse"
-              }
-            }
-          }
-        },
         "latitude": {
           "description": "GPS latitude represented in degrees",
           "type": "number",
@@ -2736,16 +5117,11 @@
           "description": "True if there are more pages of results immediately available after this endCursor. Otherwise, wait nextPageAfter seconds before fetching the next page with endCursor.",
           "type": "boolean",
           "example": true
-        },
-        "nextPageUrl": {
-          "description": "URL of the request to make to fetch the next page of data.",
-          "type": "string",
-          "example": "https://api.samsara.com/fleet/vehicles/locations\u0026after=cmVhyI"
         }
       }
     },
     "standardErrorResponse": {
-      "description": "Standard error response.",
+      "description": "Error response",
       "type": "object",
       "properties": {
         "message": {
@@ -2758,12 +5134,6 @@
         }
       }
     },
-    "startTimeBodyParam": {
-      "description": "Start time of the driving segment, specified in RFC 3339 format.",
-      "type": "string",
-      "format": "date-time",
-      "example": "2019-04-17T15:42:55Z"
-    },
     "tagTinyResponse": {
       "description": "A minified tag object",
       "type": "object",
@@ -2771,7 +5141,7 @@
         "id": {
           "description": "ID of the tag.",
           "type": "string",
-          "example": "123"
+          "example": "3914"
         },
         "name": {
           "description": "Name of the tag.",
@@ -2781,7 +5151,7 @@
       }
     },
     "time": {
-      "description": "UTC timestamp in RFC3339 milliseconds format.",
+      "description": "UTC timestamp in RFC 3339 milliseconds format.",
       "type": "string",
       "example": "2019-05-03T04:30:31.492Z"
     },
@@ -2817,15 +5187,26 @@
               "description": "True if there are more pages of results immediately available after this endCursor. Otherwise, wait nextPageAfter seconds before fetching the next page with endCursor.",
               "type": "boolean",
               "example": true
-            },
-            "nextPageUrl": {
-              "description": "URL of the request to make to fetch the next page of data.",
-              "type": "string",
-              "example": "https://api.samsara.com/fleet/vehicles/locations\u0026after=cmVhyI"
             }
           }
         }
       ]
+    },
+    "userRoleTinyResponse": {
+      "description": "A minified user role object.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The unique ID for the role.",
+          "type": "string",
+          "example": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
+        },
+        "name": {
+          "description": "The name of the role.",
+          "type": "string",
+          "example": "Full Admin"
+        }
+      }
     },
     "vehicleTinyResponse": {
       "description": "A minified vehicle object.",
@@ -2839,7 +5220,7 @@
         "name": {
           "description": "Name of the vehicle.",
           "type": "string",
-          "example": "Midwest Truck #5"
+          "example": "Midwest Truck #4"
         }
       }
     }
@@ -2854,53 +5235,65 @@
         "$ref": "#/definitions/ContactInput"
       }
     },
-    "createMessagesParam": {
-      "description": "Text to send to a list of driverIds.",
-      "name": "createMessages",
+    "equipmentStatTypes": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "engineStates",
+          "fuelPercents",
+          "engineRpm",
+          "engineSeconds"
+        ],
+        "type": "string",
+        "format": "string"
+      },
+      "collectionFormat": "csv",
+      "description": "A comma separated list of stat types.",
+      "name": "types",
+      "in": "query"
+    },
+    "groupIdBodyParam": {
+      "description": "Optional group ID if the organization has multiple groups (uncommon).",
+      "name": "groupIdBodyParam",
       "in": "body",
-      "required": true,
       "schema": {
         "type": "object",
         "required": [
-          "driverIds",
-          "text"
+          "groupId"
         ],
         "properties": {
-          "driverIds": {
-            "description": "IDs of the drivers for whom the messages are sent to.",
-            "type": "array",
-            "items": {
-              "type": "number",
-              "format": "int64",
-              "example": 555
-            },
-            "example": [
-              111,
-              222,
-              333
-            ]
-          },
-          "text": {
-            "description": "The text sent in the message.",
-            "type": "string",
-            "example": "This is a message."
+          "groupId": {
+            "description": "Optional group ID if the organization has multiple groups (uncommon).",
+            "type": "integer",
+            "format": "int64",
+            "example": 101
           }
         }
       }
     },
-    "endTimeQueryParam": {
-      "type": "string",
-      "format": "date-time",
-      "description": "End of the filter time range, specified in RFC 3339 format. (Example: 2019-06-13T19:08:25Z) Filters based on the server timestamp, i.e. createAtTime.",
-      "name": "endTime",
+    "groupIdParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Optional group ID if the organization has multiple groups (uncommon).",
+      "name": "group_id",
       "in": "query"
     },
-    "startTimeQueryParam": {
-      "type": "string",
-      "format": "date-time",
-      "description": "Beginning of the filter time range, specified in RFC 3339 format. (Example: 2019-06-13T18:08:25Z) Filters based on the server timestamp, i.e. createAtTime.",
-      "name": "startTime",
+    "groupIdQueryParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Optional group ID if the organization has multiple groups (uncommon).",
+      "name": "groupId",
       "in": "query"
     }
-  }
+  },
+  "tags": [
+    {
+      "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThese endpoints are still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n",
+      "name": "Hours of Service"
+    },
+    {
+      "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThese endpoints are still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n",
+      "name": "Maintenance"
+    }
+  ]
 }
