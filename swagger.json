@@ -735,7 +735,7 @@
         }
       },
       "put": {
-        "description": "Update the dispatch route. Allowable updates include adding or removing jobs, and changing job locations and times.",
+        "description": "Update the dispatch route. Examples of this include:\n- Adding, removing, and/or editing jobs in the `dispatch_jobs` array. If you add a job to this array, you do not need to include an `id` field. One will be created automatically for that new job.\n- Updating the assigned driver or vehicle. (Routes may be assigned to a driver or a vehicle, but not both).\n- Updating the location and/or timing information of the route.",
         "consumes": [
           "application/json"
         ],
