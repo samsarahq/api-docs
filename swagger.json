@@ -4842,6 +4842,92 @@
         }
       ]
     },
+    "DispatchJobWithoutETA": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "group_id",
+            "dispatch_route_id",
+            "job_state"
+          ],
+          "properties": {
+            "arrived_at_ms": {
+              "description": "The time at which the driver arrived at the job destination.",
+              "type": "integer",
+              "format": "int64",
+              "example": 1462881998034
+            },
+            "completed_at_ms": {
+              "description": "The time at which the job was marked complete (e.g. started driving to the next destination).",
+              "type": "integer",
+              "format": "int64",
+              "example": 1462881998034
+            },
+            "dispatch_route_id": {
+              "description": "ID of the route that this job belongs to.",
+              "type": "integer",
+              "format": "int64",
+              "example": 55
+            },
+            "documents": {
+              "description": "Document submissions associated with this job.",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DispatchJobDocumentInfo"
+              }
+            },
+            "driver_id": {
+              "description": "ID of the driver assigned to the dispatch job.",
+              "type": "integer",
+              "format": "int64",
+              "example": 444
+            },
+            "en_route_at_ms": {
+              "description": "The time at which the assigned driver started fulfilling the job (e.g. started driving to the destination).",
+              "type": "integer",
+              "format": "int64",
+              "example": 1462881998034
+            },
+            "fleet_viewer_url": {
+              "description": "Fleet viewer url of the dispatch job.",
+              "type": "string",
+              "example": "https://cloud.samsara.com/fleet/viewer/job/fleet_viewer_token"
+            },
+            "group_id": {
+              "type": "integer",
+              "format": "int64",
+              "example": 101
+            },
+            "id": {
+              "description": "ID of the Samsara dispatch job.",
+              "type": "integer",
+              "format": "int64",
+              "example": 773
+            },
+            "job_state": {
+              "$ref": "#/definitions/jobStatus"
+            },
+            "skipped_at_ms": {
+              "description": "The time at which the job was marked skipped.",
+              "type": "integer",
+              "format": "int64",
+              "example": 1462881998034
+            },
+            "vehicle_id": {
+              "description": "ID of the vehicle used for the dispatch job.",
+              "type": "integer",
+              "format": "int64",
+              "example": 112
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/DispatchJobCreate"
+        }
+      ]
+    },
     "DispatchRoute": {
       "allOf": [
         {
@@ -5154,6 +5240,31 @@
         },
         {
           "$ref": "#/definitions/DispatchRouteCreateBase"
+        }
+      ]
+    },
+    "DispatchRouteWithoutETA": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "dispatch_jobs": {
+              "description": "The dispatch jobs associated with this route.",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DispatchJobWithoutETA"
+              }
+            },
+            "id": {
+              "description": "ID of the Samsara dispatch route.",
+              "type": "integer",
+              "format": "int64",
+              "example": 556
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/DispatchRouteBase"
         }
       ]
     },
@@ -9336,7 +9447,7 @@
           "$ref": "#/definitions/prevJobStatus"
         },
         "route": {
-          "$ref": "#/definitions/DispatchRoute"
+          "$ref": "#/definitions/DispatchRouteWithoutETA"
         },
         "route_id": {
           "description": "ID of the Samsara dispatch route.",
