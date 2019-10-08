@@ -1615,6 +1615,72 @@
         }
       ]
     },
+    "/v1/fleet/drivers/{driver_id}/hos_daily_logs": {
+      "post": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nGet summarized daily HOS charts for a specified driver.",
+        "tags": [
+          "Hours of Service"
+        ],
+        "summary": "Get daily HOS logs for a specific driver",
+        "operationId": "V1getFleetDriversHosDailyLogs",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of the driver with HOS logs.",
+            "name": "driver_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "hosLogsParam",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "required": [
+                "groupId",
+                "startMs",
+                "endMs"
+              ],
+              "properties": {
+                "endMs": {
+                  "description": "End of the time range, specified in milliseconds UNIX time.",
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 1462881998034
+                },
+                "groupId": {
+                  "description": "Group ID to query.",
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 101
+                },
+                "startMs": {
+                  "description": "Beginning of the time range, specified in milliseconds UNIX time.",
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 1462878398034
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Distance traveled and time active for each driver in the organization over the specified time period.",
+            "schema": {
+              "$ref": "#/definitions/V1DriverDailyLogResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/v1/fleet/hos_authentication_logs": {
       "get": {
         "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nGet the HOS (hours of service) signin and signout logs for the specified driver. The response includes 4 fields that are now deprecated.",
@@ -4671,6 +4737,92 @@
         }
       ]
     },
+    "V1DispatchJobWithoutETA": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "group_id",
+            "dispatch_route_id",
+            "job_state"
+          ],
+          "properties": {
+            "arrived_at_ms": {
+              "description": "The time at which the driver arrived at the job destination.",
+              "type": "integer",
+              "format": "int64",
+              "example": 1462881998034
+            },
+            "completed_at_ms": {
+              "description": "The time at which the job was marked complete (e.g. started driving to the next destination).",
+              "type": "integer",
+              "format": "int64",
+              "example": 1462881998034
+            },
+            "dispatch_route_id": {
+              "description": "ID of the route that this job belongs to.",
+              "type": "integer",
+              "format": "int64",
+              "example": 55
+            },
+            "documents": {
+              "description": "Document submissions associated with this job.",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/V1DispatchJobDocumentInfo"
+              }
+            },
+            "driver_id": {
+              "description": "ID of the driver assigned to the dispatch job.",
+              "type": "integer",
+              "format": "int64",
+              "example": 444
+            },
+            "en_route_at_ms": {
+              "description": "The time at which the assigned driver started fulfilling the job (e.g. started driving to the destination).",
+              "type": "integer",
+              "format": "int64",
+              "example": 1462881998034
+            },
+            "fleet_viewer_url": {
+              "description": "Fleet viewer url of the dispatch job.",
+              "type": "string",
+              "example": "https://cloud.samsara.com/fleet/viewer/job/fleet_viewer_token"
+            },
+            "group_id": {
+              "type": "integer",
+              "format": "int64",
+              "example": 101
+            },
+            "id": {
+              "description": "ID of the Samsara dispatch job.",
+              "type": "integer",
+              "format": "int64",
+              "example": 773
+            },
+            "job_state": {
+              "$ref": "#/definitions/V1jobStatus"
+            },
+            "skipped_at_ms": {
+              "description": "The time at which the job was marked skipped.",
+              "type": "integer",
+              "format": "int64",
+              "example": 1462881998034
+            },
+            "vehicle_id": {
+              "description": "ID of the vehicle used for the dispatch job.",
+              "type": "integer",
+              "format": "int64",
+              "example": 112
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/V1DispatchJobCreate"
+        }
+      ]
+    },
     "V1DispatchRoute": {
       "allOf": [
         {
@@ -4986,10 +5138,35 @@
         }
       ]
     },
+    "V1DispatchRouteWithoutETA": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "dispatch_jobs": {
+              "description": "The dispatch jobs associated with this route.",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/V1DispatchJobWithoutETA"
+              }
+            },
+            "id": {
+              "description": "ID of the Samsara dispatch route.",
+              "type": "integer",
+              "format": "int64",
+              "example": 556
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/V1DispatchRouteBase"
+        }
+      ]
+    },
     "V1DispatchRoutes": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/V1DispatchRoute"
+        "$ref": "#/definitions/V1DispatchRouteWithoutETA"
       }
     },
     "V1Document": {
