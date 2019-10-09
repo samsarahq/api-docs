@@ -3443,15 +3443,18 @@
         "circle": {
           "description": "Information about a circular geofence. This field is only needed if the geofence is a circle.",
           "type": "object",
+          "required": [
+            "radiusMeters"
+          ],
           "properties": {
             "latitude": {
-              "description": "The latitude of the center of the circular geofence in decimal degrees.",
+              "description": "Optional latitude field to override the geocoded latitude from the formatted address. In decimal degrees.",
               "type": "number",
               "format": "double",
               "example": 37.765363
             },
             "longitude": {
-              "description": "The longitude of the center of the circular geofence in decimal degrees.",
+              "description": "Optional latitude field to override the geocoded latitude from the formatted address. In decimal degrees.",
               "type": "number",
               "format": "double",
               "example": -122.403098
