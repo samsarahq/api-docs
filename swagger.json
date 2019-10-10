@@ -4168,6 +4168,23 @@
         }
       ]
     },
+    "ParentTag": {
+      "description": "If this tag is part a hierarchical tag tree, this is the parent tag, otherwise this will be omitted.",
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/TaggedObjectId"
+        },
+        "name": {
+          "description": "The tag name.",
+          "type": "string",
+          "example": "US West Vehicles"
+        }
+      }
+    },
     "Tag": {
       "allOf": [
         {
@@ -4204,10 +4221,8 @@
                 "$ref": "#/definitions/TaggedObject"
               }
             },
-            "parentTagId": {
-              "description": "If this tag is part a hierarchical tag tree, this is the ID of the parent tag, otherwise this will be omitted.",
-              "type": "string",
-              "example": "4815"
+            "parentTag": {
+              "$ref": "#/definitions/ParentTag"
             },
             "sensors": {
               "description": "The sensors that belong to this tag.",
