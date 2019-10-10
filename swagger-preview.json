@@ -615,6 +615,178 @@
         }
       }
     },
+    "/fleet/vehicles/locations": {
+      "get": {
+        "description": "Returns last known location for all vehicles. This can be optionally filtered by tags or specific vehicle IDs.",
+        "tags": [
+          "Vehicles"
+        ],
+        "summary": "List most recent vehicle locations",
+        "operationId": "getVehicleLocations",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of tag IDs.",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of vehicle IDs.",
+            "name": "vehicleIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all locations for the specified vehicles and time range.",
+            "schema": {
+              "$ref": "#/definitions/VehicleLocationsSnapshotResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/vehicles/locations/feed": {
+      "get": {
+        "description": "Follow a continuous feed of all vehicle locations. In order to follow the feed, you can follow the pagination `endCursor` cursor continuously.  If there is not yet a `hasNextPage=true` for the feed follow, then we recommend you wait and retry in 5 seconds.",
+        "tags": [
+          "Vehicles"
+        ],
+        "summary": "Follow a real-time feed of vehicle locations",
+        "operationId": "getVehicleLocationsFeed",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of tag IDs.",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of vehicle IDs.",
+            "name": "vehicleIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all locations for the specified vehicles.",
+            "schema": {
+              "$ref": "#/definitions/VehicleLocationsListResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/vehicles/locations/history": {
+      "get": {
+        "description": "Returns all known vehicle location changes during the given time range for all vehicles. This can be optionally filtered by tags or specific vehicle IDs.",
+        "tags": [
+          "Vehicles"
+        ],
+        "summary": "Get historical vehicle locations",
+        "operationId": "getVehicleLocationsHistory",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "startTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "endTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of tag IDs.",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of vehicle IDs.",
+            "name": "vehicleIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all locations for the specified vehicles and time range.",
+            "schema": {
+              "$ref": "#/definitions/VehicleLocationsListResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/fleet/vehicles/{id}": {
       "get": {
         "description": "Get information about a specific vehicle.",
@@ -1848,53 +2020,6 @@
         }
       }
     },
-    "/v1/fleet/locations": {
-      "get": {
-        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nGet current location of vehicles in a group. This method returns the current location in latitude and longitude of all vehicles in a requested group.",
-        "tags": [
-          "Vehicles"
-        ],
-        "summary": "Get current vehicle locations",
-        "operationId": "V1getFleetLocations",
-        "parameters": [
-          {
-            "type": "integer",
-            "format": "int64",
-            "description": "Optional group ID if the organization has multiple groups (uncommon).",
-            "name": "groupId",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of vehicle objects containing their location and the time at which that location was logged.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "groupId": {
-                  "description": "Optional group ID if the organization has multiple groups (uncommon).",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
-                },
-                "vehicles": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/V1VehicleLocation"
-                  }
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "Unexpected error.",
-            "schema": {
-              "$ref": "#/definitions/V1ErrorResponse"
-            }
-          }
-        }
-      }
-    },
     "/v1/fleet/maintenance/dvirs": {
       "get": {
         "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nGet DVIRs for the org within provided time constraints",
@@ -2240,46 +2365,6 @@
         }
       }
     },
-    "/v1/fleet/vehicles/locations": {
-      "get": {
-        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch locations for all vehicles between a start/end time. The maximum query duration is 30 minutes (1800000 ms).",
-        "tags": [
-          "Vehicles"
-        ],
-        "summary": "Get historical vehicle locations",
-        "operationId": "V1getVehiclesLocations",
-        "responses": {
-          "200": {
-            "description": "Returns locations for all vehicles between a start/end time, with a maximum query duration of 30 minutes (1800000 ms).",
-            "schema": {
-              "$ref": "#/definitions/V1FleetVehiclesLocations"
-            }
-          },
-          "default": {
-            "description": "Unexpected error.",
-            "schema": {
-              "$ref": "#/definitions/V1ErrorResponse"
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "type": "integer",
-          "description": "Time in Unix epoch milliseconds for the start of the query (cannot exceed 30 minutes)",
-          "name": "startMs",
-          "in": "query",
-          "required": true
-        },
-        {
-          "type": "integer",
-          "description": "Time in Unix epoch milliseconds for the end of the query (cannot exceed 30 minutes)",
-          "name": "endMs",
-          "in": "query",
-          "required": true
-        }
-      ]
-    },
     "/v1/fleet/vehicles/{vehicleId}/safety/harsh_event": {
       "get": {
         "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch harsh event details for a vehicle.",
@@ -2372,56 +2457,6 @@
           "description": "ID of the vehicle. Must contain only digits 0-9.",
           "name": "vehicleId",
           "in": "path",
-          "required": true
-        }
-      ]
-    },
-    "/v1/fleet/vehicles/{vehicle_id}/locations": {
-      "get": {
-        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch locations for a given vehicle between a start/end time. The maximum query duration is one hour.",
-        "tags": [
-          "Vehicles"
-        ],
-        "summary": "Get historical vehicle locations for a specific vehicle",
-        "operationId": "V1getVehicleLocations",
-        "responses": {
-          "200": {
-            "description": "Returns locations for a given vehicle between a start/end time, with a maximum query duration of one hour.",
-            "schema": {
-              "$ref": "#/definitions/V1FleetVehicleLocations"
-            }
-          },
-          "default": {
-            "description": "Unexpected error.",
-            "schema": {
-              "$ref": "#/definitions/V1ErrorResponse"
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "type": "integer",
-          "format": "int64",
-          "description": "ID of the vehicle with the associated routes. Must contain only digits 0-9.",
-          "name": "vehicle_id",
-          "in": "path",
-          "required": true
-        },
-        {
-          "type": "integer",
-          "format": "int64",
-          "description": "Time in Unix epoch milliseconds for the start of the query (cannot exceed 1 hour)",
-          "name": "startMs",
-          "in": "query",
-          "required": true
-        },
-        {
-          "type": "integer",
-          "format": "int64",
-          "description": "Time in Unix epoch milliseconds for the end of the query (cannot exceed 1 hour)",
-          "name": "endMs",
-          "in": "query",
           "required": true
         }
       ]
@@ -4112,6 +4147,24 @@
         },
         {
           "$ref": "#/definitions/DriverBase"
+        }
+      ]
+    },
+    "LocationsWrapper": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/VehicleLocation"
+        },
+        {
+          "type": "object",
+          "required": [
+            "time"
+          ],
+          "properties": {
+            "time": {
+              "$ref": "#/definitions/time"
+            }
+          }
         }
       ]
     },
@@ -8227,6 +8280,100 @@
         }
       }
     },
+    "VehicleLocation": {
+      "description": "Location object with heading \u0026 speed",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/location"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "heading": {
+              "description": "Heading of the vehicle in degrees.",
+              "type": "number",
+              "format": "double",
+              "example": 120
+            },
+            "speed": {
+              "description": "Speed of the vehicle in miles per hour.",
+              "type": "number",
+              "format": "double",
+              "example": 48.3
+            }
+          }
+        }
+      ]
+    },
+    "VehicleLocationWrapper": {
+      "description": "Location for a given vehicle.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/vehicleTinyResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "object",
+              "$ref": "#/definitions/LocationsWrapper"
+            }
+          }
+        }
+      ]
+    },
+    "VehicleLocationsListResponse": {
+      "description": "List of vehicle locations for the specified time period.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VehicleLocationsWrapper"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "VehicleLocationsSnapshotResponse": {
+      "description": "List of vehicles with location.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VehicleLocationWrapper"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "VehicleLocationsWrapper": {
+      "description": "List of vehicle locations for the specified time period.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/vehicleTinyResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "locations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/LocationsWrapper"
+              }
+            }
+          }
+        }
+      ]
+    },
     "VehiclePatch": {
       "description": "All the editable portions of the vehicle object.",
       "type": "object",
@@ -8508,6 +8655,28 @@
         }
       }
     },
+    "location": {
+      "description": "Location object",
+      "type": "object",
+      "required": [
+        "latitude",
+        "longitude"
+      ],
+      "properties": {
+        "latitude": {
+          "description": "GPS latitude represented in degrees",
+          "type": "number",
+          "format": "double",
+          "example": 122.142
+        },
+        "longitude": {
+          "description": "GPS longitude represented in degrees",
+          "type": "number",
+          "format": "double",
+          "example": -93.343
+        }
+      }
+    },
     "paginationResponse": {
       "description": "Pagination parameters.",
       "type": "object",
@@ -8523,7 +8692,7 @@
           "example": "MjkY"
         },
         "hasNextPage": {
-          "description": "True if there are more pages of results immediately available after this endCursor. Otherwise, wait nextPageAfter seconds before fetching the next page with endCursor.",
+          "description": "True if there are more pages of results immediately available after this endCursor.",
           "type": "boolean",
           "example": true
         }
@@ -8558,6 +8727,11 @@
           "example": "East Coast"
         }
       }
+    },
+    "time": {
+      "description": "UTC timestamp in RFC 3339 milliseconds format.",
+      "type": "string",
+      "example": "2019-05-03T04:30:31.492Z"
     },
     "userRoleTinyResponse": {
       "description": "A minified user role object.",
