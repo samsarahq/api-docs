@@ -5320,6 +5320,10 @@
                     }
                   ],
                   "valueType": "ValueType_MultipleChoice"
+                },
+                {
+                  "dateTimeValue": "2006-01-02T15:04:05Z",
+                  "label": "Time Delay Start"
                 }
               ]
             },
@@ -5405,7 +5409,7 @@
               "example": "4aff772c-a7bb-45e6-8e41-6a53e34feb83"
             },
             "fields": {
-              "description": "List of fields and associated values for a given document. The fields must be listed in the order that that they appear in the specificied document type. Today `stringValue`, `numberValue`, and `multipleChoiceValue` are the supported document upload field types.",
+              "description": "List of fields and associated values for a given document. The fields must be listed in the order that that they appear in the specificied document type. Today `stringValue`, `numberValue`, `multipleChoiceValue` and `dateTimeValue` are the supported document upload field types.",
               "type": "array",
               "items": {
                 "$ref": "#/definitions/V1DocumentField"
@@ -5434,6 +5438,10 @@
                     }
                   ],
                   "valueType": "ValueType_MultipleChoice"
+                },
+                {
+                  "dateTimeValue": "2006-01-02T15:04:05Z",
+                  "label": "Time Delay Start"
                 }
               ]
             }
@@ -5501,6 +5509,11 @@
         "valueType"
       ],
       "properties": {
+        "dateTimeValue": {
+          "description": "Value of this field if this document field has valueType: ValueType_DateTime.",
+          "type": "string",
+          "example": "2006-01-02T15:04:05Z"
+        },
         "multipleChoiceValue": {
           "description": "Value of this field if this document field has valueType: ValueType_MultipleChoice. Array of objects containing two fields: the string value of the multiple choice option and a boolean representing whether or not the choice was selected",
           "type": "array",
@@ -5549,7 +5562,7 @@
           "example": "This is a string."
         },
         "valueType": {
-          "description": "Determines the type of this field and what type of value this field has. It should be either ValueType_Number, ValueType_String, ValueType_Photo, or ValueType_MultipleChoice.",
+          "description": "Determines the type of this field and what type of value this field has. It should be either ValueType_Number, ValueType_String, ValueType_Photo, ValueType_MultipleChoice or ValueType_DateTime.",
           "type": "string",
           "example": "ValueType_Number"
         }
