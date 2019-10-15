@@ -40,6 +40,16 @@
             "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
             "name": "after",
             "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of tag IDs.",
+            "name": "tagIds",
+            "in": "query"
           }
         ],
         "responses": {
