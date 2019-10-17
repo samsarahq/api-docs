@@ -566,7 +566,7 @@
       "parameters": [
         {
           "type": "string",
-          "description": "ID of the driver. This can either be the Samsara-specified ID, or an external ID.",
+          "description": "ID of the driver. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `payrollId:ABFS18600`",
           "name": "id",
           "in": "path",
           "required": true
@@ -808,7 +808,7 @@
         "parameters": [
           {
             "type": "string",
-            "description": "ID of the vehicle. This can either be the Samsara-specified ID, or an external ID.",
+            "description": "ID of the vehicle. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `maintenanceId:250020`",
             "name": "id",
             "in": "path",
             "required": true
@@ -3873,15 +3873,7 @@
           "default": false
         },
         "externalIds": {
-          "description": "User-defined dictionary of external IDs (string key-value pairs).",
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
-          "example": {
-            "maintenanceId": "250020",
-            "payrollId": "123"
-          }
+          "$ref": "#/definitions/externalIds"
         },
         "isDeactivated": {
           "description": "A boolean that indicates whether or not this driver is deactivated.",
@@ -4023,15 +4015,7 @@
           "default": false
         },
         "externalIds": {
-          "description": "User-defined dictionary of external IDs (string key-value pairs).",
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
-          "example": {
-            "maintenanceId": "250020",
-            "payrollId": "123"
-          }
+          "$ref": "#/definitions/externalIds"
         },
         "licenseNumber": {
           "description": "Driver's state issued license number. The combination of this number and `licenseState` must be unique.",
@@ -8476,14 +8460,7 @@
           "example": 10943
         },
         "externalIds": {
-          "description": "Dictionary of external IDs (key-value string pairs). Setting a value to \"\" will delete that external ID.",
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
-          "example": {
-            "maintenanceId": "98KJ81F"
-          }
+          "$ref": "#/definitions/externalIds"
         },
         "harshAccelerationSettingType": {
           "description": "Enumeration of the harsh acceleration setting types. This setting influences the accelereation sensitivity from which a harsh event is triggered. If set to `off`, then no acceleration based harsh events are triggered for the vehicle.",
@@ -8590,14 +8567,7 @@
           "example": "plow"
         },
         "externalIds": {
-          "description": "Dictionary of external IDs (key-value string pairs).",
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
-          "example": {
-            "maintenanceId": "98KJ81F"
-          }
+          "$ref": "#/definitions/externalIds"
         },
         "harshAccelerationSettingType": {
           "description": "Enumeration of the harsh acceleration setting types. This setting influences the acceleration sensitivity from which a harsh event is triggered. If set to `off`, then no acceleration based harsh events are triggered for the vehicle.",
@@ -8703,6 +8673,17 @@
           "type": "string",
           "example": "Susan Bob"
         }
+      }
+    },
+    "externalIds": {
+      "description": "User-defined dictionary of external IDs (key-value pairs). Both the keys and the values of the dictionary are of type string and must be alphanumeric. Each organization can have at most 10 unique external ID keys. To delete an external ID, set its value to null or the empty string (`\"\"`). An external ID can be used as a path parameter to retrieve or update that resource.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "example": {
+        "maintenanceId": "250020",
+        "payrollId": "ABFS18600"
       }
     },
     "location": {
