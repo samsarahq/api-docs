@@ -5522,6 +5522,20 @@
         "valueType"
       ],
       "properties": {
+        "dateTimeValue": {
+          "type": "object",
+          "required": [
+            "dateTimeMs"
+          ],
+          "properties": {
+            "dateTimeMs": {
+              "description": "Value of this field if this document field has valueType: ValueType_DateTime.",
+              "type": "integer",
+              "format": "int64",
+              "example": 10855639004823
+            }
+          }
+        },
         "multipleChoiceValue": {
           "description": "Value of this field if this document field has valueType: ValueType_MultipleChoice. Array of objects containing two fields: the string value of the multiple choice option and a boolean representing whether or not the choice was selected",
           "type": "array",
@@ -5570,7 +5584,7 @@
           "example": "This is a string."
         },
         "valueType": {
-          "description": "Determines the type of this field and what type of value this field has. It should be either ValueType_Number, ValueType_String, ValueType_Photo, or ValueType_MultipleChoice.",
+          "description": "Determines the type of this field and what type of value this field has. It should be either ValueType_Number, ValueType_String, ValueType_Photo, ValueType_MultipleChoice or ValueType_DateTime.",
           "type": "string",
           "example": "ValueType_Number"
         }
@@ -8882,6 +8896,16 @@
                 "format": "float",
                 "example": 555.55
               },
+              "enforceAngleRange": {
+                "description": "Whether the edge should be filtered by angle (°).",
+                "type": "boolean",
+                "example": true
+              },
+              "enforceStraightnessRange": {
+                "description": "Whether the edge should be filtered by straightness (%).",
+                "type": "boolean",
+                "example": true
+              },
               "filterPolarity": {
                 "description": "The configured polarity for finding edges",
                 "type": "string",
@@ -9132,6 +9156,16 @@
                     "example": 50
                   }
                 }
+              },
+              "enforceAngleRange": {
+                "description": "Whether the edge should be filtered by angle (°).",
+                "type": "boolean",
+                "example": true
+              },
+              "enforceStraightnessRange": {
+                "description": "Whether the edge should be filtered by straightness (%).",
+                "type": "boolean",
+                "example": true
               },
               "filterPolarity": {
                 "description": "The configured polarity for finding edges",
