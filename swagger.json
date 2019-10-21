@@ -6292,19 +6292,7 @@
           "description": "Defects registered for the trailer which was part of the DVIR.",
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "comment": {
-                "description": "The comment describing the type of DVIR defect",
-                "type": "string",
-                "example": "Air Compressor not working"
-              },
-              "defectType": {
-                "description": "The type of DVIR defect",
-                "type": "string",
-                "example": "Air Compressor"
-              }
-            }
+            "$ref": "#/definitions/DvirDefectBase"
           }
         },
         "trailerId": {
@@ -6343,20 +6331,52 @@
           "description": "Defects registered for the vehicle which was part of the DVIR.",
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "comment": {
-                "description": "The comment describing the type of DVIR defect",
-                "type": "string",
-                "example": "Air Compressor not working"
-              },
-              "defectType": {
-                "description": "The type of DVIR defect",
-                "type": "string",
-                "example": "Air Compressor"
-              }
-            }
+            "$ref": "#/definitions/DvirDefectBase"
           }
+        }
+      }
+    },
+    "DvirDefectBase": {
+      "type": "object",
+      "properties": {
+        "comment": {
+          "description": "The comment describing the type of DVIR defect.",
+          "type": "string",
+          "example": "Air Compressor not working"
+        },
+        "defectType": {
+          "description": "The type of DVIR defect",
+          "type": "string",
+          "example": "AIR_COMPRESSOR"
+        },
+        "id": {
+          "description": "The id of this defect.",
+          "type": "integer",
+          "format": "int64",
+          "example": 18
+        },
+        "resolved": {
+          "description": "Signifies if this defect is resolved.",
+          "type": "boolean",
+          "example": false
+        },
+        "resolvedAt": {
+          "description": "Timestamp when this defect was resolved, in UNIX milliseconds.  Will not be returned if the defect is unresolved.",
+          "type": "integer",
+          "format": "int64",
+          "example": 1453449599999
+        },
+        "resolvedByDriverId": {
+          "description": "ID of the driver who resolved this defect. Will not be returned if the defect is unresolved or resolvedByMechanicId is returned.",
+          "type": "integer",
+          "format": "int64",
+          "example": 2581
+        },
+        "resolvedByMechanicId": {
+          "description": "ID of the mechanic who resolved this defect. Will not be returned if the defect is unresolved or resolvedByDriverId is returned.",
+          "type": "integer",
+          "format": "int64",
+          "example": 14849
         }
       }
     },
@@ -9665,6 +9685,18 @@
             "description": "Whether any previous defects were ignored. If this vehicle or trailer was previously marked unsafe, and this DVIR marks it as safe, either previousDefectsCorrected or previousDefectsIgnored must be true.",
             "type": "boolean",
             "example": false
+          },
+          "resolvedDefectIds": {
+            "description": "List of defect IDs to resolve.  The defects must be associated with the provided vehicle or trailer.",
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "example": [
+              18,
+              19
+            ]
           },
           "safe": {
             "description": "Whether or not this vehicle or trailer is safe to drive.",
