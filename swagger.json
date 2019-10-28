@@ -1339,13 +1339,6 @@
           {
             "type": "integer",
             "format": "int64",
-            "description": "Optional group ID if the organization has multiple groups (uncommon).",
-            "name": "group_id",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "format": "int64",
             "description": "Time in unix milliseconds that represents the oldest routes to return. Used in combination with duration. Defaults to now.",
             "name": "end_time",
             "in": "query"
@@ -1360,7 +1353,7 @@
         ],
         "responses": {
           "200": {
-            "description": "All dispatch route objects for the group.",
+            "description": "All dispatch route objects.",
             "schema": {
               "$ref": "#/definitions/V1DispatchRoutes"
             }
@@ -1415,13 +1408,6 @@
         "summary": "Get route updates",
         "operationId": "V1fetchAllRouteJobUpdates",
         "parameters": [
-          {
-            "type": "integer",
-            "format": "int64",
-            "description": "Optional group ID if the organization has multiple groups (uncommon).",
-            "name": "group_id",
-            "in": "query"
-          },
           {
             "type": "string",
             "description": "Sequence ID from the response payload of the last request. Defaults to fetching updates from last 24 hours.",
@@ -1820,7 +1806,6 @@
             "schema": {
               "type": "object",
               "required": [
-                "groupId",
                 "startMs",
                 "endMs"
               ],
@@ -1830,12 +1815,6 @@
                   "type": "integer",
                   "format": "int64",
                   "example": 1462881998034
-                },
-                "groupId": {
-                  "description": "Group ID to query.",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
                 },
                 "startMs": {
                   "description": "Beginning of the time range, specified in milliseconds UNIX time.",
@@ -1872,13 +1851,6 @@
         "summary": "Get HOS signin and signout",
         "operationId": "V1getFleetHosAuthenticationLogs",
         "parameters": [
-          {
-            "type": "integer",
-            "format": "int64",
-            "description": "Optional group ID if the organization has multiple groups (uncommon).",
-            "name": "groupId",
-            "in": "query"
-          },
           {
             "type": "integer",
             "format": "int64",
@@ -1936,7 +1908,6 @@
             "schema": {
               "type": "object",
               "required": [
-                "groupId",
                 "driverId",
                 "startMs",
                 "endMs"
@@ -1952,12 +1923,6 @@
                   "description": "End of the time range, specified in milliseconds UNIX time.",
                   "type": "integer",
                   "example": 1462881998034
-                },
-                "groupId": {
-                  "description": "Optional group ID if the organization has multiple groups (uncommon).",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
                 },
                 "startMs": {
                   "description": "Beginning of the time range, specified in milliseconds UNIX time.",
@@ -1986,20 +1951,13 @@
     },
     "/v1/fleet/hos_logs_summary": {
       "get": {
-        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nGet the current HOS status for all drivers in the group. Note that this includes inactive as well as active drivers. You may need to upgrade your API token to version 2019-07-31 or later to leverage response pagination. [See here](https://kb.samsara.com/hc/en-us/articles/360026132972-Upgrading-API-Tokens)",
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nGet the current HOS status for all drivers. Note that this includes inactive as well as active drivers. You may need to upgrade your API token to version 2019-07-31 or later to leverage response pagination. [See here](https://kb.samsara.com/hc/en-us/articles/360026132972-Upgrading-API-Tokens)",
         "tags": [
           "Hours of Service"
         ],
         "summary": "Get current HOS status for all drivers",
         "operationId": "V1getFleetHosLogsSummary",
         "parameters": [
-          {
-            "type": "integer",
-            "format": "int64",
-            "description": "Optional group ID if the organization has multiple groups (uncommon).",
-            "name": "groupId",
-            "in": "query"
-          },
           {
             "type": "string",
             "description": "Pagination parameter indicating the cursor position to continue returning results after. Used in conjunction with the 'limit' parameter.",
@@ -2052,13 +2010,6 @@
             "name": "duration_ms",
             "in": "query",
             "required": true
-          },
-          {
-            "type": "integer",
-            "format": "int64",
-            "description": "Optional group ID if the organization has multiple groups (uncommon).",
-            "name": "groupId",
-            "in": "query"
           }
         ],
         "responses": {
@@ -2177,15 +2128,6 @@
         ],
         "summary": "Get vehicles with engine faults or check lights",
         "operationId": "V1getFleetMaintenanceList",
-        "parameters": [
-          {
-            "type": "integer",
-            "format": "int64",
-            "description": "Optional group ID if the organization has multiple groups (uncommon).",
-            "name": "groupId",
-            "in": "query"
-          }
-        ],
         "responses": {
           "200": {
             "description": "List of vehicles and maintenance information about each.",
@@ -2332,13 +2274,6 @@
           {
             "type": "integer",
             "format": "int64",
-            "description": "Optional group ID if the organization has multiple groups (uncommon).",
-            "name": "groupId",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "format": "int64",
             "description": "Vehicle ID to query.",
             "name": "vehicleId",
             "in": "query",
@@ -2473,20 +2408,13 @@
     },
     "/v1/industrial/data": {
       "get": {
-        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch all of the data inputs for a group.",
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch all of the data inputs.",
         "tags": [
           "Industrial"
         ],
         "summary": "Get industrial data",
         "operationId": "V1getAllDataInputs",
         "parameters": [
-          {
-            "type": "integer",
-            "format": "int64",
-            "description": "Optional group ID if the organization has multiple groups (uncommon).",
-            "name": "group_id",
-            "in": "query"
-          },
           {
             "type": "integer",
             "format": "int64",
@@ -2841,7 +2769,7 @@
     },
     "/v1/machines/history": {
       "post": {
-        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nGet historical data for machine objects. This method returns a set of historical data for all machines in a group",
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nGet historical data for machine objects. This method returns a set of historical data for all machines",
         "tags": [
           "Industrial"
         ],
@@ -2849,14 +2777,13 @@
         "operationId": "V1getMachinesHistory",
         "parameters": [
           {
-            "description": "Group ID and time range to query for events",
+            "description": "Time range to query for events",
             "name": "historyParam",
             "in": "body",
             "required": true,
             "schema": {
               "type": "object",
               "required": [
-                "groupId",
                 "startMs",
                 "endMs"
               ],
@@ -2865,12 +2792,6 @@
                   "description": "End of the time range, specified in milliseconds UNIX time.",
                   "type": "integer",
                   "example": 1462881998034
-                },
-                "groupId": {
-                  "description": "Optional group ID if the organization has multiple groups (uncommon).",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
                 },
                 "startMs": {
                   "description": "Beginning of the time range, specified in milliseconds UNIX time.",
@@ -2905,27 +2826,6 @@
         ],
         "summary": "Get machines",
         "operationId": "V1getMachines",
-        "parameters": [
-          {
-            "description": "Optional group ID if the organization has multiple groups (uncommon).",
-            "name": "V1groupIdBodyParam",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "required": [
-                "groupId"
-              ],
-              "properties": {
-                "groupId": {
-                  "description": "Optional group ID if the organization has multiple groups (uncommon).",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
-                }
-              }
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "List of machine objects.",
@@ -4635,7 +4535,6 @@
           "type": "object",
           "required": [
             "id",
-            "group_id",
             "dispatch_route_id",
             "job_state"
           ],
@@ -4689,6 +4588,7 @@
               "example": "https://cloud.samsara.com/fleet/viewer/job/fleet_viewer_token"
             },
             "group_id": {
+              "description": "Deprecated.",
               "type": "integer",
               "format": "int64",
               "example": 101
@@ -4821,7 +4721,6 @@
           "type": "object",
           "required": [
             "id",
-            "group_id",
             "dispatch_route_id",
             "job_state"
           ],
@@ -4869,6 +4768,7 @@
               "example": "https://cloud.samsara.com/fleet/viewer/job/fleet_viewer_token"
             },
             "group_id": {
+              "description": "Deprecated.",
               "type": "integer",
               "format": "int64",
               "example": 101
@@ -4948,7 +4848,7 @@
           "example": 555
         },
         "group_id": {
-          "description": "ID of the group if the organization has multiple groups (optional).",
+          "description": "Deprecated.",
           "type": "integer",
           "format": "int64",
           "example": 101
@@ -5070,12 +4970,6 @@
           "format": "int64",
           "example": 555
         },
-        "group_id": {
-          "description": "ID of the group. This can be found on the API Tokens page.",
-          "type": "integer",
-          "format": "int64",
-          "example": 101
-        },
         "name": {
           "description": "Descriptive name of this route.",
           "type": "string",
@@ -5177,8 +5071,7 @@
         {
           "type": "object",
           "required": [
-            "dispatch_jobs",
-            "group_id"
+            "dispatch_jobs"
           ],
           "properties": {
             "dispatch_jobs": {
@@ -6222,7 +6115,7 @@
                 "example": 444
               },
               "groupId": {
-                "description": "ID of the group.",
+                "description": "Deprecated.",
                 "type": "integer",
                 "format": "int64",
                 "example": 101
