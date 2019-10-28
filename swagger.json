@@ -24,11 +24,6 @@
         ],
         "summary": "/addresses",
         "operationId": "getOrganizationAddresses",
-        "parameters": [
-          {
-            "$ref": "#/parameters/groupIdQueryParam"
-          }
-        ],
         "responses": {
           "200": {
             "description": "List of addresses/geofences. For each address entry, the geofence field will only be populated with either 'circle' or 'polygon', depending on the geofence type.",
@@ -327,7 +322,7 @@
     },
     "/v1/fleet/add_address": {
       "post": {
-        "description": "This method adds an address book entry to the specified group.",
+        "description": "This method adds an address book entry.",
         "tags": [
           "Fleet"
         ],
@@ -341,7 +336,6 @@
             "schema": {
               "type": "object",
               "required": [
-                "groupId",
                 "name",
                 "address",
                 "radius"
@@ -351,12 +345,6 @@
                   "description": "The address of the entry to add, as it would be recognized if provided to maps.google.com.",
                   "type": "string",
                   "example": "501 York St"
-                },
-                "groupId": {
-                  "description": "Optional group ID if the organization has multiple groups (uncommon).",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
                 },
                 "name": {
                   "description": "Name of the location to add to the address book.",
@@ -387,18 +375,13 @@
     },
     "/v1/fleet/assets": {
       "get": {
-        "description": "Fetch all of the assets for the group.",
+        "description": "Fetch all of the assets.",
         "tags": [
           "Fleet",
           "Assets"
         ],
         "summary": "/fleet/assets",
         "operationId": "getAllAssets",
-        "parameters": [
-          {
-            "$ref": "#/parameters/groupIdQueryParam"
-          }
-        ],
         "responses": {
           "200": {
             "description": "List of assets.",
@@ -425,18 +408,13 @@
     },
     "/v1/fleet/assets/locations": {
       "get": {
-        "description": "Fetch current locations of all assets for the group.",
+        "description": "Fetch current locations of all assets.",
         "tags": [
           "Fleet",
           "Assets"
         ],
         "summary": "/fleet/assets/locations",
         "operationId": "getAllAssetCurrentLocations",
-        "parameters": [
-          {
-            "$ref": "#/parameters/groupIdQueryParam"
-          }
-        ],
         "responses": {
           "200": {
             "description": "List of assets and their current locations.",
@@ -588,7 +566,7 @@
     },
     "/v1/fleet/dispatch/routes": {
       "get": {
-        "description": "Fetch all of the dispatch routes for the group.",
+        "description": "Fetch all dispatch routes.",
         "consumes": [
           "application/json"
         ],
@@ -603,9 +581,6 @@
         "operationId": "fetchAllDispatchRoutes",
         "parameters": [
           {
-            "$ref": "#/parameters/groupIdParam"
-          },
-          {
             "$ref": "#/parameters/routeEndTimeParam"
           },
           {
@@ -614,7 +589,7 @@
         ],
         "responses": {
           "200": {
-            "description": "All dispatch route objects for the group.",
+            "description": "All dispatch route objects.",
             "schema": {
               "$ref": "#/definitions/DispatchRoutes"
             }
@@ -678,9 +653,6 @@
         "summary": "/fleet/dispatch/routes/job_updates",
         "operationId": "fetchAllRouteJobUpdates",
         "parameters": [
-          {
-            "$ref": "#/parameters/groupIdParam"
-          },
           {
             "$ref": "#/parameters/lastReceivedSequenceIDParam"
           },
@@ -854,20 +826,15 @@
     },
     "/v1/fleet/drivers": {
       "get": {
-        "description": "Get all the drivers for the specified group.",
+        "description": "Get all drivers.",
         "tags": [
           "Fleet"
         ],
         "summary": "/fleet/drivers",
         "operationId": "getFleetDrivers",
-        "parameters": [
-          {
-            "$ref": "#/parameters/groupIdQueryParam"
-          }
-        ],
         "responses": {
           "200": {
-            "description": "All drivers in the group.",
+            "description": "All drivers.",
             "schema": {
               "$ref": "#/definitions/DriversResponse"
             }
@@ -990,7 +957,7 @@
     },
     "/v1/fleet/drivers/inactive": {
       "get": {
-        "description": "Fetch all deactivated drivers for the group.",
+        "description": "Fetch all deactivated drivers.",
         "consumes": [
           "application/json"
         ],
@@ -1003,14 +970,9 @@
         ],
         "summary": "/fleet/drivers/inactive",
         "operationId": "getAllDeactivatedDrivers",
-        "parameters": [
-          {
-            "$ref": "#/parameters/groupIdQueryParam"
-          }
-        ],
         "responses": {
           "200": {
-            "description": "Returns an array of all deactivated drivers for the group. Deactivated drivers are referenced at /fleet/drivers/inactive/{driver_id}",
+            "description": "Returns an array of all deactivated drivers. Deactivated drivers are referenced at /fleet/drivers/inactive/{driver_id}",
             "schema": {
               "type": "array",
               "items": {
@@ -1498,7 +1460,6 @@
             "schema": {
               "type": "object",
               "required": [
-                "groupId",
                 "startMs",
                 "endMs"
               ],
@@ -1508,12 +1469,6 @@
                   "type": "integer",
                   "format": "int64",
                   "example": 1462881998034
-                },
-                "groupId": {
-                  "description": "Group ID to query.",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
                 },
                 "startMs": {
                   "description": "Beginning of the time range, specified in milliseconds UNIX time.",
@@ -1550,9 +1505,6 @@
         "summary": "/fleet/hos_authentication_logs",
         "operationId": "getFleetHosAuthenticationLogs",
         "parameters": [
-          {
-            "$ref": "#/parameters/groupIdQueryParam"
-          },
           {
             "type": "integer",
             "format": "int64",
@@ -1610,7 +1562,6 @@
             "schema": {
               "type": "object",
               "required": [
-                "groupId",
                 "driverId",
                 "startMs",
                 "endMs"
@@ -1626,12 +1577,6 @@
                   "description": "End of the time range, specified in milliseconds UNIX time.",
                   "type": "integer",
                   "example": 1462881998034
-                },
-                "groupId": {
-                  "description": "Optional group ID if the organization has multiple groups (uncommon).",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
                 },
                 "startMs": {
                   "description": "Beginning of the time range, specified in milliseconds UNIX time.",
@@ -1660,16 +1605,13 @@
     },
     "/v1/fleet/hos_logs_summary": {
       "get": {
-        "description": "Get the current HOS status for all drivers in the group. Note that this includes inactive as well as active drivers. You may need to upgrade your API token to version 2019-07-31 or later to leverage response pagination. [See here](https://kb.samsara.com/hc/en-us/articles/360026132972-Upgrading-API-Tokens)",
+        "description": "Get the current HOS status for all drivers. Note that this includes inactive as well as active drivers. You may need to upgrade your API token to version 2019-07-31 or later to leverage response pagination. [See here](https://kb.samsara.com/hc/en-us/articles/360026132972-Upgrading-API-Tokens)",
         "tags": [
           "Fleet"
         ],
         "summary": "/fleet/hos_logs_summary",
         "operationId": "getFleetHosLogsSummary",
         "parameters": [
-          {
-            "$ref": "#/parameters/groupIdQueryParam"
-          },
           {
             "type": "string",
             "description": "Pagination parameter indicating the cursor position to continue returning results after. Used in conjunction with the 'limit' parameter.",
@@ -1710,9 +1652,6 @@
         "operationId": "listFleet",
         "parameters": [
           {
-            "$ref": "#/parameters/groupIdQueryParam"
-          },
-          {
             "$ref": "#/parameters/paginationStartingAfterParam"
           },
           {
@@ -1729,7 +1668,7 @@
               "type": "object",
               "properties": {
                 "groupId": {
-                  "description": "Optional group ID if the organization has multiple groups (uncommon).",
+                  "description": "Deprecated.",
                   "type": "integer",
                   "format": "int64",
                   "example": 101
@@ -1757,17 +1696,12 @@
     },
     "/v1/fleet/locations": {
       "get": {
-        "description": "Get current location of vehicles in a group. This method returns the current location in latitude and longitude of all vehicles in a requested group.",
+        "description": "Get current location of vehicles.",
         "tags": [
           "Fleet"
         ],
         "summary": "/fleet/locations",
         "operationId": "getFleetLocations",
-        "parameters": [
-          {
-            "$ref": "#/parameters/groupIdQueryParam"
-          }
-        ],
         "responses": {
           "200": {
             "description": "List of vehicle objects containing their location and the time at which that location was logged.",
@@ -1775,7 +1709,7 @@
               "type": "object",
               "properties": {
                 "groupId": {
-                  "description": "Optional group ID if the organization has multiple groups (uncommon).",
+                  "description": "Deprecated.",
                   "type": "integer",
                   "format": "int64",
                   "example": 101
@@ -1820,9 +1754,6 @@
             "name": "duration_ms",
             "in": "query",
             "required": true
-          },
-          {
-            "$ref": "#/parameters/groupIdQueryParam"
           }
         ],
         "responses": {
@@ -1876,11 +1807,6 @@
         ],
         "summary": "/fleet/maintenance/list",
         "operationId": "getFleetMaintenanceList",
-        "parameters": [
-          {
-            "$ref": "#/parameters/groupIdQueryParam"
-          }
-        ],
         "responses": {
           "200": {
             "description": "List of vehicles and maintenance information about each.",
@@ -2163,9 +2089,6 @@
         "operationId": "getFleetTrips",
         "parameters": [
           {
-            "$ref": "#/parameters/groupIdQueryParam"
-          },
-          {
             "type": "integer",
             "format": "int64",
             "description": "Vehicle ID to query.",
@@ -2252,7 +2175,7 @@
     },
     "/v1/fleet/vehicles/stats": {
       "get": {
-        "description": "Fetch engine state and aux input data for all vehicles in the group between a start/end time. This endpoint provides the current state of all vehicles, not just the state changes, during the requested time period. Data returned may be affected by device connectivity and processing time.",
+        "description": "Fetch engine state and aux input data for all vehicles between a start/end time. This endpoint provides the current state of all vehicles, not just the state changes, during the requested time period. Data returned may be affected by device connectivity and processing time.",
         "tags": [
           "Fleet"
         ],
@@ -2302,7 +2225,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Returns engine state and/or aux input data for all vehicles in the group between a start/end time.",
+            "description": "Returns engine state and/or aux input data for all vehicles between a start/end time.",
             "schema": {
               "type": "object",
               "required": [
@@ -2678,7 +2601,7 @@
     },
     "/v1/industrial/data": {
       "get": {
-        "description": "Fetch all of the data inputs for a group.",
+        "description": "Fetch all of the data inputs.",
         "consumes": [
           "application/json"
         ],
@@ -2691,9 +2614,6 @@
         "summary": "/industrial/data",
         "operationId": "getAllDataInputs",
         "parameters": [
-          {
-            "$ref": "#/parameters/groupIdParam"
-          },
           {
             "$ref": "#/parameters/dataInputStartTimeParam"
           },
@@ -3003,7 +2923,7 @@
     },
     "/v1/machines/history": {
       "post": {
-        "description": "Get historical data for machine objects. This method returns a set of historical data for all machines in a group",
+        "description": "Get historical data for machine objects. This method returns a set of historical data for all machines",
         "tags": [
           "Industrial"
         ],
@@ -3011,14 +2931,13 @@
         "operationId": "getMachinesHistory",
         "parameters": [
           {
-            "description": "Group ID and time range to query for events",
+            "description": "Time range to query for events",
             "name": "historyParam",
             "in": "body",
             "required": true,
             "schema": {
               "type": "object",
               "required": [
-                "groupId",
                 "startMs",
                 "endMs"
               ],
@@ -3027,12 +2946,6 @@
                   "description": "End of the time range, specified in milliseconds UNIX time.",
                   "type": "integer",
                   "example": 1462881998034
-                },
-                "groupId": {
-                  "description": "Optional group ID if the organization has multiple groups (uncommon).",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
                 },
                 "startMs": {
                   "description": "Beginning of the time range, specified in milliseconds UNIX time.",
@@ -3067,11 +2980,6 @@
         ],
         "summary": "/machines/list",
         "operationId": "getMachines",
-        "parameters": [
-          {
-            "$ref": "#/parameters/groupIdBodyParam"
-          }
-        ],
         "responses": {
           "200": {
             "description": "List of machine objects.",
@@ -3366,7 +3274,7 @@
     },
     "/v1/tags": {
       "get": {
-        "description": "Fetch all of the tags for a group.",
+        "description": "Fetch all of the tags.",
         "consumes": [
           "application/json"
         ],
@@ -3378,11 +3286,6 @@
         ],
         "summary": "/tags",
         "operationId": "getAllTags",
-        "parameters": [
-          {
-            "$ref": "#/parameters/groupIdQueryParam"
-          }
-        ],
         "responses": {
           "200": {
             "description": "List of tags.",
@@ -3407,7 +3310,7 @@
         }
       },
       "post": {
-        "description": "Create a new tag for the group.",
+        "description": "Create a new tag.",
         "consumes": [
           "application/json"
         ],
@@ -4654,7 +4557,6 @@
           "type": "object",
           "required": [
             "id",
-            "group_id",
             "dispatch_route_id",
             "job_state"
           ],
@@ -4708,6 +4610,7 @@
               "example": "https://cloud.samsara.com/fleet/viewer/job/fleet_viewer_token"
             },
             "group_id": {
+              "description": "Deprecated.",
               "type": "integer",
               "format": "int64",
               "example": 101
@@ -4840,7 +4743,6 @@
           "type": "object",
           "required": [
             "id",
-            "group_id",
             "dispatch_route_id",
             "job_state"
           ],
@@ -4888,6 +4790,7 @@
               "example": "https://cloud.samsara.com/fleet/viewer/job/fleet_viewer_token"
             },
             "group_id": {
+              "description": "Deprecated.",
               "type": "integer",
               "format": "int64",
               "example": 101
@@ -4967,7 +4870,7 @@
           "example": 555
         },
         "group_id": {
-          "description": "ID of the group if the organization has multiple groups (optional).",
+          "description": "Deprecated.",
           "type": "integer",
           "format": "int64",
           "example": 101
@@ -5089,12 +4992,6 @@
           "format": "int64",
           "example": 555
         },
-        "group_id": {
-          "description": "ID of the group. This can be found on the API Tokens page.",
-          "type": "integer",
-          "format": "int64",
-          "example": 101
-        },
         "name": {
           "description": "Descriptive name of this route.",
           "type": "string",
@@ -5196,8 +5093,7 @@
         {
           "type": "object",
           "required": [
-            "dispatch_jobs",
-            "group_id"
+            "dispatch_jobs"
           ],
           "properties": {
             "dispatch_jobs": {
@@ -5790,7 +5686,7 @@
           "$ref": "#/definitions/ExternalIDs"
         },
         "groupId": {
-          "description": "ID of the group if the organization has multiple groups (uncommon).",
+          "description": "Deprecated.",
           "type": "integer",
           "format": "int64",
           "example": 101
@@ -6099,7 +5995,7 @@
                 "example": "fjacobs"
               },
               "groupId": {
-                "description": "Group of the driver.",
+                "description": "Deprecated.",
                 "type": "integer",
                 "format": "int64",
                 "example": 111
@@ -6292,19 +6188,7 @@
           "description": "Defects registered for the trailer which was part of the DVIR.",
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "comment": {
-                "description": "The comment describing the type of DVIR defect",
-                "type": "string",
-                "example": "Air Compressor not working"
-              },
-              "defectType": {
-                "description": "The type of DVIR defect",
-                "type": "string",
-                "example": "Air Compressor"
-              }
-            }
+            "$ref": "#/definitions/DvirDefectBase"
           }
         },
         "trailerId": {
@@ -6343,20 +6227,104 @@
           "description": "Defects registered for the vehicle which was part of the DVIR.",
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "comment": {
-                "description": "The comment describing the type of DVIR defect",
-                "type": "string",
-                "example": "Air Compressor not working"
-              },
-              "defectType": {
-                "description": "The type of DVIR defect",
-                "type": "string",
-                "example": "Air Compressor"
-              }
-            }
+            "$ref": "#/definitions/DvirDefectBase"
           }
+        }
+      }
+    },
+    "DvirDefectBase": {
+      "type": "object",
+      "properties": {
+        "comment": {
+          "description": "The comment describing the type of DVIR defect.",
+          "type": "string",
+          "example": "Air Compressor not working"
+        },
+        "defectType": {
+          "description": "The type of DVIR defect",
+          "type": "string",
+          "enum": [
+            "AIR_COMPRESSOR",
+            "AIR_CONDITIONER",
+            "AIR_LINES",
+            "BATTERY",
+            "BELTS_HOSES",
+            "BRAKE_ACCESSORIES",
+            "BRAKE_CHECK",
+            "BRAKE_CONNECTIONS",
+            "BRAKES",
+            "CLUTCH",
+            "COUPLING_DEVICES",
+            "DEFROSTER_HEATER",
+            "DOORS",
+            "DRIVE_LINE",
+            "EMERGENCY_DOOR_AND_BUZZER",
+            "ENGINE",
+            "ENTRANCE_STEPS",
+            "EXHAUST",
+            "FIFTH_WHEEL",
+            "FIRST_AID_KIT",
+            "FLUID_LEVELS",
+            "FRAME_ASSEMBLY",
+            "FRONT_AXLE",
+            "FUEL_TANKS",
+            "HORN",
+            "INTERIOR_AND_FLOOR",
+            "LANDING_GEAR",
+            "LIGHTS",
+            "MIRRORS",
+            "MUFFLER",
+            "OIL_PRESSURE",
+            "OTHER",
+            "RADIATOR",
+            "REAR_END",
+            "REFLECTORS",
+            "ROOF",
+            "SAFETY_EQUIPMENT",
+            "STARTER",
+            "STEERING",
+            "STOP_ARM_CONTROL",
+            "STOP_ARM",
+            "SUSPENSION",
+            "TIRE_CHAINS",
+            "TIRES",
+            "TRANSMISSION",
+            "TRIP_RECORDER",
+            "WHEELS_RIMS",
+            "WINDOWS",
+            "WINDSHIELD_WIPERS",
+            "UNSET"
+          ],
+          "example": "AIR_COMPRESSOR"
+        },
+        "id": {
+          "description": "The id of this defect.",
+          "type": "integer",
+          "format": "int64",
+          "example": 18
+        },
+        "resolved": {
+          "description": "Signifies if this defect is resolved.",
+          "type": "boolean",
+          "example": true
+        },
+        "resolvedAt": {
+          "description": "Timestamp when this defect was resolved, in UNIX milliseconds.  Will not be returned if the defect is unresolved.",
+          "type": "integer",
+          "format": "int64",
+          "example": 1453449599999
+        },
+        "resolvedByDriverId": {
+          "description": "ID of the driver who resolved this defect. Will not be returned if the defect is unresolved or resolvedByMechanicId is returned.",
+          "type": "integer",
+          "format": "int64",
+          "example": 2581
+        },
+        "resolvedByMechanicId": {
+          "description": "ID of the mechanic who resolved this defect. Will not be returned if the defect is unresolved or resolvedByDriverId is returned.",
+          "type": "integer",
+          "format": "int64",
+          "example": 14849
         }
       }
     },
@@ -6601,7 +6569,7 @@
                 "example": 444
               },
               "groupId": {
-                "description": "ID of the group.",
+                "description": "Deprecated.",
                 "type": "integer",
                 "format": "int64",
                 "example": 101
@@ -7160,7 +7128,7 @@
           }
         },
         "groupId": {
-          "description": "The GroupID that this tag belongs to.",
+          "description": "Deprecated.",
           "type": "integer",
           "format": "int64",
           "example": 2348
@@ -9666,6 +9634,18 @@
             "type": "boolean",
             "example": false
           },
+          "resolvedDefectIds": {
+            "description": "List of defect IDs to resolve.  The defects must be associated with the provided vehicle or trailer.",
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "example": [
+              18,
+              19
+            ]
+          },
           "safe": {
             "description": "Whether or not this vehicle or trailer is safe to drive.",
             "type": "string",
@@ -9852,20 +9832,6 @@
           }
         }
       }
-    },
-    "groupIdParam": {
-      "type": "integer",
-      "format": "int64",
-      "description": "Optional group ID if the organization has multiple groups (uncommon).",
-      "name": "group_id",
-      "in": "query"
-    },
-    "groupIdQueryParam": {
-      "type": "integer",
-      "format": "int64",
-      "description": "Optional group ID if the organization has multiple groups (uncommon).",
-      "name": "groupId",
-      "in": "query"
     },
     "harshEventMsParam": {
       "type": "integer",
