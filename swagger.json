@@ -826,7 +826,7 @@
     },
     "/v1/fleet/drivers": {
       "get": {
-        "description": "Get all drivers.",
+        "description": "Get all *active* drivers. When drivers leave an organization, you can deactivate them. Use [DELETE /v1/fleet/drivers/{id}](#operation/deactivateDriver) to deactivate drivers and [GET /v1/fleet/drivers/inactive](#operation/getAllDeactivatedDrivers) to get inactive drivers. Inactive driver records will still be part of reports such as Hours of Service.",
         "tags": [
           "Fleet"
         ],
@@ -834,7 +834,7 @@
         "operationId": "getFleetDrivers",
         "responses": {
           "200": {
-            "description": "All drivers.",
+            "description": "All active drivers.",
             "schema": {
               "$ref": "#/definitions/DriversResponse"
             }
@@ -957,7 +957,7 @@
     },
     "/v1/fleet/drivers/inactive": {
       "get": {
-        "description": "Fetch all deactivated drivers.",
+        "description": "Get all *inactive* drivers. When drivers leave an organization, you can deactivate them. You can use [DELETE /v1/fleet/drivers/{id}](#operation/deactivateDriver) to deactivate drivers. Inactive driver records will still be part of reports such as Hours of Service.",
         "consumes": [
           "application/json"
         ],
@@ -972,7 +972,7 @@
         "operationId": "getAllDeactivatedDrivers",
         "responses": {
           "200": {
-            "description": "Returns an array of all deactivated drivers. Deactivated drivers are referenced at /fleet/drivers/inactive/{driver_id}",
+            "description": "All inactive drivers.",
             "schema": {
               "type": "array",
               "items": {
@@ -991,7 +991,7 @@
     },
     "/v1/fleet/drivers/inactive/{driver_id_or_external_id}": {
       "get": {
-        "description": "Fetch deactivated driver by id.",
+        "description": "Get an *inactive* driver. When drivers leave an organization, you can deactivate them. You can use [DELETE /v1/fleet/drivers/{id}](#operation/deactivateDriver) to deactivate drivers. You can use [PUT /v1/fleet/drivers/{id}](#operation/reactivateDriverById) to reactivate drivers. Inactive driver records will still be part of reports such as Hours of Service.",
         "consumes": [
           "application/json"
         ],
@@ -1006,7 +1006,7 @@
         "operationId": "getDeactivatedDriverById",
         "responses": {
           "200": {
-            "description": "Returns the deactivated driver with the given driver_id.",
+            "description": "The inactive driver.",
             "schema": {
               "$ref": "#/definitions/Driver"
             }
@@ -1020,7 +1020,7 @@
         }
       },
       "put": {
-        "description": "Reactivate the inactive driver having id.",
+        "description": "Reactivate a driver.",
         "consumes": [
           "application/json"
         ],
@@ -1040,7 +1040,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Returns the reactivated driver, which is now available at /fleet/drivers/{driver_id}.",
+            "description": "The reactivated driver, which is now available at [GET /v1/fleet/drivers/{id}](#operation/getDriverById).",
             "schema": {
               "$ref": "#/definitions/CurrentDriver"
             }
@@ -1168,7 +1168,7 @@
     },
     "/v1/fleet/drivers/{driver_id_or_external_id}": {
       "get": {
-        "description": "Fetch driver by id.",
+        "description": "Get an *active* driver. When drivers leave an organization, you can deactivate them. Use [GET /v1/fleet/drivers/inactive/{id}](#operation/getDeactivatedDriverById) to get an inactive driver, and use [DELETE /v1/fleet/drivers/{id}](#operation/deactivateDriver) to deactivate drivers.",
         "consumes": [
           "application/json"
         ],
@@ -1183,7 +1183,7 @@
         "operationId": "getDriverById",
         "responses": {
           "200": {
-            "description": "Returns the driver for the given driver_id.",
+            "description": "The driver with the given ID.",
             "schema": {
               "$ref": "#/definitions/CurrentDriver"
             }
@@ -1197,7 +1197,7 @@
         }
       },
       "delete": {
-        "description": "Deactivate a driver with the given id.",
+        "description": "Deactivate a driver. You can use [PUT /v1/fleet/drivers/{id}](#operation/reactivateDriverById) to reactivate a driver.",
         "consumes": [
           "application/json"
         ],
@@ -1212,7 +1212,7 @@
         "operationId": "deactivateDriver",
         "responses": {
           "200": {
-            "description": "Successfully deactivated the driver, which is now referenced by /fleet/drivers/inactive/{driver_id}."
+            "description": "Successfully deactivated the driver, which is now referenced by [GET /v1/fleet/drivers/inactive/{id}](#operation/getDeactivatedDriverById)."
           },
           "default": {
             "description": "Unexpected error.",
@@ -1223,7 +1223,7 @@
         }
       },
       "patch": {
-        "description": "Update a driver by id or by external id",
+        "description": "Update a driver. You can update both active and inactive drivers. *Active* drivers are drivers that are currently part of your fleet. *Inactive* drivers are drivers that are not currently part of your fleet. Inactive driver historical data will still be available via different reports such as Hours of Service. Use [DELETE /v1/fleet/drivers/{id}](#operation/deactivateDriver) to deactivate drivers, and [PUT /v1/fleet/drivers/{id}](#operation/reactivateDriverById) to reactivate drivers.",
         "consumes": [
           "application/json"
         ],
@@ -1243,7 +1243,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Returns the updated driver.",
+            "description": "The updated driver.",
             "schema": {
               "$ref": "#/definitions/CurrentDriver"
             }
