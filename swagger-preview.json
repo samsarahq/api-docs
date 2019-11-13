@@ -627,7 +627,7 @@
     },
     "/fleet/vehicles/locations": {
       "get": {
-        "description": "Returns last known location for all vehicles. This can be optionally filtered by tags or specific vehicle IDs.",
+        "description": "Returns last known location for all vehicles (Samsara Vehicle Gateways). This can be optionally filtered by tags or specific vehicle IDs.",
         "tags": [
           "Vehicles"
         ],
@@ -679,7 +679,7 @@
     },
     "/fleet/vehicles/locations/feed": {
       "get": {
-        "description": "Follow a continuous feed of all vehicle locations. In order to follow the feed, you can follow the pagination `endCursor` cursor continuously.  If there is not yet a `hasNextPage=true` for the feed follow, then we recommend you wait and retry in 5 seconds.",
+        "description": "Follow a continuous feed of all vehicle locations from Samsara Vehicle Gateways.\n\nYour first call to this endpoint will provide you with the most recent location for each vehicle and a `pagination` object that contains an `endCursor`.\n\nYou can provide the `endCursor` to the `after` parameter of this endpoint to get location updates since that `endCursor`. \n\nIf `hasNextPage` is `false`, no updates are readily available yet. Each stat type has a different refresh rate, but in general we'd suggest waiting a minimum of 5 seconds before requesting updates.\n\nSee [this guide](https://developers.samsara.com/docs/vehicle-locations#section-follow-a-real-time-feed-of-vehicle-locations) for more details.",
         "tags": [
           "Vehicles"
         ],
@@ -731,7 +731,7 @@
     },
     "/fleet/vehicles/locations/history": {
       "get": {
-        "description": "Returns all known vehicle location changes during the given time range for all vehicles. This can be optionally filtered by tags or specific vehicle IDs.",
+        "description": "Returns all known vehicle location changes during the given time range for all vehicles (Samsara Vehicle Gateways). This can be optionally filtered by tags or specific vehicle IDs.",
         "tags": [
           "Vehicles"
         ],
