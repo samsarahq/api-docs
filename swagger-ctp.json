@@ -797,89 +797,6 @@
         }
       }
     },
-    "/fleet/vehicles/stats": {
-      "get": {
-        "description": "Returns last known stats for all vehicles. This can be optionally filtered by tags or specific vehicle IDs.",
-        "tags": [
-          "Vehicles"
-        ],
-        "summary": "List most recent vehicle stats",
-        "operationId": "getVehicleStatsSnapshot",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
-            "name": "after",
-            "in": "query"
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "description": "A comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
-            "name": "tagIds",
-            "in": "query"
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "description": "A comma-separated list of vehicle IDs. Example: `vehicleIds=1234,5678`",
-            "name": "vehicleIds",
-            "in": "query"
-          },
-          {
-            "enum": [
-              "engineStates",
-              "fuelPercents",
-              "obdOdometerMeters",
-              "gpsOdometerMeters",
-              "obdEngineSeconds",
-              "gatewayEngineSeconds",
-              "ctpSmogTestData"
-            ],
-            "type": "string",
-            "description": "Which stat type you want to query on.",
-            "name": "types",
-            "in": "query",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of all vehicle stat objects and pagination parameters",
-            "schema": {
-              "properties": {
-                "data": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/VehicleStatsSnapshotResponse"
-                  }
-                },
-                "pagination": {
-                  "type": "object",
-                  "allOf": [
-                    {
-                      "$ref": "#/definitions/paginationResponse"
-                    }
-                  ]
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "Error response",
-            "schema": {
-              "$ref": "#/definitions/standardErrorResponse"
-            }
-          }
-        }
-      }
-    },
     "/fleet/vehicles/stats/feed": {
       "get": {
         "description": "Follow a continuous feed of all vehicle stats. In order to follow the feed, you can follow the pagination `endCursor` cursor continuously.  If there is not yet a `hasNextPage=true` for the feed follow, then we recommend you wait and retry in 5 seconds.",
@@ -929,7 +846,6 @@
               "obdOdometerMeters",
               "gpsOdometerMeters",
               "obdEngineSeconds",
-              "gatewayEngineSeconds",
               "ctpSmogTestData"
             ],
             "type": "string",
@@ -1013,7 +929,6 @@
               "obdOdometerMeters",
               "gpsOdometerMeters",
               "obdEngineSeconds",
-              "gatewayEngineSeconds",
               "ctpSmogTestData"
             ],
             "type": "string",
@@ -8840,31 +8755,6 @@
         }
       }
     },
-    "VehicleGatewayEngineSeconds": {
-      "type": "object",
-      "properties": {
-        "time": {
-          "$ref": "#/definitions/time"
-        },
-        "value": {
-          "description": "Number of seconds the vehicle's engine has been on according to the engine state changes reported to the vehicle gateway and the manually-specified engine seconds reading.",
-          "type": "integer",
-          "example": "9723103"
-        }
-      }
-    },
-    "VehicleGatewayEngineSecondsWrapper": {
-      "type": "object",
-      "properties": {
-        "gatewayEngineSeconds": {
-          "description": "Stat points for the number of seconds the vehicle's engine has been on, calculated based on a manually-specified engine seconds reading and the number of seconds the vehicle has been on according to the engine state changes reported to the vehicle gateway since that reading was set. This stat will not be present for any vehicle that does not have the engine seconds reading set. The engine seconds reading can be set from the UI on the vehicle details page.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/VehicleGatewayEngineSeconds"
-          }
-        }
-      }
-    },
     "VehicleGpsOdometerMeters": {
       "type": "object",
       "properties": {
@@ -9308,9 +9198,6 @@
                 "$ref": "#/definitions/VehicleObdEngineSecondsWrapper"
               },
               {
-                "$ref": "#/definitions/VehicleGatewayEngineSecondsWrapper"
-              },
-              {
                 "$ref": "#/definitions/VehicleCtpSmogTestDataWrapper"
               }
             ]
@@ -9325,71 +9212,6 @@
           ]
         }
       }
-    },
-    "VehicleStatsSnapshotResponse": {
-      "description": "List of vehicles with stats.",
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/vehicleTinyResponse"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "ctpSmogTestData": {
-              "$ref": "#/definitions/VehicleCtpSmogTestData"
-            },
-            "engineStates": {
-              "type": "object",
-              "allOf": [
-                {
-                  "$ref": "#/definitions/VehicleEngineState"
-                }
-              ]
-            },
-            "fuelPercents": {
-              "type": "object",
-              "allOf": [
-                {
-                  "$ref": "#/definitions/VehicleFuelPercent"
-                }
-              ]
-            },
-            "gatewayEngineSeconds": {
-              "type": "object",
-              "allOf": [
-                {
-                  "$ref": "#/definitions/VehicleGatewayEngineSeconds"
-                }
-              ]
-            },
-            "gpsOdometerMeters": {
-              "type": "object",
-              "allOf": [
-                {
-                  "$ref": "#/definitions/VehicleGpsOdometerMeters"
-                }
-              ]
-            },
-            "obdEngineSeconds": {
-              "type": "object",
-              "allOf": [
-                {
-                  "$ref": "#/definitions/VehicleObdEngineSeconds"
-                }
-              ]
-            },
-            "obdOdometerMeters": {
-              "type": "object",
-              "allOf": [
-                {
-                  "$ref": "#/definitions/VehicleObdOdometerMeters"
-                }
-              ]
-            }
-          }
-        }
-      ]
     },
     "contactTinyResponse": {
       "description": "A minified contact object",
