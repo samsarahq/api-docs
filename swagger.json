@@ -4135,10 +4135,11 @@
           "example": "Reefer 123"
         },
         "reeferStats": {
+          "description": "Contains all the state changes of the reefer for the included stat types. Each state change is recorded independently, so the number of records in each array may differ depending on when that stat changed state. Stat types with a continuous value (such as temperature) will be recorded at different rates depending on the reefer, but generally readings have a frequency on the order of seconds.",
           "type": "object",
           "properties": {
             "ambientAirTemperature": {
-              "description": "Ambient temperature of the reefer",
+              "description": "Ambient temperature of the reefer. This is the temperature of the air around the Samsara Asset Gateway.",
               "type": "array",
               "items": {
                 "type": "object",
@@ -4150,7 +4151,7 @@
                     "example": 1453449599999
                   },
                   "tempInMilliC": {
-                    "description": "Set point temperature in millidegree Celsius.",
+                    "description": "Ambient temperature in millidegree Celsius.",
                     "type": "integer",
                     "format": "int64",
                     "example": 31110
@@ -4159,7 +4160,7 @@
               }
             },
             "dischargeAirTemperature": {
-              "description": "Discharge air temperature of the reefer",
+              "description": "Discharge air temperature of the reefer. This is the temperature of the air as it leaves the cooling unit.",
               "type": "array",
               "items": {
                 "type": "object",
@@ -4171,7 +4172,7 @@
                     "example": 1453449599999
                   },
                   "tempInMilliC": {
-                    "description": "Set point temperature in millidegree Celsius.",
+                    "description": "Discharge temperature in millidegree Celsius.",
                     "type": "integer",
                     "format": "int64",
                     "example": 31110
@@ -4236,6 +4237,12 @@
                   "status": {
                     "description": "Power status of the reefer.",
                     "type": "string",
+                    "enum": [
+                      "Off",
+                      "Active",
+                      "Active (Start/Stop)",
+                      "Active (Continuous)"
+                    ],
                     "example": "Active (Continuous)"
                   }
                 }
@@ -4287,7 +4294,7 @@
               }
             },
             "returnAirTemperature": {
-              "description": "Return air temperature of the reefer",
+              "description": "Return air temperature of the reefer. This is the temperature read by the reefer module (Carrier, Thermo King) that shows the temperature of the air as it enters the system.",
               "type": "array",
               "items": {
                 "type": "object",
