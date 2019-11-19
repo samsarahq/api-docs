@@ -1999,14 +1999,14 @@
         "parameters": [
           {
             "type": "integer",
-            "description": "time in millis until the last dvir log.",
+            "description": "Time in millis until the last dvir log.",
             "name": "end_ms",
             "in": "query",
             "required": true
           },
           {
             "type": "integer",
-            "description": "time in millis which corresponds to the duration before the end_ms.",
+            "description": "Time in millis which corresponds to the duration before the end_ms.",
             "name": "duration_ms",
             "in": "query",
             "required": true
@@ -2032,12 +2032,12 @@
         "tags": [
           "Maintenance"
         ],
-        "summary": "Create a new DVIR",
+        "summary": "Create a DVIR",
         "operationId": "V1createDvir",
         "parameters": [
           {
             "description": "DVIR creation body",
-            "name": "V1createDvirParam",
+            "name": "createDvirParam",
             "in": "body",
             "required": true,
             "schema": {
@@ -2075,6 +2075,18 @@
                   "description": "Whether any previous defects were ignored. If this vehicle or trailer was previously marked unsafe, and this DVIR marks it as safe, either previousDefectsCorrected or previousDefectsIgnored must be true.",
                   "type": "boolean",
                   "example": false
+                },
+                "resolvedDefectIds": {
+                  "description": "List of defect IDs to resolve.  The defects must be associated with the provided vehicle or trailer.",
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "example": [
+                    18,
+                    19
+                  ]
                 },
                 "safe": {
                   "description": "Whether or not this vehicle or trailer is safe to drive.",
@@ -5902,19 +5914,7 @@
           "description": "Defects registered for the trailer which was part of the DVIR.",
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "comment": {
-                "description": "The comment describing the type of DVIR defect",
-                "type": "string",
-                "example": "Air Compressor not working"
-              },
-              "defectType": {
-                "description": "The type of DVIR defect. Possible values: [`AIR_COMPRESSOR`, `AIR_CONDITIONER`, `AIR_LINES`, `BATTERY`, `BELTS_HOSES`, `BRAKE_ACCESSORIES`, `BRAKE_CHECK`, `BRAKE_CONNECTIONS`, `BRAKES`, `CLUTCH`, `COUPLING_DEVICES`, `DEFROSTER_HEATER`, `DOORS`, `DRIVE_LINE`, `EMERGENCY_DOOR_AND_BUZZER`, `ENGINE`, `ENTRANCE_STEPS`, `EXHAUST`, `FIFTH_WHEEL`, `FIRST_AID_KIT`, `FLUID_LEVELS`, `FRAME_ASSEMBLY`, `FRONT_AXLE`, `FUEL_TANKS`, `HORN`, `INTERIOR_AND_FLOOR`, `LANDING_GEAR`, `LIGHTS`, `MIRRORS`, `MUFFLER`, `OIL_PRESSURE`, `OTHER`, `RADIATOR`, `REAR_END`, `REFLECTORS`, `ROOF`, `SAFETY_EQUIPMENT`, `STARTER`, `STEERING`, `STOP_ARM_CONTROL`, `STOP_ARM`, `SUSPENSION`, `TIRE_CHAINS`, `TIRES`, `TRANSMISSION`, `TRIP_RECORDER`, `WHEELS_RIMS`, `WINDOWS`, `WINDSHIELD_WIPERS`, `UNSET`]",
-                "type": "string",
-                "example": "AIR_COMPRESSOR"
-              }
-            }
+            "$ref": "#/definitions/V1DvirDefectBase"
           }
         },
         "trailerId": {
@@ -5953,20 +5953,52 @@
           "description": "Defects registered for the vehicle which was part of the DVIR.",
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "comment": {
-                "description": "The comment describing the type of DVIR defect",
-                "type": "string",
-                "example": "Air Compressor not working"
-              },
-              "defectType": {
-                "description": "The type of DVIR defect.  Possible values: [`AIR_COMPRESSOR`,`AIR_CONDITIONER`,`AIR_LINES`,`BATTERY`,`BELTS_HOSES`,`BRAKE_ACCESSORIES`,`BRAKE_CHECK`,`BRAKE_CONNECTIONS`,`BRAKES`,`CLUTCH`,`COUPLING_DEVICES`,`DEFROSTER_HEATER`,`DOORS`,`DRIVE_LINE`,`EMERGENCY_DOOR_AND_BUZZER`,`ENGINE`,`ENTRANCE_STEPS`,`EXHAUST`,`FIFTH_WHEEL`,`FIRST_AID_KIT`,`FLUID_LEVELS`,`FRAME_ASSEMBLY`,`FRONT_AXLE`,`FUEL_TANKS`,`HORN`,`INTERIOR_AND_FLOOR`,`LANDING_GEAR`,`LIGHTS`,`MIRRORS`,`MUFFLER`,`OIL_PRESSURE`,`OTHER`,`RADIATOR`,`REAR_END`,`REFLECTORS`,`ROOF`,`SAFETY_EQUIPMENT`,`STARTER`,`STEERING`,`STOP_ARM_CONTROL`,`STOP_ARM`,`SUSPENSION`,`TIRE_CHAINS`,`TIRES`,`TRANSMISSION`,`TRIP_RECORDER`,`WHEELS_RIMS`,`WINDOWS`,`WINDSHIELD_WIPERS`,`UNSET`]",
-                "type": "string",
-                "example": "AIR_COMPRESSOR"
-              }
-            }
+            "$ref": "#/definitions/V1DvirDefectBase"
           }
+        }
+      }
+    },
+    "V1DvirDefectBase": {
+      "type": "object",
+      "properties": {
+        "comment": {
+          "description": "The comment describing the type of DVIR defect.",
+          "type": "string",
+          "example": "Air Compressor not working"
+        },
+        "defectType": {
+          "description": "The type of DVIR defect. Possible values: [`AIR_COMPRESSOR`, `AIR_CONDITIONER`, `AIR_LINES`, `BATTERY`, `BELTS_HOSES`, `BRAKE_ACCESSORIES`, `BRAKE_CHECK`, `BRAKE_CONNECTIONS`, `BRAKES`, `CLUTCH`, `COUPLING_DEVICES`, `DEFROSTER_HEATER`, `DOORS`, `DRIVE_LINE`, `EMERGENCY_DOOR_AND_BUZZER`, `ENGINE`, `ENTRANCE_STEPS`, `EXHAUST`, `FIFTH_WHEEL`, `FIRST_AID_KIT`, `FLUID_LEVELS`, `FRAME_ASSEMBLY`, `FRONT_AXLE`, `FUEL_TANKS`, `HORN`, `INTERIOR_AND_FLOOR`, `LANDING_GEAR`, `LIGHTS`, `MIRRORS`, `MUFFLER`, `OIL_PRESSURE`, `OTHER`, `RADIATOR`, `REAR_END`, `REFLECTORS`, `ROOF`, `SAFETY_EQUIPMENT`, `STARTER`, `STEERING`, `STOP_ARM_CONTROL`, `STOP_ARM`, `SUSPENSION`, `TIRE_CHAINS`, `TIRES`, `TRANSMISSION`, `TRIP_RECORDER`, `WHEELS_RIMS`, `WINDOWS`, `WINDSHIELD_WIPERS`, `UNSET`]",
+          "type": "string",
+          "example": "AIR_COMPRESSOR"
+        },
+        "id": {
+          "description": "The id of this defect.",
+          "type": "integer",
+          "format": "int64",
+          "example": 18
+        },
+        "resolved": {
+          "description": "Signifies if this defect is resolved.",
+          "type": "boolean",
+          "example": true
+        },
+        "resolvedAt": {
+          "description": "Timestamp when this defect was resolved, in UNIX milliseconds.  Will not be returned if the defect is unresolved.",
+          "type": "integer",
+          "format": "int64",
+          "example": 1453449599999
+        },
+        "resolvedByDriverId": {
+          "description": "ID of the driver who resolved this defect. Will not be returned if the defect is unresolved or resolvedByMechanicId is returned.",
+          "type": "integer",
+          "format": "int64",
+          "example": 2581
+        },
+        "resolvedByMechanicId": {
+          "description": "ID of the mechanic who resolved this defect. Will not be returned if the defect is unresolved or resolvedByDriverId is returned.",
+          "type": "integer",
+          "format": "int64",
+          "example": 14849
         }
       }
     },
@@ -8694,7 +8726,7 @@
   "parameters": {
     "V1createDvirParam": {
       "description": "DVIR creation body",
-      "name": "V1createDvirParam",
+      "name": "createDvirParam",
       "in": "body",
       "required": true,
       "schema": {
@@ -8732,6 +8764,18 @@
             "description": "Whether any previous defects were ignored. If this vehicle or trailer was previously marked unsafe, and this DVIR marks it as safe, either previousDefectsCorrected or previousDefectsIgnored must be true.",
             "type": "boolean",
             "example": false
+          },
+          "resolvedDefectIds": {
+            "description": "List of defect IDs to resolve.  The defects must be associated with the provided vehicle or trailer.",
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "example": [
+              18,
+              19
+            ]
           },
           "safe": {
             "description": "Whether or not this vehicle or trailer is safe to drive.",
