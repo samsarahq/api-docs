@@ -4254,9 +4254,11 @@
                         "PENDING",
                         "ACCEPTED",
                         "REJECTED",
+                        "QUEUED",
                         "UNASSIGNED",
                         "UNKNOWN",
-                        "ANNOTATED"
+                        "ANNOTATED",
+                        "MULTIPLE"
                     ],
                     "example": "PENDING"
                 },
@@ -4264,6 +4266,18 @@
                     "type": "integer",
                     "format": "int64",
                     "example": 1523059200000
+                },
+                "dutyStatus": {
+                    "type": "string",
+                    "description": "The Hours of Service status type.",
+                    "enum": ["DRIVING", "PERSONAL_CONVEYANCE", "YARD_MOVE"],
+                    "example": "DRIVING"
+                  },
+                  "segments": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/UnassignedDrivingSegment"
+                    }
                 }
             }
         },
@@ -4600,7 +4614,7 @@
                 "eldPcEnabled": {
                     "type": "boolean",
                     "description": "Flag indicating this driver may select the Personal Conveyance duty status in HOS logs.",
-                    "default": false,
+                    "default": false
                 },
                 "eldYmEnabled": {
                     "type": "boolean",
