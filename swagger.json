@@ -566,7 +566,7 @@
     },
     "/v1/fleet/dispatch/routes": {
       "get": {
-        "description": "Fetch all dispatch routes.",
+        "description": "Fetch all dispatch routes for a given time period. The time period is defined as `end_time` and the `duration` before which to query.\n\nRoutes are returned if the route's `scheduled_start_ms` and `scheduled_end_ms` overlap with the requested time period.\n\nMore concretely, if the route's `scheduled_start_ms` is before `end_time` and the `scheduled_end_ms` is within or after the given duration, then the route is returned.",
         "consumes": [
           "application/json"
         ],
@@ -9863,7 +9863,7 @@
     "routeEndTimeParam": {
       "type": "integer",
       "format": "int64",
-      "description": "Time in unix milliseconds that represents the oldest routes to return. Used in combination with duration. Defaults to now.",
+      "description": "Time in unix milliseconds that represents the end time of the requested time interval. See above for a description of how routes are returned. Defaults to now.",
       "name": "end_time",
       "in": "query"
     },
