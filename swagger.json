@@ -3120,14 +3120,13 @@
         "operationId": "getSensorsHistory",
         "parameters": [
           {
-            "description": "Group ID, time range and resolution, and list of sensor ID, field pairs to query.",
+            "description": "Time range and resolution, and list of sensor ID, field pairs to query.",
             "name": "historyParam",
             "in": "body",
             "required": true,
             "schema": {
               "type": "object",
               "required": [
-                "groupId",
                 "startMs",
                 "endMs",
                 "stepMs",
@@ -3146,12 +3145,6 @@
                     "withNull",
                     "withPrevious"
                   ]
-                },
-                "groupId": {
-                  "description": "Group ID",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
                 },
                 "series": {
                   "type": "array",
@@ -3262,11 +3255,6 @@
         ],
         "summary": "/sensors/list",
         "operationId": "getSensors",
-        "parameters": [
-          {
-            "$ref": "#/parameters/groupIdBodyParam"
-          }
-        ],
         "responses": {
           "200": {
             "description": "List of sensor objects.",
@@ -4444,6 +4432,7 @@
       "type": "object",
       "properties": {
         "groupId": {
+          "description": "Deprecated.",
           "type": "integer",
           "format": "int64",
           "example": 101
@@ -5614,6 +5603,7 @@
       "type": "object",
       "properties": {
         "groupId": {
+          "description": "Deprecated.",
           "type": "integer",
           "format": "int64",
           "example": 101
@@ -6770,6 +6760,7 @@
       "type": "object",
       "properties": {
         "groupId": {
+          "description": "Deprecated.",
           "type": "integer",
           "format": "int64",
           "example": 101
@@ -7599,6 +7590,7 @@
       "type": "object",
       "properties": {
         "groupId": {
+          "description": "Deprecated.",
           "type": "integer",
           "format": "int64",
           "example": 101
@@ -9817,25 +9809,6 @@
       "name": "endMs",
       "in": "query"
     },
-    "groupIdBodyParam": {
-      "description": "Group ID",
-      "name": "groupIdBodyParam",
-      "in": "body",
-      "schema": {
-        "type": "object",
-        "required": [
-          "groupId"
-        ],
-        "properties": {
-          "groupId": {
-            "description": "Group ID",
-            "type": "integer",
-            "format": "int64",
-            "example": 101
-          }
-        }
-      }
-    },
     "harshEventMsParam": {
       "type": "integer",
       "format": "int64",
@@ -9954,23 +9927,16 @@
       "required": true
     },
     "sensorParam": {
-      "description": "Group ID and list of sensor IDs to query.",
+      "description": "List of sensor IDs to query.",
       "name": "sensorParam",
       "in": "body",
       "required": true,
       "schema": {
         "type": "object",
         "required": [
-          "groupId",
           "sensors"
         ],
         "properties": {
-          "groupId": {
-            "description": "Group ID",
-            "type": "integer",
-            "format": "int64",
-            "example": 101
-          },
           "sensors": {
             "description": "List of sensor IDs to query.",
             "type": "array",
