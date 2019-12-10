@@ -3102,23 +3102,16 @@
         "operationId": "V1getSensorsCargo",
         "parameters": [
           {
-            "description": "Group ID and list of sensor IDs to query.",
+            "description": "List of sensor IDs to query.",
             "name": "V1sensorParam",
             "in": "body",
             "required": true,
             "schema": {
               "type": "object",
               "required": [
-                "groupId",
                 "sensors"
               ],
               "properties": {
-                "groupId": {
-                  "description": "Group ID",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
-                },
                 "sensors": {
                   "description": "List of sensor IDs to query.",
                   "type": "array",
@@ -3160,23 +3153,16 @@
         "operationId": "V1getSensorsDoor",
         "parameters": [
           {
-            "description": "Group ID and list of sensor IDs to query.",
+            "description": "List of sensor IDs to query.",
             "name": "V1sensorParam",
             "in": "body",
             "required": true,
             "schema": {
               "type": "object",
               "required": [
-                "groupId",
                 "sensors"
               ],
               "properties": {
-                "groupId": {
-                  "description": "Group ID",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
-                },
                 "sensors": {
                   "description": "List of sensor IDs to query.",
                   "type": "array",
@@ -3218,14 +3204,13 @@
         "operationId": "V1getSensorsHistory",
         "parameters": [
           {
-            "description": "Group ID, time range and resolution, and list of sensor ID, field pairs to query.",
+            "description": "Time range and resolution, and list of sensor ID, field pairs to query.",
             "name": "historyParam",
             "in": "body",
             "required": true,
             "schema": {
               "type": "object",
               "required": [
-                "groupId",
                 "startMs",
                 "endMs",
                 "stepMs",
@@ -3244,12 +3229,6 @@
                     "withNull",
                     "withPrevious"
                   ]
-                },
-                "groupId": {
-                  "description": "Group ID",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
                 },
                 "series": {
                   "type": "array",
@@ -3333,23 +3312,16 @@
         "operationId": "V1getSensorsHumidity",
         "parameters": [
           {
-            "description": "Group ID and list of sensor IDs to query.",
+            "description": "List of sensor IDs to query.",
             "name": "V1sensorParam",
             "in": "body",
             "required": true,
             "schema": {
               "type": "object",
               "required": [
-                "groupId",
                 "sensors"
               ],
               "properties": {
-                "groupId": {
-                  "description": "Group ID",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
-                },
                 "sensors": {
                   "description": "List of sensor IDs to query.",
                   "type": "array",
@@ -3389,27 +3361,6 @@
         ],
         "summary": "Get all sensors",
         "operationId": "V1getSensors",
-        "parameters": [
-          {
-            "description": "Group ID",
-            "name": "V1groupIdBodyParam",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "required": [
-                "groupId"
-              ],
-              "properties": {
-                "groupId": {
-                  "description": "Group ID",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
-                }
-              }
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "List of sensor objects.",
@@ -3444,23 +3395,16 @@
         "operationId": "V1getSensorsTemperature",
         "parameters": [
           {
-            "description": "Group ID and list of sensor IDs to query.",
+            "description": "List of sensor IDs to query.",
             "name": "V1sensorParam",
             "in": "body",
             "required": true,
             "schema": {
               "type": "object",
               "required": [
-                "groupId",
                 "sensors"
               ],
               "properties": {
-                "groupId": {
-                  "description": "Group ID",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
-                },
                 "sensors": {
                   "description": "List of sensor IDs to query.",
                   "type": "array",
@@ -4976,6 +4920,7 @@
       "type": "object",
       "properties": {
         "groupId": {
+          "description": "Deprecated.",
           "type": "integer",
           "format": "int64",
           "example": 101
@@ -6066,6 +6011,7 @@
       "type": "object",
       "properties": {
         "groupId": {
+          "description": "Deprecated.",
           "type": "integer",
           "format": "int64",
           "example": 101
@@ -6863,6 +6809,7 @@
       "type": "object",
       "properties": {
         "groupId": {
+          "description": "Deprecated.",
           "type": "integer",
           "format": "int64",
           "example": 101
@@ -7171,6 +7118,7 @@
       "type": "object",
       "properties": {
         "groupId": {
+          "description": "Deprecated.",
           "type": "integer",
           "format": "int64",
           "example": 101
@@ -9681,39 +9629,6 @@
       "name": "endMs",
       "in": "query"
     },
-    "V1groupIdBodyParam": {
-      "description": "Group ID",
-      "name": "V1groupIdBodyParam",
-      "in": "body",
-      "schema": {
-        "type": "object",
-        "required": [
-          "groupId"
-        ],
-        "properties": {
-          "groupId": {
-            "description": "Group ID",
-            "type": "integer",
-            "format": "int64",
-            "example": 101
-          }
-        }
-      }
-    },
-    "V1groupIdParam": {
-      "type": "integer",
-      "format": "int64",
-      "description": "Group ID",
-      "name": "group_id",
-      "in": "query"
-    },
-    "V1groupIdQueryParam": {
-      "type": "integer",
-      "format": "int64",
-      "description": "Group ID",
-      "name": "groupId",
-      "in": "query"
-    },
     "V1harshEventMsParam": {
       "type": "integer",
       "format": "int64",
@@ -9795,23 +9710,16 @@
       "required": true
     },
     "V1sensorParam": {
-      "description": "Group ID and list of sensor IDs to query.",
+      "description": "List of sensor IDs to query.",
       "name": "V1sensorParam",
       "in": "body",
       "required": true,
       "schema": {
         "type": "object",
         "required": [
-          "groupId",
           "sensors"
         ],
         "properties": {
-          "groupId": {
-            "description": "Group ID",
-            "type": "integer",
-            "format": "int64",
-            "example": 101
-          },
           "sensors": {
             "description": "List of sensor IDs to query.",
             "type": "array",
