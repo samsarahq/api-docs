@@ -47,7 +47,7 @@
               "type": "string"
             },
             "collectionFormat": "csv",
-            "description": "A comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
             "name": "tagIds",
             "in": "query"
           }
@@ -430,7 +430,7 @@
               "type": "string"
             },
             "collectionFormat": "csv",
-            "description": "A comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
             "name": "tagIds",
             "in": "query"
           }
@@ -604,7 +604,7 @@
               "type": "string"
             },
             "collectionFormat": "csv",
-            "description": "A comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
             "name": "tagIds",
             "in": "query"
           }
@@ -646,7 +646,7 @@
               "type": "string"
             },
             "collectionFormat": "csv",
-            "description": "A comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
             "name": "tagIds",
             "in": "query"
           },
@@ -656,7 +656,7 @@
               "type": "string"
             },
             "collectionFormat": "csv",
-            "description": "A comma-separated list of vehicle IDs. Example: `vehicleIds=1234,5678`",
+            "description": "A filter on the data based on this comma-separated list of vehicle IDs. Example: `vehicleIds=1234,5678`",
             "name": "vehicleIds",
             "in": "query"
           }
@@ -698,7 +698,7 @@
               "type": "string"
             },
             "collectionFormat": "csv",
-            "description": "A comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
             "name": "tagIds",
             "in": "query"
           },
@@ -708,7 +708,7 @@
               "type": "string"
             },
             "collectionFormat": "csv",
-            "description": "A comma-separated list of vehicle IDs. Example: `vehicleIds=1234,5678`",
+            "description": "A filter on the data based on this comma-separated list of vehicle IDs. Example: `vehicleIds=1234,5678`",
             "name": "vehicleIds",
             "in": "query"
           }
@@ -766,7 +766,7 @@
               "type": "string"
             },
             "collectionFormat": "csv",
-            "description": "A comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
             "name": "tagIds",
             "in": "query"
           },
@@ -776,7 +776,7 @@
               "type": "string"
             },
             "collectionFormat": "csv",
-            "description": "A comma-separated list of vehicle IDs. Example: `vehicleIds=1234,5678`",
+            "description": "A filter on the data based on this comma-separated list of vehicle IDs. Example: `vehicleIds=1234,5678`",
             "name": "vehicleIds",
             "in": "query"
           }
@@ -818,7 +818,7 @@
               "type": "string"
             },
             "collectionFormat": "csv",
-            "description": "A comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
             "name": "tagIds",
             "in": "query"
           },
@@ -828,7 +828,7 @@
               "type": "string"
             },
             "collectionFormat": "csv",
-            "description": "A comma-separated list of vehicle IDs. Example: `vehicleIds=1234,5678`",
+            "description": "A filter on the data based on this comma-separated list of vehicle IDs. Example: `vehicleIds=1234,5678`",
             "name": "vehicleIds",
             "in": "query"
           },
@@ -838,10 +838,11 @@
               "fuelPercents",
               "obdOdometerMeters",
               "gpsOdometerMeters",
-              "obdEngineSeconds"
+              "obdEngineSeconds",
+              "gpsDistanceMeters"
             ],
             "type": "string",
-            "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.",
+            "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.",
             "name": "types",
             "in": "query",
             "required": true
@@ -900,7 +901,7 @@
               "type": "string"
             },
             "collectionFormat": "csv",
-            "description": "A comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
             "name": "tagIds",
             "in": "query"
           },
@@ -910,7 +911,7 @@
               "type": "string"
             },
             "collectionFormat": "csv",
-            "description": "A comma-separated list of vehicle IDs. Example: `vehicleIds=1234,5678`",
+            "description": "A filter on the data based on this comma-separated list of vehicle IDs. Example: `vehicleIds=1234,5678`",
             "name": "vehicleIds",
             "in": "query"
           },
@@ -920,10 +921,11 @@
               "fuelPercents",
               "obdOdometerMeters",
               "gpsOdometerMeters",
-              "obdEngineSeconds"
+              "obdEngineSeconds",
+              "gpsDistanceMeters"
             ],
             "type": "string",
-            "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.",
+            "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.",
             "name": "types",
             "in": "query",
             "required": true
@@ -982,7 +984,7 @@
               "type": "string"
             },
             "collectionFormat": "csv",
-            "description": "A comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
             "name": "tagIds",
             "in": "query"
           },
@@ -992,7 +994,7 @@
               "type": "string"
             },
             "collectionFormat": "csv",
-            "description": "A comma-separated list of vehicle IDs. Example: `vehicleIds=1234,5678`",
+            "description": "A filter on the data based on this comma-separated list of vehicle IDs. Example: `vehicleIds=1234,5678`",
             "name": "vehicleIds",
             "in": "query"
           },
@@ -1002,10 +1004,11 @@
               "fuelPercents",
               "obdOdometerMeters",
               "gpsOdometerMeters",
-              "obdEngineSeconds"
+              "obdEngineSeconds",
+              "gpsDistanceMeters"
             ],
             "type": "string",
-            "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.",
+            "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.",
             "name": "types",
             "in": "query",
             "required": true
@@ -3102,23 +3105,16 @@
         "operationId": "V1getSensorsCargo",
         "parameters": [
           {
-            "description": "Group ID and list of sensor IDs to query.",
+            "description": "List of sensor IDs to query.",
             "name": "V1sensorParam",
             "in": "body",
             "required": true,
             "schema": {
               "type": "object",
               "required": [
-                "groupId",
                 "sensors"
               ],
               "properties": {
-                "groupId": {
-                  "description": "Group ID",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
-                },
                 "sensors": {
                   "description": "List of sensor IDs to query.",
                   "type": "array",
@@ -3160,23 +3156,16 @@
         "operationId": "V1getSensorsDoor",
         "parameters": [
           {
-            "description": "Group ID and list of sensor IDs to query.",
+            "description": "List of sensor IDs to query.",
             "name": "V1sensorParam",
             "in": "body",
             "required": true,
             "schema": {
               "type": "object",
               "required": [
-                "groupId",
                 "sensors"
               ],
               "properties": {
-                "groupId": {
-                  "description": "Group ID",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
-                },
                 "sensors": {
                   "description": "List of sensor IDs to query.",
                   "type": "array",
@@ -3218,14 +3207,13 @@
         "operationId": "V1getSensorsHistory",
         "parameters": [
           {
-            "description": "Group ID, time range and resolution, and list of sensor ID, field pairs to query.",
+            "description": "Time range and resolution, and list of sensor ID, field pairs to query.",
             "name": "historyParam",
             "in": "body",
             "required": true,
             "schema": {
               "type": "object",
               "required": [
-                "groupId",
                 "startMs",
                 "endMs",
                 "stepMs",
@@ -3244,12 +3232,6 @@
                     "withNull",
                     "withPrevious"
                   ]
-                },
-                "groupId": {
-                  "description": "Group ID",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
                 },
                 "series": {
                   "type": "array",
@@ -3333,23 +3315,16 @@
         "operationId": "V1getSensorsHumidity",
         "parameters": [
           {
-            "description": "Group ID and list of sensor IDs to query.",
+            "description": "List of sensor IDs to query.",
             "name": "V1sensorParam",
             "in": "body",
             "required": true,
             "schema": {
               "type": "object",
               "required": [
-                "groupId",
                 "sensors"
               ],
               "properties": {
-                "groupId": {
-                  "description": "Group ID",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
-                },
                 "sensors": {
                   "description": "List of sensor IDs to query.",
                   "type": "array",
@@ -3389,27 +3364,6 @@
         ],
         "summary": "Get all sensors",
         "operationId": "V1getSensors",
-        "parameters": [
-          {
-            "description": "Group ID",
-            "name": "V1groupIdBodyParam",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "required": [
-                "groupId"
-              ],
-              "properties": {
-                "groupId": {
-                  "description": "Group ID",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
-                }
-              }
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "List of sensor objects.",
@@ -3444,23 +3398,16 @@
         "operationId": "V1getSensorsTemperature",
         "parameters": [
           {
-            "description": "Group ID and list of sensor IDs to query.",
+            "description": "List of sensor IDs to query.",
             "name": "V1sensorParam",
             "in": "body",
             "required": true,
             "schema": {
               "type": "object",
               "required": [
-                "groupId",
                 "sensors"
               ],
               "properties": {
-                "groupId": {
-                  "description": "Group ID",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 101
-                },
                 "sensors": {
                   "description": "List of sensor IDs to query.",
                   "type": "array",
@@ -4976,6 +4923,7 @@
       "type": "object",
       "properties": {
         "groupId": {
+          "description": "Deprecated.",
           "type": "integer",
           "format": "int64",
           "example": 101
@@ -6066,6 +6014,7 @@
       "type": "object",
       "properties": {
         "groupId": {
+          "description": "Deprecated.",
           "type": "integer",
           "format": "int64",
           "example": 101
@@ -6863,6 +6812,7 @@
       "type": "object",
       "properties": {
         "groupId": {
+          "description": "Deprecated.",
           "type": "integer",
           "format": "int64",
           "example": 101
@@ -7171,6 +7121,7 @@
       "type": "object",
       "properties": {
         "groupId": {
+          "description": "Deprecated.",
           "type": "integer",
           "format": "int64",
           "example": 101
@@ -7436,13 +7387,13 @@
             },
             "latitude": {
               "description": "Latitude of location where the harsh event occurred",
-              "type": "string",
-              "example": "33.07614328"
+              "type": "number",
+              "example": 33.07614328
             },
             "longitude": {
               "description": "Longitude of location where the harsh event occurred",
-              "type": "string",
-              "example": "-96.14907287"
+              "type": "number",
+              "example": -96.14907287
             }
           }
         }
@@ -8658,11 +8609,11 @@
             "properties": {
               "foundText": {
                 "type": "string",
-                "example": "TFNJ"
+                "example": "ABCD"
               },
               "matchString": {
                 "type": "string",
-                "example": "TFNJ"
+                "example": "ABCD"
               }
             }
           }
@@ -8854,6 +8805,31 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/VehicleFuelPercent"
+          }
+        }
+      }
+    },
+    "VehicleGpsDistanceMeters": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/time"
+        },
+        "value": {
+          "description": "Number of meters the vehicle has traveled since the gateway was installed.",
+          "type": "number",
+          "format": "double",
+          "example": 81029.591434899
+        }
+      }
+    },
+    "VehicleGpsDistanceMetersWrapper": {
+      "type": "object",
+      "properties": {
+        "gpsDistanceMeters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VehicleGpsDistanceMeters"
           }
         }
       }
@@ -9295,6 +9271,9 @@
               },
               {
                 "$ref": "#/definitions/VehicleObdEngineSecondsWrapper"
+              },
+              {
+                "$ref": "#/definitions/VehicleGpsDistanceMetersWrapper"
               }
             ]
           }
@@ -9323,6 +9302,9 @@
             },
             "fuelPercent": {
               "$ref": "#/definitions/VehicleFuelPercent"
+            },
+            "gpsDistanceMeters": {
+              "$ref": "#/definitions/VehicleGpsDistanceMeters"
             },
             "gpsOdometerMeters": {
               "$ref": "#/definitions/VehicleGpsOdometerMeters"
@@ -9681,39 +9663,6 @@
       "name": "endMs",
       "in": "query"
     },
-    "V1groupIdBodyParam": {
-      "description": "Group ID",
-      "name": "V1groupIdBodyParam",
-      "in": "body",
-      "schema": {
-        "type": "object",
-        "required": [
-          "groupId"
-        ],
-        "properties": {
-          "groupId": {
-            "description": "Group ID",
-            "type": "integer",
-            "format": "int64",
-            "example": 101
-          }
-        }
-      }
-    },
-    "V1groupIdParam": {
-      "type": "integer",
-      "format": "int64",
-      "description": "Group ID",
-      "name": "group_id",
-      "in": "query"
-    },
-    "V1groupIdQueryParam": {
-      "type": "integer",
-      "format": "int64",
-      "description": "Group ID",
-      "name": "groupId",
-      "in": "query"
-    },
     "V1harshEventMsParam": {
       "type": "integer",
       "format": "int64",
@@ -9795,23 +9744,16 @@
       "required": true
     },
     "V1sensorParam": {
-      "description": "Group ID and list of sensor IDs to query.",
+      "description": "List of sensor IDs to query.",
       "name": "V1sensorParam",
       "in": "body",
       "required": true,
       "schema": {
         "type": "object",
         "required": [
-          "groupId",
           "sensors"
         ],
         "properties": {
-          "groupId": {
-            "description": "Group ID",
-            "type": "integer",
-            "format": "int64",
-            "example": 101
-          },
           "sensors": {
             "description": "List of sensor IDs to query.",
             "type": "array",
@@ -9907,10 +9849,11 @@
         "fuelPercents",
         "obdOdometerMeters",
         "gpsOdometerMeters",
-        "obdEngineSeconds"
+        "obdEngineSeconds",
+        "gpsDistanceMeters"
       ],
       "type": "string",
-      "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.",
+      "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.",
       "name": "types",
       "in": "query",
       "required": true
