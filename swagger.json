@@ -1038,15 +1038,6 @@
         ],
         "summary": "Retrieve a vehicle",
         "operationId": "getVehicleById",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "ID of the vehicle. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `maintenanceId:250020`",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
         "responses": {
           "200": {
             "description": "Returns the specified vehicle object.",
@@ -1075,13 +1066,6 @@
         "summary": "Update a vehicle",
         "operationId": "updateVehicleById",
         "parameters": [
-          {
-            "type": "string",
-            "description": "ID of the vehicle. This can either be the Samsara-specified ID, or an external ID.",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
           {
             "description": "Fields that can be patched on a vehicle.",
             "name": "vehiclePatchBody",
@@ -1114,7 +1098,7 @@
       "parameters": [
         {
           "type": "string",
-          "description": "Unique identifier for the vehicle.",
+          "description": "ID of the vehicle. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `maintenanceId:250020`",
           "name": "id",
           "in": "path",
           "required": true
