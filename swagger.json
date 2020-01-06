@@ -1544,6 +1544,242 @@
         }
       ]
     },
+    "/v1/fleet/assets": {
+      "get": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch all of the assets.",
+        "tags": [
+          "Assets"
+        ],
+        "summary": "List all assets",
+        "operationId": "V1getAllAssets",
+        "responses": {
+          "200": {
+            "description": "List of assets.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "assets": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/V1Asset"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/fleet/assets/locations": {
+      "get": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch current locations of all assets.",
+        "tags": [
+          "Assets"
+        ],
+        "summary": "List current location for all assets",
+        "operationId": "V1getAllAssetCurrentLocations",
+        "responses": {
+          "200": {
+            "description": "List of assets and their current locations.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "assets": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/V1AssetCurrentLocationsResponse"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/fleet/assets/reefers": {
+      "get": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetches all reefers and reefer-specific stats.",
+        "tags": [
+          "Assets"
+        ],
+        "summary": "List stats for all reefers",
+        "operationId": "V1getAssetsReefers",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp in milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs.",
+            "name": "startMs",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp in milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs.",
+            "name": "endMs",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Pagination parameter indicating the cursor position to continue returning results after. Used in conjunction with the 'limit' parameter. Mutually exclusive with 'endingBefore' parameter.",
+            "name": "startingAfter",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Pagination parameter indicating the cursor position to return results before. Used in conjunction with the 'limit' parameter. Mutually exclusive with 'startingAfter' parameter.",
+            "name": "endingBefore",
+            "in": "query"
+          },
+          {
+            "type": "number",
+            "format": "int64",
+            "description": "Pagination parameter indicating the number of results to return in this request. Used in conjunction with either 'startingAfter' or 'endingBefore'.",
+            "name": "limit",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All org reefers and reefer-specific details.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/V1AssetsReefer"
+                  }
+                },
+                "pagination": {
+                  "$ref": "#/definitions/V1Pagination"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/fleet/assets/{asset_id}/locations": {
+      "get": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nList historical locations for a given asset",
+        "tags": [
+          "Assets"
+        ],
+        "summary": "List historical locations for a given asset",
+        "operationId": "V1getAssetLocation",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of the asset. Must contain only digits 0-9.",
+            "name": "asset_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp in milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs.",
+            "name": "startMs",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp in milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs.",
+            "name": "endMs",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Asset location details.",
+            "schema": {
+              "$ref": "#/definitions/V1AssetLocationResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/fleet/assets/{asset_id}/reefer": {
+      "get": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch the reefer-specific stats of an asset.",
+        "tags": [
+          "Assets"
+        ],
+        "summary": "List stats for a given reefer",
+        "operationId": "V1getAssetReefer",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of the asset. Must contain only digits 0-9.",
+            "name": "asset_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp in milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs.",
+            "name": "startMs",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp in milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs.",
+            "name": "endMs",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reefer-specific asset details.",
+            "schema": {
+              "$ref": "#/definitions/V1AssetReeferResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/v1/fleet/dispatch/routes": {
       "get": {
         "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch all dispatch routes for a given time period. The time period is defined as `end_time` and the `duration` before which to query.\n\nRoutes are returned if the route's `scheduled_start_ms` and `scheduled_end_ms` overlap with the requested time period.\n\nMore concretely, if the route's `scheduled_start_ms` is before `end_time` and the `scheduled_end_ms` is within or after the given duration, then the route is returned.",
@@ -2480,6 +2716,124 @@
                   "$ref": "#/definitions/V1Messages"
                 }
               }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/fleet/trailers/assignments": {
+      "get": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch trailer assignment data for all trailers in your organization.",
+        "tags": [
+          "Trailer Assignments"
+        ],
+        "summary": "List trailer assignments for all trailers",
+        "operationId": "V1getAllTrailerAssignments",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp in Unix epoch miliseconds representing the start of the period to fetch. Omitting both startMs and endMs only returns current assignments.",
+            "name": "startMs",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp in Unix epoch miliseconds representing the end of the period to fetch. Omitting endMs sets endMs as the current time",
+            "name": "endMs",
+            "in": "query"
+          },
+          {
+            "type": "number",
+            "format": "int64",
+            "description": "Pagination parameter indicating the number of results to return in this request. Used in conjunction with either 'startingAfter' or 'endingBefore'.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Pagination parameter indicating the cursor position to continue returning results after. Used in conjunction with the 'limit' parameter. Mutually exclusive with 'endingBefore' parameter.",
+            "name": "startingAfter",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Pagination parameter indicating the cursor position to return results before. Used in conjunction with the 'limit' parameter. Mutually exclusive with 'startingAfter' parameter.",
+            "name": "endingBefore",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns trailer assignment data for all trailers in your organization",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "pagination": {
+                  "$ref": "#/definitions/V1Pagination"
+                },
+                "trailers": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/V1TrailerAssignmentsResponse"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/fleet/trailers/{trailerId}/assignments": {
+      "get": {
+        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch trailer assignment data for a single trailer.",
+        "tags": [
+          "Trailer Assignments"
+        ],
+        "summary": "List trailer assigmnents for a given trailer",
+        "operationId": "V1getFleetTrailerAssignments",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of trailer. Must contain only digits 0-9.",
+            "name": "trailerId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp in Unix epoch milliseconds representing the start of the period to fetch. Omitting both startMs and endMs only returns current assignments.",
+            "name": "startMs",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp in Unix epoch milliseconds representing the end of the period to fetch. Omitting endMs sets endMs as the current time",
+            "name": "endMs",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns trailer assignment data for a single trailer",
+            "schema": {
+              "$ref": "#/definitions/V1TrailerAssignmentsResponse"
             }
           },
           "default": {
@@ -4918,6 +5272,569 @@
         }
       }
     },
+    "V1Asset": {
+      "description": "Basic information of an asset",
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "assetSerialNumber": {
+          "description": "Serial number of the host asset",
+          "type": "string",
+          "example": "SNTEST123"
+        },
+        "cable": {
+          "description": "The cable connected to the asset",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "assetType": {
+                "description": "Asset type",
+                "type": "string",
+                "example": "Reefer (Thermo King)"
+              }
+            }
+          }
+        },
+        "engineHours": {
+          "description": "Engine hours",
+          "type": "integer",
+          "example": 104
+        },
+        "id": {
+          "description": "Asset ID",
+          "type": "integer",
+          "format": "int64",
+          "example": 1
+        },
+        "name": {
+          "description": "Asset name",
+          "type": "string",
+          "example": "Trailer 123"
+        },
+        "vehicleId": {
+          "description": "The ID of the Vehicle associated to the Asset (if present)",
+          "type": "integer",
+          "format": "int64",
+          "example": 2
+        }
+      }
+    },
+    "V1AssetCurrentLocation": {
+      "description": "Current location of an asset",
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "description": "The latitude of the location in degrees.",
+          "type": "number",
+          "example": 37
+        },
+        "location": {
+          "description": "The best effort (street,city,state) for the latitude and longitude.",
+          "type": "string",
+          "example": "525 York, San Francisco, CA"
+        },
+        "longitude": {
+          "description": "The longitude of the location in degrees.",
+          "type": "number",
+          "example": -122.7
+        },
+        "speedMilesPerHour": {
+          "description": "The speed calculated from GPS that the asset was traveling at in miles per hour.",
+          "type": "number",
+          "example": 35
+        },
+        "timeMs": {
+          "description": "Time in Unix milliseconds since epoch when the asset was at the location.",
+          "type": "number",
+          "example": 12314151
+        }
+      }
+    },
+    "V1AssetCurrentLocationsResponse": {
+      "description": "Basic information of an asset",
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "assetSerialNumber": {
+          "description": "Asset serial number",
+          "type": "string",
+          "example": "8dka2810"
+        },
+        "cable": {
+          "description": "The cable connected to the asset",
+          "type": "object",
+          "properties": {
+            "assetType": {
+              "description": "Asset type",
+              "type": "string",
+              "example": "Reefer (Thermo King)"
+            }
+          }
+        },
+        "engineHours": {
+          "description": "Engine hours",
+          "type": "integer",
+          "example": 104
+        },
+        "id": {
+          "description": "Asset ID",
+          "type": "integer",
+          "format": "int64",
+          "example": 1
+        },
+        "location": {
+          "description": "Current location of an asset",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/V1AssetCurrentLocation"
+          }
+        },
+        "name": {
+          "description": "Asset name",
+          "type": "string",
+          "example": "Trailer 123"
+        }
+      }
+    },
+    "V1AssetLocationResponse": {
+      "description": "A list of historical asset locations.",
+      "type": "array",
+      "items": {
+        "description": "Asset location details.",
+        "type": "object",
+        "properties": {
+          "latitude": {
+            "description": "The latitude of the location in degrees.",
+            "type": "number",
+            "example": 37
+          },
+          "location": {
+            "description": "The best effort (street,city,state) for the latitude and longitude.",
+            "type": "string",
+            "example": "525 York, San Francisco, CA"
+          },
+          "longitude": {
+            "description": "The longitude of the location in degrees.",
+            "type": "number",
+            "example": -122.7
+          },
+          "speedMilesPerHour": {
+            "description": "The speed calculated from GPS that the asset was traveling at in miles per hour.",
+            "type": "number",
+            "example": 35
+          },
+          "time": {
+            "description": "Time in Unix milliseconds since epoch when the asset was at the location.",
+            "type": "number",
+            "example": 12314151
+          }
+        }
+      }
+    },
+    "V1AssetReeferResponse": {
+      "description": "Reefer-specific asset details",
+      "type": "object",
+      "properties": {
+        "assetType": {
+          "description": "Asset type",
+          "type": "string",
+          "example": "Reefer (Thermo King)"
+        },
+        "id": {
+          "description": "Asset ID",
+          "type": "integer",
+          "example": 1
+        },
+        "name": {
+          "description": "Asset name",
+          "type": "string",
+          "example": "Reefer 123"
+        },
+        "reeferStats": {
+          "type": "object",
+          "properties": {
+            "alarms": {
+              "description": "Reefer alarms",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "alarms": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "alarmCode": {
+                          "description": "ID of the alarm",
+                          "type": "integer",
+                          "format": "int64",
+                          "example": 102
+                        },
+                        "description": {
+                          "description": "Description of the alarm",
+                          "type": "string",
+                          "example": "Check Return Air Sensor"
+                        },
+                        "operatorAction": {
+                          "description": "Recommended operator action",
+                          "type": "string",
+                          "example": "Check and repair at end of trip"
+                        },
+                        "severity": {
+                          "description": "Severity of the alarm: 1: OK to run, 2: Check as specified, 3: Take immediate action",
+                          "type": "integer",
+                          "format": "int64",
+                          "example": 1
+                        }
+                      }
+                    }
+                  },
+                  "changedAtMs": {
+                    "description": "Timestamp when the alarms were reported, in Unix milliseconds since epoch",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1453449599999
+                  }
+                }
+              }
+            },
+            "engineHours": {
+              "description": "Engine hours of the reefer",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "changedAtMs": {
+                    "description": "Timestamp in Unix milliseconds since epoch.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1453449599999
+                  },
+                  "engineHours": {
+                    "description": "Engine hours of the reefer.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1200
+                  }
+                }
+              }
+            },
+            "fuelPercentage": {
+              "description": "Fuel percentage of the reefer",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "changedAtMs": {
+                    "description": "Timestamp in Unix milliseconds since epoch.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1453449599999
+                  },
+                  "fuelPercentage": {
+                    "description": "Fuel percentage of the reefer.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 99
+                  }
+                }
+              }
+            },
+            "powerStatus": {
+              "description": "Power status of the reefer",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "changedAtMs": {
+                    "description": "Timestamp in Unix milliseconds since epoch.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1453449599999
+                  },
+                  "status": {
+                    "description": "Power status of the reefer.",
+                    "type": "string",
+                    "example": "Active (Continuous)"
+                  }
+                }
+              }
+            },
+            "returnAirTemp": {
+              "description": "Return air temperature of the reefer",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "changedAtMs": {
+                    "description": "Timestamp in Unix milliseconds since epoch.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1453449599999
+                  },
+                  "tempInMilliC": {
+                    "description": "Return air temperature in millidegree Celsius.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 31110
+                  }
+                }
+              }
+            },
+            "setPoint": {
+              "description": "Set point temperature of the reefer",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "changedAtMs": {
+                    "description": "Timestamp in Unix milliseconds since epoch.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1453449599999
+                  },
+                  "tempInMilliC": {
+                    "description": "Set point temperature in millidegree Celsius.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 31110
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "V1AssetsReefer": {
+      "description": "Reefer-specific details",
+      "type": "object",
+      "properties": {
+        "assetType": {
+          "description": "Asset type",
+          "type": "string",
+          "example": "Thermo King"
+        },
+        "id": {
+          "description": "Asset ID",
+          "type": "integer",
+          "example": 1
+        },
+        "name": {
+          "description": "Asset name",
+          "type": "string",
+          "example": "Reefer 123"
+        },
+        "reeferStats": {
+          "description": "Contains all the state changes of the reefer for the included stat types. Each state change is recorded independently, so the number of records in each array may differ depending on when that stat changed state. Stat types with a continuous value (such as temperature) will be recorded at different rates depending on the reefer, but generally readings have a frequency on the order of seconds.",
+          "type": "object",
+          "properties": {
+            "ambientAirTemperature": {
+              "description": "Ambient temperature of the reefer. This is the temperature of the air around the Samsara Asset Gateway.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "changedAtMs": {
+                    "description": "Timestamp in Unix milliseconds since epoch.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1453449599999
+                  },
+                  "tempInMilliC": {
+                    "description": "Ambient temperature in millidegree Celsius.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 31110
+                  }
+                }
+              }
+            },
+            "dischargeAirTemperature": {
+              "description": "Discharge air temperature of the reefer. This is the temperature of the air as it leaves the cooling unit.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "changedAtMs": {
+                    "description": "Timestamp in Unix milliseconds since epoch.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1453449599999
+                  },
+                  "tempInMilliC": {
+                    "description": "Discharge temperature in millidegree Celsius.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 31110
+                  }
+                }
+              }
+            },
+            "engineHours": {
+              "description": "Engine hours of the reefer",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "changedAtMs": {
+                    "description": "Timestamp in Unix milliseconds since epoch.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1453449599999
+                  },
+                  "engineHours": {
+                    "description": "Engine hours of the reefer.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1200
+                  }
+                }
+              }
+            },
+            "fuelPercentage": {
+              "description": "Fuel percentage of the reefer",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "changedAtMs": {
+                    "description": "Timestamp in Unix milliseconds since epoch.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1453449599999
+                  },
+                  "fuelPercentage": {
+                    "description": "Fuel percentage of the reefer.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 99
+                  }
+                }
+              }
+            },
+            "powerStatus": {
+              "description": "Power status of the reefer",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "changedAtMs": {
+                    "description": "Timestamp in Unix milliseconds since epoch.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1453449599999
+                  },
+                  "status": {
+                    "description": "Power status of the reefer.",
+                    "type": "string",
+                    "enum": [
+                      "Off",
+                      "Active",
+                      "Active (Start/Stop)",
+                      "Active (Continuous)"
+                    ],
+                    "example": "Active (Continuous)"
+                  }
+                }
+              }
+            },
+            "reeferAlarms": {
+              "description": "Reefer alarms",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "alarms": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "alarmCode": {
+                          "description": "ID of the alarm",
+                          "type": "integer",
+                          "format": "int64",
+                          "example": 102
+                        },
+                        "description": {
+                          "description": "Description of the alarm",
+                          "type": "string",
+                          "example": "Check Return Air Sensor"
+                        },
+                        "operatorAction": {
+                          "description": "Recommended operator action",
+                          "type": "string",
+                          "example": "Check and repair at end of trip"
+                        },
+                        "severity": {
+                          "description": "Severity of the alarm: 1: OK to run, 2: Check as specified, 3: Take immediate action",
+                          "type": "integer",
+                          "format": "int64",
+                          "example": 1
+                        }
+                      }
+                    }
+                  },
+                  "changedAtMs": {
+                    "description": "Timestamp when the alarms were reported, in Unix milliseconds since epoch",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1453449599999
+                  }
+                }
+              }
+            },
+            "returnAirTemperature": {
+              "description": "Return air temperature of the reefer. This is the temperature read by the reefer module (Carrier, Thermo King) that shows the temperature of the air as it enters the system.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "changedAtMs": {
+                    "description": "Timestamp in Unix milliseconds since epoch.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1453449599999
+                  },
+                  "tempInMilliC": {
+                    "description": "Return air temperature in millidegree Celsius.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 31110
+                  }
+                }
+              }
+            },
+            "setPoint": {
+              "description": "Set point temperature of the reefer",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "changedAtMs": {
+                    "description": "Timestamp in Unix milliseconds since epoch.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1453449599999
+                  },
+                  "tempInMilliC": {
+                    "description": "Set point temperature in millidegree Celsius.",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 31110
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "V1CargoResponse": {
       "description": "Contains the current cargo status of a sensor.",
       "type": "object",
@@ -7024,6 +7941,35 @@
         "$ref": "#/definitions/V1MessageResponse"
       }
     },
+    "V1Pagination": {
+      "type": "object",
+      "required": [
+        "hasNextPage",
+        "hasPrevPage",
+        "startCursor",
+        "endCursor"
+      ],
+      "properties": {
+        "endCursor": {
+          "description": "Cursor identifier representing the last element in the response. This value should be used in conjunction with a subsequent request's 'startingAfter' query parameter.",
+          "type": "string",
+          "example": "MTU5MTEzNjA2OTU0MzQ3"
+        },
+        "hasNextPage": {
+          "description": "True if there are more pages of results after this response.",
+          "type": "boolean"
+        },
+        "hasPrevPage": {
+          "description": "True if there are more pages of results before this response.",
+          "type": "boolean"
+        },
+        "startCursor": {
+          "description": "Cursor identifier representing the first element in the response. This value should be used in conjunction with a subsequent request's 'ending_before' query parameter.",
+          "type": "string",
+          "example": "MTU5MTEzNjA2OTU0MzQ3"
+        }
+      }
+    },
     "V1ProgramsForTheCameraResponse": {
       "description": "Contains the list of Programs configured on the given Camera.",
       "type": "array",
@@ -7174,6 +8120,68 @@
               }
             }
           }
+        }
+      }
+    },
+    "V1TrailerAssignmentResponse": {
+      "type": "object",
+      "properties": {
+        "driverId": {
+          "description": "The ID of the driver associated with this trailer.",
+          "type": "integer",
+          "format": "int64",
+          "example": 2047
+        },
+        "endMs": {
+          "description": "The time at which the driver ended the assignment. If the assignment is current, this value will be omitted.",
+          "type": "integer",
+          "format": "int64",
+          "example": 1462881998034
+        },
+        "startMs": {
+          "description": "The time at which the driver started the assignment",
+          "type": "integer",
+          "format": "int64",
+          "example": 1462878398034
+        }
+      }
+    },
+    "V1TrailerAssignmentsResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/V1TrailerBase"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "trailerAssignments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/V1TrailerAssignmentResponse"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "V1TrailerBase": {
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "description": "ID of the trailer",
+          "type": "integer",
+          "format": "int64",
+          "example": 2041
+        },
+        "name": {
+          "description": "Assignment trailer name (given when creating trailer via the trailer portal)",
+          "type": "string",
+          "format": "string",
+          "example": "myTrailer"
         }
       }
     },
@@ -9479,6 +10487,30 @@
     }
   },
   "parameters": {
+    "V1assetHistoryEndTimeParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Timestamp in milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs.",
+      "name": "endMs",
+      "in": "query",
+      "required": true
+    },
+    "V1assetHistoryStartTimeParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Timestamp in milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs.",
+      "name": "startMs",
+      "in": "query",
+      "required": true
+    },
+    "V1assetIdParam": {
+      "type": "integer",
+      "format": "int64",
+      "description": "ID of the asset. Must contain only digits 0-9.",
+      "name": "asset_id",
+      "in": "path",
+      "required": true
+    },
     "V1createDvirParam": {
       "description": "DVIR creation body",
       "name": "createDvirParam",
@@ -9683,6 +10715,25 @@
       "name": "sequence_id",
       "in": "query"
     },
+    "V1paginationEndingBeforeParam": {
+      "type": "string",
+      "description": "Pagination parameter indicating the cursor position to return results before. Used in conjunction with the 'limit' parameter. Mutually exclusive with 'startingAfter' parameter.",
+      "name": "endingBefore",
+      "in": "query"
+    },
+    "V1paginationLimitParam": {
+      "type": "number",
+      "format": "int64",
+      "description": "Pagination parameter indicating the number of results to return in this request. Used in conjunction with either 'startingAfter' or 'endingBefore'.",
+      "name": "limit",
+      "in": "query"
+    },
+    "V1paginationStartingAfterParam": {
+      "type": "string",
+      "description": "Pagination parameter indicating the cursor position to continue returning results after. Used in conjunction with the 'limit' parameter. Mutually exclusive with 'endingBefore' parameter.",
+      "name": "startingAfter",
+      "in": "query"
+    },
     "V1routeCreateParam": {
       "name": "createDispatchRouteParams",
       "in": "body",
@@ -9865,6 +10916,10 @@
       "name": "Addresses"
     },
     {
+      "description": "Assets refer to objects that are tracked with Samsara Asset Gateways. These include: trailers, reefers, equipment (construction, etc.), containers, and anything else you'd like to track with a Samsara Asset Gateway. This is different than Vehicles, which specifically have a Samsara Vehicle Gateway. Depending on the asset, different data is available. For all assets, GPS data is available. For powered assets like trailers, reefers, and equipment, other engine or on-board diagnostic data is available.",
+      "name": "Assets"
+    },
+    {
       "description": "Contacts are an easy way to manage which users receive alerts (via sms or email).",
       "name": "Contacts"
     },
@@ -9879,6 +10934,10 @@
     {
       "description": "Driver logs containing duty status, certification details, and associated vehicles and trailers are available. You can also retrieve summarized total active time logs. Signin/Signout logs are also available. Drivers can track hours of service via the Samsara Driver mobile app. ",
       "name": "Hours of Service"
+    },
+    {
+      "description": "Access to industrial data.",
+      "name": "Industrial"
     },
     {
       "description": "Maintenance refers to both DVIRs and reports on vehicle fault codes.",
@@ -9905,6 +10964,10 @@
       "name": "Tags"
     },
     {
+      "description": "List trailer assignments over a given time period for all trailers or a given one. Trailer assignments include which driver the trailer was assigned to and for which time period.",
+      "name": "Trailer Assignments"
+    },
+    {
       "description": "Driving activity is segmented into trips (travel between a start and a stop). Vehicle movement is broken down into trips along the following lines: a trip begins when a previously inactive vehicle achieves a speed of 5mph; the trip ends when the vehicle's speed remains below 5mph for 5 minutes, or when a vehicle crosses a state or national boundary. Trips contain start and stop times, locations, and addresses. Trips also contain distance and odometer information as well as fuel consumption.",
       "name": "Trips"
     },
@@ -9915,10 +10978,6 @@
     {
       "description": "The vehicle object describes a vehicle's attributes and settings within Samsara. A vehicle is generated in the Samsara platform when a vehicle gateway is installed. The gateway often auto-populates information such as the VIN, make, model, and year.\nThe vehicle object is often referenced in other objects. For these references, you will see a mini-object of the vehicle, rather than the full vehicle information. The mini-object encompasses a smaller subset of commonly-referenced field, such as the Samsara ID, name, and external ID. GPS and on-board diagnotics are available for vehicles in real-time.",
       "name": "Vehicles"
-    },
-    {
-      "description": "Access to industrial data",
-      "name": "Industrial"
     }
   ]
 }
