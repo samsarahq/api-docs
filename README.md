@@ -9,17 +9,13 @@ Please visit [developers.samsara.com](https://developers.samsara.com/) for in-de
 We use [swagger](https://swagger.io/specification/v2/) (also known as Open API) to document our REST APIs. There are two swagger files in this repo:
 
 - `swagger.json`
-- `swagger-preview.json`
+- `swagger-legacy.json`
 
-Samsara is currently in the process of releasing a new generation of our APIs. You can read more about the new generation [here](https://developers.samsara.com/docs/introducing-our-next-generation-api), but suffice to say that the new generation contains may improvements to the first one.
+Samsara is currently in the process of releasing a new generation of our APIs. You can read more about the new generation [here](https://developers.samsara.com/docs/introducing-our-next-generation-api), but suffice to say that the new generation contains many improvements to the first one.
 
-`swagger.json` is the Open API spec of the first generation of our APIs. You should only use this if you need to reference legacy APIs. You can find the reference documentation [here](https://www.samsara.com/api).
+`swagger.json` should be your go-to reference for Samsara's Open APIs. It contains the most recently released APIs, as well as any legacy APIs necessary to maintain feature parity. You can find the reference documentation [here](https://www.samsara.com/api).
 
-`swagger-preview.json` is the Open API spec containing all our new APIs and any legacy APIs that don't have a new equivalent available yet. We'll be releasing new APIs to this spec on a rolling basis. You can find the reference documentation for this set of APIs [here](https://www.samsara.com/api-preview).
-
-We recommend that primarily utilize `swagger-preview.json` as we are encouraging all users to use the new API endpoints when available. These endpoints are faster and easier to use. `swagger-preview.json` is what we use to generate the examples below.
-
-*Note: You can use old and new API endpoints side-by-side as we continue to bring the new generation up to feature parity. `swagger-preview.json` currently includes both. Read more [here](https://developers.samsara.com/docs/introducing-our-next-generation-api).*
+`swagger-legacy.json` is the Open API spec containing all of our legacy APIs, and should only be used if you need to use a legacy API for an old implementation. You can find the reference documentation for this set of APIs [here](https://www.samsara.com/api-legacy).
 
 ## Examples
 
