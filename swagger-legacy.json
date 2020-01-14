@@ -415,6 +415,17 @@
         ],
         "summary": "/fleet/assets/locations",
         "operationId": "getAllAssetCurrentLocations",
+        "parameters": [
+          {
+            "$ref": "#/parameters/paginationStartingAfterParam"
+          },
+          {
+            "$ref": "#/parameters/paginationEndingBeforeParam"
+          },
+          {
+            "$ref": "#/parameters/paginationLimitParam"
+          }
+        ],
         "responses": {
           "200": {
             "description": "List of assets and their current locations.",
@@ -426,6 +437,9 @@
                   "items": {
                     "$ref": "#/definitions/AssetCurrentLocationsResponse"
                   }
+                },
+                "pagination": {
+                  "$ref": "#/definitions/Pagination"
                 }
               }
             }
