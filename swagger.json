@@ -1584,6 +1584,27 @@
         ],
         "summary": "List current location for all assets",
         "operationId": "V1getAllAssetCurrentLocations",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Pagination parameter indicating the cursor position to continue returning results after. Used in conjunction with the 'limit' parameter. Mutually exclusive with 'endingBefore' parameter.",
+            "name": "startingAfter",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Pagination parameter indicating the cursor position to return results before. Used in conjunction with the 'limit' parameter. Mutually exclusive with 'startingAfter' parameter.",
+            "name": "endingBefore",
+            "in": "query"
+          },
+          {
+            "type": "number",
+            "format": "int64",
+            "description": "Pagination parameter indicating the number of results to return in this request. Used in conjunction with either 'startingAfter' or 'endingBefore'.",
+            "name": "limit",
+            "in": "query"
+          }
+        ],
         "responses": {
           "200": {
             "description": "List of assets and their current locations.",
@@ -1595,6 +1616,9 @@
                   "items": {
                     "$ref": "#/definitions/V1AssetCurrentLocationsResponse"
                   }
+                },
+                "pagination": {
+                  "$ref": "#/definitions/V1Pagination"
                 }
               }
             }
