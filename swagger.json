@@ -4935,6 +4935,17 @@
         }
       }
     },
+    "ReverseGeo": {
+      "description": "Reverse geocoding information",
+      "type": "object",
+      "properties": {
+        "formattedLocation": {
+          "description": "Formatted address of the reverse geocoding data.",
+          "type": "string",
+          "example": "16 N Fair Oaks Ave, Pasadena, CA 91103"
+        }
+      }
+    },
     "Tag": {
       "allOf": [
         {
@@ -9921,6 +9932,9 @@
               "type": "number",
               "format": "double",
               "example": 120
+            },
+            "reverseGeo": {
+              "$ref": "#/definitions/ReverseGeo"
             },
             "speed": {
               "description": "Speed of the vehicle in miles per hour.",
