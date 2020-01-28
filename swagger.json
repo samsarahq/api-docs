@@ -2483,7 +2483,7 @@
           },
           {
             "maximum": 7776000000,
-            "type": "integer",
+            "type": "number",
             "description": "Time in millis which corresponds to the duration before the end_ms. Must be less than or equal to 90 days.",
             "name": "duration_ms",
             "in": "query",
@@ -9681,7 +9681,7 @@
       }
     },
     "V1jobStatus": {
-      "description": "The current state of the dispatch job.",
+      "description": "The state of the dispatch job.",
       "type": "string",
       "enum": [
         "JobState_Unassigned",
@@ -9712,7 +9712,7 @@
           "$ref": "#/definitions/V1jobStatus"
         },
         "prev_job_state": {
-          "$ref": "#/definitions/V1prevJobStatus"
+          "$ref": "#/definitions/V1jobStatus"
         },
         "route": {
           "$ref": "#/definitions/V1DispatchRoute"
@@ -9724,19 +9724,6 @@
           "example": 556
         }
       }
-    },
-    "V1prevJobStatus": {
-      "description": "The previous state of the dispatch job.",
-      "type": "string",
-      "enum": [
-        "JobState_Unassigned",
-        "JobState_Scheduled",
-        "JobState_EnRoute",
-        "JobState_Arrived",
-        "JobState_Completed",
-        "JobState_Skipped"
-      ],
-      "example": "JobState_EnRoute"
     },
     "VehicleCtpSmogTestData": {
       "description": "Required data for one CTP smog test.",
