@@ -9001,7 +9001,7 @@
                 "example": 90
               },
               "minDistance": {
-                "description": "The minumum allowed distance threshold",
+                "description": "The miniumum allowed distance threshold",
                 "type": "integer",
                 "format": "float64",
                 "example": 1500
@@ -9362,9 +9362,31 @@
                 "example": 50
               },
               "threshold": {
+                "description": "DEPRECATED: Please use ThresholdRange instead.",
                 "type": "integer",
                 "format": "int64",
                 "example": 50
+              },
+              "thresholdMode": {
+                "description": "Indicates whether the pass sensitivity threshold was configured in \"Percentage\" or \"Pixel Count\" mode.",
+                "type": "string",
+                "example": "Percentage"
+              },
+              "thresholdRange": {
+                "description": "The configured pass sensitivity range. Based on the threshold mode, this value will be a percentage or a pixel count.",
+                "type": "object",
+                "properties": {
+                  "high": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 80
+                  },
+                  "low": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 30
+                  }
+                }
               },
               "valueRange": {
                 "type": "object",
