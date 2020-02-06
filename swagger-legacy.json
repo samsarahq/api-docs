@@ -5226,29 +5226,30 @@
         {
           "type": "object",
           "required": [
-            "id",
             "orgId",
             "driverId",
+            "id",
             "driverCreatedAtMs",
             "serverCreatedAtMs",
             "serverUpdatedAtMs",
             "documentType",
+            "vehicleId",
             "fields"
           ],
           "properties": {
             "documentType": {
-              "description": "Descriptive name of this type of document.",
+              "description": "Name of the document type.",
               "type": "string",
               "example": "Fuel Receipt"
             },
             "driverCreatedAtMs": {
-              "description": "The time in Unix epoch milliseconds that the document is created on the driver app.",
+              "description": "The time in Unix epoch milliseconds that the document was created in the driver app.",
               "type": "integer",
               "format": "int64",
               "example": 1462881998034
             },
             "driverId": {
-              "description": "ID of the driver for whom the document is submitted",
+              "description": "ID of the driver for whom the document is submitted.",
               "type": "integer",
               "format": "int64",
               "example": 555
@@ -5258,64 +5259,33 @@
               "type": "array",
               "items": {
                 "$ref": "#/definitions/DocumentField"
-              },
-              "example": [
-                {
-                  "label": "Photos",
-                  "photoValue": [],
-                  "valueType": "ValueType_Photo"
-                },
-                {
-                  "label": "Gallons",
-                  "numberValue": 12.34,
-                  "valueType": "ValueType_Number"
-                },
-                {
-                  "label": "City",
-                  "stringValue": "San Francisco, CA",
-                  "valueType": "ValueType_String"
-                },
-                {
-                  "label": "Fuel Type",
-                  "multipleChoiceValue": [
-                    {
-                      "selected": true,
-                      "value": "Diesel"
-                    },
-                    {
-                      "selected": false,
-                      "value": "Gas"
-                    }
-                  ],
-                  "valueType": "ValueType_MultipleChoice"
-                }
-              ]
+              }
             },
             "id": {
-              "description": "ID of the document",
+              "description": "ID of the document.",
               "type": "string",
               "example": "2018_42424242"
             },
             "orgId": {
-              "description": "Organization ID that the document \u0026 driver who submitted the doc belongs to",
+              "description": "Organization ID that the document belongs to.",
               "type": "integer",
               "format": "int64",
               "example": 555
             },
             "serverCreatedAtMs": {
-              "description": "The time in Unix epoch milliseconds that the document is created on the server.",
+              "description": "The time in Unix epoch milliseconds that the document was received by the server.",
               "type": "integer",
               "format": "int64",
               "example": 1462881998034
             },
             "serverUpdatedAtMs": {
-              "description": "The time in Unix epoch milliseconds that the document is updated on the server.",
+              "description": "The time in Unix epoch milliseconds that the document was updated on the server.",
               "type": "integer",
               "format": "int64",
               "example": 1462881998034
             },
             "vehicleId": {
-              "description": "VehicleID of the driver at document creation.",
+              "description": "ID of the vehicle the driver was signed into when the document was submitted. Will be `null` if the document `state` is `Required`.",
               "type": "integer",
               "format": "int64",
               "example": 222
@@ -5335,7 +5305,7 @@
       ],
       "properties": {
         "dispatchJobId": {
-          "description": "ID of the Samsara dispatch job for which the document is submitted",
+          "description": "ID of the Samsara dispatch job for which the document is submitted.",
           "type": "integer",
           "format": "int64",
           "example": 773
@@ -5346,7 +5316,7 @@
           "example": "Fueled up before delivery."
         },
         "state": {
-          "description": "The condition of the document created for the driver. Can be either `Required` or `Submitted`, if no value is specified, `state` defaults to `Required`. `Required` documents are pre-populated documents for the Driver to fill out in the Driver App.",
+          "description": "The condition of the document created for the driver. Can be either `Required` or `Submitted`. If no value is specified, `state` defaults to `Required`. `Required` documents are pre-populated documents for the Driver to fill out in the Driver App and have not yet been submitted. `Submitted` documents have been submitted by the driver in the Driver App.",
           "type": "string",
           "default": "Required",
           "enum": [
@@ -5368,42 +5338,16 @@
           ],
           "properties": {
             "documentTypeUuid": {
-              "description": "Universally unique identifier for the document type this document is being created for.",
+              "description": "Universally unique identifier for the document type that this document is being created for.",
               "type": "string",
               "example": "4aff772c-a7bb-45e6-8e41-6a53e34feb83"
             },
             "fields": {
-              "description": "List of fields and associated values for a given document. The fields must be listed in the order that that they appear in the specificied document type. Today `stringValue`, `numberValue`, and `multipleChoiceValue` are the supported document upload field types.",
+              "description": "List of fields for the document. The fields must be listed in the order that that they appear in the document type. Only `stringValue`, `numberValue`, `multipleChoiceValue`, and `dateTimeValue` fields are supported for document creation via the API.",
               "type": "array",
               "items": {
                 "$ref": "#/definitions/DocumentField"
-              },
-              "example": [
-                {
-                  "label": "Gallons",
-                  "numberValue": 12.34,
-                  "valueType": "ValueType_Number"
-                },
-                {
-                  "label": "City",
-                  "stringValue": "San Francisco, CA",
-                  "valueType": "ValueType_String"
-                },
-                {
-                  "label": "Fuel Type",
-                  "multipleChoiceValue": [
-                    {
-                      "selected": true,
-                      "value": "Diesel"
-                    },
-                    {
-                      "selected": false,
-                      "value": "Gas"
-                    }
-                  ],
-                  "valueType": "ValueType_MultipleChoice"
-                }
-              ]
+              }
             }
           }
         },
@@ -5416,7 +5360,7 @@
       "type": "object",
       "properties": {
         "dispatchJobId": {
-          "description": "ID of the Samsara dispatch job for which the document is submitted",
+          "description": "ID of the Samsara dispatch job for which the document is submitted.",
           "type": "integer",
           "format": "int64",
           "example": 773
@@ -5427,34 +5371,32 @@
           "example": "Fueled up before delivery."
         },
         "state": {
-          "description": "The condition of the document created for the driver. Can be either `Required` or `Submitted`, if no value is specified, `state` defaults to `Required`. `Required` documents are pre-populated documents for the Driver to fill out in the Driver App.",
+          "description": "The condition of the document created for the driver. Can be either `Required` or `Submitted`. If no value is specified, `state` defaults to `Required`. `Required` documents are pre-populated documents for the Driver to fill out in the Driver App and have not yet been submitted. `Submitted` documents will show up as submitted by the driver through the driver app.",
           "type": "string",
           "default": "Required",
           "enum": [
             "Required",
             "Submitted"
           ],
-          "example": "Submitted"
+          "example": "Required"
         }
       }
     },
     "DocumentField": {
       "allOf": [
         {
-          "description": "A field of a document. A field can be a string type, number type, or photo type, which can be identified from its valueType. Between stringValue, numberValue, and photoValue, only one can exist for a single document field depending on the valueType.",
           "type": "object",
           "required": [
             "label"
           ],
           "properties": {
             "label": {
-              "description": "Descriptive name of this field.",
+              "description": "The name of the field.",
               "type": "string",
               "example": "Fuel Cost ($)"
             },
             "value": {
-              "description": "DEPRECATED: Please use stringValue, numberValue, or photoValue instead. Value of this field. Depending on what kind of field it is, this may be one of the following: an array of image urls, a float, an integer, or a string.",
-              "example": 23.45
+              "description": "DEPRECATED: Please use `stringValue`, `numberValue`, `photoValue`, `multipleChoiceValue`, `signatureValue`, or `dateTimeValue` instead."
             }
           }
         },
@@ -5470,13 +5412,14 @@
       ],
       "properties": {
         "dateTimeValue": {
+          "description": "The value of a `ValueType_DateTime` field.",
           "type": "object",
           "required": [
             "dateTimeMs"
           ],
           "properties": {
             "dateTimeMs": {
-              "description": "Value of this field if this document field has valueType: ValueType_DateTime.",
+              "description": "The Unix epoch on milliseconds of this date time field.",
               "type": "integer",
               "format": "int64",
               "example": 10855639004823
@@ -5484,34 +5427,36 @@
           }
         },
         "multipleChoiceValue": {
-          "description": "Value of this field if this document field has valueType: ValueType_MultipleChoice. Array of objects containing two fields: the string value of the multiple choice option and a boolean representing whether or not the choice was selected",
+          "description": "The value of a `ValueType_MultipleChoice` field.",
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
               "selected": {
+                "description": "Whether the multiple choice field is selected or not.",
                 "type": "boolean"
               },
               "value": {
+                "description": "The name of the multiple choice field.",
                 "type": "string"
               }
             }
           }
         },
         "numberValue": {
-          "description": "Value of this field if this document field has valueType: ValueType_Number.",
+          "description": "The value of a `ValueType_Number` field.",
           "type": "number",
           "format": "double",
           "example": 12.34
         },
         "photoValue": {
-          "description": "Value of this field if this document field has valueType: ValueType_Photo. Array of photo objects where each object contains a URL for a photo.",
+          "description": "The value of a `ValueType_Photo` field.",
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
               "url": {
-                "description": "Photo URL for a JPG image",
+                "description": "Photo URL for a JPG image.",
                 "type": "string"
               }
             }
@@ -5526,12 +5471,12 @@
           ]
         },
         "stringValue": {
-          "description": "Value of this field if this document field has valueType: ValueType_String.",
+          "description": "The value of a `ValueType_String` field.",
           "type": "string",
           "example": "This is a string."
         },
         "valueType": {
-          "description": "Determines the type of this field and what type of value this field has. It should be either ValueType_Number, ValueType_String, ValueType_Photo, ValueType_MultipleChoice or ValueType_DateTime.",
+          "description": "The type of this field.\nValid values: `ValueType_Number`, `ValueType_String`, `ValueType_Photo`, `ValueType_MultipleChoice`, `ValueType_Signature`, `ValueType_DateTime`.\nWhen creating documents via API, only `ValueType_Number`, `ValueType_String`, `ValueType_MultipleChoice`, and `ValueType_DateTime` are accepted.",
           "type": "string",
           "example": "ValueType_Number"
         }
@@ -5545,24 +5490,51 @@
       ],
       "properties": {
         "label": {
-          "description": "Descriptive name of this field type.",
+          "description": "Name of this field type.",
           "type": "string",
           "example": "Fuel Cost ($)"
         },
+        "multipleChoiceValueTypeMetadata": {
+          "description": "Metadata about the multiple choice value. Only present for value type `ValueType_MultipleChoice`.",
+          "type": "object",
+          "properties": {
+            "multipleChoiceOptionLabels": {
+              "description": "The labels for the multiple choice options.",
+              "type": "object",
+              "properties": {
+                "label": {
+                  "description": "The lable for the multiple choice option",
+                  "type": "string",
+                  "example": "Loaded"
+                }
+              }
+            }
+          }
+        },
         "numberValueTypeMetadata": {
-          "description": "Additional metadata information for a number field type. Only defined when a field type has valueType: ValueType_Number.",
+          "description": "Metadata about the numeric value type. Only present for value type `ValueType_Number`.",
           "type": "object",
           "properties": {
             "numDecimalPlaces": {
-              "description": "Number of decimal places that values for this field type can have.",
+              "description": "The number of decimal places this value type can have.",
               "type": "number",
               "format": "int64",
               "example": 2
             }
           }
         },
+        "signatureValueTypeMetadata": {
+          "description": "Metadata about the signature value type. Only present for value type `ValueType_Signature`.",
+          "type": "object",
+          "properties": {
+            "legalText": {
+              "description": "The legal text associated with this signature.",
+              "type": "string"
+            }
+          }
+        },
         "valueType": {
-          "description": "The kind of value that can be submitted for this fieldType. It should be either ValueType_Number, ValueType_String, or ValueType_Photo.",
+          "description": "The type of value this field can have.\nValid values: `ValueType_Number`, `ValueType_String`, `ValueType_Photo`, `ValueType_MultipleChoice`, `ValueType_Signature`, `ValueType_DateTime`.",
           "type": "string",
           "example": "ValueType_Number"
         }
@@ -5571,13 +5543,13 @@
     "DocumentType": {
       "type": "object",
       "required": [
-        "name",
         "orgId",
-        "uuid"
+        "uuid",
+        "fieldTypes"
       ],
       "properties": {
         "fieldTypes": {
-          "description": "The field types determine the names of fields for this document type. They also determine the types of values a document submitted for this document type can have.",
+          "description": "The fields associated with this document type.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/DocumentFieldType"
@@ -5595,7 +5567,7 @@
           "example": 773
         },
         "uuid": {
-          "description": "Universally unique identifier for the document type. Can be passed in as a documentTypeUuid when creating a document for this document type.",
+          "description": "Universally unique identifier for the document type. Can be passed in as the `documentTypeUuid` when creating a document for this document type.",
           "type": "string",
           "example": "4aff772c-a7bb-45e6-8e41-6a53e34feb83"
         }
@@ -5608,9 +5580,16 @@
       }
     },
     "Documents": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/Document"
+      "description": "List of documents.",
+      "type": "object",
+      "properties": {
+        "driverDocuments": {
+          "description": "List of documents.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Document"
+          }
+        }
       }
     },
     "DoorResponse": {
@@ -9806,7 +9785,7 @@
       "in": "query"
     },
     "documentCreateParam": {
-      "description": "To create a document for a given document type, the document type's uuid needs to be passed in to documentTypeUuid. The list of fields passed in should match the document type’s list of field types in the correct order. In other words, a field's valueType and value (i.e. only one of: stringValue, numberValue, or photoValue) at index _i_ should match with the document field type’s valueType at index _i_.",
+      "description": "To create a document for a given document type, provide the `documentTypeUuid` of the type of document you'd like to create. Then, pass in the `fields` of the document in the same order that they show up in the given document type.",
       "name": "createDocumentParams",
       "in": "body",
       "required": true,
