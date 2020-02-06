@@ -631,7 +631,7 @@
         "tags": [
           "Vehicles"
         ],
-        "summary": "List most recent vehicle locations",
+        "summary": "Get most recent vehicle locations",
         "operationId": "getVehicleLocations",
         "parameters": [
           {
@@ -665,7 +665,7 @@
           "200": {
             "description": "List of all locations for the specified vehicles and time range.",
             "schema": {
-              "$ref": "#/definitions/VehicleLocationsSnapshotResponse"
+              "$ref": "#/definitions/VehicleLocationsResponse"
             }
           },
           "default": {
@@ -683,7 +683,7 @@
         "tags": [
           "Vehicles"
         ],
-        "summary": "Follow a real-time feed of vehicle locations",
+        "summary": "Follow a feed of vehicle locations",
         "operationId": "getVehicleLocationsFeed",
         "parameters": [
           {
@@ -4612,24 +4612,6 @@
         }
       ]
     },
-    "LocationsWrapper": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/VehicleLocation"
-        },
-        {
-          "type": "object",
-          "required": [
-            "time"
-          ],
-          "properties": {
-            "time": {
-              "$ref": "#/definitions/time"
-            }
-          }
-        }
-      ]
-    },
     "ParentTag": {
       "description": "If this tag is part a hierarchical tag tree, this is the parent tag, otherwise this will be omitted.",
       "type": "object",
@@ -4932,17 +4914,6 @@
         "warmupsSinceCodesClearedValid": {
           "description": "Indicates WarmupsSinceCodesCleared was successfully read from the CAN bus.",
           "type": "boolean"
-        }
-      }
-    },
-    "ReverseGeo": {
-      "description": "Reverse geocoding information",
-      "type": "object",
-      "properties": {
-        "formattedLocation": {
-          "description": "Formatted address of the reverse geocoding data.",
-          "type": "string",
-          "example": "16 N Fair Oaks Ave, Pasadena, CA 91103"
         }
       }
     },
@@ -9905,100 +9876,161 @@
       }
     },
     "VehicleLocation": {
-      "description": "Location object with heading \u0026 speed",
+      "description": "Vehicle location event.",
       "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/location"
+      "required": [
+        "latitude",
+        "longitude",
+        "heading",
+        "speed",
+        "time"
+      ],
+      "properties": {
+        "heading": {
+          "$ref": "#/definitions/VehicleLocationHeading"
         },
-        {
-          "type": "object",
-          "properties": {
-            "heading": {
-              "description": "Heading of the vehicle in degrees.",
-              "type": "number",
-              "format": "double",
-              "example": 120
-            },
-            "reverseGeo": {
-              "$ref": "#/definitions/ReverseGeo"
-            },
-            "speed": {
-              "description": "Speed of the vehicle in miles per hour.",
-              "type": "number",
-              "format": "double",
-              "example": 48.3
-            }
-          }
+        "latitude": {
+          "$ref": "#/definitions/VehicleLocationLatitude"
+        },
+        "longitude": {
+          "$ref": "#/definitions/VehicleLocationLongitude"
+        },
+        "reverseGeo": {
+          "$ref": "#/definitions/VehicleLocationReverseGeo"
+        },
+        "speed": {
+          "$ref": "#/definitions/VehicleLocationSpeed"
+        },
+        "time": {
+          "$ref": "#/definitions/VehicleLocationTime"
         }
-      ]
+      }
     },
-    "VehicleLocationWrapper": {
-      "description": "Location for a given vehicle.",
+    "VehicleLocationHeading": {
+      "description": "Heading of the vehicle in degrees.",
+      "type": "number",
+      "format": "double",
+      "example": 120
+    },
+    "VehicleLocationId": {
+      "description": "ID of the vehicle.",
+      "type": "string",
+      "example": "123456789"
+    },
+    "VehicleLocationLatitude": {
+      "description": "GPS latitude represented in degrees",
+      "type": "number",
+      "format": "double",
+      "example": 122.142
+    },
+    "VehicleLocationLongitude": {
+      "description": "GPS longitude represented in degrees",
+      "type": "number",
+      "format": "double",
+      "example": -93.343
+    },
+    "VehicleLocationName": {
+      "description": "Name of the vehicle.",
+      "type": "string",
+      "example": "Midwest Truck #4"
+    },
+    "VehicleLocationReverseGeo": {
+      "description": "Reverse geocoded information.",
       "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/vehicleTinyResponse"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "location": {
-              "$ref": "#/definitions/LocationsWrapper"
-            }
-          }
+      "properties": {
+        "formattedLocation": {
+          "description": "Formatted address of the reverse geocoding data.",
+          "type": "string",
+          "example": "16 N Fair Oaks Ave, Pasadena, CA 91103"
         }
-      ]
+      }
+    },
+    "VehicleLocationSpeed": {
+      "description": "GPS speed of the vehicle in miles per hour.",
+      "type": "number",
+      "format": "double",
+      "example": 48.3
+    },
+    "VehicleLocationTime": {
+      "$ref": "#/definitions/time"
     },
     "VehicleLocationsListResponse": {
-      "description": "List of vehicle locations for the specified time period.",
+      "description": "List of vehicle locations and pagination info.",
       "type": "object",
+      "required": [
+        "data",
+        "pagination"
+      ],
       "properties": {
         "data": {
+          "description": "List of vehicle locations.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/VehicleLocationsWrapper"
-          }
-        },
-        "pagination": {
-          "$ref": "#/definitions/paginationResponse"
-        }
-      }
-    },
-    "VehicleLocationsSnapshotResponse": {
-      "description": "List of vehicles with location.",
-      "type": "object",
-      "properties": {
-        "data": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/VehicleLocationWrapper"
-          }
-        },
-        "pagination": {
-          "$ref": "#/definitions/paginationResponse"
-        }
-      }
-    },
-    "VehicleLocationsWrapper": {
-      "description": "List of vehicle locations for the specified time period.",
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/vehicleTinyResponse"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "locations": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/LocationsWrapper"
+            "description": "A vehicle and its list of location events.",
+            "type": "object",
+            "required": [
+              "id",
+              "name",
+              "locations"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/VehicleLocationId"
+              },
+              "locations": {
+                "description": "A list of location events.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/VehicleLocation"
+                }
+              },
+              "name": {
+                "$ref": "#/definitions/VehicleLocationName"
               }
             }
           }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
         }
-      ]
+      }
+    },
+    "VehicleLocationsResponse": {
+      "description": "Most recent vehicle locations and pagination info.",
+      "type": "object",
+      "required": [
+        "data",
+        "pagination"
+      ],
+      "properties": {
+        "data": {
+          "description": "Most recent vehicle locations.",
+          "type": "array",
+          "items": {
+            "description": "A vehicle and its most recent location.",
+            "type": "object",
+            "required": [
+              "id",
+              "name",
+              "location"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/VehicleLocationId"
+              },
+              "location": {
+                "$ref": "#/definitions/VehicleLocation"
+              },
+              "name": {
+                "$ref": "#/definitions/VehicleLocationName"
+              }
+            }
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
     },
     "VehicleObdEngineSeconds": {
       "type": "object",
@@ -10402,28 +10434,6 @@
       "example": {
         "maintenanceId": "250020",
         "payrollId": "ABFS18600"
-      }
-    },
-    "location": {
-      "description": "Location object",
-      "type": "object",
-      "required": [
-        "latitude",
-        "longitude"
-      ],
-      "properties": {
-        "latitude": {
-          "description": "GPS latitude represented in degrees",
-          "type": "number",
-          "format": "double",
-          "example": 122.142
-        },
-        "longitude": {
-          "description": "GPS longitude represented in degrees",
-          "type": "number",
-          "format": "double",
-          "example": -93.343
-        }
       }
     },
     "paginationResponse": {
