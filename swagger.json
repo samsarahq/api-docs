@@ -4222,16 +4222,6 @@
       "allOf": [
         {
           "properties": {
-            "currentVehicle": {
-              "allOf": [
-                {
-                  "description": "Vehicle that driver is currently assigned to."
-                },
-                {
-                  "$ref": "#/definitions/vehicleTinyResponse"
-                }
-              ]
-            },
             "id": {
               "description": "Samsara ID for the driver.",
               "type": "string",
@@ -4437,11 +4427,6 @@
             }
           }
         },
-        "currentVehicleId": {
-          "description": "ID of vehicle that driver is currently assigned to.",
-          "type": "string",
-          "example": "123"
-        },
         "eldAdverseWeatherExemptionEnabled": {
           "description": "Flag indicating this driver may use Adverse Weather exemptions in ELD logs.",
           "type": "boolean",
@@ -4577,11 +4562,6 @@
       "allOf": [
         {
           "properties": {
-            "currentVehicleId": {
-              "description": "ID of vehicle that driver is currently assigned to.",
-              "type": "string",
-              "example": "123"
-            },
             "password": {
               "description": "Password that the driver can use to login to the Samsara driver app.",
               "type": "string",
