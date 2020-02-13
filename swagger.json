@@ -216,7 +216,7 @@
           "Contacts"
         ],
         "summary": "List all contacts",
-        "operationId": "getContacts",
+        "operationId": "listContacts",
         "parameters": [
           {
             "maximum": 512,
@@ -239,17 +239,7 @@
           "200": {
             "description": "List of all contacts",
             "schema": {
-              "properties": {
-                "data": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/Contact"
-                  }
-                },
-                "pagination": {
-                  "$ref": "#/definitions/paginationResponse"
-                }
-              }
+              "$ref": "#/definitions/ListContactsResponse"
             }
           },
           "default": {
@@ -269,12 +259,12 @@
         "operationId": "createContact",
         "parameters": [
           {
-            "description": "Add a contact.",
+            "description": "The contact create parameters.",
             "name": "contact",
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ContactInput"
+              "$ref": "#/definitions/CreateContactRequest"
             }
           }
         ],
@@ -282,12 +272,7 @@
           "200": {
             "description": "Contact was successfully added.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "$ref": "#/definitions/Contact"
-                }
-              }
+              "$ref": "#/definitions/ContactResponse"
             }
           },
           "default": {
@@ -306,17 +291,12 @@
           "Contacts"
         ],
         "summary": "Retrieve a contact",
-        "operationId": "getContactById",
+        "operationId": "getContact",
         "responses": {
           "200": {
             "description": "Returns the specified contact.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "$ref": "#/definitions/Contact"
-                }
-              }
+              "$ref": "#/definitions/ContactResponse"
             }
           },
           "default": {
@@ -333,7 +313,7 @@
           "Contacts"
         ],
         "summary": "Delete a contact",
-        "operationId": "deleteContactById",
+        "operationId": "deleteContact",
         "responses": {
           "204": {
             "description": "Returns an empty success response."
@@ -352,14 +332,15 @@
           "Contacts"
         ],
         "summary": "Update a contact",
-        "operationId": "updateContactById",
+        "operationId": "updateContact",
         "parameters": [
           {
             "description": "Updates to the contact.",
             "name": "contact",
             "in": "body",
+            "required": true,
             "schema": {
-              "$ref": "#/definitions/ContactInput"
+              "$ref": "#/definitions/UpdateContactRequest"
             }
           }
         ],
@@ -367,12 +348,7 @@
           "200": {
             "description": "Updated contact object with given ID.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "$ref": "#/definitions/Contact"
-                }
-              }
+              "$ref": "#/definitions/ContactResponse"
             }
           },
           "default": {
@@ -4154,65 +4130,84 @@
     "Contact": {
       "description": "Information about a notification contact for alerts.",
       "type": "object",
+      "required": [
+        "id",
+        "firstName",
+        "lastName",
+        "email",
+        "phone"
+      ],
       "properties": {
         "email": {
-          "description": "Email address of the contact.",
-          "type": "string",
-          "maxLength": 255,
-          "example": "jane.jones@yahoo.com"
+          "$ref": "#/definitions/ContactEmail"
         },
         "firstName": {
-          "description": "First name of the contact.",
-          "type": "string",
-          "maxLength": 255,
-          "example": "Jane"
+          "$ref": "#/definitions/ContactFirstName"
         },
         "id": {
-          "description": "ID of the contact.",
-          "type": "string",
-          "example": "22408"
+          "$ref": "#/definitions/ContactId"
         },
         "lastName": {
-          "description": "Last name of the contact.",
-          "type": "string",
-          "maxLength": 255,
-          "example": "Jones"
+          "$ref": "#/definitions/ContactLastName"
         },
         "phone": {
-          "description": "Phone number of the contact.",
-          "type": "string",
-          "maxLength": 255,
-          "example": "111-222-3344"
+          "$ref": "#/definitions/ContactPhone"
         }
       }
     },
-    "ContactInput": {
+    "ContactEmail": {
+      "description": "Email address of the contact.",
+      "type": "string",
+      "maxLength": 255,
+      "example": "jane.jones@yahoo.com"
+    },
+    "ContactFirstName": {
+      "description": "First name of the contact.",
+      "type": "string",
+      "maxLength": 255,
+      "example": "Jane"
+    },
+    "ContactId": {
+      "description": "ID of the contact.",
+      "type": "string",
+      "example": "22408"
+    },
+    "ContactLastName": {
+      "description": "Last name of the contact.",
+      "type": "string",
+      "maxLength": 255,
+      "example": "Jones"
+    },
+    "ContactPhone": {
+      "description": "Phone number of the contact.",
+      "type": "string",
+      "maxLength": 255,
+      "example": "111-222-3344"
+    },
+    "ContactResponse": {
+      "description": "A single contact.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/Contact"
+        }
+      }
+    },
+    "CreateContactRequest": {
       "description": "Information for adding a notification contact for alerts.",
       "type": "object",
       "properties": {
         "email": {
-          "description": "Email address of the contact.",
-          "type": "string",
-          "maxLength": 255,
-          "example": "jane.jones@yahoo.com"
+          "$ref": "#/definitions/ContactEmail"
         },
         "firstName": {
-          "description": "First name of the contact.",
-          "type": "string",
-          "maxLength": 255,
-          "example": "Jane"
+          "$ref": "#/definitions/ContactFirstName"
         },
         "lastName": {
-          "description": "Last name of the contact.",
-          "type": "string",
-          "maxLength": 255,
-          "example": "Jones"
+          "$ref": "#/definitions/ContactLastName"
         },
         "phone": {
-          "description": "Phone number of the contact.",
-          "type": "string",
-          "maxLength": 255,
-          "example": "111-222-3344"
+          "$ref": "#/definitions/ContactPhone"
         }
       }
     },
@@ -4591,6 +4586,21 @@
           "$ref": "#/definitions/DriverBase"
         }
       ]
+    },
+    "ListContactsResponse": {
+      "description": "A list of contacts.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Contact"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
     },
     "ParentTag": {
       "description": "If this tag is part a hierarchical tag tree, this is the parent tag, otherwise this will be omitted.",
@@ -5049,6 +5059,24 @@
           "description": "Name of this tag.",
           "type": "string",
           "example": "California"
+        }
+      }
+    },
+    "UpdateContactRequest": {
+      "description": "Information for adding a notification contact for alerts.",
+      "type": "object",
+      "properties": {
+        "email": {
+          "$ref": "#/definitions/ContactEmail"
+        },
+        "firstName": {
+          "$ref": "#/definitions/ContactFirstName"
+        },
+        "lastName": {
+          "$ref": "#/definitions/ContactLastName"
+        },
+        "phone": {
+          "$ref": "#/definitions/ContactPhone"
         }
       }
     },
@@ -10883,15 +10911,6 @@
       "name": "started_at_ms",
       "in": "path",
       "required": true
-    },
-    "createContactParam": {
-      "description": "Add a contact.",
-      "name": "contact",
-      "in": "body",
-      "required": true,
-      "schema": {
-        "$ref": "#/definitions/ContactInput"
-      }
     },
     "vehicleStatTypes": {
       "enum": [
