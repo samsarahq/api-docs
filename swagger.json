@@ -23,7 +23,7 @@
           "Addresses"
         ],
         "summary": "List all addresses",
-        "operationId": "getAddresses",
+        "operationId": "listAddresses",
         "parameters": [
           {
             "maximum": 512,
@@ -56,17 +56,7 @@
           "200": {
             "description": "List of all addresses in the organization",
             "schema": {
-              "properties": {
-                "data": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/Address"
-                  }
-                },
-                "pagination": {
-                  "$ref": "#/definitions/paginationResponse"
-                }
-              }
+              "$ref": "#/definitions/ListAddressesResponse"
             }
           },
           "default": {
@@ -89,21 +79,17 @@
             "description": "The address to create.",
             "name": "address",
             "in": "body",
+            "required": true,
             "schema": {
-              "$ref": "#/definitions/AddressCreate"
+              "$ref": "#/definitions/CreateAddressRequest"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Newly created address object with ID",
+            "description": "Newly created address object with ID.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "$ref": "#/definitions/Address"
-                }
-              }
+              "$ref": "#/definitions/AddressResponse"
             }
           },
           "default": {
@@ -122,17 +108,12 @@
           "Addresses"
         ],
         "summary": "Retrieve an address",
-        "operationId": "getAddressById",
+        "operationId": "getAddress",
         "responses": {
           "200": {
-            "description": "Newly created address object with ID",
+            "description": "An Address.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "$ref": "#/definitions/Address"
-                }
-              }
+              "$ref": "#/definitions/AddressResponse"
             }
           },
           "default": {
@@ -149,7 +130,7 @@
           "Addresses"
         ],
         "summary": "Delete an address",
-        "operationId": "deleteAddressById",
+        "operationId": "deleteAddress",
         "responses": {
           "204": {
             "description": "Empty success body"
@@ -168,14 +149,15 @@
           "Addresses"
         ],
         "summary": "Update an address",
-        "operationId": "updateAddressById",
+        "operationId": "updateAddress",
         "parameters": [
           {
             "description": "The address fields to update.",
             "name": "address",
             "in": "body",
+            "required": true,
             "schema": {
-              "$ref": "#/definitions/AddressPatch"
+              "$ref": "#/definitions/UpdateAddressRequest"
             }
           }
         ],
@@ -183,12 +165,7 @@
           "200": {
             "description": "Updated address object with ID.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "$ref": "#/definitions/Address"
-                }
-              }
+              "$ref": "#/definitions/AddressResponse"
             }
           },
           "default": {
@@ -3781,139 +3758,76 @@
   },
   "definitions": {
     "Address": {
-      "description": "Information about an address/geofence. Geofences are either a circle or a polygon.",
+      "description": "An Address object.",
       "type": "object",
-      "allOf": [
-        {
-          "properties": {
-            "contacts": {
-              "description": "An array of all contact mini-objects that are associated with the given address entry.",
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/contactTinyResponse"
-              }
-            },
-            "externalIds": {
-              "$ref": "#/definitions/externalIds"
-            },
-            "id": {
-              "description": "Unique Samsara ID for the address.",
-              "type": "string",
-              "example": "7107471"
-            },
-            "latitude": {
-              "description": "Latitude of the address. Either inferred from the formatted address or defined on address creation.",
-              "type": "number",
-              "format": "double",
-              "example": 37.765363
-            },
-            "longitude": {
-              "description": "Longitude of the address. Either inferred from the formatted address or defined on address creation.",
-              "type": "number",
-              "format": "double",
-              "example": 37.765363
-            },
-            "tags": {
-              "description": "An array of all tag mini-objects that are associated with the given address entry.",
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/tagTinyResponse"
-              }
-            }
-          }
-        },
-        {
-          "$ref": "#/definitions/AddressResponseCore"
-        }
-      ]
-    },
-    "AddressCore": {
-      "description": "Core fields used in both address creation and the actual address object.",
-      "type": "object",
+      "required": [
+        "formattedAddress",
+        "geofence",
+        "id",
+        "name"
+      ],
       "properties": {
         "addressTypes": {
-          "description": "Reporting location type associated with the address (used for ELD reporting purposes).",
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": [
-              "yard",
-              "shortHaul"
-            ],
-            "example": "yard"
-          }
+          "$ref": "#/definitions/AddressTypes"
+        },
+        "contacts": {
+          "$ref": "#/definitions/AddressContacts"
+        },
+        "externalIds": {
+          "$ref": "#/definitions/AddressExternalIds"
         },
         "formattedAddress": {
-          "description": "The full street address for this address/geofence, as it might be recognized by Google Maps.",
-          "type": "string",
-          "maxLength": 1024,
-          "example": "350 Rhode Island St, San Francisco, CA"
+          "$ref": "#/definitions/AddressFormattedAddress"
+        },
+        "geofence": {
+          "$ref": "#/definitions/AddressGeofence"
+        },
+        "id": {
+          "$ref": "#/definitions/AddressId"
+        },
+        "latitude": {
+          "$ref": "#/definitions/AddressLatitude"
+        },
+        "longitude": {
+          "$ref": "#/definitions/AddressLongitude"
         },
         "name": {
-          "description": "Name of the address.",
-          "type": "string",
-          "maxLength": 255,
-          "example": "Samsara HQ"
+          "$ref": "#/definitions/AddressName"
         },
         "notes": {
-          "description": "Notes about the address.",
-          "type": "string",
-          "maxLength": 280,
-          "example": "Hours of operation: 8am - 6pm; Truck entrance on the Rhode Island street side."
+          "$ref": "#/definitions/AddressNotes"
+        },
+        "tags": {
+          "$ref": "#/definitions/AddressTags"
         }
       }
     },
-    "AddressCreate": {
-      "description": "An address object.",
-      "type": "object",
-      "allOf": [
-        {
-          "required": [
-            "name",
-            "formattedAddress",
-            "geofence"
-          ],
-          "properties": {
-            "contactIds": {
-              "description": "An array of IDs of contacts to associate with this address.",
-              "type": "array",
-              "items": {
-                "type": "string",
-                "example": "22408"
-              }
-            },
-            "externalIds": {
-              "$ref": "#/definitions/externalIds"
-            },
-            "latitude": {
-              "description": "Optional latitude field to override the geocoded latitude from the formatted address.",
-              "type": "number",
-              "format": "double",
-              "example": 37.765363
-            },
-            "longitude": {
-              "description": "Optional longitude field to override the geocoded longitude from the formatted address.",
-              "type": "number",
-              "format": "double",
-              "example": 37.765363
-            },
-            "tagIds": {
-              "description": "An array of IDs of tags to associate with this address.",
-              "type": "array",
-              "items": {
-                "type": "string",
-                "example": "3914"
-              }
-            }
-          }
-        },
-        {
-          "$ref": "#/definitions/AddressRequestCore"
-        }
-      ]
+    "AddressContactIds": {
+      "description": "An array of Contact IDs associated with this Address.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "example": "22408"
+      }
     },
-    "AddressGeofenceRequest": {
-      "description": "The geofence that defines this address and its bounds. This can either be a circle, or a polygon - only one key should be provided, depending on the geofence type.",
+    "AddressContacts": {
+      "description": "An array Contact mini-objects that are associated the Address.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/contactTinyResponse"
+      }
+    },
+    "AddressExternalIds": {
+      "$ref": "#/definitions/externalIds"
+    },
+    "AddressFormattedAddress": {
+      "description": "The full street address for this address/geofence, as it might be recognized by Google Maps.",
+      "type": "string",
+      "maxLength": 1024,
+      "example": "350 Rhode Island St, San Francisco, CA"
+    },
+    "AddressGeofence": {
+      "description": "The geofence that defines this address and its bounds. This can either be a circle or a polygon, but not both.",
       "type": "object",
       "properties": {
         "circle": {
@@ -3924,21 +3838,15 @@
           ],
           "properties": {
             "latitude": {
-              "description": "Optional latitude field to override the geocoded latitude from the formatted address. In decimal degrees.",
-              "type": "number",
-              "format": "double",
-              "example": 37.765363
+              "$ref": "#/definitions/AddressLatitude"
             },
             "longitude": {
-              "description": "Optional latitude field to override the geocoded latitude from the formatted address. In decimal degrees.",
-              "type": "number",
-              "format": "double",
-              "example": -122.403098
+              "$ref": "#/definitions/AddressLongitude"
             },
             "radiusMeters": {
               "description": "The radius of the circular geofence in meters.",
-              "type": "number",
-              "format": "integer",
+              "type": "integer",
+              "format": "int64",
               "example": 250
             }
           }
@@ -3946,12 +3854,21 @@
         "polygon": {
           "description": "Information about a polygon geofence. This field is only needed if the geofence is a polygon.",
           "type": "object",
+          "required": [
+            "vertices"
+          ],
           "properties": {
             "vertices": {
               "description": "The vertices of the polygon geofence. These geofence vertices describe the perimeter of the polygon, and must consist of at least 3 vertices and less than 40.",
               "type": "array",
+              "maxItems": 40,
+              "minItems": 3,
               "items": {
                 "type": "object",
+                "required": [
+                  "latitude",
+                  "longitude"
+                ],
                 "properties": {
                   "latitude": {
                     "description": "The latitude of a geofence vertex in decimal degrees.",
@@ -3984,148 +3901,72 @@
         }
       }
     },
-    "AddressGeofenceResponse": {
-      "description": "The geofence that defines this address and its bounds. This can either be a circle, or a polygon",
+    "AddressId": {
+      "description": "ID of the Address.",
+      "type": "string",
+      "example": "22408"
+    },
+    "AddressLatitude": {
+      "description": "Latitude of the address. Will be geocoded from `formattedAddress` if not provided.",
+      "type": "number",
+      "format": "double",
+      "example": 37.765363
+    },
+    "AddressLongitude": {
+      "description": "Longitude of the address. Will be geocoded from `formattedAddress` if not provided.",
+      "type": "number",
+      "format": "double",
+      "example": 37.765363
+    },
+    "AddressName": {
+      "description": "Name of the address.",
+      "type": "string",
+      "maxLength": 255,
+      "example": "Samsara HQ"
+    },
+    "AddressNotes": {
+      "description": "Notes about the address.",
+      "type": "string",
+      "maxLength": 280,
+      "example": "Hours of operation: 8am - 6pm; Truck entrance on the Rhode Island street side."
+    },
+    "AddressResponse": {
+      "description": "An Address response body.",
       "type": "object",
+      "required": [
+        "data"
+      ],
       "properties": {
-        "circle": {
-          "description": "Information about a circular geofence. This field is only populated if the geofence is a circle.",
-          "type": "object",
-          "properties": {
-            "latitude": {
-              "description": "The latitude of the center of the circular geofence in decimal degrees.",
-              "type": "number",
-              "format": "double",
-              "example": 37.765363
-            },
-            "longitude": {
-              "description": "The longitude of the center of the circular geofence in decimal degrees.",
-              "type": "number",
-              "format": "double",
-              "example": -122.403098
-            },
-            "radiusMeters": {
-              "description": "The radius of the circular geofence in meters.",
-              "type": "number",
-              "format": "integer",
-              "example": 250
-            }
-          }
-        },
-        "polygon": {
-          "description": "Information about a polygon geofence. This field is only populated if the geofence is a polygon.",
-          "type": "object",
-          "properties": {
-            "vertices": {
-              "description": "The vertices of the polygon geofence. These geofence vertices describe the perimeter of the polygon.",
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "latitude": {
-                    "description": "The latitude of a geofence vertex in decimal degrees.",
-                    "type": "number",
-                    "format": "double"
-                  },
-                  "longitude": {
-                    "description": "The longitude of a geofence vertex in decimal degrees.",
-                    "type": "number",
-                    "format": "double"
-                  }
-                }
-              },
-              "example": [
-                {
-                  "latitude": 37.765363,
-                  "longitude": -122.403098
-                },
-                {
-                  "latitude": 38.765363,
-                  "longitude": -122.403098
-                },
-                {
-                  "latitude": 37.765363,
-                  "longitude": -123.403098
-                }
-              ]
-            }
-          }
+        "data": {
+          "$ref": "#/definitions/Address"
         }
       }
     },
-    "AddressPatch": {
-      "description": "Information about an address/geofence. Geofences are either a circle or a polygon.",
-      "type": "object",
-      "allOf": [
-        {
-          "properties": {
-            "contactIds": {
-              "description": "An array of IDs of contacts to associate with this address.",
-              "type": "array",
-              "items": {
-                "type": "string",
-                "example": "123"
-              }
-            },
-            "externalIds": {
-              "$ref": "#/definitions/externalIds"
-            },
-            "latitude": {
-              "description": "Optional latitude field to override the geocoded latitude from the formatted address.",
-              "type": "number",
-              "format": "double",
-              "example": 37.765363
-            },
-            "longitude": {
-              "description": "Optional longitude field to override the geocoded longitude from the formatted address.",
-              "type": "number",
-              "format": "double",
-              "example": 37.765363
-            },
-            "tagIds": {
-              "description": "An array of IDs of tags to associate with this address.",
-              "type": "array",
-              "items": {
-                "type": "string",
-                "example": "321"
-              }
-            }
-          }
-        },
-        {
-          "$ref": "#/definitions/AddressRequestCore"
-        }
-      ]
+    "AddressTagIds": {
+      "description": "An array of IDs of tags to associate with this address.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "example": "3914"
+      }
     },
-    "AddressRequestCore": {
-      "type": "object",
-      "allOf": [
-        {
-          "properties": {
-            "geofence": {
-              "$ref": "#/definitions/AddressGeofenceRequest"
-            }
-          }
-        },
-        {
-          "$ref": "#/definitions/AddressCore"
-        }
-      ]
+    "AddressTags": {
+      "description": "An array of all tag mini-objects that are associated with the given address entry.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/tagTinyResponse"
+      }
     },
-    "AddressResponseCore": {
-      "type": "object",
-      "allOf": [
-        {
-          "properties": {
-            "geofence": {
-              "$ref": "#/definitions/AddressGeofenceResponse"
-            }
-          }
-        },
-        {
-          "$ref": "#/definitions/AddressCore"
-        }
-      ]
+    "AddressTypes": {
+      "description": "Reporting location type associated with the address (used for ELD reporting purposes).",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "yard"
+        ],
+        "example": "yard"
+      }
     },
     "Contact": {
       "description": "Information about a notification contact for alerts.",
@@ -4190,6 +4031,47 @@
       "properties": {
         "data": {
           "$ref": "#/definitions/Contact"
+        }
+      }
+    },
+    "CreateAddressRequest": {
+      "description": "A request body to create an Address.",
+      "type": "object",
+      "required": [
+        "formattedAddress",
+        "geofence",
+        "name"
+      ],
+      "properties": {
+        "addressTypes": {
+          "$ref": "#/definitions/AddressTypes"
+        },
+        "contactIds": {
+          "$ref": "#/definitions/AddressContactIds"
+        },
+        "externalIds": {
+          "$ref": "#/definitions/AddressExternalIds"
+        },
+        "formattedAddress": {
+          "$ref": "#/definitions/AddressFormattedAddress"
+        },
+        "geofence": {
+          "$ref": "#/definitions/AddressGeofence"
+        },
+        "latitude": {
+          "$ref": "#/definitions/AddressLatitude"
+        },
+        "longitude": {
+          "$ref": "#/definitions/AddressLongitude"
+        },
+        "name": {
+          "$ref": "#/definitions/AddressName"
+        },
+        "notes": {
+          "$ref": "#/definitions/AddressNotes"
+        },
+        "tagIds": {
+          "$ref": "#/definitions/AddressTagIds"
         }
       }
     },
@@ -4586,6 +4468,26 @@
           "$ref": "#/definitions/DriverBase"
         }
       ]
+    },
+    "ListAddressesResponse": {
+      "description": "A list of Addresses and pagination information.",
+      "type": "object",
+      "required": [
+        "data",
+        "pagination"
+      ],
+      "properties": {
+        "data": {
+          "description": "A list of Addresses.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Address"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
     },
     "ListContactsResponse": {
       "description": "A list of contacts.",
@@ -5059,6 +4961,42 @@
           "description": "Name of this tag.",
           "type": "string",
           "example": "California"
+        }
+      }
+    },
+    "UpdateAddressRequest": {
+      "description": "A request body to update an Address.",
+      "type": "object",
+      "properties": {
+        "addressTypes": {
+          "$ref": "#/definitions/AddressTypes"
+        },
+        "contactIds": {
+          "$ref": "#/definitions/AddressContactIds"
+        },
+        "externalIds": {
+          "$ref": "#/definitions/AddressExternalIds"
+        },
+        "formattedAddress": {
+          "$ref": "#/definitions/AddressFormattedAddress"
+        },
+        "geofence": {
+          "$ref": "#/definitions/AddressGeofence"
+        },
+        "latitude": {
+          "$ref": "#/definitions/AddressLatitude"
+        },
+        "longitude": {
+          "$ref": "#/definitions/AddressLongitude"
+        },
+        "name": {
+          "$ref": "#/definitions/AddressName"
+        },
+        "notes": {
+          "$ref": "#/definitions/AddressNotes"
+        },
+        "tagIds": {
+          "$ref": "#/definitions/AddressTagIds"
         }
       }
     },
