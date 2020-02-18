@@ -1065,7 +1065,7 @@
           "Tags"
         ],
         "summary": "List all tags",
-        "operationId": "getAllTags",
+        "operationId": "listTags",
         "parameters": [
           {
             "maximum": 512,
@@ -1088,18 +1088,7 @@
           "200": {
             "description": "List of tags.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/Tag"
-                  }
-                },
-                "pagination": {
-                  "$ref": "#/definitions/paginationResponse"
-                }
-              }
+              "$ref": "#/definitions/ListTagsResponse"
             }
           },
           "default": {
@@ -1121,8 +1110,9 @@
           {
             "name": "Tag create body.",
             "in": "body",
+            "required": true,
             "schema": {
-              "$ref": "#/definitions/TagUpdate"
+              "$ref": "#/definitions/CreateTagRequest"
             }
           }
         ],
@@ -1130,12 +1120,7 @@
           "200": {
             "description": "Newly created tag object, including the new tag ID.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "$ref": "#/definitions/Tag"
-                }
-              }
+              "$ref": "#/definitions/TagResponse"
             }
           },
           "default": {
@@ -1160,17 +1145,12 @@
           "Tags"
         ],
         "summary": "Retrieve a tag",
-        "operationId": "getTagById",
+        "operationId": "getTag",
         "responses": {
           "200": {
             "description": "The tag corresponding to request id.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "$ref": "#/definitions/Tag"
-                }
-              }
+              "$ref": "#/definitions/TagResponse"
             }
           },
           "default": {
@@ -1187,13 +1167,14 @@
           "Tags"
         ],
         "summary": "Update a tag",
-        "operationId": "putTagById",
+        "operationId": "replaceTag",
         "parameters": [
           {
             "name": "Tag update body.",
             "in": "body",
+            "required": true,
             "schema": {
-              "$ref": "#/definitions/TagUpdate"
+              "$ref": "#/definitions/ReplaceTagRequest"
             }
           }
         ],
@@ -1201,12 +1182,7 @@
           "200": {
             "description": "The updated tag data.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "$ref": "#/definitions/Tag"
-                }
-              }
+              "$ref": "#/definitions/TagResponse"
             }
           },
           "default": {
@@ -1223,7 +1199,7 @@
           "Tags"
         ],
         "summary": "Delete a tag",
-        "operationId": "deleteTagById",
+        "operationId": "deleteTag",
         "responses": {
           "204": {
             "description": "Successfully deleted the tag. No response body is returned."
@@ -4093,6 +4069,62 @@
         }
       }
     },
+    "CreateTagRequest": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "addresses": {
+          "description": "The addresses that belong to this tag.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaggedObjectId"
+          }
+        },
+        "assets": {
+          "description": "The trailers, unpowered, and powered assets that belong to this tag.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaggedObjectId"
+          }
+        },
+        "drivers": {
+          "description": "The drivers that belong to this tag.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaggedObjectId"
+          }
+        },
+        "machines": {
+          "description": "The machines that belong to this tag.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaggedObjectId"
+          }
+        },
+        "name": {
+          "$ref": "#/definitions/TagName"
+        },
+        "parentTagId": {
+          "$ref": "#/definitions/ParentTagId"
+        },
+        "sensors": {
+          "description": "The sensors that belong to this tag.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaggedObjectId"
+          }
+        },
+        "vehicles": {
+          "description": "The vehicles that belong to this tag.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaggedObjectId"
+          }
+        }
+      }
+    },
     "Driver": {
       "description": "A driver object",
       "type": "object",
@@ -4504,6 +4536,21 @@
         }
       }
     },
+    "ListTagsResponse": {
+      "description": "A list of tags.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Tag"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
     "ParentTag": {
       "description": "If this tag is part a hierarchical tag tree, this is the parent tag, otherwise this will be omitted.",
       "type": "object",
@@ -4515,11 +4562,19 @@
           "$ref": "#/definitions/TaggedObjectId"
         },
         "name": {
-          "description": "The tag name.",
-          "type": "string",
-          "example": "US West Vehicles"
+          "$ref": "#/definitions/ParentTagName"
         }
       }
+    },
+    "ParentTagId": {
+      "description": "If this tag is part a hierarchical tag tree, this is the ID of the parent tag, otherwise this will be omitted.",
+      "type": "string",
+      "example": "4815"
+    },
+    "ParentTagName": {
+      "description": "The tag name.",
+      "type": "string",
+      "example": "US West Vehicles"
     },
     "RemoteObdTestRecords": {
       "description": "CTP test data reported from one ECU.",
@@ -4809,6 +4864,59 @@
         }
       }
     },
+    "ReplaceTagRequest": {
+      "type": "object",
+      "properties": {
+        "addresses": {
+          "description": "The addresses that belong to this tag.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaggedObjectId"
+          }
+        },
+        "assets": {
+          "description": "The trailers, unpowered, and powered assets that belong to this tag.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaggedObjectId"
+          }
+        },
+        "drivers": {
+          "description": "The drivers that belong to this tag.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaggedObjectId"
+          }
+        },
+        "machines": {
+          "description": "The machines that belong to this tag.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaggedObjectId"
+          }
+        },
+        "name": {
+          "$ref": "#/definitions/TagName"
+        },
+        "parentTagId": {
+          "$ref": "#/definitions/ParentTagId"
+        },
+        "sensors": {
+          "description": "The sensors that belong to this tag.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaggedObjectId"
+          }
+        },
+        "vehicles": {
+          "description": "The vehicles that belong to this tag.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaggedObjectId"
+          }
+        }
+      }
+    },
     "Tag": {
       "allOf": [
         {
@@ -4866,65 +4974,24 @@
         }
       ]
     },
-    "TagUpdate": {
+    "TagId": {
+      "description": "Unique Samsara ID of this tag.",
+      "type": "string",
+      "example": "342417"
+    },
+    "TagName": {
+      "description": "Name of this tag.",
+      "type": "string",
+      "maxLength": 191,
+      "minLength": 1,
+      "example": "California"
+    },
+    "TagResponse": {
+      "description": "A single tag.",
       "type": "object",
-      "required": [
-        "name"
-      ],
       "properties": {
-        "addresses": {
-          "description": "The addresses that belong to this tag.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TaggedObjectId"
-          }
-        },
-        "assets": {
-          "description": "The trailers, unpowered, and powered assets that belong to this tag.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TaggedObjectId"
-          }
-        },
-        "drivers": {
-          "description": "The drivers that belong to this tag.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TaggedObjectId"
-          }
-        },
-        "machines": {
-          "description": "The machines that belong to this tag.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TaggedObjectId"
-          }
-        },
-        "name": {
-          "description": "Name of this tag. Must be unique.",
-          "type": "string",
-          "maxLength": 191,
-          "minLength": 1,
-          "example": "California"
-        },
-        "parentTagId": {
-          "description": "If this tag is part a hierarchical tag tree, this is the ID of the parent tag, otherwise this will be omitted.",
-          "type": "string",
-          "example": "4815"
-        },
-        "sensors": {
-          "description": "The sensors that belong to this tag.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TaggedObjectId"
-          }
-        },
-        "vehicles": {
-          "description": "The vehicles that belong to this tag.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TaggedObjectId"
-          }
+        "data": {
+          "$ref": "#/definitions/Tag"
         }
       }
     },
@@ -4938,9 +5005,7 @@
           "$ref": "#/definitions/TaggedObjectId"
         },
         "name": {
-          "description": "The object name.",
-          "type": "string",
-          "example": "Driver Don"
+          "$ref": "#/definitions/TaggedObjectName"
         }
       }
     },
@@ -4949,18 +5014,19 @@
       "type": "string",
       "example": "23502866574"
     },
+    "TaggedObjectName": {
+      "description": "The object name.",
+      "type": "string",
+      "example": "Driver Don"
+    },
     "TinyTag": {
       "type": "object",
       "properties": {
         "id": {
-          "description": "Unique Samsara ID of this tag.",
-          "type": "string",
-          "example": "342417"
+          "$ref": "#/definitions/TagId"
         },
         "name": {
-          "description": "Name of this tag.",
-          "type": "string",
-          "example": "California"
+          "$ref": "#/definitions/TagName"
         }
       }
     },
