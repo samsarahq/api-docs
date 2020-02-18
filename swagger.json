@@ -533,7 +533,7 @@
           "Vehicles"
         ],
         "summary": "List all vehicles",
-        "operationId": "listVehiclesKondo",
+        "operationId": "listVehicles",
         "parameters": [
           {
             "maximum": 512,
@@ -566,7 +566,7 @@
           "200": {
             "description": "List of all vehicle objects, and pagination parameters.",
             "schema": {
-              "$ref": "#/definitions/VehicleListResponse"
+              "$ref": "#/definitions/ListVehiclesResponse"
             }
           },
           "default": {
@@ -990,17 +990,12 @@
           "Vehicles"
         ],
         "summary": "Retrieve a vehicle",
-        "operationId": "getVehicleById",
+        "operationId": "getVehicle",
         "responses": {
           "200": {
             "description": "Returns the specified vehicle object.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "$ref": "#/definitions/VehicleResponse"
-                }
-              }
+              "$ref": "#/definitions/VehicleResponse"
             }
           },
           "default": {
@@ -1012,19 +1007,20 @@
         }
       },
       "patch": {
-        "description": "Patches the given vehicle object.",
+        "description": "Updates the given vehicle.",
         "tags": [
           "Vehicles"
         ],
         "summary": "Update a vehicle",
-        "operationId": "updateVehicleById",
+        "operationId": "updateVehicle",
         "parameters": [
           {
             "description": "Fields that can be patched on a vehicle.",
-            "name": "vehiclePatchBody",
+            "name": "vehicle",
             "in": "body",
+            "required": true,
             "schema": {
-              "$ref": "#/definitions/VehiclePatch"
+              "$ref": "#/definitions/UpdateVehicleRequest"
             }
           }
         ],
@@ -1032,12 +1028,7 @@
           "200": {
             "description": "Returns the specified vehicle object.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "$ref": "#/definitions/VehicleResponse"
-                }
-              }
+              "$ref": "#/definitions/VehicleResponse"
             }
           },
           "default": {
@@ -4551,6 +4542,21 @@
         }
       }
     },
+    "ListVehiclesResponse": {
+      "description": "Response for retrieving a list of vehicles.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Vehicle"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
     "ParentTag": {
       "description": "If this tag is part a hierarchical tag tree, this is the parent tag, otherwise this will be omitted.",
       "type": "object",
@@ -5081,6 +5087,57 @@
         },
         "phone": {
           "$ref": "#/definitions/ContactPhone"
+        }
+      }
+    },
+    "UpdateVehicleRequest": {
+      "description": "All the editable portions of the vehicle object.",
+      "type": "object",
+      "properties": {
+        "auxInputType1": {
+          "$ref": "#/definitions/VehicleAuxInputType1"
+        },
+        "auxInputType2": {
+          "$ref": "#/definitions/VehicleAuxInputType2"
+        },
+        "engineHours": {
+          "$ref": "#/definitions/VehicleEngineHours"
+        },
+        "externalIds": {
+          "$ref": "#/definitions/VehicleExternalIds"
+        },
+        "harshAccelerationSettingType": {
+          "$ref": "#/definitions/VehicleHarshAccelerationSettingType"
+        },
+        "licensePlate": {
+          "$ref": "#/definitions/VehicleLicensePlate"
+        },
+        "make": {
+          "$ref": "#/definitions/VehicleMake"
+        },
+        "model": {
+          "$ref": "#/definitions/VehicleModel"
+        },
+        "name": {
+          "$ref": "#/definitions/VehicleName"
+        },
+        "notes": {
+          "$ref": "#/definitions/VehicleNotes"
+        },
+        "odometerMeters": {
+          "$ref": "#/definitions/VehicleOdometerMeters"
+        },
+        "staticAssignedDriverId": {
+          "$ref": "#/definitions/VehicleStaticAssignedDriverId"
+        },
+        "tagIds": {
+          "$ref": "#/definitions/VehicleTagIds"
+        },
+        "vin": {
+          "$ref": "#/definitions/VehicleVin"
+        },
+        "year": {
+          "$ref": "#/definitions/VehicleYear"
         }
       }
     },
@@ -9688,6 +9745,90 @@
         }
       }
     },
+    "Vehicle": {
+      "description": "The vehicle object.",
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "auxInputType1": {
+          "$ref": "#/definitions/VehicleAuxInputType1"
+        },
+        "auxInputType2": {
+          "$ref": "#/definitions/VehicleAuxInputType2"
+        },
+        "engineHours": {
+          "$ref": "#/definitions/VehicleEngineHours"
+        },
+        "externalIds": {
+          "$ref": "#/definitions/VehicleExternalIds"
+        },
+        "harshAccelerationSettingType": {
+          "$ref": "#/definitions/VehicleHarshAccelerationSettingType"
+        },
+        "id": {
+          "$ref": "#/definitions/VehicleId"
+        },
+        "licensePlate": {
+          "$ref": "#/definitions/VehicleLicensePlate"
+        },
+        "make": {
+          "$ref": "#/definitions/VehicleMake"
+        },
+        "model": {
+          "$ref": "#/definitions/VehicleModel"
+        },
+        "name": {
+          "$ref": "#/definitions/VehicleName"
+        },
+        "notes": {
+          "$ref": "#/definitions/VehicleNotes"
+        },
+        "odometerMeters": {
+          "$ref": "#/definitions/VehicleOdometerMeters"
+        },
+        "staticAssignedDriver": {
+          "$ref": "#/definitions/VehicleStaticAssignedDriver"
+        },
+        "tags": {
+          "$ref": "#/definitions/VehicleTags"
+        },
+        "vin": {
+          "$ref": "#/definitions/VehicleVin"
+        },
+        "year": {
+          "$ref": "#/definitions/VehicleYear"
+        }
+      }
+    },
+    "VehicleAuxInputType": {
+      "description": "The type of aux input that this vehicle has. Setting to \"none\" will remove the configured aux input.",
+      "type": "string",
+      "enum": [
+        "none",
+        "emergencyLights",
+        "emergencyAlarm",
+        "stopPaddle",
+        "powerTakeOff",
+        "plow",
+        "sweeper",
+        "salter",
+        "reefer",
+        "door",
+        "boom",
+        "auxiliaryEngine",
+        "generator",
+        "eightWayLights"
+      ],
+      "example": "boom"
+    },
+    "VehicleAuxInputType1": {
+      "$ref": "#/definitions/VehicleAuxInputType"
+    },
+    "VehicleAuxInputType2": {
+      "$ref": "#/definitions/VehicleAuxInputType"
+    },
     "VehicleCtpSmogTestData": {
       "description": "Required data for one CTP smog test.",
       "type": "object",
@@ -9750,6 +9891,11 @@
         }
       }
     },
+    "VehicleEngineHours": {
+      "description": "Current engine hours value of the vehicle. This is typically pulled automatically from the vehicle, but can be manually overridden when it's not read automatically.",
+      "type": "integer",
+      "example": 10943
+    },
     "VehicleEngineState": {
       "type": "object",
       "properties": {
@@ -9778,6 +9924,9 @@
           }
         }
       }
+    },
+    "VehicleExternalIds": {
+      "$ref": "#/definitions/externalIds"
     },
     "VehicleFuelPercent": {
       "type": "object",
@@ -9852,20 +10001,28 @@
         }
       }
     },
-    "VehicleListResponse": {
-      "description": "Response for retreiving a list of vehicles.",
-      "type": "object",
-      "properties": {
-        "data": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/VehicleResponse"
-          }
-        },
-        "pagination": {
-          "$ref": "#/definitions/paginationResponse"
-        }
-      }
+    "VehicleHarshAccelerationSettingType": {
+      "description": "Enumeration of the harsh acceleration setting types. This setting influences the acceleration sensitivity from which a harsh event is triggered. If set to `off`, then no acceleration based harsh events are triggered for the vehicle.",
+      "type": "string",
+      "enum": [
+        "passengerCar",
+        "lightTruck",
+        "heavyDuty",
+        "off",
+        "automatic"
+      ],
+      "example": "off"
+    },
+    "VehicleId": {
+      "description": "Unique Samsara ID for the vehicle.",
+      "type": "string",
+      "example": "112"
+    },
+    "VehicleLicensePlate": {
+      "description": "The license plate of this vehicle.",
+      "type": "string",
+      "maxLength": 12,
+      "example": "XHK1234"
     },
     "VehicleLocation": {
       "description": "Vehicle location event.",
@@ -10024,6 +10181,29 @@
         }
       }
     },
+    "VehicleMake": {
+      "description": "Vehicle's manufacturing make.",
+      "type": "string",
+      "maxLength": 255,
+      "example": "Ford"
+    },
+    "VehicleModel": {
+      "description": "Vehicle's manufacturing model.",
+      "type": "string",
+      "maxLength": 255,
+      "example": "F150"
+    },
+    "VehicleName": {
+      "description": "Name of the vehicle.",
+      "type": "string",
+      "example": "Truck A7"
+    },
+    "VehicleNotes": {
+      "description": "Notes about a vehicle. Samsara supports a maximum of 255 chars.",
+      "type": "string",
+      "maxLength": 255,
+      "example": "These are notes about this given vehicle."
+    },
     "VehicleObdEngineSeconds": {
       "type": "object",
       "properties": {
@@ -10072,236 +10252,27 @@
         }
       }
     },
-    "VehiclePatch": {
-      "description": "All the editable portions of the vehicle object.",
+    "VehicleOdometerMeters": {
+      "description": "Current odometer value of the vehicle. This is typically pulled automatically from the vehicle, but can be manually overridden when it's not read automatically.",
+      "type": "integer",
+      "example": 9182
+    },
+    "VehicleResponse": {
+      "description": "A single vehicle.",
       "type": "object",
       "properties": {
-        "auxInputType1": {
-          "description": "The type of aux input that this vehicle has connected to port 1. Setting to \"none\" will remove the configured aux input.",
-          "type": "string",
-          "enum": [
-            "none",
-            "emergencyLights",
-            "emergencyAlarm",
-            "stopPaddle",
-            "powerTakeOff",
-            "plow",
-            "sweeper",
-            "salter",
-            "reefer",
-            "door",
-            "boom",
-            "auxiliaryEngine",
-            "generator",
-            "eightWayLights"
-          ],
-          "example": "boom"
-        },
-        "auxInputType2": {
-          "description": "The type of aux input that this vehicle has connected to port 2. Setting to \"none\" will remove the configured aux input.",
-          "type": "string",
-          "enum": [
-            "none",
-            "emergencyLights",
-            "emergencyAlarm",
-            "stopPaddle",
-            "powerTakeOff",
-            "plow",
-            "sweeper",
-            "salter",
-            "reefer",
-            "door",
-            "boom",
-            "auxiliaryEngine",
-            "generator",
-            "eightWayLights"
-          ],
-          "example": "plow"
-        },
-        "engineHours": {
-          "description": "Current engine hours value of the vehicle. This is typically pulled automatically from the vehicle, but can be manually overridden when it's not read automatically.",
-          "type": "integer",
-          "example": 10943
-        },
-        "externalIds": {
-          "$ref": "#/definitions/externalIds"
-        },
-        "harshAccelerationSettingType": {
-          "description": "Enumeration of the harsh acceleration setting types. This setting influences the accelereation sensitivity from which a harsh event is triggered. If set to `off`, then no acceleration based harsh events are triggered for the vehicle.",
-          "type": "string",
-          "enum": [
-            "passengerCar",
-            "lightTruck",
-            "heavyDuty",
-            "off",
-            "automatic"
-          ],
-          "example": "off"
-        },
-        "licensePlate": {
-          "description": "License plate number for the vehicle.",
-          "type": "string",
-          "maxLength": 12,
-          "example": "8KDB021"
-        },
-        "name": {
-          "description": "Name of the vehicle.",
-          "type": "string",
-          "example": "Truck A7"
-        },
-        "notes": {
-          "description": "Notes about a vehicle with a maximum of 255 characters.",
-          "type": "string",
-          "maxLength": 255,
-          "example": "These are notes about this given vehicle."
-        },
-        "odometerMeters": {
-          "description": "Current odometer value of the vehicle. This is typically pulled automatically from the vehicle, but can be manually overridden when it's not read automatically.",
-          "type": "integer",
-          "example": 9182
-        },
-        "staticAssignedDriverId": {
-          "description": "ID of driver assigned to the vehicle for static vehicle assignments. An empty string explicitly unsets the assignment. (uncommon).",
-          "type": "string",
-          "x-nullable": true,
-          "example": "8921"
-        },
-        "tagIds": {
-          "description": "An array of IDs of tags to associate with this vehicle.",
-          "type": "array",
-          "items": {
-            "type": "string",
-            "example": "321"
-          }
-        },
-        "vin": {
-          "description": "A vehicle identification number.",
-          "type": "string",
-          "maxLength": 17,
-          "example": "1FUJA6BD31LJ09646"
+        "data": {
+          "$ref": "#/definitions/Vehicle"
         }
       }
     },
-    "VehicleResponse": {
-      "description": "The vehicle object.",
-      "type": "object",
-      "required": [
-        "id"
-      ],
-      "properties": {
-        "auxInputType1": {
-          "description": "The type of aux input that this vehicle has connected to port 1. Setting to \"none\" will remove the configured aux input.",
-          "type": "string",
-          "enum": [
-            "none",
-            "emergencyLights",
-            "emergencyAlarm",
-            "stopPaddle",
-            "powerTakeOff",
-            "plow",
-            "sweeper",
-            "salter",
-            "reefer",
-            "door",
-            "boom",
-            "auxiliaryEngine",
-            "generator",
-            "eightWayLights"
-          ],
-          "example": "boom"
-        },
-        "auxInputType2": {
-          "description": "The type of aux input that this vehicle has connected to port 2. Setting to \"none\" will remove the configured aux input.",
-          "type": "string",
-          "enum": [
-            "none",
-            "emergencyLights",
-            "emergencyAlarm",
-            "stopPaddle",
-            "powerTakeOff",
-            "plow",
-            "sweeper",
-            "salter",
-            "reefer",
-            "door",
-            "boom",
-            "auxiliaryEngine",
-            "generator",
-            "eightWayLights"
-          ],
-          "example": "plow"
-        },
-        "externalIds": {
-          "$ref": "#/definitions/externalIds"
-        },
-        "harshAccelerationSettingType": {
-          "description": "Enumeration of the harsh acceleration setting types. This setting influences the acceleration sensitivity from which a harsh event is triggered. If set to `off`, then no acceleration based harsh events are triggered for the vehicle.",
-          "type": "string",
-          "enum": [
-            "passengerCar",
-            "lightTruck",
-            "heavyDuty",
-            "off",
-            "automatic"
-          ],
-          "example": "off"
-        },
-        "id": {
-          "description": "Unique Samsara ID for the vehicle.",
-          "type": "string",
-          "example": "112"
-        },
-        "licensePlate": {
-          "description": "The license plate of this vehicle.",
-          "type": "string",
-          "maxLength": 12,
-          "example": "XHK1234"
-        },
-        "make": {
-          "description": "Vehicle's manufacturing make.",
-          "type": "string",
-          "maxLength": 255,
-          "example": "Ford"
-        },
-        "model": {
-          "description": "Vehicle's manufacturing model.",
-          "type": "string",
-          "maxLength": 255,
-          "example": "F150"
-        },
-        "name": {
-          "description": "Name of the vehicle.",
-          "type": "string",
-          "example": "Truck A7"
-        },
-        "notes": {
-          "description": "Notes about a vehicle. Samsara supports a maximum of 255 chars.",
-          "type": "string",
-          "maxLength": 255,
-          "example": "These are notes about this given vehicle."
-        },
-        "staticAssignedDriver": {
-          "$ref": "#/definitions/driverTinyResponse"
-        },
-        "tags": {
-          "description": "An array of all tag mini-objects that are associated with the given vehicle.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/tagTinyResponse"
-          }
-        },
-        "vin": {
-          "description": "A vehicle identification number.",
-          "type": "string",
-          "maxLength": 17,
-          "example": "1FUJA6BD31LJ09646"
-        },
-        "year": {
-          "description": "Vehicle's manufacturing year.",
-          "type": "string",
-          "example": "2008"
-        }
-      }
+    "VehicleStaticAssignedDriver": {
+      "$ref": "#/definitions/driverTinyResponse"
+    },
+    "VehicleStaticAssignedDriverId": {
+      "description": "ID for the static assigned driver of the vehicle.",
+      "type": "string",
+      "example": "123"
     },
     "VehicleStatsList": {
       "type": "object",
@@ -10379,6 +10350,32 @@
           }
         }
       ]
+    },
+    "VehicleTagIds": {
+      "description": "An array of IDs of tags to associate with this vehicle.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "example": "321"
+      }
+    },
+    "VehicleTags": {
+      "description": "An array of all tag mini-objects that are associated with the given vehicle.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/tagTinyResponse"
+      }
+    },
+    "VehicleVin": {
+      "description": "A vehicle identification number.",
+      "type": "string",
+      "maxLength": 17,
+      "example": "1FUJA6BD31LJ09646"
+    },
+    "VehicleYear": {
+      "description": "Vehicle's manufacturing year.",
+      "type": "string",
+      "example": "2008"
     },
     "contactTinyResponse": {
       "description": "A minified contact object",
