@@ -1197,7 +1197,7 @@
           "Users"
         ],
         "summary": "List all user roles",
-        "operationId": "getUserRoles",
+        "operationId": "listUserRoles",
         "parameters": [
           {
             "maximum": 512,
@@ -1220,17 +1220,7 @@
           "200": {
             "description": "List all user roles.",
             "schema": {
-              "properties": {
-                "data": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/UserRole"
-                  }
-                },
-                "pagination": {
-                  "$ref": "#/definitions/paginationResponse"
-                }
-              }
+              "$ref": "#/definitions/ListUserTagRolesResponse"
             }
           },
           "default": {
@@ -1249,7 +1239,7 @@
           "Users"
         ],
         "summary": "List all users",
-        "operationId": "getUsers",
+        "operationId": "listUsers",
         "parameters": [
           {
             "maximum": 512,
@@ -1272,17 +1262,7 @@
           "200": {
             "description": "List all users.",
             "schema": {
-              "properties": {
-                "data": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/User"
-                  }
-                },
-                "pagination": {
-                  "$ref": "#/definitions/paginationResponse"
-                }
-              }
+              "$ref": "#/definitions/ListUsersResponse"
             }
           },
           "default": {
@@ -1305,8 +1285,9 @@
             "description": "The user to create.",
             "name": "user",
             "in": "body",
+            "required": true,
             "schema": {
-              "$ref": "#/definitions/UserCreate"
+              "$ref": "#/definitions/CreateUserRequest"
             }
           }
         ],
@@ -1314,28 +1295,7 @@
           "200": {
             "description": "Newly created user object with ID.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "$ref": "#/definitions/User"
-                }
-              },
-              "example": {
-                "data": {
-                  "authType": "default",
-                  "email": "user@company.com",
-                  "id": "123",
-                  "name": "Bob Smith",
-                  "roles": [
-                    {
-                      "role": {
-                        "id": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
-                        "name": "Full Admin"
-                      }
-                    }
-                  ]
-                }
-              }
+              "$ref": "#/definitions/UserResponse"
             }
           },
           "default": {
@@ -1354,17 +1314,12 @@
           "Users"
         ],
         "summary": "Retrieve a user",
-        "operationId": "getUserById",
+        "operationId": "getUser",
         "responses": {
           "200": {
             "description": "Returns the specified user.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "$ref": "#/definitions/User"
-                }
-              }
+              "$ref": "#/definitions/UserResponse"
             }
           },
           "default": {
@@ -1381,7 +1336,7 @@
           "Users"
         ],
         "summary": "Delete a user",
-        "operationId": "deleteUserById",
+        "operationId": "deleteUser",
         "responses": {
           "204": {
             "description": "Returns an empty success response."
@@ -1400,14 +1355,15 @@
           "Users"
         ],
         "summary": "Update a user",
-        "operationId": "updateUserById",
+        "operationId": "updateUser",
         "parameters": [
           {
             "description": "Updates to the user.",
             "name": "user",
             "in": "body",
+            "required": true,
             "schema": {
-              "$ref": "#/definitions/UserUpdate"
+              "$ref": "#/definitions/UpdateUserRequest"
             }
           }
         ],
@@ -1415,12 +1371,7 @@
           "200": {
             "description": "Updated user object with ID.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "$ref": "#/definitions/User"
-                }
-              }
+              "$ref": "#/definitions/UserResponse"
             }
           },
           "default": {
@@ -4170,6 +4121,30 @@
         }
       }
     },
+    "CreateUserRequest": {
+      "description": "The user creation arguments",
+      "type": "object",
+      "required": [
+        "name",
+        "email",
+        "authType",
+        "roles"
+      ],
+      "properties": {
+        "authType": {
+          "$ref": "#/definitions/UserAuthType"
+        },
+        "email": {
+          "$ref": "#/definitions/UserEmail"
+        },
+        "name": {
+          "$ref": "#/definitions/UserName"
+        },
+        "roles": {
+          "$ref": "#/definitions/UserTagRolesRequest"
+        }
+      }
+    },
     "Driver": {
       "description": "A driver object",
       "type": "object",
@@ -4509,6 +4484,36 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/Tag"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "ListUserTagRolesResponse": {
+      "description": "A list of user roles.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/userRoleTinyResponse"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "ListUsersResponse": {
+      "description": "A list of users.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/User"
           }
         },
         "pagination": {
@@ -5136,6 +5141,21 @@
         }
       }
     },
+    "UpdateUserRequest": {
+      "description": "The user update arguments",
+      "type": "object",
+      "properties": {
+        "authType": {
+          "$ref": "#/definitions/UserAuthType"
+        },
+        "name": {
+          "$ref": "#/definitions/UserName"
+        },
+        "roles": {
+          "$ref": "#/definitions/UserTagRolesRequest"
+        }
+      }
+    },
     "UpdateVehicleRequest": {
       "description": "All the editable portions of the vehicle object.",
       "type": "object",
@@ -5199,125 +5219,55 @@
       ],
       "properties": {
         "authType": {
-          "description": "The authentication type the user uses to authenticate. To use SAML this organization must have a configured SAML integration.",
-          "type": "string",
-          "enum": [
-            "default",
-            "saml"
-          ]
+          "$ref": "#/definitions/UserAuthType"
         },
         "email": {
-          "description": "The email address of this user.",
-          "type": "string",
-          "example": "user@company.com"
+          "$ref": "#/definitions/UserEmail"
         },
         "id": {
-          "description": "Unique ID for the user.",
-          "type": "string",
-          "example": "123"
+          "$ref": "#/definitions/UserId"
         },
         "name": {
-          "description": "The first and last name of the user.",
-          "type": "string",
-          "example": "Bob Smith"
+          "$ref": "#/definitions/UserName"
         },
         "roles": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/UserRoleResponse"
-          }
+          "$ref": "#/definitions/UserTagRoles"
         }
       }
     },
-    "UserCreate": {
-      "description": "The user creation arguments",
+    "UserAuthType": {
+      "description": "The authentication type the user uses to authenticate. To use SAML this organization must have a configured SAML integration.",
+      "type": "string",
+      "enum": [
+        "default",
+        "saml"
+      ]
+    },
+    "UserEmail": {
+      "description": "The email address of this user.",
+      "type": "string",
+      "example": "user@company.com"
+    },
+    "UserId": {
+      "description": "ID of the user.",
+      "type": "string",
+      "example": "123"
+    },
+    "UserName": {
+      "description": "The first and last name of the user.",
+      "type": "string",
+      "example": "Bob Smith"
+    },
+    "UserResponse": {
+      "description": "A single user.",
       "type": "object",
-      "required": [
-        "name",
-        "email",
-        "authType",
-        "roles"
-      ],
       "properties": {
-        "authType": {
-          "description": "The authentication type the user uses to authenticate. To use SAML this organization must have a configured SAML integration.",
-          "type": "string",
-          "enum": [
-            "default",
-            "saml"
-          ]
-        },
-        "email": {
-          "description": "The email address of this user. This cannot be changed after creation.",
-          "type": "string",
-          "maxLength": 191,
-          "example": "user@company.com"
-        },
-        "name": {
-          "description": "The first and last name of the user.",
-          "type": "string",
-          "maxLength": 255,
-          "example": "Bob Smith"
-        },
-        "roles": {
-          "description": "The roles for this user. Users must have at least a single role to be a part of an organization. Roles without an associated `tagId` are considered \"Organization Level\" roles and will apply to the user at the organization level. Each user can only have one \"Organization Level\" role. Roles with a `tagId` will be roles specific to that tag. Users can only have one role per tag. Users can have different roles at the organization and tag level, and users can have different roles for different tags.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/UserRoleInput"
-          },
-          "example": [
-            {
-              "roleId": "717fe0f3-f87f-4a57-b3ce-33a5a9f394cd"
-            },
-            {
-              "roleId": "23d4d8d3-dc10-4e7a-a183-69968751f23e",
-              "tagId": "3914"
-            },
-            {
-              "roleId": "23d4d8d3-dc10-4e7a-a183-69968751f23e",
-              "tagId": "5151"
-            }
-          ]
+        "data": {
+          "$ref": "#/definitions/User"
         }
       }
     },
-    "UserRole": {
-      "description": "A user role object.",
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/userRoleTinyResponse"
-        }
-      ]
-    },
-    "UserRoleInput": {
-      "type": "object",
-      "required": [
-        "roleId"
-      ],
-      "properties": {
-        "roleId": {
-          "description": "The id of the role the user has been granted.",
-          "type": "string",
-          "example": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
-        },
-        "tagId": {
-          "description": "The id of the tag used to grant a role. If no tag is specified, this role applies at the organization level.",
-          "type": "string",
-          "example": "3914"
-        }
-      },
-      "example": [
-        {
-          "roleId": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
-        },
-        {
-          "roleId": "717fe0f3-f87f-4a57-b3ce-33a5a9f394cd",
-          "tagId": "3914"
-        }
-      ]
-    },
-    "UserRoleResponse": {
+    "UserTagRole": {
       "description": "A user role",
       "type": "object",
       "properties": {
@@ -5354,44 +5304,44 @@
         }
       ]
     },
-    "UserUpdate": {
-      "description": "The user update arguments",
+    "UserTagRoleRequest": {
       "type": "object",
+      "required": [
+        "roleId"
+      ],
       "properties": {
-        "authType": {
-          "description": "The authentication type the user uses to authenticate. To use SAML this organization must have a configured SAML integration.",
+        "roleId": {
+          "description": "The id of the role the user has been granted.",
           "type": "string",
-          "enum": [
-            "default",
-            "saml"
-          ]
+          "example": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
         },
-        "name": {
-          "description": "The first and last name of the user.",
+        "tagId": {
+          "description": "The id of the tag used to grant a role. If no tag is specified, this role applies at the organization level.",
           "type": "string",
-          "maxLength": 255,
-          "example": "Bob Smith"
-        },
-        "roles": {
-          "description": "The roles for this user. Users must have at least a single role to be a part of an organization.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/UserRoleInput"
-          },
-          "example": [
-            {
-              "roleId": "717fe0f3-f87f-4a57-b3ce-33a5a9f394cd"
-            },
-            {
-              "roleId": "23d4d8d3-dc10-4e7a-a183-69968751f23e",
-              "tagId": "3914"
-            },
-            {
-              "roleId": "23d4d8d3-dc10-4e7a-a183-69968751f23e",
-              "tagId": "5151"
-            }
-          ]
+          "example": "3914"
         }
+      },
+      "example": [
+        {
+          "roleId": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
+        },
+        {
+          "roleId": "717fe0f3-f87f-4a57-b3ce-33a5a9f394cd",
+          "tagId": "3914"
+        }
+      ]
+    },
+    "UserTagRoles": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/UserTagRole"
+      }
+    },
+    "UserTagRolesRequest": {
+      "description": "The roles for this user. Users must have at least a single role to be a part of an organization.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/UserTagRoleRequest"
       }
     },
     "V1Asset": {
