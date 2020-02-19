@@ -353,7 +353,7 @@
           "Drivers"
         ],
         "summary": "List all drivers",
-        "operationId": "getDrivers",
+        "operationId": "listDrivers",
         "parameters": [
           {
             "type": "boolean",
@@ -392,17 +392,7 @@
           "200": {
             "description": "List of all driver objects.",
             "schema": {
-              "properties": {
-                "data": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/Driver"
-                  }
-                },
-                "pagination": {
-                  "$ref": "#/definitions/paginationResponse"
-                }
-              }
+              "$ref": "#/definitions/ListDriversResponse"
             }
           },
           "default": {
@@ -425,8 +415,9 @@
             "description": "The driver to create.",
             "name": "driver",
             "in": "body",
+            "required": true,
             "schema": {
-              "$ref": "#/definitions/DriverCreate"
+              "$ref": "#/definitions/CreateDriverRequest"
             }
           }
         ],
@@ -434,12 +425,7 @@
           "200": {
             "description": "Newly created driver object, with Samsara-generated ID.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "$ref": "#/definitions/Driver"
-                }
-              }
+              "$ref": "#/definitions/DriverResponse"
             }
           },
           "default": {
@@ -458,17 +444,12 @@
           "Drivers"
         ],
         "summary": "Retrieve a driver",
-        "operationId": "getDriverById",
+        "operationId": "getDriver",
         "responses": {
           "200": {
             "description": "Returns the specified driver.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "$ref": "#/definitions/Driver"
-                }
-              }
+              "$ref": "#/definitions/DriverResponse"
             }
           },
           "default": {
@@ -485,14 +466,15 @@
           "Drivers"
         ],
         "summary": "Update a driver",
-        "operationId": "updateDriverById",
+        "operationId": "updateDriver",
         "parameters": [
           {
             "description": "Updates to the driver properties.",
             "name": "driver",
             "in": "body",
+            "required": true,
             "schema": {
-              "$ref": "#/definitions/DriverUpdate"
+              "$ref": "#/definitions/UpdateDriverRequest"
             }
           }
         ],
@@ -500,12 +482,7 @@
           "200": {
             "description": "Updated driver object, with ID.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "$ref": "#/definitions/Driver"
-                }
-              }
+              "$ref": "#/definitions/DriverResponse"
             }
           },
           "default": {
@@ -4060,6 +4037,83 @@
         }
       }
     },
+    "CreateDriverRequest": {
+      "description": "Driver that should be created.",
+      "type": "object",
+      "required": [
+        "name",
+        "username",
+        "password"
+      ],
+      "properties": {
+        "carrierSettings": {
+          "$ref": "#/definitions/DriverCarrierSettings"
+        },
+        "eldAdverseWeatherExemptionEnabled": {
+          "$ref": "#/definitions/DriverEldAdverseWeatherExemptionEnabled"
+        },
+        "eldBigDayExemptionEnabled": {
+          "$ref": "#/definitions/DriverEldBigDayExemptionEnabled"
+        },
+        "eldDayStartHour": {
+          "$ref": "#/definitions/DriverEldDayStartHour"
+        },
+        "eldExempt": {
+          "$ref": "#/definitions/DriverEldExempt"
+        },
+        "eldExemptReason": {
+          "$ref": "#/definitions/DriverEldExemptReason"
+        },
+        "eldPcEnabled": {
+          "$ref": "#/definitions/DriverEldPcEnabled"
+        },
+        "eldYmEnabled": {
+          "$ref": "#/definitions/DriverEldPcEnabled"
+        },
+        "externalIds": {
+          "$ref": "#/definitions/DriverExternalIds"
+        },
+        "licenseNumber": {
+          "$ref": "#/definitions/DriverLicenseNumber"
+        },
+        "licenseState": {
+          "$ref": "#/definitions/DriverLicenseState"
+        },
+        "locale": {
+          "$ref": "#/definitions/DriverLocale"
+        },
+        "name": {
+          "$ref": "#/definitions/DriverName"
+        },
+        "notes": {
+          "$ref": "#/definitions/DriverNotes"
+        },
+        "password": {
+          "$ref": "#/definitions/DriverPassword"
+        },
+        "phone": {
+          "$ref": "#/definitions/DriverPhone"
+        },
+        "staticAssignedVehicleId": {
+          "$ref": "#/definitions/DriverStaticAssignedVehicleId"
+        },
+        "tachographCardNumber": {
+          "$ref": "#/definitions/DriverTachographCardNumber"
+        },
+        "tagIds": {
+          "$ref": "#/definitions/DriverTagIds"
+        },
+        "timezone": {
+          "$ref": "#/definitions/DriverTimezone"
+        },
+        "username": {
+          "$ref": "#/definitions/DriverUsername"
+        },
+        "vehicleGroupTagId": {
+          "$ref": "#/definitions/DriverVehicleGroupTagId"
+        }
+      }
+    },
     "CreateTagRequest": {
       "type": "object",
       "required": [
@@ -4119,378 +4173,283 @@
     "Driver": {
       "description": "A driver object",
       "type": "object",
-      "allOf": [
-        {
-          "properties": {
-            "id": {
-              "description": "Samsara ID for the driver.",
-              "type": "string",
-              "example": "123"
-            },
-            "staticAssignedVehicle": {
-              "allOf": [
-                {
-                  "description": "Vehicle assigned to the driver for static vehicle assignments. (uncommon)."
-                },
-                {
-                  "$ref": "#/definitions/vehicleTinyResponse"
-                }
-              ]
-            },
-            "tags": {
-              "description": "The tags this driver belongs to.",
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/tagTinyResponse"
-              }
-            },
-            "vehicleGroupTag": {
-              "allOf": [
-                {
-                  "description": "Tag which determines which vehicles a driver will see when selecting vehicles."
-                },
-                {
-                  "$ref": "#/definitions/tagTinyResponse"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "$ref": "#/definitions/DriverBase"
-        }
-      ]
-    },
-    "DriverBase": {
-      "description": "A driver object",
-      "type": "object",
       "properties": {
         "carrierSettings": {
-          "description": "Carrier for a given driver. If the driver's carrier differs from the general organization's carrier settings, the override value is used. Updating this value only updates the override setting for this driver.",
-          "type": "object",
-          "properties": {
-            "carrierName": {
-              "description": "Carrier for a given driver.",
-              "type": "string",
-              "maxLength": 255,
-              "example": "Acme Inc."
-            },
-            "dotNumber": {
-              "description": "Carrier US DOT Number. If this differs from the general organization's settings, the override value is used. Updating this value only updates the override setting for this driver.",
-              "type": "integer",
-              "format": "int64",
-              "example": 98231
-            },
-            "mainOfficeAddress": {
-              "description": "Main office address for a given driver. If this differs from the general organization's settings, the override value is used. ",
-              "type": "string",
-              "maxLength": 255,
-              "example": "1234 Pear St., Scranton, PA 62814"
-            }
-          }
+          "$ref": "#/definitions/DriverCarrierSettings"
         },
         "eldAdverseWeatherExemptionEnabled": {
-          "description": "Flag indicating this driver may use Adverse Weather exemptions in ELD logs.",
-          "type": "boolean"
+          "$ref": "#/definitions/DriverEldAdverseWeatherExemptionEnabled"
         },
         "eldBigDayExemptionEnabled": {
-          "description": "Flag indicating this driver may use Big Day exemption in ELD logs.",
-          "type": "boolean"
+          "$ref": "#/definitions/DriverEldBigDayExemptionEnabled"
         },
         "eldDayStartHour": {
-          "description": "`0` indicating midnight-to-midnight ELD driving hours, `12` to indicate noon-to-noon driving hours.",
-          "type": "integer"
+          "$ref": "#/definitions/DriverEldDayStartHour"
         },
         "eldExempt": {
-          "description": "Flag indicating this driver is exempt from the Electronic Logging Mandate.",
-          "type": "boolean"
+          "$ref": "#/definitions/DriverEldExempt"
         },
         "eldExemptReason": {
-          "description": "Reason that this driver is exempt from the Electronic Logging Mandate (see eldExempt).",
-          "type": "string",
-          "example": "Bad driver"
+          "$ref": "#/definitions/DriverEldExemptReason"
         },
         "eldPcEnabled": {
-          "description": "Flag indicating this driver may select the Personal Conveyance duty status in ELD logs.",
-          "type": "boolean",
-          "default": false
+          "$ref": "#/definitions/DriverEldPcEnabled"
         },
         "eldYmEnabled": {
-          "description": "Flag indicating this driver may select the Yard Move duty status in ELD logs.",
-          "type": "boolean",
-          "default": false
+          "$ref": "#/definitions/DriverEldYmEnabled"
         },
         "externalIds": {
-          "$ref": "#/definitions/externalIds"
+          "$ref": "#/definitions/DriverExternalIds"
+        },
+        "id": {
+          "$ref": "#/definitions/DriverId"
         },
         "isDeactivated": {
-          "description": "A boolean that indicates whether or not this driver is deactivated.",
-          "type": "boolean",
-          "example": false
+          "$ref": "#/definitions/DriverIsDeactivated"
         },
         "licenseNumber": {
-          "description": "Driver's state issued license number. The combination of this number and `licenseState` must be unique.",
-          "type": "string",
-          "example": "E1234567"
+          "$ref": "#/definitions/DriverLicenseNumber"
         },
         "licenseState": {
-          "description": "Abbreviation of state that issued driver's license.",
-          "type": "string",
-          "example": "CA"
+          "$ref": "#/definitions/DriverLicenseState"
         },
         "locale": {
-          "description": "Locale override (uncommon).",
-          "type": "string",
-          "enum": [
-            "us",
-            "at",
-            "be",
-            "ca",
-            "gb",
-            "fr",
-            "de",
-            "ie",
-            "it",
-            "lu",
-            "mx",
-            "es",
-            "ch"
-          ]
+          "$ref": "#/definitions/DriverLocale"
         },
         "name": {
-          "description": "Driver's name.",
-          "type": "string",
-          "maxLength": 255,
-          "example": "Susan Jones"
+          "$ref": "#/definitions/DriverName"
         },
         "notes": {
-          "description": "Notes about the driver.",
-          "type": "string",
-          "maxLength": 4096,
-          "example": "Also goes by the nickname Furious Fred."
+          "$ref": "#/definitions/DriverNotes"
         },
         "phone": {
-          "description": "Driver's phone number.",
-          "type": "string",
-          "maxLength": 255,
-          "example": "5558234327"
+          "$ref": "#/definitions/DriverPhone"
+        },
+        "staticAssignedVehicle": {
+          "$ref": "#/definitions/DriverStaticAssignedVehicle"
         },
         "tachographCardNumber": {
-          "description": "Driver's assigned tachograph card number (Europe specific)",
-          "type": "string",
-          "example": "1000000492436002"
+          "$ref": "#/definitions/DriverTachographCardNumber"
+        },
+        "tags": {
+          "$ref": "#/definitions/DriverTags"
         },
         "timezone": {
-          "description": "Home terminal timezone, in order to indicate what time zone should be used to calculate the ELD logs.",
-          "type": "string",
-          "example": "New York - EST/EDT"
+          "$ref": "#/definitions/DriverTimezone"
         },
         "username": {
-          "description": "Driver's login username into the driver app. The username may not contain spaces or the '@' symbol. The username must be unique.",
-          "type": "string",
-          "maxLength": 189,
-          "minLength": 1,
-          "example": "SusanJones"
+          "$ref": "#/definitions/DriverUsername"
+        },
+        "vehicleGroupTag": {
+          "$ref": "#/definitions/DriverVehicleGroupTag"
         }
       }
     },
-    "DriverCreate": {
-      "description": "Driver that should be created.",
+    "DriverCarrierName": {
+      "description": "Carrier for a given driver.",
+      "type": "string",
+      "maxLength": 255,
+      "example": "Acme Inc."
+    },
+    "DriverCarrierSettings": {
+      "description": "Carrier for a given driver. If the driver's carrier differs from the general organization's carrier settings, the override value is used. Updating this value only updates the override setting for this driver.",
       "type": "object",
-      "required": [
-        "name",
-        "username",
-        "password"
-      ],
       "properties": {
-        "carrierSettings": {
-          "description": "Carrier for a given driver. If the driver's carrier differs from the general organization's carrier settings, the override value is used. Updating this value only updates the override setting for this driver.",
-          "type": "object",
-          "properties": {
-            "carrierName": {
-              "description": "Carrier for a given driver.",
-              "type": "string",
-              "maxLength": 255,
-              "example": "Acme Inc."
-            },
-            "dotNumber": {
-              "description": "Carrier US DOT Number. If this differs from the general organization's settings, the override value is used. Updating this value only updates the override setting for this driver.",
-              "type": "integer",
-              "format": "int64",
-              "example": 98231
-            },
-            "mainOfficeAddress": {
-              "description": "Main office address for a given driver. If this differs from the general organization's settings, the override value is used. ",
-              "type": "string",
-              "maxLength": 255,
-              "example": "1234 Pear St., Scranton, PA 62814"
-            }
-          }
+        "carrierName": {
+          "$ref": "#/definitions/DriverCarrierName"
         },
-        "eldAdverseWeatherExemptionEnabled": {
-          "description": "Flag indicating this driver may use Adverse Weather exemptions in ELD logs.",
-          "type": "boolean",
-          "default": false
+        "dotNumber": {
+          "$ref": "#/definitions/DriverDotNumber"
         },
-        "eldBigDayExemptionEnabled": {
-          "description": "Flag indicating this driver may use Big Day exemption in ELD logs.",
-          "type": "boolean",
-          "default": false
-        },
-        "eldDayStartHour": {
-          "description": "`0` indicating midnight-to-midnight ELD driving hours, `12` to indicate noon-to-noon driving hours.",
-          "type": "integer",
-          "default": 0
-        },
-        "eldExempt": {
-          "description": "Flag indicating this driver is exempt from the Electronic Logging Mandate.",
-          "type": "boolean",
-          "default": false
-        },
-        "eldExemptReason": {
-          "description": "Reason that this driver is exempt from the Electronic Logging Mandate (see eldExempt).",
-          "type": "string",
-          "example": "Bad driver"
-        },
-        "eldPcEnabled": {
-          "description": "Flag indicating this driver may select the Personal Conveyance duty status in ELD logs.",
-          "type": "boolean",
-          "default": false
-        },
-        "eldYmEnabled": {
-          "description": "Flag indicating this driver may select the Yard Move duty status in ELD logs.",
-          "type": "boolean",
-          "default": false
-        },
-        "externalIds": {
-          "$ref": "#/definitions/externalIds"
-        },
-        "licenseNumber": {
-          "description": "Driver's state issued license number. The combination of this number and `licenseState` must be unique.",
-          "type": "string",
-          "example": "E1234567"
-        },
-        "licenseState": {
-          "description": "Abbreviation of state that issued driver's license.",
-          "type": "string",
-          "example": "CA"
-        },
-        "locale": {
-          "description": "Locale override (uncommon). These are specified by ISO 3166-2 country codes for supported locales.",
-          "type": "string",
-          "enum": [
-            "us",
-            "at",
-            "be",
-            "ca",
-            "gb",
-            "fr",
-            "de",
-            "ie",
-            "it",
-            "lu",
-            "mx",
-            "nl",
-            "es",
-            "ch"
-          ]
-        },
-        "name": {
-          "description": "Driver's name.",
-          "type": "string",
-          "maxLength": 255,
-          "minLength": 1,
-          "example": "Susan Jones"
-        },
-        "notes": {
-          "description": "Notes about the driver.",
-          "type": "string",
-          "maxLength": 4096,
-          "example": "Also goes by the nickname Furious Fred."
-        },
-        "password": {
-          "description": "Password that the driver can use to login to the Samsara driver app.",
-          "type": "string",
-          "example": "aSecurePassword1234"
-        },
-        "phone": {
-          "description": "Phone number of the driver.",
-          "type": "string",
-          "maxLength": 255,
-          "example": "5558234327"
-        },
-        "staticAssignedVehicleId": {
-          "description": "ID of vehicle that the driver is permanently assigned to. (uncommon).",
-          "type": "string",
-          "example": "456"
-        },
-        "tachographCardNumber": {
-          "description": "Driver's assigned tachograph card number (Europe specific)",
-          "type": "string",
-          "example": "1000000492436002"
-        },
-        "tagIds": {
-          "description": "IDs of tags the driver is associated with.",
-          "type": "array",
-          "items": {
-            "type": "string",
-            "example": "147"
-          }
-        },
-        "timezone": {
-          "description": "Home terminal timezone, in order to indicate what time zone should be used to calculate the ELD logs.",
-          "type": "string",
-          "example": "New York - EST/EDT"
-        },
-        "username": {
-          "description": "Driver's login username into the driver app. The username may not contain spaces or the '@' symbol. The username must be unique.",
-          "type": "string",
-          "maxLength": 189,
-          "minLength": 1,
-          "example": "SusanJones"
-        },
-        "vehicleGroupTagId": {
-          "description": "Tag ID which determines which vehicles a driver will see when selecting vehicles.",
-          "type": "string",
-          "example": "342417"
+        "mainOfficeAddress": {
+          "$ref": "#/definitions/DriverMainOfficeAddress"
         }
       }
     },
-    "DriverUpdate": {
-      "description": "Driver that should be updated.",
+    "DriverDotNumber": {
+      "description": "Carrier US DOT Number. If this differs from the general organization's settings, the override value is used. Updating this value only updates the override setting for this driver.",
+      "type": "integer",
+      "format": "int64",
+      "example": 98231
+    },
+    "DriverEldAdverseWeatherExemptionEnabled": {
+      "description": "Flag indicating this driver may use Adverse Weather exemptions in ELD logs.",
+      "type": "boolean",
+      "default": false
+    },
+    "DriverEldBigDayExemptionEnabled": {
+      "description": "Flag indicating this driver may use Big Day exemption in ELD logs.",
+      "type": "boolean",
+      "default": false
+    },
+    "DriverEldDayStartHour": {
+      "description": "`0` indicating midnight-to-midnight ELD driving hours, `12` to indicate noon-to-noon driving hours.",
+      "type": "integer",
+      "default": 0
+    },
+    "DriverEldExempt": {
+      "description": "Flag indicating this driver is exempt from the Electronic Logging Mandate.",
+      "type": "boolean",
+      "default": false
+    },
+    "DriverEldExemptReason": {
+      "description": "Reason that this driver is exempt from the Electronic Logging Mandate (see eldExempt).",
+      "type": "string",
+      "example": "Bad driver"
+    },
+    "DriverEldPcEnabled": {
+      "description": "Flag indicating this driver may select the Personal Conveyance duty status in ELD logs.",
+      "type": "boolean",
+      "default": false
+    },
+    "DriverEldYmEnabled": {
+      "description": "Flag indicating this driver may select the Yard Move duty status in ELD logs.",
+      "type": "boolean",
+      "default": false
+    },
+    "DriverExternalIds": {
+      "$ref": "#/definitions/externalIds"
+    },
+    "DriverId": {
+      "description": "Samsara ID for the driver.",
+      "type": "string",
+      "example": "123"
+    },
+    "DriverIsDeactivated": {
+      "description": "A boolean indicating whether or not the driver is deactivated.",
+      "type": "boolean",
+      "example": false
+    },
+    "DriverLicenseNumber": {
+      "description": "Driver's state issued license number. The combination of this number and `licenseState` must be unique.",
+      "type": "string",
+      "example": "E1234567"
+    },
+    "DriverLicenseState": {
+      "description": "Abbreviation of state that issued driver's license.",
+      "type": "string",
+      "example": "CA"
+    },
+    "DriverLocale": {
+      "description": "Locale override (uncommon). These are specified by ISO 3166-2 country codes for supported locales.",
+      "type": "string",
+      "enum": [
+        "us",
+        "at",
+        "be",
+        "ca",
+        "gb",
+        "fr",
+        "de",
+        "ie",
+        "it",
+        "lu",
+        "mx",
+        "nl",
+        "es",
+        "ch"
+      ]
+    },
+    "DriverMainOfficeAddress": {
+      "description": "Main office address for a given driver. If this differs from the general organization's settings, the override value is used. ",
+      "type": "string",
+      "maxLength": 255,
+      "example": "1234 Pear St., Scranton, PA 62814"
+    },
+    "DriverName": {
+      "description": "Driver's name.",
+      "type": "string",
+      "maxLength": 255,
+      "minLength": 1,
+      "example": "Susan Jones"
+    },
+    "DriverNotes": {
+      "description": "Notes about the driver.",
+      "type": "string",
+      "maxLength": 4096,
+      "example": "Also goes by the nickname Furious Fred."
+    },
+    "DriverPassword": {
+      "description": "Password that the driver can use to login to the Samsara driver app.",
+      "type": "string",
+      "example": "aSecurePassword1234"
+    },
+    "DriverPhone": {
+      "description": "Phone number of the driver.",
+      "type": "string",
+      "maxLength": 255,
+      "example": "5558234327"
+    },
+    "DriverResponse": {
+      "description": "A single driver.",
       "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/Driver"
+        }
+      }
+    },
+    "DriverStaticAssignedVehicle": {
       "allOf": [
         {
-          "properties": {
-            "password": {
-              "description": "Password that the driver can use to login to the Samsara driver app.",
-              "type": "string",
-              "example": "aSecurePassword1234"
-            },
-            "staticAssignedVehicleId": {
-              "description": "ID of vehicle assigned to the driver for static vehicle assignments. (uncommon).",
-              "type": "string",
-              "example": "456"
-            },
-            "tagIds": {
-              "description": "IDs of tags the driver is associated with.",
-              "type": "array",
-              "items": {
-                "type": "string",
-                "example": "147"
-              }
-            },
-            "vehicleGroupTagId": {
-              "description": "Tag ID which determines which vehicles a driver will see when selecting vehicles.",
-              "type": "string",
-              "example": "342417"
-            }
-          }
+          "description": "Vehicle assigned to the driver for static vehicle assignments. (uncommon)."
         },
         {
-          "$ref": "#/definitions/DriverBase"
+          "$ref": "#/definitions/vehicleTinyResponse"
         }
       ]
+    },
+    "DriverStaticAssignedVehicleId": {
+      "description": "ID of vehicle that the driver is permanently assigned to. (uncommon).",
+      "type": "string",
+      "example": "456"
+    },
+    "DriverTachographCardNumber": {
+      "description": "Driver's assigned tachograph card number (Europe specific)",
+      "type": "string",
+      "example": "1000000492436002"
+    },
+    "DriverTagIds": {
+      "description": "IDs of tags the driver is associated with.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "example": "147"
+      }
+    },
+    "DriverTags": {
+      "description": "The tags this driver belongs to.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/tagTinyResponse"
+      }
+    },
+    "DriverTimezone": {
+      "description": "Home terminal timezone, in order to indicate what time zone should be used to calculate the ELD logs.",
+      "type": "string",
+      "example": "New York - EST/EDT"
+    },
+    "DriverUsername": {
+      "description": "Driver's login username into the driver app. The username may not contain spaces or the '@' symbol. The username must be unique.",
+      "type": "string",
+      "maxLength": 189,
+      "minLength": 1,
+      "example": "SusanJones"
+    },
+    "DriverVehicleGroupTag": {
+      "allOf": [
+        {
+          "description": "Tag which determines which vehicles a driver will see when selecting vehicles."
+        },
+        {
+          "$ref": "#/definitions/tagTinyResponse"
+        }
+      ]
+    },
+    "DriverVehicleGroupTagId": {
+      "description": "Tag ID which determines which vehicles a driver will see when selecting vehicles.",
+      "type": "string",
+      "example": "342417"
     },
     "ListAddressesResponse": {
       "description": "A list of Addresses and pagination information.",
@@ -4520,6 +4479,21 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/Contact"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "ListDriversResponse": {
+      "description": "A list of drivers.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Driver"
           }
         },
         "pagination": {
@@ -5087,6 +5061,78 @@
         },
         "phone": {
           "$ref": "#/definitions/ContactPhone"
+        }
+      }
+    },
+    "UpdateDriverRequest": {
+      "description": "Driver that should be updated.",
+      "type": "object",
+      "properties": {
+        "carrierSettings": {
+          "$ref": "#/definitions/DriverCarrierSettings"
+        },
+        "eldAdverseWeatherExemptionEnabled": {
+          "$ref": "#/definitions/DriverEldAdverseWeatherExemptionEnabled"
+        },
+        "eldBigDayExemptionEnabled": {
+          "$ref": "#/definitions/DriverEldBigDayExemptionEnabled"
+        },
+        "eldDayStartHour": {
+          "$ref": "#/definitions/DriverEldDayStartHour"
+        },
+        "eldExempt": {
+          "$ref": "#/definitions/DriverEldExempt"
+        },
+        "eldExemptReason": {
+          "$ref": "#/definitions/DriverEldExemptReason"
+        },
+        "eldPcEnabled": {
+          "$ref": "#/definitions/DriverEldPcEnabled"
+        },
+        "eldYmEnabled": {
+          "$ref": "#/definitions/DriverEldYmEnabled"
+        },
+        "externalIds": {
+          "$ref": "#/definitions/DriverExternalIds"
+        },
+        "licenseNumber": {
+          "$ref": "#/definitions/DriverLicenseNumber"
+        },
+        "licenseState": {
+          "$ref": "#/definitions/DriverLicenseState"
+        },
+        "locale": {
+          "$ref": "#/definitions/DriverLocale"
+        },
+        "name": {
+          "$ref": "#/definitions/DriverName"
+        },
+        "notes": {
+          "$ref": "#/definitions/DriverNotes"
+        },
+        "password": {
+          "$ref": "#/definitions/DriverPassword"
+        },
+        "phone": {
+          "$ref": "#/definitions/DriverPhone"
+        },
+        "staticAssignedVehicleId": {
+          "$ref": "#/definitions/DriverStaticAssignedVehicleId"
+        },
+        "tachographCardNumber": {
+          "$ref": "#/definitions/DriverTachographCardNumber"
+        },
+        "tagIds": {
+          "$ref": "#/definitions/DriverTagIds"
+        },
+        "timezone": {
+          "$ref": "#/definitions/DriverTimezone"
+        },
+        "username": {
+          "$ref": "#/definitions/DriverUsername"
+        },
+        "vehicleGroupTagId": {
+          "$ref": "#/definitions/DriverVehicleGroupTagId"
         }
       }
     },
@@ -10912,6 +10958,12 @@
       "name": "started_at_ms",
       "in": "path",
       "required": true
+    },
+    "isDeactivatedParam": {
+      "type": "boolean",
+      "description": "If value is true, only drivers that are deactivated will appear in the response. This parameter will default to false if not provided (fetching only active drivers).",
+      "name": "isDeactivated",
+      "in": "query"
     },
     "vehicleStatTypes": {
       "enum": [
