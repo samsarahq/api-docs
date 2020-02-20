@@ -4152,6 +4152,9 @@
         "carrierSettings": {
           "$ref": "#/definitions/DriverCarrierSettings"
         },
+        "createdAtTime": {
+          "$ref": "#/definitions/DriverCreatedAtTime"
+        },
         "eldAdverseWeatherExemptionEnabled": {
           "$ref": "#/definitions/DriverEldAdverseWeatherExemptionEnabled"
         },
@@ -4212,6 +4215,9 @@
         "timezone": {
           "$ref": "#/definitions/DriverTimezone"
         },
+        "updatedAtTime": {
+          "$ref": "#/definitions/DriverUpdatedAtTime"
+        },
         "username": {
           "$ref": "#/definitions/DriverUsername"
         },
@@ -4240,6 +4246,12 @@
           "$ref": "#/definitions/DriverMainOfficeAddress"
         }
       }
+    },
+    "DriverCreatedAtTime": {
+      "description": "The date and time this driver was created in RFC 3339 format.",
+      "type": "string",
+      "format": "date-time",
+      "example": "2019-05-18T20:27:35Z"
     },
     "DriverDotNumber": {
       "description": "Carrier US DOT Number. If this differs from the general organization's settings, the override value is used. Updating this value only updates the override setting for this driver.",
@@ -4403,6 +4415,12 @@
       "description": "Home terminal timezone, in order to indicate what time zone should be used to calculate the ELD logs.",
       "type": "string",
       "example": "New York - EST/EDT"
+    },
+    "DriverUpdatedAtTime": {
+      "description": "The date and time this driver was last updated in RFC 3339 format.",
+      "type": "string",
+      "format": "date-time",
+      "example": "2019-06-13T19:08:25Z"
     },
     "DriverUsername": {
       "description": "Driver's login username into the driver app. The username may not contain spaces or the '@' symbol. The username must be unique.",
