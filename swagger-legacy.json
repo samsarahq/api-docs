@@ -424,6 +424,9 @@
           },
           {
             "$ref": "#/parameters/paginationLimitParam"
+          },
+          {
+            "$ref": "#/parameters/tagIdsPathParam"
           }
         ],
         "responses": {
@@ -1743,13 +1746,7 @@
             "in": "query"
           },
           {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "A comma-separated list of tag IDs. Example: `tagIds=1000,1001`",
-            "name": "tagIds",
-            "in": "query"
+            "$ref": "#/parameters/tagIdsPathParam"
           }
         ],
         "responses": {
@@ -9988,6 +9985,15 @@
       "schema": {
         "$ref": "#/definitions/TagCreate"
       }
+    },
+    "tagIdsPathParam": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "A comma-separated list of tag IDs. Example: `tagIds=1000,1001`",
+      "name": "tagIds",
+      "in": "query"
     },
     "tagModifyParam": {
       "name": "tagModifyParams",
