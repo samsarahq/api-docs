@@ -5030,6 +5030,9 @@
         },
         "name": {
           "$ref": "#/definitions/TagName"
+        },
+        "parentTagId": {
+          "$ref": "#/definitions/ParentTagId"
         }
       }
     },
@@ -10470,6 +10473,11 @@
           "description": "Name of the tag.",
           "type": "string",
           "example": "East Coast"
+        },
+        "parentTagId": {
+          "description": "If this tag is part a hierarchical tag tree, this is the ID of the parent tag, otherwise this will be omitted.",
+          "type": "string",
+          "example": "4815"
         }
       }
     },
