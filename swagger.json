@@ -557,7 +557,7 @@
     },
     "/fleet/vehicles/locations": {
       "get": {
-        "description": "Returns last known location for all vehicles (Samsara Vehicle Gateways). This can be optionally filtered by tags or specific vehicle IDs. See [here](https://developers.samsara.com/docs/vehicle-locations) for more details.",
+        "description": "Returns last known location for all vehicles (connected via Samsara Vehicle Gateways). This can be optionally filtered by tags or specific vehicle IDs. See [here](https://developers.samsara.com/docs/vehicle-locations) for more details.",
         "tags": [
           "Vehicles"
         ],
@@ -593,7 +593,7 @@
         ],
         "responses": {
           "200": {
-            "description": "List of all locations for the specified vehicles and time range.",
+            "description": "List of the most recent locations for the specified vehicles.",
             "schema": {
               "$ref": "#/definitions/VehicleLocationsResponse"
             }
@@ -645,7 +645,7 @@
         ],
         "responses": {
           "200": {
-            "description": "List of all locations for the specified vehicles.",
+            "description": "List of locations events for the specified vehicles.",
             "schema": {
               "$ref": "#/definitions/VehicleLocationsListResponse"
             }
@@ -661,7 +661,7 @@
     },
     "/fleet/vehicles/locations/history": {
       "get": {
-        "description": "Returns all known vehicle location changes during the given time range for all vehicles (Samsara Vehicle Gateways). This can be optionally filtered by tags or specific vehicle IDs. See [here](https://developers.samsara.com/docs/vehicle-locations) for more details.",
+        "description": "Returns all known vehicle locations during the given time range for all vehicles (connected via Samsara Vehicle Gateways). This can be optionally filtered by tags or specific vehicle IDs. See [here](https://developers.samsara.com/docs/vehicle-locations) for more details.",
         "tags": [
           "Vehicles"
         ],
@@ -729,12 +729,12 @@
     },
     "/fleet/vehicles/stats": {
       "get": {
-        "description": "Returns last known stats for all vehicles. This can be optionally filtered by tags or specific vehicle IDs. See [here](https://developers.samsara.com/docs/vehicle-stats) for more details.",
+        "description": "Returns last known stats for all vehicles (connected via Samsara Vehicle Gateways). This can be optionally filtered by tags or specific vehicle IDs. See [here](https://developers.samsara.com/docs/vehicle-stats) for more details.",
         "tags": [
           "Vehicles"
         ],
         "summary": "List most recent vehicle stats",
-        "operationId": "getVehicleStatsSnapshot",
+        "operationId": "getVehicleStats",
         "parameters": [
           {
             "type": "string",
@@ -780,25 +780,9 @@
         ],
         "responses": {
           "200": {
-            "description": "List of all vehicle stat objects and pagination parameters",
+            "description": "List of the most recent stats for the specified vehicles and stat types.",
             "schema": {
-              "properties": {
-                "data": {
-                  "description": "An array of vehicle stat objects. Each object in the array represents a vehicle and will contain the most recent value of the requested stat type.",
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/VehicleStatsSnapshotResponse"
-                  }
-                },
-                "pagination": {
-                  "type": "object",
-                  "allOf": [
-                    {
-                      "$ref": "#/definitions/paginationResponse"
-                    }
-                  ]
-                }
-              }
+              "$ref": "#/definitions/VehicleStatsResponse"
             }
           },
           "default": {
@@ -812,11 +796,11 @@
     },
     "/fleet/vehicles/stats/feed": {
       "get": {
-        "description": "Follow a continuous feed of all vehicle stats from Samsara Vehicle Gateways.\n\nYour first call to this endpoint will provide you with the most recent stats for each vehicle and a `pagination` object that contains an `endCursor`.\n\nYou can provide the `endCursor` to the `after` parameter of this endpoint to get vehicle stat updates since that `endCursor`.\n\nIf `hasNextPage` is `false`, no updates are readily available yet. Each stat type has a different refresh rate, but in general we'd suggest waiting a minimum of 5 seconds before requesting updates. See [here](https://developers.samsara.com/docs/vehicle-stats) for more details.",
+        "description": "Follow a continuous feed of vehicle stats from Samsara Vehicle Gateways.\n\nYour first call to this endpoint will provide you with the most recent stats for each vehicle and a `pagination` object that contains an `endCursor`.\n\nYou can provide the `endCursor` to the `after` parameter of this endpoint to get vehicle stat updates since that `endCursor`.\n\nIf `hasNextPage` is `false`, no updates are readily available yet. Each stat type has a different refresh rate, but in general we'd suggest waiting a minimum of 5 seconds before requesting updates. See [this guide](https://developers.samsara.com/docs/vehicle-stats#section-follow-a-real-time-feed-of-vehicle-stats) for more details.",
         "tags": [
           "Vehicles"
         ],
-        "summary": "Follow a real-time feed of vehicle stats",
+        "summary": "Follow a feed of vehicle stats",
         "operationId": "getVehicleStatsFeed",
         "parameters": [
           {
@@ -863,7 +847,7 @@
         ],
         "responses": {
           "200": {
-            "description": "List of all vehicle stats for the specified vehicles.",
+            "description": "List of stat events for the specified vehicles and stat types.",
             "schema": {
               "$ref": "#/definitions/VehicleStatsListResponse"
             }
@@ -879,7 +863,7 @@
     },
     "/fleet/vehicles/stats/history": {
       "get": {
-        "description": "Returns all known vehicle stats changes during the given time range for all vehicles (Samsara Vehicle Gateways). This can be optionally filtered by tags or specific vehicle IDs. See [here](https://developers.samsara.com/docs/vehicle-stats) for more details.",
+        "description": "Returns vehicle stats events during the given time range for all vehicles (connected via Samsara Vehicle Gateways). This can be optionally filtered by tags or specific vehicle IDs. See [here](https://developers.samsara.com/docs/vehicle-stats) for more details.",
         "tags": [
           "Vehicles"
         ],
@@ -946,7 +930,7 @@
         ],
         "responses": {
           "200": {
-            "description": "List of all vehicle stats for the specified vehicles and time range.",
+            "description": "List of vehicle stats for the specified vehicles, stat type, and time range.",
             "schema": {
               "$ref": "#/definitions/VehicleStatsListResponse"
             }
@@ -4542,6 +4526,10 @@
     "ListVehiclesResponse": {
       "description": "Response for retrieving a list of vehicles.",
       "type": "object",
+      "required": [
+        "data",
+        "pagination"
+      ],
       "properties": {
         "data": {
           "type": "array",
@@ -4578,294 +4566,6 @@
       "description": "The tag name.",
       "type": "string",
       "example": "US West Vehicles"
-    },
-    "RemoteObdTestRecords": {
-      "description": "CTP test data reported from one ECU.",
-      "type": "object",
-      "properties": {
-        "calCvn": {
-          "description": "Calibration Verification Numbers read from the CAN bus, separated by a pipe character.",
-          "type": "string",
-          "example": "0F1245|A51A98"
-        },
-        "calCvnValid": {
-          "description": "Indicates CalCvnCount was successfully read from the CAN bus.",
-          "type": "boolean"
-        },
-        "calId": {
-          "description": "Calibration IDs read from the CAN bus, separated by a pipe character.",
-          "type": "string",
-          "example": "calId_one|calId_two"
-        },
-        "calIdValid": {
-          "description": "Indicates CalId was successfully read from the CAN bus.",
-          "type": "boolean"
-        },
-        "catalyst": {
-          "description": "OBD Monitor Status - Catalyst or NMHC Catalyst as read from the CAN bus.",
-          "type": "string",
-          "enum": [
-            "U",
-            "R",
-            "N"
-          ],
-          "example": "U"
-        },
-        "comprehensive": {
-          "description": "OBD Monitor Status - Comprehensive as read from the CAN bus.",
-          "type": "string",
-          "enum": [
-            "U",
-            "R",
-            "N"
-          ],
-          "example": "U"
-        },
-        "compressionIgnitionMonitorSupported": {
-          "description": "Compression ignition monitor supported as read from the CAN bus.",
-          "type": "string",
-          "enum": [
-            "Y",
-            "N"
-          ],
-          "example": "Y"
-        },
-        "compressionIgnitionMonitorSupportedValid": {
-          "description": "Indicates CompressionIgnitionMonitorSupported was successfully read from the CAN bus.",
-          "type": "boolean"
-        },
-        "distanceTraveledSinceCodesCleared": {
-          "description": "Distance Traveled Since Codes Cleared as read from the CAN bus.",
-          "type": "integer",
-          "example": 3
-        },
-        "distanceTraveledSinceCodesClearedValid": {
-          "description": "Indicates DistanceTraveledSinceCodesCleared was successfully read from the CAN bus.",
-          "type": "boolean"
-        },
-        "distanceTraveledWithMilOn": {
-          "description": "Distance Traveled With MIL On as read from the CAN bus.",
-          "type": "integer",
-          "example": 3
-        },
-        "distanceTraveledWithMilOnValid": {
-          "description": "Indicates DistanceTraveledWithMilOn was successfully read from the CAN bus.",
-          "type": "boolean"
-        },
-        "dtcCount": {
-          "description": "Number of emissions related DTCs read from the CAN bus.",
-          "type": "integer",
-          "example": 3
-        },
-        "egr": {
-          "description": "OBD Monitor Status - EGR/VVT as read from the CAN bus.",
-          "type": "string",
-          "enum": [
-            "U",
-            "R",
-            "N"
-          ],
-          "example": "U"
-        },
-        "emissionRelatedDtcs": {
-          "description": "Emission related DTCs as read from the CAN bus, separated by pipe characters.",
-          "type": "string",
-          "example": "P0151|P0300|P0301"
-        },
-        "emissionRelatedDtcsValid": {
-          "description": "Indicates EmissionRelatedDtcs was successfully read from the CAN bus.",
-          "type": "boolean"
-        },
-        "evapSystem": {
-          "description": "OBD Monitor Status - Evaporative System or ISO/SAE Reserved as read from the CAN bus.",
-          "type": "string",
-          "enum": [
-            "U",
-            "R",
-            "N"
-          ],
-          "example": "U"
-        },
-        "fuel": {
-          "description": "OBD Monitor Status - Fuel as read from the CAN bus.",
-          "type": "string",
-          "enum": [
-            "U",
-            "R",
-            "N"
-          ],
-          "example": "U"
-        },
-        "heatedCatalyst": {
-          "description": "OBD Monitor Status - Heated Catalyst or NOx/SCR aftertreatment as read from the CAN bus.",
-          "type": "string",
-          "enum": [
-            "U",
-            "R",
-            "N"
-          ],
-          "example": "U"
-        },
-        "heatedO2Sensor": {
-          "description": "OBD Monitor Status - Oxygen Sensor Heater or PM Filter as read from the CAN bus.",
-          "type": "string",
-          "enum": [
-            "U",
-            "R",
-            "N"
-          ],
-          "example": "U"
-        },
-        "isoSaeReserved": {
-          "description": "OBD Monitor Status - ISO/SAE Reserved as read from the CAN bus.",
-          "type": "string",
-          "enum": [
-            "U",
-            "R",
-            "N"
-          ],
-          "example": "U"
-        },
-        "mil": {
-          "description": "Malfunction indicator lamp status as read from the CAN bus.",
-          "type": "string",
-          "enum": [
-            "Y",
-            "N"
-          ],
-          "example": "Y"
-        },
-        "milValid": {
-          "description": "Indicates Mil was successfully read from the CAN bus.",
-          "type": "boolean"
-        },
-        "minutesSinceCodesCleared": {
-          "description": "Minutes Since Codes Cleared as read from the CAN bus.",
-          "type": "integer",
-          "example": 3
-        },
-        "minutesSinceCodesClearedValid": {
-          "description": "Indicates MinutesSinceCodesCleared was successfully read from the CAN bus.",
-          "type": "boolean"
-        },
-        "minutesSinceMil": {
-          "description": "Minutes Since MIL On as read from the CAN bus.",
-          "type": "integer",
-          "example": 3
-        },
-        "minutesSinceMilValid": {
-          "description": "Indicates MinutesSinceMil was successfully read from the CAN bus.",
-          "type": "boolean"
-        },
-        "misfire": {
-          "description": "OBD Monitor Status - Misfire as read from the CAN bus.",
-          "type": "string",
-          "enum": [
-            "U",
-            "R",
-            "N"
-          ],
-          "example": "U"
-        },
-        "notReadyCount": {
-          "description": "Number of OBD Monitor Statuses reporting 'Supported and not ready'.",
-          "type": "integer",
-          "example": 3
-        },
-        "o2Sensor": {
-          "description": "OBD Monitor Status - Oxygen Sensor or Exhaust Gas Sensor as read from the CAN bus.",
-          "type": "string",
-          "enum": [
-            "U",
-            "R",
-            "N"
-          ],
-          "example": "U"
-        },
-        "obdMonitorStatusValid": {
-          "description": "Indicates Obd Monitor Statuses were successfully read from the CAN bus.",
-          "type": "boolean"
-        },
-        "obdVin": {
-          "description": "Vehicle identification number as read from the CAN bus.",
-          "type": "string",
-          "example": "1HGBH41JXMN109186"
-        },
-        "obdVinValid": {
-          "description": "Indicates ObdVin was successfully read from the CAN bus.",
-          "type": "boolean"
-        },
-        "pcmId": {
-          "description": "ECU Address for the ECU that was read from the CAN bus.",
-          "type": "string",
-          "example": "7E8"
-        },
-        "pendingDtcCount": {
-          "description": "Number of pending DTCs read from the CAN bus.",
-          "type": "integer",
-          "example": 3
-        },
-        "pendingDtcs": {
-          "description": "Pending DTCs as read from the CAN bus, separated by pipe characters.",
-          "type": "string",
-          "example": "P0151|P0300|P0301"
-        },
-        "pendingDtcsValid": {
-          "description": "Indicates PendingDtcs was successfully read from the CAN bus.",
-          "type": "boolean"
-        },
-        "permanentDtcCount": {
-          "description": "Number of permanent DTCs read from the CAN bus.",
-          "type": "integer",
-          "example": 3
-        },
-        "permanentDtcs": {
-          "description": "Permanent DTCs as read from the CAN bus, separated by pipe characters.",
-          "type": "string",
-          "example": "P0151|P0300|P0301"
-        },
-        "permanentDtcsValid": {
-          "description": "Indicates PermanentDtcs was successfully read from the CAN bus.",
-          "type": "boolean"
-        },
-        "pidCount": {
-          "description": "PidCount is a count of all PIDs supported for this control module as read from the CAN bus",
-          "type": "integer",
-          "example": 3
-        },
-        "pidCountValid": {
-          "description": "Indicates PidCount was successfully read from the CAN bus.",
-          "type": "boolean"
-        },
-        "rpm": {
-          "description": "Revolutions per minute as read from the CAN bus.",
-          "type": "integer",
-          "example": 3
-        },
-        "rpmValid": {
-          "description": "Indicates Rpm was successfully read from the CAN bus.",
-          "type": "boolean"
-        },
-        "secondaryAir": {
-          "description": "OBD Monitor Status - Secondary Air System or Boost Pressure System as read from the CAN bus.",
-          "type": "string",
-          "enum": [
-            "U",
-            "R",
-            "N"
-          ],
-          "example": "U"
-        },
-        "warmupsSinceCodesCleared": {
-          "description": "Warmups Since Codes Cleared as read from the CAN bus.",
-          "type": "integer",
-          "example": 3
-        },
-        "warmupsSinceCodesClearedValid": {
-          "description": "Indicates WarmupsSinceCodesCleared was successfully read from the CAN bus.",
-          "type": "boolean"
-        }
-      }
     },
     "ReplaceTagRequest": {
       "type": "object",
@@ -5199,12 +4899,6 @@
         "licensePlate": {
           "$ref": "#/definitions/VehicleLicensePlate"
         },
-        "make": {
-          "$ref": "#/definitions/VehicleMake"
-        },
-        "model": {
-          "$ref": "#/definitions/VehicleModel"
-        },
         "name": {
           "$ref": "#/definitions/VehicleName"
         },
@@ -5222,9 +4916,6 @@
         },
         "vin": {
           "$ref": "#/definitions/VehicleVin"
-        },
-        "year": {
-          "$ref": "#/definitions/VehicleYear"
         }
       }
     },
@@ -9736,9 +9427,6 @@
         "auxInputType2": {
           "$ref": "#/definitions/VehicleAuxInputType2"
         },
-        "engineHours": {
-          "$ref": "#/definitions/VehicleEngineHours"
-        },
         "externalIds": {
           "$ref": "#/definitions/VehicleExternalIds"
         },
@@ -9762,9 +9450,6 @@
         },
         "notes": {
           "$ref": "#/definitions/VehicleNotes"
-        },
-        "odometerMeters": {
-          "$ref": "#/definitions/VehicleOdometerMeters"
         },
         "staticAssignedDriver": {
           "$ref": "#/definitions/VehicleStaticAssignedDriver"
@@ -9807,177 +9492,14 @@
     "VehicleAuxInputType2": {
       "$ref": "#/definitions/VehicleAuxInputType"
     },
-    "VehicleCtpSmogTestData": {
-      "description": "Required data for one CTP smog test.",
-      "type": "object",
-      "properties": {
-        "commProtocol": {
-          "description": "CAN bus communication protocol as detected by the vehicle gateway.",
-          "type": "string",
-          "enum": [
-            "V",
-            "P",
-            "I",
-            "Kf",
-            "Ks",
-            "C11",
-            "C29",
-            "C11s",
-            "C29s"
-          ],
-          "example": "V"
-        },
-        "deviceFirmware": {
-          "description": "CTP firmware version as reported by the vehicle gateway.",
-          "type": "string",
-          "example": "CTPv1"
-        },
-        "dlcPinVoltageMilliVolts": {
-          "description": "Positive battery voltage as detected by the vehicle gateway reported in millivolts.",
-          "type": "integer",
-          "example": 12000
-        },
-        "dlcPinVoltageMilliVoltsValid": {
-          "description": "Indicates DlcPinVoltageMilliVolts was successfully read from the CAN bus.",
-          "type": "boolean"
-        },
-        "linkId": {
-          "description": "Device serial number.",
-          "type": "string",
-          "example": "gjyxsgeexc"
-        },
-        "remoteObdTestRecords": {
-          "description": "Contains all of the specific OBD data collected for a single ECU present on a vehicle. There can can be multiple ECUs on a vehicle.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/RemoteObdTestRecords"
-          }
-        },
-        "testDateTime": {
-          "$ref": "#/definitions/time"
-        }
-      }
-    },
-    "VehicleCtpSmogTestDataWrapper": {
-      "type": "object",
-      "properties": {
-        "ctpSmogTestData": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/VehicleCtpSmogTestData"
-          }
-        }
-      }
-    },
     "VehicleEngineHours": {
-      "description": "Current engine hours value of the vehicle. This is typically pulled automatically from the vehicle, but can be manually overridden when it's not read automatically.",
+      "description": "A manual override for the vehicle's engine hours. You may only override a vehicle's engine hours if it cannot be read from on-board diagnostics. When you provide a manual engine hours override, Samsara will begin updating a vehicle's engine hours based on when the Samsara Vehicle Gateway is recieving power or not.",
       "type": "integer",
+      "format": "int64",
       "example": 10943
-    },
-    "VehicleEngineState": {
-      "type": "object",
-      "properties": {
-        "time": {
-          "$ref": "#/definitions/time"
-        },
-        "value": {
-          "description": "Engine state of the vehicle as read by the vehicle gateway.",
-          "type": "string",
-          "enum": [
-            "Off",
-            "On",
-            "Idle"
-          ],
-          "example": "On"
-        }
-      }
-    },
-    "VehicleEngineStatesWrapper": {
-      "type": "object",
-      "properties": {
-        "engineStates": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/VehicleEngineState"
-          }
-        }
-      }
     },
     "VehicleExternalIds": {
       "$ref": "#/definitions/externalIds"
-    },
-    "VehicleFuelPercent": {
-      "type": "object",
-      "properties": {
-        "time": {
-          "$ref": "#/definitions/time"
-        },
-        "value": {
-          "description": "Percent of fuel in the vehicle as read by the vehicle gateway.",
-          "type": "integer",
-          "example": 54
-        }
-      }
-    },
-    "VehicleFuelPercentsWrapper": {
-      "type": "object",
-      "properties": {
-        "fuelPercents": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/VehicleFuelPercent"
-          }
-        }
-      }
-    },
-    "VehicleGpsDistanceMeters": {
-      "type": "object",
-      "properties": {
-        "time": {
-          "$ref": "#/definitions/time"
-        },
-        "value": {
-          "description": "Number of meters the vehicle has traveled since the gateway was installed.",
-          "type": "number",
-          "format": "double",
-          "example": 81029.591434899
-        }
-      }
-    },
-    "VehicleGpsDistanceMetersWrapper": {
-      "type": "object",
-      "properties": {
-        "gpsDistanceMeters": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/VehicleGpsDistanceMeters"
-          }
-        }
-      }
-    },
-    "VehicleGpsOdometerMeters": {
-      "type": "object",
-      "properties": {
-        "time": {
-          "$ref": "#/definitions/time"
-        },
-        "value": {
-          "description": "Number of meters the vehicle has traveled according to the GPS distance reported by the vehicle gateway and the manually-specified odometer reading.",
-          "type": "integer",
-          "example": 14010293
-        }
-      }
-    },
-    "VehicleGpsOdometerMetersWrapper": {
-      "type": "object",
-      "properties": {
-        "gpsOdometerMeters": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/VehicleGpsOdometerMeters"
-          }
-        }
-      }
     },
     "VehicleHarshAccelerationSettingType": {
       "description": "Enumeration of the harsh acceleration setting types. This setting influences the acceleration sensitivity from which a harsh event is triggered. If set to `off`, then no acceleration based harsh events are triggered for the vehicle.",
@@ -10006,11 +9528,9 @@
       "description": "Vehicle location event.",
       "type": "object",
       "required": [
+        "time",
         "latitude",
-        "longitude",
-        "heading",
-        "speed",
-        "time"
+        "longitude"
       ],
       "properties": {
         "heading": {
@@ -10039,11 +9559,6 @@
       "format": "double",
       "example": 120
     },
-    "VehicleLocationId": {
-      "description": "ID of the vehicle.",
-      "type": "string",
-      "example": "123456789"
-    },
     "VehicleLocationLatitude": {
       "description": "GPS latitude represented in degrees",
       "type": "number",
@@ -10055,11 +9570,6 @@
       "type": "number",
       "format": "double",
       "example": -93.343
-    },
-    "VehicleLocationName": {
-      "description": "Name of the vehicle.",
-      "type": "string",
-      "example": "Midwest Truck #4"
     },
     "VehicleLocationReverseGeo": {
       "description": "Reverse geocoded information.",
@@ -10082,7 +9592,7 @@
       "$ref": "#/definitions/time"
     },
     "VehicleLocationsListResponse": {
-      "description": "List of vehicle locations and pagination info.",
+      "description": "List of vehicle location events and pagination info.",
       "type": "object",
       "required": [
         "data",
@@ -10090,7 +9600,7 @@
       ],
       "properties": {
         "data": {
-          "description": "List of vehicle locations.",
+          "description": "A list of vehicles and an array of location events for each vehicle.",
           "type": "array",
           "items": {
             "description": "A vehicle and its list of location events.",
@@ -10102,17 +9612,17 @@
             ],
             "properties": {
               "id": {
-                "$ref": "#/definitions/VehicleLocationId"
+                "$ref": "#/definitions/VehicleId"
               },
               "locations": {
-                "description": "A list of location events.",
+                "description": "A list of location events for the given vehicle.",
                 "type": "array",
                 "items": {
                   "$ref": "#/definitions/VehicleLocation"
                 }
               },
               "name": {
-                "$ref": "#/definitions/VehicleLocationName"
+                "$ref": "#/definitions/VehicleName"
               }
             }
           }
@@ -10131,7 +9641,7 @@
       ],
       "properties": {
         "data": {
-          "description": "Most recent vehicle locations.",
+          "description": "List of the most recent locations for the specified vehicles.",
           "type": "array",
           "items": {
             "description": "A vehicle and its most recent location.",
@@ -10143,13 +9653,13 @@
             ],
             "properties": {
               "id": {
-                "$ref": "#/definitions/VehicleLocationId"
+                "$ref": "#/definitions/VehicleId"
               },
               "location": {
                 "$ref": "#/definitions/VehicleLocation"
               },
               "name": {
-                "$ref": "#/definitions/VehicleLocationName"
+                "$ref": "#/definitions/VehicleName"
               }
             }
           }
@@ -10182,62 +9692,18 @@
       "maxLength": 255,
       "example": "These are notes about this given vehicle."
     },
-    "VehicleObdEngineSeconds": {
-      "type": "object",
-      "properties": {
-        "time": {
-          "$ref": "#/definitions/time"
-        },
-        "value": {
-          "description": "Number of seconds the vehicle's engine has been on as read by the vehicle gateway.",
-          "type": "integer",
-          "example": 9723103
-        }
-      }
-    },
-    "VehicleObdEngineSecondsWrapper": {
-      "type": "object",
-      "properties": {
-        "obdEngineSeconds": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/VehicleObdEngineSeconds"
-          }
-        }
-      }
-    },
-    "VehicleObdOdometerMeters": {
-      "type": "object",
-      "properties": {
-        "time": {
-          "$ref": "#/definitions/time"
-        },
-        "value": {
-          "description": "Number of meters the vehicle has traveled according to the on-board diagnostics, as read by the vehicle gateway.",
-          "type": "integer",
-          "example": 14010293
-        }
-      }
-    },
-    "VehicleObdOdometerMetersWrapper": {
-      "type": "object",
-      "properties": {
-        "obdOdometerMeters": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/VehicleObdOdometerMeters"
-          }
-        }
-      }
-    },
     "VehicleOdometerMeters": {
-      "description": "Current odometer value of the vehicle. This is typically pulled automatically from the vehicle, but can be manually overridden when it's not read automatically.",
+      "description": "A manual override for the vehicle's odometer. You may only override a vehicle's odometer if it cannot be read from on-board diagnostics. When you provide a manual odometer override, Samsara will begin updating a vehicle's odometer using GPS distance traveled since this override was set. See [here](https://kb.samsara.com/hc/en-us/articles/115005273667) for more details.",
       "type": "integer",
+      "format": "int64",
       "example": 9182
     },
     "VehicleResponse": {
       "description": "A single vehicle.",
       "type": "object",
+      "required": [
+        "data"
+      ],
       "properties": {
         "data": {
           "$ref": "#/definitions/Vehicle"
@@ -10252,82 +9718,252 @@
       "type": "string",
       "example": "123"
     },
-    "VehicleStatsList": {
+    "VehicleStatsEngineState": {
+      "description": "Vehicle engine state event.",
       "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/vehicleTinyResponse"
-        },
-        {
-          "$ref": "#/definitions/VehicleEngineStatesWrapper"
-        },
-        {
-          "$ref": "#/definitions/VehicleFuelPercentsWrapper"
-        },
-        {
-          "$ref": "#/definitions/VehicleObdOdometerMetersWrapper"
-        },
-        {
-          "$ref": "#/definitions/VehicleGpsOdometerMetersWrapper"
-        },
-        {
-          "$ref": "#/definitions/VehicleObdEngineSecondsWrapper"
-        },
-        {
-          "$ref": "#/definitions/VehicleGpsDistanceMetersWrapper"
-        }
-      ]
-    },
-    "VehicleStatsListResponse": {
-      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
       "properties": {
-        "data": {
-          "description": "An array of vehicle stat objects. Each object in the array represents a vehicle and will contain an array of stat object updates (a timestamp and value of the requested stat type).",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/VehicleStatsList"
-          }
+        "time": {
+          "$ref": "#/definitions/VehicleStatsTime"
         },
-        "pagination": {
-          "type": "object",
-          "allOf": [
-            {
-              "$ref": "#/definitions/paginationResponse"
-            }
-          ]
+        "value": {
+          "description": "The state of the engine.",
+          "type": "string",
+          "enum": [
+            "Off",
+            "On",
+            "Idle"
+          ],
+          "example": "On"
         }
       }
     },
-    "VehicleStatsSnapshotResponse": {
+    "VehicleStatsFuelPercent": {
+      "description": "Vehicle fuel percentage reading.",
       "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/vehicleTinyResponse"
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/VehicleStatsTime"
         },
-        {
-          "type": "object",
-          "properties": {
-            "engineState": {
-              "$ref": "#/definitions/VehicleEngineState"
-            },
-            "fuelPercent": {
-              "$ref": "#/definitions/VehicleFuelPercent"
-            },
-            "gpsDistanceMeters": {
-              "$ref": "#/definitions/VehicleGpsDistanceMeters"
-            },
-            "gpsOdometerMeters": {
-              "$ref": "#/definitions/VehicleGpsOdometerMeters"
-            },
-            "obdEngineSeconds": {
-              "$ref": "#/definitions/VehicleObdEngineSeconds"
-            },
-            "obdOdometerMeters": {
-              "$ref": "#/definitions/VehicleObdOdometerMeters"
+        "value": {
+          "description": "The engine fuel level in percentage points (e.g. `99`, `50`, etc).",
+          "type": "integer",
+          "format": "int64",
+          "example": 54
+        }
+      }
+    },
+    "VehicleStatsGpsDistanceMeters": {
+      "description": "Vehicle GPS distance event.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/VehicleStatsTime"
+        },
+        "value": {
+          "description": "Number of meters the vehicle has traveled since the gateway was installed, based on GPS calculations.",
+          "type": "number",
+          "format": "double",
+          "example": 81029.591434899
+        }
+      }
+    },
+    "VehicleStatsGpsOdometerMeters": {
+      "description": "Vehicle GPS odometer event.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/VehicleStatsTime"
+        },
+        "value": {
+          "description": "Number of meters the vehicle has traveled according to the GPS calculations and the manually-specified odometer reading.",
+          "type": "integer",
+          "format": "int64",
+          "example": 14010293
+        }
+      }
+    },
+    "VehicleStatsListResponse": {
+      "description": "List of vehicle stat events and pagination info.",
+      "type": "object",
+      "required": [
+        "data",
+        "pagination"
+      ],
+      "properties": {
+        "data": {
+          "description": "A list of vehicles and an array of stat events for each vehicle.",
+          "type": "array",
+          "items": {
+            "description": "A vehicle and its list of stat events.",
+            "type": "object",
+            "required": [
+              "id",
+              "name"
+            ],
+            "properties": {
+              "engineStates": {
+                "description": "A list of engine state events for the given vehicle.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/VehicleStatsEngineState"
+                }
+              },
+              "fuelPercent": {
+                "description": "A list of fuel percentage readings for the given vehicle.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/VehicleStatsFuelPercent"
+                }
+              },
+              "gpsDistanceMeters": {
+                "description": "A list of GPS distance events for the given vehicle.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/VehicleStatsGpsDistanceMeters"
+                }
+              },
+              "gpsOdometerMeters": {
+                "description": "A list of GPS odometer events for the given vehicle.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/VehicleStatsGpsOdometerMeters"
+                }
+              },
+              "id": {
+                "$ref": "#/definitions/VehicleId"
+              },
+              "name": {
+                "$ref": "#/definitions/VehicleName"
+              },
+              "obdEngineSeconds": {
+                "description": "A list of OBD engine seconds readings for the given vehicle.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/VehicleStatsObdEngineSeconds"
+                }
+              },
+              "obdOdometerMeters": {
+                "description": "A list of OBD odometer readings for the given vehicle.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/VehicleStatsObdOdometerMeters"
+                }
+              }
             }
           }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
         }
-      ]
+      }
+    },
+    "VehicleStatsObdEngineSeconds": {
+      "description": "Vehicle OBD engine seconds reading.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/VehicleStatsTime"
+        },
+        "value": {
+          "description": "Number of seconds the vehicle's engine has been on according to the on-baord diagnostics.",
+          "type": "integer",
+          "format": "int64",
+          "example": 9723103
+        }
+      }
+    },
+    "VehicleStatsObdOdometerMeters": {
+      "description": "Vehicle OBD odometer reading.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/VehicleStatsTime"
+        },
+        "value": {
+          "description": "Number of meters the vehicle has traveled according to the on-board diagnostics.",
+          "type": "integer",
+          "format": "int64",
+          "example": 14010293
+        }
+      }
+    },
+    "VehicleStatsResponse": {
+      "description": "Most recent vehicle stats and pagination info.",
+      "type": "object",
+      "required": [
+        "data",
+        "pagination"
+      ],
+      "properties": {
+        "data": {
+          "description": "List of the most recent stats for the specified vehicles and stat types.",
+          "type": "array",
+          "items": {
+            "description": "A vehicle and its most recent stat.",
+            "type": "object",
+            "required": [
+              "id",
+              "name"
+            ],
+            "properties": {
+              "engineState": {
+                "$ref": "#/definitions/VehicleStatsEngineState"
+              },
+              "fuelPercent": {
+                "$ref": "#/definitions/VehicleStatsFuelPercent"
+              },
+              "gpsDistanceMeters": {
+                "$ref": "#/definitions/VehicleStatsGpsDistanceMeters"
+              },
+              "gpsOdometerMeters": {
+                "$ref": "#/definitions/VehicleStatsGpsOdometerMeters"
+              },
+              "id": {
+                "$ref": "#/definitions/VehicleId"
+              },
+              "name": {
+                "$ref": "#/definitions/VehicleName"
+              },
+              "obdEngineSeconds": {
+                "$ref": "#/definitions/VehicleStatsObdEngineSeconds"
+              },
+              "obdOdometerMeters": {
+                "$ref": "#/definitions/VehicleStatsObdOdometerMeters"
+              }
+            }
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "VehicleStatsTime": {
+      "$ref": "#/definitions/time"
     },
     "VehicleTagIds": {
       "description": "An array of IDs of tags to associate with this vehicle.",
