@@ -505,7 +505,7 @@
     },
     "/fleet/vehicles": {
       "get": {
-        "description": "Returns a list of all vehicles in an organization, ordered by vehicle ID.",
+        "description": "Returns a list of all vehicles.",
         "tags": [
           "Vehicles"
         ],
@@ -968,7 +968,7 @@
         }
       },
       "patch": {
-        "description": "Updates the given vehicle.",
+        "description": "Updates the given Vehicle object.\n\n**Note:** Vehicle objects are automatically created when Samsara Vehicle Gateways are installed. You cannot create a Vehicle object via API.\n\nYou are able to *update* many of the fields of a Vehicle.\n\n**Note**: There are no required fields in the request body, and you only need to provide the fields you wish to update.",
         "tags": [
           "Vehicles"
         ],
@@ -9466,7 +9466,7 @@
       }
     },
     "VehicleAuxInputType": {
-      "description": "The type of aux input that this vehicle has. Setting to \"none\" will remove the configured aux input.",
+      "description": "The type of [auxiliary input](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) configured for this Vehicle. Once configured, these inputs will generate dynamic, time-series data that will be available to view in the Samsara Dashboard. **By default**: empty. This can be set or updated through the Samsara Dashboard or the API at any time.",
       "type": "string",
       "enum": [
         "none",
@@ -9502,7 +9502,7 @@
       "$ref": "#/definitions/externalIds"
     },
     "VehicleHarshAccelerationSettingType": {
-      "description": "Enumeration of the harsh acceleration setting types. This setting influences the acceleration sensitivity from which a harsh event is triggered. If set to `off`, then no acceleration based harsh events are triggered for the vehicle.",
+      "description": "The harsh acceleration setting type. This setting influences the acceleration sensitivity from which a [harsh event](https://kb.samsara.com/hc/en-us/articles/360006938891-Harsh-Events) is triggered. **By default**, this setting is inferred by the Samsara Vehicle Gateway from the engine computer, but it may be set or updated through the Samsara Dashboard or the API at any time. If set to `off`, then no acceleration based harsh events are triggered for the vehicle.",
       "type": "string",
       "enum": [
         "passengerCar",
@@ -9514,12 +9514,12 @@
       "example": "off"
     },
     "VehicleId": {
-      "description": "Unique Samsara ID for the vehicle.",
+      "description": "The unique Samsara ID of the Vehicle. This is automatically generated when the Vehicle object is created. It cannot be changed.",
       "type": "string",
       "example": "112"
     },
     "VehicleLicensePlate": {
-      "description": "The license plate of this vehicle.",
+      "description": "The license plate of the Vehicle. **By default**: empty. Can be set or updated through the Samsara Dashboard or the API at any time.",
       "type": "string",
       "maxLength": 12,
       "example": "XHK1234"
@@ -9670,25 +9670,26 @@
       }
     },
     "VehicleMake": {
-      "description": "Vehicle's manufacturing make.",
+      "description": "The Vehicle’s manufacturing make. Automatically read from the engine computer if available. Empty if not available. Cannot be manually set.",
       "type": "string",
       "maxLength": 255,
       "example": "Ford"
     },
     "VehicleModel": {
-      "description": "Vehicle's manufacturing model.",
+      "description": "The Vehicle’s manufacturing model. Automatically read from the engine computer if available. Empty if not available. Cannot be manually set.",
       "type": "string",
       "maxLength": 255,
       "example": "F150"
     },
     "VehicleName": {
-      "description": "Name of the vehicle.",
+      "description": "The human-readable name of the Vehicle. This is set by a fleet administrator and will appear in both Samsara’s cloud dashboard as well as the Samsara Driver mobile app. **By default**, this name is the serial number of the Samsara Vehicle Gateway. It can be set or updated through the Samsara Dashboard or through the API at any time.",
       "type": "string",
       "example": "Truck A7"
     },
     "VehicleNotes": {
-      "description": "Notes about a vehicle. Samsara supports a maximum of 255 chars.",
+      "description": "These are generic notes about the Vehicle. Empty by default. Can be set or updated through the Samsara Dashboard or the API at any time.",
       "type": "string",
+      "default": "",
       "maxLength": 255,
       "example": "These are notes about this given vehicle."
     },
@@ -9974,21 +9975,21 @@
       }
     },
     "VehicleTags": {
-      "description": "An array of all tag mini-objects that are associated with the given vehicle.",
+      "description": "The list of [tags](https://kb.samsara.com/hc/en-us/articles/360026674631-Using-Tags-and-Tag-Nesting) associated with the Vehicle. **By default**: empty. Can be set or updated through the Samsara Dashboard or the API at any time.",
       "type": "array",
       "items": {
         "$ref": "#/definitions/tagTinyResponse"
       }
     },
     "VehicleVin": {
-      "description": "A vehicle identification number.",
+      "description": "The VIN of the Vehicle. Most of the time, this will be automatically read from the engine computer by the Samsara Vehicle Gateway. It will be empty if it cannot be read. It can be set or updated through the Samsara Dashboard or the API at any time.",
       "type": "string",
       "maxLength": 17,
       "minLength": 11,
       "example": "1FUJA6BD31LJ09646"
     },
     "VehicleYear": {
-      "description": "Vehicle's manufacturing year.",
+      "description": "The Vehicle’s manufacturing model. Automatically read from the engine computer if available. Empty if not available. Cannot be manually set.",
       "type": "string",
       "example": "2008"
     },
@@ -10030,7 +10031,7 @@
       }
     },
     "externalIds": {
-      "description": "User-defined dictionary of external IDs (key-value pairs). Both the keys and the values of the dictionary are of type string and must be alphanumeric. Each organization can have at most 10 unique external ID keys. To delete an external ID, set its value to null or the empty string (`\"\"`). An external ID can be used as a path parameter to retrieve or update that resource.",
+      "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
       "type": "object",
       "additionalProperties": {
         "type": "string"
@@ -10621,7 +10622,7 @@
       "name": "Users"
     },
     {
-      "description": "The vehicle object describes a vehicle's attributes and settings within Samsara. A vehicle is generated in the Samsara platform when a vehicle gateway is installed. The gateway often auto-populates information such as the VIN, make, model, and year.\nThe vehicle object is often referenced in other objects. For these references, you will see a mini-object of the vehicle, rather than the full vehicle information. The mini-object encompasses a smaller subset of commonly-referenced field, such as the Samsara ID, name, and external ID. GPS and on-board diagnotics are available for vehicles in real-time.",
+      "description": "A Vehicle object is created when a [Samsara Vehicle Gateway](https://www.samsara.com/products/models/vg34) is first activated.\n\nWhen the gateway is activated, a Vehicle object is created with a unique Samsara ID.\n\nVehicle objects have static information (`name`, `licensePlate`, etc), and they also generate dynamic time-series data such as locations and diagnostics.\n\nVehicle static information is defined by fleet administrators either through the [Samsara dashboard](http://cloud.samsara.com) or through the API.\n\n- You can get a list of Vehicles and their static information using the [GET /fleet/vehicles](#operation/listVehicles) endpoint.\n\n- You can get a given vehicle and its static information by its Samsara ID or an [external ID](https://developers.samsara.com/docs/common-structures#section-external-ids) using the [GET /fleet/vehicles/{id}](#operation/getVehicle) endpoint.\n\n- You can set or update static Vehicle information using the [PATCH /fleet/vehicles/{id}](#operation/updateVehicle) endpoint.\n\nYou can get dynamic Vehicle time-series data in three ways:\n\n- Get a snapshot of the most recent readings for the time-series.\n\n    - [GET /fleet/vehicles/locations](#operation/getVehicleLocations)\n\n    - [GET /fleet/vehicles/stats](#operation/getVehicleStats)\n\n- Get a real-time feed of time-series data.\n\n    - [GET /fleet/vehicles/locations/feed](#operation/getVehicleLocationsFeed)\n\n    - [GET /fleet/vehicles/stats/feed](#operation/getVehicleStatsFeed)\n\n- Get a historical time-range of the time-series data.\n\n    - [GET /fleet/vehicles/locations/history](#operation/getVehicleLocationsHistory)\n\n    - [GET /fleet/vehicles/stats/feed](#operation/getVehicleStatsFeed)",
       "name": "Vehicles"
     }
   ]
