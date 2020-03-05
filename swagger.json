@@ -356,9 +356,13 @@
         "operationId": "listDrivers",
         "parameters": [
           {
-            "type": "boolean",
-            "description": "If value is true, only drivers that are deactivated will appear in the response. This parameter will default to false if not provided (fetching only active drivers).",
-            "name": "isDeactivated",
+            "enum": [
+              "active",
+              "deactivated"
+            ],
+            "type": "string",
+            "description": "If value is `deactivated`, only drivers that are deactivated will appear in the response. This parameter will default to `active` if not provided (fetching only active drivers).",
+            "name": "driverActivationStatus",
             "in": "query"
           },
           {
@@ -475,7 +479,7 @@
         }
       },
       "patch": {
-        "description": "Update a specific driver's information. This can also be used to activate or de-activate a given driver",
+        "description": "Update a specific driver's information. This can also be used to activate or de-activate a given driver by setting the driverActivationStatus field.",
         "tags": [
           "Drivers"
         ],
@@ -4153,6 +4157,9 @@
         "createdAtTime": {
           "$ref": "#/definitions/DriverCreatedAtTime"
         },
+        "driverActivationStatus": {
+          "$ref": "#/definitions/DriverActivationStatus"
+        },
         "eldAdverseWeatherExemptionEnabled": {
           "$ref": "#/definitions/DriverEldAdverseWeatherExemptionEnabled"
         },
@@ -4223,6 +4230,14 @@
           "$ref": "#/definitions/DriverVehicleGroupTag"
         }
       }
+    },
+    "DriverActivationStatus": {
+      "description": "A value indicating whether the driver is active or deactivated.",
+      "type": "string",
+      "enum": [
+        "active",
+        "deactivated"
+      ]
     },
     "DriverCarrierName": {
       "description": "Carrier for a given driver.",
@@ -4301,7 +4316,7 @@
       "example": "123"
     },
     "DriverIsDeactivated": {
-      "description": "A boolean indicating whether or not the driver is deactivated.",
+      "description": "[DEPRECATED] A boolean indicating whether or not the driver is deactivated. Use `driverActivationStatus` instead.",
       "type": "boolean",
       "example": false
     },
@@ -4810,6 +4825,9 @@
       "properties": {
         "carrierSettings": {
           "$ref": "#/definitions/DriverCarrierSettings"
+        },
+        "driverActivationStatus": {
+          "$ref": "#/definitions/DriverActivationStatus"
         },
         "eldAdverseWeatherExemptionEnabled": {
           "$ref": "#/definitions/DriverEldAdverseWeatherExemptionEnabled"
@@ -10547,6 +10565,16 @@
       "name": "started_at_ms",
       "in": "path",
       "required": true
+    },
+    "driverActivationStatusParam": {
+      "enum": [
+        "active",
+        "deactivated"
+      ],
+      "type": "string",
+      "description": "If value is `deactivated`, only drivers that are deactivated will appear in the response. This parameter will default to `active` if not provided (fetching only active drivers).",
+      "name": "driverActivationStatus",
+      "in": "query"
     },
     "isDeactivatedParam": {
       "type": "boolean",
