@@ -541,6 +541,568 @@
         }
       ]
     },
+    "/fleet/equipment": {
+      "get": {
+        "description": "Returns a list of all equipment in an organization. Equipment objects represent powered assets connected to a [Samsara AG24](https://www.samsara.com/products/models/ag24) via an APWR, CAT, or J1939 cable. They are automatically created with a unique Samsara Equipment ID whenever an AG24 is activated in your organization.",
+        "tags": [
+          "Equipment"
+        ],
+        "summary": "List all equipment",
+        "operationId": "listEquipment",
+        "parameters": [
+          {
+            "maximum": 512,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int64",
+            "default": 512,
+            "description": "The limit for how many objects will be in the response. Default and max for this value is 512 objects.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "name": "tagIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all equipment objects, and pagination information",
+            "schema": {
+              "$ref": "#/definitions/EquipmentListResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/equipment/locations": {
+      "get": {
+        "description": "Returns last known locations for all equipment. This can be optionally filtered by tags or specific equipment IDs.",
+        "tags": [
+          "Equipment"
+        ],
+        "summary": "Get most recent locations for all equipment",
+        "operationId": "getEquipmentLocations",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of equipment IDs. Example: `equipmentIds=1234,5678`",
+            "name": "equipmentIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The most recent equipment locations and pagination information",
+            "schema": {
+              "$ref": "#/definitions/EquipmentLocationsResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/equipment/locations/feed": {
+      "get": {
+        "description": "Follow a continuous feed of all equipment locations from Samsara AG24s.\n\nYour first call to this endpoint will provide you with the most recent location for each unit of equipment and a `pagination` object that contains an `endCursor`.\n\nYou can provide the `endCursor` to subsequent calls via the `after` parameter. The response will contain any equipment location updates since that `endCursor`.\n\nIf `hasNextPage` is `false`, no updates are readily available yet. We'd suggest waiting a minimum of 5 seconds before requesting updates.",
+        "tags": [
+          "Equipment"
+        ],
+        "summary": "Follow feed of equipment locations",
+        "operationId": "getEquipmentLocationsFeed",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of equipment IDs. Example: `equipmentIds=1234,5678`",
+            "name": "equipmentIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The feed of equipment locations and pagination information",
+            "schema": {
+              "$ref": "#/definitions/EquipmentLocationsListResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/equipment/locations/history": {
+      "get": {
+        "description": "Returns historical equipment locations during the given time range. This can be optionally filtered by tags or specific equipment IDs.",
+        "tags": [
+          "Equipment"
+        ],
+        "summary": "Get historical equipment locations",
+        "operationId": "getEquipmentLocationsHistory",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "startTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "endTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of equipment IDs. Example: `equipmentIds=1234,5678`",
+            "name": "equipmentIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Historical equipment locations and pagination information",
+            "schema": {
+              "$ref": "#/definitions/EquipmentLocationsListResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/equipment/stats": {
+      "get": {
+        "description": "Returns the last known stats for all equipment. This can be optionally filtered by tags or specific equipment IDs.",
+        "tags": [
+          "Equipment"
+        ],
+        "summary": "Get most recent stats for all equipment",
+        "operationId": "getEquipmentStats",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of equipment IDs. Example: `equipmentIds=1234,5678`",
+            "name": "equipmentIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "enum": [
+                "gatewayEngineStates",
+                "obdEngineStates",
+                "fuelPercents",
+                "engineRpm",
+                "gatewayEngineSeconds",
+                "obdEngineSeconds",
+                "gpsOdometerMeters"
+              ],
+              "type": "string",
+              "format": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "The type of equipment stat you want to query. Currently, you may only submit one type.\n\n- `engineRpm`: The revolutions per minute of the engine.\n- `fuelPercents`: The percent of fuel in the unit of equipment.\n- `obdEngineSeconds`: The number of seconds the engine has been running since it was new. This value is provided directly from on-board diagnostics.\n- `gatewayEngineSeconds`: An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG24 device is receiving power and an offset provided manually through the Samsara cloud dashboard.\n- `obdEngineStates`: The state of the engine read from on-board diagnostics. Can be `Off`, `On`, or `Idle`.\n- `gatewayEngineStates`: An approximation of engine state based on readings the AG24 receives from the aux/digio cable. Can be `Off` or `On`.\n- `gpsOdometerMeters`: An approximation of odometer reading based on GPS calculations since the AG24 was activated, and a manual odometer offset provided in the Samsara cloud dashboard.",
+            "name": "types",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The most recent equipment stats and pagination information",
+            "schema": {
+              "$ref": "#/definitions/EquipmentStatsResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/equipment/stats/feed": {
+      "get": {
+        "description": "Follow a continuous feed of all equipment stats from Samsara AG24s.\n\nYour first call to this endpoint will provide you with the most recent stats for each unit of equipment and a `pagination` object that contains an `endCursor`.\n\nYou can provide the `endCursor` to subsequent calls via the `after` parameter. The response will contain any equipment stats updates since that `endCursor`.\n\nIf `hasNextPage` is `false`, no updates are readily available yet. Each stat type has a different refresh rate, but in general we'd suggest waiting a minimum of 5 seconds before requesting updates.",
+        "tags": [
+          "Equipment"
+        ],
+        "summary": "Follow a feed of equipment stats",
+        "operationId": "getEquipmentStatsFeed",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of equipment IDs. Example: `equipmentIds=1234,5678`",
+            "name": "equipmentIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "enum": [
+                "gatewayEngineStates",
+                "obdEngineStates",
+                "fuelPercents",
+                "engineRpm",
+                "gatewayEngineSeconds",
+                "obdEngineSeconds",
+                "gpsOdometerMeters"
+              ],
+              "type": "string",
+              "format": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "The type of equipment stat you want to query. Currently, you may only submit one type.\n\n- `engineRpm`: The revolutions per minute of the engine.\n- `fuelPercents`: The percent of fuel in the unit of equipment.\n- `obdEngineSeconds`: The number of seconds the engine has been running since it was new. This value is provided directly from on-board diagnostics.\n- `gatewayEngineSeconds`: An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG24 device is receiving power and an offset provided manually through the Samsara cloud dashboard.\n- `obdEngineStates`: The state of the engine read from on-board diagnostics. Can be `Off`, `On`, or `Idle`.\n- `gatewayEngineStates`: An approximation of engine state based on readings the AG24 receives from the aux/digio cable. Can be `Off` or `On`.\n- `gpsOdometerMeters`: An approximation of odometer reading based on GPS calculations since the AG24 was activated, and a manual odometer offset provided in the Samsara cloud dashboard.",
+            "name": "types",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The feed of equipment stats and pagination information",
+            "schema": {
+              "$ref": "#/definitions/EquipmentStatsListResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/equipment/stats/history": {
+      "get": {
+        "description": "Returns historical equipment status during the given time range. This can be optionally filtered by tags or specific equipment IDs.",
+        "tags": [
+          "Equipment"
+        ],
+        "summary": "Get historical equipment stats",
+        "operationId": "getEquipmentStatsHistory",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "startTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "endTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of equipment IDs. Example: `equipmentIds=1234,5678`",
+            "name": "equipmentIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "enum": [
+                "gatewayEngineStates",
+                "obdEngineStates",
+                "fuelPercents",
+                "engineRpm",
+                "gatewayEngineSeconds",
+                "obdEngineSeconds",
+                "gpsOdometerMeters"
+              ],
+              "type": "string",
+              "format": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "The type of equipment stat you want to query. Currently, you may only submit one type.\n\n- `engineRpm`: The revolutions per minute of the engine.\n- `fuelPercents`: The percent of fuel in the unit of equipment.\n- `obdEngineSeconds`: The number of seconds the engine has been running since it was new. This value is provided directly from on-board diagnostics.\n- `gatewayEngineSeconds`: An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG24 device is receiving power and an offset provided manually through the Samsara cloud dashboard.\n- `obdEngineStates`: The state of the engine read from on-board diagnostics. Can be `Off`, `On`, or `Idle`.\n- `gatewayEngineStates`: An approximation of engine state based on readings the AG24 receives from the aux/digio cable. Can be `Off` or `On`.\n- `gpsOdometerMeters`: An approximation of odometer reading based on GPS calculations since the AG24 was activated, and a manual odometer offset provided in the Samsara cloud dashboard.",
+            "name": "types",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Historical equipment stats and pagination information",
+            "schema": {
+              "$ref": "#/definitions/EquipmentStatsListResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/equipment/{id}": {
+      "get": {
+        "description": "Retrieves the unit of equipment with the given Samsara ID.",
+        "tags": [
+          "Equipment"
+        ],
+        "summary": "Retrieve a unit of equipment",
+        "operationId": "getEquipment",
+        "responses": {
+          "200": {
+            "description": "The specified equipment object",
+            "schema": {
+              "$ref": "#/definitions/EquipmentResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "Samsara ID of the Equipment.",
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
     "/fleet/vehicles": {
       "get": {
         "description": "Returns a list of all vehicles.",
@@ -4553,6 +5115,533 @@
       "description": "Tag ID which determines which vehicles a driver will see when selecting vehicles.",
       "type": "string",
       "example": "342417"
+    },
+    "Equipment": {
+      "description": "An equipment object.",
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "assetSerial": {
+          "description": "An equipment identification number.",
+          "type": "string",
+          "example": "1FUJA6BD31LJ09646"
+        },
+        "id": {
+          "$ref": "#/definitions/EquipmentId"
+        },
+        "name": {
+          "$ref": "#/definitions/EquipmentName"
+        },
+        "notes": {
+          "description": "Notes about a piece of equipment. Samsara supports a maximum of 255 chars.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "These are notes about this given equipment."
+        },
+        "tags": {
+          "description": "An array of all tag mini-objects that are associated with the given equipment.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/tagTinyResponse"
+          }
+        }
+      }
+    },
+    "EquipmentEngineRpm": {
+      "description": "Engine RPM reading.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "description": "The revolutions per minute of the engine.",
+          "type": "integer",
+          "example": 1800
+        }
+      }
+    },
+    "EquipmentEngineSeconds": {
+      "description": "[DEPRECATED] Please use either `gatewayEngineSeconds` or `obdEngineSeconds`.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "description": "An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG24 device is receiving power and an offset provided manually through the Samsara cloud dashboard.",
+          "type": "integer",
+          "example": 22374000
+        }
+      }
+    },
+    "EquipmentEngineState": {
+      "description": "[DEPRECATED] Please use either `gatewayEngineStates` or `obdEngineStates`.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "description": "An approximation of engine state based on readings the AG24 receives from the aux/digio cable.",
+          "type": "string",
+          "enum": [
+            "Off",
+            "On"
+          ],
+          "example": "On"
+        }
+      }
+    },
+    "EquipmentFuelPercent": {
+      "description": "Fuel percent reading.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "description": "The percent of fuel in the unit of equipment.",
+          "type": "integer",
+          "example": 54
+        }
+      }
+    },
+    "EquipmentGatewayEngineSeconds": {
+      "description": "Engine seconds reading from the aux/digio cable.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "description": "An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG24 device is receiving power and an offset provided manually through the Samsara cloud dashboard.",
+          "type": "integer",
+          "example": 22374000
+        }
+      }
+    },
+    "EquipmentGatewayEngineState": {
+      "description": "Engine state reading from the aux/digio cable.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "description": "An approximation of engine state based on readings the AG24 receives from the aux/digio cable.",
+          "type": "string",
+          "enum": [
+            "Off",
+            "On"
+          ],
+          "example": "On"
+        }
+      }
+    },
+    "EquipmentGpsOdometerMeters": {
+      "description": "GPS odometer reading.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "description": "An approximation of odometer reading based on GPS calculations since the AG24 was activated, and a manual odometer offset provided in the Samsara cloud dashboard.",
+          "type": "integer",
+          "example": 3200
+        }
+      }
+    },
+    "EquipmentId": {
+      "description": "Unique Samsara ID for the equipment.",
+      "type": "string",
+      "example": "112"
+    },
+    "EquipmentListResponse": {
+      "description": "List of all equipment objects, and pagination information.",
+      "type": "object",
+      "required": [
+        "data",
+        "pagination"
+      ],
+      "properties": {
+        "data": {
+          "description": "List of equipment objects.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Equipment"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "EquipmentLocation": {
+      "description": "Location reading.",
+      "type": "object",
+      "required": [
+        "time",
+        "latitude",
+        "longitude"
+      ],
+      "properties": {
+        "heading": {
+          "description": "Heading of the unit of equipment in degrees.",
+          "type": "number",
+          "format": "double",
+          "example": 120
+        },
+        "latitude": {
+          "description": "GPS latitude represented in degrees",
+          "type": "number",
+          "format": "double",
+          "example": 122.142
+        },
+        "longitude": {
+          "description": "GPS longitude represented in degrees",
+          "type": "number",
+          "format": "double",
+          "example": -93.343
+        },
+        "speed": {
+          "description": "GPS speed of the unit of equipment in miles per hour.",
+          "type": "number",
+          "format": "double",
+          "example": 48.3
+        },
+        "time": {
+          "$ref": "#/definitions/time"
+        }
+      }
+    },
+    "EquipmentLocationsListResponse": {
+      "description": "A time-series of equipment locations and pagination information",
+      "type": "object",
+      "required": [
+        "data",
+        "pagination"
+      ],
+      "properties": {
+        "data": {
+          "description": "Time-series of locations for the specified units of equipment.",
+          "type": "array",
+          "items": {
+            "description": "A unit of equipment and its time-series of location events.",
+            "type": "object",
+            "required": [
+              "id",
+              "name",
+              "locations"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/EquipmentId"
+              },
+              "locations": {
+                "description": "A time-series of location events for the given unit of equipment.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/EquipmentLocation"
+                }
+              },
+              "name": {
+                "$ref": "#/definitions/EquipmentName"
+              }
+            }
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "EquipmentLocationsResponse": {
+      "description": "The most recent equipment locations and pagination information",
+      "type": "object",
+      "required": [
+        "data",
+        "pagination"
+      ],
+      "properties": {
+        "data": {
+          "description": "List of the most recent locations for the specified units of equipment.",
+          "type": "array",
+          "items": {
+            "description": "A unit of equipment and its most recent location.",
+            "type": "object",
+            "required": [
+              "id",
+              "name",
+              "location"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/EquipmentId"
+              },
+              "location": {
+                "$ref": "#/definitions/EquipmentLocation"
+              },
+              "name": {
+                "$ref": "#/definitions/EquipmentName"
+              }
+            }
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "EquipmentName": {
+      "description": "Name of the equipment.",
+      "type": "string",
+      "example": "Crane A7"
+    },
+    "EquipmentObdEngineSeconds": {
+      "description": "Engine seconds reading from on-board diagnostics.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "description": "The number of seconds the engine has been running since it was new. This value is provided directly from on-board diagnostics.",
+          "type": "integer",
+          "example": 22374000
+        }
+      }
+    },
+    "EquipmentObdEngineState": {
+      "description": "Engine state reading from on-board diagnostics.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "description": "The state of the engine read from on-board diagnostics.",
+          "type": "string",
+          "enum": [
+            "Off",
+            "On",
+            "Idle"
+          ],
+          "example": "On"
+        }
+      }
+    },
+    "EquipmentResponse": {
+      "description": "A response containing an equipment object.",
+      "type": "object",
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/Equipment"
+        }
+      }
+    },
+    "EquipmentStatsListResponse": {
+      "description": "A time-series of equipment stats and pagination information",
+      "type": "object",
+      "required": [
+        "data",
+        "pagination"
+      ],
+      "properties": {
+        "data": {
+          "description": "Time-series of stats for the specified units of equipment and stat types.",
+          "type": "array",
+          "items": {
+            "description": "A unit of equipment and its time-series of stats events.",
+            "type": "object",
+            "required": [
+              "id",
+              "name"
+            ],
+            "properties": {
+              "engineRpm": {
+                "description": "A time-series of engine RPM readings for the given unit of equipment.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/EquipmentEngineRpm"
+                }
+              },
+              "engineSeconds": {
+                "description": "[DEPRECATED] Please use either `gatewayEngineSeconds` or `obdEngineSeconds`.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/EquipmentEngineSeconds"
+                }
+              },
+              "engineStates": {
+                "description": "[DEPRECATED] Please use either `gatewayEngineStates` or `obdEngineStates`.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/EquipmentEngineState"
+                }
+              },
+              "fuelPercent": {
+                "description": "A time-series of fuel percent level changes for the given unit of equipment.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/EquipmentFuelPercent"
+                }
+              },
+              "gatewayEngineSeconds": {
+                "description": "A time-series of engine seconds readings for the given unit of equipment. (An approximate based on readings from the AG24's aux/digio cable.)",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/EquipmentGatewayEngineSeconds"
+                }
+              },
+              "gatewayEngineState": {
+                "description": "A time-series of engine state changes (as read from the AG24's aux/digio cable) for the given unit of equipment.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/EquipmentGatewayEngineState"
+                }
+              },
+              "gpsOdometerMeters": {
+                "description": "A time-series of GPS odometer readings for the given unit of equipment.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/EquipmentGpsOdometerMeters"
+                }
+              },
+              "id": {
+                "$ref": "#/definitions/EquipmentId"
+              },
+              "name": {
+                "$ref": "#/definitions/EquipmentName"
+              },
+              "obdEngineSeconds": {
+                "description": "A time-series of engine state changes for the given unit of equipment. (As directly from on-board diagnostics.)",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/EquipmentObdEngineSeconds"
+                }
+              },
+              "obdEngineState": {
+                "description": "A time-series of engine state changes (as read from on-board diagnostics) for the given unit of equipment.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/EquipmentObdEngineState"
+                }
+              }
+            }
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "EquipmentStatsResponse": {
+      "description": "The most recent equipment stats and pagination information",
+      "type": "object",
+      "required": [
+        "data",
+        "pagination"
+      ],
+      "properties": {
+        "data": {
+          "description": "List of the most recent stats for the specified units of equipment and stat types.",
+          "type": "array",
+          "items": {
+            "description": "A unit of equipment and its most recent stat.",
+            "type": "object",
+            "required": [
+              "id",
+              "name"
+            ],
+            "properties": {
+              "engineRpm": {
+                "$ref": "#/definitions/EquipmentEngineRpm"
+              },
+              "engineSeconds": {
+                "$ref": "#/definitions/EquipmentEngineSeconds"
+              },
+              "engineState": {
+                "$ref": "#/definitions/EquipmentEngineState"
+              },
+              "fuelPercent": {
+                "$ref": "#/definitions/EquipmentFuelPercent"
+              },
+              "gatewayEngineSeconds": {
+                "$ref": "#/definitions/EquipmentGatewayEngineSeconds"
+              },
+              "gatewayEngineState": {
+                "$ref": "#/definitions/EquipmentGatewayEngineState"
+              },
+              "gpsOdometerMeters": {
+                "$ref": "#/definitions/EquipmentGpsOdometerMeters"
+              },
+              "id": {
+                "$ref": "#/definitions/EquipmentId"
+              },
+              "name": {
+                "$ref": "#/definitions/EquipmentName"
+              },
+              "obdEngineSeconds": {
+                "$ref": "#/definitions/EquipmentObdEngineSeconds"
+              },
+              "obdEngineState": {
+                "$ref": "#/definitions/EquipmentObdEngineState"
+              }
+            }
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "EquipmentTime": {
+      "description": "UTC timestamp of the time the data point was generated by the equipment, in RFC3339 format.",
+      "type": "string",
+      "example": "2019-05-03T04:30:31Z"
     },
     "ListAddressesResponse": {
       "description": "A list of Addresses and pagination information.",
@@ -10673,6 +11762,27 @@
       "name": "driverActivationStatus",
       "in": "query"
     },
+    "equipmentStatTypes": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "gatewayEngineStates",
+          "obdEngineStates",
+          "fuelPercents",
+          "engineRpm",
+          "gatewayEngineSeconds",
+          "obdEngineSeconds",
+          "gpsOdometerMeters"
+        ],
+        "type": "string",
+        "format": "string"
+      },
+      "collectionFormat": "csv",
+      "description": "The type of equipment stat you want to query. Currently, you may only submit one type.\n\n- `engineRpm`: The revolutions per minute of the engine.\n- `fuelPercents`: The percent of fuel in the unit of equipment.\n- `obdEngineSeconds`: The number of seconds the engine has been running since it was new. This value is provided directly from on-board diagnostics.\n- `gatewayEngineSeconds`: An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG24 device is receiving power and an offset provided manually through the Samsara cloud dashboard.\n- `obdEngineStates`: The state of the engine read from on-board diagnostics. Can be `Off`, `On`, or `Idle`.\n- `gatewayEngineStates`: An approximation of engine state based on readings the AG24 receives from the aux/digio cable. Can be `Off` or `On`.\n- `gpsOdometerMeters`: An approximation of odometer reading based on GPS calculations since the AG24 was activated, and a manual odometer offset provided in the Samsara cloud dashboard.",
+      "name": "types",
+      "in": "query",
+      "required": true
+    },
     "isDeactivatedParam": {
       "type": "boolean",
       "description": "If value is true, only drivers that are deactivated will appear in the response. This parameter will default to false if not provided (fetching only active drivers).",
@@ -10715,6 +11825,10 @@
     {
       "description": "Driver objects allow you to track your driver-vehicle assignments, manage driver profiles, and update mobile app credential logins. You can retrieve a list of all drivers, or you can fetch each driver object individually.\nDrivers can be either active or inactive. You should inactivate a driver if you wish to keep the driver's driving history and HOS logs. If your driver is inactive, you can still get information about a driver summary.",
       "name": "Drivers"
+    },
+    {
+      "description": "Equipment objects represent powered assets connected to a [Samsara AG24](https://www.samsara.com/products/models/ag24) device via an APWR, CAT, or J1939 cable. They are automatically created with a unique Samsara Equipment ID whenever a Samsara AG24 is activated in your organization.",
+      "name": "Equipment"
     },
     {
       "description": "Driver logs containing duty status, certification details, and associated vehicles and trailers are available. You can also retrieve summarized total active time logs. Signin/Signout logs are also available. Drivers can track hours of service via the Samsara Driver mobile app. ",
@@ -10761,7 +11875,7 @@
       "name": "Users"
     },
     {
-      "description": "A Vehicle object is created when a [Samsara Vehicle Gateway](https://www.samsara.com/products/models/vg34) is first activated.\n\nWhen the gateway is activated, a Vehicle object is created with a unique Samsara ID.\n\nVehicle objects have static information (`name`, `licensePlate`, etc), and they also generate dynamic time-series data such as locations and diagnostics.\n\nVehicle static information is defined by fleet administrators either through the [Samsara dashboard](http://cloud.samsara.com) or through the API.\n\n- You can get a list of Vehicles and their static information using the [GET /fleet/vehicles](#operation/listVehicles) endpoint.\n\n- You can get a given vehicle and its static information by its Samsara ID or an [external ID](https://developers.samsara.com/docs/common-structures#section-external-ids) using the [GET /fleet/vehicles/{id}](#operation/getVehicle) endpoint.\n\n- You can set or update static Vehicle information using the [PATCH /fleet/vehicles/{id}](#operation/updateVehicle) endpoint.\n\nYou can get dynamic Vehicle time-series data in three ways:\n\n- Get a snapshot of the most recent readings for the time-series.\n\n    - [GET /fleet/vehicles/locations](#operation/getVehicleLocations)\n\n    - [GET /fleet/vehicles/stats](#operation/getVehicleStats)\n\n- Get a real-time feed of time-series data.\n\n    - [GET /fleet/vehicles/locations/feed](#operation/getVehicleLocationsFeed)\n\n    - [GET /fleet/vehicles/stats/feed](#operation/getVehicleStatsFeed)\n\n- Get a historical time-range of the time-series data.\n\n    - [GET /fleet/vehicles/locations/history](#operation/getVehicleLocationsHistory)\n\n    - [GET /fleet/vehicles/stats/feed](#operation/getVehicleStatsFeed)",
+      "description": "A Vehicle object is created when a [Samsara Vehicle Gateway](https://www.samsara.com/products/models/vg34) is first activated.\n\nWhen the gateway is activated, a Vehicle object is created with a unique Samsara ID.\n\nVehicle objects have static information (`name`, `licensePlate`, etc), and they also generate dynamic time-series data such as locations and diagnostics.\n\nVehicle static information is defined by fleet administrators either through the [Samsara dashboard](http://cloud.samsara.com) or through the API.\n\n- You can get a list of Vehicles and their static information using the [GET /fleet/vehicles](#operation/listVehicles) endpoint.\n\n- You can get a given vehicle and its static information by its Samsara ID or an [external ID](https://developers.samsara.com/docs/common-structures#section-external-ids) using the [GET /fleet/vehicles/{id}](#operation/getVehicle) endpoint.\n\n- You can set or update static Vehicle information using the [PATCH /fleet/vehicles/{id}](#operation/updateVehicle) endpoint.\n\nYou can get dynamic Vehicle time-series data in three ways:\n\n- Get a snapshot of the most recent readings for the time-series.\n\n    - [GET /fleet/vehicles/locations](#operation/getVehicleLocations)\n\n    - [GET /fleet/vehicles/stats](#operation/getVehicleStats)\n\n- Get a real-time feed of time-series data.\n\n    - [GET /fleet/vehicles/locations/feed](#operation/getVehicleLocationsFeed)\n\n    - [GET /fleet/vehicles/stats/feed](#operation/getVehicleStatsFeed)\n\n- Get a historical time-range of the time-series data.\n\n    - [GET /fleet/vehicles/locations/history](#operation/getVehicleLocationsHistory)\n\n    - [GET /fleet/vehicles/stats/history](#operation/getVehicleStatsHistory)",
       "name": "Vehicles"
     }
   ]
