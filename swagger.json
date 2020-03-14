@@ -1167,7 +1167,7 @@
     },
     "/fleet/vehicles/locations": {
       "get": {
-        "description": "Returns last known location for all vehicles (connected via Samsara Vehicle Gateways). This can be optionally filtered by tags or specific vehicle IDs. See [here](https://developers.samsara.com/docs/vehicle-locations) for more details.",
+        "description": "Returns last known locations for the given time for all vehicles (connected via Samsara Vehicle Gateways). If no time is specified the current time is used. This can be optionally filtered by tags or specific vehicle IDs. See [here](https://developers.samsara.com/docs/vehicle-locations) for more details.",
         "tags": [
           "Vehicles"
         ],
@@ -1178,6 +1178,13 @@
             "type": "string",
             "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
             "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "A filter on the data that returns the last known data points with timestamps less than or equal to this value. Defaults to now if not provided. Must be a string in RFC 3339 format. Millisecond precision and timezones are supported. (Example: `2020-01-27T07:06:25Z`).",
+            "name": "time",
             "in": "query"
           },
           {
@@ -1385,7 +1392,7 @@
           {
             "type": "string",
             "format": "date-time",
-            "description": "Timestamp in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Example: `2020-01-27T07:06:25Z`).",
+            "description": "A filter on the data that returns the last known data points with timestamps less than or equal to this value. Defaults to now if not provided. Must be a string in RFC 3339 format. Millisecond precision and timezones are supported. (Example: `2020-01-27T07:06:25Z`).",
             "name": "time",
             "in": "query"
           },
