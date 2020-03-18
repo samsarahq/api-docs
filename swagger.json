@@ -10,9 +10,9 @@
   ],
   "swagger": "2.0",
   "info": {
-    "description": "# Preview\n\nWelcome to the preview docs of the [Samsara API](https://developers.samsara.com/)! You should count yourself as lucky, as we don't share these docs with just anyone ;)\n\nThese docs show previews of API endpoints that are still in progress. They are very much subject to change.\n\nPlease see [developers.samsara.com](https://developers.samsara.com/) for an official introduction to our API as well as links to our official reference docs.",
+    "description": "\u003cstyle type=\"text/css\"\u003e\nn {\n    padding: 1em;\n    width: 100%;\n    display: block;\n    margin: 28px 0;\n}\nn.info {\n    background-color: rgba(0, 51, 160, 0.1);\n}\nn.warning {\n    background-color: #fdf6e3;\n}\ni:before {\n    margin-right: 6px;\n}\nnh {\n    font-size: 1.5rem;\n    font-weight: 700;\n    line-height: 1.1;\n    display: block;\n}\nnb {\n    margin-top: 10px;\n    padding-left: 22px;\n    display: block;\n}\n\u003c/style\u003e\n\n# Overview\n\n\u003cn class=\"info\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-info-circle\"\u003e\u003c/i\u003e\nSomething new!\n\u003c/nh\u003e\n\u003cnb\u003e\nWelcome Samsara's new and improved API. Check out our FAQ [here](https://developers.samsara.com/docs/introducing-our-next-generation-api) to see what's changed and learn how to get started.\u003cbr\u003e\n\u003cbr\u003e\nWant to access the legacy API docs? You can find them [here](https://www.samsara.com/api-legacy).\u003cbr\u003e\n\u003cbr\u003e\n*Note: Because this is a new set of APIs, we have not transitioned all endpoints over to this standard. Endpoints that still use the legacy standards are indicated in the reference documentation. If you can't find an API that you're looking for, we encourage you to look for it in our [legacy API docs](https://www.samsara.com/api-legacy) as we continue to transition all endpoints over. Check back here for updates!*\u003cbr\u003e\n\u003cbr\u003e\nSubmit your feedback [here](https://forms.gle/r4bs6HQshQAvBuwv6)!\n\u003c/nb\u003e\n\u003c/n\u003e\n\nSamsara provides API endpoints so that you can build powerful applications and custom solutions with sensor data. Samsara has endpoints available to track and analyze sensors, vehicles, and entire fleets.\n\nThe Samsara API is a [RESTful API](https://en.wikipedia.org/wiki/Representational_state_transfer). It uses standard [HTTP](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) authentication, verbs, and response codes, and it returns [JSON](http://www.json.org/) response bodies. If you're familiar with what you can build with a REST API, then this will be your go-to API reference.\n\nVisit [developers.samsara.com](https://developers.samsara.com) to find getting started guides and an API overview.\n\nIf you have any questions, reach out to us at [support@samsara.com](mailto:support@samsara.com).\n\n## Endpoints\n\nAll our APIs can be accessed through HTTP requests to URLs like:\n\n```\nhttps://api.samsara.com/\u003cendpoint\u003e\n```\n\nFor EU customers, this URL will be:\n\n```\nhttps://api.eu.samsara.com/\u003cendpoint\u003e\n```\n\n\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nNote\n\u003c/nh\u003e\n\u003cnb\u003e\nLegacy endpoints will have the URL: `https://api.samsara.com/v1/\u003cendpoint\u003e` or `https://api.eu.samsara.com/v1/\u003cendpoint\u003e`\n\u003c/nb\u003e\n\u003c/n\u003e\n\n## Authentication\n\nTo authenticate your API request you will need to include your secret token. You can manage your API tokens in the [Dashboard](https://cloud.samsara.com). They are visible under `Settings-\u003eOrganization-\u003eAPI Tokens`.\n\nYour API tokens carry many privileges, so be sure to keep them secure. Do not share your secret API tokens in publicly accessible areas such as GitHub, client-side code, and so on.\n\nAuthentication to the API is performed via Bearer Token in the HTTP Authorization header. Provide your API token as the `access_token` value in an `Authorization: Bearer` header. You do not need to provide a password:\n\n```curl\nAuthorization: Bearer {access_token}\n```\n\nAll API requests must be made over [HTTPS](https://en.wikipedia.org/wiki/HTTPS). Calls made over plain HTTP or without authentication will fail.\n\n## Common Patterns\n\nYou can find more info about request methods, response codes, error codes, versioning, pagination, timestamps, and mini-objects [here](https://developers.samsara.com/docs/common-structures).\n",
     "title": "Samsara API",
-    "version": "Preview"
+    "version": "2019-12-12"
   },
   "host": "api.samsara.com",
   "paths": {
@@ -39,6 +39,16 @@
             "type": "string",
             "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
             "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
             "in": "query"
           },
           {
@@ -348,7 +358,7 @@
     },
     "/fleet/carrier-proposed-assignments": {
       "get": {
-        "description": "Show the assignments that drivers would see in the future.",
+        "description": "Show the assignments that are active for drivers and that would currently be visible to them in the driver app.",
         "tags": [
           "Carrier Proposed Assignments"
         ],
@@ -380,7 +390,7 @@
           {
             "type": "string",
             "format": "date-time",
-            "description": "If specified, shows assignments that will be active after this time. In RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "description": "If specified, shows assignments that will be active at this time. Defaults to now, which would show current active assignments. In RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
             "name": "activeTime",
             "in": "query"
           }
@@ -453,7 +463,7 @@
         }
       }
     },
-    "/fleet/carrier-proposed-assignments/{uuid}": {
+    "/fleet/carrier-proposed-assignments/{id}": {
       "delete": {
         "description": "Permanently delete an assignment. You can only delete assignments that are not yet active. To override a currently active assignment, create a new empty one, instead.",
         "tags": [
@@ -464,6 +474,12 @@
         "responses": {
           "204": {
             "description": "Empty success body"
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
           }
         }
       },
@@ -471,7 +487,7 @@
         {
           "type": "string",
           "description": "ID of the assignment.",
-          "name": "uuid",
+          "name": "id",
           "in": "path",
           "required": true
         }
@@ -753,6 +769,36 @@
         }
       }
     },
+    "/fleet/documents/{id}": {
+      "delete": {
+        "description": "Delete a specific document.",
+        "tags": [
+          "Documents"
+        ],
+        "summary": "Delete a document",
+        "operationId": "deleteDocument",
+        "responses": {
+          "204": {
+            "description": "Empty success body"
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "ID of the document.",
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
     "/fleet/drivers": {
       "get": {
         "description": "Get all drivers in organization.",
@@ -763,9 +809,13 @@
         "operationId": "listDrivers",
         "parameters": [
           {
-            "type": "boolean",
-            "description": "If value is true, only drivers that are deactivated will appear in the response. This parameter will default to false if not provided (fetching only active drivers).",
-            "name": "isDeactivated",
+            "enum": [
+              "active",
+              "deactivated"
+            ],
+            "type": "string",
+            "description": "If value is `deactivated`, only drivers that are deactivated will appear in the response. This parameter will default to `active` if not provided (fetching only active drivers).",
+            "name": "driverActivationStatus",
             "in": "query"
           },
           {
@@ -782,6 +832,16 @@
             "type": "string",
             "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
             "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
             "in": "query"
           },
           {
@@ -937,10 +997,29 @@
               "type": "string"
             },
             "collectionFormat": "csv",
-            "description": "A filter on the data based on this comma-separated list of driver IDs. Currently only support querying by a single ID. Example: `driverIds=1234`",
+            "description": "A filter on the data based on this comma-separated list of driver IDs. Example: `driverIds=1234,5678`",
             "name": "driverIds",
-            "in": "query",
-            "required": true
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "name": "tagIds",
+            "in": "query"
           }
         ],
         "responses": {
@@ -983,7 +1062,7 @@
         }
       },
       "patch": {
-        "description": "Update a specific driver's information. This can also be used to activate or de-activate a given driver",
+        "description": "Update a specific driver's information. This can also be used to activate or de-activate a given driver by setting the driverActivationStatus field.",
         "tags": [
           "Drivers"
         ],
@@ -1087,6 +1166,16 @@
             "type": "string",
             "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
             "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
             "in": "query"
           },
           {
@@ -1239,12 +1328,12 @@
     },
     "/fleet/equipment": {
       "get": {
-        "description": "Returns a list of all equipment in an organization, ordered by equipment ID. Equipment is defined as Samsara AG24s connected via APWR, J1939, or CAT cables.",
+        "description": "Returns a list of all equipment in an organization. Equipment objects represent powered assets connected to a [Samsara AG24](https://www.samsara.com/products/models/ag24) via an APWR, CAT, or J1939 cable. They are automatically created with a unique Samsara Equipment ID whenever an AG24 is activated in your organization.",
         "tags": [
           "Equipment"
         ],
         "summary": "List all equipment",
-        "operationId": "getEquipmentList",
+        "operationId": "listEquipment",
         "parameters": [
           {
             "maximum": 512,
@@ -1268,6 +1357,16 @@
               "type": "string"
             },
             "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
             "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
             "name": "tagIds",
             "in": "query"
@@ -1275,7 +1374,7 @@
         ],
         "responses": {
           "200": {
-            "description": "List of all equipment objects, and pagination parameters.",
+            "description": "List of all equipment objects, and pagination information",
             "schema": {
               "$ref": "#/definitions/EquipmentListResponse"
             }
@@ -1291,17 +1390,27 @@
     },
     "/fleet/equipment/locations": {
       "get": {
-        "description": "Returns last known locations for all equipment (Samsara AG24s connected via APWR, J1939, or CAT cables). This can be optionally filtered by tags or specific equipment IDs.",
+        "description": "Returns last known locations for all equipment. This can be optionally filtered by tags or specific equipment IDs.",
         "tags": [
           "Equipment"
         ],
-        "summary": "List most recent equipment locations",
-        "operationId": "getEquipmentLocationSnapshot",
+        "summary": "Get most recent locations for all equipment",
+        "operationId": "getEquipmentLocations",
         "parameters": [
           {
             "type": "string",
             "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
             "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
             "in": "query"
           },
           {
@@ -1327,24 +1436,9 @@
         ],
         "responses": {
           "200": {
-            "description": "List of all equipment location objects and pagination parameters",
+            "description": "The most recent equipment locations and pagination information",
             "schema": {
-              "properties": {
-                "data": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/EquipmentLocationSnapshotResponse"
-                  }
-                },
-                "pagination": {
-                  "type": "object",
-                  "allOf": [
-                    {
-                      "$ref": "#/definitions/paginationResponse"
-                    }
-                  ]
-                }
-              }
+              "$ref": "#/definitions/EquipmentLocationsResponse"
             }
           },
           "default": {
@@ -1358,11 +1452,11 @@
     },
     "/fleet/equipment/locations/feed": {
       "get": {
-        "description": "Follow a continuous feed of all equipment locations from Samsara AG24s connected via APWR, J1939, or CAT cables.\n\nYour first call to this endpoint will provide you with the most recent location for each piece of equipment and a `pagination` object that contains an `endCursor`.\n\nYou can provide the `endCursor` to the `after` parameter of this endpoint to get location updates since that `endCursor`.\n\nIf `hasNextPage` is `false`, no updates are readily available yet. We'd suggest waiting a minimum of 5 seconds before requesting updates.",
+        "description": "Follow a continuous feed of all equipment locations from Samsara AG24s.\n\nYour first call to this endpoint will provide you with the most recent location for each unit of equipment and a `pagination` object that contains an `endCursor`.\n\nYou can provide the `endCursor` to subsequent calls via the `after` parameter. The response will contain any equipment location updates since that `endCursor`.\n\nIf `hasNextPage` is `false`, no updates are readily available yet. We'd suggest waiting a minimum of 5 seconds before requesting updates.",
         "tags": [
           "Equipment"
         ],
-        "summary": "Follow a real-time feed of equipment locations",
+        "summary": "Follow feed of equipment locations",
         "operationId": "getEquipmentLocationsFeed",
         "parameters": [
           {
@@ -1377,6 +1471,16 @@
               "type": "string"
             },
             "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
             "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
             "name": "tagIds",
             "in": "query"
@@ -1394,24 +1498,9 @@
         ],
         "responses": {
           "200": {
-            "description": "List of all locations for the specified pieces of equipment.",
+            "description": "The feed of equipment locations and pagination information",
             "schema": {
-              "properties": {
-                "data": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/EquipmentLocationsResponse"
-                  }
-                },
-                "pagination": {
-                  "type": "object",
-                  "allOf": [
-                    {
-                      "$ref": "#/definitions/paginationResponse"
-                    }
-                  ]
-                }
-              }
+              "$ref": "#/definitions/EquipmentLocationsListResponse"
             }
           },
           "default": {
@@ -1425,7 +1514,7 @@
     },
     "/fleet/equipment/locations/history": {
       "get": {
-        "description": "Returns all known equipment location changes during the given time range for all powered equipment (AG24s connected with a APWR, J1939, or CAT cable). This can be optionally filtered by tags or specific equipment IDs.",
+        "description": "Returns historical equipment locations during the given time range. This can be optionally filtered by tags or specific equipment IDs.",
         "tags": [
           "Equipment"
         ],
@@ -1460,6 +1549,16 @@
               "type": "string"
             },
             "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
             "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
             "name": "tagIds",
             "in": "query"
@@ -1477,24 +1576,9 @@
         ],
         "responses": {
           "200": {
-            "description": "List of all equipment locations and pagination parameters",
+            "description": "Historical equipment locations and pagination information",
             "schema": {
-              "properties": {
-                "data": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/EquipmentLocationsResponse"
-                  }
-                },
-                "pagination": {
-                  "type": "object",
-                  "allOf": [
-                    {
-                      "$ref": "#/definitions/paginationResponse"
-                    }
-                  ]
-                }
-              }
+              "$ref": "#/definitions/EquipmentLocationsListResponse"
             }
           },
           "default": {
@@ -1508,17 +1592,27 @@
     },
     "/fleet/equipment/stats": {
       "get": {
-        "description": "Returns last known stats for all equipment (Samsara AG24s connected connected via APWR, J1939, or CAT cables). This can be optionally filtered by tags or specific equipment IDs.",
+        "description": "Returns the last known stats for all equipment. This can be optionally filtered by tags or specific equipment IDs.",
         "tags": [
           "Equipment"
         ],
-        "summary": "List most recent equipment stats",
-        "operationId": "getEquipmentStatsSnapshot",
+        "summary": "Get most recent stats for all equipment",
+        "operationId": "getEquipmentStats",
         "parameters": [
           {
             "type": "string",
             "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
             "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
             "in": "query"
           },
           {
@@ -1557,31 +1651,17 @@
               "format": "string"
             },
             "collectionFormat": "csv",
-            "description": "A comma separated list of stat types.",
+            "description": "The type of equipment stat you want to query. Currently, you may only submit one type.\n\n- `engineRpm`: The revolutions per minute of the engine.\n- `fuelPercents`: The percent of fuel in the unit of equipment.\n- `obdEngineSeconds`: The number of seconds the engine has been running since it was new. This value is provided directly from on-board diagnostics.\n- `gatewayEngineSeconds`: An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG24 device is receiving power and an offset provided manually through the Samsara cloud dashboard.\n- `obdEngineStates`: The state of the engine read from on-board diagnostics. Can be `Off`, `On`, or `Idle`.\n- `gatewayEngineStates`: An approximation of engine state based on readings the AG24 receives from the aux/digio cable. Can be `Off` or `On`.\n- `gpsOdometerMeters`: An approximation of odometer reading based on GPS calculations since the AG24 was activated, and a manual odometer offset provided in the Samsara cloud dashboard.",
             "name": "types",
-            "in": "query"
+            "in": "query",
+            "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "List of all equipment stat objects and pagination parameters",
+            "description": "The most recent equipment stats and pagination information",
             "schema": {
-              "properties": {
-                "data": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/EquipmentStatsSnapshotResponse"
-                  }
-                },
-                "pagination": {
-                  "type": "object",
-                  "allOf": [
-                    {
-                      "$ref": "#/definitions/paginationResponse"
-                    }
-                  ]
-                }
-              }
+              "$ref": "#/definitions/EquipmentStatsResponse"
             }
           },
           "default": {
@@ -1595,11 +1675,11 @@
     },
     "/fleet/equipment/stats/feed": {
       "get": {
-        "description": "Follow a continuous feed of all equipment stats from Samsara AG24s connected via APWR, J1939, or CAT cables.\n\nYour first call to this endpoint will provide you with the most recent stats for each piece of equipment and a `pagination` object that contains an `endCursor`.\n\nYou can provide the `endCursor` to the `after` parameter of this endpoint to get equipment stats updates since that `endCursor`.\n\nIf `hasNextPage` is `false`, no updates are readily available yet. Each stat type has a different refresh rate, but in general we'd suggest waiting a minimum of 5 seconds before requesting updates.",
+        "description": "Follow a continuous feed of all equipment stats from Samsara AG24s.\n\nYour first call to this endpoint will provide you with the most recent stats for each unit of equipment and a `pagination` object that contains an `endCursor`.\n\nYou can provide the `endCursor` to subsequent calls via the `after` parameter. The response will contain any equipment stats updates since that `endCursor`.\n\nIf `hasNextPage` is `false`, no updates are readily available yet. Each stat type has a different refresh rate, but in general we'd suggest waiting a minimum of 5 seconds before requesting updates.",
         "tags": [
           "Equipment"
         ],
-        "summary": "Follow a real-time feed of equipment stats",
+        "summary": "Follow a feed of equipment stats",
         "operationId": "getEquipmentStatsFeed",
         "parameters": [
           {
@@ -1614,6 +1694,16 @@
               "type": "string"
             },
             "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
             "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
             "name": "tagIds",
             "in": "query"
@@ -1644,31 +1734,17 @@
               "format": "string"
             },
             "collectionFormat": "csv",
-            "description": "A comma separated list of stat types.",
+            "description": "The type of equipment stat you want to query. Currently, you may only submit one type.\n\n- `engineRpm`: The revolutions per minute of the engine.\n- `fuelPercents`: The percent of fuel in the unit of equipment.\n- `obdEngineSeconds`: The number of seconds the engine has been running since it was new. This value is provided directly from on-board diagnostics.\n- `gatewayEngineSeconds`: An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG24 device is receiving power and an offset provided manually through the Samsara cloud dashboard.\n- `obdEngineStates`: The state of the engine read from on-board diagnostics. Can be `Off`, `On`, or `Idle`.\n- `gatewayEngineStates`: An approximation of engine state based on readings the AG24 receives from the aux/digio cable. Can be `Off` or `On`.\n- `gpsOdometerMeters`: An approximation of odometer reading based on GPS calculations since the AG24 was activated, and a manual odometer offset provided in the Samsara cloud dashboard.",
             "name": "types",
-            "in": "query"
+            "in": "query",
+            "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "List of all equipment stat objects and pagination parameters",
+            "description": "The feed of equipment stats and pagination information",
             "schema": {
-              "properties": {
-                "data": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/EquipmentStatsResponse"
-                  }
-                },
-                "pagination": {
-                  "type": "object",
-                  "allOf": [
-                    {
-                      "$ref": "#/definitions/paginationResponse"
-                    }
-                  ]
-                }
-              }
+              "$ref": "#/definitions/EquipmentStatsListResponse"
             }
           },
           "default": {
@@ -1682,7 +1758,7 @@
     },
     "/fleet/equipment/stats/history": {
       "get": {
-        "description": "Returns all known equipment stat changes during the given time range for all powered equipment (Samsara AG24s connected via APWR, J1939, or CAT cables). This can be optionally filtered by tags or specific equipment IDs.",
+        "description": "Returns historical equipment status during the given time range. This can be optionally filtered by tags or specific equipment IDs.",
         "tags": [
           "Equipment"
         ],
@@ -1717,6 +1793,16 @@
               "type": "string"
             },
             "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
             "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
             "name": "tagIds",
             "in": "query"
@@ -1747,31 +1833,17 @@
               "format": "string"
             },
             "collectionFormat": "csv",
-            "description": "A comma separated list of stat types.",
+            "description": "The type of equipment stat you want to query. Currently, you may only submit one type.\n\n- `engineRpm`: The revolutions per minute of the engine.\n- `fuelPercents`: The percent of fuel in the unit of equipment.\n- `obdEngineSeconds`: The number of seconds the engine has been running since it was new. This value is provided directly from on-board diagnostics.\n- `gatewayEngineSeconds`: An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG24 device is receiving power and an offset provided manually through the Samsara cloud dashboard.\n- `obdEngineStates`: The state of the engine read from on-board diagnostics. Can be `Off`, `On`, or `Idle`.\n- `gatewayEngineStates`: An approximation of engine state based on readings the AG24 receives from the aux/digio cable. Can be `Off` or `On`.\n- `gpsOdometerMeters`: An approximation of odometer reading based on GPS calculations since the AG24 was activated, and a manual odometer offset provided in the Samsara cloud dashboard.",
             "name": "types",
-            "in": "query"
+            "in": "query",
+            "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "List of all equipment stat objects and pagination parameters",
+            "description": "Historical equipment stats and pagination information",
             "schema": {
-              "properties": {
-                "data": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/EquipmentStatsResponse"
-                  }
-                },
-                "pagination": {
-                  "type": "object",
-                  "allOf": [
-                    {
-                      "$ref": "#/definitions/paginationResponse"
-                    }
-                  ]
-                }
-              }
+              "$ref": "#/definitions/EquipmentStatsListResponse"
             }
           },
           "default": {
@@ -1785,31 +1857,17 @@
     },
     "/fleet/equipment/{id}": {
       "get": {
-        "description": "Get information about a specific piece of equipment. Equipment is defined as Samsara AG24s connected via APWR, J1939, or CAT cables.",
+        "description": "Retrieves the unit of equipment with the given Samsara ID.",
         "tags": [
           "Equipment"
         ],
         "summary": "Retrieve a unit of equipment",
-        "operationId": "getEquipmentById",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Samsara ID of the equipment.",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
+        "operationId": "getEquipment",
         "responses": {
           "200": {
-            "description": "Returns the specified equipment object.",
+            "description": "The specified equipment object",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "$ref": "#/definitions/EquipmentResponse"
-                }
-              }
+              "$ref": "#/definitions/EquipmentResponse"
             }
           },
           "default": {
@@ -1819,7 +1877,16 @@
             }
           }
         }
-      }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "Samsara ID of the Equipment.",
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
     },
     "/fleet/routes": {
       "post": {
@@ -2072,6 +2139,16 @@
               "type": "string"
             },
             "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
             "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
             "name": "tagIds",
             "in": "query"
@@ -2137,7 +2214,7 @@
     },
     "/fleet/vehicles/locations": {
       "get": {
-        "description": "Returns last known location for all vehicles (connected via Samsara Vehicle Gateways). This can be optionally filtered by tags or specific vehicle IDs. See [here](https://developers.samsara.com/docs/vehicle-locations) for more details.",
+        "description": "Returns last known locations for the given time for all vehicles (connected via Samsara Vehicle Gateways). If no time is specified the current time is used. This can be optionally filtered by tags or specific vehicle IDs. See [here](https://developers.samsara.com/docs/vehicle-locations) for more details.",
         "tags": [
           "Vehicles"
         ],
@@ -2148,6 +2225,23 @@
             "type": "string",
             "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
             "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "A filter on the data that returns the last known data points with timestamps less than or equal to this value. Defaults to now if not provided. Must be a string in RFC 3339 format. Millisecond precision and timezones are supported. (Example: `2020-01-27T07:06:25Z`).",
+            "name": "time",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
             "in": "query"
           },
           {
@@ -2200,6 +2294,16 @@
             "type": "string",
             "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
             "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
             "in": "query"
           },
           {
@@ -2269,6 +2373,16 @@
             "name": "endTime",
             "in": "query",
             "required": true
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
           },
           {
             "type": "array",
@@ -2351,7 +2465,7 @@
     },
     "/fleet/vehicles/stats": {
       "get": {
-        "description": "Returns last known stats for all vehicles (connected via Samsara Vehicle Gateways). This can be optionally filtered by tags or specific vehicle IDs. See [here](https://developers.samsara.com/docs/vehicle-stats) for more details.",
+        "description": "Returns last known stats for the given time for all vehicles (connected via Samsara Vehicle Gateways). If no time is specified the current time is used. This can be optionally filtered by tags or specific vehicle IDs. See [here](https://developers.samsara.com/docs/vehicle-stats) for more details.",
         "tags": [
           "Vehicles"
         ],
@@ -2362,6 +2476,23 @@
             "type": "string",
             "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
             "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "A filter on the data that returns the last known data points with timestamps less than or equal to this value. Defaults to now if not provided. Must be a string in RFC 3339 format. Millisecond precision and timezones are supported. (Example: `2020-01-27T07:06:25Z`).",
+            "name": "time",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
             "in": "query"
           },
           {
@@ -2429,6 +2560,16 @@
             "type": "string",
             "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
             "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
             "in": "query"
           },
           {
@@ -2513,6 +2654,16 @@
             "name": "endTime",
             "in": "query",
             "required": true
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
           },
           {
             "type": "array",
@@ -2625,7 +2776,7 @@
       "parameters": [
         {
           "type": "string",
-          "description": "ID of the vehicle. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `maintenanceId:250020`",
+          "description": "ID of the vehicle. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource, or automatically populated by fields on the vehicle. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `maintenanceId:250020`. Automatically populated external IDs are prefixed with `samsara.`. For example, `samsara.vin:1HGBH41JXMN109186`.",
           "name": "id",
           "in": "path",
           "required": true
@@ -2655,6 +2806,16 @@
             "type": "string",
             "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
             "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
             "in": "query"
           },
           {
@@ -2717,6 +2878,16 @@
               "type": "string"
             },
             "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
             "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
             "name": "tagIds",
             "in": "query"
@@ -2761,6 +2932,16 @@
             "type": "string",
             "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
             "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
             "in": "query"
           },
           {
@@ -2829,6 +3010,16 @@
             "type": "string",
             "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
             "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
             "in": "query"
           },
           {
@@ -5882,7 +6073,7 @@
         "acceptedTime": {
           "allOf": [
             {
-              "description": "Time when the driver accepted this assignment in the mobile app."
+              "description": "Time when the driver accepted this assignment in the mobile app. Will be omitted if the driver hasn't accepted this assignment. RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00)."
             },
             {
               "$ref": "#/definitions/time"
@@ -5892,7 +6083,7 @@
         "activeTime": {
           "allOf": [
             {
-              "description": "Time after which this assignment will be active and visible to the driver on the mobile app."
+              "description": "Time after which this assignment will be active and visible to the driver on the mobile app; RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00)."
             },
             {
               "$ref": "#/definitions/time"
@@ -5902,7 +6093,7 @@
         "firstSeenTime": {
           "allOf": [
             {
-              "description": "Time when the driver first saw this assignment in the mobile app."
+              "description": "Time when the driver first saw this assignment in the mobile app. Will be omitted if the driver hasn't seen this assignment yet. RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00)."
             },
             {
               "$ref": "#/definitions/time"
@@ -5912,7 +6103,7 @@
         "rejectedTime": {
           "allOf": [
             {
-              "description": "Time when the driver rejected this assignment in the mobile app."
+              "description": "Time when the driver rejected this assignment in the mobile app. Will be omitted if the driver hasn't rejected this assignment. RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00)."
             },
             {
               "$ref": "#/definitions/time"
@@ -5920,8 +6111,9 @@
           ]
         },
         "shippingDocs": {
-          "description": "Shipping Documents that this assignment will propose to the driver.",
+          "description": "Shipping Documents that this assignment will propose to the driver; maximum of 40 characters",
           "type": "string",
+          "maxLength": 40,
           "example": "Delivery 123, chips and soda"
         },
         "trailers": {
@@ -5958,7 +6150,7 @@
         "activeTime": {
           "allOf": [
             {
-              "description": "Time after which this assignment will be active and visible to the driver on the mobile app. Not setting it makes it active now."
+              "description": "Time after which this assignment will be active and visible to the driver on the mobile app. Not setting it makes it active now. RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00)."
             },
             {
               "$ref": "#/definitions/time"
@@ -5971,8 +6163,9 @@
           "example": "42"
         },
         "shippingDocs": {
-          "description": "Shipping Documents that this assignment will propose to the driver.",
+          "description": "Shipping Documents that this assignment will propose to the driver; maximum of 40 characters",
           "type": "string",
+          "maxLength": 40,
           "example": "Delivery 123, chips and soda"
         },
         "trailerNames": {
@@ -6574,7 +6767,7 @@
                 "type": "string"
               },
               "value": {
-                "description": "The shape of the value property depends on the fieldType selected.\n\n- fieldType `string`: returns a string (e.g. `\"hello\"`).\n\n- fieldType `number`: returns a number (e.g. `100`).\n\n- fieldType `signature`: returns an array of signature objects where each object contains the `name`, `signedAtTime`, and `signatureUrl` properties for a signature. Example:\n\n```json\n[\n  {\n    \"name\": \"John Smith\",\n    \"signedAtTime\": \"2006-01-02T15:04:05Z07:00\",\n    \"signatureUrl\": \"https://www.samsara.com/signature1\"\n  }\n]\n```\n\nThe `name` property returns the name of the signee in string format (e.g. John Smith). The `signedAtTime` property returns the time the signature was created in string format, following RFC 3339 standard (e.g. `\"2006-01-02T15:04:05Z07:00\"`). The `signatureUrl` property returns a string URL to get the signature data in base64 format (e.g. `\"https://www.samsara.com/signature1\"`).\n\n- fieldType `photo`: returns an array of photo objects where each object contains a `url` property for a photo. The `url` property returns a string URL for a JPG image (e.g. `\"https://www.samsara.com/photo1\"`).\n\n- fieldType `multipleChoiceField`: returns an array of multiple choice objects where each object contains the `selected` and `label` properties for a multiple choice field item. The `selected` property indicates whether the multiple choice field is selected and returns a boolean value (e.g. `false`). The `label` property describes the multiple choice field and returns a string value (e.g. `\"Answer choice 1\"`).",
+                "description": "The shape of the value property depends on the fieldType selected.\n\n- fieldType `string`: returns a string (e.g. `\"hello\"`).\n\n- fieldType `number`: returns a number (e.g. `100`).\n\n- fieldType `signature`: returns an array of signature objects where each object contains the `name`, `signedAtTime`, and `signatureUrl` properties for a signature. Example:\n\n```json\n[\n  {\n    \"name\": \"John Smith\",\n    \"signedAtTime\": \"2006-01-02T15:04:05Z07:00\",\n    \"signatureUrl\": \"https://www.samsara.com/signature1\"\n  }\n]\n```\n\nThe `name` property returns the name of the signee in string format (e.g. John Smith). The `signedAtTime` property returns the time the signature was created in string format, following RFC 3339 standard (e.g. `\"2006-01-02T15:04:05Z07:00\"`). The `signatureUrl` property returns a s3PresignedURL that refreshes every 24 hours to get the signature data in PNG format (e.g. `\"https://www.samsara.com/signature1\"`).\n\n- fieldType `photo`: returns an array of photo objects where each object contains a `url` property for a photo. The `url` property returns a string URL for a JPG image (e.g. `\"https://www.samsara.com/photo1\"`).\n\n- fieldType `multipleChoiceField`: returns an array of multiple choice objects where each object contains the `selected` and `label` properties for a multiple choice field item. The `selected` property indicates whether the multiple choice field is selected and returns a boolean value (e.g. `false`). The `label` property describes the multiple choice field and returns a string value (e.g. `\"Answer choice 1\"`).",
                 "type": "string"
               }
             }
@@ -6655,7 +6848,7 @@
                 "type": "string"
               },
               "value": {
-                "description": "The shape of the value property depends on the fieldType selected.\n\n- fieldType `string`: returns a string (e.g. `\"hello\"`).\n\n- fieldType `number`: returns a number (e.g. `100`).\n\n- fieldType `signature`: returns an array of signature objects where each object contains the `name`, `signedAtTime`, and `signatureUrl` properties for a signature. Example:\n\n```json\n[\n  {\n    \"name\": \"John Smith\",\n    \"signedAtTime\": \"2006-01-02T15:04:05Z07:00\",\n    \"signatureUrl\": \"https://www.samsara.com/signature1\"\n  }\n]\n```\n\nThe `name` property returns the name of the signee in string format (e.g. John Smith). The `signedAtTime` property returns the time the signature was created in string format, following RFC 3339 standard (e.g. `\"2006-01-02T15:04:05Z07:00\"`). The `signatureUrl` property returns a string URL to get the signature data in base64 format (e.g. `\"https://www.samsara.com/signature1\"`).\n\n- fieldType `photo`: returns an array of photo objects where each object contains a `url` property for a photo. The `url` property returns a string URL for a JPG image (e.g. `\"https://www.samsara.com/photo1\"`).\n\n- fieldType `multipleChoice`: returns an array of multiple choice objects where each object contains the `selected` and `label` properties for a multiple choice field item. The `selected` property indicates whether the multiple choice field is selected and returns a boolean value (e.g. `false`). The `label` property describes the multiple choice field and returns a string value (e.g. `\"Answer choice 1\"`).\n\n- fieldType `dateTime`: returns a string with the timestamp in RFC 3339 format.",
+                "description": "The shape of the value property depends on the fieldType selected.\n\n- fieldType `string`: returns a string (e.g. `\"hello\"`).\n\n- fieldType `number`: returns a number (e.g. `100`).\n\n- fieldType `signature`: returns an array of signature objects where each object contains the `name`, `signedAtTime`, and `signatureUrl` properties for a signature. Example:\n\n```json\n[\n  {\n    \"name\": \"John Smith\",\n    \"signedAtTime\": \"2006-01-02T15:04:05Z07:00\",\n    \"signatureUrl\": \"https://www.samsara.com/signature1\"\n  }\n]\n```\n\nThe `name` property returns the name of the signee in string format (e.g. John Smith). The `signedAtTime` property returns the time the signature was created in string format, following RFC 3339 standard (e.g. `\"2006-01-02T15:04:05Z07:00\"`). The `signatureUrl` property returns a s3PresignedURL that refreshes every 24 hours to get the signature data in PNG format (e.g. `\"https://www.samsara.com/signature1\"`).\n\n- fieldType `photo`: returns an array of photo objects where each object contains a `url` property for a photo. The `url` property returns a string URL for a PNG image (e.g. `\"https://www.samsara.com/photo1\"`).\n\n- fieldType `multipleChoice`: returns an array of multiple choice objects where each object contains the `selected` and `label` properties for a multiple choice field item. The `selected` property indicates whether the multiple choice field is selected and returns a boolean value (e.g. `false`). The `label` property describes the multiple choice field and returns a string value (e.g. `\"Answer choice 1\"`).\n\n- fieldType `dateTime`: returns a string with the timestamp in RFC 3339 format.",
                 "type": "string"
               }
             }
@@ -6819,6 +7012,9 @@
         "createdAtTime": {
           "$ref": "#/definitions/DriverCreatedAtTime"
         },
+        "driverActivationStatus": {
+          "$ref": "#/definitions/DriverActivationStatus"
+        },
         "eldAdverseWeatherExemptionEnabled": {
           "$ref": "#/definitions/DriverEldAdverseWeatherExemptionEnabled"
         },
@@ -6889,6 +7085,14 @@
           "$ref": "#/definitions/DriverVehicleGroupTag"
         }
       }
+    },
+    "DriverActivationStatus": {
+      "description": "A value indicating whether the driver is active or deactivated.",
+      "type": "string",
+      "enum": [
+        "active",
+        "deactivated"
+      ]
     },
     "DriverCarrierName": {
       "description": "Carrier for a given driver.",
@@ -6967,7 +7171,7 @@
       "example": "123"
     },
     "DriverIsDeactivated": {
-      "description": "A boolean indicating whether or not the driver is deactivated.",
+      "description": "[DEPRECATED] A boolean indicating whether or not the driver is deactivated. Use `driverActivationStatus` instead.",
       "type": "boolean",
       "example": false
     },
@@ -7094,9 +7298,9 @@
       }
     },
     "DriverTimezone": {
-      "description": "Home terminal timezone, in order to indicate what time zone should be used to calculate the ELD logs.",
+      "description": "Home terminal timezone, in order to indicate what time zone should be used to calculate the ELD logs. Driver timezones use [IANA timezone database](https://www.iana.org/time-zones) keys (e.g. `America/Los_Angeles`, `America/New_York`, `Europe/London`, etc.). You can find a mapping of common timezone formats to IANA timezone keys [here](https://unicode.org/cldr/charts/latest/supplemental/zone_tzid.html).",
       "type": "string",
-      "example": "New York - EST/EDT"
+      "example": "America/Los_Angeles"
     },
     "DriverUpdatedAtTime": {
       "description": "The date and time this driver was last updated in RFC 3339 format.",
@@ -7426,226 +7630,8 @@
         }
       }
     },
-    "EquipmentEngineRpm": {
-      "description": "Stat point for the RPM of the engine.",
-      "type": "object",
-      "properties": {
-        "time": {
-          "$ref": "#/definitions/EquipmentTime"
-        },
-        "value": {
-          "type": "integer",
-          "example": 1800
-        }
-      }
-    },
-    "EquipmentEngineSeconds": {
-      "description": "Stat point for the on time of the engine.",
-      "type": "object",
-      "properties": {
-        "time": {
-          "$ref": "#/definitions/EquipmentTime"
-        },
-        "value": {
-          "type": "integer",
-          "example": 22374000
-        }
-      }
-    },
-    "EquipmentEngineState": {
-      "description": "Stat point for the state of the engine based on readings through the connected aux/digio cable.",
-      "type": "object",
-      "properties": {
-        "time": {
-          "$ref": "#/definitions/EquipmentTime"
-        },
-        "value": {
-          "type": "string",
-          "enum": [
-            "Off",
-            "On"
-          ],
-          "example": "On"
-        }
-      }
-    },
-    "EquipmentFuelPercent": {
-      "description": "Stat point for the fuel level of the engine as a percentage.",
-      "type": "object",
-      "properties": {
-        "time": {
-          "$ref": "#/definitions/EquipmentTime"
-        },
-        "value": {
-          "type": "integer",
-          "example": 54
-        }
-      }
-    },
-    "EquipmentGatewayEngineSeconds": {
-      "description": "Stat point for the cumulative on time of the engine based on readings through the connected aux/digio cable.",
-      "type": "object",
-      "properties": {
-        "time": {
-          "$ref": "#/definitions/EquipmentTime"
-        },
-        "value": {
-          "type": "integer",
-          "example": 22374000
-        }
-      }
-    },
-    "EquipmentGatewayEngineState": {
-      "description": "Stat point for the state of the engine based on readings through the connected aux/digio cable.",
-      "type": "object",
-      "properties": {
-        "time": {
-          "$ref": "#/definitions/EquipmentTime"
-        },
-        "value": {
-          "type": "string",
-          "enum": [
-            "Off",
-            "On"
-          ],
-          "example": "On"
-        }
-      }
-    },
-    "EquipmentGpsOdometerMeters": {
-      "description": "Stat point for the odometer of the engine in meters based on readings from the Samsara Gateway GPS data.",
-      "type": "object",
-      "properties": {
-        "time": {
-          "$ref": "#/definitions/EquipmentTime"
-        },
-        "value": {
-          "type": "integer",
-          "example": 3200
-        }
-      }
-    },
-    "EquipmentListResponse": {
-      "description": "Response for retrieving a list of equipment.",
-      "type": "object",
-      "properties": {
-        "data": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/EquipmentResponse"
-          }
-        },
-        "pagination": {
-          "$ref": "#/definitions/paginationResponse"
-        }
-      }
-    },
-    "EquipmentLocation": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/location"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "heading": {
-              "description": "Heading of the equipment in degrees.",
-              "type": "number",
-              "format": "double",
-              "example": 120
-            },
-            "speed": {
-              "description": "Speed of the equipment in miles per hour.",
-              "type": "number",
-              "format": "double",
-              "example": 48.3
-            }
-          }
-        },
-        {
-          "type": "object",
-          "required": [
-            "time"
-          ],
-          "properties": {
-            "time": {
-              "$ref": "#/definitions/EquipmentTime"
-            }
-          }
-        }
-      ]
-    },
-    "EquipmentLocationSnapshotResponse": {
-      "description": "Location for a given piece of equipment.",
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/equipmentTinyResponse"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "location": {
-              "$ref": "#/definitions/EquipmentLocation"
-            }
-          }
-        }
-      ]
-    },
-    "EquipmentLocationsResponse": {
-      "description": "List of equipment locations for the specified time period.",
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/equipmentTinyResponse"
-        },
-        {
-          "description": "Location point for the equipment.",
-          "type": "object",
-          "properties": {
-            "locations": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/EquipmentLocation"
-              }
-            }
-          }
-        }
-      ]
-    },
-    "EquipmentObdEngineSeconds": {
-      "description": "Stat point for the cumulative on time of the engine based on readings of the onboard computer through the J1939 or CAT cable.",
-      "type": "object",
-      "properties": {
-        "time": {
-          "$ref": "#/definitions/EquipmentTime"
-        },
-        "value": {
-          "type": "integer",
-          "example": 22374000
-        }
-      }
-    },
-    "EquipmentObdEngineState": {
-      "description": "Stat point for the state of the engine based on readings of the onboard computer through the J1939 or CAT cable.",
-      "type": "object",
-      "properties": {
-        "time": {
-          "$ref": "#/definitions/EquipmentTime"
-        },
-        "value": {
-          "type": "string",
-          "enum": [
-            "Off",
-            "On",
-            "Idle"
-          ],
-          "example": "On"
-        }
-      }
-    },
-    "EquipmentResponse": {
-      "description": "The equipment object.",
+    "Equipment": {
+      "description": "An equipment object.",
       "type": "object",
       "required": [
         "id"
@@ -7657,14 +7643,10 @@
           "example": "1FUJA6BD31LJ09646"
         },
         "id": {
-          "description": "Unique Samsara ID for the equipment.",
-          "type": "string",
-          "example": "112"
+          "$ref": "#/definitions/EquipmentId"
         },
         "name": {
-          "description": "Name of the equipment.",
-          "type": "string",
-          "example": "Crane A7"
+          "$ref": "#/definitions/EquipmentName"
         },
         "notes": {
           "description": "Notes about a piece of equipment. Samsara supports a maximum of 255 chars.",
@@ -7681,164 +7663,499 @@
         }
       }
     },
-    "EquipmentStatsResponse": {
-      "description": "List of equipment stats for the specified time period.",
+    "EquipmentEngineRpm": {
+      "description": "Engine RPM reading.",
       "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/equipmentTinyResponse"
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
         },
-        {
-          "type": "object",
-          "properties": {
-            "engineRpm": {
-              "type": "array",
-              "items": {
+        "value": {
+          "description": "The revolutions per minute of the engine.",
+          "type": "integer",
+          "example": 1800
+        }
+      }
+    },
+    "EquipmentEngineSeconds": {
+      "description": "[DEPRECATED] Please use either `gatewayEngineSeconds` or `obdEngineSeconds`.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "description": "An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG24 device is receiving power and an offset provided manually through the Samsara cloud dashboard.",
+          "type": "integer",
+          "example": 22374000
+        }
+      }
+    },
+    "EquipmentEngineState": {
+      "description": "[DEPRECATED] Please use either `gatewayEngineStates` or `obdEngineStates`.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "description": "An approximation of engine state based on readings the AG24 receives from the aux/digio cable.",
+          "type": "string",
+          "enum": [
+            "Off",
+            "On"
+          ],
+          "example": "On"
+        }
+      }
+    },
+    "EquipmentFuelPercent": {
+      "description": "Fuel percent reading.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "description": "The percent of fuel in the unit of equipment.",
+          "type": "integer",
+          "example": 54
+        }
+      }
+    },
+    "EquipmentGatewayEngineSeconds": {
+      "description": "Engine seconds reading from the aux/digio cable.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "description": "An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG24 device is receiving power and an offset provided manually through the Samsara cloud dashboard.",
+          "type": "integer",
+          "example": 22374000
+        }
+      }
+    },
+    "EquipmentGatewayEngineState": {
+      "description": "Engine state reading from the aux/digio cable.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "description": "An approximation of engine state based on readings the AG24 receives from the aux/digio cable.",
+          "type": "string",
+          "enum": [
+            "Off",
+            "On"
+          ],
+          "example": "On"
+        }
+      }
+    },
+    "EquipmentGpsOdometerMeters": {
+      "description": "GPS odometer reading.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "description": "An approximation of odometer reading based on GPS calculations since the AG24 was activated, and a manual odometer offset provided in the Samsara cloud dashboard.",
+          "type": "integer",
+          "example": 3200
+        }
+      }
+    },
+    "EquipmentId": {
+      "description": "Unique Samsara ID for the equipment.",
+      "type": "string",
+      "example": "112"
+    },
+    "EquipmentListResponse": {
+      "description": "List of all equipment objects, and pagination information.",
+      "type": "object",
+      "required": [
+        "data",
+        "pagination"
+      ],
+      "properties": {
+        "data": {
+          "description": "List of equipment objects.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Equipment"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "EquipmentLocation": {
+      "description": "Location reading.",
+      "type": "object",
+      "required": [
+        "time",
+        "latitude",
+        "longitude"
+      ],
+      "properties": {
+        "heading": {
+          "description": "Heading of the unit of equipment in degrees.",
+          "type": "number",
+          "format": "double",
+          "example": 120
+        },
+        "latitude": {
+          "description": "GPS latitude represented in degrees",
+          "type": "number",
+          "format": "double",
+          "example": 122.142
+        },
+        "longitude": {
+          "description": "GPS longitude represented in degrees",
+          "type": "number",
+          "format": "double",
+          "example": -93.343
+        },
+        "speed": {
+          "description": "GPS speed of the unit of equipment in miles per hour.",
+          "type": "number",
+          "format": "double",
+          "example": 48.3
+        },
+        "time": {
+          "$ref": "#/definitions/time"
+        }
+      }
+    },
+    "EquipmentLocationsListResponse": {
+      "description": "A time-series of equipment locations and pagination information",
+      "type": "object",
+      "required": [
+        "data",
+        "pagination"
+      ],
+      "properties": {
+        "data": {
+          "description": "Time-series of locations for the specified units of equipment.",
+          "type": "array",
+          "items": {
+            "description": "A unit of equipment and its time-series of location events.",
+            "type": "object",
+            "required": [
+              "id",
+              "name",
+              "locations"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/EquipmentId"
+              },
+              "locations": {
+                "description": "A time-series of location events for the given unit of equipment.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/EquipmentLocation"
+                }
+              },
+              "name": {
+                "$ref": "#/definitions/EquipmentName"
+              }
+            }
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "EquipmentLocationsResponse": {
+      "description": "The most recent equipment locations and pagination information",
+      "type": "object",
+      "required": [
+        "data",
+        "pagination"
+      ],
+      "properties": {
+        "data": {
+          "description": "List of the most recent locations for the specified units of equipment.",
+          "type": "array",
+          "items": {
+            "description": "A unit of equipment and its most recent location.",
+            "type": "object",
+            "required": [
+              "id",
+              "name",
+              "location"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/EquipmentId"
+              },
+              "location": {
+                "$ref": "#/definitions/EquipmentLocation"
+              },
+              "name": {
+                "$ref": "#/definitions/EquipmentName"
+              }
+            }
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "EquipmentName": {
+      "description": "Name of the equipment.",
+      "type": "string",
+      "example": "Crane A7"
+    },
+    "EquipmentObdEngineSeconds": {
+      "description": "Engine seconds reading from on-board diagnostics.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "description": "The number of seconds the engine has been running since it was new. This value is provided directly from on-board diagnostics.",
+          "type": "integer",
+          "example": 22374000
+        }
+      }
+    },
+    "EquipmentObdEngineState": {
+      "description": "Engine state reading from on-board diagnostics.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "description": "The state of the engine read from on-board diagnostics.",
+          "type": "string",
+          "enum": [
+            "Off",
+            "On",
+            "Idle"
+          ],
+          "example": "On"
+        }
+      }
+    },
+    "EquipmentResponse": {
+      "description": "A response containing an equipment object.",
+      "type": "object",
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/Equipment"
+        }
+      }
+    },
+    "EquipmentStatsListResponse": {
+      "description": "A time-series of equipment stats and pagination information",
+      "type": "object",
+      "required": [
+        "data",
+        "pagination"
+      ],
+      "properties": {
+        "data": {
+          "description": "Time-series of stats for the specified units of equipment and stat types.",
+          "type": "array",
+          "items": {
+            "description": "A unit of equipment and its time-series of stats events.",
+            "type": "object",
+            "required": [
+              "id",
+              "name"
+            ],
+            "properties": {
+              "engineRpm": {
+                "description": "A time-series of engine RPM readings for the given unit of equipment.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/EquipmentEngineRpm"
+                }
+              },
+              "engineSeconds": {
+                "description": "[DEPRECATED] Please use either `gatewayEngineSeconds` or `obdEngineSeconds`.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/EquipmentEngineSeconds"
+                }
+              },
+              "engineStates": {
+                "description": "[DEPRECATED] Please use either `gatewayEngineStates` or `obdEngineStates`.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/EquipmentEngineState"
+                }
+              },
+              "fuelPercent": {
+                "description": "A time-series of fuel percent level changes for the given unit of equipment.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/EquipmentFuelPercent"
+                }
+              },
+              "gatewayEngineSeconds": {
+                "description": "A time-series of engine seconds readings for the given unit of equipment. (An approximate based on readings from the AG24's aux/digio cable.)",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/EquipmentGatewayEngineSeconds"
+                }
+              },
+              "gatewayEngineState": {
+                "description": "A time-series of engine state changes (as read from the AG24's aux/digio cable) for the given unit of equipment.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/EquipmentGatewayEngineState"
+                }
+              },
+              "gpsOdometerMeters": {
+                "description": "A time-series of GPS odometer readings for the given unit of equipment.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/EquipmentGpsOdometerMeters"
+                }
+              },
+              "id": {
+                "$ref": "#/definitions/EquipmentId"
+              },
+              "name": {
+                "$ref": "#/definitions/EquipmentName"
+              },
+              "obdEngineSeconds": {
+                "description": "A time-series of engine state changes for the given unit of equipment. (As directly from on-board diagnostics.)",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/EquipmentObdEngineSeconds"
+                }
+              },
+              "obdEngineState": {
+                "description": "A time-series of engine state changes (as read from on-board diagnostics) for the given unit of equipment.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/EquipmentObdEngineState"
+                }
+              }
+            }
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "EquipmentStatsResponse": {
+      "description": "The most recent equipment stats and pagination information",
+      "type": "object",
+      "required": [
+        "data",
+        "pagination"
+      ],
+      "properties": {
+        "data": {
+          "description": "List of the most recent stats for the specified units of equipment and stat types.",
+          "type": "array",
+          "items": {
+            "description": "A unit of equipment and its most recent stat.",
+            "type": "object",
+            "required": [
+              "id",
+              "name"
+            ],
+            "properties": {
+              "engineRpm": {
                 "$ref": "#/definitions/EquipmentEngineRpm"
-              }
-            },
-            "engineSeconds": {
-              "type": "array",
-              "items": {
+              },
+              "engineSeconds": {
                 "$ref": "#/definitions/EquipmentEngineSeconds"
-              }
-            },
-            "engineStates": {
-              "type": "array",
-              "items": {
+              },
+              "engineState": {
                 "$ref": "#/definitions/EquipmentEngineState"
-              }
-            },
-            "fuelPercents": {
-              "type": "array",
-              "items": {
+              },
+              "fuelPercent": {
                 "$ref": "#/definitions/EquipmentFuelPercent"
-              }
-            },
-            "gatewayEngineSeconds": {
-              "type": "array",
-              "items": {
+              },
+              "gatewayEngineSeconds": {
                 "$ref": "#/definitions/EquipmentGatewayEngineSeconds"
-              }
-            },
-            "gatewayEngineStates": {
-              "type": "array",
-              "items": {
+              },
+              "gatewayEngineState": {
                 "$ref": "#/definitions/EquipmentGatewayEngineState"
-              }
-            },
-            "gpsOdometerMeters": {
-              "type": "array",
-              "items": {
+              },
+              "gpsOdometerMeters": {
                 "$ref": "#/definitions/EquipmentGpsOdometerMeters"
-              }
-            },
-            "obdEngineSeconds": {
-              "type": "array",
-              "items": {
+              },
+              "id": {
+                "$ref": "#/definitions/EquipmentId"
+              },
+              "name": {
+                "$ref": "#/definitions/EquipmentName"
+              },
+              "obdEngineSeconds": {
                 "$ref": "#/definitions/EquipmentObdEngineSeconds"
-              }
-            },
-            "obdEngineStates": {
-              "type": "array",
-              "items": {
+              },
+              "obdEngineState": {
                 "$ref": "#/definitions/EquipmentObdEngineState"
               }
             }
           }
-        }
-      ]
-    },
-    "EquipmentStatsSnapshotResponse": {
-      "description": "List of equipment stats for the specified time period.",
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/equipmentTinyResponse"
         },
-        {
-          "type": "object",
-          "properties": {
-            "engineRpm": {
-              "type": "object",
-              "allOf": [
-                {
-                  "$ref": "#/definitions/EquipmentEngineRpm"
-                }
-              ]
-            },
-            "engineSeconds": {
-              "type": "object",
-              "allOf": [
-                {
-                  "$ref": "#/definitions/EquipmentEngineSeconds"
-                }
-              ]
-            },
-            "engineState": {
-              "type": "object",
-              "allOf": [
-                {
-                  "$ref": "#/definitions/EquipmentEngineState"
-                }
-              ]
-            },
-            "fuelPercent": {
-              "type": "object",
-              "allOf": [
-                {
-                  "$ref": "#/definitions/EquipmentFuelPercent"
-                }
-              ]
-            },
-            "gatewayEngineSeconds": {
-              "type": "object",
-              "allOf": [
-                {
-                  "$ref": "#/definitions/EquipmentGatewayEngineSeconds"
-                }
-              ]
-            },
-            "gatewayEngineState": {
-              "type": "object",
-              "allOf": [
-                {
-                  "$ref": "#/definitions/EquipmentGatewayEngineState"
-                }
-              ]
-            },
-            "gpsOdometerMeters": {
-              "type": "object",
-              "allOf": [
-                {
-                  "$ref": "#/definitions/EquipmentGpsOdometerMeters"
-                }
-              ]
-            },
-            "obdEngineSeconds": {
-              "type": "object",
-              "allOf": [
-                {
-                  "$ref": "#/definitions/EquipmentObdEngineSeconds"
-                }
-              ]
-            },
-            "obdEngineState": {
-              "type": "object",
-              "allOf": [
-                {
-                  "$ref": "#/definitions/EquipmentObdEngineState"
-                }
-              ]
-            }
-          }
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
         }
-      ]
+      }
     },
     "EquipmentTime": {
       "description": "UTC timestamp of the time the data point was generated by the equipment, in RFC3339 format.",
       "type": "string",
-      "example": "2019-05-03T04:30:31.492Z"
+      "example": "2019-05-03T04:30:31Z"
     },
     "ListAddressesResponse": {
       "description": "A list of Addresses and pagination information.",
@@ -9085,6 +9402,9 @@
       "properties": {
         "carrierSettings": {
           "$ref": "#/definitions/DriverCarrierSettings"
+        },
+        "driverActivationStatus": {
+          "$ref": "#/definitions/DriverActivationStatus"
         },
         "eldAdverseWeatherExemptionEnabled": {
           "$ref": "#/definitions/DriverEldAdverseWeatherExemptionEnabled"
@@ -11492,19 +11812,19 @@
                 "example": "signin"
               },
               "address": {
-                "description": "DEPRECATED: THIS FIELD IS NOT POPULATED",
+                "description": "DEPRECATED: THIS FIELD MAY NOT BE POPULATED",
                 "type": "string",
-                "example": "THIS FIELD IS NOT USED"
+                "example": "THIS FIELD MAY NOT BE POPULATED"
               },
               "addressName": {
-                "description": "DEPRECATED: THIS FIELD IS NOT POPULATED",
+                "description": "DEPRECATED: THIS FIELD MAY NOT BE POPULATED",
                 "type": "string",
-                "example": "THIS FIELD IS NOT USED"
+                "example": "THIS FIELD MAY NOT BE POPULATED"
               },
               "city": {
-                "description": "DEPRECATED: THIS FIELD IS NOT POPULATED",
+                "description": "DEPRECATED: THIS FIELD MAY NOT BE POPULATED",
                 "type": "string",
-                "example": "THIS FIELD IS NOT USED"
+                "example": "THIS FIELD MAY NOT BE POPULATED"
               },
               "happenedAtMs": {
                 "description": "The time at which the event was recorded in UNIX milliseconds.",
@@ -11513,9 +11833,9 @@
                 "example": 1462881998034
               },
               "state": {
-                "description": "DEPRECATED: THIS FIELD IS NOT POPULATED",
+                "description": "DEPRECATED: THIS FIELD MAY NOT BE POPULATED",
                 "type": "string",
-                "example": "THIS FIELD IS NOT USED"
+                "example": "THIS FIELD MAY NOT BE POPULATED"
               }
             }
           }
@@ -14603,25 +14923,6 @@
       "format": "date-time",
       "example": "2019-04-17T16:42:55Z"
     },
-    "equipmentTinyResponse": {
-      "description": "A minified equipment object.",
-      "type": "object",
-      "required": [
-        "id"
-      ],
-      "properties": {
-        "id": {
-          "description": "ID of the equipment.",
-          "type": "string",
-          "example": "123456789"
-        },
-        "name": {
-          "description": "Name of the equipment.",
-          "type": "string",
-          "example": "40' crane #5"
-        }
-      }
-    },
     "externalIds": {
       "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
       "type": "object",
@@ -14631,28 +14932,6 @@
       "example": {
         "maintenanceId": "250020",
         "payrollId": "ABFS18600"
-      }
-    },
-    "location": {
-      "description": "Location object",
-      "type": "object",
-      "required": [
-        "latitude",
-        "longitude"
-      ],
-      "properties": {
-        "latitude": {
-          "description": "GPS latitude represented in degrees",
-          "type": "number",
-          "format": "double",
-          "example": 122.142
-        },
-        "longitude": {
-          "description": "GPS longitude represented in degrees",
-          "type": "number",
-          "format": "double",
-          "example": -93.343
-        }
       }
     },
     "paginationResponse": {
@@ -15264,6 +15543,16 @@
       "name": "documentTypeId",
       "in": "query"
     },
+    "driverActivationStatusParam": {
+      "enum": [
+        "active",
+        "deactivated"
+      ],
+      "type": "string",
+      "description": "If value is `deactivated`, only drivers that are deactivated will appear in the response. This parameter will default to `active` if not provided (fetching only active drivers).",
+      "name": "driverActivationStatus",
+      "in": "query"
+    },
     "endTimeParam": {
       "type": "string",
       "format": "date-time",
@@ -15294,9 +15583,10 @@
         "format": "string"
       },
       "collectionFormat": "csv",
-      "description": "A comma separated list of stat types.",
+      "description": "The type of equipment stat you want to query. Currently, you may only submit one type.\n\n- `engineRpm`: The revolutions per minute of the engine.\n- `fuelPercents`: The percent of fuel in the unit of equipment.\n- `obdEngineSeconds`: The number of seconds the engine has been running since it was new. This value is provided directly from on-board diagnostics.\n- `gatewayEngineSeconds`: An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG24 device is receiving power and an offset provided manually through the Samsara cloud dashboard.\n- `obdEngineStates`: The state of the engine read from on-board diagnostics. Can be `Off`, `On`, or `Idle`.\n- `gatewayEngineStates`: An approximation of engine state based on readings the AG24 receives from the aux/digio cable. Can be `Off` or `On`.\n- `gpsOdometerMeters`: An approximation of odometer reading based on GPS calculations since the AG24 was activated, and a manual odometer offset provided in the Samsara cloud dashboard.",
       "name": "types",
-      "in": "query"
+      "in": "query",
+      "required": true
     },
     "isDeactivatedParam": {
       "type": "boolean",
@@ -15356,6 +15646,10 @@
       "name": "Drivers"
     },
     {
+      "description": "Equipment objects represent powered assets connected to a [Samsara AG24](https://www.samsara.com/products/models/ag24) device via an APWR, CAT, or J1939 cable. They are automatically created with a unique Samsara Equipment ID whenever a Samsara AG24 is activated in your organization.",
+      "name": "Equipment"
+    },
+    {
       "description": "Driver logs containing duty status, certification details, and associated vehicles and trailers are available. You can also retrieve summarized total active time logs. Signin/Signout logs are also available. Drivers can track hours of service via the Samsara Driver mobile app. ",
       "name": "Hours of Service"
     },
@@ -15400,7 +15694,7 @@
       "name": "Users"
     },
     {
-      "description": "A Vehicle object is created when a [Samsara Vehicle Gateway](https://www.samsara.com/products/models/vg34) is first activated.\n\nWhen the gateway is activated, a Vehicle object is created with a unique Samsara ID.\n\nVehicle objects have static information (`name`, `licensePlate`, etc), and they also generate dynamic time-series data such as locations and diagnostics.\n\nVehicle static information is defined by fleet administrators either through the [Samsara dashboard](http://cloud.samsara.com) or through the API.\n\n- You can get a list of Vehicles and their static information using the [GET /fleet/vehicles](#operation/listVehicles) endpoint.\n\n- You can get a given vehicle and its static information by its Samsara ID or an [external ID](https://developers.samsara.com/docs/common-structures#section-external-ids) using the [GET /fleet/vehicles/{id}](#operation/getVehicle) endpoint.\n\n- You can set or update static Vehicle information using the [PATCH /fleet/vehicles/{id}](#operation/updateVehicle) endpoint.\n\nYou can get dynamic Vehicle time-series data in three ways:\n\n- Get a snapshot of the most recent readings for the time-series.\n\n    - [GET /fleet/vehicles/locations](#operation/getVehicleLocations)\n\n    - [GET /fleet/vehicles/stats](#operation/getVehicleStats)\n\n- Get a real-time feed of time-series data.\n\n    - [GET /fleet/vehicles/locations/feed](#operation/getVehicleLocationsFeed)\n\n    - [GET /fleet/vehicles/stats/feed](#operation/getVehicleStatsFeed)\n\n- Get a historical time-range of the time-series data.\n\n    - [GET /fleet/vehicles/locations/history](#operation/getVehicleLocationsHistory)\n\n    - [GET /fleet/vehicles/stats/feed](#operation/getVehicleStatsFeed)",
+      "description": "A Vehicle object is created when a [Samsara Vehicle Gateway](https://www.samsara.com/products/models/vg34) is first activated.\n\nWhen the gateway is activated, a Vehicle object is created with a unique Samsara ID.\n\nVehicle objects have static information (`name`, `licensePlate`, etc), and they also generate dynamic time-series data such as locations and diagnostics.\n\nVehicle static information is defined by fleet administrators either through the [Samsara dashboard](http://cloud.samsara.com) or through the API.\n\n- You can get a list of Vehicles and their static information using the [GET /fleet/vehicles](#operation/listVehicles) endpoint.\n\n- You can get a given vehicle and its static information by its Samsara ID or an [external ID](https://developers.samsara.com/docs/common-structures#section-external-ids) using the [GET /fleet/vehicles/{id}](#operation/getVehicle) endpoint.\n\n- You can set or update static Vehicle information using the [PATCH /fleet/vehicles/{id}](#operation/updateVehicle) endpoint.\n\nYou can get dynamic Vehicle time-series data in three ways:\n\n- Get a snapshot of the most recent readings for the time-series.\n\n    - [GET /fleet/vehicles/locations](#operation/getVehicleLocations)\n\n    - [GET /fleet/vehicles/stats](#operation/getVehicleStats)\n\n- Get a real-time feed of time-series data.\n\n    - [GET /fleet/vehicles/locations/feed](#operation/getVehicleLocationsFeed)\n\n    - [GET /fleet/vehicles/stats/feed](#operation/getVehicleStatsFeed)\n\n- Get a historical time-range of the time-series data.\n\n    - [GET /fleet/vehicles/locations/history](#operation/getVehicleLocationsHistory)\n\n    - [GET /fleet/vehicles/stats/history](#operation/getVehicleStatsHistory)",
       "name": "Vehicles"
     }
   ]
