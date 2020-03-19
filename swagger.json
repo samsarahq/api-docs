@@ -356,6 +356,143 @@
         }
       ]
     },
+    "/fleet/carrier-proposed-assignments": {
+      "get": {
+        "description": "Show the assignments that are active for drivers and that would currently be visible to them in the driver app.",
+        "tags": [
+          "Carrier Proposed Assignments"
+        ],
+        "summary": "Retrieve assignments",
+        "operationId": "getCarrierProposedAssignment",
+        "parameters": [
+          {
+            "maximum": 512,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int64",
+            "default": 512,
+            "description": "The limit for how many objects will be in the response. Default and max for this value is 512 objects.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "If specified, limits the results to those for these drivers. e.g. driverIds=1,2,3",
+            "name": "driverIds",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "If specified, shows assignments that will be active at this time. Defaults to now, which would show current active assignments. In RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "activeTime",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the assignments that drivers would see in the future, if any.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/CarrierProposedAssignment"
+                  }
+                },
+                "pagination": {
+                  "type": "object",
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/paginationResponse"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a new assignment that a driver can later use. Each driver can only have one future assignment.",
+        "tags": [
+          "Carrier Proposed Assignments"
+        ],
+        "summary": "Create an assignment",
+        "operationId": "createCarrierProposedAssignment",
+        "parameters": [
+          {
+            "description": "The assignment to create.",
+            "name": "carrierProposedAssignment",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/CarrierProposedAssignmentCreate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return the created assignment",
+            "schema": {
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/CarrierProposedAssignment"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/carrier-proposed-assignments/{id}": {
+      "delete": {
+        "description": "Permanently delete an assignment. You can only delete assignments that are not yet active. To override a currently active assignment, create a new empty one, instead.",
+        "tags": [
+          "Carrier Proposed Assignments"
+        ],
+        "summary": "Delete an assignment",
+        "operationId": "deleteCarrierProposedAssignmentById",
+        "responses": {
+          "204": {
+            "description": "Empty success body"
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "ID of the assignment.",
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
     "/fleet/drivers": {
       "get": {
         "description": "Get all drivers in organization.",
@@ -4529,6 +4666,126 @@
           "yard"
         ],
         "example": "yard"
+      }
+    },
+    "CarrierProposedAssignment": {
+      "description": "A carrier proposed assignment object",
+      "type": "object",
+      "properties": {
+        "acceptedTime": {
+          "allOf": [
+            {
+              "description": "Time when the driver accepted this assignment in the mobile app. Will be omitted if the driver hasn't accepted this assignment. RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00)."
+            },
+            {
+              "$ref": "#/definitions/time"
+            }
+          ]
+        },
+        "activeTime": {
+          "allOf": [
+            {
+              "description": "Time after which this assignment will be active and visible to the driver on the mobile app; RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00)."
+            },
+            {
+              "$ref": "#/definitions/time"
+            }
+          ]
+        },
+        "firstSeenTime": {
+          "allOf": [
+            {
+              "description": "Time when the driver first saw this assignment in the mobile app. Will be omitted if the driver hasn't seen this assignment yet. RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00)."
+            },
+            {
+              "$ref": "#/definitions/time"
+            }
+          ]
+        },
+        "rejectedTime": {
+          "allOf": [
+            {
+              "description": "Time when the driver rejected this assignment in the mobile app. Will be omitted if the driver hasn't rejected this assignment. RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00)."
+            },
+            {
+              "$ref": "#/definitions/time"
+            }
+          ]
+        },
+        "shippingDocs": {
+          "description": "Shipping Documents that this assignment will propose to the driver; maximum of 40 characters",
+          "type": "string",
+          "maxLength": 40,
+          "example": "Delivery 123, chips and soda"
+        },
+        "trailers": {
+          "description": "Trailers that this assignment will propose to the driver.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/trailerNameOnlyResponse"
+          }
+        },
+        "uuid": {
+          "description": "Samsara ID for the assignment.",
+          "type": "string",
+          "example": "08b3aeada5f4ab3010c0b4efa28d2d1890dbf8d48d2d"
+        },
+        "vehicle": {
+          "allOf": [
+            {
+              "description": "Vehicle that this assignment will propose to the driver."
+            },
+            {
+              "$ref": "#/definitions/vehicleTinyResponse"
+            }
+          ]
+        }
+      }
+    },
+    "CarrierProposedAssignmentCreate": {
+      "description": "New assignment for a driver.",
+      "type": "object",
+      "required": [
+        "driverId"
+      ],
+      "properties": {
+        "activeTime": {
+          "allOf": [
+            {
+              "description": "Time after which this assignment will be active and visible to the driver on the mobile app. Not setting it makes it active now. RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00)."
+            },
+            {
+              "$ref": "#/definitions/time"
+            }
+          ]
+        },
+        "driverId": {
+          "description": "Samsara ID for the driver that this assignment is for.",
+          "type": "string",
+          "example": "42"
+        },
+        "shippingDocs": {
+          "description": "Shipping Documents that this assignment will propose to the driver; maximum of 40 characters",
+          "type": "string",
+          "maxLength": 40,
+          "example": "Delivery 123, chips and soda"
+        },
+        "trailerNames": {
+          "description": "Names of trailers to propose.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "example": [
+            "Trailer123",
+            "TrailerABC"
+          ]
+        },
+        "vehicleId": {
+          "description": "Samsara ID for the vehicle to propose.",
+          "type": "string",
+          "example": "123"
+        }
       }
     },
     "Contact": {
@@ -11326,6 +11583,17 @@
       "description": "UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`.",
       "type": "string",
       "example": "2020-01-27T07:06:25Z"
+    },
+    "trailerNameOnlyResponse": {
+      "description": "A trailer object with only a name.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Name of the trailer.",
+          "type": "string",
+          "example": "Midwest Trailer #5"
+        }
+      }
     },
     "userRoleTinyResponse": {
       "description": "A minified user role object.",
