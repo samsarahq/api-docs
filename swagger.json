@@ -4336,6 +4336,9 @@
         "contacts": {
           "$ref": "#/definitions/AddressContacts"
         },
+        "createdAtTime": {
+          "$ref": "#/definitions/AddressCreatedAtTime"
+        },
         "externalIds": {
           "$ref": "#/definitions/AddressExternalIds"
         },
@@ -4379,6 +4382,12 @@
       "items": {
         "$ref": "#/definitions/contactTinyResponse"
       }
+    },
+    "AddressCreatedAtTime": {
+      "description": "The date and time this address was created in RFC 3339 format.",
+      "type": "string",
+      "format": "date-time",
+      "example": "2019-05-18T20:27:35Z"
     },
     "AddressExternalIds": {
       "$ref": "#/definitions/externalIds"
