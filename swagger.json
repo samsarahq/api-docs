@@ -7578,7 +7578,7 @@
               "description": "The fields associated with this document.",
               "type": "array",
               "items": {
-                "$ref": "#/definitions/V1DocumentField"
+                "$ref": "#/definitions/V1DocumentFetchFields"
               }
             },
             "id": {
@@ -7666,7 +7666,7 @@
               "description": "List of fields for the document. The fields must be listed in the order that that they appear in the document type. Only `stringValue`, `numberValue`, `multipleChoiceValue`, and `dateTimeValue` fields are supported for document creation via the API.",
               "type": "array",
               "items": {
-                "$ref": "#/definitions/V1DocumentField"
+                "$ref": "#/definitions/V1DocumentCreateFields"
               }
             }
           }
@@ -7702,30 +7702,7 @@
         }
       }
     },
-    "V1DocumentField": {
-      "allOf": [
-        {
-          "type": "object",
-          "required": [
-            "label"
-          ],
-          "properties": {
-            "label": {
-              "description": "The name of the field.",
-              "type": "string",
-              "example": "Fuel Cost ($)"
-            },
-            "value": {
-              "description": "DEPRECATED: Please use `stringValue`, `numberValue`, `photoValue`, `multipleChoiceValue`, `signatureValue`, or `dateTimeValue` instead."
-            }
-          }
-        },
-        {
-          "$ref": "#/definitions/V1DocumentFieldCreate"
-        }
-      ]
-    },
-    "V1DocumentFieldCreate": {
+    "V1DocumentCreateField": {
       "type": "object",
       "required": [
         "valueType"
@@ -7775,11 +7752,161 @@
           "example": "This is a string."
         },
         "valueType": {
+          "description": "The type of this field.\nValid values: `ValueType_Number`, `ValueType_String`, `ValueType_MultipleChoice`, `ValueType_DateTime`.\nWhen creating documents via API, only `ValueType_Number`, `ValueType_String`, `ValueType_MultipleChoice`, and `ValueType_DateTime` are accepted.",
+          "type": "string",
+          "example": "ValueType_Number"
+        }
+      }
+    },
+    "V1DocumentCreateFields": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "label"
+          ],
+          "properties": {
+            "label": {
+              "description": "The name of the field.",
+              "type": "string",
+              "example": "Fuel Cost ($)"
+            },
+            "value": {
+              "description": "Please use `stringValue`, `numberValue`, `multipleChoiceValue`, or `dateTimeValue`.",
+              "example": "The field type corresponding to your field."
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/V1DocumentCreateField"
+        }
+      ]
+    },
+    "V1DocumentFetchField": {
+      "type": "object",
+      "required": [
+        "valueType"
+      ],
+      "properties": {
+        "dateTimeValue": {
+          "description": "The value of a `ValueType_DateTime` field.",
+          "type": "object",
+          "required": [
+            "dateTimeMs"
+          ],
+          "properties": {
+            "dateTimeMs": {
+              "description": "The Unix epoch on milliseconds of this date time field.",
+              "type": "integer",
+              "format": "int64",
+              "example": 10855639004823
+            }
+          }
+        },
+        "multipleChoiceValue": {
+          "description": "The value of a `ValueType_MultipleChoice` field.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "selected": {
+                "description": "Whether the multiple choice field is selected or not.",
+                "type": "boolean"
+              },
+              "value": {
+                "description": "The name of the multiple choice field.",
+                "type": "string"
+              }
+            }
+          },
+          "example": [
+            {
+              "selected": false,
+              "value": "option 1"
+            },
+            {
+              "selected": true,
+              "value": "option 2"
+            }
+          ]
+        },
+        "numberValue": {
+          "description": "The value of a `ValueType_Number` field.",
+          "type": "number",
+          "format": "double",
+          "example": 12.34
+        },
+        "photoValue": {
+          "description": "The value of a `ValueType_Photo` field.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "description": "A pre-signed URL to the selected photos that refreshes every 24 hours.",
+                "type": "string",
+                "example": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+              }
+            }
+          }
+        },
+        "signatureValue": {
+          "description": "The value of a `ValueType_Signature` field.",
+          "type": "object",
+          "properties": {
+            "name": {
+              "description": "The name typed by the user when the signature was captured.",
+              "type": "string",
+              "example": "Samsara Owl"
+            },
+            "signedAtMs": {
+              "description": "The timestamp when the signature was captured.",
+              "type": "integer",
+              "format": "int64",
+              "example": 1584816363025
+            },
+            "url": {
+              "description": "A pre-signed URL to the captured signature PNG that refreshes every 24 hours.",
+              "type": "string",
+              "example": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+            }
+          }
+        },
+        "stringValue": {
+          "description": "The value of a `ValueType_String` field.",
+          "type": "string",
+          "example": "This is a string."
+        },
+        "valueType": {
           "description": "The type of this field.\nValid values: `ValueType_Number`, `ValueType_String`, `ValueType_Photo`, `ValueType_MultipleChoice`, `ValueType_Signature`, `ValueType_DateTime`.\nWhen creating documents via API, only `ValueType_Number`, `ValueType_String`, `ValueType_MultipleChoice`, and `ValueType_DateTime` are accepted.",
           "type": "string",
           "example": "ValueType_Number"
         }
       }
+    },
+    "V1DocumentFetchFields": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "label"
+          ],
+          "properties": {
+            "label": {
+              "description": "The name of the field.",
+              "type": "string",
+              "example": "Fuel Cost ($)"
+            },
+            "value": {
+              "description": "Please use `stringValue`, `numberValue`, `photoValue`, `multipleChoiceValue`, `signatureValue`, or `dateTimeValue`.",
+              "example": "The field type corresponding to your field."
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/V1DocumentFetchField"
+        }
+      ]
     },
     "V1DocumentFieldType": {
       "type": "object",
