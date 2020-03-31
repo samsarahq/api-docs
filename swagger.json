@@ -60,6 +60,13 @@
             "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
             "name": "tagIds",
             "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "A filter on data to have a created at time after or equal to this specified time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "createdAfterTime",
+            "in": "query"
           }
         ],
         "responses": {
@@ -918,6 +925,92 @@
         }
       }
     },
+    "/fleet/drivers/efficiency": {
+      "get": {
+        "description": "Get all drivers' efficiencies.",
+        "tags": [
+          "Efficiency"
+        ],
+        "summary": "List all drivers' efficiencies.",
+        "operationId": "getDriverEfficiency",
+        "parameters": [
+          {
+            "enum": [
+              "active",
+              "deactivated"
+            ],
+            "type": "string",
+            "description": "If value is `deactivated`, only drivers that are deactivated will appear in the response. This parameter will default to `active` if not provided (fetching only active drivers).",
+            "name": "driverActivationStatus",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of driver IDs. Cannot be used with tag filtering or driver status. Example: `driverIds=1234,5678`",
+            "name": "driverIds",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "Filters summary to drivers based on this comma-separated list of tag IDs. Data from all the drivers' respective vehicles will be included in the summary, regardless of which tag the vehicle is associated with. Should not be provided in addition to `driverIds`. Example: driverTagIds=1234,5678",
+            "name": "driverTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "Filters like `driverTagIds` but includes descendants of all the given parent tags. Should not be provided in addition to `driverIds`. Example: `driverParentTagIds=1234,5678`",
+            "name": "driverParentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "A start time in RFC 3339 format. The results will be truncated to the hour mark for the provided time. For example, if `startTime` is 2020-03-17T12:06:19Z then the results will include data starting from 2020-03-17T12:00:00Z. The provided start time cannot be in the future. Start time can be at most 1 month before end time. If the start time is within the last hour, the results will be empty. Default: 24 hours prior to endTime.",
+            "name": "startTime",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "An end time in RFC 3339 format. The results will be truncated to the hour mark for the provided time. For example, if `endTime` is 2020-03-17T12:06:19Z then the results will include data up until 2020-03-17T12:00:00Z. The provided end time cannot be in the future. End time can be at most 1 month older than start time.   Default: The current time truncated to the hour mark.",
+            "name": "endTime",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all drivers' efficiencies",
+            "schema": {
+              "$ref": "#/definitions/DriverEfficienciesResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/fleet/drivers/safety-scores": {
       "get": {
         "description": "Fetch safety scores for all drivers in the organization in a given time period.",
@@ -1186,26 +1279,6 @@
             "collectionFormat": "csv",
             "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
             "name": "tagIds",
-            "in": "query"
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "description": "A filter on the data based on this comma-separated list of vehicle IDs. Example: `vehicleIds=1234,5678`",
-            "name": "vehicleIds",
-            "in": "query"
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "description": "A filter on the data based on this comma-separated list of trailer IDs. Example: `trailerIds=1234,5678`",
-            "name": "trailerIds",
             "in": "query"
           },
           {
@@ -1888,6 +1961,84 @@
         }
       ]
     },
+    "/fleet/harsh-events/history": {
+      "get": {
+        "description": "Fetch harsh events for the organization in a given time period.",
+        "tags": [
+          "Safety"
+        ],
+        "summary": "List all harsh events.",
+        "operationId": "getHarshEventsHistory",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "startTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "endTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of vehicle IDs. Example: `vehicleIds=1234,5678`",
+            "name": "vehicleIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of harsh events from given time period.",
+            "schema": {
+              "$ref": "#/definitions/HarshEventsListResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/fleet/routes": {
       "post": {
         "description": "Create a route. There is currently no support for creating a recurring route or optimizing a route.",
@@ -2159,48 +2310,6 @@
             "description": "List of all vehicle objects, and pagination parameters.",
             "schema": {
               "$ref": "#/definitions/ListVehiclesResponse"
-            }
-          },
-          "default": {
-            "description": "Error response",
-            "schema": {
-              "$ref": "#/definitions/standardErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/fleet/vehicles/harsh-events": {
-      "get": {
-        "description": "Fetch all harsh events for the organization in a given time period.",
-        "tags": [
-          "Safety"
-        ],
-        "summary": "List all harsh events",
-        "operationId": "getOrgHarshEvents",
-        "parameters": [
-          {
-            "type": "string",
-            "format": "string",
-            "description": "Beginning of the time range, specified in RFC 3339 time.",
-            "name": "startTime",
-            "in": "query",
-            "required": true
-          },
-          {
-            "type": "string",
-            "format": "string",
-            "description": "End of the time range, specified in RFC 3339 time.",
-            "name": "endTime",
-            "in": "query",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Harsh events for the organization",
-            "schema": {
-              "$ref": "#/definitions/OrgHarshEventsKondoResponse"
             }
           },
           "default": {
@@ -2522,10 +2631,12 @@
               "obdOdometerMeters",
               "gpsOdometerMeters",
               "obdEngineSeconds",
-              "gpsDistanceMeters"
+              "gpsDistanceMeters",
+              "auxInput1",
+              "auxInput2"
             ],
             "type": "string",
-            "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.",
+            "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).",
             "name": "types",
             "in": "query",
             "required": true
@@ -2599,10 +2710,12 @@
               "obdOdometerMeters",
               "gpsOdometerMeters",
               "obdEngineSeconds",
-              "gpsDistanceMeters"
+              "gpsDistanceMeters",
+              "auxInput1",
+              "auxInput2"
             ],
             "type": "string",
-            "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.",
+            "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).",
             "name": "types",
             "in": "query",
             "required": true
@@ -2692,10 +2805,12 @@
               "obdOdometerMeters",
               "gpsOdometerMeters",
               "obdEngineSeconds",
-              "gpsDistanceMeters"
+              "gpsDistanceMeters",
+              "auxInput1",
+              "auxInput2"
             ],
             "type": "string",
-            "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.",
+            "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).",
             "name": "types",
             "in": "query",
             "required": true
@@ -5871,6 +5986,9 @@
         "contacts": {
           "$ref": "#/definitions/AddressContacts"
         },
+        "createdAtTime": {
+          "$ref": "#/definitions/AddressCreatedAtTime"
+        },
         "externalIds": {
           "$ref": "#/definitions/AddressExternalIds"
         },
@@ -5914,6 +6032,12 @@
       "items": {
         "$ref": "#/definitions/contactTinyResponse"
       }
+    },
+    "AddressCreatedAtTime": {
+      "description": "The date and time this address was created in RFC 3339 format.",
+      "type": "string",
+      "format": "date-time",
+      "example": "2019-05-18T20:27:35Z"
     },
     "AddressExternalIds": {
       "$ref": "#/definitions/externalIds"
@@ -6090,6 +6214,16 @@
             }
           ]
         },
+        "driver": {
+          "allOf": [
+            {
+              "description": "The driver that this assignment is for."
+            },
+            {
+              "$ref": "#/definitions/driverTinyResponse"
+            }
+          ]
+        },
         "firstSeenTime": {
           "allOf": [
             {
@@ -6099,6 +6233,11 @@
               "$ref": "#/definitions/time"
             }
           ]
+        },
+        "id": {
+          "description": "Samsara ID for the assignment.",
+          "type": "string",
+          "example": "08b3aeada5f4ab3010c0b4efa28d2d1890dbf8d48d2d"
         },
         "rejectedTime": {
           "allOf": [
@@ -6122,11 +6261,6 @@
           "items": {
             "$ref": "#/definitions/trailerNameOnlyResponse"
           }
-        },
-        "uuid": {
-          "description": "Samsara ID for the assignment.",
-          "type": "string",
-          "example": "08b3aeada5f4ab3010c0b4efa28d2d1890dbf8d48d2d"
         },
         "vehicle": {
           "allOf": [
@@ -6707,15 +6841,10 @@
       "description": "Information about resolving a defect.",
       "type": "object",
       "required": [
-        "authorId",
+        "resolvedBy",
         "isResolved"
       ],
       "properties": {
-        "authorId": {
-          "description": "The user who is resolving the defect.",
-          "type": "string",
-          "example": "11"
-        },
         "isResolved": {
           "description": "Resolves the defect. Must be `true`.",
           "type": "boolean"
@@ -6724,8 +6853,15 @@
           "description": "Time when defect was resolved. Defaults to now if not provided. UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`.",
           "type": "string",
           "example": "2020-01-27T07:06:25Z"
+        },
+        "resolvedBy": {
+          "$ref": "#/definitions/ResolvedBy"
         }
       }
+    },
+    "DistanceDrivenMeters": {
+      "description": "Distance driven in meters.",
+      "type": "number"
     },
     "Document": {
       "description": "Document",
@@ -6767,7 +6903,7 @@
                 "type": "string"
               },
               "value": {
-                "description": "The shape of the value property depends on the fieldType selected.\n\n- fieldType `string`: returns a string (e.g. `\"hello\"`).\n\n- fieldType `number`: returns a number (e.g. `100`).\n\n- fieldType `signature`: returns an array of signature objects where each object contains the `name`, `signedAtTime`, and `signatureUrl` properties for a signature. Example:\n\n```json\n[\n  {\n    \"name\": \"John Smith\",\n    \"signedAtTime\": \"2006-01-02T15:04:05Z07:00\",\n    \"signatureUrl\": \"https://www.samsara.com/signature1\"\n  }\n]\n```\n\nThe `name` property returns the name of the signee in string format (e.g. John Smith). The `signedAtTime` property returns the time the signature was created in string format, following RFC 3339 standard (e.g. `\"2006-01-02T15:04:05Z07:00\"`). The `signatureUrl` property returns a s3PresignedURL that refreshes every 24 hours to get the signature data in PNG format (e.g. `\"https://www.samsara.com/signature1\"`).\n\n- fieldType `photo`: returns an array of photo objects where each object contains a `url` property for a photo. The `url` property returns a string URL for a JPG image (e.g. `\"https://www.samsara.com/photo1\"`).\n\n- fieldType `multipleChoiceField`: returns an array of multiple choice objects where each object contains the `selected` and `label` properties for a multiple choice field item. The `selected` property indicates whether the multiple choice field is selected and returns a boolean value (e.g. `false`). The `label` property describes the multiple choice field and returns a string value (e.g. `\"Answer choice 1\"`).",
+                "description": "The shape of the value property depends on the fieldType selected.\n\n- fieldType `string`: returns a string (e.g. `\"hello\"`).\n\n- fieldType `number`: returns a number (e.g. `100`).\n\n- fieldType `dateTime`: returns a date and time following RFC 3339 standard (e.g. `2019-06-13T19:08:25Z`)\n\n- fieldType `signature`: returns a signature object that contains the `name`, `signedAtTime`, and `signatureUrl` properties for a signature. Example:\n\n```json\n  {\n    \"name\": \"John Smith\",\n    \"signedAtTime\": \"2006-01-02T15:04:05Z07:00\",\n    \"signatureUrl\": \"https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456\"\n  }\n```\n\nThe `name` property returns the name of the signee in string format (e.g. John Smith). The `signedAtTime` property returns the time the signature was created in string format, following RFC 3339 standard (e.g. `\"2006-01-02T15:04:05Z07:00\"`). The `signatureUrl` property returns a s3PresignedURL that refreshes every 24 hours to get the signature data in PNG format (e.g. `\"https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456\"`).\n\n- fieldType `photo`: returns an array of photo objects where each object contains a `url` property for a photo. The `url` property returns a string s3PresignedURL that refreshes every 24 hours for a JPG image. Example:\n\n```json\n [\n  {\n    \"url\": \"https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456\"\n  }\n ]\n```\n\n- fieldType `multipleChoiceField`: returns an array of multiple choice objects where each object contains the `selected` and `label` properties for a multiple choice field item. The `selected` property indicates whether the multiple choice field is selected and returns a boolean value (e.g. `false`). The `label` property describes the multiple choice field and returns a string value (e.g. `\"Answer choice 1\"`). Example:\n\n```json\n [\n  {\n    \"label\": \"Answer choice 1\",\n    \"selected\": \"false\"\n  },\n  {\n   \"label\": \"Answer choice 2\",\n   \"selected\": \"true\"\n  }\n ]\n```\n\n",
                 "type": "string"
               }
             }
@@ -6834,11 +6970,9 @@
                 "description": "The type of the field in the document.",
                 "type": "string",
                 "enum": [
-                  "photo",
                   "number",
                   "string",
                   "multipleChoice",
-                  "signature",
                   "dateTime"
                 ],
                 "example": "photo"
@@ -6848,7 +6982,7 @@
                 "type": "string"
               },
               "value": {
-                "description": "The shape of the value property depends on the fieldType selected.\n\n- fieldType `string`: returns a string (e.g. `\"hello\"`).\n\n- fieldType `number`: returns a number (e.g. `100`).\n\n- fieldType `signature`: returns an array of signature objects where each object contains the `name`, `signedAtTime`, and `signatureUrl` properties for a signature. Example:\n\n```json\n[\n  {\n    \"name\": \"John Smith\",\n    \"signedAtTime\": \"2006-01-02T15:04:05Z07:00\",\n    \"signatureUrl\": \"https://www.samsara.com/signature1\"\n  }\n]\n```\n\nThe `name` property returns the name of the signee in string format (e.g. John Smith). The `signedAtTime` property returns the time the signature was created in string format, following RFC 3339 standard (e.g. `\"2006-01-02T15:04:05Z07:00\"`). The `signatureUrl` property returns a s3PresignedURL that refreshes every 24 hours to get the signature data in PNG format (e.g. `\"https://www.samsara.com/signature1\"`).\n\n- fieldType `photo`: returns an array of photo objects where each object contains a `url` property for a photo. The `url` property returns a string URL for a PNG image (e.g. `\"https://www.samsara.com/photo1\"`).\n\n- fieldType `multipleChoice`: returns an array of multiple choice objects where each object contains the `selected` and `label` properties for a multiple choice field item. The `selected` property indicates whether the multiple choice field is selected and returns a boolean value (e.g. `false`). The `label` property describes the multiple choice field and returns a string value (e.g. `\"Answer choice 1\"`).\n\n- fieldType `dateTime`: returns a string with the timestamp in RFC 3339 format.",
+                "description": "The shape of the value property depends on the fieldType selected.\n\n- fieldType `string`: is a string (e.g. `\"hello\"`).\n\n- fieldType `number`: is a number (e.g. `100`).\n\n- fieldType `dateTime`: is a date and time in milliseconds (e.g. `1584981501705`).\n\n- fieldType `multipleChoiceField`: is an array of multiple choice objects where each object contains the `selected` and `label` properties for a multiple choice field item. The `selected` property indicates whether the multiple choice field is selected and returns a boolean value (e.g. `false`). The `label` property describes the multiple choice field and returns a string value (e.g. `\"Answer choice 1\"`). Example:\n\n```json\n [\n  {\n    \"label\": \"Answer choice 1\",\n    \"selected\": \"false\"\n  },\n  {\n   \"label\": \"Answer choice 2\",\n   \"selected\": \"true\"\n  }\n ]\n```\n\n",
                 "type": "string"
               }
             }
@@ -6902,6 +7036,11 @@
                 "selected": true
               }
             ]
+          },
+          {
+            "fieldType": "dateTime",
+            "label": "Delivery Date and Time",
+            "value": 1584930069545
           }
         ],
         "notes": "example document notes",
@@ -7001,6 +7140,10 @@
           "example": "Fuel Receipt"
         }
       }
+    },
+    "DriveTimeDurationMs": {
+      "description": "Time driven in milliseconds.",
+      "type": "number"
     },
     "Driver": {
       "description": "A driver object",
@@ -7126,6 +7269,70 @@
       "type": "integer",
       "format": "int64",
       "example": 98231
+    },
+    "DriverEfficienciesResponse": {
+      "description": "Summary of drivers' efficiencies over a time range.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "driverSummaries": {
+              "description": "A list of drivers' efficiencies.",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DriverEfficiency"
+              }
+            },
+            "summaryEndTime": {
+              "description": "End time of the window for which this efficiency report was computed. Will be a UTC timestamp in RFC 3339 format. For example: `2020-03-16T16:00:00Z`",
+              "type": "string",
+              "format": "date-time",
+              "example": "2020-03-16T16:00:00Z"
+            },
+            "summaryStartTime": {
+              "description": "Start time of the window for which this efficiency report was computed. Will be a UTC timestamp in RFC 3339 format. For example: `2020-03-15T16:00:00Z`",
+              "type": "string",
+              "format": "date-time",
+              "example": "2020-03-15T16:00:00Z"
+            }
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "DriverEfficiency": {
+      "description": "Summary of a driver's efficiency.",
+      "type": "object",
+      "properties": {
+        "driver": {
+          "$ref": "#/definitions/ExtendedDriverTinyResponse"
+        },
+        "totalDistanceDrivenMeters": {
+          "$ref": "#/definitions/DistanceDrivenMeters"
+        },
+        "totalDriveTimeDurationMs": {
+          "$ref": "#/definitions/DriveTimeDurationMs"
+        },
+        "totalFuelConsumedMl": {
+          "$ref": "#/definitions/FuelConsumedMl"
+        },
+        "totalIdleTimeDurationMs": {
+          "$ref": "#/definitions/IdleTimeDurationMs"
+        },
+        "totalPowerTakeOffDurationMs": {
+          "$ref": "#/definitions/PowerTakeOffDurationMs"
+        },
+        "vehicleSummaries": {
+          "description": "Summaries of vehicle efficiency for each vehicle the driver was driving during the given time period.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VehicleSummary"
+          }
+        }
+      }
     },
     "DriverEldAdverseWeatherExemptionEnabled": {
       "description": "Flag indicating this driver may use Adverse Weather exemptions in ELD logs.",
@@ -8157,6 +8364,173 @@
       "type": "string",
       "example": "2019-05-03T04:30:31Z"
     },
+    "ExtendedDriverTinyResponse": {
+      "description": "A minified driver object.",
+      "type": "object",
+      "properties": {
+        "externalIds": {
+          "$ref": "#/definitions/externalIds"
+        },
+        "id": {
+          "description": "ID of the driver.",
+          "type": "string",
+          "example": "88668"
+        },
+        "name": {
+          "description": "Name of the driver.",
+          "type": "string",
+          "example": "Susan Bob"
+        },
+        "username": {
+          "description": "Username of the driver.",
+          "type": "string",
+          "example": "susanbob"
+        }
+      }
+    },
+    "FuelConsumedMl": {
+      "description": "Fuel consumption in milliliters.",
+      "type": "number"
+    },
+    "HarshEvent": {
+      "description": "A harsh event.",
+      "type": "object",
+      "properties": {
+        "behaviorLabelType": {
+          "$ref": "#/definitions/HarshEventBehaviorLabelTypes"
+        },
+        "brakeThresholdGs": {
+          "$ref": "#/definitions/HarshEventBrakeThresholdGs"
+        },
+        "crashThresholdGs": {
+          "$ref": "#/definitions/HarshEventCrashThresholdGs"
+        },
+        "downloadForwardVideoUrl": {
+          "$ref": "#/definitions/HarshEventDownloadForwardVideoUrl"
+        },
+        "downloadInwardVideoUrl": {
+          "$ref": "#/definitions/HarshEventDownloadInwardVideoUrl"
+        },
+        "downloadTrackedInwardVideoUrl": {
+          "$ref": "#/definitions/HarshEventDownloadTrackedInwardVideoUrl"
+        },
+        "driver": {
+          "$ref": "#/definitions/HarshEventDriver"
+        },
+        "id": {
+          "$ref": "#/definitions/HarshEventId"
+        },
+        "incidentReportUrl": {
+          "$ref": "#/definitions/HarshEventIncidentReportUrl"
+        },
+        "location": {
+          "$ref": "#/definitions/HarshEventLocation"
+        },
+        "maxAccelerationGs": {
+          "$ref": "#/definitions/HarshEventMaxAccelerationGs"
+        },
+        "time": {
+          "$ref": "#/definitions/HarshEventTime"
+        },
+        "vehicle": {
+          "$ref": "#/definitions/HarshEventVehicle"
+        }
+      }
+    },
+    "HarshEventBehaviorLabelTypes": {
+      "type": "array",
+      "items": {
+        "description": "The most up-to-date behavior label associated with the harsh event.",
+        "type": "string",
+        "enum": [
+          "acceleration",
+          "braking",
+          "sharpTurn",
+          "crash",
+          "rolloverProtectionEngineControlActivated",
+          "rolloverProtectionBrakeControlActivated",
+          "yawControlEngineControlActivated",
+          "yawControlBrakeControlActivated",
+          "rolledStopSign",
+          "nearCollision",
+          "distractedDriving",
+          "tailgating"
+        ]
+      }
+    },
+    "HarshEventBrakeThresholdGs": {
+      "description": "The brake threshold value as a multiplier on the force of gravity (g).",
+      "type": "number",
+      "example": "0.123"
+    },
+    "HarshEventCrashThresholdGs": {
+      "description": "The crash threshold value as a multiplier on the force of gravity (g).",
+      "type": "number",
+      "example": "0.123"
+    },
+    "HarshEventDownloadForwardVideoUrl": {
+      "description": "URL to download the forward video.",
+      "type": "string",
+      "example": "https://s3.console.aws.amazon.com/s3/buckets/samsara-dashcam-videos/21575/212014918400828/1553060687222/huKA7IhpBV-camera-video-segment-1244214895.mp4"
+    },
+    "HarshEventDownloadInwardVideoUrl": {
+      "description": "URL to download the inward video.",
+      "type": "string",
+      "example": "https://s3.console.aws.amazon.com/s3/buckets/samsara-dashcam-videos/21575/212014918400828/1553060687222/huKA7IhpBV-camera-video-segment-1244214895.mp4"
+    },
+    "HarshEventDownloadTrackedInwardVideoUrl": {
+      "description": "URL to download the tracked inward video.",
+      "type": "string",
+      "example": "https://s3.console.aws.amazon.com/s3/buckets/samsara-dashcam-videos/21575/212014918400828/1553060687222/huKA7IhpBV-camera-video-segment-1244214895.mp4"
+    },
+    "HarshEventDriver": {
+      "$ref": "#/definitions/driverTinyResponse"
+    },
+    "HarshEventId": {
+      "description": "The unique Samsara ID of the harsh event.",
+      "type": "string",
+      "example": "212014918174029-1550954461759"
+    },
+    "HarshEventIncidentReportUrl": {
+      "description": "Dashboard page URL link to the incident report.",
+      "type": "string",
+      "example": "https://cloud.samsara.com/groups/4185/fleet/reports/safety/vehicle/222/incident/1499411220000"
+    },
+    "HarshEventLocation": {
+      "$ref": "#/definitions/location"
+    },
+    "HarshEventMaxAccelerationGs": {
+      "description": "The maximum acceleration value as a multiplier on the force of gravity (g).",
+      "type": "number",
+      "example": "0.123"
+    },
+    "HarshEventTime": {
+      "description": "The time the harsh event occurred in RFC 3339 milliseconds format.",
+      "type": "string",
+      "example": "2019-06-13T19:08:25.455Z"
+    },
+    "HarshEventVehicle": {
+      "$ref": "#/definitions/vehicleTinyResponse"
+    },
+    "HarshEventsListResponse": {
+      "description": "List of harsh events.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HarshEvent"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "IdleTimeDurationMs": {
+      "description": "Time spent idling in milliseconds.",
+      "type": "number"
+    },
     "ListAddressesResponse": {
       "description": "A list of Addresses and pagination information.",
       "type": "object",
@@ -8333,80 +8707,6 @@
         }
       }
     },
-    "OrgHarshEventsKondoResponse": {
-      "type": "object",
-      "properties": {
-        "data": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "behaviorLabels": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "labelSource": {
-                      "description": "Label source of the harsh event",
-                      "type": "string",
-                      "format": "string",
-                      "example": "SYSTEM"
-                    },
-                    "labelType": {
-                      "description": "Label type of the harsh event",
-                      "type": "string",
-                      "format": "string",
-                      "example": "Braking"
-                    }
-                  }
-                }
-              },
-              "downloadForwardVideoUrl": {
-                "description": "Download forward video url",
-                "type": "string",
-                "format": "string",
-                "example": "samsara-dashcam-videos::3318/222/1499411220000/huKA7IhpBV-camera-video-segment-1244214895.mp4"
-              },
-              "downloadInwardVideoUrl": {
-                "description": "Download inward video url",
-                "type": "string",
-                "format": "string",
-                "example": "samsara-dashcam-videos::3318/222/1499411220000/huKA7IhpBV-camera-video-segment-1244214895.mp4"
-              },
-              "downloadTrackedInwardVideoUrl": {
-                "description": "Download tracked inward video url",
-                "type": "string",
-                "format": "string",
-                "example": "samsara-dashcam-videos::3318/222/1499411220000/huKA7IhpBV-camera-video-segment-1244214895.mp4"
-              },
-              "incidentReportUrl": {
-                "description": "Incident report url",
-                "type": "string",
-                "format": "string",
-                "example": "https://cloud.samsara.com/groups/4185/fleet/reports/safety/vehicle/222/incident/1499411220000"
-              },
-              "location": {
-                "type": "object",
-                "properties": {
-                  "latitude": {
-                    "description": "Longitude at which the harsh event happened",
-                    "type": "number",
-                    "format": "float",
-                    "example": 37.762554666
-                  },
-                  "longitude": {
-                    "description": "Longitude at which the harsh event happened",
-                    "type": "number",
-                    "format": "float",
-                    "example": -122.409358166
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "OrgSafetyScoresResponse": {
       "type": "object",
       "properties": {
@@ -8576,6 +8876,10 @@
       "description": "The tag name.",
       "type": "string",
       "example": "US West Vehicles"
+    },
+    "PowerTakeOffDurationMs": {
+      "description": "Time spent with power take off enabled while idling in milliseconds.",
+      "type": "number"
     },
     "RemoteObdTestRecordType": {
       "description": "CTP test data reported from one ECU.",
@@ -8915,6 +9219,25 @@
           "items": {
             "$ref": "#/definitions/TaggedObjectId"
           }
+        }
+      }
+    },
+    "ResolvedBy": {
+      "description": "Information about the user who is resolving a defect.",
+      "type": "object",
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "id": {
+          "description": "The Id of user who is resolving the defect.",
+          "type": "string",
+          "example": "11"
+        },
+        "type": {
+          "description": "The type of user who is resolving the defect. Must be \"mechanic\".",
+          "type": "string"
         }
       }
     },
@@ -10947,7 +11270,7 @@
               "description": "The fields associated with this document.",
               "type": "array",
               "items": {
-                "$ref": "#/definitions/V1DocumentField"
+                "$ref": "#/definitions/V1DocumentFetchFields"
               }
             },
             "id": {
@@ -11035,7 +11358,7 @@
               "description": "List of fields for the document. The fields must be listed in the order that that they appear in the document type. Only `stringValue`, `numberValue`, `multipleChoiceValue`, and `dateTimeValue` fields are supported for document creation via the API.",
               "type": "array",
               "items": {
-                "$ref": "#/definitions/V1DocumentField"
+                "$ref": "#/definitions/V1DocumentCreateFields"
               }
             }
           }
@@ -11071,30 +11394,7 @@
         }
       }
     },
-    "V1DocumentField": {
-      "allOf": [
-        {
-          "type": "object",
-          "required": [
-            "label"
-          ],
-          "properties": {
-            "label": {
-              "description": "The name of the field.",
-              "type": "string",
-              "example": "Fuel Cost ($)"
-            },
-            "value": {
-              "description": "DEPRECATED: Please use `stringValue`, `numberValue`, `photoValue`, `multipleChoiceValue`, `signatureValue`, or `dateTimeValue` instead."
-            }
-          }
-        },
-        {
-          "$ref": "#/definitions/V1DocumentFieldCreate"
-        }
-      ]
-    },
-    "V1DocumentFieldCreate": {
+    "V1DocumentCreateField": {
       "type": "object",
       "required": [
         "valueType"
@@ -11144,11 +11444,161 @@
           "example": "This is a string."
         },
         "valueType": {
+          "description": "The type of this field.\nValid values: `ValueType_Number`, `ValueType_String`, `ValueType_MultipleChoice`, `ValueType_DateTime`.\nWhen creating documents via API, only `ValueType_Number`, `ValueType_String`, `ValueType_MultipleChoice`, and `ValueType_DateTime` are accepted.",
+          "type": "string",
+          "example": "ValueType_Number"
+        }
+      }
+    },
+    "V1DocumentCreateFields": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "label"
+          ],
+          "properties": {
+            "label": {
+              "description": "The name of the field.",
+              "type": "string",
+              "example": "Fuel Cost ($)"
+            },
+            "value": {
+              "description": "Please use `stringValue`, `numberValue`, `multipleChoiceValue`, or `dateTimeValue`.",
+              "example": "The field type corresponding to your field."
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/V1DocumentCreateField"
+        }
+      ]
+    },
+    "V1DocumentFetchField": {
+      "type": "object",
+      "required": [
+        "valueType"
+      ],
+      "properties": {
+        "dateTimeValue": {
+          "description": "The value of a `ValueType_DateTime` field.",
+          "type": "object",
+          "required": [
+            "dateTimeMs"
+          ],
+          "properties": {
+            "dateTimeMs": {
+              "description": "The Unix epoch on milliseconds of this date time field.",
+              "type": "integer",
+              "format": "int64",
+              "example": 10855639004823
+            }
+          }
+        },
+        "multipleChoiceValue": {
+          "description": "The value of a `ValueType_MultipleChoice` field.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "selected": {
+                "description": "Whether the multiple choice field is selected or not.",
+                "type": "boolean"
+              },
+              "value": {
+                "description": "The name of the multiple choice field.",
+                "type": "string"
+              }
+            }
+          },
+          "example": [
+            {
+              "selected": false,
+              "value": "option 1"
+            },
+            {
+              "selected": true,
+              "value": "option 2"
+            }
+          ]
+        },
+        "numberValue": {
+          "description": "The value of a `ValueType_Number` field.",
+          "type": "number",
+          "format": "double",
+          "example": 12.34
+        },
+        "photoValue": {
+          "description": "The value of a `ValueType_Photo` field.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "description": "A pre-signed URL to the selected photos that refreshes every 24 hours.",
+                "type": "string",
+                "example": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+              }
+            }
+          }
+        },
+        "signatureValue": {
+          "description": "The value of a `ValueType_Signature` field.",
+          "type": "object",
+          "properties": {
+            "name": {
+              "description": "The name typed by the user when the signature was captured.",
+              "type": "string",
+              "example": "Samsara Owl"
+            },
+            "signedAtMs": {
+              "description": "The timestamp when the signature was captured.",
+              "type": "integer",
+              "format": "int64",
+              "example": 1584816363025
+            },
+            "url": {
+              "description": "A pre-signed URL to the captured signature PNG that refreshes every 24 hours.",
+              "type": "string",
+              "example": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+            }
+          }
+        },
+        "stringValue": {
+          "description": "The value of a `ValueType_String` field.",
+          "type": "string",
+          "example": "This is a string."
+        },
+        "valueType": {
           "description": "The type of this field.\nValid values: `ValueType_Number`, `ValueType_String`, `ValueType_Photo`, `ValueType_MultipleChoice`, `ValueType_Signature`, `ValueType_DateTime`.\nWhen creating documents via API, only `ValueType_Number`, `ValueType_String`, `ValueType_MultipleChoice`, and `ValueType_DateTime` are accepted.",
           "type": "string",
           "example": "ValueType_Number"
         }
       }
+    },
+    "V1DocumentFetchFields": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "label"
+          ],
+          "properties": {
+            "label": {
+              "description": "The name of the field.",
+              "type": "string",
+              "example": "Fuel Cost ($)"
+            },
+            "value": {
+              "description": "Please use `stringValue`, `numberValue`, `photoValue`, `multipleChoiceValue`, `signatureValue`, or `dateTimeValue`.",
+              "example": "The field type corresponding to your field."
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/V1DocumentFetchField"
+        }
+      ]
     },
     "V1DocumentFieldType": {
       "type": "object",
@@ -14328,6 +14778,25 @@
       "type": "string",
       "example": "123"
     },
+    "VehicleStatsAuxInput": {
+      "description": "Data for auxiliary digio equipment.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "$ref": "#/definitions/VehicleAuxInputType"
+        },
+        "time": {
+          "description": "UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`.",
+          "type": "string",
+          "example": "2020-01-27T07:06:25Z"
+        },
+        "value": {
+          "description": "Boolean indicating the state of the auxiliary equipment.",
+          "type": "boolean",
+          "example": "true"
+        }
+      }
+    },
     "VehicleStatsCtpSmogTestData": {
       "description": "Required data for one CTP smog test.",
       "type": "object",
@@ -14480,6 +14949,20 @@
               "name"
             ],
             "properties": {
+              "auxInput1": {
+                "description": "A list of auxiliary equipment states.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/VehicleStatsAuxInput"
+                }
+              },
+              "auxInput2": {
+                "description": "A list of auxiliary equipment states.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/VehicleStatsAuxInput"
+                }
+              },
               "ctpSmogTestData": {
                 "description": "Required data for one CTP smog test.",
                 "type": "array",
@@ -14600,6 +15083,12 @@
               "name"
             ],
             "properties": {
+              "auxInput1": {
+                "$ref": "#/definitions/VehicleStatsAuxInput"
+              },
+              "auxInput2": {
+                "$ref": "#/definitions/VehicleStatsAuxInput"
+              },
               "engineState": {
                 "$ref": "#/definitions/VehicleStatsEngineState"
               },
@@ -14634,6 +15123,29 @@
     },
     "VehicleStatsTime": {
       "$ref": "#/definitions/time"
+    },
+    "VehicleSummary": {
+      "type": "object",
+      "properties": {
+        "distanceDrivenMeters": {
+          "$ref": "#/definitions/DistanceDrivenMeters"
+        },
+        "driveTimeDurationMs": {
+          "$ref": "#/definitions/DriveTimeDurationMs"
+        },
+        "fuelConsumedMl": {
+          "$ref": "#/definitions/FuelConsumedMl"
+        },
+        "idleTimeDurationMs": {
+          "$ref": "#/definitions/IdleTimeDurationMs"
+        },
+        "powerTakeOffDurationMs": {
+          "$ref": "#/definitions/PowerTakeOffDurationMs"
+        },
+        "vehicle": {
+          "$ref": "#/definitions/vehicleTinyResponse"
+        }
+      }
     },
     "VehicleTagIds": {
       "description": "An array of IDs of tags to associate with this vehicle.",
@@ -14932,6 +15444,28 @@
       "example": {
         "maintenanceId": "250020",
         "payrollId": "ABFS18600"
+      }
+    },
+    "location": {
+      "description": "Location object",
+      "type": "object",
+      "required": [
+        "latitude",
+        "longitude"
+      ],
+      "properties": {
+        "latitude": {
+          "description": "GPS latitude represented in degrees",
+          "type": "number",
+          "format": "double",
+          "example": 122.142
+        },
+        "longitude": {
+          "description": "GPS longitude represented in degrees",
+          "type": "number",
+          "format": "double",
+          "example": -93.343
+        }
       }
     },
     "paginationResponse": {
@@ -15615,10 +16149,12 @@
         "obdOdometerMeters",
         "gpsOdometerMeters",
         "obdEngineSeconds",
-        "gpsDistanceMeters"
+        "gpsDistanceMeters",
+        "auxInput1",
+        "auxInput2"
       ],
       "type": "string",
-      "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.",
+      "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).",
       "name": "types",
       "in": "query",
       "required": true
