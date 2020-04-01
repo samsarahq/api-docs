@@ -63,7 +63,6 @@
           },
           {
             "type": "string",
-            "format": "date-time",
             "description": "A filter on data to have a created at time after or equal to this specified time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
             "name": "createdAfterTime",
             "in": "query"
@@ -370,7 +369,7 @@
           "Carrier Proposed Assignments"
         ],
         "summary": "Retrieve assignments",
-        "operationId": "getCarrierProposedAssignment",
+        "operationId": "listCarrierProposedAssignments",
         "parameters": [
           {
             "maximum": 512,
@@ -389,14 +388,17 @@
             "in": "query"
           },
           {
-            "type": "string",
-            "description": "If specified, limits the results to those for these drivers. e.g. driverIds=1,2,3",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "If specified, limits the results to those for these drivers. e.g. `driverIds=1,2,3`",
             "name": "driverIds",
             "in": "query"
           },
           {
             "type": "string",
-            "format": "date-time",
             "description": "If specified, shows assignments that will be active at this time. Defaults to now, which would show current active assignments. In RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
             "name": "activeTime",
             "in": "query"
@@ -406,23 +408,7 @@
           "200": {
             "description": "Returns the assignments that drivers would see in the future, if any.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/CarrierProposedAssignment"
-                  }
-                },
-                "pagination": {
-                  "type": "object",
-                  "allOf": [
-                    {
-                      "$ref": "#/definitions/paginationResponse"
-                    }
-                  ]
-                }
-              }
+              "$ref": "#/definitions/ListCarrierProposedAssignmentResponse"
             }
           },
           "default": {
@@ -446,7 +432,7 @@
             "name": "carrierProposedAssignment",
             "in": "body",
             "schema": {
-              "$ref": "#/definitions/CarrierProposedAssignmentCreate"
+              "$ref": "#/definitions/CreateCarrierProposedAssignmentRequest"
             }
           }
         ],
@@ -454,11 +440,7 @@
           "200": {
             "description": "Return the created assignment",
             "schema": {
-              "properties": {
-                "data": {
-                  "$ref": "#/definitions/CarrierProposedAssignment"
-                }
-              }
+              "$ref": "#/definitions/CarrierProposedAssignmentResponse"
             }
           },
           "default": {
@@ -477,7 +459,7 @@
           "Carrier Proposed Assignments"
         ],
         "summary": "Delete an assignment",
-        "operationId": "deleteCarrierProposedAssignmentById",
+        "operationId": "deleteCarrierProposedAssignment",
         "responses": {
           "204": {
             "description": "Empty success body"
@@ -557,14 +539,12 @@
           },
           {
             "type": "string",
-            "format": "date-time",
             "description": "A filter on data to have an updated at time after or equal to this specified time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
             "name": "updatedAfterTime",
             "in": "query"
           },
           {
             "type": "string",
-            "format": "date-time",
             "description": "A filter on data to have a created at time after or equal to this specified time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
             "name": "createdAfterTime",
             "in": "query"
@@ -636,7 +616,6 @@
           },
           {
             "type": "string",
-            "format": "date-time",
             "description": "A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
             "name": "startTime",
             "in": "query",
@@ -644,7 +623,6 @@
           },
           {
             "type": "string",
-            "format": "date-time",
             "description": "An end time in RFC 3339 format. It can't be more than 30 days past startTime. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
             "name": "endTime",
             "in": "query",
@@ -966,7 +944,6 @@
           },
           {
             "type": "string",
-            "format": "date-time",
             "description": "A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
             "name": "startTime",
             "in": "query",
@@ -974,7 +951,6 @@
           },
           {
             "type": "string",
-            "format": "date-time",
             "description": "An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
             "name": "endTime",
             "in": "query",
@@ -1210,7 +1186,6 @@
           },
           {
             "type": "string",
-            "format": "date-time",
             "description": "A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
             "name": "startTime",
             "in": "query",
@@ -1218,7 +1193,6 @@
           },
           {
             "type": "string",
-            "format": "date-time",
             "description": "An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
             "name": "endTime",
             "in": "query",
@@ -1404,7 +1378,6 @@
           },
           {
             "type": "string",
-            "format": "date-time",
             "description": "A filter on the data that returns the last known data points with timestamps less than or equal to this value. Defaults to now if not provided. Must be a string in RFC 3339 format. Millisecond precision and timezones are supported. (Example: `2020-01-27T07:06:25Z`).",
             "name": "time",
             "in": "query"
@@ -1535,7 +1508,6 @@
           },
           {
             "type": "string",
-            "format": "date-time",
             "description": "A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
             "name": "startTime",
             "in": "query",
@@ -1543,7 +1515,6 @@
           },
           {
             "type": "string",
-            "format": "date-time",
             "description": "An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
             "name": "endTime",
             "in": "query",
@@ -1613,7 +1584,6 @@
           },
           {
             "type": "string",
-            "format": "date-time",
             "description": "A filter on the data that returns the last known data points with timestamps less than or equal to this value. Defaults to now if not provided. Must be a string in RFC 3339 format. Millisecond precision and timezones are supported. (Example: `2020-01-27T07:06:25Z`).",
             "name": "time",
             "in": "query"
@@ -1649,17 +1619,21 @@
             "in": "query"
           },
           {
-            "enum": [
-              "engineStates",
-              "fuelPercents",
-              "obdOdometerMeters",
-              "gpsOdometerMeters",
-              "obdEngineSeconds",
-              "gpsDistanceMeters",
-              "auxInput1",
-              "auxInput2"
-            ],
-            "type": "string",
+            "type": "array",
+            "items": {
+              "enum": [
+                "engineStates",
+                "fuelPercents",
+                "obdOdometerMeters",
+                "gpsOdometerMeters",
+                "obdEngineSeconds",
+                "gpsDistanceMeters",
+                "auxInput1",
+                "auxInput2"
+              ],
+              "type": "string"
+            },
+            "collectionFormat": "csv",
             "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).",
             "name": "types",
             "in": "query",
@@ -1728,17 +1702,21 @@
             "in": "query"
           },
           {
-            "enum": [
-              "engineStates",
-              "fuelPercents",
-              "obdOdometerMeters",
-              "gpsOdometerMeters",
-              "obdEngineSeconds",
-              "gpsDistanceMeters",
-              "auxInput1",
-              "auxInput2"
-            ],
-            "type": "string",
+            "type": "array",
+            "items": {
+              "enum": [
+                "engineStates",
+                "fuelPercents",
+                "obdOdometerMeters",
+                "gpsOdometerMeters",
+                "obdEngineSeconds",
+                "gpsDistanceMeters",
+                "auxInput1",
+                "auxInput2"
+              ],
+              "type": "string"
+            },
+            "collectionFormat": "csv",
             "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).",
             "name": "types",
             "in": "query",
@@ -1778,7 +1756,6 @@
           },
           {
             "type": "string",
-            "format": "date-time",
             "description": "A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
             "name": "startTime",
             "in": "query",
@@ -1786,7 +1763,6 @@
           },
           {
             "type": "string",
-            "format": "date-time",
             "description": "An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
             "name": "endTime",
             "in": "query",
@@ -1823,17 +1799,21 @@
             "in": "query"
           },
           {
-            "enum": [
-              "engineStates",
-              "fuelPercents",
-              "obdOdometerMeters",
-              "gpsOdometerMeters",
-              "obdEngineSeconds",
-              "gpsDistanceMeters",
-              "auxInput1",
-              "auxInput2"
-            ],
-            "type": "string",
+            "type": "array",
+            "items": {
+              "enum": [
+                "engineStates",
+                "fuelPercents",
+                "obdOdometerMeters",
+                "gpsOdometerMeters",
+                "obdEngineSeconds",
+                "gpsDistanceMeters",
+                "auxInput1",
+                "auxInput2"
+              ],
+              "type": "string"
+            },
+            "collectionFormat": "csv",
             "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).",
             "name": "types",
             "in": "query",
@@ -1972,7 +1952,7 @@
         "operationId": "createTag",
         "parameters": [
           {
-            "name": "Tag create body.",
+            "name": "tag",
             "in": "body",
             "required": true,
             "schema": {
@@ -2034,7 +2014,7 @@
         "operationId": "replaceTag",
         "parameters": [
           {
-            "name": "Tag update body.",
+            "name": "tag",
             "in": "body",
             "required": true,
             "schema": {
@@ -2116,7 +2096,7 @@
           "200": {
             "description": "List all user roles.",
             "schema": {
-              "$ref": "#/definitions/ListUserTagRolesResponse"
+              "$ref": "#/definitions/ListUserRolesResponse"
             }
           },
           "default": {
@@ -4763,7 +4743,8 @@
       "items": {
         "type": "string",
         "enum": [
-          "yard"
+          "yard",
+          "shortHaul"
         ],
         "example": "yard"
       }
@@ -4771,132 +4752,130 @@
     "CarrierProposedAssignment": {
       "description": "A carrier proposed assignment object",
       "type": "object",
+      "required": [
+        "id",
+        "activeTime"
+      ],
       "properties": {
         "acceptedTime": {
-          "allOf": [
-            {
-              "description": "Time when the driver accepted this assignment in the mobile app. Will be omitted if the driver hasn't accepted this assignment. RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00)."
-            },
-            {
-              "$ref": "#/definitions/time"
-            }
-          ]
+          "$ref": "#/definitions/CarrierProposedAssignmentAcceptedTime"
         },
         "activeTime": {
-          "allOf": [
-            {
-              "description": "Time after which this assignment will be active and visible to the driver on the mobile app; RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00)."
-            },
-            {
-              "$ref": "#/definitions/time"
-            }
-          ]
+          "$ref": "#/definitions/CarrierProposedAssignmentActiveTime"
         },
         "driver": {
-          "allOf": [
-            {
-              "description": "The driver that this assignment is for."
-            },
-            {
-              "$ref": "#/definitions/driverTinyResponse"
-            }
-          ]
+          "$ref": "#/definitions/CarrierProposedAssignmentDriver"
         },
         "firstSeenTime": {
-          "allOf": [
-            {
-              "description": "Time when the driver first saw this assignment in the mobile app. Will be omitted if the driver hasn't seen this assignment yet. RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00)."
-            },
-            {
-              "$ref": "#/definitions/time"
-            }
-          ]
+          "$ref": "#/definitions/CarrierProposedAssignmentFirstSeenTime"
         },
         "id": {
-          "description": "Samsara ID for the assignment.",
-          "type": "string",
-          "example": "08b3aeada5f4ab3010c0b4efa28d2d1890dbf8d48d2d"
+          "$ref": "#/definitions/CarrierProposedAssignmentId"
         },
         "rejectedTime": {
-          "allOf": [
-            {
-              "description": "Time when the driver rejected this assignment in the mobile app. Will be omitted if the driver hasn't rejected this assignment. RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00)."
-            },
-            {
-              "$ref": "#/definitions/time"
-            }
-          ]
+          "$ref": "#/definitions/CarrierProposedAssignmentRejectedTime"
         },
         "shippingDocs": {
-          "description": "Shipping Documents that this assignment will propose to the driver; maximum of 40 characters",
-          "type": "string",
-          "maxLength": 40,
-          "example": "Delivery 123, chips and soda"
+          "$ref": "#/definitions/CarrierProposedAssignmentShippingDocs"
         },
         "trailers": {
-          "description": "Trailers that this assignment will propose to the driver.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/trailerNameOnlyResponse"
-          }
+          "$ref": "#/definitions/CarrierProposedAssignmentTrailers"
         },
         "vehicle": {
-          "allOf": [
-            {
-              "description": "Vehicle that this assignment will propose to the driver."
-            },
-            {
-              "$ref": "#/definitions/vehicleTinyResponse"
-            }
-          ]
+          "$ref": "#/definitions/CarrierProposedAssignmentVehicle"
         }
       }
     },
-    "CarrierProposedAssignmentCreate": {
-      "description": "New assignment for a driver.",
+    "CarrierProposedAssignmentAcceptedTime": {
+      "description": "Time when the driver accepted this assignment in the mobile app. Will be omitted if the driver hasn't accepted this assignment. RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+      "type": "string",
+      "example": "2020-01-27T07:06:25Z"
+    },
+    "CarrierProposedAssignmentActiveTime": {
+      "description": "Time after which this assignment will be active and visible to the driver on the mobile app. Not setting it makes it active now. UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`.",
+      "type": "string",
+      "example": "2020-01-27T07:06:25Z"
+    },
+    "CarrierProposedAssignmentDriver": {
+      "allOf": [
+        {
+          "description": "The driver that this assignment is for."
+        },
+        {
+          "$ref": "#/definitions/driverTinyResponse"
+        }
+      ]
+    },
+    "CarrierProposedAssignmentDriverId": {
+      "description": "Samsara ID for the driver that this assignment is for.",
+      "type": "string",
+      "example": "42"
+    },
+    "CarrierProposedAssignmentFirstSeenTime": {
+      "description": "Time when the driver first saw this assignment in the mobile app. Will be omitted if the driver hasn't seen this assignment yet. RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+      "type": "string",
+      "example": "2020-01-27T07:06:25Z"
+    },
+    "CarrierProposedAssignmentId": {
+      "description": "Samsara ID for the assignment.",
+      "type": "string",
+      "example": "08b3aeada5f4ab3010c0b4efa28d2d1890dbf8d48d2d"
+    },
+    "CarrierProposedAssignmentRejectedTime": {
+      "description": "Time when the driver rejected this assignment in the mobile app. Will be omitted if the driver hasn't rejected this assignment. RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+      "type": "string",
+      "example": "2020-01-27T07:06:25Z"
+    },
+    "CarrierProposedAssignmentResponse": {
+      "description": "A carrier-proposed assignment response object.",
       "type": "object",
       "required": [
-        "driverId"
+        "data"
       ],
       "properties": {
-        "activeTime": {
-          "allOf": [
-            {
-              "description": "Time after which this assignment will be active and visible to the driver on the mobile app. Not setting it makes it active now. RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00)."
-            },
-            {
-              "$ref": "#/definitions/time"
-            }
-          ]
-        },
-        "driverId": {
-          "description": "Samsara ID for the driver that this assignment is for.",
-          "type": "string",
-          "example": "42"
-        },
-        "shippingDocs": {
-          "description": "Shipping Documents that this assignment will propose to the driver; maximum of 40 characters",
-          "type": "string",
-          "maxLength": 40,
-          "example": "Delivery 123, chips and soda"
-        },
-        "trailerNames": {
-          "description": "Names of trailers to propose.",
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "example": [
-            "Trailer123",
-            "TrailerABC"
-          ]
-        },
-        "vehicleId": {
-          "description": "Samsara ID for the vehicle to propose.",
-          "type": "string",
-          "example": "123"
+        "data": {
+          "$ref": "#/definitions/CarrierProposedAssignment"
         }
       }
+    },
+    "CarrierProposedAssignmentShippingDocs": {
+      "description": "Shipping Documents that this assignment will propose to the driver.",
+      "type": "string",
+      "maxLength": 40,
+      "example": "Delivery 123, chips and soda"
+    },
+    "CarrierProposedAssignmentTrailerNames": {
+      "description": "Names of trailers to propose.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "Trailer123",
+        "TrailerABC"
+      ]
+    },
+    "CarrierProposedAssignmentTrailers": {
+      "description": "Trailers that this assignment will propose to the driver.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/trailerNameOnlyResponse"
+      }
+    },
+    "CarrierProposedAssignmentVehicle": {
+      "allOf": [
+        {
+          "description": "Vehicle that this assignment will propose to the driver."
+        },
+        {
+          "$ref": "#/definitions/vehicleTinyResponse"
+        }
+      ]
+    },
+    "CarrierProposedAssignmentVehicleId": {
+      "description": "Samsara ID for the vehicle to propose.",
+      "type": "string",
+      "example": "123"
     },
     "Contact": {
       "description": "Information about a notification contact for alerts.",
@@ -5002,6 +4981,31 @@
         },
         "tagIds": {
           "$ref": "#/definitions/AddressTagIds"
+        }
+      }
+    },
+    "CreateCarrierProposedAssignmentRequest": {
+      "description": "New assignment for a driver.",
+      "type": "object",
+      "required": [
+        "driverId",
+        "vehicleId"
+      ],
+      "properties": {
+        "activeTime": {
+          "$ref": "#/definitions/CarrierProposedAssignmentActiveTime"
+        },
+        "driverId": {
+          "$ref": "#/definitions/CarrierProposedAssignmentDriverId"
+        },
+        "shippingDocs": {
+          "$ref": "#/definitions/CarrierProposedAssignmentShippingDocs"
+        },
+        "trailerNames": {
+          "$ref": "#/definitions/CarrierProposedAssignmentTrailerNames"
+        },
+        "vehicleId": {
+          "$ref": "#/definitions/CarrierProposedAssignmentVehicleId"
         }
       }
     },
@@ -5176,7 +5180,7 @@
           "$ref": "#/definitions/UserName"
         },
         "roles": {
-          "$ref": "#/definitions/UserTagRolesRequest"
+          "$ref": "#/definitions/UserRolesRequest"
         }
       }
     },
@@ -5296,7 +5300,6 @@
     "DriverCreatedAtTime": {
       "description": "The date and time this driver was created in RFC 3339 format.",
       "type": "string",
-      "format": "date-time",
       "example": "2019-05-18T20:27:35Z"
     },
     "DriverDotNumber": {
@@ -5478,12 +5481,12 @@
     "DriverTimezone": {
       "description": "Home terminal timezone, in order to indicate what time zone should be used to calculate the ELD logs. Driver timezones use [IANA timezone database](https://www.iana.org/time-zones) keys (e.g. `America/Los_Angeles`, `America/New_York`, `Europe/London`, etc.). You can find a mapping of common timezone formats to IANA timezone keys [here](https://unicode.org/cldr/charts/latest/supplemental/zone_tzid.html).",
       "type": "string",
+      "default": "America/Los_Angeles",
       "example": "America/Los_Angeles"
     },
     "DriverUpdatedAtTime": {
       "description": "The date and time this driver was last updated in RFC 3339 format.",
       "type": "string",
-      "format": "date-time",
       "example": "2019-06-13T19:08:25Z"
     },
     "DriverUsername": {
@@ -6055,6 +6058,26 @@
         }
       }
     },
+    "ListCarrierProposedAssignmentResponse": {
+      "description": "A list of carrier-proposed assignments and pagination information.",
+      "type": "object",
+      "required": [
+        "data",
+        "pagination"
+      ],
+      "properties": {
+        "data": {
+          "description": "A list of carrier-proposed assignments",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CarrierProposedAssignment"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
     "ListContactsResponse": {
       "description": "A list of contacts.",
       "type": "object",
@@ -6100,14 +6123,15 @@
         }
       }
     },
-    "ListUserTagRolesResponse": {
+    "ListUserRolesResponse": {
       "description": "A list of user roles.",
       "type": "object",
       "properties": {
         "data": {
+          "description": "A list of user roles",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/userRoleTinyResponse"
+            "$ref": "#/definitions/UserRole"
           }
         },
         "pagination": {
@@ -6120,6 +6144,7 @@
       "type": "object",
       "properties": {
         "data": {
+          "description": "A list of users.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/User"
@@ -6533,7 +6558,7 @@
           "$ref": "#/definitions/UserName"
         },
         "roles": {
-          "$ref": "#/definitions/UserTagRolesRequest"
+          "$ref": "#/definitions/UserRolesRequest"
         }
       }
     },
@@ -6580,7 +6605,7 @@
       }
     },
     "User": {
-      "description": "A user object",
+      "description": "A user object.",
       "type": "object",
       "required": [
         "id",
@@ -6603,7 +6628,7 @@
           "$ref": "#/definitions/UserName"
         },
         "roles": {
-          "$ref": "#/definitions/UserTagRoles"
+          "$ref": "#/definitions/UserRoles"
         }
       }
     },
@@ -6639,63 +6664,65 @@
         }
       }
     },
-    "UserTagRole": {
-      "description": "A user role",
+    "UserRole": {
+      "description": "A user role object.",
       "type": "object",
       "properties": {
-        "role": {
-          "$ref": "#/definitions/userRoleTinyResponse"
+        "id": {
+          "description": "The unique ID for the role.",
+          "type": "string",
+          "example": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
         },
-        "tag": {
-          "allOf": [
-            {
-              "description": "The id of the tag used to grant a role. If no tag is specified, this role applies at the organization level."
-            },
-            {
-              "$ref": "#/definitions/tagTinyResponse"
-            }
-          ]
+        "name": {
+          "description": "The name of the role.",
+          "type": "string",
+          "example": "Full Admin"
         }
       }
     },
-    "UserTagRoleRequest": {
+    "UserRoleAssignment": {
+      "description": "A role that applies to a user. If the role has a `tag`, then the role applies for that tag. If there is no `tag`, then the role applies at the organizational level. A user may have many tag-specific roles, but may only have one organizational level role. If the organizational level role has higher privileges than a tag-specific role, then the organizational role privileges will take precedence.",
+      "type": "object",
+      "properties": {
+        "role": {
+          "$ref": "#/definitions/UserRole"
+        },
+        "tag": {
+          "$ref": "#/definitions/tagTinyResponse"
+        }
+      }
+    },
+    "UserRoleAssignmentRequest": {
+      "description": "A role that applies to a user. If the role has a `tagId`, then the role applies for that tag. If there is no `tagId`, then the role applies at the organizational level. A user may have many tag-specific roles, but may only have one organizational role. If the organizational level role has higher privileges than a tag-specific role, then the organizational role privileges will take precedence.",
       "type": "object",
       "required": [
         "roleId"
       ],
       "properties": {
         "roleId": {
-          "description": "The id of the role the user has been granted.",
+          "description": "The unique ID for the role.",
           "type": "string",
           "example": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
         },
         "tagId": {
-          "description": "The id of the tag used to grant a role. If no tag is specified, this role applies at the organization level.",
+          "description": "ID of the tag this role applies to.",
           "type": "string",
           "example": "3914"
         }
-      },
-      "example": [
-        {
-          "roleId": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
-        },
-        {
-          "roleId": "717fe0f3-f87f-4a57-b3ce-33a5a9f394cd",
-          "tagId": "3914"
-        }
-      ]
-    },
-    "UserTagRoles": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/UserTagRole"
       }
     },
-    "UserTagRolesRequest": {
-      "description": "The roles for this user. Users must have at least a single role to be a part of an organization.",
+    "UserRoles": {
+      "description": "The list of roles that applies to this user. A user may have \"organizational\" roles, which apply to the user at the organizational level, and \"tag-specific\" roles, which apply to the user for a given tag.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/UserTagRoleRequest"
+        "$ref": "#/definitions/UserRoleAssignment"
+      }
+    },
+    "UserRolesRequest": {
+      "description": "The list of roles that applies to this user. A user may have \"organizational\" roles, which apply to the user at the organizational level, and \"tag-specific\" roles, which apply to the user for a given tag.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/UserRoleAssignmentRequest"
       }
     },
     "V1Asset": {
@@ -11645,7 +11672,7 @@
                   "$ref": "#/definitions/VehicleStatsEngineState"
                 }
               },
-              "fuelPercent": {
+              "fuelPercents": {
                 "description": "A list of fuel percentage readings for the given vehicle.",
                 "type": "array",
                 "items": {
@@ -11936,22 +11963,6 @@
           "description": "Name of the trailer.",
           "type": "string",
           "example": "Midwest Trailer #5"
-        }
-      }
-    },
-    "userRoleTinyResponse": {
-      "description": "A minified user role object.",
-      "type": "object",
-      "properties": {
-        "id": {
-          "description": "The unique ID for the role.",
-          "type": "string",
-          "example": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
-        },
-        "name": {
-          "description": "The name of the role.",
-          "type": "string",
-          "example": "Full Admin"
         }
       }
     },
@@ -12409,17 +12420,21 @@
       "in": "query"
     },
     "vehicleStatTypes": {
-      "enum": [
-        "engineStates",
-        "fuelPercents",
-        "obdOdometerMeters",
-        "gpsOdometerMeters",
-        "obdEngineSeconds",
-        "gpsDistanceMeters",
-        "auxInput1",
-        "auxInput2"
-      ],
-      "type": "string",
+      "type": "array",
+      "items": {
+        "enum": [
+          "engineStates",
+          "fuelPercents",
+          "obdOdometerMeters",
+          "gpsOdometerMeters",
+          "obdEngineSeconds",
+          "gpsDistanceMeters",
+          "auxInput1",
+          "auxInput2"
+        ],
+        "type": "string"
+      },
+      "collectionFormat": "csv",
       "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).",
       "name": "types",
       "in": "query",
@@ -12434,6 +12449,10 @@
     {
       "description": "Assets refer to objects that are tracked with Samsara Asset Gateways. These include: trailers, reefers, equipment (construction, etc.), containers, and anything else you'd like to track with a Samsara Asset Gateway. This is different than Vehicles, which specifically have a Samsara Vehicle Gateway. Depending on the asset, different data is available. For all assets, GPS data is available. For powered assets like trailers, reefers, and equipment, other engine or on-board diagnostic data is available.",
       "name": "Assets"
+    },
+    {
+      "description": "Carriers (fleet managers) can propose vehicle, trailer, and shipping assignments to Drivers through the Carrier Proposed Assignments API. This set of APIs will allow you to define an assignment proposal to a Driver. The proposed assignment will be presented to the Driver in the Samsara Driver App. The Driver may accept or reject the assignment. Retrieving a list of existing proposed assignments will tell you whether the Driver accepted or rejected the proposal.",
+      "name": "Carrier Proposed Assignments"
     },
     {
       "description": "Contacts are an easy way to manage which users receive alerts (via sms or email).",
