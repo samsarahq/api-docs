@@ -482,6 +482,125 @@
         }
       ]
     },
+    "/fleet/defects/history": {
+      "get": {
+        "description": "Returns a list of DVIR defects in an organization, filtered by creation time. The maximum time period you can query for is 30 days.",
+        "tags": [
+          "Maintenance"
+        ],
+        "summary": "Get all defects",
+        "operationId": "getDvirDefects",
+        "parameters": [
+          {
+            "maximum": 512,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int64",
+            "default": 512,
+            "description": "The limit for how many objects will be in the response. Default and max for this value is 512 objects.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00). *The maximum time period you can query for is 30 days.*",
+            "name": "startTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00). *The maximum time period you can query for is 30 days.*",
+            "name": "endTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "boolean",
+            "description": "A filter on the data based on resolution status. Example: `isResolved=true`",
+            "name": "isResolved",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all DVIR defects in the organization",
+            "schema": {
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Defect"
+                  }
+                },
+                "pagination": {
+                  "$ref": "#/definitions/paginationResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/defects/{id}": {
+      "patch": {
+        "description": "Resolves a given defect by marking its `isResolved` field to `true`.",
+        "tags": [
+          "Maintenance"
+        ],
+        "summary": "Resolve a defect",
+        "operationId": "resolveDvirDefect",
+        "parameters": [
+          {
+            "description": "The DVIR defect fields to update.",
+            "name": "defect",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/DefectPatch"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return the modified defect entity",
+            "schema": {
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/Defect"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "ID of the defect.",
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
     "/fleet/drivers": {
       "get": {
         "description": "Get all drivers in organization.",
@@ -735,6 +854,181 @@
         {
           "type": "string",
           "description": "ID of the driver. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `payrollId:ABFS18600`",
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/fleet/dvirs": {
+      "post": {
+        "description": "Creates a new mechanic DVIR in the organization.",
+        "tags": [
+          "Maintenance"
+        ],
+        "summary": "Create a mechanic DVIR",
+        "operationId": "createDvir",
+        "parameters": [
+          {
+            "description": "The DVIR to create.",
+            "name": "dvir",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateDvirRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Newly created DVIR.",
+            "schema": {
+              "$ref": "#/definitions/DvirResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/dvirs/history": {
+      "get": {
+        "description": "Returns a list of all DVIRs in an organization",
+        "tags": [
+          "Maintenance"
+        ],
+        "summary": "Get all DVIRs",
+        "operationId": "getDvirHistory",
+        "parameters": [
+          {
+            "maximum": 512,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int64",
+            "default": 512,
+            "description": "The limit for how many objects will be in the response. Default and max for this value is 512 objects.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "startTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "endTime",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all DVIRs in the organization",
+            "schema": {
+              "$ref": "#/definitions/DvirsListResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/dvirs/{id}": {
+      "get": {
+        "description": "Returns a specific dvir",
+        "tags": [
+          "Maintenance"
+        ],
+        "summary": "Retrieve a DVIR",
+        "operationId": "getDvir",
+        "responses": {
+          "200": {
+            "description": "A dvir object with ID",
+            "schema": {
+              "$ref": "#/definitions/DvirResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Resolves a given DVIR by marking its `isResolved` field to `true`.",
+        "tags": [
+          "Maintenance"
+        ],
+        "summary": "Resolve a DVIR",
+        "operationId": "updateDvir",
+        "parameters": [
+          {
+            "description": "The dvir fields to update.",
+            "name": "dvir",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdateDvirRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated dvir object with ID.",
+            "schema": {
+              "$ref": "#/definitions/DvirResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "ID of the DVIR.",
           "name": "id",
           "in": "path",
           "required": true
@@ -3189,151 +3483,6 @@
         }
       }
     },
-    "/v1/fleet/maintenance/dvirs": {
-      "get": {
-        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nGet DVIRs for the org within provided time constraints",
-        "tags": [
-          "Maintenance"
-        ],
-        "summary": "Get DVIRs",
-        "operationId": "V1getDvirs",
-        "parameters": [
-          {
-            "type": "integer",
-            "description": "Time in millis until the last dvir log.",
-            "name": "end_ms",
-            "in": "query",
-            "required": true
-          },
-          {
-            "maximum": 7776000000,
-            "type": "number",
-            "description": "Time in millis which corresponds to the duration before the end_ms. Must be less than or equal to 90 days.",
-            "name": "duration_ms",
-            "in": "query",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "DVIRs for the specified duration.",
-            "schema": {
-              "$ref": "#/definitions/V1DvirListResponse"
-            }
-          },
-          "default": {
-            "description": "Unexpected error.",
-            "schema": {
-              "$ref": "#/definitions/V1ErrorResponse"
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nCreate a new dvir, marking a vehicle or trailer safe or unsafe.",
-        "tags": [
-          "Maintenance"
-        ],
-        "summary": "Create a DVIR",
-        "operationId": "V1createDvir",
-        "parameters": [
-          {
-            "description": "DVIR creation body",
-            "name": "createDvirParam",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": [
-                "safe",
-                "inspectionType",
-                "userEmail"
-              ],
-              "properties": {
-                "inspectionType": {
-                  "description": "Only type 'mechanic' is currently accepted.",
-                  "type": "string",
-                  "enum": [
-                    "mechanic"
-                  ],
-                  "example": "mechanic"
-                },
-                "mechanicNotes": {
-                  "description": "Any notes from the mechanic.",
-                  "type": "string",
-                  "example": "Replaced headlight on passenger side."
-                },
-                "odometerMiles": {
-                  "description": "The current odometer of the vehicle.",
-                  "type": "integer",
-                  "example": 38426
-                },
-                "previousDefectsCorrected": {
-                  "description": "Whether any previous defects were corrected. If this vehicle or trailer was previously marked unsafe, and this DVIR marks it as safe, either previousDefectsCorrected or previousDefectsIgnored must be true.",
-                  "type": "boolean",
-                  "example": true
-                },
-                "previousDefectsIgnored": {
-                  "description": "Whether any previous defects were ignored. If this vehicle or trailer was previously marked unsafe, and this DVIR marks it as safe, either previousDefectsCorrected or previousDefectsIgnored must be true.",
-                  "type": "boolean",
-                  "example": false
-                },
-                "resolvedDefectIds": {
-                  "description": "List of defect IDs to resolve.  The defects must be associated with the provided vehicle or trailer.",
-                  "type": "array",
-                  "items": {
-                    "type": "integer",
-                    "format": "int64"
-                  },
-                  "example": [
-                    18,
-                    19
-                  ]
-                },
-                "safe": {
-                  "description": "Whether or not this vehicle or trailer is safe to drive.",
-                  "type": "string",
-                  "enum": [
-                    "safe",
-                    "unsafe"
-                  ],
-                  "example": "safe"
-                },
-                "trailerId": {
-                  "description": "Id of trailer being inspected. Either vehicleId or trailerId must be provided.",
-                  "type": "integer",
-                  "example": 11
-                },
-                "userEmail": {
-                  "description": "The Samsara login email for the person creating the DVIR. The email must correspond to a Samsara user's email.",
-                  "type": "string",
-                  "example": "j.smith@yahoo.com"
-                },
-                "vehicleId": {
-                  "description": "Id of vehicle being inspected. Either vehicleId or trailerId must be provided.",
-                  "type": "integer",
-                  "example": 10
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Newly created DVIR.",
-            "schema": {
-              "$ref": "#/definitions/V1DvirBase"
-            }
-          },
-          "default": {
-            "description": "Unexpected error.",
-            "schema": {
-              "$ref": "#/definitions/V1ErrorResponse"
-            }
-          }
-        }
-      }
-    },
     "/v1/fleet/maintenance/list": {
       "get": {
         "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nGet list of the vehicles with any engine faults or check light data.",
@@ -5104,6 +5253,68 @@
         }
       }
     },
+    "CreateDvirRequest": {
+      "description": "DVIR creation body",
+      "type": "object",
+      "required": [
+        "safetyStatus",
+        "type",
+        "authorId"
+      ],
+      "properties": {
+        "authorId": {
+          "description": "Samsara user ID of the mechanic creating the DVIR.",
+          "type": "string",
+          "example": "11"
+        },
+        "licensePlate": {
+          "$ref": "#/definitions/DvirLicensePlate"
+        },
+        "location": {
+          "$ref": "#/definitions/DvirLocation"
+        },
+        "mechanicNotes": {
+          "$ref": "#/definitions/DvirMechanicNotes"
+        },
+        "odometerMeters": {
+          "$ref": "#/definitions/DvirOdometerMeters"
+        },
+        "resolvedDefectIds": {
+          "description": "Array of ids for defects being resolved with this DVIR.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "safetyStatus": {
+          "description": "Whether or not this vehicle or trailer is safe to drive.",
+          "type": "string",
+          "enum": [
+            "safe",
+            "unsafe"
+          ],
+          "example": "safe"
+        },
+        "trailerId": {
+          "description": "Id of trailer being inspected. Either vehicleId or trailerId must be provided.",
+          "type": "string",
+          "example": "11"
+        },
+        "type": {
+          "description": "Only type 'mechanic' is currently accepted.",
+          "type": "string",
+          "enum": [
+            "mechanic"
+          ],
+          "example": "mechanic"
+        },
+        "vehicleId": {
+          "description": "Id of vehicle being inspected. Either vehicleId or trailerId must be provided.",
+          "type": "string",
+          "example": "10"
+        }
+      }
+    },
     "CreateTagRequest": {
       "type": "object",
       "required": [
@@ -5181,6 +5392,109 @@
         },
         "roles": {
           "$ref": "#/definitions/UserRolesRequest"
+        }
+      }
+    },
+    "Defect": {
+      "type": "object",
+      "required": [
+        "id",
+        "isResolved"
+      ],
+      "properties": {
+        "comment": {
+          "description": "Comment on the defect.",
+          "type": "string",
+          "example": "Air Compressor not working"
+        },
+        "createdAtTime": {
+          "description": "Time when the defect was created. UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`.",
+          "type": "string",
+          "example": "2020-01-27T07:06:25Z"
+        },
+        "defectType": {
+          "description": "The type of DVIR defect.",
+          "type": "string",
+          "example": "Air Compressor"
+        },
+        "id": {
+          "description": "ID of the defect.",
+          "type": "string",
+          "example": "18"
+        },
+        "isResolved": {
+          "description": "Signifies if this defect is resolved.",
+          "type": "boolean",
+          "example": true
+        },
+        "resolvedAtTime": {
+          "description": "Time when this defect was resolved. Will not be returned if the defect is unresolved. UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`.",
+          "type": "string",
+          "example": "2020-01-27T07:06:25Z"
+        },
+        "resolvedBy": {
+          "description": "The person who resolved this defect.  Will not be returned if the defect is unresolved.",
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "ID of the entity that resolved this defect. If the defect was resolved by a driver, this will be a Samsara Driver ID. If the defect was resolved by a mechanic, this will be the Samsara Dashboard User ID of the mechanic.",
+              "type": "string"
+            },
+            "name": {
+              "description": "Name of the person who resolved this defect.",
+              "type": "string"
+            },
+            "type": {
+              "description": "Indicates whether this defect was resolved by a `driver` or a `mechanic`.",
+              "type": "string",
+              "enum": [
+                "driver",
+                "mechanic"
+              ]
+            }
+          }
+        },
+        "trailer": {
+          "allOf": [
+            {
+              "description": "The trailer this defect was submitted for."
+            },
+            {
+              "$ref": "#/definitions/trailerTinyResponse"
+            }
+          ]
+        },
+        "vehicle": {
+          "allOf": [
+            {
+              "description": "The vehicle this defect was submitted for."
+            },
+            {
+              "$ref": "#/definitions/vehicleTinyResponse"
+            }
+          ]
+        }
+      }
+    },
+    "DefectPatch": {
+      "description": "Information about resolving a defect.",
+      "type": "object",
+      "required": [
+        "resolvedBy",
+        "isResolved"
+      ],
+      "properties": {
+        "isResolved": {
+          "description": "Resolves the defect. Must be `true`.",
+          "type": "boolean"
+        },
+        "resolvedAtTime": {
+          "description": "Time when defect was resolved. Defaults to now if not provided. UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`.",
+          "type": "string",
+          "example": "2020-01-27T07:06:25Z"
+        },
+        "resolvedBy": {
+          "$ref": "#/definitions/ResolvedBy"
         }
       }
     },
@@ -5510,6 +5824,236 @@
       "description": "Tag ID which determines which vehicles a driver will see when selecting vehicles.",
       "type": "string",
       "example": "342417"
+    },
+    "Dvir": {
+      "description": "Information about a DVIR.",
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "authorSignature": {
+          "$ref": "#/definitions/DvirAuthorSignature"
+        },
+        "endTime": {
+          "description": "Time when driver signed and completed this DVIR. UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`.",
+          "type": "string",
+          "example": "2020-01-27T07:06:25Z"
+        },
+        "id": {
+          "description": "Unique Samsara ID for the DVIR.",
+          "type": "string",
+          "example": "7107471"
+        },
+        "licensePlate": {
+          "$ref": "#/definitions/DvirLicensePlate"
+        },
+        "location": {
+          "$ref": "#/definitions/DvirLocation"
+        },
+        "mechanicNotes": {
+          "$ref": "#/definitions/DvirMechanicNotes"
+        },
+        "odometerMeters": {
+          "$ref": "#/definitions/DvirOdometerMeters"
+        },
+        "safetyStatus": {
+          "description": "The condition of vehicle on which DVIR was done.",
+          "type": "string",
+          "default": "unsafe",
+          "enum": [
+            "safe",
+            "unsafe",
+            "resolved"
+          ],
+          "example": "unsafe"
+        },
+        "secondSignature": {
+          "$ref": "#/definitions/DvirSecondSignature"
+        },
+        "startTime": {
+          "description": "Time when driver began filling out this DVIR. UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`.",
+          "type": "string",
+          "example": "2020-01-27T07:06:25Z"
+        },
+        "thirdSignature": {
+          "$ref": "#/definitions/DvirThirdSignature"
+        },
+        "trailer": {
+          "$ref": "#/definitions/DvirTrailer"
+        },
+        "trailerDefects": {
+          "$ref": "#/definitions/DvirTrailerDefects"
+        },
+        "trailerName": {
+          "description": "The name of the trailer the DVIR was submitted for.  Only included for tractor+trailer DVIRs.",
+          "type": "string",
+          "example": "Midwest Trailer #5"
+        },
+        "type": {
+          "description": "Inspection type of the DVIR.",
+          "type": "string",
+          "default": "unspecified",
+          "enum": [
+            "preTrip",
+            "postTrip",
+            "mechanic",
+            "unspecified"
+          ],
+          "example": "preTrip"
+        },
+        "vehicle": {
+          "$ref": "#/definitions/DvirVehicle"
+        },
+        "vehicleDefects": {
+          "$ref": "#/definitions/DvirVehicleDefects"
+        }
+      }
+    },
+    "DvirAuthorSignature": {
+      "allOf": [
+        {
+          "description": "An author signature object which has a signatory mini object with the signed time. Author Signature."
+        },
+        {
+          "$ref": "#/definitions/DvirSignature"
+        }
+      ]
+    },
+    "DvirLicensePlate": {
+      "description": "The license plate of this vehicle.",
+      "type": "string",
+      "maxLength": 12,
+      "example": "XHK1234"
+    },
+    "DvirLocation": {
+      "description": "Optional string if your jurisdiction requires a location of the DVIR.",
+      "type": "string",
+      "example": "350 Rhode Island St Ste. 400S, San Francisco, CA 94103"
+    },
+    "DvirMechanicNotes": {
+      "description": "The mechanics notes on the DVIR.",
+      "type": "string",
+      "example": "Replaced headlight on passenger side."
+    },
+    "DvirOdometerMeters": {
+      "description": "The odometer reading in meters.",
+      "type": "integer",
+      "example": 14010293
+    },
+    "DvirResponse": {
+      "description": "The DVIR response.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/Dvir"
+        }
+      }
+    },
+    "DvirSecondSignature": {
+      "allOf": [
+        {
+          "description": "An author signature object which has a signatory mini object with the signed time. Second Signature."
+        },
+        {
+          "$ref": "#/definitions/DvirSignature"
+        }
+      ]
+    },
+    "DvirSignature": {
+      "description": "DVIR Signure.",
+      "type": "object",
+      "properties": {
+        "signatoryUser": {
+          "allOf": [
+            {
+              "description": "The user who signed the DVIR."
+            },
+            {
+              "$ref": "#/definitions/userTinyResponse"
+            }
+          ]
+        },
+        "signedAtTime": {
+          "description": "The time when the DVIR was signed. UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`.",
+          "type": "string",
+          "example": "2020-01-27T07:06:25Z"
+        },
+        "type": {
+          "description": "Whether the DVIR was submitted by a `driver` or `mechanic`.",
+          "type": "string",
+          "default": "driver",
+          "enum": [
+            "driver",
+            "mechanic"
+          ],
+          "example": "driver"
+        }
+      }
+    },
+    "DvirThirdSignature": {
+      "allOf": [
+        {
+          "description": "An author signature object which has a signatory mini object with the signed time. Third Signature."
+        },
+        {
+          "$ref": "#/definitions/DvirSignature"
+        }
+      ]
+    },
+    "DvirTrailer": {
+      "allOf": [
+        {
+          "description": "The trailer the DVIR was submitted for. Only included for trailer only DVIRs."
+        },
+        {
+          "$ref": "#/definitions/trailerTinyResponse"
+        }
+      ]
+    },
+    "DvirTrailerDefects": {
+      "description": "Defects registered for the trailer which was part of the DVIR.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/dvirTrailerDefectsItems"
+      }
+    },
+    "DvirVehicle": {
+      "allOf": [
+        {
+          "description": "The vehicle the DVIR was submitted for. Only included for tractor or tractor+trailer DVIRs."
+        },
+        {
+          "$ref": "#/definitions/vehicleTinyResponse"
+        }
+      ]
+    },
+    "DvirVehicleDefects": {
+      "description": "Defects registered for the vehicle which was part of the DVIR.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/dvirTrailerDefectsItems"
+      }
+    },
+    "DvirsListResponse": {
+      "description": "A list of DVIRs and pagination information.",
+      "type": "object",
+      "required": [
+        "data",
+        "pagination"
+      ],
+      "properties": {
+        "data": {
+          "description": "A list of DVIRs.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Dvir"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
     },
     "Equipment": {
       "description": "An equipment object.",
@@ -6252,6 +6796,25 @@
         }
       }
     },
+    "ResolvedBy": {
+      "description": "Information about the user who is resolving a defect.",
+      "type": "object",
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "id": {
+          "description": "The Id of user who is resolving the defect.",
+          "type": "string",
+          "example": "11"
+        },
+        "type": {
+          "description": "The type of user who is resolving the defect. Must be \"mechanic\".",
+          "type": "string"
+        }
+      }
+    },
     "TachographActivity": {
       "description": "Tachograph activity",
       "type": "object",
@@ -6544,6 +7107,33 @@
         },
         "vehicleGroupTagId": {
           "$ref": "#/definitions/DriverVehicleGroupTagId"
+        }
+      }
+    },
+    "UpdateDvirRequest": {
+      "description": "Information about resolving a DVIR.",
+      "type": "object",
+      "required": [
+        "authorId",
+        "isResolved"
+      ],
+      "properties": {
+        "authorId": {
+          "description": "The user who is resolving the dvir.",
+          "type": "string",
+          "example": "11"
+        },
+        "isResolved": {
+          "description": "Resolves the DVIR. Must be `true`.",
+          "type": "boolean"
+        },
+        "mechanicNotes": {
+          "$ref": "#/definitions/DvirMechanicNotes"
+        },
+        "signedAtTime": {
+          "description": "Time when user signed this DVIR. Defaults to now. UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`.",
+          "type": "string",
+          "example": "2020-01-27T07:06:25Z"
         }
       }
     },
@@ -11883,6 +12473,114 @@
         }
       }
     },
+    "dvirTrailerDefectsItems": {
+      "type": "object",
+      "required": [
+        "id",
+        "isResolved"
+      ],
+      "properties": {
+        "comment": {
+          "description": "Comment on the defect.",
+          "type": "string",
+          "example": "Air Compressor not working"
+        },
+        "createdAtTime": {
+          "description": "Time when the defect was created. UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`.",
+          "type": "string",
+          "example": "2020-01-27T07:06:25Z"
+        },
+        "defectType": {
+          "description": "The type of DVIR defect.",
+          "type": "string",
+          "example": "Air Compressor"
+        },
+        "id": {
+          "description": "ID of the defect.",
+          "type": "string",
+          "example": "18"
+        },
+        "isResolved": {
+          "description": "Signifies if this defect is resolved.",
+          "type": "boolean",
+          "example": true
+        },
+        "resolvedAtTime": {
+          "description": "Time when this defect was resolved. Will not be returned if the defect is unresolved. UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`.",
+          "type": "string",
+          "example": "2020-01-27T07:06:25Z"
+        },
+        "resolvedBy": {
+          "description": "The person who resolved this defect.  Will not be returned if the defect is unresolved.",
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "ID of the entity that resolved this defect. If the defect was resolved by a driver, this will be a Samsara Driver ID. If the defect was resolved by a mechanic, this will be the Samsara Dashboard User ID of the mechanic.",
+              "type": "string"
+            },
+            "name": {
+              "description": "Name of the person who resolved this defect.",
+              "type": "string"
+            },
+            "type": {
+              "description": "Indicates whether this defect was resolved by a `driver` or a `mechanic`.",
+              "type": "string",
+              "enum": [
+                "driver",
+                "mechanic"
+              ]
+            }
+          }
+        },
+        "trailer": {
+          "allOf": [
+            {
+              "description": "The trailer this defect was submitted for."
+            },
+            {
+              "description": "A minified trailer object.",
+              "type": "object",
+              "properties": {
+                "id": {
+                  "description": "ID of the trailer.",
+                  "type": "string",
+                  "example": "123456789"
+                },
+                "name": {
+                  "description": "Name of the trailer.",
+                  "type": "string",
+                  "example": "Midwest Trailer #5"
+                }
+              }
+            }
+          ]
+        },
+        "vehicle": {
+          "allOf": [
+            {
+              "description": "The vehicle this defect was submitted for."
+            },
+            {
+              "description": "A minified vehicle object.",
+              "type": "object",
+              "properties": {
+                "id": {
+                  "description": "ID of the vehicle.",
+                  "type": "string",
+                  "example": "123456789"
+                },
+                "name": {
+                  "description": "Name of the vehicle.",
+                  "type": "string",
+                  "example": "Midwest Truck #4"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "x-go-gen-location": "models"
+    },
     "externalIds": {
       "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
       "type": "object",
@@ -11963,6 +12661,38 @@
           "description": "Name of the trailer.",
           "type": "string",
           "example": "Midwest Trailer #5"
+        }
+      }
+    },
+    "trailerTinyResponse": {
+      "description": "A minified trailer object.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "ID of the trailer.",
+          "type": "string",
+          "example": "123456789"
+        },
+        "name": {
+          "description": "Name of the trailer.",
+          "type": "string",
+          "example": "Midwest Trailer #5"
+        }
+      }
+    },
+    "userTinyResponse": {
+      "description": "A minified user object.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "ID of the user.",
+          "type": "string",
+          "example": "88668"
+        },
+        "name": {
+          "description": "Name of the user.",
+          "type": "string",
+          "example": "Susan Bob"
         }
       }
     },
