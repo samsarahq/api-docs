@@ -971,6 +971,28 @@
       }
     },
     "/fleet/dvirs/{id}": {
+      "get": {
+        "description": "Returns a specific dvir",
+        "tags": [
+          "Maintenance"
+        ],
+        "summary": "Retrieve a DVIR",
+        "operationId": "getDvir",
+        "responses": {
+          "200": {
+            "description": "A dvir object with ID",
+            "schema": {
+              "$ref": "#/definitions/DvirResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
       "patch": {
         "description": "Resolves a given DVIR by marking its `isResolved` field to `true`.",
         "tags": [
