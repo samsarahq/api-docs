@@ -12387,6 +12387,48 @@
     "VehicleStatsTime": {
       "$ref": "#/definitions/time"
     },
+    "VehicleStatsTirePressure": {
+      "description": "Vehicle tire pressure readings.",
+      "type": "object",
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/VehicleStatsTime"
+        },
+        "value": {
+          "$ref": "#/definitions/VehicleStatsTirePressures"
+        }
+      }
+    },
+    "VehicleStatsTirePressures": {
+      "description": "Tire pressure readings for each of four tires in kilopascals.",
+      "type": "object",
+      "properties": {
+        "backLeftTirePressureKPa": {
+          "description": "The tire pressure of the rear left tire as seen when standing behind the vehicle in kilopascals.",
+          "type": "integer",
+          "format": "int64",
+          "example": 200
+        },
+        "backRightTirePressureKPa": {
+          "description": "The tire pressure of the rear right tire as seen when standing behind the vehicle in kilopascals.",
+          "type": "integer",
+          "format": "int64",
+          "example": 200
+        },
+        "frontLeftTirePressureKPa": {
+          "description": "The tire pressure of the front left tire as seen when standing behind the vehicle in kilopascals.",
+          "type": "integer",
+          "format": "int64",
+          "example": 200
+        },
+        "frontRightTirePressureKPa": {
+          "description": "The tire pressure of the front right tire as seen when standing behind the vehicle in kilopascals.",
+          "type": "integer",
+          "format": "int64",
+          "example": 200
+        }
+      }
+    },
     "VehicleTagIds": {
       "description": "An array of IDs of tags to associate with this vehicle.",
       "type": "array",
