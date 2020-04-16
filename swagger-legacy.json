@@ -1436,6 +1436,31 @@
           }
         }
       },
+      "delete": {
+        "description": "Deletes a single document submission by driver.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Fleet"
+        ],
+        "summary": "/fleet/drivers/{driver_id}/documents/{document_id}",
+        "operationId": "deleteDriverDocumentByIdAndDriverId",
+        "responses": {
+          "200": {
+            "description": "Deletes the specified document."
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
       "parameters": [
         {
           "type": "integer",
