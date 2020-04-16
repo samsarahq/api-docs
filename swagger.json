@@ -3238,6 +3238,25 @@
           }
         }
       },
+      "delete": {
+        "description": "Deletes a single document submission by driver.",
+        "tags": [
+          "Documents"
+        ],
+        "summary": "Delete a document",
+        "operationId": "deleteDriverDocumentByIdAndDriverId",
+        "responses": {
+          "200": {
+            "description": "Deletes the specified document."
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/V1ErrorResponse"
+            }
+          }
+        }
+      },
       "parameters": [
         {
           "type": "integer",
