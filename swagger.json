@@ -2913,7 +2913,7 @@
         }
       }
     },
-    "/v1/fleet/dispatch/routes/{route_id}": {
+    "/v1/fleet/dispatch/routes/{route_id_or_external_id}": {
       "get": {
         "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch a dispatch route by id.",
         "tags": [
@@ -2989,16 +2989,15 @@
       },
       "parameters": [
         {
-          "type": "integer",
-          "format": "int64",
-          "description": "ID of the dispatch route. Must contain only digits 0-9.",
-          "name": "route_id",
+          "type": "string",
+          "description": "ID of the route. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `payrollId:ABFS18600`",
+          "name": "route_id_or_external_id",
           "in": "path",
           "required": true
         }
       ]
     },
-    "/v1/fleet/dispatch/routes/{route_id}/history": {
+    "/v1/fleet/dispatch/routes/{route_id_or_external_id}/history": {
       "get": {
         "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch the history of a dispatch route.",
         "tags": [
@@ -3022,10 +3021,9 @@
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int64",
-            "description": "ID of the route with history. Must contain only digits 0-9.",
-            "name": "route_id",
+            "type": "string",
+            "description": "ID of the route. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `payrollId:ABFS18600`",
+            "name": "route_id_or_external_id",
             "in": "path",
             "required": true
           }
@@ -8290,6 +8288,9 @@
           "format": "int64",
           "example": 555
         },
+        "externalIds": {
+          "$ref": "#/definitions/V1DispatchRouteExternalIds"
+        },
         "group_id": {
           "description": "Deprecated.",
           "type": "integer",
@@ -8413,6 +8414,9 @@
           "format": "int64",
           "example": 555
         },
+        "externalIds": {
+          "$ref": "#/definitions/V1DispatchRouteExternalIds"
+        },
         "name": {
           "description": "Descriptive name of this route.",
           "type": "string",
@@ -8482,6 +8486,9 @@
           "example": 444
         }
       }
+    },
+    "V1DispatchRouteExternalIds": {
+      "$ref": "#/definitions/externalIds"
     },
     "V1DispatchRouteHistoricalEntry": {
       "type": "object",
@@ -12794,6 +12801,13 @@
     }
   },
   "parameters": {
+    "V1DispatchRouteIdOrExternalIdParam": {
+      "type": "string",
+      "description": "ID of the route. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `payrollId:ABFS18600`",
+      "name": "route_id_or_external_id",
+      "in": "path",
+      "required": true
+    },
     "V1assetHistoryEndTimeParam": {
       "type": "integer",
       "format": "int64",
