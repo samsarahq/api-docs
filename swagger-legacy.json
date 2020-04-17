@@ -693,7 +693,7 @@
         }
       }
     },
-    "/v1/fleet/dispatch/routes/{route_id}": {
+    "/v1/fleet/dispatch/routes/{route_id_or_external_id}": {
       "get": {
         "description": "Fetch a dispatch route by id.",
         "consumes": [
@@ -785,16 +785,11 @@
       },
       "parameters": [
         {
-          "type": "integer",
-          "format": "int64",
-          "description": "ID of the dispatch route. Must contain only digits 0-9.",
-          "name": "route_id",
-          "in": "path",
-          "required": true
+          "$ref": "#/parameters/routeIdOrExternalIdParam"
         }
       ]
     },
-    "/v1/fleet/dispatch/routes/{route_id}/history": {
+    "/v1/fleet/dispatch/routes/{route_id_or_external_id}/history": {
       "get": {
         "description": "Fetch the history of a dispatch route.",
         "consumes": [
@@ -817,12 +812,7 @@
             "$ref": "#/parameters/routeHistoryEndTimeParam"
           },
           {
-            "type": "integer",
-            "format": "int64",
-            "description": "ID of the route with history. Must contain only digits 0-9.",
-            "name": "route_id",
-            "in": "path",
-            "required": true
+            "$ref": "#/parameters/routeIdOrExternalIdParam"
           }
         ],
         "responses": {
@@ -4956,6 +4946,9 @@
           "format": "int64",
           "example": 555
         },
+        "externalIds": {
+          "$ref": "#/definitions/ExternalIDs"
+        },
         "group_id": {
           "description": "Deprecated.",
           "type": "integer",
@@ -5078,6 +5071,9 @@
           "type": "integer",
           "format": "int64",
           "example": 555
+        },
+        "externalIds": {
+          "$ref": "#/definitions/ExternalIDs"
         },
         "name": {
           "description": "Descriptive name of this route.",
@@ -10070,6 +10066,13 @@
       "description": "Timestamp representing the start of the period to fetch, inclusive. Used in combination with end_time. Defaults to 0.",
       "name": "start_time",
       "in": "query"
+    },
+    "routeIdOrExternalIdParam": {
+      "type": "string",
+      "description": "ID of the route. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `payrollId:ABFS18600`",
+      "name": "route_id_or_external_id",
+      "in": "path",
+      "required": true
     },
     "routeUpdateParam": {
       "name": "updateDispatchRouteParams",
