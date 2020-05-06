@@ -556,12 +556,12 @@
     },
     "/fleet/defects/{id}": {
       "patch": {
-        "description": "Resolves a given defect by marking its `isResolved` field to `true`.",
+        "description": "Updates a given defect. Can be used to resolve a defect by marking its `isResolved` field to `true`.",
         "tags": [
           "Maintenance"
         ],
-        "summary": "Resolve a defect",
-        "operationId": "resolveDvirDefect",
+        "summary": "Update a defect",
+        "operationId": "updateDvirDefect",
         "parameters": [
           {
             "description": "The DVIR defect fields to update.",
@@ -5711,6 +5711,11 @@
         "isResolved": {
           "description": "Resolves the defect. Must be `true`.",
           "type": "boolean"
+        },
+        "mechanicNotes": {
+          "description": "The mechanics notes on the defect.",
+          "type": "string",
+          "example": "Extremely large oddly shaped hole in passenger side window."
         },
         "resolvedAtTime": {
           "description": "Time when defect was resolved. Defaults to now if not provided. UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`.",
