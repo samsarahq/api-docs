@@ -2,9 +2,7 @@
 
 **Visit [developers.samsara.com](https://developers.samsara.com) for getting started guides, reference documentation, and more!**
 
-This repo hosts [Samsara](https://www.samsara.com)'s [Open API specs](https://swagger.io/specification/v2).
-
-Please visit [developers.samsara.com](https://developers.samsara.com) for in-depth documentation.
+This repo hosts [Samsara](https://www.samsara.com)'s [Open API specs](https://swagger.io/specification/v2). See [developers.samsara.com](https://developers.samsara.com) for details on authentication, versioning, and other usage specifics.
 
 ## Open API Spec
 
