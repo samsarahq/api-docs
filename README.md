@@ -1,6 +1,6 @@
 # Samsara REST API
 
-> Note: This spec powers our API reference documentation, and is kept up-to-date with our API. See [developers.samsara.com](https://developers.samsara.com) for details on how the API is versioned. This spec is provided as an optional resource for your convenience, but it has not been officially tested for use with code-generation libraries. Samsara frequently updates and refactors this spec to improve our [API reference documentation](https://www.samsara.com/api).
+> Note: This spec powers our API reference documentation, and is kept up-to-date with our API. This spec is provided as an optional resource for your convenience, but it has not been officially tested for use with code-generation libraries. Samsara frequently updates and refactors this spec to improve our API reference documentation.
 
 **Visit [developers.samsara.com](https://developers.samsara.com) for getting started guides, reference documentation, and more!**
 
