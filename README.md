@@ -1,5 +1,7 @@
 # Samsara REST API
 
+> Note: This spec powers our API reference documentation, and is kept up-to-date with our API. See [developers.samsara.com](https://developers.samsara.com) for details on how the API is versioned. This spec is provided as an optional resource for your convenience, but it has not been officially tested for use with code-generation libraries. Samsara frequently updates and refactors this spec to improve our [API reference documentation](https://www.samsara.com/api).
+
 **Visit [developers.samsara.com](https://developers.samsara.com) for getting started guides, reference documentation, and more!**
 
 This repo hosts [Samsara](https://www.samsara.com)'s [Open API specs](https://swagger.io/specification/v2). See [developers.samsara.com](https://developers.samsara.com) for details on authentication, versioning, and other usage specifics.
