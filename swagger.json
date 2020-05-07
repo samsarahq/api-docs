@@ -532,17 +532,7 @@
           "200": {
             "description": "List of all DVIR defects in the organization",
             "schema": {
-              "properties": {
-                "data": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/Defect"
-                  }
-                },
-                "pagination": {
-                  "$ref": "#/definitions/paginationResponse"
-                }
-              }
+              "$ref": "#/definitions/DefectsResponse"
             }
           },
           "default": {
@@ -576,11 +566,7 @@
           "200": {
             "description": "Return the modified defect entity",
             "schema": {
-              "properties": {
-                "data": {
-                  "$ref": "#/definitions/Defect"
-                }
-              }
+              "$ref": "#/definitions/DefectResponse"
             }
           },
           "default": {
@@ -5701,12 +5687,8 @@
       }
     },
     "DefectPatch": {
-      "description": "Information about resolving a defect.",
+      "description": "Information about resolving a defect. If resolving a defect, must specify `isResolved` as `true` and `resolvedBy`.",
       "type": "object",
-      "required": [
-        "resolvedBy",
-        "isResolved"
-      ],
       "properties": {
         "isResolved": {
           "description": "Resolves the defect. Must be `true`.",
@@ -5724,6 +5706,30 @@
         },
         "resolvedBy": {
           "$ref": "#/definitions/ResolvedBy"
+        }
+      }
+    },
+    "DefectResponse": {
+      "description": "A single defect.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/Defect"
+        }
+      }
+    },
+    "DefectsResponse": {
+      "description": "A list of defects.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Defect"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
         }
       }
     },
