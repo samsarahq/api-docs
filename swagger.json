@@ -2317,6 +2317,38 @@
           }
         }
       },
+      "patch": {
+        "description": "Update an existing tag. **Note** this implementation of patch uses [the JSON merge patch](https://tools.ietf.org/html/rfc7396) proposed standard. \n\n This means that any fields included in the patch request will _overwrite_ fields which exist on the target resource. \n\n For arrays, this means any array included in the request will _replace_ the array that exists at the specified path, it will not _add_ to the existing array.",
+        "tags": [
+          "Tags"
+        ],
+        "summary": "Update a tag",
+        "operationId": "patchTag",
+        "parameters": [
+          {
+            "name": "tag",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PatchTagRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns updated tag object.",
+            "schema": {
+              "$ref": "#/definitions/TagResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
       "parameters": [
         {
           "type": "string",
@@ -6833,6 +6865,59 @@
       "description": "The tag name.",
       "type": "string",
       "example": "US West Vehicles"
+    },
+    "PatchTagRequest": {
+      "type": "object",
+      "properties": {
+        "addresses": {
+          "description": "The addresses that belong to this tag.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaggedObjectId"
+          }
+        },
+        "assets": {
+          "description": "The trailers, unpowered, and powered assets that belong to this tag.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaggedObjectId"
+          }
+        },
+        "drivers": {
+          "description": "The drivers that belong to this tag.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaggedObjectId"
+          }
+        },
+        "machines": {
+          "description": "The machines that belong to this tag.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaggedObjectId"
+          }
+        },
+        "name": {
+          "$ref": "#/definitions/TagName"
+        },
+        "parentTagId": {
+          "$ref": "#/definitions/ParentTagId"
+        },
+        "sensors": {
+          "description": "The sensors that belong to this tag.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaggedObjectId"
+          }
+        },
+        "vehicles": {
+          "description": "The vehicles that belong to this tag.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaggedObjectId"
+          }
+        }
+      }
     },
     "ReplaceTagRequest": {
       "type": "object",
