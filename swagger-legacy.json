@@ -1354,7 +1354,7 @@
     },
     "/v1/fleet/drivers/{driver_id}/documents": {
       "post": {
-        "description": "Create a driver document for the given driver.",
+        "description": "Create a driver document for the given driver.\n\nYou can create a document in one of two states: \"Required\" or \"Submitted\":\n\n- Setting the document state to \"Submitted\" will submit the document on behalf of the driver.\n\n- Setting the document state to \"Required\" will create a pre-populated document for the driver to fill out in the Driver App.\n\n**Populating document fields**\n\nYou  populate a document's fields according to the document's *document type*. You can retrieve document types using the [GET /v1/fleet/drivers/document_types](#operation/getDriverDocumentTypesByOrgId) endpoint.\n\nYou must populate a document's fields using the field *labels* and *value types*, and the fields must be listed in the same order they appear in the document type. See the request schema below for more details.\n\n\n\n**Setting document fields to default values**\n\nIf a document's state is set to \"Required\", you can set document fields to default values by omitting the field value from the request body or explicitly setting it to null. For example:\n\n```\n\n{\n\n  \"documentTypeUuid\": \"79008acc-56d6-49f4-b5d2-4101ce4b497c\",\n\n  \"fields\": [\n\n    {\n\n      \"label\": \"Number Field\",\n\n      \"valueType\": \"ValueType_Number\",\n\n      \"numberValue\": null\n\n    },\n\n    {\n\n      \"label\": \"Signature Field\",\n\n      \"valueType\": \"ValueType_Signature\"\n\n    }\n\n  ],\n\n  \"dispatchJobId\": 4333299083,\n\n  \"state\":\"Required\"\n\n}\n\n```\n\nIn the request above, the value for the number field is explicitly set to null, and the value for the signature field is omitted. Both forms are accepted and functionally equivalent. Both will result in the field being pre-populated with a default value.",
         "consumes": [
           "application/json"
         ],
@@ -5437,7 +5437,7 @@
               "example": "4aff772c-a7bb-45e6-8e41-6a53e34feb83"
             },
             "fields": {
-              "description": "List of fields for the document. The fields must be listed in the order that that they appear in the document type. Only `stringValue`, `numberValue`, `multipleChoiceValue`, and `dateTimeValue` fields are supported for document creation via the API.",
+              "description": "List of fields for the document. The fields must be listed in the order that that they appear in the document type. You can set the values of fields to null or omit them if the document state is set to \"Required\".",
               "type": "array",
               "items": {
                 "$ref": "#/definitions/DocumentCreateFields"
@@ -5483,7 +5483,7 @@
       ],
       "properties": {
         "dateTimeValue": {
-          "description": "The value of a `ValueType_DateTime` field.",
+          "description": "The value of a `ValueType_DateTime` field. Can be set to null or omitted if the document is in the \"Required\" state.",
           "type": "object",
           "required": [
             "dateTimeMs"
@@ -5498,7 +5498,7 @@
           }
         },
         "multipleChoiceValue": {
-          "description": "The value of a `ValueType_MultipleChoice` field.",
+          "description": "The value of a `ValueType_MultipleChoice` field. Can be set to null or omitted if the document is in the \"Required\" state.",
           "type": "array",
           "items": {
             "type": "object",
@@ -5515,19 +5515,27 @@
           }
         },
         "numberValue": {
-          "description": "The value of a `ValueType_Number` field.",
+          "description": "The value of a `ValueType_Number` field. Can be set to null or omitted if the document is in the \"Required\" state.",
           "type": "number",
           "format": "double",
           "example": 12.34
         },
         "stringValue": {
-          "description": "The value of a `ValueType_String` field.",
+          "description": "The value of a `ValueType_String` field. Can be set to null or omitted if the document is in the \"Required\" state.",
           "type": "string",
           "example": "This is a string."
         },
         "valueType": {
-          "description": "The type of this field.\nValid values: `ValueType_Number`, `ValueType_String`, `ValueType_MultipleChoice`, `ValueType_DateTime`.\nWhen creating documents via API, only `ValueType_Number`, `ValueType_String`, `ValueType_MultipleChoice`, and `ValueType_DateTime` are accepted.",
+          "description": "The type of this field.\n\n**Note:** Signature and photo fields are only supported when the document state is set to \"Required\". The values for these fields must be omitted or set to null. For example:\n\n```\n\n\"fields\": [\n\n  {\n\n    \"label\": \"Signature\",\n\n    \"valueType\": \"ValueType_Signature\"\n\n  },\n\n  ... more fields\n\n]\n\n```",
           "type": "string",
+          "enum": [
+            "ValueType_Number",
+            "ValueType_String",
+            "ValueType_MultipleChoice",
+            "ValueType_DateTime",
+            "ValueType_Signature",
+            "ValueType_Photo"
+          ],
           "example": "ValueType_Number"
         }
       }
@@ -5546,8 +5554,8 @@
               "example": "Fuel Cost ($)"
             },
             "value": {
-              "description": "Please use `stringValue`, `numberValue`, `multipleChoiceValue`, or `dateTimeValue`.",
-              "example": "The field type corresponding to your field."
+              "description": "DEPRECATED. Please use one of the type-specific parameters.",
+              "example": "DEPRECATED."
             }
           }
         },
