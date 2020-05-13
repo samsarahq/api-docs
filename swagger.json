@@ -1885,6 +1885,7 @@
                 "batteryMilliVolts",
                 "engineStates",
                 "fuelPercents",
+                "faultCodes",
                 "gpsDistanceMeters",
                 "gpsOdometerMeters",
                 "obdOdometerMeters",
@@ -1893,7 +1894,7 @@
               "type": "string"
             },
             "collectionFormat": "csv",
-            "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `batteryMilliVolts`: The vehicle battery voltage reading.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).",
+            "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `faultCodes`: The diagnostic fault codes for the vehicle.\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `batteryMilliVolts`: The vehicle battery voltage reading.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).",
             "name": "types",
             "in": "query",
             "required": true
@@ -1969,6 +1970,7 @@
                 "batteryMilliVolts",
                 "engineStates",
                 "fuelPercents",
+                "faultCodes",
                 "gpsDistanceMeters",
                 "gpsOdometerMeters",
                 "obdOdometerMeters",
@@ -1977,7 +1979,7 @@
               "type": "string"
             },
             "collectionFormat": "csv",
-            "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `batteryMilliVolts`: The vehicle battery voltage reading.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).",
+            "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `faultCodes`: The diagnostic fault codes for the vehicle.\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `batteryMilliVolts`: The vehicle battery voltage reading.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).",
             "name": "types",
             "in": "query",
             "required": true
@@ -2067,6 +2069,7 @@
                 "batteryMilliVolts",
                 "engineStates",
                 "fuelPercents",
+                "faultCodes",
                 "gpsDistanceMeters",
                 "gpsOdometerMeters",
                 "obdOdometerMeters",
@@ -2075,7 +2078,7 @@
               "type": "string"
             },
             "collectionFormat": "csv",
-            "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `batteryMilliVolts`: The vehicle battery voltage reading.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).",
+            "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `faultCodes`: The diagnostic fault codes for the vehicle.\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `batteryMilliVolts`: The vehicle battery voltage reading.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).",
             "name": "types",
             "in": "query",
             "required": true
@@ -12390,6 +12393,292 @@
         }
       }
     },
+    "VehicleStatsFaultCodes": {
+      "description": "Engine fault codes read from J1939 and OBDII vehicles.",
+      "type": "object",
+      "required": [
+        "time"
+      ],
+      "properties": {
+        "canBusType": {
+          "$ref": "#/definitions/VehicleStatsFaultCodesCanBusType"
+        },
+        "j1939": {
+          "$ref": "#/definitions/VehicleStatsFaultCodesJ1939"
+        },
+        "obdii": {
+          "$ref": "#/definitions/VehicleStatsFaultCodesOBDII"
+        },
+        "time": {
+          "description": "UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`.",
+          "type": "string",
+          "example": "2020-01-27T07:06:25Z"
+        }
+      }
+    },
+    "VehicleStatsFaultCodesCanBusType": {
+      "description": "The CAN bus type of the vehicle.",
+      "type": "string",
+      "example": "CANBUS_J1939_500"
+    },
+    "VehicleStatsFaultCodesIgnitionType": {
+      "description": "The ignition type of this passenger vehicle. Valid values are \"spark\" and \"compression\"",
+      "type": "string",
+      "enum": [
+        "spark",
+        "compression"
+      ]
+    },
+    "VehicleStatsFaultCodesJ1939": {
+      "description": "Vehicle fault codes for J1939 vehicles.",
+      "type": "object",
+      "properties": {
+        "checkEngineLights": {
+          "$ref": "#/definitions/VehicleStatsFaultCodesJ1939Lights"
+        },
+        "diagnosticTroubleCodes": {
+          "$ref": "#/definitions/VehicleStatsFaultCodesJ1939TroubleCodes"
+        }
+      }
+    },
+    "VehicleStatsFaultCodesJ1939Lights": {
+      "description": "Status of engine lights on J1939 vehicles.",
+      "type": "object",
+      "required": [
+        "emissionsIsOn",
+        "protectIsOn",
+        "stopIsOn",
+        "warningIsOn"
+      ],
+      "properties": {
+        "emissionsIsOn": {
+          "description": "True if the MIL status is nonzero.",
+          "type": "boolean",
+          "example": true
+        },
+        "protectIsOn": {
+          "description": "True if the engine protect lamp status is nonzero.",
+          "type": "boolean",
+          "example": false
+        },
+        "stopIsOn": {
+          "description": "True if the red lamp status is nonzero.",
+          "type": "boolean",
+          "example": false
+        },
+        "warningIsOn": {
+          "description": "True if the amber lamp status is nonzero.",
+          "type": "boolean",
+          "example": false
+        }
+      }
+    },
+    "VehicleStatsFaultCodesJ1939TroubleCode": {
+      "description": "Diagnostic trouble code for J1939 vehicles.",
+      "type": "object",
+      "required": [
+        "txId",
+        "fmiId",
+        "spnId",
+        "occurrenceCount",
+        "milStatus"
+      ],
+      "properties": {
+        "fmiDescription": {
+          "description": "A short description of the FMI identifier, if available.",
+          "type": "string",
+          "example": "Voltage Below Normal"
+        },
+        "fmiId": {
+          "description": "The FMI identifier.",
+          "type": "integer",
+          "format": "int32",
+          "example": 9
+        },
+        "milStatus": {
+          "description": "The MIL status, indicating a check engine light.",
+          "type": "integer",
+          "format": "int32",
+          "example": 1
+        },
+        "occurrenceCount": {
+          "description": "The number of times this fault has triggered.",
+          "type": "integer",
+          "format": "int32",
+          "example": 1
+        },
+        "sourceAddressName": {
+          "description": "The source address name corresponding to the txId",
+          "type": "string",
+          "example": "Engine #1"
+        },
+        "spnDescription": {
+          "description": "A short description of the SPN identifier, if available.",
+          "type": "string",
+          "example": "System Diagnostic Code #1"
+        },
+        "spnId": {
+          "description": "The SPN identifier.",
+          "type": "integer",
+          "format": "int32",
+          "example": 3031
+        },
+        "txId": {
+          "$ref": "#/definitions/VehicleStatsFaultCodesTxId"
+        }
+      }
+    },
+    "VehicleStatsFaultCodesJ1939TroubleCodes": {
+      "description": "Diagnostic trouble codes for J1939 vehicles.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/VehicleStatsFaultCodesJ1939TroubleCode"
+      }
+    },
+    "VehicleStatsFaultCodesOBDII": {
+      "description": "Vehicle fault codes for passenger vehicles.",
+      "type": "object",
+      "properties": {
+        "checkEngineLightIsOn": {
+          "description": "True if the check engine light is illuminated (MIL status field is nonzero for any faults).",
+          "type": "boolean",
+          "example": true
+        },
+        "diagnosticTroubleCodes": {
+          "description": "Diagnostic trouble codes for passenger vehicles.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VehicleStatsFaultCodesOBDIITroubleCode"
+          }
+        }
+      }
+    },
+    "VehicleStatsFaultCodesOBDIITroubleCode": {
+      "description": "Diagnostic trouble code for passenger vehicles.",
+      "type": "object",
+      "required": [
+        "txId"
+      ],
+      "properties": {
+        "confirmedDtcs": {
+          "description": "Confirmed DTC codes.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VehicleStatsFaultCodesPassengerDtc"
+          }
+        },
+        "ignitionType": {
+          "$ref": "#/definitions/VehicleStatsFaultCodesIgnitionType"
+        },
+        "milStatus": {
+          "description": "The MIL status, indicating a check engine light.",
+          "type": "boolean",
+          "example": true
+        },
+        "monitorStatus": {
+          "$ref": "#/definitions/VehicleStatsFaultCodesPassengerMonitorStatus"
+        },
+        "pendingDtcs": {
+          "description": "Pending DTC codes.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VehicleStatsFaultCodesPassengerDtc"
+          }
+        },
+        "permanentDtcs": {
+          "description": "Permanent DTC codes.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VehicleStatsFaultCodesPassengerDtc"
+          }
+        },
+        "txId": {
+          "$ref": "#/definitions/VehicleStatsFaultCodesTxId"
+        }
+      }
+    },
+    "VehicleStatsFaultCodesPassengerDtc": {
+      "description": "Passenger vehicle DTC information",
+      "required": [
+        "dtcId"
+      ],
+      "properties": {
+        "dtcDescription": {
+          "description": "The DTC description, if available.",
+          "type": "string",
+          "example": "Fuel Rail/System Pressure - Too Low Bank 1"
+        },
+        "dtcId": {
+          "description": "The DTC identifier.",
+          "type": "integer",
+          "format": "int32",
+          "example": 135
+        },
+        "dtcShortCode": {
+          "description": "The DTC short code, if available.",
+          "type": "string",
+          "example": "P0087"
+        }
+      }
+    },
+    "VehicleStatsFaultCodesPassengerMonitorStatus": {
+      "description": "Readings from engine sensors",
+      "type": "object",
+      "properties": {
+        "catalyst": {
+          "$ref": "#/definitions/VehicleStatsFaultCodesPassengerMonitorStatusValue"
+        },
+        "comprehensive": {
+          "$ref": "#/definitions/VehicleStatsFaultCodesPassengerMonitorStatusValue"
+        },
+        "egr": {
+          "$ref": "#/definitions/VehicleStatsFaultCodesPassengerMonitorStatusValue"
+        },
+        "evapSystem": {
+          "$ref": "#/definitions/VehicleStatsFaultCodesPassengerMonitorStatusValue"
+        },
+        "fuel": {
+          "$ref": "#/definitions/VehicleStatsFaultCodesPassengerMonitorStatusValue"
+        },
+        "heatedCatalyst": {
+          "$ref": "#/definitions/VehicleStatsFaultCodesPassengerMonitorStatusValue"
+        },
+        "heatedO2Sensor": {
+          "$ref": "#/definitions/VehicleStatsFaultCodesPassengerMonitorStatusValue"
+        },
+        "isoSaeReserved": {
+          "$ref": "#/definitions/VehicleStatsFaultCodesPassengerMonitorStatusValue"
+        },
+        "misfire": {
+          "$ref": "#/definitions/VehicleStatsFaultCodesPassengerMonitorStatusValue"
+        },
+        "notReadyCount": {
+          "description": "Count of the number of sensors reporting N: Not Complete",
+          "type": "integer"
+        },
+        "o2Sensor": {
+          "$ref": "#/definitions/VehicleStatsFaultCodesPassengerMonitorStatusValue"
+        },
+        "secondaryAir": {
+          "$ref": "#/definitions/VehicleStatsFaultCodesPassengerMonitorStatusValue"
+        }
+      }
+    },
+    "VehicleStatsFaultCodesPassengerMonitorStatusValue": {
+      "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
+      "type": "string",
+      "enum": [
+        "N",
+        "R",
+        "U"
+      ]
+    },
+    "VehicleStatsFaultCodesTxId": {
+      "description": "The TX identifier.",
+      "type": "integer",
+      "format": "int32",
+      "example": 0
+    },
     "VehicleStatsFuelPercent": {
       "description": "Vehicle fuel percentage reading.",
       "type": "object",
@@ -12492,6 +12781,365 @@
                 "type": "array",
                 "items": {
                   "$ref": "#/definitions/VehicleStatsEngineState"
+                }
+              },
+              "faultCodes": {
+                "description": "A list of engine fault codes.",
+                "type": "array",
+                "items": {
+                  "description": "Engine fault codes read from J1939 and OBDII vehicles.",
+                  "type": "object",
+                  "required": [
+                    "time"
+                  ],
+                  "properties": {
+                    "canBusType": {
+                      "description": "The CAN bus type of the vehicle.",
+                      "type": "string",
+                      "example": "CANBUS_J1939_500"
+                    },
+                    "j1939": {
+                      "description": "Vehicle fault codes for J1939 vehicles.",
+                      "type": "object",
+                      "properties": {
+                        "checkEngineLights": {
+                          "description": "Status of engine lights on J1939 vehicles.",
+                          "type": "object",
+                          "required": [
+                            "emissionsIsOn",
+                            "protectIsOn",
+                            "stopIsOn",
+                            "warningIsOn"
+                          ],
+                          "properties": {
+                            "emissionsIsOn": {
+                              "description": "True if the MIL status is nonzero.",
+                              "type": "boolean",
+                              "example": true
+                            },
+                            "protectIsOn": {
+                              "description": "True if the engine protect lamp status is nonzero.",
+                              "type": "boolean",
+                              "example": false
+                            },
+                            "stopIsOn": {
+                              "description": "True if the red lamp status is nonzero.",
+                              "type": "boolean",
+                              "example": false
+                            },
+                            "warningIsOn": {
+                              "description": "True if the amber lamp status is nonzero.",
+                              "type": "boolean",
+                              "example": false
+                            }
+                          }
+                        },
+                        "diagnosticTroubleCodes": {
+                          "description": "Diagnostic trouble codes for J1939 vehicles.",
+                          "type": "array",
+                          "items": {
+                            "description": "Diagnostic trouble code for J1939 vehicles.",
+                            "type": "object",
+                            "required": [
+                              "txId",
+                              "fmiId",
+                              "spnId",
+                              "occurrenceCount",
+                              "milStatus"
+                            ],
+                            "properties": {
+                              "fmiDescription": {
+                                "description": "A short description of the FMI identifier, if available.",
+                                "type": "string",
+                                "example": "Voltage Below Normal"
+                              },
+                              "fmiId": {
+                                "description": "The FMI identifier.",
+                                "type": "integer",
+                                "format": "int32",
+                                "example": 9
+                              },
+                              "milStatus": {
+                                "description": "The MIL status, indicating a check engine light.",
+                                "type": "integer",
+                                "format": "int32",
+                                "example": 1
+                              },
+                              "occurrenceCount": {
+                                "description": "The number of times this fault has triggered.",
+                                "type": "integer",
+                                "format": "int32",
+                                "example": 1
+                              },
+                              "sourceAddressName": {
+                                "description": "The source address name corresponding to the txId",
+                                "type": "string",
+                                "example": "Engine #1"
+                              },
+                              "spnDescription": {
+                                "description": "A short description of the SPN identifier, if available.",
+                                "type": "string",
+                                "example": "System Diagnostic Code #1"
+                              },
+                              "spnId": {
+                                "description": "The SPN identifier.",
+                                "type": "integer",
+                                "format": "int32",
+                                "example": 3031
+                              },
+                              "txId": {
+                                "description": "The TX identifier.",
+                                "type": "integer",
+                                "format": "int32",
+                                "example": 0
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "obdii": {
+                      "description": "Vehicle fault codes for passenger vehicles.",
+                      "type": "object",
+                      "properties": {
+                        "checkEngineLightIsOn": {
+                          "description": "True if the check engine light is illuminated (MIL status field is nonzero for any faults).",
+                          "type": "boolean",
+                          "example": true
+                        },
+                        "diagnosticTroubleCodes": {
+                          "description": "Diagnostic trouble codes for passenger vehicles.",
+                          "type": "array",
+                          "items": {
+                            "description": "Diagnostic trouble code for passenger vehicles.",
+                            "type": "object",
+                            "required": [
+                              "txId"
+                            ],
+                            "properties": {
+                              "confirmedDtcs": {
+                                "description": "Confirmed DTC codes.",
+                                "type": "array",
+                                "items": {
+                                  "description": "Passenger vehicle DTC information",
+                                  "required": [
+                                    "dtcId"
+                                  ],
+                                  "properties": {
+                                    "dtcDescription": {
+                                      "description": "The DTC description, if available.",
+                                      "type": "string",
+                                      "example": "Fuel Rail/System Pressure - Too Low Bank 1"
+                                    },
+                                    "dtcId": {
+                                      "description": "The DTC identifier.",
+                                      "type": "integer",
+                                      "format": "int32",
+                                      "example": 135
+                                    },
+                                    "dtcShortCode": {
+                                      "description": "The DTC short code, if available.",
+                                      "type": "string",
+                                      "example": "P0087"
+                                    }
+                                  }
+                                }
+                              },
+                              "ignitionType": {
+                                "description": "The ignition type of this passenger vehicle. Valid values are \"spark\" and \"compression\"",
+                                "type": "string",
+                                "enum": [
+                                  "spark",
+                                  "compression"
+                                ]
+                              },
+                              "milStatus": {
+                                "description": "The MIL status, indicating a check engine light.",
+                                "type": "boolean",
+                                "example": true
+                              },
+                              "monitorStatus": {
+                                "description": "Readings from engine sensors",
+                                "type": "object",
+                                "properties": {
+                                  "catalyst": {
+                                    "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
+                                    "type": "string",
+                                    "enum": [
+                                      "N",
+                                      "R",
+                                      "U"
+                                    ]
+                                  },
+                                  "comprehensive": {
+                                    "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
+                                    "type": "string",
+                                    "enum": [
+                                      "N",
+                                      "R",
+                                      "U"
+                                    ]
+                                  },
+                                  "egr": {
+                                    "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
+                                    "type": "string",
+                                    "enum": [
+                                      "N",
+                                      "R",
+                                      "U"
+                                    ]
+                                  },
+                                  "evapSystem": {
+                                    "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
+                                    "type": "string",
+                                    "enum": [
+                                      "N",
+                                      "R",
+                                      "U"
+                                    ]
+                                  },
+                                  "fuel": {
+                                    "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
+                                    "type": "string",
+                                    "enum": [
+                                      "N",
+                                      "R",
+                                      "U"
+                                    ]
+                                  },
+                                  "heatedCatalyst": {
+                                    "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
+                                    "type": "string",
+                                    "enum": [
+                                      "N",
+                                      "R",
+                                      "U"
+                                    ]
+                                  },
+                                  "heatedO2Sensor": {
+                                    "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
+                                    "type": "string",
+                                    "enum": [
+                                      "N",
+                                      "R",
+                                      "U"
+                                    ]
+                                  },
+                                  "isoSaeReserved": {
+                                    "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
+                                    "type": "string",
+                                    "enum": [
+                                      "N",
+                                      "R",
+                                      "U"
+                                    ]
+                                  },
+                                  "misfire": {
+                                    "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
+                                    "type": "string",
+                                    "enum": [
+                                      "N",
+                                      "R",
+                                      "U"
+                                    ]
+                                  },
+                                  "notReadyCount": {
+                                    "description": "Count of the number of sensors reporting N: Not Complete",
+                                    "type": "integer"
+                                  },
+                                  "o2Sensor": {
+                                    "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
+                                    "type": "string",
+                                    "enum": [
+                                      "N",
+                                      "R",
+                                      "U"
+                                    ]
+                                  },
+                                  "secondaryAir": {
+                                    "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
+                                    "type": "string",
+                                    "enum": [
+                                      "N",
+                                      "R",
+                                      "U"
+                                    ]
+                                  }
+                                }
+                              },
+                              "pendingDtcs": {
+                                "description": "Pending DTC codes.",
+                                "type": "array",
+                                "items": {
+                                  "description": "Passenger vehicle DTC information",
+                                  "required": [
+                                    "dtcId"
+                                  ],
+                                  "properties": {
+                                    "dtcDescription": {
+                                      "description": "The DTC description, if available.",
+                                      "type": "string",
+                                      "example": "Fuel Rail/System Pressure - Too Low Bank 1"
+                                    },
+                                    "dtcId": {
+                                      "description": "The DTC identifier.",
+                                      "type": "integer",
+                                      "format": "int32",
+                                      "example": 135
+                                    },
+                                    "dtcShortCode": {
+                                      "description": "The DTC short code, if available.",
+                                      "type": "string",
+                                      "example": "P0087"
+                                    }
+                                  }
+                                }
+                              },
+                              "permanentDtcs": {
+                                "description": "Permanent DTC codes.",
+                                "type": "array",
+                                "items": {
+                                  "description": "Passenger vehicle DTC information",
+                                  "required": [
+                                    "dtcId"
+                                  ],
+                                  "properties": {
+                                    "dtcDescription": {
+                                      "description": "The DTC description, if available.",
+                                      "type": "string",
+                                      "example": "Fuel Rail/System Pressure - Too Low Bank 1"
+                                    },
+                                    "dtcId": {
+                                      "description": "The DTC identifier.",
+                                      "type": "integer",
+                                      "format": "int32",
+                                      "example": 135
+                                    },
+                                    "dtcShortCode": {
+                                      "description": "The DTC short code, if available.",
+                                      "type": "string",
+                                      "example": "P0087"
+                                    }
+                                  }
+                                }
+                              },
+                              "txId": {
+                                "description": "The TX identifier.",
+                                "type": "integer",
+                                "format": "int32",
+                                "example": 0
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "time": {
+                      "description": "UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`.",
+                      "type": "string",
+                      "example": "2020-01-27T07:06:25Z"
+                    }
+                  }
                 }
               },
               "fuelPercents": {
@@ -12611,6 +13259,9 @@
               },
               "engineState": {
                 "$ref": "#/definitions/VehicleStatsEngineState"
+              },
+              "faultCodes": {
+                "$ref": "#/definitions/VehicleStatsFaultCodes"
               },
               "fuelPercent": {
                 "$ref": "#/definitions/VehicleStatsFuelPercent"
@@ -13452,6 +14103,7 @@
           "batteryMilliVolts",
           "engineStates",
           "fuelPercents",
+          "faultCodes",
           "gpsDistanceMeters",
           "gpsOdometerMeters",
           "obdOdometerMeters",
@@ -13460,7 +14112,7 @@
         "type": "string"
       },
       "collectionFormat": "csv",
-      "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `batteryMilliVolts`: The vehicle battery voltage reading.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).",
+      "description": "The stat type you want this endpoint to return information on. Currently only one stat type is accepted per request.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `faultCodes`: The diagnostic fault codes for the vehicle.\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `batteryMilliVolts`: The vehicle battery voltage reading.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).",
       "name": "types",
       "in": "query",
       "required": true
