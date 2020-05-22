@@ -780,6 +780,82 @@
         }
       }
     },
+    "/fleet/drivers/tachograph-files/history": {
+      "get": {
+        "description": "Returns all known tachograph files for all specified drivers in the time range.",
+        "tags": [
+          "Drivers"
+        ],
+        "summary": "Get tachograph driver files",
+        "operationId": "getDriverTachographFiles",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "startTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "endTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of driver IDs. Example: `driverIds=1234,5678`",
+            "name": "driverIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "name": "tagIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all driver tachograph files in a specified time range.",
+            "schema": {
+              "$ref": "#/definitions/TachographDriverFilesResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/fleet/drivers/{id}": {
       "get": {
         "description": "Get information about a driver.",
@@ -2089,6 +2165,82 @@
             "description": "List of vehicle stats for the specified vehicles, stat type, and time range.",
             "schema": {
               "$ref": "#/definitions/VehicleStatsListResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/vehicles/tachograph-files/history": {
+      "get": {
+        "description": "Returns all known tachograph files for all specified vehicles in the time range.",
+        "tags": [
+          "Vehicles"
+        ],
+        "summary": "Get tachograph vehicle files",
+        "operationId": "getVehicleTachographFiles",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "startTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "endTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of vehicle IDs. Example: `vehicleIds=1234,5678`",
+            "name": "vehicleIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "name": "tagIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all vehicle tachograph files in a specified time range.",
+            "schema": {
+              "$ref": "#/definitions/TachographVehicleFilesResponse"
             }
           },
           "default": {
@@ -7051,6 +7203,130 @@
         },
         "driver": {
           "$ref": "#/definitions/driverTinyResponse"
+        }
+      }
+    },
+    "TachographDriverFile": {
+      "description": "Tachograph driver file",
+      "type": "object",
+      "properties": {
+        "cardNumber": {
+          "description": "Tachograph card number associated with the file.",
+          "type": "string",
+          "example": "1000000492436002"
+        },
+        "createdAtTime": {
+          "description": "Creation time of files in RFC 3339 format. This is either the download time from the tachograph itself (for files downloaded via Samsara VG) or upload time (for files manually uploaded via Samsara UI).",
+          "type": "string",
+          "example": "2020-01-02T15:04:05Z07:00"
+        },
+        "id": {
+          "description": "ID of the file.",
+          "type": "string",
+          "example": "4aff772c-a7bb-45e6-8e41-6a53e34feb83"
+        },
+        "url": {
+          "description": "A temporary URL which can be used to download the file. The link can be used multiple times and expires after an hour.",
+          "type": "string",
+          "example": "https://samsara-tachograph-files.s3.us-west-2.amazonaws.com/123/456/789/4aff772c-a7bb-45e6-8e41-6a53e34feb83.ddd"
+        }
+      }
+    },
+    "TachographDriverFileData": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/TachographDriverFileListWrapper"
+      }
+    },
+    "TachographDriverFileList": {
+      "description": "List of all tachograph driver files in a specified time range.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/TachographDriverFile"
+      }
+    },
+    "TachographDriverFileListWrapper": {
+      "type": "object",
+      "properties": {
+        "driver": {
+          "$ref": "#/definitions/driverTinyResponse"
+        },
+        "files": {
+          "$ref": "#/definitions/TachographDriverFileList"
+        }
+      }
+    },
+    "TachographDriverFilesResponse": {
+      "description": "List of all driver tachograph files in a specified time range.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/TachographDriverFileData"
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "TachographVehicleFile": {
+      "description": "Tachograph vehicle file",
+      "type": "object",
+      "properties": {
+        "createdAtTime": {
+          "description": "Creation time of files in RFC 3339 format. This is either the download time from the tachograph itself (for files downloaded via Samsara VG) or upload time (for files manually uploaded via Samsara UI).",
+          "type": "string",
+          "example": "2020-01-02T15:04:05Z07:00"
+        },
+        "id": {
+          "description": "ID of the file.",
+          "type": "string",
+          "example": "4aff772c-a7bb-45e6-8e41-6a53e34feb83"
+        },
+        "url": {
+          "description": "A temporary URL which can be used to download the file. The link can be used multiple times and expires after an hour.",
+          "type": "string",
+          "example": "https://samsara-tachograph-files.s3.us-west-2.amazonaws.com/123/456/789/4aff772c-a7bb-45e6-8e41-6a53e34feb83.ddd"
+        },
+        "vehicleIdentificationNumber": {
+          "description": "VIN associated with the vehicle file.",
+          "type": "string",
+          "example": "1000000492436002"
+        }
+      }
+    },
+    "TachographVehicleFileData": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/TachographVehicleFileListWrapper"
+      }
+    },
+    "TachographVehicleFileList": {
+      "description": "List of all tachograph vehicle files in a specified time range.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/TachographVehicleFile"
+      }
+    },
+    "TachographVehicleFileListWrapper": {
+      "type": "object",
+      "properties": {
+        "files": {
+          "$ref": "#/definitions/TachographVehicleFileList"
+        },
+        "vehicle": {
+          "$ref": "#/definitions/vehicleTinyResponse"
+        }
+      }
+    },
+    "TachographVehicleFilesResponse": {
+      "description": "List of all vehicle tachograph files in a specified time range.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/TachographVehicleFileData"
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
         }
       }
     },
