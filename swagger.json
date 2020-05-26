@@ -5807,6 +5807,9 @@
         "eldPcEnabled": {
           "$ref": "#/definitions/DriverEldPcEnabled"
         },
+        "eldSettings": {
+          "$ref": "#/definitions/DriverEldSettings"
+        },
         "eldYmEnabled": {
           "$ref": "#/definitions/DriverEldYmEnabled"
         },
@@ -5929,6 +5932,129 @@
       "description": "Flag indicating this driver may select the Personal Conveyance duty status in ELD logs.",
       "type": "boolean",
       "default": false
+    },
+    "DriverEldRuleset": {
+      "description": "The driver's ELD ruleset.",
+      "properties": {
+        "break": {
+          "$ref": "#/definitions/DriverEldRulesetRestBreak"
+        },
+        "cycle": {
+          "$ref": "#/definitions/DriverEldRulesetCycle"
+        },
+        "jurisdiction": {
+          "$ref": "#/definitions/DriverEldRulesetJurisdiction"
+        },
+        "restart": {
+          "$ref": "#/definitions/DriverEldRulesetRestart"
+        },
+        "shift": {
+          "$ref": "#/definitions/DriverEldRulesetShift"
+        }
+      }
+    },
+    "DriverEldRulesetCreatedAtTime": {
+      "description": "The date and time this driver ELD ruleset was created in RFC 3339 format.",
+      "type": "string",
+      "example": "2019-05-18T20:27:35Z"
+    },
+    "DriverEldRulesetCycle": {
+      "description": "The cycle of the ELD ruleset applied to this driver.",
+      "type": "string",
+      "enum": [
+        "USA 60 hour / 7 day",
+        "USA 70 hour / 8 day",
+        "AK 80 hour / 8 day",
+        "AK 70 hour / 7 day",
+        "CA 80 hour / 8 day",
+        "CA 112 hour / 8 day",
+        "FL 80 hour / 8 day",
+        "FL 70 hour / 7 day",
+        "NE 80 hour / 8 day",
+        "NE 70 hour / 7 day",
+        "NC 80 hour / 8 day",
+        "NC 70 hour / 7 day",
+        "OK 70 hour / 8 day",
+        "OK 60 hour / 7 day",
+        "OR 80 hour / 8 day",
+        "OR 70 hour / 7 day",
+        "SC 80 hour / 8 day",
+        "SC 70 hour / 7 day",
+        "TX 70 hour / 7 day",
+        "WI 80 hour / 8 day",
+        "WI 70 hour / 7 day",
+        "Canada South Cycle 1 (70 hour / 7 day)",
+        "Canada South Cycle 2 (120 hour / 14 day)",
+        "Canada North Cycle 1 (80 hour / 7 day)",
+        "Canada North Cycle 2 (120 hour / 14 day)"
+      ],
+      "example": "USA 60 hour / 7 day"
+    },
+    "DriverEldRulesetDailyOffDuty": {
+      "description": "The daily off duty setting of the ELD ruleset applied to this driver.",
+      "type": "string",
+      "enum": [
+        "Canada South",
+        "Canada North"
+      ],
+      "example": "Canada North"
+    },
+    "DriverEldRulesetJurisdiction": {
+      "description": "The jurisdiction of the ELD ruleset applied to this driver. These are specified by either `CS` or `CN` for Canada South and Canada North, respectively, or the ISO 3166-2 postal code for the supported state or territory.",
+      "type": "string",
+      "example": "AR"
+    },
+    "DriverEldRulesetRestBreak": {
+      "description": "The rest break required setting of the ELD ruleset applied to this driver.",
+      "type": "string",
+      "enum": [
+        "Property (off-duty/sleeper)",
+        "Explosives/HazMat (on-duty)"
+      ],
+      "example": "Property (off-duty/sleeper)"
+    },
+    "DriverEldRulesetRestart": {
+      "description": "The restart of the ELD ruleset applied to this driver.",
+      "type": "string",
+      "enum": [
+        "34-hour Restart",
+        "24-hour Restart",
+        "36-hour Restart",
+        "72-hour Restart"
+      ],
+      "example": "Default"
+    },
+    "DriverEldRulesetShift": {
+      "description": "The shift of the ELD ruleset applied to this driver.",
+      "type": "string",
+      "enum": [
+        "US Interstate Property",
+        "US Interstate Passenger"
+      ],
+      "example": "US Interstate Property"
+    },
+    "DriverEldRulesetUpdatedAtTime": {
+      "description": "The date and time this driver ELD ruleset was last updated in RFC 3339 format.",
+      "type": "string",
+      "example": "2019-06-13T19:08:25Z"
+    },
+    "DriverEldRulesetUsShortHaulType": {
+      "description": "The US short haul ruleset type of the ELD ruleset applied to this driver.",
+      "type": "string",
+      "enum": [
+        "100 Air-Mile (Passenger)",
+        "100 Air-Mile (Property)",
+        "150 Air-Mile (Non-CDL)"
+      ],
+      "example": "100 Air-Mile (Passenger)"
+    },
+    "DriverEldSettings": {
+      "description": "The driver's ELD settings.",
+      "properties": {
+        "ruleset": {
+          "$ref": "#/definitions/DriverEldRuleset"
+        }
+      }
     },
     "DriverEldYmEnabled": {
       "description": "Flag indicating this driver may select the Yard Move duty status in ELD logs.",
