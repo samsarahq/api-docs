@@ -5931,7 +5931,7 @@
       "default": false
     },
     "DriverEldRuleset": {
-      "description": "The driver's ELD ruleset.",
+      "description": "An ELD ruleset for a driver.",
       "properties": {
         "break": {
           "$ref": "#/definitions/DriverEldRulesetRestBreak"
@@ -6045,11 +6045,18 @@
       ],
       "example": "100 Air-Mile (Passenger)"
     },
+    "DriverEldRulesets": {
+      "description": "The driver's ELD rulesets and overrides.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/DriverEldRuleset"
+      }
+    },
     "DriverEldSettings": {
       "description": "The driver's ELD settings.",
       "properties": {
-        "ruleset": {
-          "$ref": "#/definitions/DriverEldRuleset"
+        "rulesets": {
+          "$ref": "#/definitions/DriverEldRulesets"
         }
       }
     },
