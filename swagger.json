@@ -587,6 +587,73 @@
         }
       ]
     },
+    "/fleet/documents/pdfs": {
+      "post": {
+        "description": "Request creation of a document PDF. PDFs are currently english-language only.",
+        "tags": [
+          "Documents"
+        ],
+        "summary": "Create a document PDF",
+        "operationId": "generateDocumentPdf",
+        "parameters": [
+          {
+            "description": "Specifies the document for which to generate a PDF.",
+            "name": "document",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/DocumentPdfGenerationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Newly created PDF generation job.",
+            "schema": {
+              "$ref": "#/definitions/DocumentPdfGenerationResponse"
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/documents/pdfs/{id}": {
+      "get": {
+        "description": "Returns generation job status and download URL for a PDF.",
+        "tags": [
+          "Documents"
+        ],
+        "summary": "Query a document PDF",
+        "operationId": "getDocumentPdf",
+        "responses": {
+          "200": {
+            "description": "Document PDF job status and download URL.",
+            "schema": {
+              "$ref": "#/definitions/DocumentPdfQueryResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "ID of the pdf.",
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
     "/fleet/drivers": {
       "get": {
         "description": "Get all drivers in organization.",
@@ -5773,6 +5840,87 @@
         },
         "pagination": {
           "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "DocumentPdfGenerationRequest": {
+      "description": "Identifies a document for PDF generation.",
+      "type": "object",
+      "required": [
+        "documentId"
+      ],
+      "properties": {
+        "documentId": {
+          "description": "ID of the document.",
+          "type": "string",
+          "example": "6c8c0c01-206a-41a4-9d21-15b9978d04cb"
+        }
+      }
+    },
+    "DocumentPdfGenerationResponse": {
+      "description": "Identifies a PDF generation job.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "documentId": {
+              "description": "ID of the document.",
+              "type": "string",
+              "example": "6c8c0c01-206a-41a4-9d21-15b9978d04cb"
+            },
+            "id": {
+              "description": "ID of the PDF file generated or being generated for the document.",
+              "type": "string",
+              "example": "5c8c0c01-206a-41a4-9d21-15b9978d04cb"
+            }
+          }
+        }
+      }
+    },
+    "DocumentPdfQueryResponse": {
+      "description": "A PDF of a document",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "completedAtTime": {
+              "description": "Time that PDF generation was completed, in RFC 3339 format.",
+              "type": "string",
+              "example": "2020-01-02T15:04:06+07:00"
+            },
+            "documentId": {
+              "description": "ID of the document.",
+              "type": "string",
+              "example": "6c8c0c01-206a-41a4-9d21-15b9978d04cb"
+            },
+            "downloadDocumentPdfUrl": {
+              "description": "S3 pre-signed URL to download PDF file.",
+              "type": "string",
+              "example": "https://samsara-driver-document-pdfs.s3.us-west-2.amazonaws.com/org/38487/42a4cffc-409d-4ddf-ba1c-5e3bbb961cba?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=ASI...\u0026X-Amz-Date=20200423T162507Z\u0026X-Amz-Expires=86400\u0026X-Amz-Security-Token=IQoJ...-Amz-SignedHeaders=host\u0026response-expires=2020-04-24T16%3A25%3A07Z\u0026X-Amz-Signature=1c6fe87..."
+            },
+            "id": {
+              "description": "ID of the PDF file generated or being generated for the document",
+              "type": "string",
+              "example": "5c8c0c01-206a-41a4-9d21-15b9978d04cb"
+            },
+            "jobStatus": {
+              "description": "Describes status of the PDF generation job.",
+              "type": "string",
+              "enum": [
+                "requested",
+                "processing",
+                "completed"
+              ],
+              "example": "Completed"
+            },
+            "requestedAtTime": {
+              "description": "Time that PDF generation was requested, in RFC 3339 format.",
+              "type": "string",
+              "example": "2020-01-02T15:04:05+07:00"
+            }
+          }
         }
       }
     },
