@@ -12764,6 +12764,31 @@
     "VehicleLocationTime": {
       "$ref": "#/definitions/time"
     },
+    "VehicleLocationWithUnits": {
+      "description": "Vehicle location event.",
+      "type": "object",
+      "required": [
+        "latitude",
+        "longitude"
+      ],
+      "properties": {
+        "headingDegrees": {
+          "$ref": "#/definitions/VehicleLocationHeading"
+        },
+        "latitude": {
+          "$ref": "#/definitions/VehicleLocationLatitude"
+        },
+        "longitude": {
+          "$ref": "#/definitions/VehicleLocationLongitude"
+        },
+        "reverseGeo": {
+          "$ref": "#/definitions/VehicleLocationReverseGeo"
+        },
+        "speedMilesPerHour": {
+          "$ref": "#/definitions/VehicleLocationSpeed"
+        }
+      }
+    },
     "VehicleLocationsListResponse": {
       "description": "List of vehicle location events and pagination info.",
       "type": "object",
