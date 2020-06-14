@@ -5647,6 +5647,20 @@
             }
           }
         },
+        "scannedDocumentValue": {
+          "description": "The value of a `ValueType_ScannedDocument` field.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "description": "A pre-signed URL to the selected scanned documents that refreshes every 24 hours.",
+                "type": "string",
+                "example": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+              }
+            }
+          }
+        },
         "signatureValue": {
           "description": "The value of a `ValueType_Signature` field.",
           "type": "object",
@@ -5757,7 +5771,7 @@
           }
         },
         "valueType": {
-          "description": "The type of value this field can have.\nValid values: `ValueType_Number`, `ValueType_String`, `ValueType_Photo`, `ValueType_MultipleChoice`, `ValueType_Signature`, `ValueType_DateTime`.",
+          "description": "The type of value this field can have.\nValid values: `ValueType_Number`, `ValueType_String`, `ValueType_Photo`, `ValueType_MultipleChoice`, `ValueType_Signature`, `ValueType_DateTime`, `ValueType_ScannedDocument`.",
           "type": "string",
           "example": "ValueType_Number"
         }
