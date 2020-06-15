@@ -3604,29 +3604,20 @@
             "required": true
           },
           {
-            "name": "hosLogsParam",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "required": [
-                "startMs",
-                "endMs"
-              ],
-              "properties": {
-                "endMs": {
-                  "description": "End of the time range, specified in milliseconds UNIX time. **Note:** This timestamp **should not** be in the future. Providing a timestamp in the future will result in unpredictable behavior from the API. (I.e. this field should always be less than or equal to the current time).",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 1462881998034
-                },
-                "startMs": {
-                  "description": "Beginning of the time range, specified in milliseconds UNIX time.",
-                  "type": "integer",
-                  "format": "int64",
-                  "example": 1462878398034
-                }
-              }
-            }
+            "type": "integer",
+            "format": "int64",
+            "description": "Beginning of the time range, specified in milliseconds UNIX time.",
+            "name": "startMs",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "End of the time range, specified in milliseconds UNIX time. **Note:** This timestamp **should not** be in the future. Providing a timestamp in the future will result in unpredictable behavior from the API. (I.e. this field should always be less than or equal to the current time).",
+            "name": "endMs",
+            "in": "query",
+            "required": true
           }
         ],
         "responses": {
