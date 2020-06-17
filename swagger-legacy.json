@@ -5002,6 +5002,11 @@
           "format": "int64",
           "example": 1462882098000
         },
+        "complete_last_stop_on_arrival": {
+          "description": "When set to true, this causes the Route to complete on arrival at the final stop. When set to false, the last stop will capture arrival and departure separately as with other stops.",
+          "type": "boolean",
+          "default": true
+        },
         "driver_id": {
           "description": "ID of the driver assigned to the dispatch route. Note that driver_id and vehicle_id are mutually exclusive. If neither is specified, then the route is unassigned.",
           "type": "integer",
@@ -5128,6 +5133,11 @@
         "scheduled_start_ms"
       ],
       "properties": {
+        "complete_last_stop_on_arrival": {
+          "description": "When set to true, this causes the Route to complete on arrival at the final stop. When set to false, the last stop will capture arrival and departure separately as with other stops.",
+          "type": "boolean",
+          "default": true
+        },
         "driver_id": {
           "description": "ID of the driver assigned to the dispatch route. Note that driver_id and vehicle_id are mutually exclusive. If neither is specified, then the route is unassigned.",
           "type": "integer",
