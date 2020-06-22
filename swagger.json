@@ -12941,16 +12941,19 @@
           "$ref": "#/definitions/VehicleStatsTime"
         },
         "value": {
-          "description": "The state of the engine.",
-          "type": "string",
-          "enum": [
-            "Off",
-            "On",
-            "Idle"
-          ],
-          "example": "On"
+          "$ref": "#/definitions/VehicleStatsEngineStateSetting"
         }
       }
+    },
+    "VehicleStatsEngineStateSetting": {
+      "description": "The state of the engine.",
+      "type": "string",
+      "enum": [
+        "Off",
+        "On",
+        "Idle"
+      ],
+      "example": "On"
     },
     "VehicleStatsFaultCodes": {
       "description": "Engine fault codes read from J1939 and OBDII vehicles.",
