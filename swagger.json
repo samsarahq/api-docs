@@ -1700,6 +1700,82 @@
         }
       ]
     },
+    "/fleet/safety-events": {
+      "get": {
+        "description": "Fetch safety events for the organization in a given time period.",
+        "tags": [
+          "Safety"
+        ],
+        "summary": "List all safety events.",
+        "operationId": "getSafetyEvents",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "startTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "endTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of vehicle IDs. Example: `vehicleIds=1234,5678`",
+            "name": "vehicleIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of safety events from given time period.",
+            "schema": {
+              "$ref": "#/definitions/SafetyEventsListResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/fleet/vehicles": {
       "get": {
         "description": "Returns a list of all vehicles.",
@@ -7427,6 +7503,180 @@
             "mechanic"
           ],
           "example": "mechanic"
+        }
+      }
+    },
+    "SafetyEvent": {
+      "description": "A safety event.",
+      "type": "object",
+      "properties": {
+        "behaviorLabels": {
+          "$ref": "#/definitions/SafetyEventBehaviorLabels"
+        },
+        "coachingState": {
+          "$ref": "#/definitions/SafetyEventCoachingState"
+        },
+        "downloadForwardVideoUrl": {
+          "$ref": "#/definitions/SafetyEventDownloadForwardVideoUrl"
+        },
+        "downloadInwardVideoUrl": {
+          "$ref": "#/definitions/SafetyEventDownloadInwardVideoUrl"
+        },
+        "downloadTrackedInwardVideoUrl": {
+          "$ref": "#/definitions/SafetyEventDownloadTrackedInwardVideoUrl"
+        },
+        "driver": {
+          "$ref": "#/definitions/SafetyEventDriver"
+        },
+        "id": {
+          "$ref": "#/definitions/SafetyEventId"
+        },
+        "location": {
+          "$ref": "#/definitions/SafetyEventLocation"
+        },
+        "maxAccelerationGForce": {
+          "$ref": "#/definitions/SafetyEventMaxAccelerationGForce"
+        },
+        "time": {
+          "$ref": "#/definitions/SafetyEventTime"
+        },
+        "vehicle": {
+          "$ref": "#/definitions/SafetyEventVehicle"
+        }
+      }
+    },
+    "SafetyEventBehaviorLabel": {
+      "description": "The label and source of the label associated with the safety event.",
+      "type": "object",
+      "required": [
+        "label",
+        "source"
+      ],
+      "properties": {
+        "label": {
+          "$ref": "#/definitions/SafetyEventBehaviorLabelType"
+        },
+        "source": {
+          "$ref": "#/definitions/SafetyEventBehaviorLabelSource"
+        }
+      }
+    },
+    "SafetyEventBehaviorLabelSource": {
+      "description": "The source of the label associated with the safety event.",
+      "type": "string",
+      "enum": [
+        "automated",
+        "userGenerated"
+      ]
+    },
+    "SafetyEventBehaviorLabelType": {
+      "description": "The label associated with the safety event. This list often changes, so it is recommended that clients gracefully handle any types not enumerated in this list.",
+      "type": "string",
+      "enum": [
+        "genericTailgating",
+        "genericDistraction",
+        "defensiveDriving",
+        "rollingStop",
+        "nearCollison",
+        "speeding",
+        "obstructedCamera",
+        "didNotYield",
+        "noSeatbelt",
+        "mobileUsage",
+        "drowsy",
+        "laneDeparture",
+        "followingDistanceSevere",
+        "followingDistanceModerate",
+        "lateResponse",
+        "acceleration",
+        "braking",
+        "harshTurn",
+        "crash",
+        "rolloverProtection",
+        "yawControl",
+        "ranRedLight",
+        "forwardCollisionWarning",
+        "eatingDrinking",
+        "smoking",
+        "followingDistance",
+        "edgeDistractedDriving"
+      ]
+    },
+    "SafetyEventBehaviorLabels": {
+      "description": "The most up-to-date behavior labels associated with the safety event. These labels can be updated by the Safety Report Admin.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/SafetyEventBehaviorLabel"
+      }
+    },
+    "SafetyEventCoachingState": {
+      "description": "The current coaching status of the event.",
+      "type": "string",
+      "enum": [
+        "invalid",
+        "needsReview",
+        "coached",
+        "dismissed",
+        "reviewed",
+        "archived",
+        "manualReview",
+        "needsCoaching",
+        "autoDismissed",
+        "needsRecognition",
+        "recognized"
+      ]
+    },
+    "SafetyEventDownloadForwardVideoUrl": {
+      "description": "URL to download the forward video.",
+      "type": "string",
+      "example": "https://s3.console.aws.amazon.com/s3/buckets/samsara-dashcam-videos/21575/212014918400828/1553060687222/huKA7IhpBV-camera-video-segment-1244214895.mp4"
+    },
+    "SafetyEventDownloadInwardVideoUrl": {
+      "description": "URL to download the inward video.",
+      "type": "string",
+      "example": "https://s3.console.aws.amazon.com/s3/buckets/samsara-dashcam-videos/21575/212014918400828/1553060687222/huKA7IhpBV-camera-video-segment-1244214895.mp4"
+    },
+    "SafetyEventDownloadTrackedInwardVideoUrl": {
+      "description": "URL to download the tracked inward video.",
+      "type": "string",
+      "example": "https://s3.console.aws.amazon.com/s3/buckets/samsara-dashcam-videos/21575/212014918400828/1553060687222/huKA7IhpBV-camera-video-segment-1244214895.mp4"
+    },
+    "SafetyEventDriver": {
+      "$ref": "#/definitions/driverTinyResponse"
+    },
+    "SafetyEventId": {
+      "description": "The unique Samsara ID of the safety event.",
+      "type": "string",
+      "example": "212014918174029-1550954461759"
+    },
+    "SafetyEventLocation": {
+      "$ref": "#/definitions/location"
+    },
+    "SafetyEventMaxAccelerationGForce": {
+      "description": "The maximum acceleration value as a multiplier on the force of gravity (g).",
+      "type": "number",
+      "example": 0.123
+    },
+    "SafetyEventTime": {
+      "description": "The time the safety event occurred in RFC 3339 milliseconds format.",
+      "type": "string",
+      "example": "2019-06-13T19:08:25.455Z"
+    },
+    "SafetyEventVehicle": {
+      "$ref": "#/definitions/vehicleTinyResponse"
+    },
+    "SafetyEventsListResponse": {
+      "description": "List of safety events.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SafetyEvent"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
         }
       }
     },
@@ -14155,6 +14405,28 @@
       "example": {
         "maintenanceId": "250020",
         "payrollId": "ABFS18600"
+      }
+    },
+    "location": {
+      "description": "Location object",
+      "type": "object",
+      "required": [
+        "latitude",
+        "longitude"
+      ],
+      "properties": {
+        "latitude": {
+          "description": "GPS latitude represented in degrees",
+          "type": "number",
+          "format": "double",
+          "example": 122.142
+        },
+        "longitude": {
+          "description": "GPS longitude represented in degrees",
+          "type": "number",
+          "format": "double",
+          "example": -93.343
+        }
       }
     },
     "paginationResponse": {
