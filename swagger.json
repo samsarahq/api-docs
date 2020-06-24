@@ -2031,13 +2031,14 @@
                 "faultCodes",
                 "gpsDistanceMeters",
                 "gpsOdometerMeters",
+                "nfcCardScans",
                 "obdOdometerMeters",
                 "obdEngineSeconds"
               ],
               "type": "string"
             },
             "collectionFormat": "csv",
-            "description": "The stat type you want this endpoint to return information on. \n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `faultCodes`: The diagnostic fault codes for the vehicle.\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `batteryMilliVolts`: The vehicle battery voltage reading.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).",
+            "description": "The stat type you want this endpoint to return information on. \n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `faultCodes`: The diagnostic fault codes for the vehicle.\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `batteryMilliVolts`: The vehicle battery voltage reading.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `nfcCardScans`: NFC cards scan data.",
             "name": "types",
             "in": "query",
             "required": true
@@ -2116,13 +2117,14 @@
                 "faultCodes",
                 "gpsDistanceMeters",
                 "gpsOdometerMeters",
+                "nfcCardScans",
                 "obdOdometerMeters",
                 "obdEngineSeconds"
               ],
               "type": "string"
             },
             "collectionFormat": "csv",
-            "description": "The stat type you want this endpoint to return information on. \n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `faultCodes`: The diagnostic fault codes for the vehicle.\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `batteryMilliVolts`: The vehicle battery voltage reading.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).",
+            "description": "The stat type you want this endpoint to return information on. \n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `faultCodes`: The diagnostic fault codes for the vehicle.\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `batteryMilliVolts`: The vehicle battery voltage reading.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `nfcCardScans`: NFC cards scan data.",
             "name": "types",
             "in": "query",
             "required": true
@@ -2215,13 +2217,14 @@
                 "faultCodes",
                 "gpsDistanceMeters",
                 "gpsOdometerMeters",
+                "nfcCardScans",
                 "obdOdometerMeters",
                 "obdEngineSeconds"
               ],
               "type": "string"
             },
             "collectionFormat": "csv",
-            "description": "The stat type you want this endpoint to return information on. \n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `faultCodes`: The diagnostic fault codes for the vehicle.\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `batteryMilliVolts`: The vehicle battery voltage reading.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).",
+            "description": "The stat type you want this endpoint to return information on. \n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `faultCodes`: The diagnostic fault codes for the vehicle.\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `batteryMilliVolts`: The vehicle battery voltage reading.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `nfcCardScans`: NFC cards scan data.",
             "name": "types",
             "in": "query",
             "required": true
@@ -12931,9 +12934,7 @@
           "$ref": "#/definitions/VehicleAuxInputType"
         },
         "time": {
-          "description": "UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`.",
-          "type": "string",
-          "example": "2020-01-27T07:06:25Z"
+          "$ref": "#/definitions/vehicleStatsAuxInputTime"
         },
         "value": {
           "description": "Boolean indicating the state of the auxiliary equipment.",
@@ -13004,9 +13005,7 @@
           "$ref": "#/definitions/VehicleStatsFaultCodesOBDII"
         },
         "time": {
-          "description": "UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`.",
-          "type": "string",
-          "example": "2020-01-27T07:06:25Z"
+          "$ref": "#/definitions/vehicleStatsAuxInputTime"
         }
       }
     },
@@ -13763,6 +13762,13 @@
               "name": {
                 "$ref": "#/definitions/VehicleName"
               },
+              "nfcCardScans": {
+                "description": "A list of NFC cards that were scanned for the given vehicles.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/VehicleStatsNfcCardScan"
+                }
+              },
               "obdEngineSeconds": {
                 "description": "A list of OBD engine seconds readings for the given vehicle.",
                 "type": "array",
@@ -13782,6 +13788,30 @@
         },
         "pagination": {
           "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "VehicleStatsNfcCardScan": {
+      "description": "Data for the nfc card and the time that it was scanned.",
+      "type": "object",
+      "required": [
+        "time",
+        "card"
+      ],
+      "properties": {
+        "card": {
+          "description": "The card that was scanned.",
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "The id code of the card that was scanned.",
+              "type": "string",
+              "example": "835063"
+            }
+          }
+        },
+        "time": {
+          "$ref": "#/definitions/vehicleStatsAuxInputTime"
         }
       }
     },
@@ -13871,6 +13901,9 @@
               },
               "name": {
                 "$ref": "#/definitions/VehicleName"
+              },
+              "nfcCardScan": {
+                "$ref": "#/definitions/VehicleStatsNfcCardScan"
               },
               "obdEngineSeconds": {
                 "$ref": "#/definitions/VehicleStatsObdEngineSeconds"
@@ -14227,6 +14260,12 @@
           "example": "Susan Bob"
         }
       }
+    },
+    "vehicleStatsAuxInputTime": {
+      "description": "UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`.",
+      "type": "string",
+      "x-go-gen-location": "models",
+      "example": "2020-01-27T07:06:25Z"
     },
     "vehicleTinyResponse": {
       "description": "A minified vehicle object.",
@@ -14700,13 +14739,14 @@
           "faultCodes",
           "gpsDistanceMeters",
           "gpsOdometerMeters",
+          "nfcCardScans",
           "obdOdometerMeters",
           "obdEngineSeconds"
         ],
         "type": "string"
       },
       "collectionFormat": "csv",
-      "description": "The stat type you want this endpoint to return information on. \n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `faultCodes`: The diagnostic fault codes for the vehicle.\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `batteryMilliVolts`: The vehicle battery voltage reading.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).",
+      "description": "The stat type you want this endpoint to return information on. \n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `faultCodes`: The diagnostic fault codes for the vehicle.\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted. In these cases, we recommend using `gpsOdometerMeters`.\n- `gpsOdometerMeters`: The odometer reading according to GPS calculations. This calculation is based off GPS distance traveled and a manual odometer offset for a given vehicle, specified by the user in Samsara's dashboard UI or through the `odometerMeters` field in the [PATCH /fleet/vehicles/{id}](#operation/updateVehicleById) endpoint. `gpsOdometerMeters` is equal to the manual offset plus the GPS distance traveled since the offset was set. The value for this stat type will be omitted if a manual offset is not provided for a given vehicle. *A manual offset can only be provided when we do not have diagnostic coverage for a particular vehicle.*\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `batteryMilliVolts`: The vehicle battery voltage reading.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `nfcCardScans`: NFC cards scan data.",
       "name": "types",
       "in": "query",
       "required": true
