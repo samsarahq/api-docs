@@ -7442,7 +7442,7 @@
       "description": "A single HOS log entry.",
       "type": "object",
       "required": [
-        "startTime"
+        "logStartTime"
       ],
       "properties": {
         "codrivers": {
@@ -7452,22 +7452,22 @@
             "$ref": "#/definitions/driverTinyResponse"
           }
         },
-        "endTime": {
-          "$ref": "#/definitions/time"
-        },
         "hosStatusType": {
           "$ref": "#/definitions/hosStatusType"
         },
+        "logEndTime": {
+          "$ref": "#/definitions/time"
+        },
         "logRecordedLocation": {
           "$ref": "#/definitions/location"
+        },
+        "logStartTime": {
+          "$ref": "#/definitions/time"
         },
         "remark": {
           "description": "Remark associated with the log entry.",
           "type": "string",
           "example": "Lunch Break"
-        },
-        "startTime": {
-          "$ref": "#/definitions/time"
         },
         "vehicle": {
           "$ref": "#/definitions/vehicleTinyResponse"
