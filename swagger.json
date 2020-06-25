@@ -2255,7 +2255,8 @@
                 "gpsOdometerMeters",
                 "nfcCardScans",
                 "obdOdometerMeters",
-                "obdEngineSeconds"
+                "obdEngineSeconds",
+                "gps"
               ],
               "type": "string"
             },
@@ -2341,7 +2342,8 @@
                 "gpsOdometerMeters",
                 "nfcCardScans",
                 "obdOdometerMeters",
-                "obdEngineSeconds"
+                "obdEngineSeconds",
+                "gps"
               ],
               "type": "string"
             },
@@ -2441,7 +2443,8 @@
                 "gpsOdometerMeters",
                 "nfcCardScans",
                 "obdOdometerMeters",
-                "obdEngineSeconds"
+                "obdEngineSeconds",
+                "gps"
               ],
               "type": "string"
             },
@@ -13731,6 +13734,35 @@
         }
       }
     },
+    "VehicleStatsGps": {
+      "description": "GPS location data for the vehicle.",
+      "type": "object",
+      "required": [
+        "latitude",
+        "longitude",
+        "time"
+      ],
+      "properties": {
+        "headingDegrees": {
+          "$ref": "#/definitions/VehicleLocationHeading"
+        },
+        "latitude": {
+          "$ref": "#/definitions/VehicleLocationLatitude"
+        },
+        "longitude": {
+          "$ref": "#/definitions/VehicleLocationLongitude"
+        },
+        "reverseGeo": {
+          "$ref": "#/definitions/VehicleLocationReverseGeo"
+        },
+        "speedMilesPerHour": {
+          "$ref": "#/definitions/VehicleLocationSpeed"
+        },
+        "time": {
+          "$ref": "#/definitions/VehicleStatsTime"
+        }
+      }
+    },
     "VehicleStatsGpsDistanceMeters": {
       "description": "Vehicle GPS distance event.",
       "type": "object",
@@ -13766,6 +13798,35 @@
           "type": "integer",
           "format": "int64",
           "example": 14010293
+        }
+      }
+    },
+    "VehicleStatsListGps": {
+      "description": "GPS location data for the vehicle.",
+      "type": "object",
+      "required": [
+        "latitude",
+        "longitude",
+        "time"
+      ],
+      "properties": {
+        "headingDegrees": {
+          "$ref": "#/definitions/VehicleLocationHeading"
+        },
+        "latitude": {
+          "$ref": "#/definitions/VehicleLocationLatitude"
+        },
+        "longitude": {
+          "$ref": "#/definitions/VehicleLocationLongitude"
+        },
+        "reverseGeo": {
+          "$ref": "#/definitions/VehicleLocationReverseGeo"
+        },
+        "speedMilesPerHour": {
+          "$ref": "#/definitions/VehicleLocationSpeed"
+        },
+        "time": {
+          "$ref": "#/definitions/VehicleStatsTime"
         }
       }
     },
@@ -14207,6 +14268,13 @@
                 "type": "array",
                 "items": {
                   "$ref": "#/definitions/VehicleStatsNfcCardScan"
+                },
+                "gps": {
+                  "description": "A list of GPS location events for the given vehicles.",
+                  "items": {
+                    "$ref": "#/definitions/VehicleStatsListGps"
+                  },
+                  "type": "array"
                 }
               },
               "obdEngineSeconds": {
@@ -14329,6 +14397,9 @@
               },
               "fuelPercent": {
                 "$ref": "#/definitions/VehicleStatsFuelPercent"
+              },
+              "gps": {
+                "$ref": "#/definitions/VehicleStatsGps"
               },
               "gpsDistanceMeters": {
                 "$ref": "#/definitions/VehicleStatsGpsDistanceMeters"
@@ -15216,7 +15287,8 @@
           "gpsOdometerMeters",
           "nfcCardScans",
           "obdOdometerMeters",
-          "obdEngineSeconds"
+          "obdEngineSeconds",
+          "gps"
         ],
         "type": "string"
       },
