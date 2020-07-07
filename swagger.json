@@ -73,6 +73,69 @@
             "description": "List of all addresses in the organization",
             "schema": {
               "$ref": "#/definitions/ListAddressesResponse"
+            },
+            "examples": {
+              "application/json": {
+                "data": [
+                  {
+                    "addressTypes": [
+                      "yard"
+                    ],
+                    "contacts": [
+                      {
+                        "firstName": "Jane",
+                        "id": "22408",
+                        "lastName": "Jones"
+                      }
+                    ],
+                    "createdAtTime": "2019-05-18T20:27:35Z",
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "formattedAddress": "350 Rhode Island St, San Francisco, CA",
+                    "geofence": {
+                      "circle": {
+                        "latitude": 37.765363,
+                        "longitude": -122.4029238,
+                        "radiusMeters": 25
+                      },
+                      "polygon": {
+                        "vertices": [
+                          {
+                            "latitude": 37.765363,
+                            "longitude": -122.403098
+                          },
+                          {
+                            "latitude": 38.765363,
+                            "longitude": -122.403098
+                          },
+                          {
+                            "latitude": 37.765363,
+                            "longitude": -123.403098
+                          }
+                        ]
+                      }
+                    },
+                    "id": "22408",
+                    "latitude": 37.765363,
+                    "longitude": -122.4029238,
+                    "name": "Samsara HQ",
+                    "notes": "Hours of operation: 8am - 6pm; Truck entrance on the Rhode Island street side.",
+                    "tags": [
+                      {
+                        "id": "3914",
+                        "name": "East Coast",
+                        "parentTagId": "4815"
+                      }
+                    ]
+                  }
+                ],
+                "pagination": {
+                  "endCursor": "MjkY",
+                  "hasNextPage": true
+                }
+              }
             }
           },
           "default": {
@@ -5125,72 +5188,80 @@
       ],
       "properties": {
         "addressTypes": {
-          "$ref": "#/definitions/AddressTypes"
+          "description": "Reporting location type associated with the address (used for ELD reporting purposes).",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "yard",
+              "shortHaul",
+              "workforceSite"
+            ],
+            "example": "yard"
+          }
         },
         "contacts": {
-          "$ref": "#/definitions/AddressContacts"
+          "description": "An array Contact mini-objects that are associated the Address.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/contactTinyResponse"
+          }
         },
         "createdAtTime": {
-          "$ref": "#/definitions/AddressCreatedAtTime"
+          "description": "The date and time this address was created in RFC 3339 format.",
+          "type": "string",
+          "format": "date-time",
+          "example": "2019-05-18T20:27:35Z"
         },
         "externalIds": {
-          "$ref": "#/definitions/AddressExternalIds"
+          "$ref": "#/definitions/externalIds"
         },
         "formattedAddress": {
-          "$ref": "#/definitions/AddressFormattedAddress"
+          "description": "The full street address for this address/geofence, as it might be recognized by Google Maps.",
+          "type": "string",
+          "maxLength": 1024,
+          "example": "350 Rhode Island St, San Francisco, CA"
         },
         "geofence": {
           "$ref": "#/definitions/AddressGeofence"
         },
         "id": {
-          "$ref": "#/definitions/AddressId"
+          "description": "ID of the Address.",
+          "type": "string",
+          "example": "22408"
         },
         "latitude": {
-          "$ref": "#/definitions/AddressLatitude"
+          "description": "Latitude of the address. Will be geocoded from `formattedAddress` if not provided.",
+          "type": "number",
+          "format": "double",
+          "example": 37.765363
         },
         "longitude": {
-          "$ref": "#/definitions/AddressLongitude"
+          "description": "Longitude of the address. Will be geocoded from `formattedAddress` if not provided.",
+          "type": "number",
+          "format": "double",
+          "example": -122.4029238
         },
         "name": {
-          "$ref": "#/definitions/AddressName"
+          "description": "Name of the address.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "Samsara HQ"
         },
         "notes": {
-          "$ref": "#/definitions/AddressNotes"
+          "description": "Notes about the address.",
+          "type": "string",
+          "maxLength": 280,
+          "example": "Hours of operation: 8am - 6pm; Truck entrance on the Rhode Island street side."
         },
         "tags": {
-          "$ref": "#/definitions/AddressTags"
+          "description": "An array of all tag mini-objects that are associated with the given address entry.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/tagTinyResponse"
+          }
         }
       }
-    },
-    "AddressContactIds": {
-      "description": "An array of Contact IDs associated with this Address.",
-      "type": "array",
-      "items": {
-        "type": "string",
-        "example": "22408"
-      }
-    },
-    "AddressContacts": {
-      "description": "An array Contact mini-objects that are associated the Address.",
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/contactTinyResponse"
-      }
-    },
-    "AddressCreatedAtTime": {
-      "description": "The date and time this address was created in RFC 3339 format.",
-      "type": "string",
-      "format": "date-time",
-      "example": "2019-05-18T20:27:35Z"
-    },
-    "AddressExternalIds": {
-      "$ref": "#/definitions/externalIds"
-    },
-    "AddressFormattedAddress": {
-      "description": "The full street address for this address/geofence, as it might be recognized by Google Maps.",
-      "type": "string",
-      "maxLength": 1024,
-      "example": "350 Rhode Island St, San Francisco, CA"
     },
     "AddressGeofence": {
       "description": "The geofence that defines this address and its bounds. This can either be a circle or a polygon, but not both.",
@@ -5204,10 +5275,16 @@
           ],
           "properties": {
             "latitude": {
-              "$ref": "#/definitions/AddressLatitude"
+              "description": "Latitude of the address. Will be geocoded from `formattedAddress` if not provided.",
+              "type": "number",
+              "format": "double",
+              "example": 37.765363
             },
             "longitude": {
-              "$ref": "#/definitions/AddressLongitude"
+              "description": "Longitude of the address. Will be geocoded from `formattedAddress` if not provided.",
+              "type": "number",
+              "format": "double",
+              "example": -122.4029238
             },
             "radiusMeters": {
               "description": "The radius of the circular geofence in meters.",
@@ -5267,35 +5344,6 @@
         }
       }
     },
-    "AddressId": {
-      "description": "ID of the Address.",
-      "type": "string",
-      "example": "22408"
-    },
-    "AddressLatitude": {
-      "description": "Latitude of the address. Will be geocoded from `formattedAddress` if not provided.",
-      "type": "number",
-      "format": "double",
-      "example": 37.765363
-    },
-    "AddressLongitude": {
-      "description": "Longitude of the address. Will be geocoded from `formattedAddress` if not provided.",
-      "type": "number",
-      "format": "double",
-      "example": -122.4029238
-    },
-    "AddressName": {
-      "description": "Name of the address.",
-      "type": "string",
-      "maxLength": 255,
-      "example": "Samsara HQ"
-    },
-    "AddressNotes": {
-      "description": "Notes about the address.",
-      "type": "string",
-      "maxLength": 280,
-      "example": "Hours of operation: 8am - 6pm; Truck entrance on the Rhode Island street side."
-    },
     "AddressResponse": {
       "description": "An Address response body.",
       "type": "object",
@@ -5306,34 +5354,6 @@
         "data": {
           "$ref": "#/definitions/Address"
         }
-      }
-    },
-    "AddressTagIds": {
-      "description": "An array of IDs of tags to associate with this address.",
-      "type": "array",
-      "items": {
-        "type": "string",
-        "example": "3914"
-      }
-    },
-    "AddressTags": {
-      "description": "An array of all tag mini-objects that are associated with the given address entry.",
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/tagTinyResponse"
-      }
-    },
-    "AddressTypes": {
-      "description": "Reporting location type associated with the address (used for ELD reporting purposes).",
-      "type": "array",
-      "items": {
-        "type": "string",
-        "enum": [
-          "yard",
-          "shortHaul",
-          "workforceSite"
-        ],
-        "example": "yard"
       }
     },
     "CameraSerial": {
@@ -5545,34 +5565,69 @@
       ],
       "properties": {
         "addressTypes": {
-          "$ref": "#/definitions/AddressTypes"
+          "description": "Reporting location type associated with the address (used for ELD reporting purposes).",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "yard",
+              "shortHaul",
+              "workforceSite"
+            ],
+            "example": "yard"
+          }
         },
         "contactIds": {
-          "$ref": "#/definitions/AddressContactIds"
+          "description": "An array of Contact IDs associated with this Address.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "22408"
+          }
         },
         "externalIds": {
-          "$ref": "#/definitions/AddressExternalIds"
+          "$ref": "#/definitions/externalIds"
         },
         "formattedAddress": {
-          "$ref": "#/definitions/AddressFormattedAddress"
+          "description": "The full street address for this address/geofence, as it might be recognized by Google Maps.",
+          "type": "string",
+          "maxLength": 1024,
+          "example": "350 Rhode Island St, San Francisco, CA"
         },
         "geofence": {
           "$ref": "#/definitions/AddressGeofence"
         },
         "latitude": {
-          "$ref": "#/definitions/AddressLatitude"
+          "description": "Latitude of the address. Will be geocoded from `formattedAddress` if not provided.",
+          "type": "number",
+          "format": "double",
+          "example": 37.765363
         },
         "longitude": {
-          "$ref": "#/definitions/AddressLongitude"
+          "description": "Longitude of the address. Will be geocoded from `formattedAddress` if not provided.",
+          "type": "number",
+          "format": "double",
+          "example": -122.4029238
         },
         "name": {
-          "$ref": "#/definitions/AddressName"
+          "description": "Name of the address.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "Samsara HQ"
         },
         "notes": {
-          "$ref": "#/definitions/AddressNotes"
+          "description": "Notes about the address.",
+          "type": "string",
+          "maxLength": 280,
+          "example": "Hours of operation: 8am - 6pm; Truck entrance on the Rhode Island street side."
         },
         "tagIds": {
-          "$ref": "#/definitions/AddressTagIds"
+          "description": "An array of IDs of tags to associate with this address.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "3914"
+          }
         }
       }
     },
@@ -8256,34 +8311,69 @@
       "type": "object",
       "properties": {
         "addressTypes": {
-          "$ref": "#/definitions/AddressTypes"
+          "description": "Reporting location type associated with the address (used for ELD reporting purposes).",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "yard",
+              "shortHaul",
+              "workforceSite"
+            ],
+            "example": "yard"
+          }
         },
         "contactIds": {
-          "$ref": "#/definitions/AddressContactIds"
+          "description": "An array of Contact IDs associated with this Address.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "22408"
+          }
         },
         "externalIds": {
-          "$ref": "#/definitions/AddressExternalIds"
+          "$ref": "#/definitions/externalIds"
         },
         "formattedAddress": {
-          "$ref": "#/definitions/AddressFormattedAddress"
+          "description": "The full street address for this address/geofence, as it might be recognized by Google Maps.",
+          "type": "string",
+          "maxLength": 1024,
+          "example": "350 Rhode Island St, San Francisco, CA"
         },
         "geofence": {
           "$ref": "#/definitions/AddressGeofence"
         },
         "latitude": {
-          "$ref": "#/definitions/AddressLatitude"
+          "description": "Latitude of the address. Will be geocoded from `formattedAddress` if not provided.",
+          "type": "number",
+          "format": "double",
+          "example": 37.765363
         },
         "longitude": {
-          "$ref": "#/definitions/AddressLongitude"
+          "description": "Longitude of the address. Will be geocoded from `formattedAddress` if not provided.",
+          "type": "number",
+          "format": "double",
+          "example": -122.4029238
         },
         "name": {
-          "$ref": "#/definitions/AddressName"
+          "description": "Name of the address.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "Samsara HQ"
         },
         "notes": {
-          "$ref": "#/definitions/AddressNotes"
+          "description": "Notes about the address.",
+          "type": "string",
+          "maxLength": 280,
+          "example": "Hours of operation: 8am - 6pm; Truck entrance on the Rhode Island street side."
         },
         "tagIds": {
-          "$ref": "#/definitions/AddressTagIds"
+          "description": "An array of IDs of tags to associate with this address.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "3914"
+          }
         }
       }
     },
