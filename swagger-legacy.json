@@ -771,6 +771,11 @@
         ],
         "summary": "/fleet/dispatch/routes/{route_id}/",
         "operationId": "deleteDispatchRouteById",
+        "parameters": [
+          {
+            "$ref": "#/parameters/applyToFutureRoutesParam"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successfully deleted the dispatch route. No response body is returned."
@@ -9828,6 +9833,20 @@
           },
           "tagIds": {
             "$ref": "#/definitions/TagIds"
+          }
+        }
+      }
+    },
+    "applyToFutureRoutesParam": {
+      "name": "applyToFutureRoutes",
+      "in": "body",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "apply_to_future_routes": {
+            "description": "This is only for a recurring route.  If set to true, delete all following runs of the route.  If set to false, only delete the current route.",
+            "type": "boolean",
+            "example": true
           }
         }
       }
