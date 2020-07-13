@@ -2703,6 +2703,481 @@
         }
       ]
     },
+    "/industrial/assets": {
+      "get": {
+        "description": "List all assets in the organization",
+        "tags": [
+          "Industrial"
+        ],
+        "summary": "List all assets",
+        "operationId": "getIndustrialAssets",
+        "parameters": [
+          {
+            "maximum": 512,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int64",
+            "default": 512,
+            "description": "The limit for how many objects will be in the response. Default and max for this value is 512 objects.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "name": "tagIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assets in the organization.",
+            "schema": {
+              "$ref": "#/definitions/ListIndustrialAssetsResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Create an asset with optional configuration parameters",
+        "tags": [
+          "Industrial"
+        ],
+        "summary": "Create an asset",
+        "operationId": "createIndustrialAsset",
+        "parameters": [
+          {
+            "description": "The asset to create",
+            "name": "asset",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/AssetCreate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Newly created asset object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/AssetResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/industrial/assets/{id}": {
+      "delete": {
+        "description": "Delete asset",
+        "tags": [
+          "Industrial"
+        ],
+        "summary": "Delete an existing asset",
+        "operationId": "deleteIndustrialAsset",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Id of the asset to be deleted.",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted the asset. No response body."
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Update an existing asset. Only the provided fields will be updated.",
+        "tags": [
+          "Industrial"
+        ],
+        "summary": "Update an asset",
+        "operationId": "patchIndustrialAsset",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Id of the asset to be updated",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "The updated asset fields",
+            "name": "asset",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/AssetPatch"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The updated asset",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/AssetResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/industrial/data-inputs": {
+      "get": {
+        "description": "Returns all data inputs, optionally filtered by tags or asset ids.",
+        "tags": [
+          "Industrial"
+        ],
+        "summary": "List all data inputs",
+        "operationId": "getDataInputs",
+        "parameters": [
+          {
+            "maximum": 512,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int64",
+            "default": 512,
+            "description": "The limit for how many objects will be in the response. Default and max for this value is 512 objects.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of industrial asset UUIDs. Example: `assetIds=076efac2-83b5-47aa-ba36-18428436dcac,6707b3f0-23b9-4fe3-b7be-11be34aea544`",
+            "name": "assetIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of data inputs with names, ids, and other metadata.",
+            "schema": {
+              "$ref": "#/definitions/DataInputsTinyResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/industrial/data-inputs/data-points": {
+      "get": {
+        "description": "Returns last known data points for all data inputs. This can be filtered by optional tags, specific data input IDs or asset IDs.",
+        "tags": [
+          "Industrial"
+        ],
+        "summary": "List most recent data points for data inputs",
+        "operationId": "getDataInputDataSnapshot",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of data input IDs. Example: `dataInputIds=1234,5678`",
+            "name": "dataInputIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of industrial asset UUIDs. Example: `assetIds=076efac2-83b5-47aa-ba36-18428436dcac,6707b3f0-23b9-4fe3-b7be-11be34aea544`",
+            "name": "assetIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of last known data input data points and pagination parameters",
+            "schema": {
+              "$ref": "#/definitions/DataInputSnapshotResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/industrial/data-inputs/data-points/feed": {
+      "get": {
+        "description": "Follow a continuous feed of all data input data points.\n\nYour first call to this endpoint will provide you with the most recent data points for each data input and a `pagination` object that contains an `endCursor`.\n\nYou can provide the `endCursor` to the `after` parameter of this endpoint to get data point updates since that `endCursor`.\n\nIf `hasNextPage` is `false`, no updates are readily available yet. We suggest waiting a minimum of 5 seconds before requesting updates.",
+        "tags": [
+          "Industrial"
+        ],
+        "summary": "Follow a real-time feed of data points for data inputs",
+        "operationId": "getDataInputDataFeed",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of data input IDs. Example: `dataInputIds=1234,5678`",
+            "name": "dataInputIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of industrial asset UUIDs. Example: `assetIds=076efac2-83b5-47aa-ba36-18428436dcac,6707b3f0-23b9-4fe3-b7be-11be34aea544`",
+            "name": "assetIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all data points for specified data inputs",
+            "schema": {
+              "$ref": "#/definitions/DataInputListResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/industrial/data-inputs/data-points/history": {
+      "get": {
+        "description": "Returns all known data points during the given time range for all data inputs. This can be filtered by optional tags, specific data input IDs or asset IDs.",
+        "tags": [
+          "Industrial"
+        ],
+        "summary": "List historical data points for data inputs",
+        "operationId": "getDataInputDataHistory",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "startTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "endTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of data input IDs. Example: `dataInputIds=1234,5678`",
+            "name": "dataInputIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A comma-separated list of industrial asset UUIDs. Example: `assetIds=076efac2-83b5-47aa-ba36-18428436dcac,6707b3f0-23b9-4fe3-b7be-11be34aea544`",
+            "name": "assetIds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all data points for the specified data inputs and time range.",
+            "schema": {
+              "$ref": "#/definitions/DataInputListResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/tags": {
       "get": {
         "description": "Return all of the tags for an organization.",
@@ -4426,102 +4901,6 @@
         }
       ]
     },
-    "/v1/industrial/data": {
-      "get": {
-        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch all of the data inputs.",
-        "tags": [
-          "Industrial"
-        ],
-        "summary": "Get industrial data",
-        "operationId": "V1getAllDataInputs",
-        "parameters": [
-          {
-            "type": "integer",
-            "format": "int64",
-            "description": "Timestamp in unix milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs. defaults to nowMs.",
-            "name": "startMs",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "format": "int64",
-            "description": "Timestamp in unix milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs. Defaults to nowMs.",
-            "name": "endMs",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of data inputs.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "dataInputs": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/V1DataInputHistoryResponse"
-                  }
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "Unexpected error.",
-            "schema": {
-              "$ref": "#/definitions/V1ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/v1/industrial/data/{data_input_id}": {
-      "get": {
-        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch datapoints from a given data input.",
-        "tags": [
-          "Industrial"
-        ],
-        "summary": "Get industrial data from a specific device",
-        "operationId": "V1getDataInput",
-        "parameters": [
-          {
-            "type": "integer",
-            "format": "int64",
-            "description": "ID of the data input. Must contain only digits 0-9.",
-            "name": "data_input_id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "integer",
-            "format": "int64",
-            "description": "Timestamp in unix milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs. defaults to nowMs.",
-            "name": "startMs",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "format": "int64",
-            "description": "Timestamp in unix milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs. Defaults to nowMs.",
-            "name": "endMs",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns datapoints for the given data input",
-            "schema": {
-              "$ref": "#/definitions/V1DataInputHistoryResponse"
-            }
-          },
-          "default": {
-            "description": "Unexpected error.",
-            "schema": {
-              "$ref": "#/definitions/V1ErrorResponse"
-            }
-          }
-        }
-      }
-    },
     "/v1/industrial/vision/cameras": {
       "get": {
         "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch all cameras.",
@@ -5396,6 +5775,174 @@
         }
       }
     },
+    "AssetCreate": {
+      "description": "The asset creation arguments",
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "customMetadata": {
+          "$ref": "#/definitions/CustomMetadata"
+        },
+        "location": {
+          "$ref": "#/definitions/AssetLocation"
+        },
+        "locationDataInputId": {
+          "$ref": "#/definitions/LocationDataInputId"
+        },
+        "locationType": {
+          "$ref": "#/definitions/LocationType"
+        },
+        "name": {
+          "$ref": "#/definitions/AssetName"
+        },
+        "parentId": {
+          "$ref": "#/definitions/ParentId"
+        },
+        "runningStatusDataInputId": {
+          "$ref": "#/definitions/RunningStatusDataInputId"
+        },
+        "tagIds": {
+          "$ref": "#/definitions/TagIds"
+        }
+      }
+    },
+    "AssetLocation": {
+      "description": "For locationType \"point\", latitude and longitude are required. For \"address\", formattedAddress must be provided, and lat/long can be optionally included for displaying a dot on the assets map. For \"dataInput\", this object should not be passed in.",
+      "type": "object",
+      "properties": {
+        "formattedAddress": {
+          "description": "Formatted address of the location",
+          "type": "string",
+          "example": "350 Rhode Island St, San Francisco CA, 94103"
+        },
+        "latitude": {
+          "$ref": "#/definitions/latitude"
+        },
+        "longitude": {
+          "$ref": "#/definitions/longitude"
+        }
+      }
+    },
+    "AssetName": {
+      "description": "The name of the asset.",
+      "type": "string"
+    },
+    "AssetPatch": {
+      "description": "The asset creation arguments",
+      "type": "object",
+      "properties": {
+        "customMetadata": {
+          "$ref": "#/definitions/CustomMetadata"
+        },
+        "location": {
+          "$ref": "#/definitions/AssetLocation"
+        },
+        "locationDataInputId": {
+          "$ref": "#/definitions/LocationDataInputId"
+        },
+        "locationType": {
+          "$ref": "#/definitions/LocationType"
+        },
+        "name": {
+          "$ref": "#/definitions/AssetName"
+        },
+        "parentId": {
+          "description": "The id of the parent asset that the asset belongs to. Pass in an empty string to remove the child from the parent.",
+          "type": "string",
+          "example": ""
+        },
+        "runningStatusDataInputId": {
+          "$ref": "#/definitions/RunningStatusDataInputId"
+        },
+        "tagIds": {
+          "$ref": "#/definitions/TagIds"
+        }
+      }
+    },
+    "AssetResponse": {
+      "description": "Asset",
+      "type": "object",
+      "required": [
+        "name",
+        "id",
+        "isRunning"
+      ],
+      "properties": {
+        "customMetadata": {
+          "$ref": "#/definitions/CustomMetadata"
+        },
+        "id": {
+          "description": "The id of the asset",
+          "type": "string",
+          "example": "123abcde-4567-8910-1112-fghi1314jklm"
+        },
+        "isRunning": {
+          "description": "The running status of the asset. Returns True for On, and False for Off.",
+          "type": "boolean"
+        },
+        "location": {
+          "$ref": "#/definitions/AssetLocation"
+        },
+        "locationDataInput": {
+          "description": "The associated location data input (only applicable when locationType is \"dataInput\").",
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "description": "Id of the data input",
+              "type": "string"
+            }
+          }
+        },
+        "locationType": {
+          "$ref": "#/definitions/LocationType"
+        },
+        "name": {
+          "$ref": "#/definitions/AssetName"
+        },
+        "parentAsset": {
+          "description": "The asset's parent",
+          "type": "object",
+          "required": [
+            "id",
+            "name"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/definitions/ParentId"
+            },
+            "name": {
+              "$ref": "#/definitions/AssetName"
+            }
+          }
+        },
+        "runningStatusDataInput": {
+          "description": "The associated running status data input. isRunning will be true when the data input's value is 1.",
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "description": "Id of the data input",
+              "type": "string",
+              "example": "12345"
+            }
+          }
+        },
+        "tags": {
+          "description": "The list of [tags](https://kb.samsara.com/hc/en-us/articles/360026674631-Using-Tags-and-Tag-Nesting) associated with the Industrial Asset. **By default**: empty. Can be set or updated through the Samsara Dashboard or the API at any time.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/tagTinyResponse"
+          }
+        }
+      }
+    },
     "CameraSerial": {
       "description": "The serial number of the camera installed in the vehicle",
       "type": "string",
@@ -5939,6 +6486,174 @@
       "properties": {
         "hosStatusType": {
           "$ref": "#/definitions/hosStatusType"
+        }
+      }
+    },
+    "CustomMetadata": {
+      "description": "The custom fields of an asset.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "example": {
+        "manufacturer": "Samsara",
+        "serialNumber": "123ABC"
+      }
+    },
+    "DataInputListResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "An array of data input data points. Each object in the array represents a data input and will contain its associated data points.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataInputResponse"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "DataInputResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/DataInputTinyResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "fftSpectraPoints": {
+              "description": "List of FFT spectra data points from the data input.",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FftSpectraDataPoint"
+              }
+            },
+            "j1939D1StatusPoints": {
+              "description": "List of active J1939D1 statuses.",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/J1939D1StatusDataPoint"
+              }
+            },
+            "locationPoints": {
+              "description": "List of location data points from the data input.",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/LocationDataPoint"
+              }
+            },
+            "numberPoints": {
+              "description": "List of numeric data points from the data input.",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/NumberDataPoint"
+              }
+            },
+            "stringPoints": {
+              "description": "List of string data points from the data input.",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/StringDataPoint"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "DataInputSnapshot": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/DataInputTinyResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "fftSpectraPoint": {
+              "$ref": "#/definitions/FftSpectraDataPoint"
+            },
+            "j1939D1StatusPoint": {
+              "$ref": "#/definitions/J1939D1StatusDataPoint"
+            },
+            "locationPoint": {
+              "$ref": "#/definitions/LocationDataPoint"
+            },
+            "numberPoint": {
+              "$ref": "#/definitions/NumberDataPoint"
+            },
+            "stringPoint": {
+              "$ref": "#/definitions/StringDataPoint"
+            }
+          }
+        }
+      ]
+    },
+    "DataInputSnapshotResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "An array of data inputs' latest data points. Each object in the array represents a data input and its most recent data point.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataInputSnapshot"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "DataInputTinyResponse": {
+      "description": "A minified data input object",
+      "type": "object",
+      "properties": {
+        "assetId": {
+          "description": "Unique identifier for the data input's asset.",
+          "type": "string",
+          "format": "uuid",
+          "example": "74771078-5edb-4733-88f2-7242f520d1f1"
+        },
+        "dataGroup": {
+          "description": "Data group for this data input.",
+          "type": "string",
+          "format": "string",
+          "example": "Flow"
+        },
+        "id": {
+          "description": "Unique identifier for the data input.",
+          "type": "string",
+          "format": "uuid",
+          "example": "12345"
+        },
+        "name": {
+          "description": "Name of this data input.",
+          "type": "string",
+          "format": "string",
+          "example": "Pump Flow"
+        },
+        "units": {
+          "description": "Units of data for this data input.",
+          "type": "string",
+          "format": "string",
+          "example": "Gallons Per Minute"
+        }
+      }
+    },
+    "DataInputsTinyResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "An array of data input objects. Each object contains the data input's name, ID, and other metadata.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataInputTinyResponse"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
         }
       }
     },
@@ -7379,6 +8094,53 @@
       "type": "string",
       "example": "2019-05-03T04:30:31Z"
     },
+    "FftSpectraDataPoint": {
+      "description": "FFT spectrum data point of a data input.",
+      "type": "object",
+      "properties": {
+        "fftSpectra": {
+          "description": "FFT spectrum data",
+          "type": "object",
+          "properties": {
+            "frequencies": {
+              "description": "Frequencies",
+              "type": "array",
+              "items": {
+                "type": "number",
+                "format": "double"
+              }
+            },
+            "x": {
+              "description": "X-axis data",
+              "type": "array",
+              "items": {
+                "type": "number",
+                "format": "double"
+              }
+            },
+            "y": {
+              "description": "Y-axis data",
+              "type": "array",
+              "items": {
+                "type": "number",
+                "format": "double"
+              }
+            },
+            "z": {
+              "description": "Z-axis data",
+              "type": "array",
+              "items": {
+                "type": "number",
+                "format": "double"
+              }
+            }
+          }
+        },
+        "time": {
+          "$ref": "#/definitions/time"
+        }
+      }
+    },
     "HosBreak": {
       "description": "Remaining durations for the HOS rest break requirement.",
       "type": "object",
@@ -7587,6 +8349,57 @@
         }
       }
     },
+    "J1939D1StatusDataPoint": {
+      "description": "Active J1939D1 statuses of a device.",
+      "type": "object",
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/time"
+        },
+        "value": {
+          "description": "List of active statuses.",
+          "type": "array",
+          "items": {
+            "description": "A single J1939D1 status",
+            "type": "object",
+            "properties": {
+              "amberLampStatus": {
+                "type": "number",
+                "format": "int32"
+              },
+              "fmi": {
+                "type": "number",
+                "format": "int32"
+              },
+              "milStatus": {
+                "type": "number",
+                "format": "int32"
+              },
+              "occuranceCount": {
+                "type": "number",
+                "format": "int32"
+              },
+              "protectLampStatus": {
+                "type": "number",
+                "format": "int32"
+              },
+              "redLampStatus": {
+                "type": "number",
+                "format": "int32"
+              },
+              "spn": {
+                "type": "number",
+                "format": "int32"
+              },
+              "txId": {
+                "type": "number",
+                "format": "int32"
+              }
+            }
+          }
+        }
+      }
+    },
     "ListAddressesResponse": {
       "description": "A list of Addresses and pagination information.",
       "type": "object",
@@ -7650,6 +8463,20 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/Driver"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "ListIndustrialAssetsResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AssetResponse"
           }
         },
         "pagination": {
@@ -7722,6 +8549,133 @@
           "$ref": "#/definitions/paginationResponse"
         }
       }
+    },
+    "LocationDataInputId": {
+      "description": "Required if locationType is \"dataInput\". Specifies the id of a location data input which will determine the asset's location.",
+      "type": "string",
+      "example": "12345"
+    },
+    "LocationDataPoint": {
+      "description": "A single location data point of a data input.",
+      "type": "object",
+      "properties": {
+        "gpsLocation": {
+          "description": "GPS location information of the data input's datapoint.",
+          "type": "object",
+          "properties": {
+            "formattedAddress": {
+              "description": "Formatted address of the location",
+              "type": "string",
+              "format": "string",
+              "example": "350 Rhode Island St, San Francisco CA, 94103"
+            },
+            "gpsMetersPerSecond": {
+              "description": "Speed of GPS (meters per second)",
+              "type": "number",
+              "format": "double",
+              "example": 35.5
+            },
+            "headingDegrees": {
+              "description": "Heading degrees",
+              "type": "number",
+              "format": "double",
+              "example": 91.2
+            },
+            "latitude": {
+              "description": "Latitude of the location",
+              "type": "number",
+              "format": "double",
+              "example": 42.44817
+            },
+            "longitude": {
+              "description": "Longitude of the location",
+              "type": "number",
+              "format": "double",
+              "example": -71.224716
+            },
+            "place": {
+              "description": "Address of the location",
+              "type": "object",
+              "properties": {
+                "city": {
+                  "description": "City",
+                  "type": "string",
+                  "format": "string",
+                  "example": "San Francisco"
+                },
+                "houseNumber": {
+                  "description": "House number",
+                  "type": "string",
+                  "format": "string",
+                  "example": "350"
+                },
+                "neighborhood": {
+                  "description": "Neighborhood",
+                  "type": "string",
+                  "format": "string",
+                  "example": "Castro"
+                },
+                "poi": {
+                  "description": "POI",
+                  "type": "string",
+                  "format": "string",
+                  "example": "400"
+                },
+                "postcode": {
+                  "description": "Postcode",
+                  "type": "string",
+                  "format": "string",
+                  "example": "94103"
+                },
+                "state": {
+                  "description": "State",
+                  "type": "string",
+                  "format": "string",
+                  "example": "CA"
+                },
+                "street": {
+                  "description": "Street",
+                  "type": "string",
+                  "format": "string",
+                  "example": "Rhode Island"
+                }
+              }
+            }
+          }
+        },
+        "time": {
+          "$ref": "#/definitions/time"
+        }
+      }
+    },
+    "LocationType": {
+      "description": "The format of the location. This field is required if a location is provided.",
+      "type": "string",
+      "enum": [
+        "point",
+        "address",
+        "dataInput"
+      ]
+    },
+    "NumberDataPoint": {
+      "description": "A single numeric data point of a data input.",
+      "type": "object",
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/time"
+        },
+        "value": {
+          "description": "Numeric value of the data point.",
+          "type": "number",
+          "format": "double",
+          "example": 1992.0506
+        }
+      }
+    },
+    "ParentId": {
+      "description": "The id of the parent asset that the asset belongs to.",
+      "type": "string",
+      "example": "123abcde-4567-8910-1112-fghi1314jklm"
     },
     "ParentTag": {
       "description": "If this tag is part a hierarchical tag tree, this is the parent tag, otherwise this will be omitted.",
@@ -7876,6 +8830,11 @@
           "example": "mechanic"
         }
       }
+    },
+    "RunningStatusDataInputId": {
+      "description": "The asset's isRunning status will be true when the associated data input's value is 1",
+      "type": "string",
+      "example": "67890"
     },
     "SafetyEvent": {
       "description": "A safety event.",
@@ -8055,6 +9014,21 @@
       "description": "The serial number of the gateway installed in the vehicle.",
       "type": "string",
       "example": "VG12345"
+    },
+    "StringDataPoint": {
+      "description": "A single string data point of a data input.",
+      "type": "object",
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/time"
+        },
+        "value": {
+          "description": "String value of the data point.",
+          "type": "string",
+          "format": "string",
+          "example": "On"
+        }
+      }
     },
     "TachographActivity": {
       "description": "Tachograph activity",
@@ -8291,6 +9265,14 @@
       "description": "Unique Samsara ID of this tag.",
       "type": "string",
       "example": "342417"
+    },
+    "TagIds": {
+      "description": "The ids of the tags that the asset should belong to.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "example": "123"
+      }
     },
     "TagName": {
       "description": "Name of this tag.",
@@ -14941,6 +15923,12 @@
       ],
       "example": "offDuty"
     },
+    "latitude": {
+      "description": "The latitude of the asset in decimal degrees.",
+      "type": "number",
+      "format": "double",
+      "example": 37.765363
+    },
     "location": {
       "description": "Location object",
       "type": "object",
@@ -14962,6 +15950,12 @@
           "example": -93.343
         }
       }
+    },
+    "longitude": {
+      "description": "The longitude of the asset in decimal degrees.",
+      "type": "number",
+      "format": "double",
+      "example": -122.403098
     },
     "paginationResponse": {
       "description": "Pagination parameters.",
