@@ -5789,7 +5789,9 @@
           "$ref": "#/definitions/AssetLocation"
         },
         "locationDataInputId": {
-          "$ref": "#/definitions/LocationDataInputId"
+          "description": "Required if locationType is \"dataInput\". Specifies the id of a location data input which will determine the asset's location. **The data input will be moved to the new asset.**",
+          "type": "string",
+          "example": "12345"
         },
         "locationType": {
           "$ref": "#/definitions/LocationType"
@@ -5801,7 +5803,9 @@
           "$ref": "#/definitions/ParentId"
         },
         "runningStatusDataInputId": {
-          "$ref": "#/definitions/RunningStatusDataInputId"
+          "description": "The asset's isRunning status will be true when the associated data input's value is 1. Data input cannot be of location format. **The data input will be moved to the new asset.**",
+          "type": "string",
+          "example": "67890"
         },
         "tagIds": {
           "$ref": "#/definitions/TagIds"
@@ -5840,7 +5844,9 @@
           "$ref": "#/definitions/AssetLocation"
         },
         "locationDataInputId": {
-          "$ref": "#/definitions/LocationDataInputId"
+          "description": "Required if locationType is \"dataInput\". Specifies the id of a location data input which will determine the asset's location. The data input must be in the asset.",
+          "type": "string",
+          "example": "12345"
         },
         "locationType": {
           "$ref": "#/definitions/LocationType"
@@ -5854,7 +5860,9 @@
           "example": ""
         },
         "runningStatusDataInputId": {
-          "$ref": "#/definitions/RunningStatusDataInputId"
+          "description": "The asset's isRunning status will be true when the associated data input's value is 1. Data input cannot be of location format. The data input must be in the asset.",
+          "type": "string",
+          "example": "67890"
         },
         "tagIds": {
           "$ref": "#/definitions/TagIds"
@@ -8550,11 +8558,6 @@
         }
       }
     },
-    "LocationDataInputId": {
-      "description": "Required if locationType is \"dataInput\". Specifies the id of a location data input which will determine the asset's location.",
-      "type": "string",
-      "example": "12345"
-    },
     "LocationDataPoint": {
       "description": "A single location data point of a data input.",
       "type": "object",
@@ -8830,11 +8833,6 @@
           "example": "mechanic"
         }
       }
-    },
-    "RunningStatusDataInputId": {
-      "description": "The asset's isRunning status will be true when the associated data input's value is 1",
-      "type": "string",
-      "example": "67890"
     },
     "SafetyEvent": {
       "description": "A safety event.",
