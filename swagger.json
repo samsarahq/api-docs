@@ -2560,6 +2560,39 @@
             "name": "types",
             "in": "query",
             "required": true
+          },
+          {
+            "type": "array",
+            "items": {
+              "enum": [
+                "auxInput1",
+                "auxInput2",
+                "auxInput3",
+                "auxInput4",
+                "auxInput5",
+                "auxInput6",
+                "auxInput7",
+                "auxInput8",
+                "auxInput9",
+                "auxInput10",
+                "batteryMilliVolts",
+                "engineStates",
+                "faultCodes",
+                "fuelPercents",
+                "engineRpm",
+                "ecuSpeedMph",
+                "gps",
+                "gpsDistanceMeters",
+                "obdOdometerMeters",
+                "obdEngineSeconds",
+                "tirePressure"
+              ],
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "The decoration stat types that you would like to annotate each of the primary stat responses with. For example, if you wish to know the vehicle's location whenever the engine changed states, you may set types=engineStates\u0026decorations=gps. Currently only two decorations per request are supported. Note that decorations will significantly increase the response payload size.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `faultCodes`: The diagnostic fault codes for the vehicle.\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `engineRpm`: The revolutions per minute of the engine.\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted.\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `ecuSpeedMph`: The speed of the engine in miles per hour according to the ECU.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `batteryMilliVolts`: The vehicle battery voltage reading.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput3-10`: Stat events from the [auxiliary inputs](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType3-10` fields in the response body for [Retrieving a Vehicle](#operation/getVehicle). Note, ports 3-10 are only available on gateways with the aux expander.\n- `nfcCardScans`: Nfc cards scan data.\n-  `gps`: GPS location of the vehicle.",
+            "name": "decorations",
+            "in": "query"
           }
         ],
         "responses": {
@@ -2671,6 +2704,39 @@
             "name": "types",
             "in": "query",
             "required": true
+          },
+          {
+            "type": "array",
+            "items": {
+              "enum": [
+                "auxInput1",
+                "auxInput2",
+                "auxInput3",
+                "auxInput4",
+                "auxInput5",
+                "auxInput6",
+                "auxInput7",
+                "auxInput8",
+                "auxInput9",
+                "auxInput10",
+                "batteryMilliVolts",
+                "engineStates",
+                "faultCodes",
+                "fuelPercents",
+                "engineRpm",
+                "ecuSpeedMph",
+                "gps",
+                "gpsDistanceMeters",
+                "obdOdometerMeters",
+                "obdEngineSeconds",
+                "tirePressure"
+              ],
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "The decoration stat types that you would like to annotate each of the primary stat responses with. For example, if you wish to know the vehicle's location whenever the engine changed states, you may set types=engineStates\u0026decorations=gps. Currently only two decorations per request are supported. Note that decorations will significantly increase the response payload size.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `faultCodes`: The diagnostic fault codes for the vehicle.\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `engineRpm`: The revolutions per minute of the engine.\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted.\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `ecuSpeedMph`: The speed of the engine in miles per hour according to the ECU.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `batteryMilliVolts`: The vehicle battery voltage reading.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput3-10`: Stat events from the [auxiliary inputs](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType3-10` fields in the response body for [Retrieving a Vehicle](#operation/getVehicle). Note, ports 3-10 are only available on gateways with the aux expander.\n- `nfcCardScans`: Nfc cards scan data.\n-  `gps`: GPS location of the vehicle.",
+            "name": "decorations",
+            "in": "query"
           }
         ],
         "responses": {
@@ -14886,6 +14952,70 @@
         }
       }
     },
+    "VehicleStatsAuxInputDecoration": {
+      "type": "object",
+      "required": [
+        "name",
+        "value"
+      ],
+      "properties": {
+        "name": {
+          "description": "The type of [auxiliary input](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) configured for this Vehicle. Once configured, these inputs will generate dynamic, time-series data that will be available to view in the Samsara Dashboard. **By default**: empty. This can be set or updated through the Samsara Dashboard or the API at any time. Inputs 3-10 are only available on gateways with an attached aux expander.",
+          "type": "string",
+          "enum": [
+            "none",
+            "emergencyLights",
+            "emergencyAlarm",
+            "stopPaddle",
+            "powerTakeOff",
+            "plow",
+            "sweeper",
+            "salter",
+            "reefer",
+            "door",
+            "boom",
+            "auxiliaryEngine",
+            "generator",
+            "eightWayLights"
+          ],
+          "example": "boom"
+        },
+        "value": {
+          "$ref": "#/definitions/VehicleStatsAuxInputValue"
+        }
+      }
+    },
+    "VehicleStatsAuxInputValue": {
+      "description": "Boolean indicating the state of the auxiliary equipment.",
+      "type": "boolean",
+      "example": "true"
+    },
+    "VehicleStatsAuxInputWithDecoration": {
+      "description": "Data for auxiliary digio equipment.",
+      "type": "object",
+      "properties": {
+        "decorations": {
+          "$ref": "#/definitions/VehicleStatsDecorations"
+        },
+        "name": {
+          "$ref": "#/definitions/VehicleAuxInputType"
+        },
+        "time": {
+          "$ref": "#/definitions/vehicleStatsAuxInputTime"
+        },
+        "value": {
+          "description": "Boolean indicating the state of the auxiliary equipment.",
+          "type": "boolean",
+          "example": "true"
+        }
+      }
+    },
+    "VehicleStatsBatteryMilliVoltsValue": {
+      "description": "The battery voltage in millivolts.",
+      "type": "integer",
+      "format": "int64",
+      "example": 7991
+    },
     "VehicleStatsBatteryVoltage": {
       "description": "Vehicle battery voltage reading.",
       "type": "object",
@@ -14902,6 +15032,200 @@
           "type": "integer",
           "format": "int64",
           "example": 7991
+        }
+      }
+    },
+    "VehicleStatsBatteryVoltageWithDecoration": {
+      "description": "Vehicle battery voltage reading.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "decorations": {
+          "$ref": "#/definitions/VehicleStatsDecorations"
+        },
+        "time": {
+          "$ref": "#/definitions/VehicleStatsTime"
+        },
+        "value": {
+          "description": "The battery voltage in millivolts.",
+          "type": "integer",
+          "format": "int64",
+          "example": 7991
+        }
+      }
+    },
+    "VehicleStatsDecorations": {
+      "description": "Decorated values for the primary vehicle stat datapoints.",
+      "type": "object",
+      "properties": {
+        "auxInput1": {
+          "$ref": "#/definitions/VehicleStatsAuxInputDecoration"
+        },
+        "auxInput10": {
+          "$ref": "#/definitions/VehicleStatsAuxInputDecoration"
+        },
+        "auxInput2": {
+          "$ref": "#/definitions/VehicleStatsAuxInputDecoration"
+        },
+        "auxInput3": {
+          "$ref": "#/definitions/VehicleStatsAuxInputDecoration"
+        },
+        "auxInput4": {
+          "$ref": "#/definitions/VehicleStatsAuxInputDecoration"
+        },
+        "auxInput5": {
+          "$ref": "#/definitions/VehicleStatsAuxInputDecoration"
+        },
+        "auxInput6": {
+          "$ref": "#/definitions/VehicleStatsAuxInputDecoration"
+        },
+        "auxInput7": {
+          "$ref": "#/definitions/VehicleStatsAuxInputDecoration"
+        },
+        "auxInput8": {
+          "$ref": "#/definitions/VehicleStatsAuxInputDecoration"
+        },
+        "auxInput9": {
+          "$ref": "#/definitions/VehicleStatsAuxInputDecoration"
+        },
+        "batteryMilliVolts": {
+          "type": "object",
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "$ref": "#/definitions/VehicleStatsBatteryMilliVoltsValue"
+            }
+          }
+        },
+        "ecuSpeedMph": {
+          "type": "object",
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "$ref": "#/definitions/VehicleStatsEcuSpeedMphValue"
+            }
+          }
+        },
+        "engineRpm": {
+          "type": "object",
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "$ref": "#/definitions/VehicleStatsEngineRpmValue"
+            }
+          }
+        },
+        "engineStates": {
+          "type": "object",
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "description": "The state of the engine.",
+              "type": "string",
+              "enum": [
+                "Off",
+                "On",
+                "Idle"
+              ],
+              "example": "On"
+            }
+          }
+        },
+        "faultCodes": {
+          "$ref": "#/definitions/VehicleStatsFaultCodesValue"
+        },
+        "fuelPercents": {
+          "type": "object",
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "$ref": "#/definitions/VehicleStatsFuelPercentValue"
+            }
+          }
+        },
+        "gps": {
+          "type": "object",
+          "required": [
+            "latitude",
+            "longitude"
+          ],
+          "properties": {
+            "headingDegrees": {
+              "$ref": "#/definitions/VehicleLocationHeading"
+            },
+            "latitude": {
+              "$ref": "#/definitions/VehicleLocationLatitude"
+            },
+            "longitude": {
+              "$ref": "#/definitions/VehicleLocationLongitude"
+            },
+            "reverseGeo": {
+              "$ref": "#/definitions/VehicleLocationReverseGeo"
+            },
+            "speedMilesPerHour": {
+              "$ref": "#/definitions/VehicleLocationSpeed"
+            }
+          }
+        },
+        "gpsDistanceMeters": {
+          "type": "object",
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "$ref": "#/definitions/VehicleStatsGpsDistanceMetersValue"
+            }
+          }
+        },
+        "gpsOdometerMeters": {
+          "type": "object",
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "$ref": "#/definitions/VehicleStatsGpsOdometerMetersValue"
+            }
+          }
+        },
+        "obdEngineSeconds": {
+          "type": "object",
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "$ref": "#/definitions/VehicleStatsObdEngineSecondsValue"
+            }
+          }
+        },
+        "obdOdometerMeters": {
+          "type": "object",
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "$ref": "#/definitions/VehicleStatsObdOdometerMetersValue"
+            }
+          }
+        },
+        "tirePressure": {
+          "$ref": "#/definitions/VehicleStatsTirePressures"
         }
       }
     },
@@ -14924,6 +15248,34 @@
         }
       }
     },
+    "VehicleStatsEcuSpeedMphValue": {
+      "description": "The speed of the vehicle in miles per hour, as reported by the ECU.",
+      "type": "number",
+      "format": "double",
+      "example": 58.3
+    },
+    "VehicleStatsEcuSpeedMphWithDecoration": {
+      "description": "The speed of the vehicle in miles per hour, as reported by the ECU.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "decorations": {
+          "$ref": "#/definitions/VehicleStatsDecorations"
+        },
+        "time": {
+          "$ref": "#/definitions/VehicleStatsTime"
+        },
+        "value": {
+          "description": "The speed of the vehicle in miles per hour.",
+          "type": "number",
+          "format": "double",
+          "example": 32.1
+        }
+      }
+    },
     "VehicleStatsEngineRpm": {
       "description": "Vehicle engine RPM reading.",
       "type": "object",
@@ -14932,6 +15284,34 @@
         "value"
       ],
       "properties": {
+        "time": {
+          "$ref": "#/definitions/VehicleStatsTime"
+        },
+        "value": {
+          "description": "The revolutions per minute of the engine.",
+          "type": "integer",
+          "format": "int64",
+          "example": 1000
+        }
+      }
+    },
+    "VehicleStatsEngineRpmValue": {
+      "description": "The revolutions per minute of the engine.",
+      "type": "integer",
+      "format": "int64",
+      "example": 1000
+    },
+    "VehicleStatsEngineRpmWithDecoration": {
+      "description": "Vehicle engine RPM reading.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "decorations": {
+          "$ref": "#/definitions/VehicleStatsDecorations"
+        },
         "time": {
           "$ref": "#/definitions/VehicleStatsTime"
         },
@@ -14968,6 +15348,25 @@
         "Idle"
       ],
       "example": "On"
+    },
+    "VehicleStatsEngineStateWithDecoration": {
+      "description": "Vehicle engine state event.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "decorations": {
+          "$ref": "#/definitions/VehicleStatsDecorations"
+        },
+        "time": {
+          "$ref": "#/definitions/VehicleStatsTime"
+        },
+        "value": {
+          "$ref": "#/definitions/VehicleStatsEngineStateSetting"
+        }
+      }
     },
     "VehicleStatsFaultCodes": {
       "description": "Engine fault codes read from J1939 and OBDII vehicles.",
@@ -15253,6 +15652,377 @@
       "format": "int32",
       "example": 0
     },
+    "VehicleStatsFaultCodesValue": {
+      "description": "Fault codes for the vehicle",
+      "type": "object",
+      "properties": {
+        "canBusType": {
+          "description": "The CAN bus type of the vehicle.",
+          "type": "string",
+          "example": "CANBUS_J1939_500"
+        },
+        "j1939": {
+          "description": "Vehicle fault codes for J1939 vehicles.",
+          "type": "object",
+          "properties": {
+            "checkEngineLights": {
+              "description": "Status of engine lights on J1939 vehicles.",
+              "type": "object",
+              "required": [
+                "emissionsIsOn",
+                "protectIsOn",
+                "stopIsOn",
+                "warningIsOn"
+              ],
+              "properties": {
+                "emissionsIsOn": {
+                  "description": "True if the MIL status is nonzero.",
+                  "type": "boolean",
+                  "example": true
+                },
+                "protectIsOn": {
+                  "description": "True if the engine protect lamp status is nonzero.",
+                  "type": "boolean",
+                  "example": false
+                },
+                "stopIsOn": {
+                  "description": "True if the red lamp status is nonzero.",
+                  "type": "boolean",
+                  "example": false
+                },
+                "warningIsOn": {
+                  "description": "True if the amber lamp status is nonzero.",
+                  "type": "boolean",
+                  "example": false
+                }
+              }
+            },
+            "diagnosticTroubleCodes": {
+              "description": "Diagnostic trouble codes for J1939 vehicles.",
+              "type": "array",
+              "items": {
+                "description": "Diagnostic trouble code for J1939 vehicles.",
+                "type": "object",
+                "required": [
+                  "txId",
+                  "fmiId",
+                  "spnId",
+                  "occurrenceCount",
+                  "milStatus"
+                ],
+                "properties": {
+                  "fmiDescription": {
+                    "description": "A short description of the FMI identifier, if available.",
+                    "type": "string",
+                    "example": "Voltage Below Normal"
+                  },
+                  "fmiId": {
+                    "description": "The FMI identifier.",
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 9
+                  },
+                  "milStatus": {
+                    "description": "The MIL status, indicating a check engine light.",
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1
+                  },
+                  "occurrenceCount": {
+                    "description": "The number of times this fault has triggered.",
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1
+                  },
+                  "sourceAddressName": {
+                    "description": "The source address name corresponding to the txId",
+                    "type": "string",
+                    "example": "Engine #1"
+                  },
+                  "spnDescription": {
+                    "description": "A short description of the SPN identifier, if available.",
+                    "type": "string",
+                    "example": "System Diagnostic Code #1"
+                  },
+                  "spnId": {
+                    "description": "The SPN identifier.",
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 3031
+                  },
+                  "txId": {
+                    "description": "The TX identifier.",
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        "obdii": {
+          "description": "Vehicle fault codes for passenger vehicles.",
+          "type": "object",
+          "properties": {
+            "checkEngineLightIsOn": {
+              "description": "True if the check engine light is illuminated (MIL status field is nonzero for any faults).",
+              "type": "boolean",
+              "example": true
+            },
+            "diagnosticTroubleCodes": {
+              "description": "Diagnostic trouble codes for passenger vehicles.",
+              "type": "array",
+              "items": {
+                "description": "Diagnostic trouble code for passenger vehicles.",
+                "type": "object",
+                "required": [
+                  "txId"
+                ],
+                "properties": {
+                  "confirmedDtcs": {
+                    "description": "Confirmed DTC codes.",
+                    "type": "array",
+                    "items": {
+                      "description": "Passenger vehicle DTC information",
+                      "required": [
+                        "dtcId"
+                      ],
+                      "properties": {
+                        "dtcDescription": {
+                          "description": "The DTC description, if available.",
+                          "type": "string",
+                          "example": "Fuel Rail/System Pressure - Too Low Bank 1"
+                        },
+                        "dtcId": {
+                          "description": "The DTC identifier.",
+                          "type": "integer",
+                          "format": "int32",
+                          "example": 135
+                        },
+                        "dtcShortCode": {
+                          "description": "The DTC short code, if available.",
+                          "type": "string",
+                          "example": "P0087"
+                        }
+                      }
+                    }
+                  },
+                  "ignitionType": {
+                    "description": "The ignition type of this passenger vehicle. Valid values are \"spark\" and \"compression\"",
+                    "type": "string",
+                    "enum": [
+                      "spark",
+                      "compression"
+                    ]
+                  },
+                  "milStatus": {
+                    "description": "The MIL status, indicating a check engine light.",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "monitorStatus": {
+                    "description": "Readings from engine sensors",
+                    "type": "object",
+                    "properties": {
+                      "catalyst": {
+                        "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
+                        "type": "string",
+                        "enum": [
+                          "N",
+                          "R",
+                          "U"
+                        ]
+                      },
+                      "comprehensive": {
+                        "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
+                        "type": "string",
+                        "enum": [
+                          "N",
+                          "R",
+                          "U"
+                        ]
+                      },
+                      "egr": {
+                        "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
+                        "type": "string",
+                        "enum": [
+                          "N",
+                          "R",
+                          "U"
+                        ]
+                      },
+                      "evapSystem": {
+                        "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
+                        "type": "string",
+                        "enum": [
+                          "N",
+                          "R",
+                          "U"
+                        ]
+                      },
+                      "fuel": {
+                        "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
+                        "type": "string",
+                        "enum": [
+                          "N",
+                          "R",
+                          "U"
+                        ]
+                      },
+                      "heatedCatalyst": {
+                        "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
+                        "type": "string",
+                        "enum": [
+                          "N",
+                          "R",
+                          "U"
+                        ]
+                      },
+                      "heatedO2Sensor": {
+                        "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
+                        "type": "string",
+                        "enum": [
+                          "N",
+                          "R",
+                          "U"
+                        ]
+                      },
+                      "isoSaeReserved": {
+                        "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
+                        "type": "string",
+                        "enum": [
+                          "N",
+                          "R",
+                          "U"
+                        ]
+                      },
+                      "misfire": {
+                        "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
+                        "type": "string",
+                        "enum": [
+                          "N",
+                          "R",
+                          "U"
+                        ]
+                      },
+                      "notReadyCount": {
+                        "description": "Count of the number of sensors reporting N: Not Complete",
+                        "type": "integer"
+                      },
+                      "o2Sensor": {
+                        "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
+                        "type": "string",
+                        "enum": [
+                          "N",
+                          "R",
+                          "U"
+                        ]
+                      },
+                      "secondaryAir": {
+                        "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
+                        "type": "string",
+                        "enum": [
+                          "N",
+                          "R",
+                          "U"
+                        ]
+                      }
+                    }
+                  },
+                  "pendingDtcs": {
+                    "description": "Pending DTC codes.",
+                    "type": "array",
+                    "items": {
+                      "description": "Passenger vehicle DTC information",
+                      "required": [
+                        "dtcId"
+                      ],
+                      "properties": {
+                        "dtcDescription": {
+                          "description": "The DTC description, if available.",
+                          "type": "string",
+                          "example": "Fuel Rail/System Pressure - Too Low Bank 1"
+                        },
+                        "dtcId": {
+                          "description": "The DTC identifier.",
+                          "type": "integer",
+                          "format": "int32",
+                          "example": 135
+                        },
+                        "dtcShortCode": {
+                          "description": "The DTC short code, if available.",
+                          "type": "string",
+                          "example": "P0087"
+                        }
+                      }
+                    }
+                  },
+                  "permanentDtcs": {
+                    "description": "Permanent DTC codes.",
+                    "type": "array",
+                    "items": {
+                      "description": "Passenger vehicle DTC information",
+                      "required": [
+                        "dtcId"
+                      ],
+                      "properties": {
+                        "dtcDescription": {
+                          "description": "The DTC description, if available.",
+                          "type": "string",
+                          "example": "Fuel Rail/System Pressure - Too Low Bank 1"
+                        },
+                        "dtcId": {
+                          "description": "The DTC identifier.",
+                          "type": "integer",
+                          "format": "int32",
+                          "example": 135
+                        },
+                        "dtcShortCode": {
+                          "description": "The DTC short code, if available.",
+                          "type": "string",
+                          "example": "P0087"
+                        }
+                      }
+                    }
+                  },
+                  "txId": {
+                    "description": "The TX identifier.",
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "VehicleStatsFaultCodesWithDecoration": {
+      "description": "Engine fault codes read from J1939 and OBDII vehicles.",
+      "type": "object",
+      "required": [
+        "time"
+      ],
+      "properties": {
+        "canBusType": {
+          "$ref": "#/definitions/VehicleStatsFaultCodesCanBusType"
+        },
+        "decorations": {
+          "$ref": "#/definitions/VehicleStatsDecorations"
+        },
+        "j1939": {
+          "$ref": "#/definitions/VehicleStatsFaultCodesJ1939"
+        },
+        "obdii": {
+          "$ref": "#/definitions/VehicleStatsFaultCodesOBDII"
+        },
+        "time": {
+          "$ref": "#/definitions/VehicleStatsTime"
+        }
+      }
+    },
     "VehicleStatsFuelPercent": {
       "description": "Vehicle fuel percentage reading.",
       "type": "object",
@@ -15261,6 +16031,34 @@
         "value"
       ],
       "properties": {
+        "time": {
+          "$ref": "#/definitions/VehicleStatsTime"
+        },
+        "value": {
+          "description": "The engine fuel level in percentage points (e.g. `99`, `50`, etc).",
+          "type": "integer",
+          "format": "int64",
+          "example": 54
+        }
+      }
+    },
+    "VehicleStatsFuelPercentValue": {
+      "description": "The engine fuel level in percentage points (e.g. `99`, `50`, etc).",
+      "type": "integer",
+      "format": "int64",
+      "example": 54
+    },
+    "VehicleStatsFuelPercentWithDecoration": {
+      "description": "Vehicle fuel percentage reading.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "decorations": {
+          "$ref": "#/definitions/VehicleStatsDecorations"
+        },
         "time": {
           "$ref": "#/definitions/VehicleStatsTime"
         },
@@ -15320,6 +16118,34 @@
         }
       }
     },
+    "VehicleStatsGpsDistanceMetersValue": {
+      "description": "Number of meters the vehicle has traveled since the gateway was installed, based on GPS calculations.",
+      "type": "number",
+      "format": "double",
+      "example": 81029.591434899
+    },
+    "VehicleStatsGpsDistanceMetersWithDecoration": {
+      "description": "Vehicle GPS distance event.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "decorations": {
+          "$ref": "#/definitions/VehicleStatsDecorations"
+        },
+        "time": {
+          "$ref": "#/definitions/VehicleStatsTime"
+        },
+        "value": {
+          "description": "Number of meters the vehicle has traveled since the gateway was installed, based on GPS calculations.",
+          "type": "number",
+          "format": "double",
+          "example": 81029.591434899
+        }
+      }
+    },
     "VehicleStatsGpsOdometerMeters": {
       "description": "Vehicle GPS odometer event.",
       "type": "object",
@@ -15328,6 +16154,34 @@
         "value"
       ],
       "properties": {
+        "time": {
+          "$ref": "#/definitions/VehicleStatsTime"
+        },
+        "value": {
+          "description": "Number of meters the vehicle has traveled according to the GPS calculations and the manually-specified odometer reading.",
+          "type": "integer",
+          "format": "int64",
+          "example": 14010293
+        }
+      }
+    },
+    "VehicleStatsGpsOdometerMetersValue": {
+      "description": "Number of meters the vehicle has traveled according to the GPS calculations and the manually-specified odometer reading.",
+      "type": "integer",
+      "format": "int64",
+      "example": 14010293
+    },
+    "VehicleStatsGpsOdometerMetersWithDecoration": {
+      "description": "Vehicle GPS odometer event.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "decorations": {
+          "$ref": "#/definitions/VehicleStatsDecorations"
+        },
         "time": {
           "$ref": "#/definitions/VehicleStatsTime"
         },
@@ -15348,6 +16202,9 @@
         "time"
       ],
       "properties": {
+        "decorations": {
+          "$ref": "#/definitions/VehicleStatsDecorations"
+        },
         "headingDegrees": {
           "$ref": "#/definitions/VehicleLocationHeading"
         },
@@ -15379,469 +16236,131 @@
         "data": {
           "description": "A list of vehicles and an array of stat events for each vehicle.",
           "type": "array",
+          "required": [
+            "id",
+            "name"
+          ],
           "items": {
             "description": "A vehicle and its list of stat events.",
             "type": "object",
-            "required": [
-              "id",
-              "name"
-            ],
             "properties": {
               "auxInput1": {
                 "description": "A list of auxiliary equipment states.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/VehicleStatsAuxInput"
+                  "$ref": "#/definitions/VehicleStatsAuxInputWithDecoration"
                 }
               },
               "auxInput10": {
                 "description": "A list of auxiliary equipment states.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/VehicleStatsAuxInput"
+                  "$ref": "#/definitions/VehicleStatsAuxInputWithDecoration"
                 }
               },
               "auxInput2": {
                 "description": "A list of auxiliary equipment states.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/VehicleStatsAuxInput"
+                  "$ref": "#/definitions/VehicleStatsAuxInputWithDecoration"
                 }
               },
               "auxInput3": {
                 "description": "A list of auxiliary equipment states.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/VehicleStatsAuxInput"
+                  "$ref": "#/definitions/VehicleStatsAuxInputWithDecoration"
                 }
               },
               "auxInput4": {
                 "description": "A list of auxiliary equipment states.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/VehicleStatsAuxInput"
+                  "$ref": "#/definitions/VehicleStatsAuxInputWithDecoration"
                 }
               },
               "auxInput5": {
                 "description": "A list of auxiliary equipment states.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/VehicleStatsAuxInput"
+                  "$ref": "#/definitions/VehicleStatsAuxInputWithDecoration"
                 }
               },
               "auxInput6": {
                 "description": "A list of auxiliary equipment states.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/VehicleStatsAuxInput"
+                  "$ref": "#/definitions/VehicleStatsAuxInputWithDecoration"
                 }
               },
               "auxInput7": {
                 "description": "A list of auxiliary equipment states.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/VehicleStatsAuxInput"
+                  "$ref": "#/definitions/VehicleStatsAuxInputWithDecoration"
                 }
               },
               "auxInput8": {
                 "description": "A list of auxiliary equipment states.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/VehicleStatsAuxInput"
+                  "$ref": "#/definitions/VehicleStatsAuxInputWithDecoration"
                 }
               },
               "auxInput9": {
                 "description": "A list of auxiliary equipment states.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/VehicleStatsAuxInput"
+                  "$ref": "#/definitions/VehicleStatsAuxInputWithDecoration"
                 }
               },
               "batteryMilliVolts": {
                 "description": "A list of battery levels in milliVolts for the given vehicle.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/VehicleStatsBatteryVoltage"
+                  "$ref": "#/definitions/VehicleStatsBatteryVoltageWithDecoration"
+                }
+              },
+              "ecuSpeedMph": {
+                "description": "A list of the speeds of the vehicle in miles per hour, as reported by the ECU.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/VehicleStatsEcuSpeedMphWithDecoration"
                 }
               },
               "engineRpm": {
                 "description": "A list engine RPM values for the given vehicle.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/VehicleStatsEngineRpm"
+                  "$ref": "#/definitions/VehicleStatsEngineRpmWithDecoration"
                 }
               },
               "engineStates": {
                 "description": "A list of engine state events for the given vehicle.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/VehicleStatsEngineState"
+                  "$ref": "#/definitions/VehicleStatsEngineStateWithDecoration"
                 }
               },
               "faultCodes": {
                 "description": "A list of engine fault codes.",
                 "type": "array",
                 "items": {
-                  "description": "Engine fault codes read from J1939 and OBDII vehicles.",
-                  "type": "object",
-                  "required": [
-                    "time"
-                  ],
-                  "properties": {
-                    "canBusType": {
-                      "description": "The CAN bus type of the vehicle.",
-                      "type": "string",
-                      "example": "CANBUS_J1939_500"
-                    },
-                    "j1939": {
-                      "description": "Vehicle fault codes for J1939 vehicles.",
-                      "type": "object",
-                      "properties": {
-                        "checkEngineLights": {
-                          "description": "Status of engine lights on J1939 vehicles.",
-                          "type": "object",
-                          "required": [
-                            "emissionsIsOn",
-                            "protectIsOn",
-                            "stopIsOn",
-                            "warningIsOn"
-                          ],
-                          "properties": {
-                            "emissionsIsOn": {
-                              "description": "True if the MIL status is nonzero.",
-                              "type": "boolean",
-                              "example": true
-                            },
-                            "protectIsOn": {
-                              "description": "True if the engine protect lamp status is nonzero.",
-                              "type": "boolean",
-                              "example": false
-                            },
-                            "stopIsOn": {
-                              "description": "True if the red lamp status is nonzero.",
-                              "type": "boolean",
-                              "example": false
-                            },
-                            "warningIsOn": {
-                              "description": "True if the amber lamp status is nonzero.",
-                              "type": "boolean",
-                              "example": false
-                            }
-                          }
-                        },
-                        "diagnosticTroubleCodes": {
-                          "description": "Diagnostic trouble codes for J1939 vehicles.",
-                          "type": "array",
-                          "items": {
-                            "description": "Diagnostic trouble code for J1939 vehicles.",
-                            "type": "object",
-                            "required": [
-                              "txId",
-                              "fmiId",
-                              "spnId",
-                              "occurrenceCount",
-                              "milStatus"
-                            ],
-                            "properties": {
-                              "fmiDescription": {
-                                "description": "A short description of the FMI identifier, if available.",
-                                "type": "string",
-                                "example": "Voltage Below Normal"
-                              },
-                              "fmiId": {
-                                "description": "The FMI identifier.",
-                                "type": "integer",
-                                "format": "int32",
-                                "example": 9
-                              },
-                              "milStatus": {
-                                "description": "The MIL status, indicating a check engine light.",
-                                "type": "integer",
-                                "format": "int32",
-                                "example": 1
-                              },
-                              "occurrenceCount": {
-                                "description": "The number of times this fault has triggered.",
-                                "type": "integer",
-                                "format": "int32",
-                                "example": 1
-                              },
-                              "sourceAddressName": {
-                                "description": "The source address name corresponding to the txId",
-                                "type": "string",
-                                "example": "Engine #1"
-                              },
-                              "spnDescription": {
-                                "description": "A short description of the SPN identifier, if available.",
-                                "type": "string",
-                                "example": "System Diagnostic Code #1"
-                              },
-                              "spnId": {
-                                "description": "The SPN identifier.",
-                                "type": "integer",
-                                "format": "int32",
-                                "example": 3031
-                              },
-                              "txId": {
-                                "description": "The TX identifier.",
-                                "type": "integer",
-                                "format": "int32",
-                                "example": 0
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "obdii": {
-                      "description": "Vehicle fault codes for passenger vehicles.",
-                      "type": "object",
-                      "properties": {
-                        "checkEngineLightIsOn": {
-                          "description": "True if the check engine light is illuminated (MIL status field is nonzero for any faults).",
-                          "type": "boolean",
-                          "example": true
-                        },
-                        "diagnosticTroubleCodes": {
-                          "description": "Diagnostic trouble codes for passenger vehicles.",
-                          "type": "array",
-                          "items": {
-                            "description": "Diagnostic trouble code for passenger vehicles.",
-                            "type": "object",
-                            "required": [
-                              "txId"
-                            ],
-                            "properties": {
-                              "confirmedDtcs": {
-                                "description": "Confirmed DTC codes.",
-                                "type": "array",
-                                "items": {
-                                  "description": "Passenger vehicle DTC information",
-                                  "required": [
-                                    "dtcId"
-                                  ],
-                                  "properties": {
-                                    "dtcDescription": {
-                                      "description": "The DTC description, if available.",
-                                      "type": "string",
-                                      "example": "Fuel Rail/System Pressure - Too Low Bank 1"
-                                    },
-                                    "dtcId": {
-                                      "description": "The DTC identifier.",
-                                      "type": "integer",
-                                      "format": "int32",
-                                      "example": 135
-                                    },
-                                    "dtcShortCode": {
-                                      "description": "The DTC short code, if available.",
-                                      "type": "string",
-                                      "example": "P0087"
-                                    }
-                                  }
-                                }
-                              },
-                              "ignitionType": {
-                                "description": "The ignition type of this passenger vehicle. Valid values are \"spark\" and \"compression\"",
-                                "type": "string",
-                                "enum": [
-                                  "spark",
-                                  "compression"
-                                ]
-                              },
-                              "milStatus": {
-                                "description": "The MIL status, indicating a check engine light.",
-                                "type": "boolean",
-                                "example": true
-                              },
-                              "monitorStatus": {
-                                "description": "Readings from engine sensors",
-                                "type": "object",
-                                "properties": {
-                                  "catalyst": {
-                                    "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
-                                    "type": "string",
-                                    "enum": [
-                                      "N",
-                                      "R",
-                                      "U"
-                                    ]
-                                  },
-                                  "comprehensive": {
-                                    "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
-                                    "type": "string",
-                                    "enum": [
-                                      "N",
-                                      "R",
-                                      "U"
-                                    ]
-                                  },
-                                  "egr": {
-                                    "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
-                                    "type": "string",
-                                    "enum": [
-                                      "N",
-                                      "R",
-                                      "U"
-                                    ]
-                                  },
-                                  "evapSystem": {
-                                    "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
-                                    "type": "string",
-                                    "enum": [
-                                      "N",
-                                      "R",
-                                      "U"
-                                    ]
-                                  },
-                                  "fuel": {
-                                    "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
-                                    "type": "string",
-                                    "enum": [
-                                      "N",
-                                      "R",
-                                      "U"
-                                    ]
-                                  },
-                                  "heatedCatalyst": {
-                                    "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
-                                    "type": "string",
-                                    "enum": [
-                                      "N",
-                                      "R",
-                                      "U"
-                                    ]
-                                  },
-                                  "heatedO2Sensor": {
-                                    "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
-                                    "type": "string",
-                                    "enum": [
-                                      "N",
-                                      "R",
-                                      "U"
-                                    ]
-                                  },
-                                  "isoSaeReserved": {
-                                    "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
-                                    "type": "string",
-                                    "enum": [
-                                      "N",
-                                      "R",
-                                      "U"
-                                    ]
-                                  },
-                                  "misfire": {
-                                    "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
-                                    "type": "string",
-                                    "enum": [
-                                      "N",
-                                      "R",
-                                      "U"
-                                    ]
-                                  },
-                                  "notReadyCount": {
-                                    "description": "Count of the number of sensors reporting N: Not Complete",
-                                    "type": "integer"
-                                  },
-                                  "o2Sensor": {
-                                    "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
-                                    "type": "string",
-                                    "enum": [
-                                      "N",
-                                      "R",
-                                      "U"
-                                    ]
-                                  },
-                                  "secondaryAir": {
-                                    "description": "Enum of monitor status:\n-U: Unsupported\n-N: Not Complete\n-R: Complete\n",
-                                    "type": "string",
-                                    "enum": [
-                                      "N",
-                                      "R",
-                                      "U"
-                                    ]
-                                  }
-                                }
-                              },
-                              "pendingDtcs": {
-                                "description": "Pending DTC codes.",
-                                "type": "array",
-                                "items": {
-                                  "description": "Passenger vehicle DTC information",
-                                  "required": [
-                                    "dtcId"
-                                  ],
-                                  "properties": {
-                                    "dtcDescription": {
-                                      "description": "The DTC description, if available.",
-                                      "type": "string",
-                                      "example": "Fuel Rail/System Pressure - Too Low Bank 1"
-                                    },
-                                    "dtcId": {
-                                      "description": "The DTC identifier.",
-                                      "type": "integer",
-                                      "format": "int32",
-                                      "example": 135
-                                    },
-                                    "dtcShortCode": {
-                                      "description": "The DTC short code, if available.",
-                                      "type": "string",
-                                      "example": "P0087"
-                                    }
-                                  }
-                                }
-                              },
-                              "permanentDtcs": {
-                                "description": "Permanent DTC codes.",
-                                "type": "array",
-                                "items": {
-                                  "description": "Passenger vehicle DTC information",
-                                  "required": [
-                                    "dtcId"
-                                  ],
-                                  "properties": {
-                                    "dtcDescription": {
-                                      "description": "The DTC description, if available.",
-                                      "type": "string",
-                                      "example": "Fuel Rail/System Pressure - Too Low Bank 1"
-                                    },
-                                    "dtcId": {
-                                      "description": "The DTC identifier.",
-                                      "type": "integer",
-                                      "format": "int32",
-                                      "example": 135
-                                    },
-                                    "dtcShortCode": {
-                                      "description": "The DTC short code, if available.",
-                                      "type": "string",
-                                      "example": "P0087"
-                                    }
-                                  }
-                                }
-                              },
-                              "txId": {
-                                "description": "The TX identifier.",
-                                "type": "integer",
-                                "format": "int32",
-                                "example": 0
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "time": {
-                      "description": "UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`.",
-                      "type": "string",
-                      "example": "2020-01-27T07:06:25Z"
-                    }
-                  }
+                  "$ref": "#/definitions/VehicleStatsFaultCodesWithDecoration"
                 }
               },
               "fuelPercents": {
                 "description": "A list of fuel percentage readings for the given vehicle.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/VehicleStatsFuelPercent"
+                  "$ref": "#/definitions/VehicleStatsFuelPercentWithDecoration"
+                }
+              },
+              "gps": {
+                "description": "A list of GPS location events for the given vehicles.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/VehicleStatsListGps"
                 }
               },
               "gps": {
@@ -15855,14 +16374,14 @@
                 "description": "A list of GPS distance events for the given vehicle.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/VehicleStatsGpsDistanceMeters"
+                  "$ref": "#/definitions/VehicleStatsGpsDistanceMetersWithDecoration"
                 }
               },
               "gpsOdometerMeters": {
                 "description": "A list of GPS odometer events for the given vehicle.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/VehicleStatsGpsOdometerMeters"
+                  "$ref": "#/definitions/VehicleStatsGpsOdometerMetersWithDecoration"
                 }
               },
               "id": {
@@ -15875,35 +16394,21 @@
                 "description": "A list of NFC cards that were scanned for the given vehicles.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/VehicleStatsNfcCardScan"
-                },
-                "ecuSpeedMph": {
-                  "description": "A list of the speeds of the vehicle in miles per hour, as reported by the ECU.",
-                  "items": {
-                    "$ref": "#/definitions/VehicleStatsEcuSpeedMph"
-                  },
-                  "type": "array"
-                },
-                "gps": {
-                  "description": "A list of GPS location events for the given vehicles.",
-                  "items": {
-                    "$ref": "#/definitions/VehicleStatsListGps"
-                  },
-                  "type": "array"
+                  "$ref": "#/definitions/VehicleStatsNfcCardScanWithDecoration"
                 }
               },
               "obdEngineSeconds": {
                 "description": "A list of OBD engine seconds readings for the given vehicle.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/VehicleStatsObdEngineSeconds"
+                  "$ref": "#/definitions/VehicleStatsObdEngineSecondsWithDecoration"
                 }
               },
               "obdOdometerMeters": {
                 "description": "A list of OBD odometer readings for the given vehicle.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/VehicleStatsObdOdometerMeters"
+                  "$ref": "#/definitions/VehicleStatsObdOdometerMetersWithDecoration"
                 }
               }
             }
@@ -15938,6 +16443,33 @@
         }
       }
     },
+    "VehicleStatsNfcCardScanWithDecoration": {
+      "description": "Data for the nfc card and the time that it was scanned.",
+      "type": "object",
+      "required": [
+        "time",
+        "card"
+      ],
+      "properties": {
+        "card": {
+          "description": "The card that was scanned.",
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "The id code of the card that was scanned.",
+              "type": "string",
+              "example": "835063"
+            }
+          }
+        },
+        "decorations": {
+          "$ref": "#/definitions/VehicleStatsDecorations"
+        },
+        "time": {
+          "$ref": "#/definitions/vehicleStatsAuxInputTime"
+        }
+      }
+    },
     "VehicleStatsObdEngineSeconds": {
       "description": "Vehicle OBD engine seconds reading.",
       "type": "object",
@@ -15957,6 +16489,34 @@
         }
       }
     },
+    "VehicleStatsObdEngineSecondsValue": {
+      "description": "Number of seconds the vehicle's engine has been on according to the on-board diagnostics.",
+      "type": "integer",
+      "format": "int64",
+      "example": 9723103
+    },
+    "VehicleStatsObdEngineSecondsWithDecoration": {
+      "description": "Vehicle OBD engine seconds reading.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "decorations": {
+          "$ref": "#/definitions/VehicleStatsDecorations"
+        },
+        "time": {
+          "$ref": "#/definitions/VehicleStatsTime"
+        },
+        "value": {
+          "description": "Number of seconds the vehicle's engine has been on according to the on-board diagnostics.",
+          "type": "integer",
+          "format": "int64",
+          "example": 9723103
+        }
+      }
+    },
     "VehicleStatsObdOdometerMeters": {
       "description": "Vehicle OBD odometer reading.",
       "type": "object",
@@ -15965,6 +16525,34 @@
         "value"
       ],
       "properties": {
+        "time": {
+          "$ref": "#/definitions/VehicleStatsTime"
+        },
+        "value": {
+          "description": "Number of meters the vehicle has traveled according to the on-board diagnostics.",
+          "type": "integer",
+          "format": "int64",
+          "example": 14010293
+        }
+      }
+    },
+    "VehicleStatsObdOdometerMetersValue": {
+      "description": "Number of meters the vehicle has traveled according to the on-board diagnostics.",
+      "type": "integer",
+      "format": "int64",
+      "example": 14010293
+    },
+    "VehicleStatsObdOdometerMetersWithDecoration": {
+      "description": "Vehicle OBD odometer reading.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "decorations": {
+          "$ref": "#/definitions/VehicleStatsDecorations"
+        },
         "time": {
           "$ref": "#/definitions/VehicleStatsTime"
         },
@@ -16075,6 +16663,12 @@
         }
       }
     },
+    "VehicleStatsSyntheticEngineSecondsValue": {
+      "description": "Stats for the number of seconds the vehicle's engine has been on, calculated based on a manually-specified engine seconds reading and the number of seconds the vehicle has been on according to the engine state changes reported to the vehicle gateway since that reading was set. This stat will not be present for any vehicle that does not have the engine seconds reading set. The engine seconds reading can be set from the UI on the vehicle details page.",
+      "type": "integer",
+      "format": "int64",
+      "example": 14010293
+    },
     "VehicleStatsTime": {
       "$ref": "#/definitions/time"
     },
@@ -16082,6 +16676,21 @@
       "description": "Vehicle tire pressure readings.",
       "type": "object",
       "properties": {
+        "time": {
+          "$ref": "#/definitions/VehicleStatsTime"
+        },
+        "value": {
+          "$ref": "#/definitions/VehicleStatsTirePressures"
+        }
+      }
+    },
+    "VehicleStatsTirePressureWithDecoration": {
+      "description": "Vehicle tire pressure readings.",
+      "type": "object",
+      "properties": {
+        "decorations": {
+          "$ref": "#/definitions/VehicleStatsDecorations"
+        },
         "time": {
           "$ref": "#/definitions/VehicleStatsTime"
         },
@@ -16961,6 +17570,39 @@
       "name": "started_at_ms",
       "in": "path",
       "required": true
+    },
+    "decorationStatTypes": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "auxInput1",
+          "auxInput2",
+          "auxInput3",
+          "auxInput4",
+          "auxInput5",
+          "auxInput6",
+          "auxInput7",
+          "auxInput8",
+          "auxInput9",
+          "auxInput10",
+          "batteryMilliVolts",
+          "engineStates",
+          "faultCodes",
+          "fuelPercents",
+          "engineRpm",
+          "ecuSpeedMph",
+          "gps",
+          "gpsDistanceMeters",
+          "obdOdometerMeters",
+          "obdEngineSeconds",
+          "tirePressure"
+        ],
+        "type": "string"
+      },
+      "collectionFormat": "csv",
+      "description": "The decoration stat types that you would like to annotate each of the primary stat responses with. For example, if you wish to know the vehicle's location whenever the engine changed states, you may set types=engineStates\u0026decorations=gps. Currently only two decorations per request are supported. Note that decorations will significantly increase the response payload size.\n\n- `engineStates`: The state of the engine (`Off`, `On`, `Idle`).\n- `faultCodes`: The diagnostic fault codes for the vehicle.\n- `fuelPercents`: The engine fuel level in percentage points (e.g. `99`, `50`, etc).\n- `engineRpm`: The revolutions per minute of the engine.\n- `obdOdometerMeters`: The odometer reading according to on-board diagnostics. If Samsara does not have diagnostic coverage for a particular vehicle, the value for this stat type will be omitted.\n- `obdEngineSeconds`: The cumulative number of seconds the engine has run according to on-board diagnostics.\n- `ecuSpeedMph`: The speed of the engine in miles per hour according to the ECU.\n- `gpsDistanceMeters`: The distance the vehicle has traveled since the gateway was installed based on GPS calculations.\n- `batteryMilliVolts`: The vehicle battery voltage reading.\n- `auxInput1`: Stat events from the [auxiliary input 1](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType1` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput2`: Stat events from the [auxiliary input 2](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType2` field in the response body for [Retrieving a Vehicle](#operation/getVehicle).\n- `auxInput3-10`: Stat events from the [auxiliary inputs](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) for the vehicle. For more details see the `data.auxInputType3-10` fields in the response body for [Retrieving a Vehicle](#operation/getVehicle). Note, ports 3-10 are only available on gateways with the aux expander.\n- `nfcCardScans`: Nfc cards scan data.\n-  `gps`: GPS location of the vehicle.",
+      "name": "decorations",
+      "in": "query"
     },
     "driverActivationStatusParam": {
       "enum": [
