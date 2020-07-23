@@ -834,6 +834,92 @@
         }
       }
     },
+    "/fleet/drivers/efficiency": {
+      "get": {
+        "description": "Get all drivers' efficiencies.",
+        "tags": [
+          "Beta"
+        ],
+        "summary": "[beta] List driver efficiency",
+        "operationId": "getDriverEfficiency",
+        "parameters": [
+          {
+            "enum": [
+              "active",
+              "deactivated"
+            ],
+            "type": "string",
+            "description": "If value is `deactivated`, only drivers that are deactivated will appear in the response. This parameter will default to `active` if not provided (fetching only active drivers).",
+            "name": "driverActivationStatus",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "A filter on the data based on this comma-separated list of driver IDs. Cannot be used with tag filtering or driver status. Example: `driverIds=1234,5678`",
+            "name": "driverIds",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "Filters summary to drivers based on this comma-separated list of tag IDs. Data from all the drivers' respective vehicles will be included in the summary, regardless of which tag the vehicle is associated with. Should not be provided in addition to `driverIds`. Example: driverTagIds=1234,5678",
+            "name": "driverTagIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "Filters like `driverTagIds` but includes descendants of all the given parent tags. Should not be provided in addition to `driverIds`. Example: `driverParentTagIds=1234,5678`",
+            "name": "driverParentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "A start time in RFC 3339 format. The results will be truncated to the hour mark for the provided time. For example, if `startTime` is 2020-03-17T12:06:19Z then the results will include data starting from 2020-03-17T12:00:00Z. The provided start time cannot be in the future. Start time can be at most 31 days before the end time. If the start time is within the last hour, the results will be empty. Default: 24 hours prior to endTime.",
+            "name": "startTime",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "An end time in RFC 3339 format. The results will be truncated to the hour mark for the provided time. For example, if `endTime` is 2020-03-17T12:06:19Z then the results will include data up until 2020-03-17T12:00:00Z. The provided end time cannot be in the future. End time can be at most 31 days after the start time.   Default: The current time truncated to the hour mark.",
+            "name": "endTime",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all drivers' efficiencies",
+            "schema": {
+              "$ref": "#/definitions/DriverEfficienciesResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/fleet/drivers/tachograph-activity/history": {
       "get": {
         "description": "Returns all known tachograph activity for all specified drivers in the time range.",
@@ -1898,6 +1984,45 @@
             "description": "List of the last known HOS log entries for the specified drivers.",
             "schema": {
               "$ref": "#/definitions/HosLogsResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/routes/feed": {
+      "get": {
+        "description": "Subscribes to a feed of route updates. The initial request to this feed endpoint returns a cursor, which can be used on the next request to fetch updated routes that have had state changes since that request.",
+        "tags": [
+          "Beta"
+        ],
+        "summary": "[beta] Get route updates",
+        "operationId": "getRouteFeed",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the route updates that have occurred since the previous cursor.",
+            "schema": {
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/RouteFeedResponse"
+                },
+                "pagination": {
+                  "$ref": "#/definitions/paginationResponse"
+                }
+              }
             }
           },
           "default": {
@@ -6806,6 +6931,10 @@
         }
       }
     },
+    "DistanceDrivenMeters": {
+      "description": "Distance driven in meters.",
+      "type": "number"
+    },
     "DocumentPdfGenerationRequest": {
       "description": "Identifies a document for PDF generation.",
       "type": "object",
@@ -6886,6 +7015,10 @@
           }
         }
       }
+    },
+    "DriveTimeDurationMs": {
+      "description": "Time driven in milliseconds.",
+      "type": "number"
     },
     "Driver": {
       "description": "A driver object",
@@ -7013,6 +7146,70 @@
       "type": "integer",
       "format": "int64",
       "example": 98231
+    },
+    "DriverEfficienciesResponse": {
+      "description": "Summary of drivers' efficiencies over a time range.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "driverSummaries": {
+              "description": "A list of drivers' efficiencies.",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DriverEfficiency"
+              }
+            },
+            "summaryEndTime": {
+              "description": "End time of the window for which this efficiency report was computed. Will be a UTC timestamp in RFC 3339 format. For example: `2020-03-16T16:00:00Z`",
+              "type": "string",
+              "format": "date-time",
+              "example": "2020-03-16T16:00:00Z"
+            },
+            "summaryStartTime": {
+              "description": "Start time of the window for which this efficiency report was computed. Will be a UTC timestamp in RFC 3339 format. For example: `2020-03-15T16:00:00Z`",
+              "type": "string",
+              "format": "date-time",
+              "example": "2020-03-15T16:00:00Z"
+            }
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "DriverEfficiency": {
+      "description": "Summary of a driver's efficiency.",
+      "type": "object",
+      "properties": {
+        "driver": {
+          "$ref": "#/definitions/ExtendedDriverTinyResponse"
+        },
+        "totalDistanceDrivenMeters": {
+          "$ref": "#/definitions/DistanceDrivenMeters"
+        },
+        "totalDriveTimeDurationMs": {
+          "$ref": "#/definitions/DriveTimeDurationMs"
+        },
+        "totalFuelConsumedMl": {
+          "$ref": "#/definitions/FuelConsumedMl"
+        },
+        "totalIdleTimeDurationMs": {
+          "$ref": "#/definitions/IdleTimeDurationMs"
+        },
+        "totalPowerTakeOffDurationMs": {
+          "$ref": "#/definitions/PowerTakeOffDurationMs"
+        },
+        "vehicleSummaries": {
+          "description": "Summaries of vehicle efficiency for each vehicle the driver was driving during the given time period.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VehicleSummary"
+          }
+        }
+      }
     },
     "DriverEldAdverseWeatherExemptionEnabled": {
       "description": "Flag indicating this driver may use Adverse Weather exemptions in ELD logs.",
@@ -8105,6 +8302,30 @@
       "type": "string",
       "example": "2019-05-03T04:30:31Z"
     },
+    "ExtendedDriverTinyResponse": {
+      "description": "A minified driver object.",
+      "type": "object",
+      "properties": {
+        "externalIds": {
+          "$ref": "#/definitions/externalIds"
+        },
+        "id": {
+          "description": "ID of the driver.",
+          "type": "string",
+          "example": "88668"
+        },
+        "name": {
+          "description": "Name of the driver.",
+          "type": "string",
+          "example": "Susan Bob"
+        },
+        "username": {
+          "description": "Username of the driver.",
+          "type": "string",
+          "example": "susanbob"
+        }
+      }
+    },
     "FftSpectraDataPoint": {
       "description": "FFT spectrum data point of a data input.",
       "type": "object",
@@ -8151,6 +8372,10 @@
           "$ref": "#/definitions/time"
         }
       }
+    },
+    "FuelConsumedMl": {
+      "description": "Fuel consumption in milliliters.",
+      "type": "number"
     },
     "HosBreak": {
       "description": "Remaining durations for the HOS rest break requirement.",
@@ -8359,6 +8584,10 @@
           "example": 39600000
         }
       }
+    },
+    "IdleTimeDurationMs": {
+      "description": "Time spent idling in milliseconds.",
+      "type": "number"
     },
     "J1939D1StatusDataPoint": {
       "description": "Active J1939D1 statuses of a device.",
@@ -8663,6 +8892,67 @@
         "dataInput"
       ]
     },
+    "MinimalRoute": {
+      "description": "A single route. Only the fields that have changed are present in the response. All other fields, including the route id, will not be present in the response. For now, only routeStops are included since only Route Tracking updates are supported.",
+      "type": "object",
+      "properties": {
+        "routeStops": {
+          "description": "The route stops in the route. Only stops that have been updated will be included in the response.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MinimalRouteStop"
+          }
+        }
+      }
+    },
+    "MinimalRouteStop": {
+      "description": "A single route stop for a route.",
+      "type": "object",
+      "required": [
+        "id",
+        "state"
+      ],
+      "properties": {
+        "actualArrivalTime": {
+          "description": "Actual arrival time, if it exists, for the route stop in RFC 3339 format.",
+          "type": "string",
+          "example": "2006-01-02T15:04:05+07:00"
+        },
+        "actualDepartureTime": {
+          "description": "Actual departure time, if it exists, for the route stop in RFC 3339 format.",
+          "type": "string",
+          "example": "2006-01-02T15:04:05+07:00"
+        },
+        "eta": {
+          "description": "Estimated time of arrival, if this stop is currently en-route.",
+          "type": "string",
+          "example": "2006-01-02T15:04:05+07:00"
+        },
+        "id": {
+          "description": "Unique identifier for the route stop.",
+          "type": "string",
+          "example": "141414"
+        },
+        "skippedTime": {
+          "description": "Skipped time, if it exists, for the route stop in RFC 3339 format.",
+          "type": "string",
+          "example": "2006-01-02T15:04:05+07:00"
+        },
+        "state": {
+          "description": "The current state of the route stop.",
+          "type": "string",
+          "enum": [
+            "unassigned",
+            "scheduled",
+            "en route",
+            "skipped",
+            "arrived",
+            "departed"
+          ],
+          "example": "scheduled"
+        }
+      }
+    },
     "NumberDataPoint": {
       "description": "A single numeric data point of a data input.",
       "type": "object",
@@ -8761,6 +9051,10 @@
         }
       }
     },
+    "PowerTakeOffDurationMs": {
+      "description": "Time spent with power take off enabled while idling in milliseconds.",
+      "type": "number"
+    },
     "ReplaceTagRequest": {
       "type": "object",
       "properties": {
@@ -8834,6 +9128,78 @@
             "mechanic"
           ],
           "example": "mechanic"
+        }
+      }
+    },
+    "RouteFeedResponse": {
+      "description": "All of the route updates that have occurred since the 'after' cursor response.",
+      "type": "array",
+      "items": {
+        "description": "Route feed response.",
+        "type": "object",
+        "required": [
+          "time",
+          "type",
+          "source",
+          "route",
+          "changes"
+        ],
+        "properties": {
+          "changes": {
+            "description": "A diff of the changes for this route update.",
+            "type": "object",
+            "required": [
+              "before",
+              "after"
+            ],
+            "properties": {
+              "after": {
+                "$ref": "#/definitions/MinimalRoute"
+              },
+              "before": {
+                "$ref": "#/definitions/MinimalRoute"
+              }
+            }
+          },
+          "operation": {
+            "description": "The operation that was performed as part of this route update.",
+            "type": "string",
+            "enum": [
+              "stop scheduled",
+              "stop en route",
+              "stop skipped",
+              "stop arrived",
+              "stop departed",
+              "stop ETA updated"
+            ],
+            "example": "stop skipped"
+          },
+          "route": {
+            "$ref": "#/definitions/routeTinyResponse"
+          },
+          "source": {
+            "description": "The source of this route update. Updates that are triggered by time or by the route being completed are 'automatic'.",
+            "type": "string",
+            "default": "automatic",
+            "enum": [
+              "automatic",
+              "driver",
+              "admin"
+            ],
+            "example": "automatic"
+          },
+          "time": {
+            "$ref": "#/definitions/time"
+          },
+          "type": {
+            "description": "The type of route update. The route tracking updates occur as a route is completed and stops transition from one state to another. Currently only Route Tracking updates are supported, but this will change in the future when additional types are added.",
+            "type": "string",
+            "default": "route tracking",
+            "enum": [
+              "route tracking"
+            ],
+            "example": "route tracking"
+          }
         }
       }
     },
@@ -15754,6 +16120,29 @@
         }
       }
     },
+    "VehicleSummary": {
+      "type": "object",
+      "properties": {
+        "distanceDrivenMeters": {
+          "$ref": "#/definitions/DistanceDrivenMeters"
+        },
+        "driveTimeDurationMs": {
+          "$ref": "#/definitions/DriveTimeDurationMs"
+        },
+        "fuelConsumedMl": {
+          "$ref": "#/definitions/FuelConsumedMl"
+        },
+        "idleTimeDurationMs": {
+          "$ref": "#/definitions/IdleTimeDurationMs"
+        },
+        "powerTakeOffDurationMs": {
+          "$ref": "#/definitions/PowerTakeOffDurationMs"
+        },
+        "vehicle": {
+          "$ref": "#/definitions/vehicleTinyResponse"
+        }
+      }
+    },
     "VehicleTagIds": {
       "description": "An array of IDs of tags to associate with this vehicle.",
       "type": "array",
@@ -16012,6 +16401,38 @@
           "description": "True if there are more pages of results immediately available after this endCursor.",
           "type": "boolean",
           "example": true
+        }
+      }
+    },
+    "routeTinyResponse": {
+      "description": "A minified representation of a single route.",
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "externalIds": {
+          "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "example": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          }
+        },
+        "id": {
+          "description": "Unique identifier for the route.",
+          "type": "string",
+          "example": "131313"
+        },
+        "name": {
+          "description": "Name of the route.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "Pineapple delivery"
         }
       }
     },
@@ -16690,6 +17111,10 @@
     {
       "description": "A Vehicle object is created when a [Samsara Vehicle Gateway](https://www.samsara.com/products/models/vg34) is first activated.\n\nWhen the gateway is activated, a Vehicle object is created with a unique Samsara ID.\n\nVehicle objects have static information (`name`, `licensePlate`, etc), and they also generate dynamic time-series data such as locations and diagnostics.\n\nVehicle static information is defined by fleet administrators either through the [Samsara dashboard](http://cloud.samsara.com) or through the API.\n\n- You can get a list of Vehicles and their static information using the [GET /fleet/vehicles](#operation/listVehicles) endpoint.\n\n- You can get a given vehicle and its static information by its Samsara ID or an [external ID](https://developers.samsara.com/docs/common-structures#section-external-ids) using the [GET /fleet/vehicles/{id}](#operation/getVehicle) endpoint.\n\n- You can set or update static Vehicle information using the [PATCH /fleet/vehicles/{id}](#operation/updateVehicle) endpoint.\n\nYou can get dynamic Vehicle time-series data in three ways:\n\n- Get a snapshot of the most recent readings for the time-series.\n\n    - [GET /fleet/vehicles/locations](#operation/getVehicleLocations)\n\n    - [GET /fleet/vehicles/stats](#operation/getVehicleStats)\n\n- Get a real-time feed of time-series data.\n\n    - [GET /fleet/vehicles/locations/feed](#operation/getVehicleLocationsFeed)\n\n    - [GET /fleet/vehicles/stats/feed](#operation/getVehicleStatsFeed)\n\n- Get a historical time-range of the time-series data.\n\n    - [GET /fleet/vehicles/locations/history](#operation/getVehicleLocationsHistory)\n\n    - [GET /fleet/vehicles/stats/history](#operation/getVehicleStatsHistory)",
       "name": "Vehicles"
+    },
+    {
+      "description": "Endpoints in this section are in beta. This means that developers should **NOT** rely on these APIs to build business critical applications. The goal is to be able to release these APIs in the near future but, before doing so, ensure that we can collect feedback on the structure of their interfaces and their functionality.\n\n- Samsara may change the structure of a beta API’s interface without versioning this endpoint or any notice to beta users.\n\n- To submit feedback on these beta APIs, please fill out [this form](https://forms.gle/up7uFmJ8f2EKq8xm7).\n\n- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).\n\n- If an issue or bug is experienced with any of these APIs, please submit an entry in the [feedback form](https://forms.gle/up7uFmJ8f2EKq8xm7).",
+      "name": "Beta"
     }
   ]
 }
