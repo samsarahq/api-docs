@@ -11479,11 +11479,7 @@
               "example": 555
             },
             "fields": {
-              "description": "The fields associated with this document.",
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/V1DocumentFetchFields"
-              }
+              "$ref": "#/definitions/V1DocumentFields"
             },
             "id": {
               "description": "ID of the document.",
@@ -11575,11 +11571,7 @@
               "example": "4aff772c-a7bb-45e6-8e41-6a53e34feb83"
             },
             "fields": {
-              "description": "List of fields for the document. The fields must be listed in the order that that they appear in the document type. You can set the values of fields to null or omit them if the document state is set to \"Required\".",
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/V1DocumentCreateFields"
-              }
+              "$ref": "#/definitions/V1DocumentCreateFields"
             }
           }
         },
@@ -11621,132 +11613,77 @@
         }
       }
     },
-    "V1DocumentCreateField": {
-      "type": "object",
-      "required": [
-        "valueType"
-      ],
-      "properties": {
-        "dateTimeValue": {
-          "description": "The value of a `ValueType_DateTime` field. Can be set to null or omitted if the document is in the \"Required\" state.",
-          "type": "object",
-          "required": [
-            "dateTimeMs"
-          ],
-          "properties": {
-            "dateTimeMs": {
-              "description": "The Unix epoch on milliseconds of this date time field.",
-              "type": "integer",
-              "format": "int64",
-              "example": 10855639004823
-            }
-          }
-        },
-        "multipleChoiceValue": {
-          "description": "The value of a `ValueType_MultipleChoice` field. Can be set to null or omitted if the document is in the \"Required\" state.",
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "selected": {
-                "description": "Whether the multiple choice field is selected or not.",
-                "type": "boolean"
-              },
-              "value": {
-                "description": "The name of the multiple choice field.",
-                "type": "string"
-              }
-            }
-          }
-        },
-        "numberValue": {
-          "description": "The value of a `ValueType_Number` field. Can be set to null or omitted if the document is in the \"Required\" state.",
-          "type": "number",
-          "format": "double",
-          "example": 12.34
-        },
-        "stringValue": {
-          "description": "The value of a `ValueType_String` field. Can be set to null or omitted if the document is in the \"Required\" state.",
-          "type": "string",
-          "example": "This is a string."
-        },
-        "valueType": {
-          "description": "The type of this field.\n\n**Note:** Signature and photo fields are only supported when the document state is set to \"Required\". The values for these fields must be omitted or set to null. For example:\n\n```\n\n\"fields\": [\n\n  {\n\n    \"label\": \"Signature\",\n\n    \"valueType\": \"ValueType_Signature\"\n\n  },\n\n  ... more fields\n\n]\n\n```",
-          "type": "string",
-          "enum": [
-            "ValueType_Number",
-            "ValueType_String",
-            "ValueType_MultipleChoice",
-            "ValueType_DateTime",
-            "ValueType_Signature",
-            "ValueType_Photo"
-          ],
-          "example": "ValueType_Number"
-        }
-      }
-    },
     "V1DocumentCreateFields": {
-      "allOf": [
-        {
-          "type": "object",
-          "required": [
-            "label"
-          ],
-          "properties": {
-            "label": {
-              "description": "The name of the field.",
-              "type": "string",
-              "example": "Fuel Cost ($)"
-            },
-            "value": {
-              "description": "DEPRECATED. Please use one of the type-specific parameters.",
-              "example": "DEPRECATED."
-            }
-          }
-        },
-        {
-          "$ref": "#/definitions/V1DocumentCreateField"
-        }
-      ]
-    },
-    "V1DocumentFetchField": {
-      "type": "object",
-      "required": [
-        "valueType"
-      ],
-      "properties": {
-        "dateTimeValue": {
-          "description": "The value of a `ValueType_DateTime` field.",
-          "type": "object",
-          "required": [
-            "dateTimeMs"
-          ],
-          "properties": {
-            "dateTimeMs": {
-              "description": "The Unix epoch on milliseconds of this date time field.",
-              "type": "integer",
-              "format": "int64",
-              "example": 10855639004823
-            }
-          }
-        },
-        "multipleChoiceValue": {
-          "description": "The value of a `ValueType_MultipleChoice` field.",
-          "type": "array",
-          "items": {
+      "description": "List of fields for the document. The fields must be listed in the order that that they appear in the document type. Values of fields can be set to null or omitted if the document state is set to \"Required\".",
+      "type": "array",
+      "items": {
+        "description": "Field item parameters.",
+        "type": "object",
+        "required": [
+          "label",
+          "valueType"
+        ],
+        "properties": {
+          "dateTimeValue": {
+            "description": "The date time value to populate the field. Use with ValueType_DateTime. Cannot be ommited or set to null",
             "type": "object",
             "properties": {
-              "selected": {
-                "description": "Whether the multiple choice field is selected or not.",
-                "type": "boolean"
-              },
-              "value": {
-                "description": "The name of the multiple choice field.",
-                "type": "string"
+              "dateTimeMs": {
+                "type": "number"
               }
             }
           },
-          "example": [
+          "label": {
+            "description": "label of the field",
+            "type": "string"
+          },
+          "multipleChoiceValue": {
+            "description": "The multiple choice value to populate the field. Use with ValueType_MultipleChoice. Cannot be ommited or set to null",
+            "type": "array",
+            "items": {
+              "description": "An option item for a multiple choice field",
+              "type": "object",
+              "properties": {
+                "selected": {
+                  "type": "boolean"
+                },
+                "value": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "numberValue": {
+            "description": "The number value to populate the field. Use with ValueType_Number. Can be ommited or set to null",
+            "type": "number"
+          },
+          "stringValue": {
+            "description": "The string value to populate the field. Use with ValueType_String. Can be ommited or set to null",
+            "type": "string"
+          },
+          "value": {
+            "description": "DEPRECATED. Please use one of the type-specific parameters."
+          },
+          "valueType": {
+            "description": "The valueType of the field. Use with the corresponding {type of field}Value attribute. Signature and photo fields do not support values added via API. Their values must be omitted or set to null. For example:\n\n```\n\n\"fields\": [\n\n  {\n\n    \"label\": \"Signature\",\n\n    \"valueType\": \"ValueType_Signature\"\n\n  },\n\n  ... more fields\n\n]\n\n```",
+            "type": "string"
+          }
+        }
+      },
+      "example": [
+        {
+          "label": "Example number field label",
+          "numberValue": 999,
+          "valueType": "ValueType_Number"
+        },
+        {
+          "label": "text",
+          "stringValue": "example string",
+          "valueType": "ValueType_String"
+        },
+        {
+          "label": "Example multi choice label",
+          "multipleChoiceValue": [
             {
               "selected": false,
               "value": "option 1"
@@ -11755,97 +11692,23 @@
               "selected": true,
               "value": "option 2"
             }
-          ]
-        },
-        "numberValue": {
-          "description": "The value of a `ValueType_Number` field.",
-          "type": "number",
-          "format": "double",
-          "example": 12.34
-        },
-        "photoValue": {
-          "description": "The value of a `ValueType_Photo` field.",
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "url": {
-                "description": "A pre-signed URL to the selected photos that refreshes every 24 hours.",
-                "type": "string",
-                "example": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-              }
-            }
-          }
-        },
-        "scannedDocumentValue": {
-          "description": "The value of a `ValueType_ScannedDocument` field.",
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "url": {
-                "description": "A pre-signed URL to the selected scanned documents that expires after 24 hours.",
-                "type": "string",
-                "example": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-              }
-            }
-          }
-        },
-        "signatureValue": {
-          "description": "The value of a `ValueType_Signature` field.",
-          "type": "object",
-          "properties": {
-            "name": {
-              "description": "The name typed by the user when the signature was captured.",
-              "type": "string",
-              "example": "Samsara Owl"
-            },
-            "signedAtMs": {
-              "description": "The timestamp when the signature was captured.",
-              "type": "integer",
-              "format": "int64",
-              "example": 1584816363025
-            },
-            "url": {
-              "description": "A pre-signed URL to the captured signature PNG that refreshes every 24 hours.",
-              "type": "string",
-              "example": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-            }
-          }
-        },
-        "stringValue": {
-          "description": "The value of a `ValueType_String` field.",
-          "type": "string",
-          "example": "This is a string."
-        },
-        "valueType": {
-          "description": "The type of value this field can have.\nValid values: `ValueType_Number`, `ValueType_String`, `ValueType_Photo`, `ValueType_MultipleChoice`, `ValueType_Signature`, `ValueType_DateTime`, `ValueType_ScannedDocument`.",
-          "type": "string",
-          "example": "ValueType_Number"
-        }
-      }
-    },
-    "V1DocumentFetchFields": {
-      "allOf": [
-        {
-          "type": "object",
-          "required": [
-            "label"
           ],
-          "properties": {
-            "label": {
-              "description": "The name of the field.",
-              "type": "string",
-              "example": "Fuel Cost ($)"
-            },
-            "value": {
-              "description": "Please use `stringValue`, `numberValue`, `photoValue`, `multipleChoiceValue`, `signatureValue`, or `dateTimeValue`.",
-              "example": "The field type corresponding to your field."
-            }
-          }
+          "valueType": "ValueType_MultipleChoice"
         },
         {
-          "$ref": "#/definitions/V1DocumentFetchField"
+          "dateTimeValue": {
+            "dateTimeMs": 10855639004823
+          },
+          "label": "Example date time label",
+          "valueType": "ValueType_DateTime"
+        },
+        {
+          "label": "Example photo label",
+          "valueType": "ValueType_Photo"
+        },
+        {
+          "label": "Example signature label",
+          "valueType": "ValueType_Signature"
         }
       ]
     },
@@ -11862,28 +11725,30 @@
           "example": "Fuel Cost ($)"
         },
         "multipleChoiceValueTypeMetadata": {
-          "description": "Metadata about the multiple choice value. Only present for value type `ValueType_MultipleChoice`.",
+          "description": "Metadata about the multiple choice field. Only present for value type `ValueType_MultipleChoice`",
           "type": "object",
           "properties": {
             "multipleChoiceOptionLabels": {
-              "description": "The labels for the multiple choice options.",
-              "type": "object",
-              "properties": {
-                "label": {
-                  "description": "The lable for the multiple choice option",
-                  "type": "string",
-                  "example": "Loaded"
+              "description": "Array of the multiple choice option labels for the field",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string",
+                    "example": "option 1"
+                  }
                 }
               }
             }
           }
         },
         "numberValueTypeMetadata": {
-          "description": "Metadata about the numeric value type. Only present for value type `ValueType_Number`.",
+          "description": "Metadata about the number field. Only present for value type `ValueType_Number`",
           "type": "object",
           "properties": {
             "numDecimalPlaces": {
-              "description": "The number of decimal places this value type can have.",
+              "description": "The number of decimal places allowed for this number field",
               "type": "number",
               "format": "int64",
               "example": 2
@@ -11891,12 +11756,13 @@
           }
         },
         "signatureValueTypeMetadata": {
-          "description": "Metadata about the signature value type. Only present for value type `ValueType_Signature`.",
+          "description": "Metadata about the signature field. Only present for value type `ValueType_Signature`",
           "type": "object",
           "properties": {
             "legalText": {
-              "description": "The legal text associated with this signature.",
-              "type": "string"
+              "description": "Legal text displayed alongside signature",
+              "type": "string",
+              "example": "I consent on behalf of myself and my employer to using electronic signatures in this transaction. I understand that I can request a copy of the signed documentation from the party requesting my signature."
             }
           }
         },
@@ -11906,6 +11772,179 @@
           "example": "ValueType_Number"
         }
       }
+    },
+    "V1DocumentFields": {
+      "description": "An array of field objects associated with a document.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dateTimeValue": {
+            "description": "The value of a date time field. Only present for date time fields.",
+            "type": "object",
+            "properties": {
+              "dateTimeMs": {
+                "description": "Date time value in milliseconds.",
+                "type": "number"
+              }
+            }
+          },
+          "label": {
+            "description": "The name of a field.",
+            "type": "string"
+          },
+          "multipleChoiceValue": {
+            "description": "The value of a multiple choice field. Only present for multiple choice fields.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "selected": {
+                  "description": "Boolean representing if the choice has been selected.",
+                  "type": "boolean"
+                },
+                "value": {
+                  "description": "Description of the choice.",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "numberValue": {
+            "description": "The value of a number field. Only present for number fields.",
+            "type": "number",
+            "format": "float"
+          },
+          "photoValue": {
+            "description": "The value of a photo field. Only present for photo fields.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "description": "Url of the photo.",
+                  "type": "string"
+                },
+                "uuid": {
+                  "description": "Uuid of the photo.",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "signatureValue": {
+            "description": "The value of a signature field. Only present for signature fields.",
+            "type": "object",
+            "properties": {
+              "name": {
+                "description": "Name of the signee for a signature field",
+                "type": "string"
+              },
+              "signedAtMs": {
+                "description": "Date time value in milliseconds of the time a signature was captured.",
+                "type": "number"
+              },
+              "url": {
+                "description": "Url of a signature field's PNG signature image.",
+                "type": "string"
+              },
+              "uuid": {
+                "description": "Uuid of a signature field",
+                "type": "string"
+              }
+            }
+          },
+          "stringValue": {
+            "description": "The value of a string field. Only present for string fields.",
+            "type": "string"
+          },
+          "value": {
+            "description": "The value of a field. Type varies by field type."
+          },
+          "valueType": {
+            "description": "The value type of a field.",
+            "type": "string"
+          }
+        }
+      },
+      "example": [
+        {
+          "label": "Name of the number field",
+          "numberValue": 123,
+          "value": 123,
+          "valueType": "ValueType_Number"
+        },
+        {
+          "label": "Name of the string field",
+          "stringValue": "Example text value",
+          "value": "Example text value",
+          "valueType": "ValueType_String"
+        },
+        {
+          "label": "Name of the photo field",
+          "photoValue": [
+            {
+              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+            }
+          ],
+          "value": [
+            {
+              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456",
+              "uuid": "f5271458-21f9-4a9f-a290-780c6d8840ff"
+            }
+          ],
+          "valueType": "ValueType_Photo"
+        },
+        {
+          "label": "Name of the multiple choice field",
+          "multipleChoiceValue": [
+            {
+              "selected": false,
+              "value": "option 1"
+            },
+            {
+              "selected": true,
+              "value": "option 2"
+            }
+          ],
+          "value": [
+            {
+              "selected": false,
+              "value": "option 1"
+            },
+            {
+              "selected": true,
+              "value": "option 2"
+            }
+          ],
+          "valueType": "ValueType_MultipleChoice"
+        },
+        {
+          "dateTimeValue": {
+            "dateTimeMs": 1596681182972
+          },
+          "label": "Name of the date time field",
+          "value": {
+            "dateTimeMs": 1596681182972
+          },
+          "valueType": "ValueType_DateTime"
+        },
+        {
+          "label": "Name of the signature field",
+          "signatureValue": {
+            "name": "John Smith",
+            "signedAtMs": 1596681191327,
+            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+          },
+          "value": {
+            "name": "John Smith",
+            "signedAtMs": 1596681191327,
+            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456",
+            "uuid": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7"
+          },
+          "valueType": "ValueType_Signature"
+        }
+      ]
     },
     "V1DocumentType": {
       "type": "object",
