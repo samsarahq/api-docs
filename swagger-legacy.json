@@ -915,6 +915,45 @@
             "description": "Returns all of the document types.",
             "schema": {
               "$ref": "#/definitions/DocumentTypes"
+            },
+            "examples": {
+              "application/json": {
+                "conditionalFieldSections": [
+                  {
+                    "conditionalFieldFirstIndex": 1,
+                    "conditionalFieldLastIndex": 1,
+                    "triggeringFieldIndex": 0,
+                    "triggeringFieldValue": "Yes"
+                  }
+                ],
+                "fieldTypes": [
+                  {
+                    "label": "Was there damage?",
+                    "multipleChoiceValueTypeMetadata": {
+                      "multipleChoiceOptionLabels": [
+                        {
+                          "label": "Yes"
+                        },
+                        {
+                          "label": "No"
+                        }
+                      ]
+                    },
+                    "valueType": "ValueType_MultipleChoice"
+                  },
+                  {
+                    "label": "Damage Photos",
+                    "valueType": "ValueType_Photo"
+                  },
+                  {
+                    "label": "Date",
+                    "valueType": "ValueType_DateTime"
+                  }
+                ],
+                "name": "Damage Report",
+                "orgId": 123,
+                "uuid": "4aff772c-a7bb-45e6-8e41-6a53e34feb83"
+              }
             }
           },
           "default": {
@@ -5431,6 +5470,40 @@
         }
       }
     },
+    "DocumentConditionalFieldSection": {
+      "type": "object",
+      "required": [
+        "triggeringFieldIndex",
+        "triggeringFieldValue",
+        "conditionalFieldFirstIndex",
+        "conditionalFieldLastIndex"
+      ],
+      "properties": {
+        "conditionalFieldFirstIndex": {
+          "description": "Index of the end of the conditional field section.",
+          "type": "integer",
+          "format": "int64",
+          "example": 3
+        },
+        "conditionalFieldLastIndex": {
+          "description": "Index of the start of the conditional field section.",
+          "type": "integer",
+          "format": "int64",
+          "example": 2
+        },
+        "triggeringFieldIndex": {
+          "description": "Index of the option select field that triggers one or more conditional fields.",
+          "type": "integer",
+          "format": "int64",
+          "example": 1
+        },
+        "triggeringFieldValue": {
+          "description": "Indicates the option select value that triggers conditional fields.",
+          "type": "string",
+          "example": "true"
+        }
+      }
+    },
     "DocumentCreate": {
       "allOf": [
         {
@@ -5892,6 +5965,13 @@
         "fieldTypes"
       ],
       "properties": {
+        "conditionalFieldSections": {
+          "description": "Describe sets of fields conditionally triggered by an option select field.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DocumentConditionalFieldSection"
+          }
+        },
         "fieldTypes": {
           "description": "The fields associated with this document type.",
           "type": "array",
