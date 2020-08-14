@@ -8446,6 +8446,37 @@
       "description": "Fuel consumption in milliliters.",
       "type": "number"
     },
+    "GoaTagTinyResponseResponseBody": {
+      "description": "A minified tag object",
+      "type": "object",
+      "title": "GoaTagTinyResponseResponseBody",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "description": "ID of the tag",
+          "type": "string",
+          "example": "3914"
+        },
+        "name": {
+          "description": "Name of the tag.",
+          "type": "string",
+          "example": "East Coast"
+        },
+        "parentTagId": {
+          "description": "If this tag is part a hierarchical tag tree, this is the ID of the parent tag, otherwise this will be omitted.",
+          "type": "string",
+          "example": "4815"
+        }
+      },
+      "example": {
+        "id": "3914",
+        "name": "East Coast",
+        "parentTagId": "4815"
+      }
+    },
     "HosBreak": {
       "description": "Remaining durations for the HOS rest break requirement.",
       "type": "object",
@@ -10102,6 +10133,151 @@
         }
       }
     },
+    "UserResponseDataResponseBody": {
+      "description": "A user object.",
+      "type": "object",
+      "title": "UserResponseDataResponseBody",
+      "required": [
+        "id",
+        "authType",
+        "name",
+        "roles",
+        "email"
+      ],
+      "properties": {
+        "authType": {
+          "description": "The authentication type the user uses to authenticate. To use SAML this organization must have a configured SAML integration.",
+          "type": "string",
+          "enum": [
+            "default",
+            "saml"
+          ],
+          "example": "default"
+        },
+        "email": {
+          "description": "The email address of this user.",
+          "type": "string",
+          "format": "email",
+          "example": "user@company.com"
+        },
+        "id": {
+          "description": "ID of the user.",
+          "type": "string",
+          "minLength": 1,
+          "example": "123"
+        },
+        "name": {
+          "description": "The first and last name of the user.",
+          "type": "string",
+          "example": "Bob Smith"
+        },
+        "roles": {
+          "description": "The list of roles that applies to this user. A user may have \"organizational\" roles, which apply to the user at the organizational level, and \"tag-specific\" roles, which apply to the user for a given tag.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserRoleAssignmentResponseBody"
+          },
+          "example": [
+            {
+              "role": {
+                "id": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+                "name": "Full Admin"
+              },
+              "tag": {
+                "id": "3914",
+                "name": "East Coast",
+                "parentTagId": "4815"
+              }
+            },
+            {
+              "role": {
+                "id": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+                "name": "Full Admin"
+              },
+              "tag": {
+                "id": "3914",
+                "name": "East Coast",
+                "parentTagId": "4815"
+              }
+            },
+            {
+              "role": {
+                "id": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+                "name": "Full Admin"
+              },
+              "tag": {
+                "id": "3914",
+                "name": "East Coast",
+                "parentTagId": "4815"
+              }
+            },
+            {
+              "role": {
+                "id": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+                "name": "Full Admin"
+              },
+              "tag": {
+                "id": "3914",
+                "name": "East Coast",
+                "parentTagId": "4815"
+              }
+            }
+          ]
+        }
+      },
+      "example": {
+        "authType": "default",
+        "email": "user@company.com",
+        "id": "123",
+        "name": "Bob Smith",
+        "roles": [
+          {
+            "role": {
+              "id": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+              "name": "Full Admin"
+            },
+            "tag": {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            }
+          },
+          {
+            "role": {
+              "id": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+              "name": "Full Admin"
+            },
+            "tag": {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            }
+          },
+          {
+            "role": {
+              "id": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+              "name": "Full Admin"
+            },
+            "tag": {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            }
+          },
+          {
+            "role": {
+              "id": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+              "name": "Full Admin"
+            },
+            "tag": {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            }
+          }
+        ]
+      }
+    },
     "UserRole": {
       "description": "A user role object.",
       "type": "object",
@@ -10149,6 +10325,78 @@
         }
       }
     },
+    "UserRoleAssignmentRequestRequestBody": {
+      "description": "A role that applies to a user. If the role has a `tagId`, then the role applies for that tag. If there is no `tagId`, then the role applies at the organizational level. A user may have many tag-specific roles, but may only have one organizational role. If the organizational level role has higher privileges than a tag-specific role, then the organizational role privileges will take precedence.",
+      "type": "object",
+      "title": "UserRoleAssignmentRequestRequestBody",
+      "required": [
+        "roleId"
+      ],
+      "properties": {
+        "roleId": {
+          "description": "The unique ID for the role.",
+          "type": "string",
+          "format": "uuid",
+          "example": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
+        },
+        "tagId": {
+          "description": "ID of the tag to which this role applies.",
+          "type": "string",
+          "example": "3914"
+        }
+      },
+      "example": {
+        "roleId": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+        "tagId": "3914"
+      }
+    },
+    "UserRoleAssignmentResponseBody": {
+      "description": "A role that applies to a user. If the role has a `tag`, then the role applies for that tag. If there is no `tag`, then the role applies at the organizational level. A user may have many tag-specific roles, but may only have one organizational level role. If the organizational level role has higher privileges than a tag-specific role, then the organizational role privileges will take precedence.",
+      "type": "object",
+      "title": "UserRoleAssignmentResponseBody",
+      "properties": {
+        "role": {
+          "$ref": "#/definitions/UserRoleResponseBody"
+        },
+        "tag": {
+          "$ref": "#/definitions/GoaTagTinyResponseResponseBody"
+        }
+      },
+      "example": {
+        "role": {
+          "id": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+          "name": "Full Admin"
+        },
+        "tag": {
+          "id": "3914",
+          "name": "East Coast",
+          "parentTagId": "4815"
+        }
+      }
+    },
+    "UserRoleResponseBody": {
+      "description": "A user role object.",
+      "type": "object",
+      "title": "UserRoleResponseBody",
+      "properties": {
+        "id": {
+          "description": "The unique ID for the role",
+          "type": "string",
+          "format": "uuid",
+          "example": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
+        },
+        "name": {
+          "description": "The name of the role.",
+          "type": "string",
+          "minLength": 1,
+          "example": "Full Admin"
+        }
+      },
+      "example": {
+        "id": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+        "name": "Full Admin"
+      }
+    },
     "UserRoles": {
       "description": "The list of roles that applies to this user. A user may have \"organizational\" roles, which apply to the user at the organizational level, and \"tag-specific\" roles, which apply to the user for a given tag.",
       "type": "array",
@@ -10161,6 +10409,242 @@
       "type": "array",
       "items": {
         "$ref": "#/definitions/UserRoleAssignmentRequest"
+      }
+    },
+    "UsersCreateUserGoaBadRequestResponseBody": {
+      "description": "Bad Request parameters",
+      "type": "object",
+      "title": "UsersCreateUserGoaBadRequestResponseBody",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "invalid parameter driver id: 1ba2345"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "invalid parameter driver id: 1ba2345",
+        "requestId": "8916e1c1"
+      }
+    },
+    "UsersCreateUserGoaInternalErrorResponseBody": {
+      "description": "An internal server error occurred",
+      "type": "object",
+      "title": "UsersCreateUserGoaInternalErrorResponseBody",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "failed to execute GraphQL query"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "failed to execute GraphQL query",
+        "requestId": "8916e1c1"
+      }
+    },
+    "UsersCreateUserGoaNotFoundResponseBody": {
+      "description": "No vehicle found for id",
+      "type": "object",
+      "title": "UsersCreateUserGoaNotFoundResponseBody",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "vehicle id not found"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "vehicle id not found",
+        "requestId": "8916e1c1"
+      }
+    },
+    "UsersCreateUserGoaNotImplementedResponseBody": {
+      "description": "Requested endpoint is not yet implemented",
+      "type": "object",
+      "title": "UsersCreateUserGoaNotImplementedResponseBody",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "not implemented"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "not implemented",
+        "requestId": "8916e1c1"
+      }
+    },
+    "UsersCreateUserGoaRequestBody": {
+      "type": "object",
+      "title": "UsersCreateUserGoaRequestBody",
+      "required": [
+        "name",
+        "email",
+        "authType",
+        "roles"
+      ],
+      "properties": {
+        "authType": {
+          "description": "The authentication type the user uses to authenticate. To use SAML this organization must have a configured SAML integration.",
+          "type": "string",
+          "enum": [
+            "default",
+            "saml"
+          ],
+          "example": "default"
+        },
+        "email": {
+          "description": "The email address of this user.",
+          "type": "string",
+          "format": "email",
+          "example": "user@company.com"
+        },
+        "name": {
+          "description": "The first and last name of the user.",
+          "type": "string",
+          "example": "Bob Smith"
+        },
+        "roles": {
+          "description": "The list of roles that applies to this user. A user may have \"organizational\" roles, which apply to the user at the organizational level, and \"tag-specific\" roles, which apply to the user for a given tag.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserRoleAssignmentRequestRequestBody"
+          },
+          "example": [
+            {
+              "roleId": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+              "tagId": "3914"
+            },
+            {
+              "roleId": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+              "tagId": "3914"
+            },
+            {
+              "roleId": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+              "tagId": "3914"
+            },
+            {
+              "roleId": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+              "tagId": "3914"
+            }
+          ]
+        }
+      },
+      "example": {
+        "authType": "saml",
+        "email": "user@company.com",
+        "name": "Bob Smith",
+        "roles": [
+          {
+            "roleId": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+            "tagId": "3914"
+          },
+          {
+            "roleId": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+            "tagId": "3914"
+          }
+        ]
+      }
+    },
+    "UsersCreateUserGoaResponseBody": {
+      "description": "CreateUserGoaResponseBody result type (default view)",
+      "type": "object",
+      "title": "Mediatype identifier: user_response; view=default",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/UserResponseDataResponseBody"
+        }
+      },
+      "example": {
+        "data": {
+          "authType": "saml",
+          "email": "user@company.com",
+          "id": "123",
+          "name": "Bob Smith",
+          "roles": [
+            {
+              "role": {
+                "id": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+                "name": "Full Admin"
+              },
+              "tag": {
+                "id": "3914",
+                "name": "East Coast",
+                "parentTagId": "4815"
+              }
+            },
+            {
+              "role": {
+                "id": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+                "name": "Full Admin"
+              },
+              "tag": {
+                "id": "3914",
+                "name": "East Coast",
+                "parentTagId": "4815"
+              }
+            },
+            {
+              "role": {
+                "id": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+                "name": "Full Admin"
+              },
+              "tag": {
+                "id": "3914",
+                "name": "East Coast",
+                "parentTagId": "4815"
+              }
+            },
+            {
+              "role": {
+                "id": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+                "name": "Full Admin"
+              },
+              "tag": {
+                "id": "3914",
+                "name": "East Coast",
+                "parentTagId": "4815"
+              }
+            }
+          ]
+        }
       }
     },
     "V1Asset": {
@@ -17724,95 +18208,5 @@
       "in": "query",
       "required": true
     }
-  },
-  "tags": [
-    {
-      "description": "Address book entries in Samsara can be used to collect useful data about operations within a particular address's geofence area. Once an address book entry is established, this address can then subsequently be used in order to create routes, set geofence arrival alerts, or detect trips that begin or end within a given geofence area.",
-      "name": "Addresses"
-    },
-    {
-      "description": "Assets refer to objects that are tracked with Samsara Asset Gateways. These include: trailers, reefers, equipment (construction, etc.), containers, and anything else you'd like to track with a Samsara Asset Gateway. This is different than Vehicles, which specifically have a Samsara Vehicle Gateway. Depending on the asset, different data is available. For all assets, GPS data is available. For powered assets like trailers, reefers, and equipment, other engine or on-board diagnostic data is available.",
-      "name": "Assets"
-    },
-    {
-      "description": "Carriers (fleet managers) can propose vehicle, trailer, and shipping assignments to Drivers through the Carrier Proposed Assignments API. This set of APIs will allow you to define an assignment proposal to a Driver. The proposed assignment will be presented to the Driver in the Samsara Driver App. The Driver may accept or reject the assignment. Retrieving a list of existing proposed assignments will tell you whether the Driver accepted or rejected the proposal.",
-      "name": "Carrier Proposed Assignments"
-    },
-    {
-      "description": "Contacts are an easy way to manage which users receive alerts (via sms or email).",
-      "name": "Contacts"
-    },
-    {
-      "description": "The documents feature allows you to manage driver-submitted documents from the Samsara app. Submitted documents are grouped by document types, and back office users can create new types of documents. For more information on the driver workflow around documents, see this [KB article](https://kb.samsara.com/hc/en-us/articles/360006911551-Using-Documents-in-the-Dashboard).",
-      "name": "Documents"
-    },
-    {
-      "description": "Driver objects allow you to track your driver-vehicle assignments, manage driver profiles, and update mobile app credential logins. You can retrieve a list of all drivers, or you can fetch each driver object individually.\nDrivers can be either active or inactive. You should inactivate a driver if you wish to keep the driver's driving history and HOS logs. If your driver is inactive, you can still get information about a driver summary.",
-      "name": "Drivers"
-    },
-    {
-      "description": "Equipment objects represent powered assets connected to a [Samsara AG24](https://www.samsara.com/products/models/ag24) device via an APWR, CAT, or J1939 cable. They are automatically created with a unique Samsara Equipment ID whenever a Samsara AG24 is activated in your organization.",
-      "name": "Equipment"
-    },
-    {
-      "description": "Driver logs containing duty status, certification details, and associated vehicles and trailers are available. You can also retrieve summarized total active time logs. Signin/Signout logs are also available. Drivers can track hours of service via the Samsara Driver mobile app.\n\n**Note:** If data is still being uploaded from the Samsara Driver App, it may not be completely reflected by the API. The best practice is to wait a couple of days before querying the API to make sure that all data from the Samsara Driver App has been uploaded.",
-      "name": "Hours of Service"
-    },
-    {
-      "description": "Access to industrial data.",
-      "name": "Industrial"
-    },
-    {
-      "description": "Maintenance refers to both DVIRs and reports on vehicle fault codes.",
-      "name": "Maintenance"
-    },
-    {
-      "description": "Fleet Admins can send direct free-form messages to drivers. This will send a message to the driver's Samsara driver app, in which you can track whether or not a message has been read by a given driver. For sending structured messages, see the Documents API.",
-      "name": "Messages"
-    },
-    {
-      "description": "Dispatch routes include start and end times and locations and an array of jobs along the route. The jobs also include locations and scheduled arrival and departure times. As routes are completed, job skip, arrival, and completion times are made available in real-time. Routes can be associated with drivers, vehicles, and trailers, and jobs can be associated with documents.",
-      "name": "Routes"
-    },
-    {
-      "description": "Samsara provides you with more visibility on whether or not your fleets are being safe. With the collection of safety endpoints, you can get aggregate metrics around the performance of a particular driver or vehicle, as well as detailed logs of all the harsh events that take place in an organization.",
-      "name": "Safety"
-    },
-    {
-      "description": "The sensor object describes a sensor's attributes and settings within Samsara. Samsara has many different types of sensors, such as temperature and humidity monitors, door monitors, and more.",
-      "name": "Sensors"
-    },
-    {
-      "description": "Tags are a simple way to organize vehicles, drivers, assets, and sensors into easily identifiable groups. You can add unlimited entities to each tag, and entities can have multiple different tags. You can also use tag hierarchies in order to create nested classes, such as parent tag 'Massachusetts' and child tag 'Boston'. They also allow you to restrict access to data through \"tag-level\" permissions. For more information on tags functionality, see [this Knowledge Base article](https://kb.samsara.com/hc/en-us/articles/360026674631-Using-Tags-and-Tag-Nesting).",
-      "name": "Tags"
-    },
-    {
-      "description": "List trailer assignments over a given time period for all trailers or a given one. Trailer assignments include which driver the trailer was assigned to and for which time period.",
-      "name": "Trailer Assignments"
-    },
-    {
-      "description": "Driving activity is segmented into trips (travel between a start and a stop). Vehicle movement is broken down into trips along the following lines: a trip begins when a previously inactive vehicle achieves a speed of 5mph; the trip ends when the vehicle's speed remains below 5mph for 5 minutes, or when a vehicle crosses a state or national boundary. Trips contain start and stop times, locations, and addresses. Trips also contain distance and odometer information as well as fuel consumption.",
-      "name": "Trips"
-    },
-    {
-      "description": "The users API allows you to manage access to the Samsara dashboard. This can be particularly useful if you are looking to set up a connection with your identity provider to manage roles and permissions for certain types of users within your system.",
-      "name": "Users"
-    },
-    {
-      "description": "A Vehicle object is created when a [Samsara Vehicle Gateway](https://www.samsara.com/products/models/vg34) is first activated. The Vehicle object will be assigned a unique ID that does not change. Samsara will associate all the telematics data from the gateway with the given Vehicle object. If a gateway is [moved from one vehicle to another](https://kb.samsara.com/hc/en-us/articles/360042699732-Moving-a-Vehicle-Gateway-from-One-Vehicle-to-Another), then a new Vehicle object will be created with a new ID. The old Vehicle object will still have its original ID and its historical data will still be accessible, however the gateway will no longer be associated with that vehicle object. You can manage a Vehicle's attributes (such as `name`, `licensePlate`, etc.) both through the API and the Samsara [cloud dashboard](https://cloud.samsara.com).",
-      "name": "Vehicles"
-    },
-    {
-      "description": "Get real-time or historical GPS and onboard diagnostic data.\n\nRelated guide: [Telematics](https://developers.samsara.com/docs/vehicle-stats)",
-      "name": "Vehicle Stats"
-    },
-    {
-      "description": "***NOTE: The Vehicle Locations API is an older API that does not combine GPS data with onboard diagnostics. Try our new [Vehicle Stats API](#tag/Vehicle-Stats) instead.***\n\nGet real-time or historical GPS data.\n\nRelated guide: [Vehicle Locations](https://developers.samsara.com/docs/vehicle-locations)",
-      "name": "Vehicle Locations"
-    },
-    {
-      "description": "Endpoints in this section are in beta. This means that developers should **NOT** rely on these APIs to build business critical applications. The goal is to be able to release these APIs in the near future but, before doing so, ensure that we can collect feedback on the structure of their interfaces and their functionality.\n\n- Samsara may change the structure of a beta API’s interface without versioning this endpoint or any notice to beta users.\n\n- To submit feedback on these beta APIs, please fill out [this form](https://forms.gle/up7uFmJ8f2EKq8xm7).\n\n- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).\n\n- If an issue or bug is experienced with any of these APIs, please submit an entry in the [feedback form](https://forms.gle/up7uFmJ8f2EKq8xm7).",
-      "name": "Beta"
-    }
-  ]
+  }
 }
