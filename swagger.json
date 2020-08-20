@@ -3372,6 +3372,30 @@
         }
       }
     },
+    "/me": {
+      "get": {
+        "description": "Get information about your organization",
+        "tags": [
+          "Organization Info"
+        ],
+        "summary": "Get information about your organization",
+        "operationId": "getOrganizationInfo",
+        "responses": {
+          "200": {
+            "description": "Returns information about your organization.",
+            "schema": {
+              "$ref": "#/definitions/OrganizationInfoResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/tags": {
       "get": {
         "description": "Return all of the tags for an organization.",
@@ -9065,6 +9089,55 @@
           "type": "number",
           "format": "double",
           "example": 1992.0506
+        }
+      }
+    },
+    "OrganizationInfo": {
+      "description": "Information about your organization.",
+      "type": "object",
+      "properties": {
+        "carrierSettings": {
+          "description": "Carrier for a given organization.",
+          "type": "object",
+          "properties": {
+            "carrierName": {
+              "description": "Carrier for a given organization.",
+              "type": "string",
+              "maxLength": 255,
+              "example": "Acme Inc."
+            },
+            "dotNumber": {
+              "description": "Carrier US DOT Number for the organization.",
+              "type": "integer",
+              "format": "int64",
+              "example": 98231
+            },
+            "mainOfficeAddress": {
+              "description": "Main office address for a given organization.",
+              "type": "string",
+              "maxLength": 255,
+              "example": "1234 Pear St., Scranton, PA 62814"
+            }
+          }
+        },
+        "id": {
+          "description": "ID of the organization.",
+          "type": "string",
+          "example": "123"
+        },
+        "name": {
+          "description": "Name of organization.",
+          "type": "string",
+          "example": "Charlie's Dining Services"
+        }
+      }
+    },
+    "OrganizationInfoResponse": {
+      "description": "Information about an organization.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/OrganizationInfo"
         }
       }
     },
