@@ -8470,6 +8470,36 @@
       "description": "Fuel consumption in milliliters.",
       "type": "number"
     },
+    "GoaDriverTinyResponseResponseBody": {
+      "description": "A minified driver object",
+      "type": "object",
+      "title": "GoaDriverTinyResponseResponseBody",
+      "properties": {
+        "externalIds": {
+          "description": "A map of external ids",
+          "example": {
+            "username": "username123"
+          }
+        },
+        "id": {
+          "description": "ID of the driver",
+          "type": "string",
+          "example": "45646"
+        },
+        "name": {
+          "description": "Name of the driver",
+          "type": "string",
+          "example": "Driver Bob"
+        }
+      },
+      "example": {
+        "externalIds": {
+          "username": "username123"
+        },
+        "id": "45646",
+        "name": "Driver Bob"
+      }
+    },
     "GoaTagTinyResponseResponseBody": {
       "description": "A minified tag object",
       "type": "object",
@@ -8499,6 +8529,36 @@
         "id": "3914",
         "name": "East Coast",
         "parentTagId": "4815"
+      }
+    },
+    "GoaVehicleTinyResponseResponseBody": {
+      "description": "A minified vehicle object",
+      "type": "object",
+      "title": "GoaVehicleTinyResponseResponseBody",
+      "properties": {
+        "externalIds": {
+          "description": "A map of external ids",
+          "example": {
+            "samsara.vin": "1231231231"
+          }
+        },
+        "id": {
+          "description": "ID of the vehicle",
+          "type": "string",
+          "example": "494123"
+        },
+        "name": {
+          "description": "Name of the vehicle",
+          "type": "string",
+          "example": "Fleet Truck #1"
+        }
+      },
+      "example": {
+        "externalIds": {
+          "samsara.vin": "1231231231"
+        },
+        "id": "494123",
+        "name": "Fleet Truck #1"
       }
     },
     "HosBreak": {
@@ -9376,6 +9436,536 @@
             ],
             "example": "route tracking"
           }
+        }
+      }
+    },
+    "RouteSettingsRequestBody": {
+      "description": "An optional dictionary, only necessary to override the defaults.",
+      "type": "object",
+      "title": "RouteSettingsRequestBody",
+      "properties": {
+        "routeCompletionCondition": {
+          "type": "string",
+          "default": "arriveLastStop",
+          "enum": [
+            "arriveLastStop",
+            "departLastStop"
+          ],
+          "example": "arriveLastStop"
+        },
+        "routeStartingCondition": {
+          "type": "string",
+          "default": "departFirstStop",
+          "enum": [
+            "departFirstStop",
+            "arriveFirstStop"
+          ],
+          "example": "departFirstStop"
+        }
+      },
+      "example": {
+        "routeCompletionCondition": "departLastStop",
+        "routeStartingCondition": "departFirstStop"
+      }
+    },
+    "RouteSettingsResponseBody": {
+      "description": "An optional dictionary, only necessary to override the defaults.",
+      "type": "object",
+      "title": "RouteSettingsResponseBody",
+      "properties": {
+        "routeCompletionCondition": {
+          "type": "string",
+          "default": "arriveLastStop",
+          "enum": [
+            "arriveLastStop",
+            "departLastStop"
+          ],
+          "example": "arriveLastStop"
+        },
+        "routeStartingCondition": {
+          "type": "string",
+          "default": "departFirstStop",
+          "enum": [
+            "departFirstStop",
+            "arriveFirstStop"
+          ],
+          "example": "departFirstStop"
+        }
+      },
+      "example": {
+        "routeCompletionCondition": "arriveLastStop",
+        "routeStartingCondition": "departFirstStop"
+      }
+    },
+    "RoutesCreateRouteBadRequestResponseBody": {
+      "description": "Bad Request parameters",
+      "type": "object",
+      "title": "RoutesCreateRouteBadRequestResponseBody",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "invalid parameter driver id: 1ba2345"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "invalid parameter driver id: 1ba2345",
+        "requestId": "8916e1c1"
+      }
+    },
+    "RoutesCreateRouteInternalErrorResponseBody": {
+      "description": "An internal server error occurred",
+      "type": "object",
+      "title": "RoutesCreateRouteInternalErrorResponseBody",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "failed to execute GraphQL query"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "failed to execute GraphQL query",
+        "requestId": "8916e1c1"
+      }
+    },
+    "RoutesCreateRouteNotFoundResponseBody": {
+      "description": "Resource not found",
+      "type": "object",
+      "title": "RoutesCreateRouteNotFoundResponseBody",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "vehicle id not found"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "vehicle id not found",
+        "requestId": "8916e1c1"
+      }
+    },
+    "RoutesCreateRouteNotImplementedResponseBody": {
+      "description": "Requested endpoint is not yet implemented",
+      "type": "object",
+      "title": "RoutesCreateRouteNotImplementedResponseBody",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "not implemented"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "not implemented",
+        "requestId": "8916e1c1"
+      }
+    },
+    "RoutesCreateRouteRequestBody": {
+      "type": "object",
+      "title": "RoutesCreateRouteRequestBody",
+      "required": [
+        "stops",
+        "name"
+      ],
+      "properties": {
+        "driverId": {
+          "description": "ID of the driver",
+          "type": "string",
+          "example": "1234"
+        },
+        "externalIds": {
+          "description": "A map of external ids",
+          "example": {
+            "username": "username123"
+          }
+        },
+        "name": {
+          "description": "Name for the route",
+          "type": "string",
+          "example": "Bid 123"
+        },
+        "notes": {
+          "type": "string",
+          "maxLength": 2000,
+          "example": "These are my notes"
+        },
+        "settings": {
+          "$ref": "#/definitions/RouteSettingsRequestBody"
+        },
+        "stops": {
+          "description": "List of stops along the route",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/RoutesStopObjectRequestBody"
+          },
+          "example": [
+            {
+              "addressId": "45934",
+              "name": "Aut aut porro rerum quas.",
+              "notes": "These are my notes",
+              "scheduledDepartureTime": "1975-03-23T01:10:52Z",
+              "singleUseLocation": {
+                "latitude": 123.456,
+                "longitude": 37.459,
+                "name": "ACME Inc. Philadelphia HQ"
+              }
+            },
+            {
+              "addressId": "45934",
+              "name": "Aut aut porro rerum quas.",
+              "notes": "These are my notes",
+              "scheduledDepartureTime": "1975-03-23T01:10:52Z",
+              "singleUseLocation": {
+                "latitude": 123.456,
+                "longitude": 37.459,
+                "name": "ACME Inc. Philadelphia HQ"
+              }
+            },
+            {
+              "addressId": "45934",
+              "name": "Aut aut porro rerum quas.",
+              "notes": "These are my notes",
+              "scheduledDepartureTime": "1975-03-23T01:10:52Z",
+              "singleUseLocation": {
+                "latitude": 123.456,
+                "longitude": 37.459,
+                "name": "ACME Inc. Philadelphia HQ"
+              }
+            }
+          ]
+        },
+        "vehicleId": {
+          "description": "ID of the vehicle",
+          "type": "string",
+          "example": "453546"
+        }
+      },
+      "example": {
+        "driverId": "1234",
+        "externalIds": {
+          "username": "username123"
+        },
+        "name": "Bid 123",
+        "notes": "These are my notes",
+        "settings": {
+          "routeCompletionCondition": "departLastStop",
+          "routeStartingCondition": "arriveFirstStop"
+        },
+        "stops": [
+          {
+            "addressId": "45934",
+            "name": "Aut aut porro rerum quas.",
+            "notes": "These are my notes",
+            "scheduledDepartureTime": "1975-03-23T01:10:52Z",
+            "singleUseLocation": {
+              "latitude": 123.456,
+              "longitude": 37.459,
+              "name": "ACME Inc. Philadelphia HQ"
+            }
+          },
+          {
+            "addressId": "45934",
+            "name": "Aut aut porro rerum quas.",
+            "notes": "These are my notes",
+            "scheduledDepartureTime": "1975-03-23T01:10:52Z",
+            "singleUseLocation": {
+              "latitude": 123.456,
+              "longitude": 37.459,
+              "name": "ACME Inc. Philadelphia HQ"
+            }
+          }
+        ],
+        "vehicleId": "453546"
+      }
+    },
+    "RoutesCreateRouteResponseBody": {
+      "type": "object",
+      "title": "RoutesCreateRouteResponseBody",
+      "required": [
+        "name",
+        "stops"
+      ],
+      "properties": {
+        "driver": {
+          "$ref": "#/definitions/GoaDriverTinyResponseResponseBody"
+        },
+        "externalIds": {
+          "description": "A map of external ids for the route.",
+          "example": {
+            "customerRoute": "1"
+          }
+        },
+        "name": {
+          "description": "Route name",
+          "type": "string",
+          "example": "Bid 123"
+        },
+        "notes": {
+          "description": "Notes for the route",
+          "type": "string",
+          "example": "Esse autem sit."
+        },
+        "settings": {
+          "$ref": "#/definitions/RouteSettingsResponseBody"
+        },
+        "stops": {
+          "description": "List of stops along the route",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/RoutesStopObjectResponseBody"
+          },
+          "example": [
+            {
+              "addressId": "45934",
+              "name": "Enim consectetur veniam suscipit quam iste non.",
+              "notes": "These are my notes",
+              "scheduledDepartureTime": "1975-05-13T14:12:59Z",
+              "singleUseLocation": {
+                "latitude": 123.456,
+                "longitude": 37.459,
+                "name": "ACME Inc. Philadelphia HQ"
+              }
+            }
+          ]
+        },
+        "vehicle": {
+          "$ref": "#/definitions/GoaVehicleTinyResponseResponseBody"
+        }
+      },
+      "example": {
+        "driver": {
+          "externalIds": {
+            "username": "username123"
+          },
+          "id": "45646",
+          "name": "Driver Bob"
+        },
+        "externalIds": {
+          "customerRoute": "1"
+        },
+        "name": "Bid 123",
+        "notes": "Fuga non dolore.",
+        "settings": {
+          "routeCompletionCondition": "departLastStop",
+          "routeStartingCondition": "departFirstStop"
+        },
+        "stops": [
+          {
+            "addressId": "45934",
+            "name": "Enim consectetur veniam suscipit quam iste non.",
+            "notes": "These are my notes",
+            "scheduledDepartureTime": "1975-05-13T14:12:59Z",
+            "singleUseLocation": {
+              "latitude": 123.456,
+              "longitude": 37.459,
+              "name": "ACME Inc. Philadelphia HQ"
+            }
+          },
+          {
+            "addressId": "45934",
+            "name": "Enim consectetur veniam suscipit quam iste non.",
+            "notes": "These are my notes",
+            "scheduledDepartureTime": "1975-05-13T14:12:59Z",
+            "singleUseLocation": {
+              "latitude": 123.456,
+              "longitude": 37.459,
+              "name": "ACME Inc. Philadelphia HQ"
+            }
+          }
+        ],
+        "vehicle": {
+          "externalIds": {
+            "samsara.vin": "1231231231"
+          },
+          "id": "494123",
+          "name": "Fleet Truck #1"
+        }
+      }
+    },
+    "RoutesSingleUseAddressObjectRequestBody": {
+      "description": "This field is mutually exclusive with addressId.",
+      "type": "object",
+      "title": "RoutesSingleUseAddressObjectRequestBody",
+      "properties": {
+        "latitude": {
+          "description": "The latitude of the location",
+          "type": "number",
+          "format": "float",
+          "example": 123.456
+        },
+        "longitude": {
+          "description": "The longitude of the location",
+          "type": "number",
+          "format": "float",
+          "example": 37.459
+        },
+        "name": {
+          "description": "Name of the stop.",
+          "type": "string",
+          "example": "ACME Inc. Philadelphia HQ"
+        }
+      },
+      "example": {
+        "latitude": 123.456,
+        "longitude": 37.459,
+        "name": "ACME Inc. Philadelphia HQ"
+      }
+    },
+    "RoutesSingleUseAddressObjectResponseBody": {
+      "description": "This field is mutually exclusive with addressId.",
+      "type": "object",
+      "title": "RoutesSingleUseAddressObjectResponseBody",
+      "properties": {
+        "latitude": {
+          "description": "The latitude of the location",
+          "type": "number",
+          "format": "float",
+          "example": 123.456
+        },
+        "longitude": {
+          "description": "The longitude of the location",
+          "type": "number",
+          "format": "float",
+          "example": 37.459
+        },
+        "name": {
+          "description": "Name of the stop.",
+          "type": "string",
+          "example": "ACME Inc. Philadelphia HQ"
+        }
+      },
+      "example": {
+        "latitude": 123.456,
+        "longitude": 37.459,
+        "name": "ACME Inc. Philadelphia HQ"
+      }
+    },
+    "RoutesStopObjectRequestBody": {
+      "type": "object",
+      "title": "RoutesStopObjectRequestBody",
+      "required": [
+        "name",
+        "scheduledDepartureTime"
+      ],
+      "properties": {
+        "addressId": {
+          "description": "ID of the address",
+          "type": "string",
+          "example": "45934"
+        },
+        "name": {
+          "description": "Name for the stop",
+          "type": "string",
+          "example": "Cupiditate nemo dolores quia aut."
+        },
+        "notes": {
+          "description": "Notes for the stop",
+          "type": "string",
+          "maxLength": 2000,
+          "example": "These are my notes"
+        },
+        "scheduledDepartureTime": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2003-08-03T21:49:46Z"
+        },
+        "singleUseLocation": {
+          "$ref": "#/definitions/RoutesSingleUseAddressObjectRequestBody"
+        }
+      },
+      "example": {
+        "addressId": "45934",
+        "name": "Exercitationem officiis.",
+        "notes": "These are my notes",
+        "scheduledDepartureTime": "1976-10-29T00:44:17Z",
+        "singleUseLocation": {
+          "latitude": 123.456,
+          "longitude": 37.459,
+          "name": "ACME Inc. Philadelphia HQ"
+        }
+      }
+    },
+    "RoutesStopObjectResponseBody": {
+      "type": "object",
+      "title": "RoutesStopObjectResponseBody",
+      "required": [
+        "name",
+        "scheduledDepartureTime"
+      ],
+      "properties": {
+        "addressId": {
+          "description": "ID of the address",
+          "type": "string",
+          "example": "45934"
+        },
+        "name": {
+          "description": "Name for the stop",
+          "type": "string",
+          "example": "Laboriosam quae quia eveniet."
+        },
+        "notes": {
+          "description": "Notes for the stop",
+          "type": "string",
+          "maxLength": 2000,
+          "example": "These are my notes"
+        },
+        "scheduledDepartureTime": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2007-12-23T16:14:33Z"
+        },
+        "singleUseLocation": {
+          "$ref": "#/definitions/RoutesSingleUseAddressObjectResponseBody"
+        }
+      },
+      "example": {
+        "addressId": "45934",
+        "name": "Qui nulla quos.",
+        "notes": "These are my notes",
+        "scheduledDepartureTime": "2001-11-20T09:53:38Z",
+        "singleUseLocation": {
+          "latitude": 123.456,
+          "longitude": 37.459,
+          "name": "ACME Inc. Philadelphia HQ"
         }
       }
     },
@@ -10641,7 +11231,7 @@
         }
       },
       "example": {
-        "authType": "saml",
+        "authType": "default",
         "email": "user@company.com",
         "name": "Bob Smith",
         "roles": [
@@ -10667,22 +11257,11 @@
       },
       "example": {
         "data": {
-          "authType": "saml",
+          "authType": "default",
           "email": "user@company.com",
           "id": "123",
           "name": "Bob Smith",
           "roles": [
-            {
-              "role": {
-                "id": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
-                "name": "Full Admin"
-              },
-              "tag": {
-                "id": "3914",
-                "name": "East Coast",
-                "parentTagId": "4815"
-              }
-            },
             {
               "role": {
                 "id": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
