@@ -6170,6 +6170,2011 @@
         }
       }
     },
+    "CameraMediaGetCameraMediaBadRequestResponseBody": {
+      "description": "Bad Request parameters",
+      "type": "object",
+      "title": "CameraMediaGetCameraMediaBadRequestResponseBody",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "invalid parameter driver id: 1ba2345"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "invalid parameter driver id: 1ba2345",
+        "requestId": "8916e1c1"
+      }
+    },
+    "CameraMediaGetCameraMediaInternalErrorResponseBody": {
+      "description": "An internal server error occurred",
+      "type": "object",
+      "title": "CameraMediaGetCameraMediaInternalErrorResponseBody",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "failed to execute GraphQL query"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "failed to execute GraphQL query",
+        "requestId": "8916e1c1"
+      }
+    },
+    "CameraMediaGetCameraMediaNotFoundResponseBody": {
+      "description": "Resource not found",
+      "type": "object",
+      "title": "CameraMediaGetCameraMediaNotFoundResponseBody",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "vehicle id not found"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "vehicle id not found",
+        "requestId": "8916e1c1"
+      }
+    },
+    "CameraMediaGetCameraMediaNotImplementedResponseBody": {
+      "description": "Requested endpoint is not yet implemented",
+      "type": "object",
+      "title": "CameraMediaGetCameraMediaNotImplementedResponseBody",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "not implemented"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "not implemented",
+        "requestId": "8916e1c1"
+      }
+    },
+    "CameraMediaGetCameraMediaRequestBody": {
+      "type": "object",
+      "title": "CameraMediaGetCameraMediaRequestBody",
+      "required": [
+        "startTime",
+        "endTime"
+      ],
+      "properties": {
+        "after": {
+          "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+          "type": "string",
+          "example": "c857e70c-dddd-4230-97f1-01f59e86dbf8"
+        },
+        "endTime": {
+          "description": " An end time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+          "type": "string",
+          "example": "2019-06-13T19:08:25Z"
+        },
+        "externalIds": {
+          "description": "A map of external ids",
+          "type": "object",
+          "additionalProperties": true,
+          "example": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          }
+        },
+        "parentTagIds": {
+          "description": " A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+          "type": "string",
+          "example": "345,678"
+        },
+        "startTime": {
+          "description": " A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+          "type": "string",
+          "example": "2019-06-13T19:08:25Z"
+        },
+        "tagIds": {
+          "description": " A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+          "type": "string",
+          "example": "1234,5678"
+        },
+        "vehicleIds": {
+          "description": " A filter on the data based on this comma-separated list of vehicle IDs. Example: `vehicleIds=1234,5678`",
+          "type": "string",
+          "example": "1234,5678"
+        }
+      },
+      "example": {
+        "after": "c857e70c-dddd-4230-97f1-01f59e86dbf8",
+        "endTime": "2019-06-13T19:08:25Z",
+        "externalIds": {
+          "maintenanceId": "250020",
+          "payrollId": "ABFS18600"
+        },
+        "parentTagIds": "345,678",
+        "startTime": "2019-06-13T19:08:25Z",
+        "tagIds": "1234,5678",
+        "vehicleIds": "1234,5678"
+      }
+    },
+    "CameraMediaGetCameraMediaResponseBody": {
+      "type": "object",
+      "title": "CameraMediaGetCameraMediaResponseBody",
+      "properties": {
+        "data": {
+          "description": "List of vehicle and their camera media.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VehicleCameraMediaObjectResponseBody"
+          },
+          "example": [
+            {
+              "cameras": [
+                {
+                  "id": "230942",
+                  "images": [
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    },
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    }
+                  ],
+                  "name": "GTTU-ASS-UXD",
+                  "serial": "CSS6-23A-HJF"
+                },
+                {
+                  "id": "230942",
+                  "images": [
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    },
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    }
+                  ],
+                  "name": "GTTU-ASS-UXD",
+                  "serial": "CSS6-23A-HJF"
+                },
+                {
+                  "id": "230942",
+                  "images": [
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    },
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    }
+                  ],
+                  "name": "GTTU-ASS-UXD",
+                  "serial": "CSS6-23A-HJF"
+                },
+                {
+                  "id": "230942",
+                  "images": [
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    },
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    }
+                  ],
+                  "name": "GTTU-ASS-UXD",
+                  "serial": "CSS6-23A-HJF"
+                }
+              ],
+              "id": "494123"
+            },
+            {
+              "cameras": [
+                {
+                  "id": "230942",
+                  "images": [
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    },
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    }
+                  ],
+                  "name": "GTTU-ASS-UXD",
+                  "serial": "CSS6-23A-HJF"
+                },
+                {
+                  "id": "230942",
+                  "images": [
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    },
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    }
+                  ],
+                  "name": "GTTU-ASS-UXD",
+                  "serial": "CSS6-23A-HJF"
+                },
+                {
+                  "id": "230942",
+                  "images": [
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    },
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    }
+                  ],
+                  "name": "GTTU-ASS-UXD",
+                  "serial": "CSS6-23A-HJF"
+                },
+                {
+                  "id": "230942",
+                  "images": [
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    },
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    }
+                  ],
+                  "name": "GTTU-ASS-UXD",
+                  "serial": "CSS6-23A-HJF"
+                }
+              ],
+              "id": "494123"
+            },
+            {
+              "cameras": [
+                {
+                  "id": "230942",
+                  "images": [
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    },
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    }
+                  ],
+                  "name": "GTTU-ASS-UXD",
+                  "serial": "CSS6-23A-HJF"
+                },
+                {
+                  "id": "230942",
+                  "images": [
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    },
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    }
+                  ],
+                  "name": "GTTU-ASS-UXD",
+                  "serial": "CSS6-23A-HJF"
+                },
+                {
+                  "id": "230942",
+                  "images": [
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    },
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    }
+                  ],
+                  "name": "GTTU-ASS-UXD",
+                  "serial": "CSS6-23A-HJF"
+                },
+                {
+                  "id": "230942",
+                  "images": [
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    },
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    }
+                  ],
+                  "name": "GTTU-ASS-UXD",
+                  "serial": "CSS6-23A-HJF"
+                }
+              ],
+              "id": "494123"
+            },
+            {
+              "cameras": [
+                {
+                  "id": "230942",
+                  "images": [
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    },
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    }
+                  ],
+                  "name": "GTTU-ASS-UXD",
+                  "serial": "CSS6-23A-HJF"
+                },
+                {
+                  "id": "230942",
+                  "images": [
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    },
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    }
+                  ],
+                  "name": "GTTU-ASS-UXD",
+                  "serial": "CSS6-23A-HJF"
+                },
+                {
+                  "id": "230942",
+                  "images": [
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    },
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    }
+                  ],
+                  "name": "GTTU-ASS-UXD",
+                  "serial": "CSS6-23A-HJF"
+                },
+                {
+                  "id": "230942",
+                  "images": [
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    },
+                    {
+                      "captureTime": "2015-09-15T14:00:12-04:00",
+                      "imageData": [
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        },
+                        {
+                          "cameraView": "`frontFacing`",
+                          "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                          "urlExpiryTime": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    }
+                  ],
+                  "name": "GTTU-ASS-UXD",
+                  "serial": "CSS6-23A-HJF"
+                }
+              ],
+              "id": "494123"
+            }
+          ]
+        },
+        "pagination": {
+          "$ref": "#/definitions/GoaPaginationResponseResponseBody"
+        }
+      },
+      "example": {
+        "data": [
+          {
+            "cameras": [
+              {
+                "id": "230942",
+                "images": [
+                  {
+                    "captureTime": "2015-09-15T14:00:12-04:00",
+                    "imageData": [
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      }
+                    ]
+                  },
+                  {
+                    "captureTime": "2015-09-15T14:00:12-04:00",
+                    "imageData": [
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      }
+                    ]
+                  }
+                ],
+                "name": "GTTU-ASS-UXD",
+                "serial": "CSS6-23A-HJF"
+              },
+              {
+                "id": "230942",
+                "images": [
+                  {
+                    "captureTime": "2015-09-15T14:00:12-04:00",
+                    "imageData": [
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      }
+                    ]
+                  },
+                  {
+                    "captureTime": "2015-09-15T14:00:12-04:00",
+                    "imageData": [
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      }
+                    ]
+                  }
+                ],
+                "name": "GTTU-ASS-UXD",
+                "serial": "CSS6-23A-HJF"
+              },
+              {
+                "id": "230942",
+                "images": [
+                  {
+                    "captureTime": "2015-09-15T14:00:12-04:00",
+                    "imageData": [
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      }
+                    ]
+                  },
+                  {
+                    "captureTime": "2015-09-15T14:00:12-04:00",
+                    "imageData": [
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      }
+                    ]
+                  }
+                ],
+                "name": "GTTU-ASS-UXD",
+                "serial": "CSS6-23A-HJF"
+              },
+              {
+                "id": "230942",
+                "images": [
+                  {
+                    "captureTime": "2015-09-15T14:00:12-04:00",
+                    "imageData": [
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      }
+                    ]
+                  },
+                  {
+                    "captureTime": "2015-09-15T14:00:12-04:00",
+                    "imageData": [
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      }
+                    ]
+                  }
+                ],
+                "name": "GTTU-ASS-UXD",
+                "serial": "CSS6-23A-HJF"
+              }
+            ],
+            "id": "494123"
+          },
+          {
+            "cameras": [
+              {
+                "id": "230942",
+                "images": [
+                  {
+                    "captureTime": "2015-09-15T14:00:12-04:00",
+                    "imageData": [
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      }
+                    ]
+                  },
+                  {
+                    "captureTime": "2015-09-15T14:00:12-04:00",
+                    "imageData": [
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      }
+                    ]
+                  }
+                ],
+                "name": "GTTU-ASS-UXD",
+                "serial": "CSS6-23A-HJF"
+              },
+              {
+                "id": "230942",
+                "images": [
+                  {
+                    "captureTime": "2015-09-15T14:00:12-04:00",
+                    "imageData": [
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      }
+                    ]
+                  },
+                  {
+                    "captureTime": "2015-09-15T14:00:12-04:00",
+                    "imageData": [
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      }
+                    ]
+                  }
+                ],
+                "name": "GTTU-ASS-UXD",
+                "serial": "CSS6-23A-HJF"
+              },
+              {
+                "id": "230942",
+                "images": [
+                  {
+                    "captureTime": "2015-09-15T14:00:12-04:00",
+                    "imageData": [
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      }
+                    ]
+                  },
+                  {
+                    "captureTime": "2015-09-15T14:00:12-04:00",
+                    "imageData": [
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      }
+                    ]
+                  }
+                ],
+                "name": "GTTU-ASS-UXD",
+                "serial": "CSS6-23A-HJF"
+              },
+              {
+                "id": "230942",
+                "images": [
+                  {
+                    "captureTime": "2015-09-15T14:00:12-04:00",
+                    "imageData": [
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      }
+                    ]
+                  },
+                  {
+                    "captureTime": "2015-09-15T14:00:12-04:00",
+                    "imageData": [
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      }
+                    ]
+                  }
+                ],
+                "name": "GTTU-ASS-UXD",
+                "serial": "CSS6-23A-HJF"
+              }
+            ],
+            "id": "494123"
+          },
+          {
+            "cameras": [
+              {
+                "id": "230942",
+                "images": [
+                  {
+                    "captureTime": "2015-09-15T14:00:12-04:00",
+                    "imageData": [
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      }
+                    ]
+                  },
+                  {
+                    "captureTime": "2015-09-15T14:00:12-04:00",
+                    "imageData": [
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      }
+                    ]
+                  }
+                ],
+                "name": "GTTU-ASS-UXD",
+                "serial": "CSS6-23A-HJF"
+              },
+              {
+                "id": "230942",
+                "images": [
+                  {
+                    "captureTime": "2015-09-15T14:00:12-04:00",
+                    "imageData": [
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      }
+                    ]
+                  },
+                  {
+                    "captureTime": "2015-09-15T14:00:12-04:00",
+                    "imageData": [
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      }
+                    ]
+                  }
+                ],
+                "name": "GTTU-ASS-UXD",
+                "serial": "CSS6-23A-HJF"
+              },
+              {
+                "id": "230942",
+                "images": [
+                  {
+                    "captureTime": "2015-09-15T14:00:12-04:00",
+                    "imageData": [
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      }
+                    ]
+                  },
+                  {
+                    "captureTime": "2015-09-15T14:00:12-04:00",
+                    "imageData": [
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      }
+                    ]
+                  }
+                ],
+                "name": "GTTU-ASS-UXD",
+                "serial": "CSS6-23A-HJF"
+              },
+              {
+                "id": "230942",
+                "images": [
+                  {
+                    "captureTime": "2015-09-15T14:00:12-04:00",
+                    "imageData": [
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      }
+                    ]
+                  },
+                  {
+                    "captureTime": "2015-09-15T14:00:12-04:00",
+                    "imageData": [
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "cameraView": "`frontFacing`",
+                        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                        "urlExpiryTime": "2019-06-13T19:08:25Z"
+                      }
+                    ]
+                  }
+                ],
+                "name": "GTTU-ASS-UXD",
+                "serial": "CSS6-23A-HJF"
+              }
+            ],
+            "id": "494123"
+          }
+        ],
+        "pagination": {
+          "endCursor": "MjkY",
+          "hasNextPage": true
+        }
+      }
+    },
+    "CameraObjectResponseBody": {
+      "type": "object",
+      "title": "CameraObjectResponseBody",
+      "properties": {
+        "id": {
+          "description": "ID of the camera.",
+          "type": "string",
+          "example": "230942"
+        },
+        "images": {
+          "description": "List of image objects.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ImageObjectResponseBody"
+          },
+          "example": [
+            {
+              "captureTime": "2015-09-15T14:00:12-04:00",
+              "imageData": [
+                {
+                  "cameraView": "`frontFacing`",
+                  "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                  "urlExpiryTime": "2019-06-13T19:08:25Z"
+                },
+                {
+                  "cameraView": "`frontFacing`",
+                  "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                  "urlExpiryTime": "2019-06-13T19:08:25Z"
+                },
+                {
+                  "cameraView": "`frontFacing`",
+                  "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                  "urlExpiryTime": "2019-06-13T19:08:25Z"
+                },
+                {
+                  "cameraView": "`frontFacing`",
+                  "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                  "urlExpiryTime": "2019-06-13T19:08:25Z"
+                }
+              ]
+            },
+            {
+              "captureTime": "2015-09-15T14:00:12-04:00",
+              "imageData": [
+                {
+                  "cameraView": "`frontFacing`",
+                  "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                  "urlExpiryTime": "2019-06-13T19:08:25Z"
+                },
+                {
+                  "cameraView": "`frontFacing`",
+                  "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                  "urlExpiryTime": "2019-06-13T19:08:25Z"
+                },
+                {
+                  "cameraView": "`frontFacing`",
+                  "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                  "urlExpiryTime": "2019-06-13T19:08:25Z"
+                },
+                {
+                  "cameraView": "`frontFacing`",
+                  "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                  "urlExpiryTime": "2019-06-13T19:08:25Z"
+                }
+              ]
+            }
+          ]
+        },
+        "name": {
+          "description": "Name of the camera.",
+          "type": "string",
+          "example": "GTTU-ASS-UXD"
+        },
+        "serial": {
+          "description": "Serial of the camera.",
+          "type": "string",
+          "example": "CSS6-23A-HJF"
+        }
+      },
+      "example": {
+        "id": "230942",
+        "images": [
+          {
+            "captureTime": "2015-09-15T14:00:12-04:00",
+            "imageData": [
+              {
+                "cameraView": "`frontFacing`",
+                "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                "urlExpiryTime": "2019-06-13T19:08:25Z"
+              },
+              {
+                "cameraView": "`frontFacing`",
+                "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                "urlExpiryTime": "2019-06-13T19:08:25Z"
+              },
+              {
+                "cameraView": "`frontFacing`",
+                "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                "urlExpiryTime": "2019-06-13T19:08:25Z"
+              },
+              {
+                "cameraView": "`frontFacing`",
+                "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                "urlExpiryTime": "2019-06-13T19:08:25Z"
+              }
+            ]
+          },
+          {
+            "captureTime": "2015-09-15T14:00:12-04:00",
+            "imageData": [
+              {
+                "cameraView": "`frontFacing`",
+                "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                "urlExpiryTime": "2019-06-13T19:08:25Z"
+              },
+              {
+                "cameraView": "`frontFacing`",
+                "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                "urlExpiryTime": "2019-06-13T19:08:25Z"
+              },
+              {
+                "cameraView": "`frontFacing`",
+                "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                "urlExpiryTime": "2019-06-13T19:08:25Z"
+              },
+              {
+                "cameraView": "`frontFacing`",
+                "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                "urlExpiryTime": "2019-06-13T19:08:25Z"
+              }
+            ]
+          },
+          {
+            "captureTime": "2015-09-15T14:00:12-04:00",
+            "imageData": [
+              {
+                "cameraView": "`frontFacing`",
+                "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                "urlExpiryTime": "2019-06-13T19:08:25Z"
+              },
+              {
+                "cameraView": "`frontFacing`",
+                "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                "urlExpiryTime": "2019-06-13T19:08:25Z"
+              },
+              {
+                "cameraView": "`frontFacing`",
+                "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                "urlExpiryTime": "2019-06-13T19:08:25Z"
+              },
+              {
+                "cameraView": "`frontFacing`",
+                "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                "urlExpiryTime": "2019-06-13T19:08:25Z"
+              }
+            ]
+          },
+          {
+            "captureTime": "2015-09-15T14:00:12-04:00",
+            "imageData": [
+              {
+                "cameraView": "`frontFacing`",
+                "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                "urlExpiryTime": "2019-06-13T19:08:25Z"
+              },
+              {
+                "cameraView": "`frontFacing`",
+                "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                "urlExpiryTime": "2019-06-13T19:08:25Z"
+              },
+              {
+                "cameraView": "`frontFacing`",
+                "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                "urlExpiryTime": "2019-06-13T19:08:25Z"
+              },
+              {
+                "cameraView": "`frontFacing`",
+                "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                "urlExpiryTime": "2019-06-13T19:08:25Z"
+              }
+            ]
+          }
+        ],
+        "name": "GTTU-ASS-UXD",
+        "serial": "CSS6-23A-HJF"
+      }
+    },
     "CameraSerial": {
       "description": "The serial number of the camera installed in the vehicle",
       "type": "string",
@@ -8501,6 +10506,31 @@
         "name": "Driver Bob"
       }
     },
+    "GoaPaginationResponseResponseBody": {
+      "description": "Pagination parameters.",
+      "type": "object",
+      "title": "GoaPaginationResponseResponseBody",
+      "required": [
+        "endCursor",
+        "hasNextPage"
+      ],
+      "properties": {
+        "endCursor": {
+          "description": "Cursor identifier representing the last element in the response. This value should be used in conjunction with a subsequent request's 'after' query parameter. This may be an empty string if there are no more pages left to view.",
+          "type": "string",
+          "example": "MjkY"
+        },
+        "hasNextPage": {
+          "description": "True if there are more pages of results immediately available after this endCursor.",
+          "type": "boolean",
+          "example": true
+        }
+      },
+      "example": {
+        "endCursor": "MjkY",
+        "hasNextPage": true
+      }
+    },
     "GoaTagTinyResponseResponseBody": {
       "description": "A minified tag object",
       "type": "object",
@@ -8773,6 +10803,77 @@
     "IdleTimeDurationMs": {
       "description": "Time spent idling in milliseconds.",
       "type": "number"
+    },
+    "ImageDataObjectResponseBody": {
+      "type": "object",
+      "title": "ImageDataObjectResponseBody",
+      "properties": {
+        "cameraView": {
+          "description": "A description of the cameras view. Empty if none can be inferred. (Examples: `frontFacing`, `driverFacing`).",
+          "type": "string",
+          "example": "`frontFacing`"
+        },
+        "url": {
+          "description": "The s3 url of the image.",
+          "type": "string",
+          "example": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com"
+        },
+        "urlExpiryTime": {
+          "description": "The expiry time of the URL in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+          "type": "string",
+          "example": "2019-06-13T19:08:25Z"
+        }
+      },
+      "example": {
+        "cameraView": "`frontFacing`",
+        "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+        "urlExpiryTime": "2019-06-13T19:08:25Z"
+      }
+    },
+    "ImageObjectResponseBody": {
+      "type": "object",
+      "title": "ImageObjectResponseBody",
+      "properties": {
+        "captureTime": {
+          "description": "The capture time of the image in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+          "type": "string",
+          "example": "2015-09-15T14:00:12-04:00"
+        },
+        "imageData": {
+          "description": "List of image data objects.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ImageDataObjectResponseBody"
+          },
+          "example": [
+            {
+              "cameraView": "`frontFacing`",
+              "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+              "urlExpiryTime": "2019-06-13T19:08:25Z"
+            },
+            {
+              "cameraView": "`frontFacing`",
+              "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+              "urlExpiryTime": "2019-06-13T19:08:25Z"
+            }
+          ]
+        }
+      },
+      "example": {
+        "captureTime": "2015-09-15T14:00:12-04:00",
+        "imageData": [
+          {
+            "cameraView": "`frontFacing`",
+            "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+            "urlExpiryTime": "2019-06-13T19:08:25Z"
+          },
+          {
+            "cameraView": "`frontFacing`",
+            "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+            "urlExpiryTime": "2019-06-13T19:08:25Z"
+          }
+        ]
+      }
     },
     "J1939D1StatusDataPoint": {
       "description": "Active J1939D1 statuses of a device.",
@@ -9452,7 +11553,7 @@
             "arriveLastStop",
             "departLastStop"
           ],
-          "example": "arriveLastStop"
+          "example": "departLastStop"
         },
         "routeStartingCondition": {
           "type": "string",
@@ -9461,11 +11562,11 @@
             "departFirstStop",
             "arriveFirstStop"
           ],
-          "example": "departFirstStop"
+          "example": "arriveFirstStop"
         }
       },
       "example": {
-        "routeCompletionCondition": "departLastStop",
+        "routeCompletionCondition": "arriveLastStop",
         "routeStartingCondition": "departFirstStop"
       }
     },
@@ -9640,9 +11741,9 @@
           "example": [
             {
               "addressId": "45934",
-              "name": "Aut aut porro rerum quas.",
+              "name": "Consequatur rerum sapiente odit.",
               "notes": "These are my notes",
-              "scheduledDepartureTime": "1975-03-23T01:10:52Z",
+              "scheduledDepartureTime": "2012-01-06T17:18:38Z",
               "singleUseLocation": {
                 "latitude": 123.456,
                 "longitude": 37.459,
@@ -9651,9 +11752,9 @@
             },
             {
               "addressId": "45934",
-              "name": "Aut aut porro rerum quas.",
+              "name": "Consequatur rerum sapiente odit.",
               "notes": "These are my notes",
-              "scheduledDepartureTime": "1975-03-23T01:10:52Z",
+              "scheduledDepartureTime": "2012-01-06T17:18:38Z",
               "singleUseLocation": {
                 "latitude": 123.456,
                 "longitude": 37.459,
@@ -9662,9 +11763,9 @@
             },
             {
               "addressId": "45934",
-              "name": "Aut aut porro rerum quas.",
+              "name": "Consequatur rerum sapiente odit.",
               "notes": "These are my notes",
-              "scheduledDepartureTime": "1975-03-23T01:10:52Z",
+              "scheduledDepartureTime": "2012-01-06T17:18:38Z",
               "singleUseLocation": {
                 "latitude": 123.456,
                 "longitude": 37.459,
@@ -9688,14 +11789,14 @@
         "notes": "These are my notes",
         "settings": {
           "routeCompletionCondition": "departLastStop",
-          "routeStartingCondition": "arriveFirstStop"
+          "routeStartingCondition": "departFirstStop"
         },
         "stops": [
           {
             "addressId": "45934",
-            "name": "Aut aut porro rerum quas.",
+            "name": "Consequatur rerum sapiente odit.",
             "notes": "These are my notes",
-            "scheduledDepartureTime": "1975-03-23T01:10:52Z",
+            "scheduledDepartureTime": "2012-01-06T17:18:38Z",
             "singleUseLocation": {
               "latitude": 123.456,
               "longitude": 37.459,
@@ -9704,9 +11805,9 @@
           },
           {
             "addressId": "45934",
-            "name": "Aut aut porro rerum quas.",
+            "name": "Consequatur rerum sapiente odit.",
             "notes": "These are my notes",
-            "scheduledDepartureTime": "1975-03-23T01:10:52Z",
+            "scheduledDepartureTime": "2012-01-06T17:18:38Z",
             "singleUseLocation": {
               "latitude": 123.456,
               "longitude": 37.459,
@@ -9742,7 +11843,7 @@
         "notes": {
           "description": "Notes for the route",
           "type": "string",
-          "example": "Esse autem sit."
+          "example": "Harum veritatis ratione dolor."
         },
         "settings": {
           "$ref": "#/definitions/RouteSettingsResponseBody"
@@ -9757,9 +11858,31 @@
           "example": [
             {
               "addressId": "45934",
-              "name": "Enim consectetur veniam suscipit quam iste non.",
+              "name": "Quam iste non recusandae facere qui dolores.",
               "notes": "These are my notes",
-              "scheduledDepartureTime": "1975-05-13T14:12:59Z",
+              "scheduledDepartureTime": "2008-10-07T20:52:04Z",
+              "singleUseLocation": {
+                "latitude": 123.456,
+                "longitude": 37.459,
+                "name": "ACME Inc. Philadelphia HQ"
+              }
+            },
+            {
+              "addressId": "45934",
+              "name": "Quam iste non recusandae facere qui dolores.",
+              "notes": "These are my notes",
+              "scheduledDepartureTime": "2008-10-07T20:52:04Z",
+              "singleUseLocation": {
+                "latitude": 123.456,
+                "longitude": 37.459,
+                "name": "ACME Inc. Philadelphia HQ"
+              }
+            },
+            {
+              "addressId": "45934",
+              "name": "Quam iste non recusandae facere qui dolores.",
+              "notes": "These are my notes",
+              "scheduledDepartureTime": "2008-10-07T20:52:04Z",
               "singleUseLocation": {
                 "latitude": 123.456,
                 "longitude": 37.459,
@@ -9784,17 +11907,17 @@
           "customerRoute": "1"
         },
         "name": "Bid 123",
-        "notes": "Fuga non dolore.",
+        "notes": "Voluptas veniam et magni doloremque.",
         "settings": {
           "routeCompletionCondition": "departLastStop",
-          "routeStartingCondition": "departFirstStop"
+          "routeStartingCondition": "arriveFirstStop"
         },
         "stops": [
           {
             "addressId": "45934",
-            "name": "Enim consectetur veniam suscipit quam iste non.",
+            "name": "Quam iste non recusandae facere qui dolores.",
             "notes": "These are my notes",
-            "scheduledDepartureTime": "1975-05-13T14:12:59Z",
+            "scheduledDepartureTime": "2008-10-07T20:52:04Z",
             "singleUseLocation": {
               "latitude": 123.456,
               "longitude": 37.459,
@@ -9803,9 +11926,9 @@
           },
           {
             "addressId": "45934",
-            "name": "Enim consectetur veniam suscipit quam iste non.",
+            "name": "Quam iste non recusandae facere qui dolores.",
             "notes": "These are my notes",
-            "scheduledDepartureTime": "1975-05-13T14:12:59Z",
+            "scheduledDepartureTime": "2008-10-07T20:52:04Z",
             "singleUseLocation": {
               "latitude": 123.456,
               "longitude": 37.459,
@@ -9896,7 +12019,7 @@
         "name": {
           "description": "Name for the stop",
           "type": "string",
-          "example": "Cupiditate nemo dolores quia aut."
+          "example": "Ut explicabo laborum explicabo temporibus."
         },
         "notes": {
           "description": "Notes for the stop",
@@ -9907,7 +12030,7 @@
         "scheduledDepartureTime": {
           "type": "string",
           "format": "date-time",
-          "example": "2003-08-03T21:49:46Z"
+          "example": "2008-03-20T07:56:09Z"
         },
         "singleUseLocation": {
           "$ref": "#/definitions/RoutesSingleUseAddressObjectRequestBody"
@@ -9915,9 +12038,9 @@
       },
       "example": {
         "addressId": "45934",
-        "name": "Exercitationem officiis.",
+        "name": "Reprehenderit ducimus.",
         "notes": "These are my notes",
-        "scheduledDepartureTime": "1976-10-29T00:44:17Z",
+        "scheduledDepartureTime": "2006-08-12T04:47:36Z",
         "singleUseLocation": {
           "latitude": 123.456,
           "longitude": 37.459,
@@ -9941,7 +12064,7 @@
         "name": {
           "description": "Name for the stop",
           "type": "string",
-          "example": "Laboriosam quae quia eveniet."
+          "example": "Ratione optio quis quo."
         },
         "notes": {
           "description": "Notes for the stop",
@@ -9952,7 +12075,7 @@
         "scheduledDepartureTime": {
           "type": "string",
           "format": "date-time",
-          "example": "2007-12-23T16:14:33Z"
+          "example": "2007-10-25T18:33:49Z"
         },
         "singleUseLocation": {
           "$ref": "#/definitions/RoutesSingleUseAddressObjectResponseBody"
@@ -9960,9 +12083,9 @@
       },
       "example": {
         "addressId": "45934",
-        "name": "Qui nulla quos.",
+        "name": "Quae aut blanditiis nam repellat.",
         "notes": "These are my notes",
-        "scheduledDepartureTime": "2001-11-20T09:53:38Z",
+        "scheduledDepartureTime": "2013-11-10T15:50:36Z",
         "singleUseLocation": {
           "latitude": 123.456,
           "longitude": 37.459,
@@ -10816,7 +12939,7 @@
             "default",
             "saml"
           ],
-          "example": "default"
+          "example": "saml"
         },
         "email": {
           "description": "The email address of this user.",
@@ -10842,28 +12965,6 @@
             "$ref": "#/definitions/UserRoleAssignmentResponseBody"
           },
           "example": [
-            {
-              "role": {
-                "id": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
-                "name": "Full Admin"
-              },
-              "tag": {
-                "id": "3914",
-                "name": "East Coast",
-                "parentTagId": "4815"
-              }
-            },
-            {
-              "role": {
-                "id": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
-                "name": "Full Admin"
-              },
-              "tag": {
-                "id": "3914",
-                "name": "East Coast",
-                "parentTagId": "4815"
-              }
-            },
             {
               "role": {
                 "id": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
@@ -11223,10 +13324,6 @@
             {
               "roleId": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
               "tagId": "3914"
-            },
-            {
-              "roleId": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
-              "tagId": "3914"
             }
           ]
         }
@@ -11236,6 +13333,10 @@
         "email": "user@company.com",
         "name": "Bob Smith",
         "roles": [
+          {
+            "roleId": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+            "tagId": "3914"
+          },
           {
             "roleId": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
             "tagId": "3914"
@@ -11263,6 +13364,17 @@
           "id": "123",
           "name": "Bob Smith",
           "roles": [
+            {
+              "role": {
+                "id": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+                "name": "Full Admin"
+              },
+              "tag": {
+                "id": "3914",
+                "name": "East Coast",
+                "parentTagId": "4815"
+              }
+            },
             {
               "role": {
                 "id": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
@@ -15899,6 +18011,373 @@
     },
     "VehicleAuxInputType9": {
       "$ref": "#/definitions/VehicleAuxInputType"
+    },
+    "VehicleCameraMediaObjectResponseBody": {
+      "type": "object",
+      "title": "VehicleCameraMediaObjectResponseBody",
+      "properties": {
+        "cameras": {
+          "description": "List of camera objects.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CameraObjectResponseBody"
+          },
+          "example": [
+            {
+              "id": "230942",
+              "images": [
+                {
+                  "captureTime": "2015-09-15T14:00:12-04:00",
+                  "imageData": [
+                    {
+                      "cameraView": "`frontFacing`",
+                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                      "urlExpiryTime": "2019-06-13T19:08:25Z"
+                    },
+                    {
+                      "cameraView": "`frontFacing`",
+                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                      "urlExpiryTime": "2019-06-13T19:08:25Z"
+                    },
+                    {
+                      "cameraView": "`frontFacing`",
+                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                      "urlExpiryTime": "2019-06-13T19:08:25Z"
+                    },
+                    {
+                      "cameraView": "`frontFacing`",
+                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                      "urlExpiryTime": "2019-06-13T19:08:25Z"
+                    }
+                  ]
+                },
+                {
+                  "captureTime": "2015-09-15T14:00:12-04:00",
+                  "imageData": [
+                    {
+                      "cameraView": "`frontFacing`",
+                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                      "urlExpiryTime": "2019-06-13T19:08:25Z"
+                    },
+                    {
+                      "cameraView": "`frontFacing`",
+                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                      "urlExpiryTime": "2019-06-13T19:08:25Z"
+                    },
+                    {
+                      "cameraView": "`frontFacing`",
+                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                      "urlExpiryTime": "2019-06-13T19:08:25Z"
+                    },
+                    {
+                      "cameraView": "`frontFacing`",
+                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                      "urlExpiryTime": "2019-06-13T19:08:25Z"
+                    }
+                  ]
+                }
+              ],
+              "name": "GTTU-ASS-UXD",
+              "serial": "CSS6-23A-HJF"
+            },
+            {
+              "id": "230942",
+              "images": [
+                {
+                  "captureTime": "2015-09-15T14:00:12-04:00",
+                  "imageData": [
+                    {
+                      "cameraView": "`frontFacing`",
+                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                      "urlExpiryTime": "2019-06-13T19:08:25Z"
+                    },
+                    {
+                      "cameraView": "`frontFacing`",
+                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                      "urlExpiryTime": "2019-06-13T19:08:25Z"
+                    },
+                    {
+                      "cameraView": "`frontFacing`",
+                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                      "urlExpiryTime": "2019-06-13T19:08:25Z"
+                    },
+                    {
+                      "cameraView": "`frontFacing`",
+                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                      "urlExpiryTime": "2019-06-13T19:08:25Z"
+                    }
+                  ]
+                },
+                {
+                  "captureTime": "2015-09-15T14:00:12-04:00",
+                  "imageData": [
+                    {
+                      "cameraView": "`frontFacing`",
+                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                      "urlExpiryTime": "2019-06-13T19:08:25Z"
+                    },
+                    {
+                      "cameraView": "`frontFacing`",
+                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                      "urlExpiryTime": "2019-06-13T19:08:25Z"
+                    },
+                    {
+                      "cameraView": "`frontFacing`",
+                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                      "urlExpiryTime": "2019-06-13T19:08:25Z"
+                    },
+                    {
+                      "cameraView": "`frontFacing`",
+                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                      "urlExpiryTime": "2019-06-13T19:08:25Z"
+                    }
+                  ]
+                }
+              ],
+              "name": "GTTU-ASS-UXD",
+              "serial": "CSS6-23A-HJF"
+            }
+          ]
+        },
+        "id": {
+          "description": "ID of the vehicle.",
+          "type": "string",
+          "example": "494123"
+        }
+      },
+      "example": {
+        "cameras": [
+          {
+            "id": "230942",
+            "images": [
+              {
+                "captureTime": "2015-09-15T14:00:12-04:00",
+                "imageData": [
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  },
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  },
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  },
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  }
+                ]
+              },
+              {
+                "captureTime": "2015-09-15T14:00:12-04:00",
+                "imageData": [
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  },
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  },
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  },
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  }
+                ]
+              }
+            ],
+            "name": "GTTU-ASS-UXD",
+            "serial": "CSS6-23A-HJF"
+          },
+          {
+            "id": "230942",
+            "images": [
+              {
+                "captureTime": "2015-09-15T14:00:12-04:00",
+                "imageData": [
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  },
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  },
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  },
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  }
+                ]
+              },
+              {
+                "captureTime": "2015-09-15T14:00:12-04:00",
+                "imageData": [
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  },
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  },
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  },
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  }
+                ]
+              }
+            ],
+            "name": "GTTU-ASS-UXD",
+            "serial": "CSS6-23A-HJF"
+          },
+          {
+            "id": "230942",
+            "images": [
+              {
+                "captureTime": "2015-09-15T14:00:12-04:00",
+                "imageData": [
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  },
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  },
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  },
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  }
+                ]
+              },
+              {
+                "captureTime": "2015-09-15T14:00:12-04:00",
+                "imageData": [
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  },
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  },
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  },
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  }
+                ]
+              }
+            ],
+            "name": "GTTU-ASS-UXD",
+            "serial": "CSS6-23A-HJF"
+          },
+          {
+            "id": "230942",
+            "images": [
+              {
+                "captureTime": "2015-09-15T14:00:12-04:00",
+                "imageData": [
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  },
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  },
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  },
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  }
+                ]
+              },
+              {
+                "captureTime": "2015-09-15T14:00:12-04:00",
+                "imageData": [
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  },
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  },
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  },
+                  {
+                    "cameraView": "`frontFacing`",
+                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
+                    "urlExpiryTime": "2019-06-13T19:08:25Z"
+                  }
+                ]
+              }
+            ],
+            "name": "GTTU-ASS-UXD",
+            "serial": "CSS6-23A-HJF"
+          }
+        ],
+        "id": "494123"
+      }
     },
     "VehicleEngineHours": {
       "description": "A manual override for the vehicle's engine hours. You may only override a vehicle's engine hours if it cannot be read from on-board diagnostics. When you provide a manual engine hours override, Samsara will begin updating a vehicle's engine hours based on when the Samsara Vehicle Gateway is recieving power or not.",
