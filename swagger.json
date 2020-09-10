@@ -8429,56 +8429,6 @@
         "requestId": "8916e1c1"
       }
     },
-    "DocumentsGetDocumentTypesNotFoundResponseBody": {
-      "description": "Resource not found",
-      "type": "object",
-      "title": "DocumentsGetDocumentTypesNotFoundResponseBody",
-      "required": [
-        "message",
-        "requestId"
-      ],
-      "properties": {
-        "message": {
-          "description": "Message of error",
-          "type": "string",
-          "example": "vehicle id not found"
-        },
-        "requestId": {
-          "description": "The request ID; used when reaching out to support for issues with requests.",
-          "type": "string",
-          "example": "8916e1c1"
-        }
-      },
-      "example": {
-        "message": "vehicle id not found",
-        "requestId": "8916e1c1"
-      }
-    },
-    "DocumentsGetDocumentTypesNotImplementedResponseBody": {
-      "description": "Requested endpoint is not yet implemented",
-      "type": "object",
-      "title": "DocumentsGetDocumentTypesNotImplementedResponseBody",
-      "required": [
-        "message",
-        "requestId"
-      ],
-      "properties": {
-        "message": {
-          "description": "Message of error",
-          "type": "string",
-          "example": "not implemented"
-        },
-        "requestId": {
-          "description": "The request ID; used when reaching out to support for issues with requests.",
-          "type": "string",
-          "example": "8916e1c1"
-        }
-      },
-      "example": {
-        "message": "not implemented",
-        "requestId": "8916e1c1"
-      }
-    },
     "DocumentsGetDocumentTypesResponseBody": {
       "type": "object",
       "title": "DocumentsGetDocumentTypesResponseBody",
@@ -8501,8 +8451,9 @@
               ],
               "fieldTypes": [
                 {
+                  "fieldType": "multipleChoice",
                   "label": "Was there damage?",
-                  "multipleChoiceFieldMetaData": [
+                  "multipleChoiceFieldTypeMetaData": [
                     {
                       "label": "Yes"
                     },
@@ -8510,39 +8461,38 @@
                       "label": "No"
                     }
                   ],
-                  "requiredField": true,
-                  "valueType": "multipleChoice"
+                  "requiredField": true
                 },
                 {
+                  "fieldType": "photo",
                   "label": "Damage Photos",
-                  "requiredField": false,
-                  "valueType": "photo"
+                  "requiredField": false
                 },
                 {
+                  "fieldType": "number",
                   "label": "Number of vehicles impacted",
-                  "numberFieldMetaData": {
+                  "numberFieldTypeMetaData": {
                     "numberOfDecimalPlaces": 2
                   },
-                  "requiredField": false,
-                  "valueType": "number"
+                  "requiredField": false
                 },
                 {
+                  "fieldType": "dateTime",
                   "label": "Date and time",
-                  "requiredField": true,
-                  "valueType": "dateTime"
+                  "requiredField": true
                 },
                 {
+                  "fieldType": "signature",
                   "label": "Sign",
                   "requiredField": true,
-                  "signatureFieldMetaData": {
+                  "signatureFieldTypeMetaData": {
                     "legalText": "Legal Text"
-                  },
-                  "valueType": "signature"
+                  }
                 }
               ],
+              "id": "4aff772c-a7bb-45e6-8e41-6a53e34feb83",
               "name": "Accident Report",
-              "orgId": 12345,
-              "uuid": "4aff772c-a7bb-45e6-8e41-6a53e34feb83"
+              "orgId": 12345
             }
           ]
         },
@@ -8563,8 +8513,9 @@
             ],
             "fieldTypes": [
               {
+                "fieldType": "multipleChoice",
                 "label": "Was there damage?",
-                "multipleChoiceFieldMetaData": [
+                "multipleChoiceFieldTypeMetaData": [
                   {
                     "label": "Yes"
                   },
@@ -8572,39 +8523,38 @@
                     "label": "No"
                   }
                 ],
-                "requiredField": true,
-                "valueType": "multipleChoice"
+                "requiredField": true
               },
               {
+                "fieldType": "photo",
                 "label": "Damage Photos",
-                "requiredField": false,
-                "valueType": "photo"
+                "requiredField": false
               },
               {
+                "fieldType": "number",
                 "label": "Number of vehicles impacted",
-                "numberFieldMetaData": {
+                "numberFieldTypeMetaData": {
                   "numberOfDecimalPlaces": 2
                 },
-                "requiredField": false,
-                "valueType": "number"
+                "requiredField": false
               },
               {
+                "fieldType": "dateTime",
                 "label": "Date and time",
-                "requiredField": true,
-                "valueType": "dateTime"
+                "requiredField": true
               },
               {
+                "fieldType": "signature",
                 "label": "Sign",
                 "requiredField": true,
-                "signatureFieldMetaData": {
+                "signatureFieldTypeMetaData": {
                   "legalText": "Legal Text"
-                },
-                "valueType": "signature"
+                }
               }
             ],
+            "id": "4aff772c-a7bb-45e6-8e41-6a53e34feb83",
             "name": "Accident Report",
-            "orgId": 12345,
-            "uuid": "4aff772c-a7bb-45e6-8e41-6a53e34feb83"
+            "orgId": 12345
           }
         ],
         "pagination": {
@@ -20153,20 +20103,25 @@
       "title": "fieldTypesObjectResponseBody",
       "required": [
         "label",
-        "valueType",
+        "fieldType",
         "requiredField"
       ],
       "properties": {
+        "fieldType": {
+          "description": "The type of value this field can have.",
+          "type": "string",
+          "example": "number, string, photo, datetime, multipleChoice, etc."
+        },
         "label": {
           "description": "The name of the field type.",
           "type": "string",
           "example": "Error laudantium tenetur ullam occaecati fugiat."
         },
-        "multipleChoiceFieldMetaData": {
+        "multipleChoiceFieldTypeMetaData": {
           "description": "A list of the multiple choice field option labels.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/multipleChoiceFieldTypeObjectResponseBody"
+            "$ref": "#/definitions/multipleChoiceFieldTypeMetaDataObjectResponseBody"
           },
           "example": [
             {
@@ -20180,26 +20135,22 @@
             }
           ]
         },
-        "numberFieldMetaData": {
-          "$ref": "#/definitions/numberFieldTypeObjectResponseBody"
+        "numberFieldTypeMetaData": {
+          "$ref": "#/definitions/numberFieldTypeMetaDataObjectResponseBody"
         },
         "requiredField": {
           "description": "The indicator that states if the field is required.",
           "type": "boolean",
           "example": true
         },
-        "signatureFieldMetaData": {
-          "$ref": "#/definitions/signatureFieldTypeObjectResponseBody"
-        },
-        "valueType": {
-          "description": "The type of value this field can have.",
-          "type": "string",
-          "example": "number, string, photo, datetime, multipleChoice, etc."
+        "signatureFieldTypeMetaData": {
+          "$ref": "#/definitions/signatureFieldTypeMetaDataObjectResponseBody"
         }
       },
       "example": {
+        "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
         "label": "Commodi cumque voluptas molestias vitae ut.",
-        "multipleChoiceFieldMetaData": [
+        "multipleChoiceFieldTypeMetaData": [
           {
             "label": "Voluptatibus illum."
           },
@@ -20210,14 +20161,13 @@
             "label": "Voluptatibus illum."
           }
         ],
-        "numberFieldMetaData": {
+        "numberFieldTypeMetaData": {
           "numberOfDecimalPlaces": 9039870148005143000
         },
         "requiredField": false,
-        "signatureFieldMetaData": {
+        "signatureFieldTypeMetaData": {
           "legalText": "Vitae eius."
-        },
-        "valueType": "number, string, photo, datetime, multipleChoice, etc."
+        }
       }
     },
     "getDocumentTypeResponseObjectResponseBody": {
@@ -20253,8 +20203,9 @@
           },
           "example": [
             {
+              "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
               "label": "Dolor sit provident ipsam consequatur.",
-              "multipleChoiceFieldMetaData": [
+              "multipleChoiceFieldTypeMetaData": [
                 {
                   "label": "Voluptatibus illum."
                 },
@@ -20265,18 +20216,18 @@
                   "label": "Voluptatibus illum."
                 }
               ],
-              "numberFieldMetaData": {
+              "numberFieldTypeMetaData": {
                 "numberOfDecimalPlaces": 9039870148005143000
               },
               "requiredField": true,
-              "signatureFieldMetaData": {
+              "signatureFieldTypeMetaData": {
                 "legalText": "Vitae eius."
-              },
-              "valueType": "number, string, photo, datetime, multipleChoice, etc."
+              }
             },
             {
+              "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
               "label": "Dolor sit provident ipsam consequatur.",
-              "multipleChoiceFieldMetaData": [
+              "multipleChoiceFieldTypeMetaData": [
                 {
                   "label": "Voluptatibus illum."
                 },
@@ -20287,18 +20238,18 @@
                   "label": "Voluptatibus illum."
                 }
               ],
-              "numberFieldMetaData": {
+              "numberFieldTypeMetaData": {
                 "numberOfDecimalPlaces": 9039870148005143000
               },
               "requiredField": true,
-              "signatureFieldMetaData": {
+              "signatureFieldTypeMetaData": {
                 "legalText": "Vitae eius."
-              },
-              "valueType": "number, string, photo, datetime, multipleChoice, etc."
+              }
             },
             {
+              "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
               "label": "Dolor sit provident ipsam consequatur.",
-              "multipleChoiceFieldMetaData": [
+              "multipleChoiceFieldTypeMetaData": [
                 {
                   "label": "Voluptatibus illum."
                 },
@@ -20309,16 +20260,20 @@
                   "label": "Voluptatibus illum."
                 }
               ],
-              "numberFieldMetaData": {
+              "numberFieldTypeMetaData": {
                 "numberOfDecimalPlaces": 9039870148005143000
               },
               "requiredField": true,
-              "signatureFieldMetaData": {
+              "signatureFieldTypeMetaData": {
                 "legalText": "Vitae eius."
-              },
-              "valueType": "number, string, photo, datetime, multipleChoice, etc."
+              }
             }
           ]
+        },
+        "id": {
+          "description": "Universally unique identifier for the document type. This value can be passed in as the documentTypeId when creating a document.",
+          "type": "string",
+          "example": "Sit culpa optio in molestiae."
         },
         "name": {
           "description": "Name of the document type.",
@@ -20330,11 +20285,6 @@
           "type": "integer",
           "format": "int64",
           "example": 9132408042196830000
-        },
-        "uuid": {
-          "description": "Universally unique identifier for the document type. This value can be passed in as the documentTypeUuid when creating a document.",
-          "type": "string",
-          "example": "Sit culpa optio in molestiae."
         }
       },
       "example": {
@@ -20360,8 +20310,9 @@
         ],
         "fieldTypes": [
           {
+            "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
             "label": "Dolor sit provident ipsam consequatur.",
-            "multipleChoiceFieldMetaData": [
+            "multipleChoiceFieldTypeMetaData": [
               {
                 "label": "Voluptatibus illum."
               },
@@ -20372,18 +20323,18 @@
                 "label": "Voluptatibus illum."
               }
             ],
-            "numberFieldMetaData": {
+            "numberFieldTypeMetaData": {
               "numberOfDecimalPlaces": 9039870148005143000
             },
             "requiredField": true,
-            "signatureFieldMetaData": {
+            "signatureFieldTypeMetaData": {
               "legalText": "Vitae eius."
-            },
-            "valueType": "number, string, photo, datetime, multipleChoice, etc."
+            }
           },
           {
+            "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
             "label": "Dolor sit provident ipsam consequatur.",
-            "multipleChoiceFieldMetaData": [
+            "multipleChoiceFieldTypeMetaData": [
               {
                 "label": "Voluptatibus illum."
               },
@@ -20394,19 +20345,18 @@
                 "label": "Voluptatibus illum."
               }
             ],
-            "numberFieldMetaData": {
+            "numberFieldTypeMetaData": {
               "numberOfDecimalPlaces": 9039870148005143000
             },
             "requiredField": true,
-            "signatureFieldMetaData": {
+            "signatureFieldTypeMetaData": {
               "legalText": "Vitae eius."
-            },
-            "valueType": "number, string, photo, datetime, multipleChoice, etc."
+            }
           }
         ],
+        "id": "Dolorem reprehenderit commodi ut.",
         "name": "Tempora quas.",
-        "orgId": 5767000580458598000,
-        "uuid": "Dolorem reprehenderit commodi ut."
+        "orgId": 5767000580458598000
       }
     },
     "getDocumentTypesResponsePaginationObjectResponseBody": {
@@ -20474,9 +20424,9 @@
       "format": "double",
       "example": -122.403098
     },
-    "multipleChoiceFieldTypeObjectResponseBody": {
+    "multipleChoiceFieldTypeMetaDataObjectResponseBody": {
       "type": "object",
-      "title": "multipleChoiceFieldTypeObjectResponseBody",
+      "title": "multipleChoiceFieldTypeMetaDataObjectResponseBody",
       "properties": {
         "label": {
           "description": "The option choice label.",
@@ -20488,9 +20438,9 @@
         "label": "Magnam voluptatem sed libero odit."
       }
     },
-    "numberFieldTypeObjectResponseBody": {
+    "numberFieldTypeMetaDataObjectResponseBody": {
       "type": "object",
-      "title": "numberFieldTypeObjectResponseBody",
+      "title": "numberFieldTypeMetaDataObjectResponseBody",
       "properties": {
         "numberOfDecimalPlaces": {
           "description": "The number of decimal places allowed for the field.",
@@ -20556,9 +20506,9 @@
         }
       }
     },
-    "signatureFieldTypeObjectResponseBody": {
+    "signatureFieldTypeMetaDataObjectResponseBody": {
       "type": "object",
-      "title": "signatureFieldTypeObjectResponseBody",
+      "title": "signatureFieldTypeMetaDataObjectResponseBody",
       "properties": {
         "legalText": {
           "description": "The signature field legal text.",
