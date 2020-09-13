@@ -1608,13 +1608,14 @@
                 "engineRpm",
                 "gatewayEngineSeconds",
                 "obdEngineSeconds",
+                "gatewayJ1939EngineSeconds",
                 "gpsOdometerMeters"
               ],
               "type": "string",
               "format": "string"
             },
             "collectionFormat": "csv",
-            "description": "The type of equipment stat you want to query. Currently, you may only submit one type.\n\n- `engineRpm`: The revolutions per minute of the engine.\n- `fuelPercents`: The percent of fuel in the unit of equipment.\n- `obdEngineSeconds`: The number of seconds the engine has been running since it was new. This value is provided directly from on-board diagnostics.\n- `gatewayEngineSeconds`: An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG24 device is receiving power and an offset provided manually through the Samsara cloud dashboard.\n- `obdEngineStates`: The state of the engine read from on-board diagnostics. Can be `Off`, `On`, or `Idle`.\n- `gatewayEngineStates`: An approximation of engine state based on readings the AG24 receives from the aux/digio cable. Can be `Off` or `On`.\n- `gpsOdometerMeters`: An approximation of odometer reading based on GPS calculations since the AG24 was activated, and a manual odometer offset provided in the Samsara cloud dashboard.",
+            "description": "The type of equipment stat you want to query. Currently, you may only submit one type.\n\n- `engineRpm`: The revolutions per minute of the engine.\n- `fuelPercents`: The percent of fuel in the unit of equipment.\n- `obdEngineSeconds`: The number of seconds the engine has been running since it was new. This value is provided directly from on-board diagnostics.\n- `gatewayEngineSeconds`: An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG24 device is receiving power via APWR/AOPEN cable and an offset provided manually through the Samsara cloud dashboard.\n- `gatewayJ1939EngineSeconds`: An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG24 device is receiving power via J1939/CAT cable and an offset provided manually through the Samsara cloud dashboard.\n- `obdEngineStates`: The state of the engine read from on-board diagnostics. Can be `Off`, `On`, or `Idle`.\n- `gatewayEngineStates`: An approximation of engine state based on readings the AG24 receives from the aux/digio cable. Can be `Off` or `On`.\n- `gpsOdometerMeters`: An approximation of odometer reading based on GPS calculations since the AG24 was activated, and a manual odometer offset provided in the Samsara cloud dashboard.",
             "name": "types",
             "in": "query",
             "required": true
@@ -1691,13 +1692,14 @@
                 "engineRpm",
                 "gatewayEngineSeconds",
                 "obdEngineSeconds",
+                "gatewayJ1939EngineSeconds",
                 "gpsOdometerMeters"
               ],
               "type": "string",
               "format": "string"
             },
             "collectionFormat": "csv",
-            "description": "The type of equipment stat you want to query. Currently, you may only submit one type.\n\n- `engineRpm`: The revolutions per minute of the engine.\n- `fuelPercents`: The percent of fuel in the unit of equipment.\n- `obdEngineSeconds`: The number of seconds the engine has been running since it was new. This value is provided directly from on-board diagnostics.\n- `gatewayEngineSeconds`: An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG24 device is receiving power and an offset provided manually through the Samsara cloud dashboard.\n- `obdEngineStates`: The state of the engine read from on-board diagnostics. Can be `Off`, `On`, or `Idle`.\n- `gatewayEngineStates`: An approximation of engine state based on readings the AG24 receives from the aux/digio cable. Can be `Off` or `On`.\n- `gpsOdometerMeters`: An approximation of odometer reading based on GPS calculations since the AG24 was activated, and a manual odometer offset provided in the Samsara cloud dashboard.",
+            "description": "The type of equipment stat you want to query. Currently, you may only submit one type.\n\n- `engineRpm`: The revolutions per minute of the engine.\n- `fuelPercents`: The percent of fuel in the unit of equipment.\n- `obdEngineSeconds`: The number of seconds the engine has been running since it was new. This value is provided directly from on-board diagnostics.\n- `gatewayEngineSeconds`: An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG24 device is receiving power via APWR/AOPEN cable and an offset provided manually through the Samsara cloud dashboard.\n- `gatewayJ1939EngineSeconds`: An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG24 device is receiving power via J1939/CAT cable and an offset provided manually through the Samsara cloud dashboard.\n- `obdEngineStates`: The state of the engine read from on-board diagnostics. Can be `Off`, `On`, or `Idle`.\n- `gatewayEngineStates`: An approximation of engine state based on readings the AG24 receives from the aux/digio cable. Can be `Off` or `On`.\n- `gpsOdometerMeters`: An approximation of odometer reading based on GPS calculations since the AG24 was activated, and a manual odometer offset provided in the Samsara cloud dashboard.",
             "name": "types",
             "in": "query",
             "required": true
@@ -1788,13 +1790,14 @@
                 "engineRpm",
                 "gatewayEngineSeconds",
                 "obdEngineSeconds",
+                "gatewayJ1939EngineSeconds",
                 "gpsOdometerMeters"
               ],
               "type": "string",
               "format": "string"
             },
             "collectionFormat": "csv",
-            "description": "The type of equipment stat you want to query. Currently, you may only submit one type.\n\n- `engineRpm`: The revolutions per minute of the engine.\n- `fuelPercents`: The percent of fuel in the unit of equipment.\n- `obdEngineSeconds`: The number of seconds the engine has been running since it was new. This value is provided directly from on-board diagnostics.\n- `gatewayEngineSeconds`: An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG24 device is receiving power and an offset provided manually through the Samsara cloud dashboard.\n- `obdEngineStates`: The state of the engine read from on-board diagnostics. Can be `Off`, `On`, or `Idle`.\n- `gatewayEngineStates`: An approximation of engine state based on readings the AG24 receives from the aux/digio cable. Can be `Off` or `On`.\n- `gpsOdometerMeters`: An approximation of odometer reading based on GPS calculations since the AG24 was activated, and a manual odometer offset provided in the Samsara cloud dashboard.",
+            "description": "The type of equipment stat you want to query. Currently, you may only submit one type.\n\n- `engineRpm`: The revolutions per minute of the engine.\n- `fuelPercents`: The percent of fuel in the unit of equipment.\n- `obdEngineSeconds`: The number of seconds the engine has been running since it was new. This value is provided directly from on-board diagnostics.\n- `gatewayEngineSeconds`: An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG24 device is receiving power via APWR/AOPEN cable and an offset provided manually through the Samsara cloud dashboard.\n- `gatewayJ1939EngineSeconds`: An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG24 device is receiving power via J1939/CAT cable and an offset provided manually through the Samsara cloud dashboard.\n- `obdEngineStates`: The state of the engine read from on-board diagnostics. Can be `Off`, `On`, or `Idle`.\n- `gatewayEngineStates`: An approximation of engine state based on readings the AG24 receives from the aux/digio cable. Can be `Off` or `On`.\n- `gpsOdometerMeters`: An approximation of odometer reading based on GPS calculations since the AG24 was activated, and a manual odometer offset provided in the Samsara cloud dashboard.",
             "name": "types",
             "in": "query",
             "required": true
@@ -9471,6 +9474,24 @@
         }
       }
     },
+    "EquipmentGatewayJ1939EngineSeconds": {
+      "description": "Engine seconds reading from the J1939/CAT cable.",
+      "type": "object",
+      "required": [
+        "time",
+        "value"
+      ],
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/EquipmentTime"
+        },
+        "value": {
+          "description": "An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG24 device is receiving power and an offset provided manually through the Samsara cloud dashboard.",
+          "type": "integer",
+          "example": 22374000
+        }
+      }
+    },
     "EquipmentGpsOdometerMeters": {
       "description": "GPS odometer reading.",
       "type": "object",
@@ -9715,7 +9736,7 @@
                 }
               },
               "engineSeconds": {
-                "description": "[DEPRECATED] Please use either `gatewayEngineSeconds` or `obdEngineSeconds`.",
+                "description": "[DEPRECATED] Please use either `gatewayEngineSeconds`, `obdEngineSeconds`, or `gatewayJ1939EngineSeconds`.",
                 "type": "array",
                 "items": {
                   "$ref": "#/definitions/EquipmentEngineSeconds"
@@ -9736,7 +9757,7 @@
                 }
               },
               "gatewayEngineSeconds": {
-                "description": "A time-series of engine seconds readings for the given unit of equipment. (An approximate based on readings from the AG24's aux/digio cable.)",
+                "description": "A time-series of engine seconds readings for the given unit of equipment as an approximate based on readings from the AG24's aux/digio cable.",
                 "type": "array",
                 "items": {
                   "$ref": "#/definitions/EquipmentGatewayEngineSeconds"
@@ -9747,6 +9768,13 @@
                 "type": "array",
                 "items": {
                   "$ref": "#/definitions/EquipmentGatewayEngineState"
+                }
+              },
+              "gatewayJ1939EngineSeconds": {
+                "description": "A time-series of engine seconds readings for the given unit of equipment as an approximate based on readings from the AG24's CAT/J1939 cable.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/EquipmentGatewayJ1939EngineSeconds"
                 }
               },
               "gpsOdometerMeters": {
@@ -9763,7 +9791,7 @@
                 "$ref": "#/definitions/EquipmentName"
               },
               "obdEngineSeconds": {
-                "description": "A time-series of engine state changes for the given unit of equipment. (As directly from on-board diagnostics.)",
+                "description": "A time-series of engine seconds readings for the given unit of equipment directly from on-board diagnostics.",
                 "type": "array",
                 "items": {
                   "$ref": "#/definitions/EquipmentObdEngineSeconds"
@@ -21099,13 +21127,14 @@
           "engineRpm",
           "gatewayEngineSeconds",
           "obdEngineSeconds",
+          "gatewayJ1939EngineSeconds",
           "gpsOdometerMeters"
         ],
         "type": "string",
         "format": "string"
       },
       "collectionFormat": "csv",
-      "description": "The type of equipment stat you want to query. Currently, you may only submit one type.\n\n- `engineRpm`: The revolutions per minute of the engine.\n- `fuelPercents`: The percent of fuel in the unit of equipment.\n- `obdEngineSeconds`: The number of seconds the engine has been running since it was new. This value is provided directly from on-board diagnostics.\n- `gatewayEngineSeconds`: An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG24 device is receiving power and an offset provided manually through the Samsara cloud dashboard.\n- `obdEngineStates`: The state of the engine read from on-board diagnostics. Can be `Off`, `On`, or `Idle`.\n- `gatewayEngineStates`: An approximation of engine state based on readings the AG24 receives from the aux/digio cable. Can be `Off` or `On`.\n- `gpsOdometerMeters`: An approximation of odometer reading based on GPS calculations since the AG24 was activated, and a manual odometer offset provided in the Samsara cloud dashboard.",
+      "description": "The type of equipment stat you want to query. Currently, you may only submit one type.\n\n- `engineRpm`: The revolutions per minute of the engine.\n- `fuelPercents`: The percent of fuel in the unit of equipment.\n- `obdEngineSeconds`: The number of seconds the engine has been running since it was new. This value is provided directly from on-board diagnostics.\n- `gatewayEngineSeconds`: An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG24 device is receiving power via APWR/AOPEN cable and an offset provided manually through the Samsara cloud dashboard.\n- `gatewayJ1939EngineSeconds`: An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG24 device is receiving power via J1939/CAT cable and an offset provided manually through the Samsara cloud dashboard.\n- `obdEngineStates`: The state of the engine read from on-board diagnostics. Can be `Off`, `On`, or `Idle`.\n- `gatewayEngineStates`: An approximation of engine state based on readings the AG24 receives from the aux/digio cable. Can be `Off` or `On`.\n- `gpsOdometerMeters`: An approximation of odometer reading based on GPS calculations since the AG24 was activated, and a manual odometer offset provided in the Samsara cloud dashboard.",
       "name": "types",
       "in": "query",
       "required": true
