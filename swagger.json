@@ -6273,67 +6273,6 @@
         "requestId": "8916e1c1"
       }
     },
-    "CameraMediaGetCameraMediaRequestBody": {
-      "type": "object",
-      "title": "CameraMediaGetCameraMediaRequestBody",
-      "required": [
-        "startTime",
-        "endTime"
-      ],
-      "properties": {
-        "after": {
-          "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
-          "type": "string",
-          "example": "c857e70c-dddd-4230-97f1-01f59e86dbf8"
-        },
-        "endTime": {
-          "description": " An end time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
-          "type": "string",
-          "example": "2019-06-13T19:08:25Z"
-        },
-        "externalIds": {
-          "description": "A map of external ids",
-          "type": "object",
-          "additionalProperties": true,
-          "example": {
-            "maintenanceId": "250020",
-            "payrollId": "ABFS18600"
-          }
-        },
-        "parentTagIds": {
-          "description": " A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
-          "type": "string",
-          "example": "345,678"
-        },
-        "startTime": {
-          "description": " A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
-          "type": "string",
-          "example": "2019-06-13T19:08:25Z"
-        },
-        "tagIds": {
-          "description": " A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
-          "type": "string",
-          "example": "1234,5678"
-        },
-        "vehicleIds": {
-          "description": " A filter on the data based on this comma-separated list of vehicle IDs. Example: `vehicleIds=1234,5678`",
-          "type": "string",
-          "example": "1234,5678"
-        }
-      },
-      "example": {
-        "after": "c857e70c-dddd-4230-97f1-01f59e86dbf8",
-        "endTime": "2019-06-13T19:08:25Z",
-        "externalIds": {
-          "maintenanceId": "250020",
-          "payrollId": "ABFS18600"
-        },
-        "parentTagIds": "345,678",
-        "startTime": "2019-06-13T19:08:25Z",
-        "tagIds": "1234,5678",
-        "vehicleIds": "1234,5678"
-      }
-    },
     "CameraMediaGetCameraMediaResponseBody": {
       "type": "object",
       "title": "CameraMediaGetCameraMediaResponseBody",
