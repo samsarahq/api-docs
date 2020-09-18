@@ -265,6 +265,203 @@
         }
       ]
     },
+    "/attributes": {
+      "get": {
+        "description": "Fetch all attributes in an organization associated with either drivers or vehicles.",
+        "tags": [
+          "Beta"
+        ],
+        "summary": "List all attributes by entity type",
+        "operationId": "getAttributesByEntityType",
+        "parameters": [
+          {
+            "enum": [
+              "driver",
+              "vehicle"
+            ],
+            "type": "string",
+            "description": "Denotes the type of entity, driver or vehicle.",
+            "name": "entityType",
+            "in": "query",
+            "required": true
+          },
+          {
+            "maximum": 512,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int64",
+            "default": 512,
+            "description": "The limit for how many objects will be in the response. Default and max for this value is 512 objects.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All attributes in an organization for an entity type",
+            "schema": {
+              "$ref": "#/definitions/GetAttributesByEntityTypeResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a new attribute in the organization.",
+        "tags": [
+          "Beta"
+        ],
+        "summary": "Create an attribute",
+        "operationId": "createAttribute",
+        "parameters": [
+          {
+            "description": "The attribute to create.",
+            "name": "attribute",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateAttributeRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Newly created attribute object with ID.",
+            "schema": {
+              "$ref": "#/definitions/AttributeExpandedResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/attributes/{id}": {
+      "get": {
+        "description": "Fetch an attribute by id, including all of its applications",
+        "tags": [
+          "Beta"
+        ],
+        "summary": "Retrieve an attribute",
+        "operationId": "getAttribute",
+        "parameters": [
+          {
+            "enum": [
+              "driver",
+              "vehicle"
+            ],
+            "type": "string",
+            "description": "Denotes the type of entity, driver or vehicle.",
+            "name": "entityType",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The attribute corresponding to request id.",
+            "schema": {
+              "$ref": "#/definitions/AttributeExpandedResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete an attribute by id, including all of its applications",
+        "tags": [
+          "Beta"
+        ],
+        "summary": "Deleting an attribute",
+        "operationId": "deleteAttribute",
+        "parameters": [
+          {
+            "enum": [
+              "driver",
+              "vehicle"
+            ],
+            "type": "string",
+            "description": "Denotes the type of entity, driver or vehicle.",
+            "name": "entityType",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Returns an empty success response."
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Updates an attribute in the organization.",
+        "tags": [
+          "Beta"
+        ],
+        "summary": "Update an attribute",
+        "operationId": "updateAttribute",
+        "parameters": [
+          {
+            "description": "The attribute to update.",
+            "name": "attribute",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateAttributeRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Newly created attribute object with ID.",
+            "schema": {
+              "$ref": "#/definitions/AttributeExpandedResponse"
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "schema": {
+              "$ref": "#/definitions/standardErrorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "Id of the attribute. This can be either the Samsara-provided UUID or an External ID.",
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
     "/contacts": {
       "get": {
         "description": "Returns a list of all contacts in an organization.",
@@ -6173,6 +6370,133 @@
         }
       }
     },
+    "Attribute": {
+      "type": "object",
+      "properties": {
+        "attributeType": {
+          "description": "Denotes the data type of the attribute's values.",
+          "type": "string",
+          "default": "string",
+          "enum": [
+            "string",
+            "number"
+          ],
+          "example": "string"
+        },
+        "attributeValueQuantity": {
+          "description": "Defines whether or not this attribute can be used on the same entity many times (with different values).",
+          "type": "string",
+          "default": "multi",
+          "enum": [
+            "single",
+            "multi"
+          ],
+          "example": "multi"
+        },
+        "entityType": {
+          "description": "Denotes the type of entity, driver or vehicle.",
+          "type": "string",
+          "enum": [
+            "driver",
+            "vehicle"
+          ],
+          "example": "vehicle"
+        },
+        "id": {
+          "description": "The samsara id of the attribute object.",
+          "type": "string",
+          "example": "123e4567-e89b-12d3-a456-426614174000"
+        },
+        "name": {
+          "description": "Name of attribute.",
+          "type": "string",
+          "example": "License Certifications"
+        },
+        "numberValues": {
+          "description": "Number values that can be associated with this attribute",
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "stringValues": {
+          "description": "String values that can be associated with this attribute",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "AttributeEntity": {
+      "type": "object",
+      "properties": {
+        "entityId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "externalIds": {
+          "$ref": "#/definitions/externalIds"
+        },
+        "name": {
+          "type": "string"
+        },
+        "numberValues": {
+          "description": "Number values that are associated with this attribute.",
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "stringValues": {
+          "description": "String values that are associated with this attribute.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "AttributeExpanded": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Attribute"
+        },
+        {
+          "type": "object",
+          "required": [
+            "entities"
+          ],
+          "properties": {
+            "entities": {
+              "description": "Entities that this attribute is applied onto",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AttributeEntity"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "AttributeExpandedResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/AttributeExpanded"
+        }
+      }
+    },
+    "AttributeResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/Attribute"
+        }
+      }
+    },
     "CameraMediaGetCameraMediaBadRequestResponseBody": {
       "description": "Bad Request parameters",
       "type": "object",
@@ -7519,6 +7843,98 @@
           "items": {
             "type": "string",
             "example": "3914"
+          }
+        }
+      }
+    },
+    "CreateAttributeRequest": {
+      "description": "A request body to create an Attribute.",
+      "type": "object",
+      "required": [
+        "name",
+        "entityType",
+        "attributeType",
+        "attributeValueQuantity"
+      ],
+      "properties": {
+        "attributeType": {
+          "description": "Denotes the data type of the attribute's values.",
+          "type": "string",
+          "default": "string",
+          "enum": [
+            "string",
+            "number"
+          ],
+          "example": "string"
+        },
+        "attributeValueQuantity": {
+          "description": "Defines whether or not this attribute can be used on the same entity many times (with different values).",
+          "type": "string",
+          "default": "multi",
+          "enum": [
+            "single",
+            "multi"
+          ],
+          "example": "multi"
+        },
+        "entities": {
+          "description": "Entities that will be applied to this attribute",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "entityId": {
+                "description": "Entity id, based on the entity type.",
+                "type": "string"
+              },
+              "externalIds": {
+                "$ref": "#/definitions/externalIds"
+              },
+              "numberValues": {
+                "description": "Number values that can be associated with this attribute",
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "format": "double"
+                }
+              },
+              "stringValues": {
+                "description": "String values that can be associated with this attribute",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "entityType": {
+          "description": "Denotes the type of entity, driver or vehicle.",
+          "type": "string",
+          "enum": [
+            "driver",
+            "vehicle"
+          ],
+          "example": "vehicle"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string",
+          "example": "License Certifications"
+        },
+        "numberValues": {
+          "description": "Number values that can be associated with this attribute",
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "stringValues": {
+          "description": "String values that can be associated with this attribute",
+          "type": "array",
+          "items": {
+            "type": "string"
           }
         }
       }
@@ -9757,6 +10173,20 @@
     "FuelConsumedMl": {
       "description": "Fuel consumption in milliliters.",
       "type": "number"
+    },
+    "GetAttributesByEntityTypeResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Attribute"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
     },
     "GoaAddressTinyResponseResponseBody": {
       "description": "A minified Address object",
@@ -12078,6 +12508,95 @@
           "items": {
             "type": "string",
             "example": "3914"
+          }
+        }
+      }
+    },
+    "UpdateAttributeRequest": {
+      "description": "A request body to update an Attribute.",
+      "type": "object",
+      "required": [
+        "entityType"
+      ],
+      "properties": {
+        "attributeType": {
+          "description": "Denotes the data type of the attribute's values.",
+          "type": "string",
+          "default": "string",
+          "enum": [
+            "string",
+            "number"
+          ],
+          "example": "string"
+        },
+        "attributeValueQuantity": {
+          "description": "Defines whether or not this attribute can be used on the same entity many times (with different values).",
+          "type": "string",
+          "default": "multi",
+          "enum": [
+            "single",
+            "multi"
+          ],
+          "example": "multi"
+        },
+        "entities": {
+          "description": "Entities that will be applied to this attribute",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "entityId": {
+                "description": "Entity id, based on the entity type.",
+                "type": "string"
+              },
+              "externalIds": {
+                "$ref": "#/definitions/externalIds"
+              },
+              "numberValues": {
+                "description": "Number values that can be associated with this attribute",
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "format": "double"
+                }
+              },
+              "stringValues": {
+                "description": "String values that can be associated with this attribute",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "entityType": {
+          "description": "Denotes the type of entity, driver or vehicle.",
+          "type": "string",
+          "enum": [
+            "driver",
+            "vehicle"
+          ],
+          "example": "vehicle"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string",
+          "example": "License Certifications"
+        },
+        "numberValues": {
+          "description": "Number values that can be associated with this attribute",
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "stringValues": {
+          "description": "String values that can be associated with this attribute",
+          "type": "array",
+          "items": {
+            "type": "string"
           }
         }
       }
