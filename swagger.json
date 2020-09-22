@@ -2195,6 +2195,174 @@
         }
       }
     },
+    "/fleet/routes": {
+      "post": {
+        "description": "Create a route",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Beta"
+        ],
+        "summary": "[beta] Create a route",
+        "operationId": "createRoute",
+        "parameters": [
+          {
+            "name": "CreateRouteRequestBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RoutesCreateRouteRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesCreateRouteResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "driver": {
+                  "externalIds": {
+                    "username": "username123"
+                  },
+                  "id": "45646",
+                  "name": "Driver Bob"
+                },
+                "externalIds": {
+                  "maintenanceId": "250020",
+                  "payrollId": "ABFS18600"
+                },
+                "id": "Consequatur ab maxime est.",
+                "name": "Bid 123",
+                "notes": "Et rerum ducimus ad velit nemo qui.",
+                "scheduledRouteEndTime": "1973-02-16T13:56:03Z",
+                "scheduledRouteStartTime": "2007-10-01T09:09:09Z",
+                "settings": {
+                  "routeCompletionCondition": "arriveLastStop"
+                },
+                "stops": [
+                  {
+                    "address": {
+                      "externalIds": {
+                        "maintenanceId": "250020",
+                        "payrollId": "ABFS18600"
+                      },
+                      "id": "494123",
+                      "name": "Fleet Truck #1"
+                    },
+                    "name": "Stop #1",
+                    "notes": "These are my notes",
+                    "scheduledArrivalTime": "2006-08-10T02:28:29Z",
+                    "scheduledDepartureTime": "1989-01-27T18:33:40Z",
+                    "singleUseLocation": {
+                      "address": "1234 Main St, San Jose, CA",
+                      "latitude": 123.456,
+                      "longitude": 37.459
+                    }
+                  },
+                  {
+                    "address": {
+                      "externalIds": {
+                        "maintenanceId": "250020",
+                        "payrollId": "ABFS18600"
+                      },
+                      "id": "494123",
+                      "name": "Fleet Truck #1"
+                    },
+                    "name": "Stop #1",
+                    "notes": "These are my notes",
+                    "scheduledArrivalTime": "2006-08-10T02:28:29Z",
+                    "scheduledDepartureTime": "1989-01-27T18:33:40Z",
+                    "singleUseLocation": {
+                      "address": "1234 Main St, San Jose, CA",
+                      "latitude": 123.456,
+                      "longitude": 37.459
+                    }
+                  },
+                  {
+                    "address": {
+                      "externalIds": {
+                        "maintenanceId": "250020",
+                        "payrollId": "ABFS18600"
+                      },
+                      "id": "494123",
+                      "name": "Fleet Truck #1"
+                    },
+                    "name": "Stop #1",
+                    "notes": "These are my notes",
+                    "scheduledArrivalTime": "2006-08-10T02:28:29Z",
+                    "scheduledDepartureTime": "1989-01-27T18:33:40Z",
+                    "singleUseLocation": {
+                      "address": "1234 Main St, San Jose, CA",
+                      "latitude": 123.456,
+                      "longitude": 37.459
+                    }
+                  }
+                ],
+                "vehicle": {
+                  "externalIds": {
+                    "samsara.vin": "1231231231"
+                  },
+                  "id": "494123",
+                  "name": "Fleet Truck #1"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesCreateRouteNotFoundResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "vehicle id not found",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesCreateRouteInternalErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "failed to execute GraphQL query",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesCreateRouteNotImplementedResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "not implemented",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesCreateRouteBadRequestResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "invalid parameter driver id: 1ba2345",
+                "requestId": "8916e1c1"
+              }
+            }
+          }
+        }
+      }
+    },
     "/fleet/routes/feed": {
       "get": {
         "description": "Subscribes to a feed of route updates. The initial request to this feed endpoint returns a cursor, which can be used on the next request to fetch updated routes that have had state changes since that request.",
@@ -11807,11 +11975,12 @@
       }
     },
     "RouteSettingsRequestBody": {
-      "description": "An optional dictionary, only necessary to override the defaults.",
+      "description": "An optional dictionary, only necessary to override the defaults for route start and end conditions.",
       "type": "object",
       "title": "RouteSettingsRequestBody",
       "properties": {
         "routeCompletionCondition": {
+          "description": "Defaults to 'arriveLastStop' which ends the route upon arriving at the final stop. The condition 'departLastStop' \nends the route upon departing the last stop. If 'arriveLastStop' is set, then the departure time of the final stop should not be set.",
           "type": "string",
           "default": "arriveLastStop",
           "enum": [
@@ -11826,11 +11995,12 @@
       }
     },
     "RouteSettingsResponseBody": {
-      "description": "An optional dictionary, only necessary to override the defaults.",
+      "description": "An optional dictionary, only necessary to override the defaults for route start and end conditions.",
       "type": "object",
       "title": "RouteSettingsResponseBody",
       "properties": {
         "routeCompletionCondition": {
+          "description": "Defaults to 'arriveLastStop' which ends the route upon arriving at the final stop. The condition 'departLastStop' \nends the route upon departing the last stop. If 'arriveLastStop' is set, then the departure time of the final stop should not be set.",
           "type": "string",
           "default": "arriveLastStop",
           "enum": [
@@ -11994,7 +12164,7 @@
               "scheduledArrivalTime": "2009-02-21T17:32:50Z",
               "scheduledDepartureTime": "2003-08-03T21:49:46Z",
               "singleUseLocation": {
-                "address": "ACME Inc. Philadelphia HQ",
+                "address": "1234 Main St, San Jose, CA",
                 "latitude": 123.456,
                 "longitude": 37.459
               }
@@ -12006,7 +12176,7 @@
               "scheduledArrivalTime": "2009-02-21T17:32:50Z",
               "scheduledDepartureTime": "2003-08-03T21:49:46Z",
               "singleUseLocation": {
-                "address": "ACME Inc. Philadelphia HQ",
+                "address": "1234 Main St, San Jose, CA",
                 "latitude": 123.456,
                 "longitude": 37.459
               }
@@ -12018,7 +12188,7 @@
               "scheduledArrivalTime": "2009-02-21T17:32:50Z",
               "scheduledDepartureTime": "2003-08-03T21:49:46Z",
               "singleUseLocation": {
-                "address": "ACME Inc. Philadelphia HQ",
+                "address": "1234 Main St, San Jose, CA",
                 "latitude": 123.456,
                 "longitude": 37.459
               }
@@ -12050,7 +12220,7 @@
             "scheduledArrivalTime": "2009-02-21T17:32:50Z",
             "scheduledDepartureTime": "2003-08-03T21:49:46Z",
             "singleUseLocation": {
-              "address": "ACME Inc. Philadelphia HQ",
+              "address": "1234 Main St, San Jose, CA",
               "latitude": 123.456,
               "longitude": 37.459
             }
@@ -12062,7 +12232,7 @@
             "scheduledArrivalTime": "2009-02-21T17:32:50Z",
             "scheduledDepartureTime": "2003-08-03T21:49:46Z",
             "singleUseLocation": {
-              "address": "ACME Inc. Philadelphia HQ",
+              "address": "1234 Main St, San Jose, CA",
               "latitude": 123.456,
               "longitude": 37.459
             }
@@ -12143,7 +12313,7 @@
               "scheduledArrivalTime": "2006-08-10T02:28:29Z",
               "scheduledDepartureTime": "1989-01-27T18:33:40Z",
               "singleUseLocation": {
-                "address": "ACME Inc. Philadelphia HQ",
+                "address": "1234 Main St, San Jose, CA",
                 "latitude": 123.456,
                 "longitude": 37.459
               }
@@ -12162,7 +12332,7 @@
               "scheduledArrivalTime": "2006-08-10T02:28:29Z",
               "scheduledDepartureTime": "1989-01-27T18:33:40Z",
               "singleUseLocation": {
-                "address": "ACME Inc. Philadelphia HQ",
+                "address": "1234 Main St, San Jose, CA",
                 "latitude": 123.456,
                 "longitude": 37.459
               }
@@ -12181,7 +12351,7 @@
               "scheduledArrivalTime": "2006-08-10T02:28:29Z",
               "scheduledDepartureTime": "1989-01-27T18:33:40Z",
               "singleUseLocation": {
-                "address": "ACME Inc. Philadelphia HQ",
+                "address": "1234 Main St, San Jose, CA",
                 "latitude": 123.456,
                 "longitude": 37.459
               }
@@ -12227,7 +12397,7 @@
             "scheduledArrivalTime": "2006-08-10T02:28:29Z",
             "scheduledDepartureTime": "1989-01-27T18:33:40Z",
             "singleUseLocation": {
-              "address": "ACME Inc. Philadelphia HQ",
+              "address": "1234 Main St, San Jose, CA",
               "latitude": 123.456,
               "longitude": 37.459
             }
@@ -12246,7 +12416,7 @@
             "scheduledArrivalTime": "2006-08-10T02:28:29Z",
             "scheduledDepartureTime": "1989-01-27T18:33:40Z",
             "singleUseLocation": {
-              "address": "ACME Inc. Philadelphia HQ",
+              "address": "1234 Main St, San Jose, CA",
               "latitude": 123.456,
               "longitude": 37.459
             }
@@ -12265,7 +12435,7 @@
             "scheduledArrivalTime": "2006-08-10T02:28:29Z",
             "scheduledDepartureTime": "1989-01-27T18:33:40Z",
             "singleUseLocation": {
-              "address": "ACME Inc. Philadelphia HQ",
+              "address": "1234 Main St, San Jose, CA",
               "latitude": 123.456,
               "longitude": 37.459
             }
@@ -12281,7 +12451,7 @@
       }
     },
     "RoutesSingleUseAddressObjectRequestBody": {
-      "description": "This field is mutually exclusive with addressId.",
+      "description": "This field is used to indicate stops along the route for which an address has not been persisted. This field is mutually exclusive with addressId.",
       "type": "object",
       "title": "RoutesSingleUseAddressObjectRequestBody",
       "required": [
@@ -12290,9 +12460,9 @@
       ],
       "properties": {
         "address": {
-          "description": "address of the stop.",
+          "description": "Address of the stop.",
           "type": "string",
-          "example": "ACME Inc. Philadelphia HQ"
+          "example": "1234 Main St, San Jose, CA"
         },
         "latitude": {
           "description": "The latitude of the location",
@@ -12308,13 +12478,13 @@
         }
       },
       "example": {
-        "address": "ACME Inc. Philadelphia HQ",
+        "address": "1234 Main St, San Jose, CA",
         "latitude": 123.456,
         "longitude": 37.459
       }
     },
     "RoutesSingleUseAddressObjectResponseBody": {
-      "description": "This field is mutually exclusive with addressId.",
+      "description": "This field is used to indicate stops along the route for which an address has not been persisted. This field is mutually exclusive with addressId.",
       "type": "object",
       "title": "RoutesSingleUseAddressObjectResponseBody",
       "required": [
@@ -12323,9 +12493,9 @@
       ],
       "properties": {
         "address": {
-          "description": "address of the stop.",
+          "description": "Address of the stop.",
           "type": "string",
-          "example": "ACME Inc. Philadelphia HQ"
+          "example": "1234 Main St, San Jose, CA"
         },
         "latitude": {
           "description": "The latitude of the location",
@@ -12341,7 +12511,7 @@
         }
       },
       "example": {
-        "address": "ACME Inc. Philadelphia HQ",
+        "address": "1234 Main St, San Jose, CA",
         "latitude": 123.456,
         "longitude": 37.459
       }
@@ -12354,7 +12524,7 @@
       ],
       "properties": {
         "addressId": {
-          "description": "ID of the address",
+          "description": "ID of the address. An address [externalId](https://developers.samsara.com/docs/external-ids#using-external-ids) can also be used interchangeably here.",
           "type": "string",
           "example": "45934"
         },
@@ -12390,7 +12560,7 @@
         "scheduledArrivalTime": "2005-04-30T09:49:34Z",
         "scheduledDepartureTime": "2005-09-21T00:35:29Z",
         "singleUseLocation": {
-          "address": "ACME Inc. Philadelphia HQ",
+          "address": "1234 Main St, San Jose, CA",
           "latitude": 123.456,
           "longitude": 37.459
         }
@@ -12445,7 +12615,7 @@
         "scheduledArrivalTime": "2006-08-02T21:13:06Z",
         "scheduledDepartureTime": "1976-07-25T19:41:28Z",
         "singleUseLocation": {
-          "address": "ACME Inc. Philadelphia HQ",
+          "address": "1234 Main St, San Jose, CA",
           "latitude": 123.456,
           "longitude": 37.459
         }
