@@ -2235,13 +2235,13 @@
                   "maintenanceId": "250020",
                   "payrollId": "ABFS18600"
                 },
-                "id": "Consequatur ab maxime est.",
+                "id": "Consectetur omnis dignissimos qui quae impedit et.",
                 "name": "Bid 123",
-                "notes": "Et rerum ducimus ad velit nemo qui.",
-                "scheduledRouteEndTime": "1973-02-16T13:56:03Z",
-                "scheduledRouteStartTime": "2007-10-01T09:09:09Z",
+                "notes": "Animi non.",
+                "scheduledRouteEndTime": "1988-10-17T18:39:10Z",
+                "scheduledRouteStartTime": "1990-10-12T04:56:23Z",
                 "settings": {
-                  "routeCompletionCondition": "arriveLastStop"
+                  "routeCompletionCondition": "departLastStop"
                 },
                 "stops": [
                   {
@@ -2255,8 +2255,8 @@
                     },
                     "name": "Stop #1",
                     "notes": "These are my notes",
-                    "scheduledArrivalTime": "2006-08-10T02:28:29Z",
-                    "scheduledDepartureTime": "1989-01-27T18:33:40Z",
+                    "scheduledArrivalTime": "1999-05-07T18:22:03Z",
+                    "scheduledDepartureTime": "1993-04-24T22:39:40Z",
                     "singleUseLocation": {
                       "address": "1234 Main St, San Jose, CA",
                       "latitude": 123.456,
@@ -2274,8 +2274,8 @@
                     },
                     "name": "Stop #1",
                     "notes": "These are my notes",
-                    "scheduledArrivalTime": "2006-08-10T02:28:29Z",
-                    "scheduledDepartureTime": "1989-01-27T18:33:40Z",
+                    "scheduledArrivalTime": "1999-05-07T18:22:03Z",
+                    "scheduledDepartureTime": "1993-04-24T22:39:40Z",
                     "singleUseLocation": {
                       "address": "1234 Main St, San Jose, CA",
                       "latitude": 123.456,
@@ -2293,8 +2293,8 @@
                     },
                     "name": "Stop #1",
                     "notes": "These are my notes",
-                    "scheduledArrivalTime": "2006-08-10T02:28:29Z",
-                    "scheduledDepartureTime": "1989-01-27T18:33:40Z",
+                    "scheduledArrivalTime": "1999-05-07T18:22:03Z",
+                    "scheduledDepartureTime": "1993-04-24T22:39:40Z",
                     "singleUseLocation": {
                       "address": "1234 Main St, San Jose, CA",
                       "latitude": 123.456,
@@ -2695,7 +2695,17 @@
                         ],
                         "name": "GTTU-ASS-UXD",
                         "serial": "CSS6-23A-HJF"
-                      },
+                      }
+                    ],
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "494123",
+                    "name": "H055494"
+                  },
+                  {
+                    "cameras": [
                       {
                         "id": "230942",
                         "images": [
@@ -2893,7 +2903,17 @@
                         ],
                         "name": "GTTU-ASS-UXD",
                         "serial": "CSS6-23A-HJF"
-                      },
+                      }
+                    ],
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "494123",
+                    "name": "H055494"
+                  },
+                  {
+                    "cameras": [
                       {
                         "id": "230942",
                         "images": [
@@ -3044,6 +3064,267 @@
             "description": "Bad Request response.",
             "schema": {
               "$ref": "#/definitions/CameraMediaGetCameraMediaBadRequestResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "invalid parameter driver id: 1ba2345",
+                "requestId": "8916e1c1"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fleet/vehicles/driver-assignments": {
+      "get": {
+        "description": "Get all vehicles driver assignments.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Beta"
+        ],
+        "summary": "[beta] Get all vehicles driver assignments.",
+        "operationId": "getVehiclesDriverAssignments",
+        "parameters": [
+          {
+            "type": "string",
+            "description": " A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "startTime",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": " An end time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "endTime",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": " A filter on the data based on this comma-separated list of vehicle IDs and externalIds. Example: `vehicleIds=1234,5678,samsara.vin:1HGBH41JXMN109186`",
+            "name": "vehicleIds",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": " A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": " A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "data": [
+                  {
+                    "driverAssignments": [
+                      {
+                        "assignmentType": "invalid",
+                        "driver": {
+                          "externalIds": {
+                            "username": "username123"
+                          },
+                          "id": "45646",
+                          "name": "Driver Bob"
+                        },
+                        "endTime": "2019-06-13T19:08:25Z",
+                        "isPassenger": false,
+                        "startTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "assignmentType": "invalid",
+                        "driver": {
+                          "externalIds": {
+                            "username": "username123"
+                          },
+                          "id": "45646",
+                          "name": "Driver Bob"
+                        },
+                        "endTime": "2019-06-13T19:08:25Z",
+                        "isPassenger": false,
+                        "startTime": "2019-06-13T19:08:25Z"
+                      }
+                    ],
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "494123",
+                    "name": "Bus-123"
+                  },
+                  {
+                    "driverAssignments": [
+                      {
+                        "assignmentType": "invalid",
+                        "driver": {
+                          "externalIds": {
+                            "username": "username123"
+                          },
+                          "id": "45646",
+                          "name": "Driver Bob"
+                        },
+                        "endTime": "2019-06-13T19:08:25Z",
+                        "isPassenger": false,
+                        "startTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "assignmentType": "invalid",
+                        "driver": {
+                          "externalIds": {
+                            "username": "username123"
+                          },
+                          "id": "45646",
+                          "name": "Driver Bob"
+                        },
+                        "endTime": "2019-06-13T19:08:25Z",
+                        "isPassenger": false,
+                        "startTime": "2019-06-13T19:08:25Z"
+                      }
+                    ],
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "494123",
+                    "name": "Bus-123"
+                  },
+                  {
+                    "driverAssignments": [
+                      {
+                        "assignmentType": "invalid",
+                        "driver": {
+                          "externalIds": {
+                            "username": "username123"
+                          },
+                          "id": "45646",
+                          "name": "Driver Bob"
+                        },
+                        "endTime": "2019-06-13T19:08:25Z",
+                        "isPassenger": false,
+                        "startTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "assignmentType": "invalid",
+                        "driver": {
+                          "externalIds": {
+                            "username": "username123"
+                          },
+                          "id": "45646",
+                          "name": "Driver Bob"
+                        },
+                        "endTime": "2019-06-13T19:08:25Z",
+                        "isPassenger": false,
+                        "startTime": "2019-06-13T19:08:25Z"
+                      }
+                    ],
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "494123",
+                    "name": "Bus-123"
+                  },
+                  {
+                    "driverAssignments": [
+                      {
+                        "assignmentType": "invalid",
+                        "driver": {
+                          "externalIds": {
+                            "username": "username123"
+                          },
+                          "id": "45646",
+                          "name": "Driver Bob"
+                        },
+                        "endTime": "2019-06-13T19:08:25Z",
+                        "isPassenger": false,
+                        "startTime": "2019-06-13T19:08:25Z"
+                      },
+                      {
+                        "assignmentType": "invalid",
+                        "driver": {
+                          "externalIds": {
+                            "username": "username123"
+                          },
+                          "id": "45646",
+                          "name": "Driver Bob"
+                        },
+                        "endTime": "2019-06-13T19:08:25Z",
+                        "isPassenger": false,
+                        "startTime": "2019-06-13T19:08:25Z"
+                      }
+                    ],
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "494123",
+                    "name": "Bus-123"
+                  }
+                ],
+                "pagination": {
+                  "endCursor": "MjkY",
+                  "hasNextPage": true
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsNotFoundResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "vehicle id not found",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsInternalErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "failed to execute GraphQL query",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsNotImplementedResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "not implemented",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsBadRequestResponseBody"
             },
             "examples": {
               "application/json": {
@@ -7386,7 +7667,17 @@
                   ],
                   "name": "GTTU-ASS-UXD",
                   "serial": "CSS6-23A-HJF"
-                },
+                }
+              ],
+              "externalIds": {
+                "maintenanceId": "250020",
+                "payrollId": "ABFS18600"
+              },
+              "id": "494123",
+              "name": "H055494"
+            },
+            {
+              "cameras": [
                 {
                   "id": "230942",
                   "images": [
@@ -7584,7 +7875,17 @@
                   ],
                   "name": "GTTU-ASS-UXD",
                   "serial": "CSS6-23A-HJF"
-                },
+                }
+              ],
+              "externalIds": {
+                "maintenanceId": "250020",
+                "payrollId": "ABFS18600"
+              },
+              "id": "494123",
+              "name": "H055494"
+            },
+            {
+              "cameras": [
                 {
                   "id": "230942",
                   "images": [
@@ -7790,7 +8091,17 @@
                 ],
                 "name": "GTTU-ASS-UXD",
                 "serial": "CSS6-23A-HJF"
-              },
+              }
+            ],
+            "externalIds": {
+              "maintenanceId": "250020",
+              "payrollId": "ABFS18600"
+            },
+            "id": "494123",
+            "name": "H055494"
+          },
+          {
+            "cameras": [
               {
                 "id": "230942",
                 "images": [
@@ -7988,7 +8299,17 @@
                 ],
                 "name": "GTTU-ASS-UXD",
                 "serial": "CSS6-23A-HJF"
-              },
+              }
+            ],
+            "externalIds": {
+              "maintenanceId": "250020",
+              "payrollId": "ABFS18600"
+            },
+            "id": "494123",
+            "name": "H055494"
+          },
+          {
+            "cameras": [
               {
                 "id": "230942",
                 "images": [
@@ -8173,26 +8494,6 @@
                   "urlExpiryTime": "2019-06-13T19:08:25Z"
                 }
               ]
-            },
-            {
-              "captureTime": "2015-09-15T14:00:12-04:00",
-              "imageData": [
-                {
-                  "cameraView": "`frontFacing`",
-                  "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
-                  "urlExpiryTime": "2019-06-13T19:08:25Z"
-                },
-                {
-                  "cameraView": "`frontFacing`",
-                  "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
-                  "urlExpiryTime": "2019-06-13T19:08:25Z"
-                },
-                {
-                  "cameraView": "`frontFacing`",
-                  "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
-                  "urlExpiryTime": "2019-06-13T19:08:25Z"
-                }
-              ]
             }
           ]
         },
@@ -8210,26 +8511,6 @@
       "example": {
         "id": "230942",
         "images": [
-          {
-            "captureTime": "2015-09-15T14:00:12-04:00",
-            "imageData": [
-              {
-                "cameraView": "`frontFacing`",
-                "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
-                "urlExpiryTime": "2019-06-13T19:08:25Z"
-              },
-              {
-                "cameraView": "`frontFacing`",
-                "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
-                "urlExpiryTime": "2019-06-13T19:08:25Z"
-              },
-              {
-                "cameraView": "`frontFacing`",
-                "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
-                "urlExpiryTime": "2019-06-13T19:08:25Z"
-              }
-            ]
-          },
           {
             "captureTime": "2015-09-15T14:00:12-04:00",
             "imageData": [
@@ -9486,8 +9767,8 @@
           }
         ],
         "pagination": {
-          "endCursor": "Assumenda culpa necessitatibus minima.",
-          "hasNextPage": false
+          "endCursor": "Aut exercitationem quidem.",
+          "hasNextPage": true
         }
       }
     },
@@ -9589,6 +9870,53 @@
         "active",
         "deactivated"
       ]
+    },
+    "DriverAssignmentObjectResponseBody": {
+      "type": "object",
+      "title": "DriverAssignmentObjectResponseBody",
+      "properties": {
+        "assignmentType": {
+          "description": "Assignment type of the driver-vehicle assignment, indicating the provenance of the assignment.",
+          "type": "string",
+          "enum": [
+            "invalid",
+            "driverApp",
+            "tachograph"
+          ],
+          "example": "driverApp"
+        },
+        "driver": {
+          "$ref": "#/definitions/GoaDriverTinyResponseResponseBody"
+        },
+        "endTime": {
+          "description": " An end time in RFC 3339 format. Omitted if not applicable. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+          "type": "string",
+          "example": "2019-06-13T19:08:25Z"
+        },
+        "isPassenger": {
+          "description": "Boolean indicating whether the driver is a passenger.",
+          "type": "boolean",
+          "example": false
+        },
+        "startTime": {
+          "description": " A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+          "type": "string",
+          "example": "2019-06-13T19:08:25Z"
+        }
+      },
+      "example": {
+        "assignmentType": "invalid",
+        "driver": {
+          "externalIds": {
+            "username": "username123"
+          },
+          "id": "45646",
+          "name": "Driver Bob"
+        },
+        "endTime": "2019-06-13T19:08:25Z",
+        "isPassenger": false,
+        "startTime": "2019-06-13T19:08:25Z"
+      }
     },
     "DriverCarrierName": {
       "description": "Carrier for a given driver.",
@@ -12017,7 +12345,7 @@
             "arriveLastStop",
             "departLastStop"
           ],
-          "example": "departLastStop"
+          "example": "arriveLastStop"
         }
       },
       "example": {
@@ -12037,7 +12365,7 @@
             "arriveLastStop",
             "departLastStop"
           ],
-          "example": "arriveLastStop"
+          "example": "departLastStop"
         }
       },
       "example": {
@@ -12191,8 +12519,8 @@
               "addressId": "45934",
               "name": "Stop #1",
               "notes": "These are my notes",
-              "scheduledArrivalTime": "2009-02-21T17:32:50Z",
-              "scheduledDepartureTime": "2003-08-03T21:49:46Z",
+              "scheduledArrivalTime": "1970-10-20T13:13:55Z",
+              "scheduledDepartureTime": "2008-09-20T18:06:03Z",
               "singleUseLocation": {
                 "address": "1234 Main St, San Jose, CA",
                 "latitude": 123.456,
@@ -12203,8 +12531,8 @@
               "addressId": "45934",
               "name": "Stop #1",
               "notes": "These are my notes",
-              "scheduledArrivalTime": "2009-02-21T17:32:50Z",
-              "scheduledDepartureTime": "2003-08-03T21:49:46Z",
+              "scheduledArrivalTime": "1970-10-20T13:13:55Z",
+              "scheduledDepartureTime": "2008-09-20T18:06:03Z",
               "singleUseLocation": {
                 "address": "1234 Main St, San Jose, CA",
                 "latitude": 123.456,
@@ -12215,8 +12543,8 @@
               "addressId": "45934",
               "name": "Stop #1",
               "notes": "These are my notes",
-              "scheduledArrivalTime": "2009-02-21T17:32:50Z",
-              "scheduledDepartureTime": "2003-08-03T21:49:46Z",
+              "scheduledArrivalTime": "1970-10-20T13:13:55Z",
+              "scheduledDepartureTime": "2008-09-20T18:06:03Z",
               "singleUseLocation": {
                 "address": "1234 Main St, San Jose, CA",
                 "latitude": 123.456,
@@ -12247,8 +12575,8 @@
             "addressId": "45934",
             "name": "Stop #1",
             "notes": "These are my notes",
-            "scheduledArrivalTime": "2009-02-21T17:32:50Z",
-            "scheduledDepartureTime": "2003-08-03T21:49:46Z",
+            "scheduledArrivalTime": "1970-10-20T13:13:55Z",
+            "scheduledDepartureTime": "2008-09-20T18:06:03Z",
             "singleUseLocation": {
               "address": "1234 Main St, San Jose, CA",
               "latitude": 123.456,
@@ -12259,8 +12587,20 @@
             "addressId": "45934",
             "name": "Stop #1",
             "notes": "These are my notes",
-            "scheduledArrivalTime": "2009-02-21T17:32:50Z",
-            "scheduledDepartureTime": "2003-08-03T21:49:46Z",
+            "scheduledArrivalTime": "1970-10-20T13:13:55Z",
+            "scheduledDepartureTime": "2008-09-20T18:06:03Z",
+            "singleUseLocation": {
+              "address": "1234 Main St, San Jose, CA",
+              "latitude": 123.456,
+              "longitude": 37.459
+            }
+          },
+          {
+            "addressId": "45934",
+            "name": "Stop #1",
+            "notes": "These are my notes",
+            "scheduledArrivalTime": "1970-10-20T13:13:55Z",
+            "scheduledDepartureTime": "2008-09-20T18:06:03Z",
             "singleUseLocation": {
               "address": "1234 Main St, San Jose, CA",
               "latitude": 123.456,
@@ -12296,7 +12636,7 @@
         "id": {
           "description": "ID of the created route",
           "type": "string",
-          "example": "Exercitationem quidem."
+          "example": "Impedit vel excepturi est."
         },
         "name": {
           "description": "Route name",
@@ -12306,17 +12646,17 @@
         "notes": {
           "description": "Notes for the route",
           "type": "string",
-          "example": "Eligendi ipsam hic voluptatum ratione aut."
+          "example": "Corrupti ullam odio non incidunt ipsam et."
         },
         "scheduledRouteEndTime": {
           "type": "string",
           "format": "date-time",
-          "example": "1980-01-18T11:50:45Z"
+          "example": "2015-04-29T10:15:01Z"
         },
         "scheduledRouteStartTime": {
           "type": "string",
           "format": "date-time",
-          "example": "2000-12-10T17:35:01Z"
+          "example": "1992-09-06T22:50:20Z"
         },
         "settings": {
           "$ref": "#/definitions/RouteSettingsResponseBody"
@@ -12340,8 +12680,8 @@
               },
               "name": "Stop #1",
               "notes": "These are my notes",
-              "scheduledArrivalTime": "2006-08-10T02:28:29Z",
-              "scheduledDepartureTime": "1989-01-27T18:33:40Z",
+              "scheduledArrivalTime": "1999-05-07T18:22:03Z",
+              "scheduledDepartureTime": "1993-04-24T22:39:40Z",
               "singleUseLocation": {
                 "address": "1234 Main St, San Jose, CA",
                 "latitude": 123.456,
@@ -12359,8 +12699,8 @@
               },
               "name": "Stop #1",
               "notes": "These are my notes",
-              "scheduledArrivalTime": "2006-08-10T02:28:29Z",
-              "scheduledDepartureTime": "1989-01-27T18:33:40Z",
+              "scheduledArrivalTime": "1999-05-07T18:22:03Z",
+              "scheduledDepartureTime": "1993-04-24T22:39:40Z",
               "singleUseLocation": {
                 "address": "1234 Main St, San Jose, CA",
                 "latitude": 123.456,
@@ -12378,8 +12718,8 @@
               },
               "name": "Stop #1",
               "notes": "These are my notes",
-              "scheduledArrivalTime": "2006-08-10T02:28:29Z",
-              "scheduledDepartureTime": "1989-01-27T18:33:40Z",
+              "scheduledArrivalTime": "1999-05-07T18:22:03Z",
+              "scheduledDepartureTime": "1993-04-24T22:39:40Z",
               "singleUseLocation": {
                 "address": "1234 Main St, San Jose, CA",
                 "latitude": 123.456,
@@ -12404,13 +12744,13 @@
           "maintenanceId": "250020",
           "payrollId": "ABFS18600"
         },
-        "id": "Consequatur ab maxime est.",
+        "id": "Consectetur omnis dignissimos qui quae impedit et.",
         "name": "Bid 123",
-        "notes": "Et rerum ducimus ad velit nemo qui.",
-        "scheduledRouteEndTime": "1973-02-16T13:56:03Z",
-        "scheduledRouteStartTime": "2007-10-01T09:09:09Z",
+        "notes": "Animi non.",
+        "scheduledRouteEndTime": "1988-10-17T18:39:10Z",
+        "scheduledRouteStartTime": "1990-10-12T04:56:23Z",
         "settings": {
-          "routeCompletionCondition": "arriveLastStop"
+          "routeCompletionCondition": "departLastStop"
         },
         "stops": [
           {
@@ -12424,8 +12764,8 @@
             },
             "name": "Stop #1",
             "notes": "These are my notes",
-            "scheduledArrivalTime": "2006-08-10T02:28:29Z",
-            "scheduledDepartureTime": "1989-01-27T18:33:40Z",
+            "scheduledArrivalTime": "1999-05-07T18:22:03Z",
+            "scheduledDepartureTime": "1993-04-24T22:39:40Z",
             "singleUseLocation": {
               "address": "1234 Main St, San Jose, CA",
               "latitude": 123.456,
@@ -12443,8 +12783,8 @@
             },
             "name": "Stop #1",
             "notes": "These are my notes",
-            "scheduledArrivalTime": "2006-08-10T02:28:29Z",
-            "scheduledDepartureTime": "1989-01-27T18:33:40Z",
+            "scheduledArrivalTime": "1999-05-07T18:22:03Z",
+            "scheduledDepartureTime": "1993-04-24T22:39:40Z",
             "singleUseLocation": {
               "address": "1234 Main St, San Jose, CA",
               "latitude": 123.456,
@@ -12462,8 +12802,8 @@
             },
             "name": "Stop #1",
             "notes": "These are my notes",
-            "scheduledArrivalTime": "2006-08-10T02:28:29Z",
-            "scheduledDepartureTime": "1989-01-27T18:33:40Z",
+            "scheduledArrivalTime": "1999-05-07T18:22:03Z",
+            "scheduledDepartureTime": "1993-04-24T22:39:40Z",
             "singleUseLocation": {
               "address": "1234 Main St, San Jose, CA",
               "latitude": 123.456,
@@ -12572,12 +12912,12 @@
         "scheduledArrivalTime": {
           "type": "string",
           "format": "date-time",
-          "example": "1998-12-04T04:13:23Z"
+          "example": "2006-07-21T15:44:28Z"
         },
         "scheduledDepartureTime": {
           "type": "string",
           "format": "date-time",
-          "example": "1986-01-06T04:56:33Z"
+          "example": "2012-06-16T20:39:31Z"
         },
         "singleUseLocation": {
           "$ref": "#/definitions/RoutesSingleUseAddressObjectRequestBody"
@@ -12587,8 +12927,8 @@
         "addressId": "45934",
         "name": "Stop #1",
         "notes": "These are my notes",
-        "scheduledArrivalTime": "2005-04-30T09:49:34Z",
-        "scheduledDepartureTime": "2005-09-21T00:35:29Z",
+        "scheduledArrivalTime": "2008-01-13T03:29:21Z",
+        "scheduledDepartureTime": "1994-11-30T09:40:20Z",
         "singleUseLocation": {
           "address": "1234 Main St, San Jose, CA",
           "latitude": 123.456,
@@ -12620,12 +12960,12 @@
         "scheduledArrivalTime": {
           "type": "string",
           "format": "date-time",
-          "example": "2012-02-25T05:45:49Z"
+          "example": "1991-07-15T02:59:41Z"
         },
         "scheduledDepartureTime": {
           "type": "string",
           "format": "date-time",
-          "example": "2015-07-17T09:25:45Z"
+          "example": "2007-08-14T16:23:47Z"
         },
         "singleUseLocation": {
           "$ref": "#/definitions/RoutesSingleUseAddressObjectResponseBody"
@@ -12642,8 +12982,8 @@
         },
         "name": "Stop #1",
         "notes": "These are my notes",
-        "scheduledArrivalTime": "2006-08-02T21:13:06Z",
-        "scheduledDepartureTime": "1976-07-25T19:41:28Z",
+        "scheduledArrivalTime": "2014-09-29T00:35:52Z",
+        "scheduledDepartureTime": "1984-06-06T14:31:59Z",
         "singleUseLocation": {
           "address": "1234 Main St, San Jose, CA",
           "latitude": 123.456,
@@ -13586,7 +13926,7 @@
             "default",
             "saml"
           ],
-          "example": "default"
+          "example": "saml"
         },
         "email": {
           "description": "The email address of this user.",
@@ -13638,7 +13978,7 @@
         }
       },
       "example": {
-        "authType": "default",
+        "authType": "saml",
         "email": "user@company.com",
         "id": "123",
         "name": "Bob Smith",
@@ -13929,7 +14269,7 @@
             "default",
             "saml"
           ],
-          "example": "saml"
+          "example": "default"
         },
         "email": {
           "description": "The email address of this user.",
@@ -13956,10 +14296,6 @@
             {
               "roleId": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
               "tagId": "3914"
-            },
-            {
-              "roleId": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
-              "tagId": "3914"
             }
           ]
         }
@@ -13969,14 +14305,6 @@
         "email": "user@company.com",
         "name": "Bob Smith",
         "roles": [
-          {
-            "roleId": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
-            "tagId": "3914"
-          },
-          {
-            "roleId": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
-            "tagId": "3914"
-          },
           {
             "roleId": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
             "tagId": "3914"
@@ -13999,7 +14327,7 @@
       },
       "example": {
         "data": {
-          "authType": "default",
+          "authType": "saml",
           "email": "user@company.com",
           "id": "123",
           "name": "Bob Smith",
@@ -18756,100 +19084,6 @@
               ],
               "name": "GTTU-ASS-UXD",
               "serial": "CSS6-23A-HJF"
-            },
-            {
-              "id": "230942",
-              "images": [
-                {
-                  "captureTime": "2015-09-15T14:00:12-04:00",
-                  "imageData": [
-                    {
-                      "cameraView": "`frontFacing`",
-                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
-                      "urlExpiryTime": "2019-06-13T19:08:25Z"
-                    },
-                    {
-                      "cameraView": "`frontFacing`",
-                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
-                      "urlExpiryTime": "2019-06-13T19:08:25Z"
-                    },
-                    {
-                      "cameraView": "`frontFacing`",
-                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
-                      "urlExpiryTime": "2019-06-13T19:08:25Z"
-                    }
-                  ]
-                },
-                {
-                  "captureTime": "2015-09-15T14:00:12-04:00",
-                  "imageData": [
-                    {
-                      "cameraView": "`frontFacing`",
-                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
-                      "urlExpiryTime": "2019-06-13T19:08:25Z"
-                    },
-                    {
-                      "cameraView": "`frontFacing`",
-                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
-                      "urlExpiryTime": "2019-06-13T19:08:25Z"
-                    },
-                    {
-                      "cameraView": "`frontFacing`",
-                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
-                      "urlExpiryTime": "2019-06-13T19:08:25Z"
-                    }
-                  ]
-                }
-              ],
-              "name": "GTTU-ASS-UXD",
-              "serial": "CSS6-23A-HJF"
-            },
-            {
-              "id": "230942",
-              "images": [
-                {
-                  "captureTime": "2015-09-15T14:00:12-04:00",
-                  "imageData": [
-                    {
-                      "cameraView": "`frontFacing`",
-                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
-                      "urlExpiryTime": "2019-06-13T19:08:25Z"
-                    },
-                    {
-                      "cameraView": "`frontFacing`",
-                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
-                      "urlExpiryTime": "2019-06-13T19:08:25Z"
-                    },
-                    {
-                      "cameraView": "`frontFacing`",
-                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
-                      "urlExpiryTime": "2019-06-13T19:08:25Z"
-                    }
-                  ]
-                },
-                {
-                  "captureTime": "2015-09-15T14:00:12-04:00",
-                  "imageData": [
-                    {
-                      "cameraView": "`frontFacing`",
-                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
-                      "urlExpiryTime": "2019-06-13T19:08:25Z"
-                    },
-                    {
-                      "cameraView": "`frontFacing`",
-                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
-                      "urlExpiryTime": "2019-06-13T19:08:25Z"
-                    },
-                    {
-                      "cameraView": "`frontFacing`",
-                      "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
-                      "urlExpiryTime": "2019-06-13T19:08:25Z"
-                    }
-                  ]
-                }
-              ],
-              "name": "GTTU-ASS-UXD",
-              "serial": "CSS6-23A-HJF"
             }
           ]
         },
@@ -18875,53 +19109,6 @@
       },
       "example": {
         "cameras": [
-          {
-            "id": "230942",
-            "images": [
-              {
-                "captureTime": "2015-09-15T14:00:12-04:00",
-                "imageData": [
-                  {
-                    "cameraView": "`frontFacing`",
-                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
-                    "urlExpiryTime": "2019-06-13T19:08:25Z"
-                  },
-                  {
-                    "cameraView": "`frontFacing`",
-                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
-                    "urlExpiryTime": "2019-06-13T19:08:25Z"
-                  },
-                  {
-                    "cameraView": "`frontFacing`",
-                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
-                    "urlExpiryTime": "2019-06-13T19:08:25Z"
-                  }
-                ]
-              },
-              {
-                "captureTime": "2015-09-15T14:00:12-04:00",
-                "imageData": [
-                  {
-                    "cameraView": "`frontFacing`",
-                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
-                    "urlExpiryTime": "2019-06-13T19:08:25Z"
-                  },
-                  {
-                    "cameraView": "`frontFacing`",
-                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
-                    "urlExpiryTime": "2019-06-13T19:08:25Z"
-                  },
-                  {
-                    "cameraView": "`frontFacing`",
-                    "url": "https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com",
-                    "urlExpiryTime": "2019-06-13T19:08:25Z"
-                  }
-                ]
-              }
-            ],
-            "name": "GTTU-ASS-UXD",
-            "serial": "CSS6-23A-HJF"
-          },
           {
             "id": "230942",
             "images": [
@@ -21136,6 +21323,550 @@
       "type": "string",
       "example": "2008"
     },
+    "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsBadRequestResponseBody": {
+      "description": "Bad Request parameters",
+      "type": "object",
+      "title": "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsBadRequestResponseBody",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "invalid parameter driver id: 1ba2345"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "invalid parameter driver id: 1ba2345",
+        "requestId": "8916e1c1"
+      }
+    },
+    "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsInternalErrorResponseBody": {
+      "description": "An internal server error occurred",
+      "type": "object",
+      "title": "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsInternalErrorResponseBody",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "failed to execute GraphQL query"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "failed to execute GraphQL query",
+        "requestId": "8916e1c1"
+      }
+    },
+    "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsNotFoundResponseBody": {
+      "description": "Resource not found",
+      "type": "object",
+      "title": "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsNotFoundResponseBody",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "vehicle id not found"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "vehicle id not found",
+        "requestId": "8916e1c1"
+      }
+    },
+    "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsNotImplementedResponseBody": {
+      "description": "Requested endpoint is not yet implemented",
+      "type": "object",
+      "title": "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsNotImplementedResponseBody",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "not implemented"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "not implemented",
+        "requestId": "8916e1c1"
+      }
+    },
+    "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsResponseBody": {
+      "type": "object",
+      "title": "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsResponseBody",
+      "required": [
+        "data",
+        "pagination"
+      ],
+      "properties": {
+        "data": {
+          "description": "List of vehicles and their driver assignments.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VehiclesDriverAssignmentsObjectResponseBody"
+          },
+          "example": [
+            {
+              "driverAssignments": [
+                {
+                  "assignmentType": "invalid",
+                  "driver": {
+                    "externalIds": {
+                      "username": "username123"
+                    },
+                    "id": "45646",
+                    "name": "Driver Bob"
+                  },
+                  "endTime": "2019-06-13T19:08:25Z",
+                  "isPassenger": false,
+                  "startTime": "2019-06-13T19:08:25Z"
+                },
+                {
+                  "assignmentType": "invalid",
+                  "driver": {
+                    "externalIds": {
+                      "username": "username123"
+                    },
+                    "id": "45646",
+                    "name": "Driver Bob"
+                  },
+                  "endTime": "2019-06-13T19:08:25Z",
+                  "isPassenger": false,
+                  "startTime": "2019-06-13T19:08:25Z"
+                }
+              ],
+              "externalIds": {
+                "maintenanceId": "250020",
+                "payrollId": "ABFS18600"
+              },
+              "id": "494123",
+              "name": "Bus-123"
+            },
+            {
+              "driverAssignments": [
+                {
+                  "assignmentType": "invalid",
+                  "driver": {
+                    "externalIds": {
+                      "username": "username123"
+                    },
+                    "id": "45646",
+                    "name": "Driver Bob"
+                  },
+                  "endTime": "2019-06-13T19:08:25Z",
+                  "isPassenger": false,
+                  "startTime": "2019-06-13T19:08:25Z"
+                },
+                {
+                  "assignmentType": "invalid",
+                  "driver": {
+                    "externalIds": {
+                      "username": "username123"
+                    },
+                    "id": "45646",
+                    "name": "Driver Bob"
+                  },
+                  "endTime": "2019-06-13T19:08:25Z",
+                  "isPassenger": false,
+                  "startTime": "2019-06-13T19:08:25Z"
+                }
+              ],
+              "externalIds": {
+                "maintenanceId": "250020",
+                "payrollId": "ABFS18600"
+              },
+              "id": "494123",
+              "name": "Bus-123"
+            },
+            {
+              "driverAssignments": [
+                {
+                  "assignmentType": "invalid",
+                  "driver": {
+                    "externalIds": {
+                      "username": "username123"
+                    },
+                    "id": "45646",
+                    "name": "Driver Bob"
+                  },
+                  "endTime": "2019-06-13T19:08:25Z",
+                  "isPassenger": false,
+                  "startTime": "2019-06-13T19:08:25Z"
+                },
+                {
+                  "assignmentType": "invalid",
+                  "driver": {
+                    "externalIds": {
+                      "username": "username123"
+                    },
+                    "id": "45646",
+                    "name": "Driver Bob"
+                  },
+                  "endTime": "2019-06-13T19:08:25Z",
+                  "isPassenger": false,
+                  "startTime": "2019-06-13T19:08:25Z"
+                }
+              ],
+              "externalIds": {
+                "maintenanceId": "250020",
+                "payrollId": "ABFS18600"
+              },
+              "id": "494123",
+              "name": "Bus-123"
+            },
+            {
+              "driverAssignments": [
+                {
+                  "assignmentType": "invalid",
+                  "driver": {
+                    "externalIds": {
+                      "username": "username123"
+                    },
+                    "id": "45646",
+                    "name": "Driver Bob"
+                  },
+                  "endTime": "2019-06-13T19:08:25Z",
+                  "isPassenger": false,
+                  "startTime": "2019-06-13T19:08:25Z"
+                },
+                {
+                  "assignmentType": "invalid",
+                  "driver": {
+                    "externalIds": {
+                      "username": "username123"
+                    },
+                    "id": "45646",
+                    "name": "Driver Bob"
+                  },
+                  "endTime": "2019-06-13T19:08:25Z",
+                  "isPassenger": false,
+                  "startTime": "2019-06-13T19:08:25Z"
+                }
+              ],
+              "externalIds": {
+                "maintenanceId": "250020",
+                "payrollId": "ABFS18600"
+              },
+              "id": "494123",
+              "name": "Bus-123"
+            }
+          ]
+        },
+        "pagination": {
+          "$ref": "#/definitions/GoaPaginationResponseResponseBody"
+        }
+      },
+      "example": {
+        "data": [
+          {
+            "driverAssignments": [
+              {
+                "assignmentType": "invalid",
+                "driver": {
+                  "externalIds": {
+                    "username": "username123"
+                  },
+                  "id": "45646",
+                  "name": "Driver Bob"
+                },
+                "endTime": "2019-06-13T19:08:25Z",
+                "isPassenger": false,
+                "startTime": "2019-06-13T19:08:25Z"
+              },
+              {
+                "assignmentType": "invalid",
+                "driver": {
+                  "externalIds": {
+                    "username": "username123"
+                  },
+                  "id": "45646",
+                  "name": "Driver Bob"
+                },
+                "endTime": "2019-06-13T19:08:25Z",
+                "isPassenger": false,
+                "startTime": "2019-06-13T19:08:25Z"
+              }
+            ],
+            "externalIds": {
+              "maintenanceId": "250020",
+              "payrollId": "ABFS18600"
+            },
+            "id": "494123",
+            "name": "Bus-123"
+          },
+          {
+            "driverAssignments": [
+              {
+                "assignmentType": "invalid",
+                "driver": {
+                  "externalIds": {
+                    "username": "username123"
+                  },
+                  "id": "45646",
+                  "name": "Driver Bob"
+                },
+                "endTime": "2019-06-13T19:08:25Z",
+                "isPassenger": false,
+                "startTime": "2019-06-13T19:08:25Z"
+              },
+              {
+                "assignmentType": "invalid",
+                "driver": {
+                  "externalIds": {
+                    "username": "username123"
+                  },
+                  "id": "45646",
+                  "name": "Driver Bob"
+                },
+                "endTime": "2019-06-13T19:08:25Z",
+                "isPassenger": false,
+                "startTime": "2019-06-13T19:08:25Z"
+              }
+            ],
+            "externalIds": {
+              "maintenanceId": "250020",
+              "payrollId": "ABFS18600"
+            },
+            "id": "494123",
+            "name": "Bus-123"
+          },
+          {
+            "driverAssignments": [
+              {
+                "assignmentType": "invalid",
+                "driver": {
+                  "externalIds": {
+                    "username": "username123"
+                  },
+                  "id": "45646",
+                  "name": "Driver Bob"
+                },
+                "endTime": "2019-06-13T19:08:25Z",
+                "isPassenger": false,
+                "startTime": "2019-06-13T19:08:25Z"
+              },
+              {
+                "assignmentType": "invalid",
+                "driver": {
+                  "externalIds": {
+                    "username": "username123"
+                  },
+                  "id": "45646",
+                  "name": "Driver Bob"
+                },
+                "endTime": "2019-06-13T19:08:25Z",
+                "isPassenger": false,
+                "startTime": "2019-06-13T19:08:25Z"
+              }
+            ],
+            "externalIds": {
+              "maintenanceId": "250020",
+              "payrollId": "ABFS18600"
+            },
+            "id": "494123",
+            "name": "Bus-123"
+          },
+          {
+            "driverAssignments": [
+              {
+                "assignmentType": "invalid",
+                "driver": {
+                  "externalIds": {
+                    "username": "username123"
+                  },
+                  "id": "45646",
+                  "name": "Driver Bob"
+                },
+                "endTime": "2019-06-13T19:08:25Z",
+                "isPassenger": false,
+                "startTime": "2019-06-13T19:08:25Z"
+              },
+              {
+                "assignmentType": "invalid",
+                "driver": {
+                  "externalIds": {
+                    "username": "username123"
+                  },
+                  "id": "45646",
+                  "name": "Driver Bob"
+                },
+                "endTime": "2019-06-13T19:08:25Z",
+                "isPassenger": false,
+                "startTime": "2019-06-13T19:08:25Z"
+              }
+            ],
+            "externalIds": {
+              "maintenanceId": "250020",
+              "payrollId": "ABFS18600"
+            },
+            "id": "494123",
+            "name": "Bus-123"
+          }
+        ],
+        "pagination": {
+          "endCursor": "MjkY",
+          "hasNextPage": true
+        }
+      }
+    },
+    "VehiclesDriverAssignmentsObjectResponseBody": {
+      "type": "object",
+      "title": "VehiclesDriverAssignmentsObjectResponseBody",
+      "required": [
+        "id",
+        "driverAssignments"
+      ],
+      "properties": {
+        "driverAssignments": {
+          "description": "List of driver assignment objects.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DriverAssignmentObjectResponseBody"
+          },
+          "example": [
+            {
+              "assignmentType": "invalid",
+              "driver": {
+                "externalIds": {
+                  "username": "username123"
+                },
+                "id": "45646",
+                "name": "Driver Bob"
+              },
+              "endTime": "2019-06-13T19:08:25Z",
+              "isPassenger": false,
+              "startTime": "2019-06-13T19:08:25Z"
+            },
+            {
+              "assignmentType": "invalid",
+              "driver": {
+                "externalIds": {
+                  "username": "username123"
+                },
+                "id": "45646",
+                "name": "Driver Bob"
+              },
+              "endTime": "2019-06-13T19:08:25Z",
+              "isPassenger": false,
+              "startTime": "2019-06-13T19:08:25Z"
+            },
+            {
+              "assignmentType": "invalid",
+              "driver": {
+                "externalIds": {
+                  "username": "username123"
+                },
+                "id": "45646",
+                "name": "Driver Bob"
+              },
+              "endTime": "2019-06-13T19:08:25Z",
+              "isPassenger": false,
+              "startTime": "2019-06-13T19:08:25Z"
+            },
+            {
+              "assignmentType": "invalid",
+              "driver": {
+                "externalIds": {
+                  "username": "username123"
+                },
+                "id": "45646",
+                "name": "Driver Bob"
+              },
+              "endTime": "2019-06-13T19:08:25Z",
+              "isPassenger": false,
+              "startTime": "2019-06-13T19:08:25Z"
+            }
+          ]
+        },
+        "externalIds": {
+          "description": "A map of external ids",
+          "type": "object",
+          "additionalProperties": true,
+          "example": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          }
+        },
+        "id": {
+          "description": "ID of the vehicle.",
+          "type": "string",
+          "example": "494123"
+        },
+        "name": {
+          "description": "Name of the vehicle.",
+          "type": "string",
+          "example": "Bus-123"
+        }
+      },
+      "example": {
+        "driverAssignments": [
+          {
+            "assignmentType": "invalid",
+            "driver": {
+              "externalIds": {
+                "username": "username123"
+              },
+              "id": "45646",
+              "name": "Driver Bob"
+            },
+            "endTime": "2019-06-13T19:08:25Z",
+            "isPassenger": false,
+            "startTime": "2019-06-13T19:08:25Z"
+          },
+          {
+            "assignmentType": "invalid",
+            "driver": {
+              "externalIds": {
+                "username": "username123"
+              },
+              "id": "45646",
+              "name": "Driver Bob"
+            },
+            "endTime": "2019-06-13T19:08:25Z",
+            "isPassenger": false,
+            "startTime": "2019-06-13T19:08:25Z"
+          }
+        ],
+        "externalIds": {
+          "maintenanceId": "250020",
+          "payrollId": "ABFS18600"
+        },
+        "id": "494123",
+        "name": "Bus-123"
+      }
+    },
     "conditionalFieldSectionObjectResponseBody": {
       "type": "object",
       "title": "conditionalFieldSectionObjectResponseBody",
@@ -21144,31 +21875,31 @@
           "description": "The index of the first conditional field associated with the triggeringFieldValue in the fieldTypes list.",
           "type": "integer",
           "format": "int64",
-          "example": 7236484444959590000
+          "example": 6426148224709297000
         },
         "conditionalFieldLastIndex": {
           "description": "The index of the last conditional field associated with the triggeringFieldValue in the fieldTypes list.",
           "type": "integer",
           "format": "int64",
-          "example": 2292946556990765800
+          "example": 5404288979056867000
         },
         "triggeringFieldIndex": {
           "description": "The index of the multiple choice field in the fieldTypes list that triggers one or more conditional fields.",
           "type": "integer",
           "format": "int64",
-          "example": 4460662007692805000
+          "example": 8543534298588900000
         },
         "triggeringFieldValue": {
           "description": "The multiple choice option value that triggers the conditional fields.",
           "type": "string",
-          "example": "Est eum eos dolor magni."
+          "example": "Sint earum cum nam voluptatum nihil est."
         }
       },
       "example": {
-        "conditionalFieldFirstIndex": 8432432027983061000,
-        "conditionalFieldLastIndex": 2043128661916307500,
-        "triggeringFieldIndex": 8101352920762464000,
-        "triggeringFieldValue": "Eos sunt molestiae fuga."
+        "conditionalFieldFirstIndex": 3022395892032435000,
+        "conditionalFieldLastIndex": 1966227959715094800,
+        "triggeringFieldIndex": 4726968270692136000,
+        "triggeringFieldValue": "Quas laborum non in ea illum."
       }
     },
     "contactTinyResponse": {
@@ -21354,7 +22085,7 @@
         "label": {
           "description": "The name of the field type.",
           "type": "string",
-          "example": "Aperiam consequatur laborum magnam illum a veniam."
+          "example": "Nulla illo porro et harum."
         },
         "multipleChoiceFieldTypeMetaData": {
           "description": "A list of the multiple choice field option labels.",
@@ -21364,16 +22095,13 @@
           },
           "example": [
             {
-              "label": "Et quasi sed pariatur asperiores impedit qui."
+              "label": "Voluptate possimus ab veritatis."
             },
             {
-              "label": "Et quasi sed pariatur asperiores impedit qui."
+              "label": "Voluptate possimus ab veritatis."
             },
             {
-              "label": "Et quasi sed pariatur asperiores impedit qui."
-            },
-            {
-              "label": "Et quasi sed pariatur asperiores impedit qui."
+              "label": "Voluptate possimus ab veritatis."
             }
           ]
         },
@@ -21383,7 +22111,7 @@
         "requiredField": {
           "description": "The indicator that states if the field is required.",
           "type": "boolean",
-          "example": false
+          "example": true
         },
         "signatureFieldTypeMetaData": {
           "$ref": "#/definitions/signatureFieldTypeMetaDataObjectResponseBody"
@@ -21391,27 +22119,27 @@
       },
       "example": {
         "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-        "label": "Qui quia quam quam vel voluptas.",
+        "label": "Sunt molestiae fuga quisquam distinctio nostrum.",
         "multipleChoiceFieldTypeMetaData": [
           {
-            "label": "Et quasi sed pariatur asperiores impedit qui."
+            "label": "Voluptate possimus ab veritatis."
           },
           {
-            "label": "Et quasi sed pariatur asperiores impedit qui."
+            "label": "Voluptate possimus ab veritatis."
           },
           {
-            "label": "Et quasi sed pariatur asperiores impedit qui."
+            "label": "Voluptate possimus ab veritatis."
           },
           {
-            "label": "Et quasi sed pariatur asperiores impedit qui."
+            "label": "Voluptate possimus ab veritatis."
           }
         ],
         "numberFieldTypeMetaData": {
-          "numberOfDecimalPlaces": 5289159619069220000
+          "numberOfDecimalPlaces": 7194258118621667000
         },
-        "requiredField": false,
+        "requiredField": true,
         "signatureFieldTypeMetaData": {
-          "legalText": "Eius ratione ut autem."
+          "legalText": "Quis assumenda culpa necessitatibus minima."
         }
       }
     },
@@ -21427,16 +22155,16 @@
           },
           "example": [
             {
-              "conditionalFieldFirstIndex": 7194258118621667000,
-              "conditionalFieldLastIndex": 535096460144716740,
-              "triggeringFieldIndex": 5841741900888805000,
-              "triggeringFieldValue": "Voluptate possimus ab veritatis."
+              "conditionalFieldFirstIndex": 7966725399004582000,
+              "conditionalFieldLastIndex": 7934877386418861000,
+              "triggeringFieldIndex": 746274783119137800,
+              "triggeringFieldValue": "At ut odio."
             },
             {
-              "conditionalFieldFirstIndex": 7194258118621667000,
-              "conditionalFieldLastIndex": 535096460144716740,
-              "triggeringFieldIndex": 5841741900888805000,
-              "triggeringFieldValue": "Voluptate possimus ab veritatis."
+              "conditionalFieldFirstIndex": 7966725399004582000,
+              "conditionalFieldLastIndex": 7934877386418861000,
+              "triggeringFieldIndex": 746274783119137800,
+              "triggeringFieldValue": "At ut odio."
             }
           ]
         },
@@ -21449,52 +22177,102 @@
           "example": [
             {
               "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-              "label": "Sed consequuntur.",
+              "label": "Ut autem.",
               "multipleChoiceFieldTypeMetaData": [
                 {
-                  "label": "Et quasi sed pariatur asperiores impedit qui."
+                  "label": "Voluptate possimus ab veritatis."
                 },
                 {
-                  "label": "Et quasi sed pariatur asperiores impedit qui."
+                  "label": "Voluptate possimus ab veritatis."
                 },
                 {
-                  "label": "Et quasi sed pariatur asperiores impedit qui."
+                  "label": "Voluptate possimus ab veritatis."
                 },
                 {
-                  "label": "Et quasi sed pariatur asperiores impedit qui."
+                  "label": "Voluptate possimus ab veritatis."
                 }
               ],
               "numberFieldTypeMetaData": {
-                "numberOfDecimalPlaces": 5289159619069220000
+                "numberOfDecimalPlaces": 7194258118621667000
               },
-              "requiredField": false,
+              "requiredField": true,
               "signatureFieldTypeMetaData": {
-                "legalText": "Eius ratione ut autem."
+                "legalText": "Quis assumenda culpa necessitatibus minima."
               }
             },
             {
               "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-              "label": "Sed consequuntur.",
+              "label": "Ut autem.",
               "multipleChoiceFieldTypeMetaData": [
                 {
-                  "label": "Et quasi sed pariatur asperiores impedit qui."
+                  "label": "Voluptate possimus ab veritatis."
                 },
                 {
-                  "label": "Et quasi sed pariatur asperiores impedit qui."
+                  "label": "Voluptate possimus ab veritatis."
                 },
                 {
-                  "label": "Et quasi sed pariatur asperiores impedit qui."
+                  "label": "Voluptate possimus ab veritatis."
                 },
                 {
-                  "label": "Et quasi sed pariatur asperiores impedit qui."
+                  "label": "Voluptate possimus ab veritatis."
                 }
               ],
               "numberFieldTypeMetaData": {
-                "numberOfDecimalPlaces": 5289159619069220000
+                "numberOfDecimalPlaces": 7194258118621667000
               },
-              "requiredField": false,
+              "requiredField": true,
               "signatureFieldTypeMetaData": {
-                "legalText": "Eius ratione ut autem."
+                "legalText": "Quis assumenda culpa necessitatibus minima."
+              }
+            },
+            {
+              "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
+              "label": "Ut autem.",
+              "multipleChoiceFieldTypeMetaData": [
+                {
+                  "label": "Voluptate possimus ab veritatis."
+                },
+                {
+                  "label": "Voluptate possimus ab veritatis."
+                },
+                {
+                  "label": "Voluptate possimus ab veritatis."
+                },
+                {
+                  "label": "Voluptate possimus ab veritatis."
+                }
+              ],
+              "numberFieldTypeMetaData": {
+                "numberOfDecimalPlaces": 7194258118621667000
+              },
+              "requiredField": true,
+              "signatureFieldTypeMetaData": {
+                "legalText": "Quis assumenda culpa necessitatibus minima."
+              }
+            },
+            {
+              "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
+              "label": "Ut autem.",
+              "multipleChoiceFieldTypeMetaData": [
+                {
+                  "label": "Voluptate possimus ab veritatis."
+                },
+                {
+                  "label": "Voluptate possimus ab veritatis."
+                },
+                {
+                  "label": "Voluptate possimus ab veritatis."
+                },
+                {
+                  "label": "Voluptate possimus ab veritatis."
+                }
+              ],
+              "numberFieldTypeMetaData": {
+                "numberOfDecimalPlaces": 7194258118621667000
+              },
+              "requiredField": true,
+              "signatureFieldTypeMetaData": {
+                "legalText": "Quis assumenda culpa necessitatibus minima."
               }
             }
           ]
@@ -21502,127 +22280,115 @@
         "id": {
           "description": "Universally unique identifier for the document type. This value can be passed in as the documentTypeId when creating a document.",
           "type": "string",
-          "example": "Porro dolor provident consequatur est."
+          "example": "Harum sunt cumque enim adipisci."
         },
         "name": {
           "description": "Name of the document type.",
           "type": "string",
-          "example": "Aut quas."
+          "example": "Porro nihil nobis dolores nam est."
         },
         "orgId": {
           "description": "ID for the organization this document type belongs to.",
           "type": "integer",
           "format": "int64",
-          "example": 1673167433121726000
+          "example": 927776079462837100
         }
       },
       "example": {
         "conditionalFieldSections": [
           {
-            "conditionalFieldFirstIndex": 7194258118621667000,
-            "conditionalFieldLastIndex": 535096460144716740,
-            "triggeringFieldIndex": 5841741900888805000,
-            "triggeringFieldValue": "Voluptate possimus ab veritatis."
+            "conditionalFieldFirstIndex": 7966725399004582000,
+            "conditionalFieldLastIndex": 7934877386418861000,
+            "triggeringFieldIndex": 746274783119137800,
+            "triggeringFieldValue": "At ut odio."
           },
           {
-            "conditionalFieldFirstIndex": 7194258118621667000,
-            "conditionalFieldLastIndex": 535096460144716740,
-            "triggeringFieldIndex": 5841741900888805000,
-            "triggeringFieldValue": "Voluptate possimus ab veritatis."
-          },
-          {
-            "conditionalFieldFirstIndex": 7194258118621667000,
-            "conditionalFieldLastIndex": 535096460144716740,
-            "triggeringFieldIndex": 5841741900888805000,
-            "triggeringFieldValue": "Voluptate possimus ab veritatis."
-          },
-          {
-            "conditionalFieldFirstIndex": 7194258118621667000,
-            "conditionalFieldLastIndex": 535096460144716740,
-            "triggeringFieldIndex": 5841741900888805000,
-            "triggeringFieldValue": "Voluptate possimus ab veritatis."
+            "conditionalFieldFirstIndex": 7966725399004582000,
+            "conditionalFieldLastIndex": 7934877386418861000,
+            "triggeringFieldIndex": 746274783119137800,
+            "triggeringFieldValue": "At ut odio."
           }
         ],
         "fieldTypes": [
           {
             "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-            "label": "Sed consequuntur.",
+            "label": "Ut autem.",
             "multipleChoiceFieldTypeMetaData": [
               {
-                "label": "Et quasi sed pariatur asperiores impedit qui."
+                "label": "Voluptate possimus ab veritatis."
               },
               {
-                "label": "Et quasi sed pariatur asperiores impedit qui."
+                "label": "Voluptate possimus ab veritatis."
               },
               {
-                "label": "Et quasi sed pariatur asperiores impedit qui."
+                "label": "Voluptate possimus ab veritatis."
               },
               {
-                "label": "Et quasi sed pariatur asperiores impedit qui."
+                "label": "Voluptate possimus ab veritatis."
               }
             ],
             "numberFieldTypeMetaData": {
-              "numberOfDecimalPlaces": 5289159619069220000
+              "numberOfDecimalPlaces": 7194258118621667000
             },
-            "requiredField": false,
+            "requiredField": true,
             "signatureFieldTypeMetaData": {
-              "legalText": "Eius ratione ut autem."
+              "legalText": "Quis assumenda culpa necessitatibus minima."
             }
           },
           {
             "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-            "label": "Sed consequuntur.",
+            "label": "Ut autem.",
             "multipleChoiceFieldTypeMetaData": [
               {
-                "label": "Et quasi sed pariatur asperiores impedit qui."
+                "label": "Voluptate possimus ab veritatis."
               },
               {
-                "label": "Et quasi sed pariatur asperiores impedit qui."
+                "label": "Voluptate possimus ab veritatis."
               },
               {
-                "label": "Et quasi sed pariatur asperiores impedit qui."
+                "label": "Voluptate possimus ab veritatis."
               },
               {
-                "label": "Et quasi sed pariatur asperiores impedit qui."
+                "label": "Voluptate possimus ab veritatis."
               }
             ],
             "numberFieldTypeMetaData": {
-              "numberOfDecimalPlaces": 5289159619069220000
+              "numberOfDecimalPlaces": 7194258118621667000
             },
-            "requiredField": false,
+            "requiredField": true,
             "signatureFieldTypeMetaData": {
-              "legalText": "Eius ratione ut autem."
+              "legalText": "Quis assumenda culpa necessitatibus minima."
             }
           },
           {
             "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-            "label": "Sed consequuntur.",
+            "label": "Ut autem.",
             "multipleChoiceFieldTypeMetaData": [
               {
-                "label": "Et quasi sed pariatur asperiores impedit qui."
+                "label": "Voluptate possimus ab veritatis."
               },
               {
-                "label": "Et quasi sed pariatur asperiores impedit qui."
+                "label": "Voluptate possimus ab veritatis."
               },
               {
-                "label": "Et quasi sed pariatur asperiores impedit qui."
+                "label": "Voluptate possimus ab veritatis."
               },
               {
-                "label": "Et quasi sed pariatur asperiores impedit qui."
+                "label": "Voluptate possimus ab veritatis."
               }
             ],
             "numberFieldTypeMetaData": {
-              "numberOfDecimalPlaces": 5289159619069220000
+              "numberOfDecimalPlaces": 7194258118621667000
             },
-            "requiredField": false,
+            "requiredField": true,
             "signatureFieldTypeMetaData": {
-              "legalText": "Eius ratione ut autem."
+              "legalText": "Quis assumenda culpa necessitatibus minima."
             }
           }
         ],
-        "id": "Earum cum nam voluptatum nihil.",
-        "name": "Debitis ut quia.",
-        "orgId": 5169127956086038000
+        "id": "Odio et laudantium.",
+        "name": "Impedit dolor.",
+        "orgId": 1505348451856817700
       }
     },
     "getDocumentTypesResponsePaginationObjectResponseBody": {
@@ -21631,15 +22397,15 @@
       "properties": {
         "endCursor": {
           "type": "string",
-          "example": "Nemo nisi quas laborum non."
+          "example": "Et non aut odit et minima."
         },
         "hasNextPage": {
           "type": "boolean",
-          "example": true
+          "example": false
         }
       },
       "example": {
-        "endCursor": "Illum ipsa tempore molestiae.",
+        "endCursor": "Veniam doloremque quod sed.",
         "hasNextPage": false
       }
     },
@@ -21697,11 +22463,11 @@
         "label": {
           "description": "The option choice label.",
           "type": "string",
-          "example": "Nobis dolores nam est et praesentium."
+          "example": "Quos perferendis eveniet repudiandae nemo qui."
         }
       },
       "example": {
-        "label": "Sunt cumque enim."
+        "label": "Quam quam vel voluptas provident nihil vitae."
       }
     },
     "numberFieldTypeMetaDataObjectResponseBody": {
@@ -21712,11 +22478,11 @@
           "description": "The number of decimal places allowed for the field.",
           "type": "integer",
           "format": "int64",
-          "example": 1897283212570623700
+          "example": 8781561669561242000
         }
       },
       "example": {
-        "numberOfDecimalPlaces": 4561279440996774000
+        "numberOfDecimalPlaces": 6882901925529127000
       }
     },
     "paginationResponse": {
@@ -21779,11 +22545,11 @@
         "legalText": {
           "description": "The signature field legal text.",
           "type": "string",
-          "example": "Porro et harum qui ex quos."
+          "example": "Eos dolor magni mollitia."
         }
       },
       "example": {
-        "legalText": "Eveniet repudiandae."
+        "legalText": "A sequi."
       }
     },
     "standardErrorResponse": {
