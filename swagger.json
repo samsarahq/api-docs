@@ -2363,9 +2363,9 @@
         }
       }
     },
-    "/fleet/routes/feed": {
+    "/fleet/routes/audit-logs/feed": {
       "get": {
-        "description": "Subscribes to a feed of route updates. The initial request to this feed endpoint returns a cursor, which can be used on the next request to fetch updated routes that have had state changes since that request.",
+        "description": "Subscribes to a feed of immutable, append-only updates for routes. The initial request to this feed endpoint returns a cursor, which can be used on the next request to fetch updated routes that have had state changes since that request.",
         "tags": [
           "Beta"
         ],
@@ -3136,7 +3136,7 @@
                   {
                     "driverAssignments": [
                       {
-                        "assignmentType": "tachograph",
+                        "assignmentType": "invalid",
                         "driver": {
                           "externalIds": {
                             "username": "username123"
@@ -3149,7 +3149,7 @@
                         "startTime": "2019-06-13T19:08:25Z"
                       },
                       {
-                        "assignmentType": "tachograph",
+                        "assignmentType": "invalid",
                         "driver": {
                           "externalIds": {
                             "username": "username123"
@@ -3172,7 +3172,7 @@
                   {
                     "driverAssignments": [
                       {
-                        "assignmentType": "tachograph",
+                        "assignmentType": "invalid",
                         "driver": {
                           "externalIds": {
                             "username": "username123"
@@ -3185,7 +3185,7 @@
                         "startTime": "2019-06-13T19:08:25Z"
                       },
                       {
-                        "assignmentType": "tachograph",
+                        "assignmentType": "invalid",
                         "driver": {
                           "externalIds": {
                             "username": "username123"
@@ -3208,7 +3208,7 @@
                   {
                     "driverAssignments": [
                       {
-                        "assignmentType": "tachograph",
+                        "assignmentType": "invalid",
                         "driver": {
                           "externalIds": {
                             "username": "username123"
@@ -3221,7 +3221,7 @@
                         "startTime": "2019-06-13T19:08:25Z"
                       },
                       {
-                        "assignmentType": "tachograph",
+                        "assignmentType": "invalid",
                         "driver": {
                           "externalIds": {
                             "username": "username123"
@@ -3244,7 +3244,7 @@
                   {
                     "driverAssignments": [
                       {
-                        "assignmentType": "tachograph",
+                        "assignmentType": "invalid",
                         "driver": {
                           "externalIds": {
                             "username": "username123"
@@ -3257,7 +3257,7 @@
                         "startTime": "2019-06-13T19:08:25Z"
                       },
                       {
-                        "assignmentType": "tachograph",
+                        "assignmentType": "invalid",
                         "driver": {
                           "externalIds": {
                             "username": "username123"
@@ -9882,11 +9882,11 @@
           "description": "Assignment type of the driver-vehicle assignment, indicating the provenance of the assignment.",
           "type": "string",
           "enum": [
-            "tachograph",
             "invalid",
-            "driverApp"
+            "driverApp",
+            "tachograph"
           ],
-          "example": "invalid"
+          "example": "driverApp"
         },
         "driver": {
           "$ref": "#/definitions/GoaDriverTinyResponseResponseBody"
@@ -9908,7 +9908,7 @@
         }
       },
       "example": {
-        "assignmentType": "tachograph",
+        "assignmentType": "invalid",
         "driver": {
           "externalIds": {
             "username": "username123"
@@ -21492,7 +21492,7 @@
             {
               "driverAssignments": [
                 {
-                  "assignmentType": "tachograph",
+                  "assignmentType": "invalid",
                   "driver": {
                     "externalIds": {
                       "username": "username123"
@@ -21505,7 +21505,7 @@
                   "startTime": "2019-06-13T19:08:25Z"
                 },
                 {
-                  "assignmentType": "tachograph",
+                  "assignmentType": "invalid",
                   "driver": {
                     "externalIds": {
                       "username": "username123"
@@ -21528,7 +21528,7 @@
             {
               "driverAssignments": [
                 {
-                  "assignmentType": "tachograph",
+                  "assignmentType": "invalid",
                   "driver": {
                     "externalIds": {
                       "username": "username123"
@@ -21541,7 +21541,7 @@
                   "startTime": "2019-06-13T19:08:25Z"
                 },
                 {
-                  "assignmentType": "tachograph",
+                  "assignmentType": "invalid",
                   "driver": {
                     "externalIds": {
                       "username": "username123"
@@ -21564,7 +21564,7 @@
             {
               "driverAssignments": [
                 {
-                  "assignmentType": "tachograph",
+                  "assignmentType": "invalid",
                   "driver": {
                     "externalIds": {
                       "username": "username123"
@@ -21577,7 +21577,7 @@
                   "startTime": "2019-06-13T19:08:25Z"
                 },
                 {
-                  "assignmentType": "tachograph",
+                  "assignmentType": "invalid",
                   "driver": {
                     "externalIds": {
                       "username": "username123"
@@ -21600,7 +21600,7 @@
             {
               "driverAssignments": [
                 {
-                  "assignmentType": "tachograph",
+                  "assignmentType": "invalid",
                   "driver": {
                     "externalIds": {
                       "username": "username123"
@@ -21613,7 +21613,7 @@
                   "startTime": "2019-06-13T19:08:25Z"
                 },
                 {
-                  "assignmentType": "tachograph",
+                  "assignmentType": "invalid",
                   "driver": {
                     "externalIds": {
                       "username": "username123"
@@ -21644,7 +21644,7 @@
           {
             "driverAssignments": [
               {
-                "assignmentType": "tachograph",
+                "assignmentType": "invalid",
                 "driver": {
                   "externalIds": {
                     "username": "username123"
@@ -21657,7 +21657,7 @@
                 "startTime": "2019-06-13T19:08:25Z"
               },
               {
-                "assignmentType": "tachograph",
+                "assignmentType": "invalid",
                 "driver": {
                   "externalIds": {
                     "username": "username123"
@@ -21680,7 +21680,7 @@
           {
             "driverAssignments": [
               {
-                "assignmentType": "tachograph",
+                "assignmentType": "invalid",
                 "driver": {
                   "externalIds": {
                     "username": "username123"
@@ -21693,7 +21693,7 @@
                 "startTime": "2019-06-13T19:08:25Z"
               },
               {
-                "assignmentType": "tachograph",
+                "assignmentType": "invalid",
                 "driver": {
                   "externalIds": {
                     "username": "username123"
@@ -21716,7 +21716,7 @@
           {
             "driverAssignments": [
               {
-                "assignmentType": "tachograph",
+                "assignmentType": "invalid",
                 "driver": {
                   "externalIds": {
                     "username": "username123"
@@ -21729,7 +21729,7 @@
                 "startTime": "2019-06-13T19:08:25Z"
               },
               {
-                "assignmentType": "tachograph",
+                "assignmentType": "invalid",
                 "driver": {
                   "externalIds": {
                     "username": "username123"
@@ -21752,7 +21752,7 @@
           {
             "driverAssignments": [
               {
-                "assignmentType": "tachograph",
+                "assignmentType": "invalid",
                 "driver": {
                   "externalIds": {
                     "username": "username123"
@@ -21765,7 +21765,7 @@
                 "startTime": "2019-06-13T19:08:25Z"
               },
               {
-                "assignmentType": "tachograph",
+                "assignmentType": "invalid",
                 "driver": {
                   "externalIds": {
                     "username": "username123"
@@ -21808,7 +21808,7 @@
           },
           "example": [
             {
-              "assignmentType": "tachograph",
+              "assignmentType": "invalid",
               "driver": {
                 "externalIds": {
                   "username": "username123"
@@ -21821,7 +21821,7 @@
               "startTime": "2019-06-13T19:08:25Z"
             },
             {
-              "assignmentType": "tachograph",
+              "assignmentType": "invalid",
               "driver": {
                 "externalIds": {
                   "username": "username123"
@@ -21834,7 +21834,7 @@
               "startTime": "2019-06-13T19:08:25Z"
             },
             {
-              "assignmentType": "tachograph",
+              "assignmentType": "invalid",
               "driver": {
                 "externalIds": {
                   "username": "username123"
@@ -21847,7 +21847,7 @@
               "startTime": "2019-06-13T19:08:25Z"
             },
             {
-              "assignmentType": "tachograph",
+              "assignmentType": "invalid",
               "driver": {
                 "externalIds": {
                   "username": "username123"
@@ -21884,7 +21884,7 @@
       "example": {
         "driverAssignments": [
           {
-            "assignmentType": "tachograph",
+            "assignmentType": "invalid",
             "driver": {
               "externalIds": {
                 "username": "username123"
@@ -21897,7 +21897,7 @@
             "startTime": "2019-06-13T19:08:25Z"
           },
           {
-            "assignmentType": "tachograph",
+            "assignmentType": "invalid",
             "driver": {
               "externalIds": {
                 "username": "username123"
