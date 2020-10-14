@@ -2226,7 +2226,8 @@
               "application/json": {
                 "driver": {
                   "externalIds": {
-                    "username": "username123"
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
                   },
                   "id": "45646",
                   "name": "Driver Bob"
@@ -2251,7 +2252,7 @@
                         "payrollId": "ABFS18600"
                       },
                       "id": "494123",
-                      "name": "Fleet Truck #1"
+                      "name": "Company Office #1"
                     },
                     "id": "Quia amet sapiente non tempora id reprehenderit.",
                     "name": "Stop #1",
@@ -2271,7 +2272,7 @@
                         "payrollId": "ABFS18600"
                       },
                       "id": "494123",
-                      "name": "Fleet Truck #1"
+                      "name": "Company Office #1"
                     },
                     "id": "Quia amet sapiente non tempora id reprehenderit.",
                     "name": "Stop #1",
@@ -2291,7 +2292,7 @@
                         "payrollId": "ABFS18600"
                       },
                       "id": "494123",
-                      "name": "Fleet Truck #1"
+                      "name": "Company Office #1"
                     },
                     "id": "Quia amet sapiente non tempora id reprehenderit.",
                     "name": "Stop #1",
@@ -2307,7 +2308,8 @@
                 ],
                 "vehicle": {
                   "externalIds": {
-                    "samsara.vin": "1231231231"
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
                   },
                   "id": "494123",
                   "name": "Fleet Truck #1"
@@ -3807,10 +3809,11 @@
                   {
                     "driverAssignments": [
                       {
-                        "assignmentType": "invalid",
+                        "assignmentType": "tachograph",
                         "driver": {
                           "externalIds": {
-                            "username": "username123"
+                            "maintenanceId": "250020",
+                            "payrollId": "ABFS18600"
                           },
                           "id": "45646",
                           "name": "Driver Bob"
@@ -3820,10 +3823,11 @@
                         "startTime": "2019-06-13T19:08:25Z"
                       },
                       {
-                        "assignmentType": "invalid",
+                        "assignmentType": "tachograph",
                         "driver": {
                           "externalIds": {
-                            "username": "username123"
+                            "maintenanceId": "250020",
+                            "payrollId": "ABFS18600"
                           },
                           "id": "45646",
                           "name": "Driver Bob"
@@ -3833,10 +3837,11 @@
                         "startTime": "2019-06-13T19:08:25Z"
                       },
                       {
-                        "assignmentType": "invalid",
+                        "assignmentType": "tachograph",
                         "driver": {
                           "externalIds": {
-                            "username": "username123"
+                            "maintenanceId": "250020",
+                            "payrollId": "ABFS18600"
                           },
                           "id": "45646",
                           "name": "Driver Bob"
@@ -3856,10 +3861,11 @@
                   {
                     "driverAssignments": [
                       {
-                        "assignmentType": "invalid",
+                        "assignmentType": "tachograph",
                         "driver": {
                           "externalIds": {
-                            "username": "username123"
+                            "maintenanceId": "250020",
+                            "payrollId": "ABFS18600"
                           },
                           "id": "45646",
                           "name": "Driver Bob"
@@ -3869,10 +3875,11 @@
                         "startTime": "2019-06-13T19:08:25Z"
                       },
                       {
-                        "assignmentType": "invalid",
+                        "assignmentType": "tachograph",
                         "driver": {
                           "externalIds": {
-                            "username": "username123"
+                            "maintenanceId": "250020",
+                            "payrollId": "ABFS18600"
                           },
                           "id": "45646",
                           "name": "Driver Bob"
@@ -3882,10 +3889,11 @@
                         "startTime": "2019-06-13T19:08:25Z"
                       },
                       {
-                        "assignmentType": "invalid",
+                        "assignmentType": "tachograph",
                         "driver": {
                           "externalIds": {
-                            "username": "username123"
+                            "maintenanceId": "250020",
+                            "payrollId": "ABFS18600"
                           },
                           "id": "45646",
                           "name": "Driver Bob"
@@ -3905,10 +3913,11 @@
                   {
                     "driverAssignments": [
                       {
-                        "assignmentType": "invalid",
+                        "assignmentType": "tachograph",
                         "driver": {
                           "externalIds": {
-                            "username": "username123"
+                            "maintenanceId": "250020",
+                            "payrollId": "ABFS18600"
                           },
                           "id": "45646",
                           "name": "Driver Bob"
@@ -3918,10 +3927,11 @@
                         "startTime": "2019-06-13T19:08:25Z"
                       },
                       {
-                        "assignmentType": "invalid",
+                        "assignmentType": "tachograph",
                         "driver": {
                           "externalIds": {
-                            "username": "username123"
+                            "maintenanceId": "250020",
+                            "payrollId": "ABFS18600"
                           },
                           "id": "45646",
                           "name": "Driver Bob"
@@ -3931,10 +3941,11 @@
                         "startTime": "2019-06-13T19:08:25Z"
                       },
                       {
-                        "assignmentType": "invalid",
+                        "assignmentType": "tachograph",
                         "driver": {
                           "externalIds": {
-                            "username": "username123"
+                            "maintenanceId": "250020",
+                            "payrollId": "ABFS18600"
                           },
                           "id": "45646",
                           "name": "Driver Bob"
@@ -11912,11 +11923,11 @@
           "description": "Assignment type of the driver-vehicle assignment, indicating the provenance of the assignment.",
           "type": "string",
           "enum": [
+            "tachograph",
             "invalid",
-            "driverApp",
-            "tachograph"
+            "driverApp"
           ],
-          "example": "driverApp"
+          "example": "invalid"
         },
         "driver": {
           "$ref": "#/definitions/GoaDriverTinyResponseResponseBody"
@@ -11938,10 +11949,11 @@
         }
       },
       "example": {
-        "assignmentType": "tachograph",
+        "assignmentType": "driverApp",
         "driver": {
           "externalIds": {
-            "username": "username123"
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
           },
           "id": "45646",
           "name": "Driver Bob"
@@ -13271,14 +13283,14 @@
           }
         },
         "id": {
-          "description": "ID of the vehicle",
+          "description": "Id of the address",
           "type": "string",
           "example": "494123"
         },
         "name": {
-          "description": "Name of the vehicle",
+          "description": "Name of the address",
           "type": "string",
-          "example": "Fleet Truck #1"
+          "example": "Company Office #1"
         }
       },
       "example": {
@@ -13287,7 +13299,7 @@
           "payrollId": "ABFS18600"
         },
         "id": "494123",
-        "name": "Fleet Truck #1"
+        "name": "Company Office #1"
       }
     },
     "GoaDriverTinyResponseResponseBody": {
@@ -13297,8 +13309,11 @@
       "properties": {
         "externalIds": {
           "description": "A map of external ids",
+          "type": "object",
+          "additionalProperties": true,
           "example": {
-            "username": "username123"
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
           }
         },
         "id": {
@@ -13314,7 +13329,8 @@
       },
       "example": {
         "externalIds": {
-          "username": "username123"
+          "maintenanceId": "250020",
+          "payrollId": "ABFS18600"
         },
         "id": "45646",
         "name": "Driver Bob"
@@ -13383,8 +13399,11 @@
       "properties": {
         "externalIds": {
           "description": "A map of external ids",
+          "type": "object",
+          "additionalProperties": true,
           "example": {
-            "samsara.vin": "1231231231"
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
           }
         },
         "id": {
@@ -13400,7 +13419,8 @@
       },
       "example": {
         "externalIds": {
-          "samsara.vin": "1231231231"
+          "maintenanceId": "250020",
+          "payrollId": "ABFS18600"
         },
         "id": "494123",
         "name": "Fleet Truck #1"
@@ -14703,7 +14723,7 @@
                   "payrollId": "ABFS18600"
                 },
                 "id": "494123",
-                "name": "Fleet Truck #1"
+                "name": "Company Office #1"
               },
               "id": "Quia amet sapiente non tempora id reprehenderit.",
               "name": "Stop #1",
@@ -14723,7 +14743,7 @@
                   "payrollId": "ABFS18600"
                 },
                 "id": "494123",
-                "name": "Fleet Truck #1"
+                "name": "Company Office #1"
               },
               "id": "Quia amet sapiente non tempora id reprehenderit.",
               "name": "Stop #1",
@@ -14743,7 +14763,7 @@
                   "payrollId": "ABFS18600"
                 },
                 "id": "494123",
-                "name": "Fleet Truck #1"
+                "name": "Company Office #1"
               },
               "id": "Quia amet sapiente non tempora id reprehenderit.",
               "name": "Stop #1",
@@ -14765,7 +14785,8 @@
       "example": {
         "driver": {
           "externalIds": {
-            "username": "username123"
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
           },
           "id": "45646",
           "name": "Driver Bob"
@@ -14790,7 +14811,7 @@
                 "payrollId": "ABFS18600"
               },
               "id": "494123",
-              "name": "Fleet Truck #1"
+              "name": "Company Office #1"
             },
             "id": "Quia amet sapiente non tempora id reprehenderit.",
             "name": "Stop #1",
@@ -14810,7 +14831,7 @@
                 "payrollId": "ABFS18600"
               },
               "id": "494123",
-              "name": "Fleet Truck #1"
+              "name": "Company Office #1"
             },
             "id": "Quia amet sapiente non tempora id reprehenderit.",
             "name": "Stop #1",
@@ -14830,7 +14851,7 @@
                 "payrollId": "ABFS18600"
               },
               "id": "494123",
-              "name": "Fleet Truck #1"
+              "name": "Company Office #1"
             },
             "id": "Quia amet sapiente non tempora id reprehenderit.",
             "name": "Stop #1",
@@ -14846,7 +14867,8 @@
         ],
         "vehicle": {
           "externalIds": {
-            "samsara.vin": "1231231231"
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
           },
           "id": "494123",
           "name": "Fleet Truck #1"
@@ -15177,7 +15199,7 @@
                   "payrollId": "ABFS18600"
                 },
                 "id": "494123",
-                "name": "Fleet Truck #1"
+                "name": "Company Office #1"
               },
               "id": "Quia amet sapiente non tempora id reprehenderit.",
               "name": "Stop #1",
@@ -15197,7 +15219,7 @@
                   "payrollId": "ABFS18600"
                 },
                 "id": "494123",
-                "name": "Fleet Truck #1"
+                "name": "Company Office #1"
               },
               "id": "Quia amet sapiente non tempora id reprehenderit.",
               "name": "Stop #1",
@@ -15217,7 +15239,7 @@
                   "payrollId": "ABFS18600"
                 },
                 "id": "494123",
-                "name": "Fleet Truck #1"
+                "name": "Company Office #1"
               },
               "id": "Quia amet sapiente non tempora id reprehenderit.",
               "name": "Stop #1",
@@ -15239,7 +15261,8 @@
       "example": {
         "driver": {
           "externalIds": {
-            "username": "username123"
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
           },
           "id": "45646",
           "name": "Driver Bob"
@@ -15264,7 +15287,7 @@
                 "payrollId": "ABFS18600"
               },
               "id": "494123",
-              "name": "Fleet Truck #1"
+              "name": "Company Office #1"
             },
             "id": "Quia amet sapiente non tempora id reprehenderit.",
             "name": "Stop #1",
@@ -15284,7 +15307,7 @@
                 "payrollId": "ABFS18600"
               },
               "id": "494123",
-              "name": "Fleet Truck #1"
+              "name": "Company Office #1"
             },
             "id": "Quia amet sapiente non tempora id reprehenderit.",
             "name": "Stop #1",
@@ -15304,7 +15327,7 @@
                 "payrollId": "ABFS18600"
               },
               "id": "494123",
-              "name": "Fleet Truck #1"
+              "name": "Company Office #1"
             },
             "id": "Quia amet sapiente non tempora id reprehenderit.",
             "name": "Stop #1",
@@ -15320,7 +15343,8 @@
         ],
         "vehicle": {
           "externalIds": {
-            "samsara.vin": "1231231231"
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
           },
           "id": "494123",
           "name": "Fleet Truck #1"
@@ -15491,7 +15515,7 @@
             "payrollId": "ABFS18600"
           },
           "id": "494123",
-          "name": "Fleet Truck #1"
+          "name": "Company Office #1"
         },
         "id": "Ea quod velit accusamus minus.",
         "name": "Stop #1",
@@ -24450,10 +24474,11 @@
             {
               "driverAssignments": [
                 {
-                  "assignmentType": "invalid",
+                  "assignmentType": "tachograph",
                   "driver": {
                     "externalIds": {
-                      "username": "username123"
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
                     },
                     "id": "45646",
                     "name": "Driver Bob"
@@ -24463,10 +24488,11 @@
                   "startTime": "2019-06-13T19:08:25Z"
                 },
                 {
-                  "assignmentType": "invalid",
+                  "assignmentType": "tachograph",
                   "driver": {
                     "externalIds": {
-                      "username": "username123"
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
                     },
                     "id": "45646",
                     "name": "Driver Bob"
@@ -24476,10 +24502,11 @@
                   "startTime": "2019-06-13T19:08:25Z"
                 },
                 {
-                  "assignmentType": "invalid",
+                  "assignmentType": "tachograph",
                   "driver": {
                     "externalIds": {
-                      "username": "username123"
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
                     },
                     "id": "45646",
                     "name": "Driver Bob"
@@ -24499,10 +24526,11 @@
             {
               "driverAssignments": [
                 {
-                  "assignmentType": "invalid",
+                  "assignmentType": "tachograph",
                   "driver": {
                     "externalIds": {
-                      "username": "username123"
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
                     },
                     "id": "45646",
                     "name": "Driver Bob"
@@ -24512,10 +24540,11 @@
                   "startTime": "2019-06-13T19:08:25Z"
                 },
                 {
-                  "assignmentType": "invalid",
+                  "assignmentType": "tachograph",
                   "driver": {
                     "externalIds": {
-                      "username": "username123"
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
                     },
                     "id": "45646",
                     "name": "Driver Bob"
@@ -24525,10 +24554,11 @@
                   "startTime": "2019-06-13T19:08:25Z"
                 },
                 {
-                  "assignmentType": "invalid",
+                  "assignmentType": "tachograph",
                   "driver": {
                     "externalIds": {
-                      "username": "username123"
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
                     },
                     "id": "45646",
                     "name": "Driver Bob"
@@ -24548,10 +24578,11 @@
             {
               "driverAssignments": [
                 {
-                  "assignmentType": "invalid",
+                  "assignmentType": "tachograph",
                   "driver": {
                     "externalIds": {
-                      "username": "username123"
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
                     },
                     "id": "45646",
                     "name": "Driver Bob"
@@ -24561,10 +24592,11 @@
                   "startTime": "2019-06-13T19:08:25Z"
                 },
                 {
-                  "assignmentType": "invalid",
+                  "assignmentType": "tachograph",
                   "driver": {
                     "externalIds": {
-                      "username": "username123"
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
                     },
                     "id": "45646",
                     "name": "Driver Bob"
@@ -24574,10 +24606,11 @@
                   "startTime": "2019-06-13T19:08:25Z"
                 },
                 {
-                  "assignmentType": "invalid",
+                  "assignmentType": "tachograph",
                   "driver": {
                     "externalIds": {
-                      "username": "username123"
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
                     },
                     "id": "45646",
                     "name": "Driver Bob"
@@ -24597,10 +24630,11 @@
             {
               "driverAssignments": [
                 {
-                  "assignmentType": "invalid",
+                  "assignmentType": "tachograph",
                   "driver": {
                     "externalIds": {
-                      "username": "username123"
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
                     },
                     "id": "45646",
                     "name": "Driver Bob"
@@ -24610,10 +24644,11 @@
                   "startTime": "2019-06-13T19:08:25Z"
                 },
                 {
-                  "assignmentType": "invalid",
+                  "assignmentType": "tachograph",
                   "driver": {
                     "externalIds": {
-                      "username": "username123"
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
                     },
                     "id": "45646",
                     "name": "Driver Bob"
@@ -24623,10 +24658,11 @@
                   "startTime": "2019-06-13T19:08:25Z"
                 },
                 {
-                  "assignmentType": "invalid",
+                  "assignmentType": "tachograph",
                   "driver": {
                     "externalIds": {
-                      "username": "username123"
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
                     },
                     "id": "45646",
                     "name": "Driver Bob"
@@ -24654,10 +24690,11 @@
           {
             "driverAssignments": [
               {
-                "assignmentType": "invalid",
+                "assignmentType": "tachograph",
                 "driver": {
                   "externalIds": {
-                    "username": "username123"
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
                   },
                   "id": "45646",
                   "name": "Driver Bob"
@@ -24667,10 +24704,11 @@
                 "startTime": "2019-06-13T19:08:25Z"
               },
               {
-                "assignmentType": "invalid",
+                "assignmentType": "tachograph",
                 "driver": {
                   "externalIds": {
-                    "username": "username123"
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
                   },
                   "id": "45646",
                   "name": "Driver Bob"
@@ -24680,10 +24718,11 @@
                 "startTime": "2019-06-13T19:08:25Z"
               },
               {
-                "assignmentType": "invalid",
+                "assignmentType": "tachograph",
                 "driver": {
                   "externalIds": {
-                    "username": "username123"
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
                   },
                   "id": "45646",
                   "name": "Driver Bob"
@@ -24703,10 +24742,11 @@
           {
             "driverAssignments": [
               {
-                "assignmentType": "invalid",
+                "assignmentType": "tachograph",
                 "driver": {
                   "externalIds": {
-                    "username": "username123"
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
                   },
                   "id": "45646",
                   "name": "Driver Bob"
@@ -24716,10 +24756,11 @@
                 "startTime": "2019-06-13T19:08:25Z"
               },
               {
-                "assignmentType": "invalid",
+                "assignmentType": "tachograph",
                 "driver": {
                   "externalIds": {
-                    "username": "username123"
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
                   },
                   "id": "45646",
                   "name": "Driver Bob"
@@ -24729,10 +24770,11 @@
                 "startTime": "2019-06-13T19:08:25Z"
               },
               {
-                "assignmentType": "invalid",
+                "assignmentType": "tachograph",
                 "driver": {
                   "externalIds": {
-                    "username": "username123"
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
                   },
                   "id": "45646",
                   "name": "Driver Bob"
@@ -24752,10 +24794,11 @@
           {
             "driverAssignments": [
               {
-                "assignmentType": "invalid",
+                "assignmentType": "tachograph",
                 "driver": {
                   "externalIds": {
-                    "username": "username123"
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
                   },
                   "id": "45646",
                   "name": "Driver Bob"
@@ -24765,10 +24808,11 @@
                 "startTime": "2019-06-13T19:08:25Z"
               },
               {
-                "assignmentType": "invalid",
+                "assignmentType": "tachograph",
                 "driver": {
                   "externalIds": {
-                    "username": "username123"
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
                   },
                   "id": "45646",
                   "name": "Driver Bob"
@@ -24778,10 +24822,11 @@
                 "startTime": "2019-06-13T19:08:25Z"
               },
               {
-                "assignmentType": "invalid",
+                "assignmentType": "tachograph",
                 "driver": {
                   "externalIds": {
-                    "username": "username123"
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
                   },
                   "id": "45646",
                   "name": "Driver Bob"
@@ -24821,10 +24866,11 @@
           },
           "example": [
             {
-              "assignmentType": "invalid",
+              "assignmentType": "tachograph",
               "driver": {
                 "externalIds": {
-                  "username": "username123"
+                  "maintenanceId": "250020",
+                  "payrollId": "ABFS18600"
                 },
                 "id": "45646",
                 "name": "Driver Bob"
@@ -24834,10 +24880,11 @@
               "startTime": "2019-06-13T19:08:25Z"
             },
             {
-              "assignmentType": "invalid",
+              "assignmentType": "tachograph",
               "driver": {
                 "externalIds": {
-                  "username": "username123"
+                  "maintenanceId": "250020",
+                  "payrollId": "ABFS18600"
                 },
                 "id": "45646",
                 "name": "Driver Bob"
@@ -24871,10 +24918,11 @@
       "example": {
         "driverAssignments": [
           {
-            "assignmentType": "invalid",
+            "assignmentType": "tachograph",
             "driver": {
               "externalIds": {
-                "username": "username123"
+                "maintenanceId": "250020",
+                "payrollId": "ABFS18600"
               },
               "id": "45646",
               "name": "Driver Bob"
@@ -24884,10 +24932,11 @@
             "startTime": "2019-06-13T19:08:25Z"
           },
           {
-            "assignmentType": "invalid",
+            "assignmentType": "tachograph",
             "driver": {
               "externalIds": {
-                "username": "username123"
+                "maintenanceId": "250020",
+                "payrollId": "ABFS18600"
               },
               "id": "45646",
               "name": "Driver Bob"
@@ -24897,10 +24946,11 @@
             "startTime": "2019-06-13T19:08:25Z"
           },
           {
-            "assignmentType": "invalid",
+            "assignmentType": "tachograph",
             "driver": {
               "externalIds": {
-                "username": "username123"
+                "maintenanceId": "250020",
+                "payrollId": "ABFS18600"
               },
               "id": "45646",
               "name": "Driver Bob"
