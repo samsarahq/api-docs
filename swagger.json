@@ -847,6 +847,115 @@
         }
       ]
     },
+    "/fleet/document-types": {
+      "get": {
+        "description": "Returns a list of the organization document types",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Beta"
+        ],
+        "summary": "Fetch document types ",
+        "operationId": "getDocumentTypes",
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentTypesResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "data": [
+                  {
+                    "conditionalFieldSections": [
+                      {
+                        "conditionalFieldFirstIndex": 1,
+                        "conditionalFieldLastIndex": 2,
+                        "triggeringFieldIndex": 0,
+                        "triggeringFieldValue": "Yes"
+                      }
+                    ],
+                    "fieldTypes": [
+                      {
+                        "fieldType": "multipleChoice",
+                        "label": "Was there damage?",
+                        "multipleChoiceFieldTypeMetaData": [
+                          {
+                            "label": "Yes"
+                          },
+                          {
+                            "label": "No"
+                          }
+                        ],
+                        "requiredField": true
+                      },
+                      {
+                        "fieldType": "photo",
+                        "label": "Damage Photos",
+                        "requiredField": false
+                      },
+                      {
+                        "fieldType": "number",
+                        "label": "Number of vehicles impacted",
+                        "numberFieldTypeMetaData": {
+                          "numberOfDecimalPlaces": 2
+                        },
+                        "requiredField": false
+                      },
+                      {
+                        "fieldType": "dateTime",
+                        "label": "Date and time",
+                        "requiredField": true
+                      },
+                      {
+                        "fieldType": "signature",
+                        "label": "Sign",
+                        "requiredField": true,
+                        "signatureFieldTypeMetaData": {
+                          "legalText": "Legal Text"
+                        }
+                      }
+                    ],
+                    "id": "4aff772c-a7bb-45e6-8e41-6a53e34feb83",
+                    "name": "Accident Report",
+                    "orgId": 12345
+                  }
+                ],
+                "pagination": {
+                  "endCursor": "Consequatur sit est ea libero aliquid culpa.",
+                  "hasNextPage": false
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentTypesInternalErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "failed to execute GraphQL query",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentTypesBadRequestResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "invalid parameter driver id: 1ba2345",
+                "requestId": "8916e1c1"
+              }
+            }
+          }
+        }
+      }
+    },
     "/fleet/documents/pdfs": {
       "post": {
         "description": "Request creation of a document PDF.",
