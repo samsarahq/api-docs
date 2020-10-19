@@ -2516,6 +2516,195 @@
         }
       }
     },
+    "/fleet/routes/{id}": {
+      "patch": {
+        "description": "Update a route.  **Note** this implementation of patch uses [the JSON merge patch](https://tools.ietf.org/html/rfc7396) proposed standard.\n This means that any fields included in the patch request will _overwrite_ fields which exist on the target resource.\n For arrays, this means any array included in the request will _replace_ the array that exists at the specified path, it will not _add_ to the existing array",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Beta"
+        ],
+        "summary": "[beta] Update a route.",
+        "operationId": "patchRoute",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "id of the route to update",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "PatchRouteRequestBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RoutesPatchRouteRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesPatchRouteResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "driver": {
+                  "externalIds": {
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
+                  },
+                  "id": "45646",
+                  "name": "Driver Bob"
+                },
+                "externalIds": {
+                  "maintenanceId": "250020",
+                  "payrollId": "ABFS18600"
+                },
+                "id": "Occaecati sed doloribus et veniam.",
+                "name": "Bid 123",
+                "notes": "Officiis cupiditate iusto.",
+                "scheduledRouteEndTime": "1994-06-19T06:36:52Z",
+                "scheduledRouteStartTime": "1999-07-31T03:17:41Z",
+                "settings": {
+                  "routeCompletionCondition": "departLastStop"
+                },
+                "stops": [
+                  {
+                    "address": {
+                      "externalIds": {
+                        "maintenanceId": "250020",
+                        "payrollId": "ABFS18600"
+                      },
+                      "id": "494123",
+                      "name": "Company Office #1"
+                    },
+                    "id": "Quia amet sapiente non tempora id reprehenderit.",
+                    "name": "Stop #1",
+                    "notes": "These are my notes",
+                    "scheduledArrivalTime": "1977-06-18T18:19:48Z",
+                    "scheduledDepartureTime": "1990-08-29T17:20:18Z",
+                    "singleUseLocation": {
+                      "address": "1234 Main St, San Jose, CA",
+                      "latitude": 123.456,
+                      "longitude": 37.459
+                    }
+                  },
+                  {
+                    "address": {
+                      "externalIds": {
+                        "maintenanceId": "250020",
+                        "payrollId": "ABFS18600"
+                      },
+                      "id": "494123",
+                      "name": "Company Office #1"
+                    },
+                    "id": "Quia amet sapiente non tempora id reprehenderit.",
+                    "name": "Stop #1",
+                    "notes": "These are my notes",
+                    "scheduledArrivalTime": "1977-06-18T18:19:48Z",
+                    "scheduledDepartureTime": "1990-08-29T17:20:18Z",
+                    "singleUseLocation": {
+                      "address": "1234 Main St, San Jose, CA",
+                      "latitude": 123.456,
+                      "longitude": 37.459
+                    }
+                  },
+                  {
+                    "address": {
+                      "externalIds": {
+                        "maintenanceId": "250020",
+                        "payrollId": "ABFS18600"
+                      },
+                      "id": "494123",
+                      "name": "Company Office #1"
+                    },
+                    "id": "Quia amet sapiente non tempora id reprehenderit.",
+                    "name": "Stop #1",
+                    "notes": "These are my notes",
+                    "scheduledArrivalTime": "1977-06-18T18:19:48Z",
+                    "scheduledDepartureTime": "1990-08-29T17:20:18Z",
+                    "singleUseLocation": {
+                      "address": "1234 Main St, San Jose, CA",
+                      "latitude": 123.456,
+                      "longitude": 37.459
+                    }
+                  }
+                ],
+                "vehicle": {
+                  "externalIds": {
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
+                  },
+                  "id": "494123",
+                  "name": "Fleet Truck #1"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesPatchRouteNotFoundResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "vehicle id not found",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesPatchRouteInternalErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "failed to execute GraphQL query",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesPatchRouteNotImplementedResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "not implemented",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesPatchRouteBadRequestResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "invalid parameter driver id: 1ba2345",
+                "requestId": "8916e1c1"
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "id of the route to update",
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
     "/fleet/safety-events": {
       "get": {
         "description": "Fetch safety events for the organization in a given time period.",
