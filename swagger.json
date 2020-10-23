@@ -19512,6 +19512,23 @@
       "items": {
         "type": "object",
         "properties": {
+          "barcodeValue": {
+            "description": "The value of a barcode scanning field. Only present for barcode scanning fields",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "barcodeType": {
+                  "description": "The barcode type that was scanned",
+                  "type": "string"
+                },
+                "barcodeValue": {
+                  "description": "The captured barcode value",
+                  "type": "string"
+                }
+              }
+            }
+          },
           "dateTimeValue": {
             "description": "The value of a date time field. Only present for date time fields.",
             "type": "object",
@@ -19549,7 +19566,7 @@
             "format": "float"
           },
           "photoValue": {
-            "description": "The value of a photo field. Only present for photo fields.",
+            "description": "The value of a photo or document scanning field. Only present for photo or document scanning fields.",
             "type": "array",
             "items": {
               "type": "object",
@@ -19676,6 +19693,30 @@
             "uuid": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7"
           },
           "valueType": "ValueType_Signature"
+        },
+        {
+          "barcodeValue": [
+            {
+              "barcodeType": "org.gs1.EAN-13",
+              "barcodeValue": "0853883003114"
+            },
+            {
+              "barcodeType": "org.gs1.EAN-13",
+              "barcodeValue": "0036000318036"
+            }
+          ],
+          "label": "Product SKU",
+          "value": [
+            {
+              "barcodeType": "org.gs1.EAN-13",
+              "barcodeValue": "0853883003114"
+            },
+            {
+              "barcodeType": "org.gs1.EAN-13",
+              "barcodeValue": "0036000318036"
+            }
+          ],
+          "valueType": "ValueType_Barcode"
         }
       ]
     },
