@@ -19194,10 +19194,13 @@
             "fields"
           ],
           "properties": {
+            "conditionalFieldSections": {
+              "$ref": "#/definitions/V1DocumentConditionalFields"
+            },
             "documentType": {
               "description": "Name of the document type.",
               "type": "string",
-              "example": "Fuel Receipt"
+              "example": "Accident Report"
             },
             "driverCreatedAtMs": {
               "description": "The time in Unix epoch milliseconds that the document was created in the driver app.",
@@ -19287,6 +19290,39 @@
           "example": "Submitted"
         }
       }
+    },
+    "V1DocumentConditionalFields": {
+      "description": "An array of objects that describe a set of fields conditionally shown by a multiple choice value.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "conditionalFieldIndexFirst": {
+            "description": "Start index of the conditional fields set",
+            "type": "number"
+          },
+          "conditionalFieldIndexLast": {
+            "description": "End index of the conditional fields set",
+            "type": "number"
+          },
+          "triggeringFieldIndex": {
+            "description": "Index of the multiple choice field that triggers the conditional fields",
+            "type": "number"
+          },
+          "triggeringFieldValue": {
+            "description": "Multiple choice value that triggers the conditional fields",
+            "type": "string"
+          }
+        }
+      },
+      "example": [
+        {
+          "conditionalFieldFirstIndex": 1,
+          "conditionalFieldLastIndex": 4,
+          "triggeringFieldIndex": 0,
+          "triggeringFieldValue": "Yes"
+        }
+      ]
     },
     "V1DocumentCreate": {
       "allOf": [
@@ -19619,19 +19655,43 @@
       },
       "example": [
         {
-          "label": "Name of the number field",
+          "label": "Was there an accident?",
+          "multipleChoiceValue": [
+            {
+              "selected": false,
+              "value": "Yes"
+            },
+            {
+              "selected": true,
+              "value": "No"
+            }
+          ],
+          "value": [
+            {
+              "selected": false,
+              "value": "Yes"
+            },
+            {
+              "selected": true,
+              "value": "No"
+            }
+          ],
+          "valueType": "ValueType_MultipleChoice"
+        },
+        {
+          "label": "Number of cars involved",
           "numberValue": 123,
           "value": 123,
           "valueType": "ValueType_Number"
         },
         {
-          "label": "Name of the string field",
+          "label": "Description of Accident",
           "stringValue": "Example text value",
           "value": "Example text value",
           "valueType": "ValueType_String"
         },
         {
-          "label": "Name of the photo field",
+          "label": "Images of the damaged cars",
           "photoValue": [
             {
               "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
@@ -19646,41 +19706,41 @@
           "valueType": "ValueType_Photo"
         },
         {
-          "label": "Name of the multiple choice field",
-          "multipleChoiceValue": [
+          "barcodeValue": [
             {
-              "selected": false,
-              "value": "option 1"
+              "barcodeType": "org.gs1.EAN-13",
+              "barcodeValue": "0853883003114"
             },
             {
-              "selected": true,
-              "value": "option 2"
+              "barcodeType": "org.gs1.EAN-13",
+              "barcodeValue": "0036000318036"
             }
           ],
+          "label": "Accident Ticket Barcode",
           "value": [
             {
-              "selected": false,
-              "value": "option 1"
+              "barcodeType": "org.gs1.EAN-13",
+              "barcodeValue": "0853883003114"
             },
             {
-              "selected": true,
-              "value": "option 2"
+              "barcodeType": "org.gs1.EAN-13",
+              "barcodeValue": "0036000318036"
             }
           ],
-          "valueType": "ValueType_MultipleChoice"
+          "valueType": "ValueType_Barcode"
         },
         {
           "dateTimeValue": {
             "dateTimeMs": 1596681182972
           },
-          "label": "Name of the date time field",
+          "label": "Today's Date",
           "value": {
             "dateTimeMs": 1596681182972
           },
           "valueType": "ValueType_DateTime"
         },
         {
-          "label": "Name of the signature field",
+          "label": "Sign Signature",
           "signatureValue": {
             "name": "John Smith",
             "signedAtMs": 1596681191327,
@@ -19693,30 +19753,6 @@
             "uuid": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7"
           },
           "valueType": "ValueType_Signature"
-        },
-        {
-          "barcodeValue": [
-            {
-              "barcodeType": "org.gs1.EAN-13",
-              "barcodeValue": "0853883003114"
-            },
-            {
-              "barcodeType": "org.gs1.EAN-13",
-              "barcodeValue": "0036000318036"
-            }
-          ],
-          "label": "Product SKU",
-          "value": [
-            {
-              "barcodeType": "org.gs1.EAN-13",
-              "barcodeValue": "0853883003114"
-            },
-            {
-              "barcodeType": "org.gs1.EAN-13",
-              "barcodeValue": "0036000318036"
-            }
-          ],
-          "valueType": "ValueType_Barcode"
         }
       ]
     },
