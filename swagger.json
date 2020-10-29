@@ -11301,6 +11301,9 @@
         "carrierSettings": {
           "$ref": "#/definitions/DriverCarrierSettings"
         },
+        "currentIdCardCode": {
+          "$ref": "#/definitions/DriverIdCardCode"
+        },
         "eldAdverseWeatherExemptionEnabled": {
           "$ref": "#/definitions/DriverEldAdverseWeatherExemptionEnabled"
         },
@@ -12109,6 +12112,9 @@
         "createdAtTime": {
           "$ref": "#/definitions/DriverCreatedAtTime"
         },
+        "currentIdCardCode": {
+          "$ref": "#/definitions/DriverIdCardCode"
+        },
         "driverActivationStatus": {
           "$ref": "#/definitions/DriverActivationStatus"
         },
@@ -12508,6 +12514,11 @@
       "description": "Samsara ID for the driver.",
       "type": "string",
       "example": "123"
+    },
+    "DriverIdCardCode": {
+      "description": "The ID Card Code on the back of the physical card assigned to the driver.",
+      "type": "string",
+      "example": "941767043"
     },
     "DriverIsDeactivated": {
       "description": "[DEPRECATED] A boolean indicating whether or not the driver is deactivated. Use `driverActivationStatus` instead.",
@@ -17270,6 +17281,9 @@
       "properties": {
         "carrierSettings": {
           "$ref": "#/definitions/DriverCarrierSettings"
+        },
+        "currentIdCardCode": {
+          "$ref": "#/definitions/DriverIdCardCode"
         },
         "driverActivationStatus": {
           "$ref": "#/definitions/DriverActivationStatus"
