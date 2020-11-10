@@ -4787,9 +4787,6 @@
               "format": "int64",
               "example": 1462881998034
             },
-            "externalIds": {
-              "$ref": "#/definitions/ExternalIDs"
-            },
             "fleet_viewer_url": {
               "description": "Fleet viewer url of the dispatch job.",
               "type": "string",
@@ -4862,6 +4859,9 @@
           "description": "The name of the job destination. If provided, it will take precedence over the name of the address book entry.",
           "type": "string",
           "example": "ACME Inc. Philadelphia HQ"
+        },
+        "external_ids": {
+          "$ref": "#/definitions/ExternalIDs"
         },
         "notes": {
           "description": "Notes regarding the details of this job, maximum of 2000 characters; newline characters ('\\n')can be used for formatting.",
