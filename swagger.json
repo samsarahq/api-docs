@@ -269,7 +269,7 @@
       "get": {
         "description": "Fetch all attributes in an organization associated with either drivers or vehicles.",
         "tags": [
-          "Beta"
+          "Beta APIs"
         ],
         "summary": "[beta] List all attributes by entity type",
         "operationId": "getAttributesByEntityType",
@@ -320,7 +320,7 @@
       "post": {
         "description": "Creates a new attribute in the organization.",
         "tags": [
-          "Beta"
+          "Beta APIs"
         ],
         "summary": "[beta] Create an attribute",
         "operationId": "createAttribute",
@@ -355,7 +355,7 @@
       "get": {
         "description": "Fetch an attribute by id, including all of its applications",
         "tags": [
-          "Beta"
+          "Beta APIs"
         ],
         "summary": "[beta] Retrieve an attribute",
         "operationId": "getAttribute",
@@ -390,7 +390,7 @@
       "delete": {
         "description": "Delete an attribute by id, including all of its applications",
         "tags": [
-          "Beta"
+          "Beta APIs"
         ],
         "summary": "[beta] Deleting an attribute",
         "operationId": "deleteAttribute",
@@ -422,7 +422,7 @@
       "patch": {
         "description": "Updates an attribute in the organization.",
         "tags": [
-          "Beta"
+          "Beta APIs"
         ],
         "summary": "[beta] Update an attribute",
         "operationId": "updateAttribute",
@@ -854,9 +854,9 @@
           "https"
         ],
         "tags": [
-          "Beta"
+          "Beta APIs"
         ],
-        "summary": "Fetch document types ",
+        "summary": "[beta] Fetch document types ",
         "operationId": "getDocumentTypes",
         "responses": {
           "200": {
@@ -1144,7 +1144,7 @@
       "get": {
         "description": "Get all drivers' efficiencies.",
         "tags": [
-          "Beta"
+          "Beta APIs"
         ],
         "summary": "[beta] List driver efficiency",
         "operationId": "getDriverEfficiency",
@@ -1385,7 +1385,7 @@
           "https"
         ],
         "tags": [
-          "DriversVehicleAssignments"
+          "Driver Vehicle Assignments"
         ],
         "summary": "Get all driver vehicle assignments.",
         "operationId": "getDriversVehicleAssignments",
@@ -2707,7 +2707,7 @@
           "https"
         ],
         "tags": [
-          "Beta"
+          "Beta APIs"
         ],
         "summary": "[beta] Create a route",
         "operationId": "createRoute",
@@ -2889,7 +2889,7 @@
       "get": {
         "description": "Subscribes to a feed of immutable, append-only updates for routes. The initial request to this feed endpoint returns a cursor, which can be used on the next request to fetch updated routes that have had state changes since that request.",
         "tags": [
-          "Beta"
+          "Beta APIs"
         ],
         "summary": "[beta] Get route updates",
         "operationId": "getRouteFeed",
@@ -2931,7 +2931,7 @@
           "https"
         ],
         "tags": [
-          "Beta"
+          "Beta APIs"
         ],
         "summary": "[beta] Update a route.",
         "operationId": "patchRoute",
@@ -3270,7 +3270,7 @@
           "https"
         ],
         "tags": [
-          "CameraMedia"
+          "Camera Media"
         ],
         "summary": "Get all camera media",
         "operationId": "getCameraMedia",
@@ -4473,7 +4473,7 @@
           "https"
         ],
         "tags": [
-          "VehiclesDriverAssignments"
+          "Vehicle Driver Assignments"
         ],
         "summary": "Get all vehicle driver assignments.",
         "operationId": "getVehiclesDriverAssignments",
@@ -28159,6 +28159,9 @@
       "name": "Assets"
     },
     {
+      "name": "Camera Media"
+    },
+    {
       "description": "Carriers (fleet managers) can propose vehicle, trailer, and shipping assignments to Drivers through the Carrier Proposed Assignments API. This set of APIs will allow you to define an assignment proposal to a Driver. The proposed assignment will be presented to the Driver in the Samsara Driver App. The Driver may accept or reject the assignment. Retrieving a list of existing proposed assignments will tell you whether the Driver accepted or rejected the proposal.",
       "name": "Carrier Proposed Assignments"
     },
@@ -28173,6 +28176,9 @@
     {
       "description": "Driver objects allow you to track your driver-vehicle assignments, manage driver profiles, and update mobile app credential logins. You can retrieve a list of all drivers, or you can fetch each driver object individually.\nDrivers can be either active or inactive. You should inactivate a driver if you wish to keep the driver's driving history and HOS logs. If your driver is inactive, you can still get information about a driver summary.",
       "name": "Drivers"
+    },
+    {
+      "name": "Driver Vehicle Assignments"
     },
     {
       "description": "Equipment objects represent powered assets connected to a [Samsara AG24](https://www.samsara.com/products/models/ag24) device via an APWR, CAT, or J1939 cable. They are automatically created with a unique Samsara Equipment ID whenever a Samsara AG24 is activated in your organization.",
@@ -28193,6 +28199,10 @@
     {
       "description": "Fleet Admins can send direct free-form messages to drivers. This will send a message to the driver's Samsara driver app, in which you can track whether or not a message has been read by a given driver. For sending structured messages, see the Documents API.",
       "name": "Messages"
+    },
+    {
+      "description": "Information about the organization.",
+      "name": "Organization Info"
     },
     {
       "description": "Dispatch routes include start and end times and locations and an array of jobs along the route. The jobs also include locations and scheduled arrival and departure times. As routes are completed, job skip, arrival, and completion times are made available in real-time. Routes can be associated with drivers, vehicles, and trailers, and jobs can be associated with documents.",
@@ -28227,6 +28237,9 @@
       "name": "Vehicles"
     },
     {
+      "name": "Vehicle Driver Assignments"
+    },
+    {
       "description": "Get real-time or historical GPS and onboard diagnostic data.\n\nRelated guide: [Telematics](https://developers.samsara.com/docs/vehicle-stats)",
       "name": "Vehicle Stats"
     },
@@ -28236,7 +28249,11 @@
     },
     {
       "description": "Endpoints in this section are in beta. This means that developers should **NOT** rely on these APIs to build business critical applications. The goal is to be able to release these APIs in the near future but, before doing so, ensure that we can collect feedback on the structure of their interfaces and their functionality.\n\n- Samsara may change the structure of a beta API’s interface without versioning this endpoint or any notice to beta users.\n\n- To submit feedback on these beta APIs, please fill out [this form](https://forms.gle/up7uFmJ8f2EKq8xm7).\n\n- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).\n\n- If an issue or bug is experienced with any of these APIs, please submit an entry in the [feedback form](https://forms.gle/up7uFmJ8f2EKq8xm7).",
-      "name": "Beta"
+      "name": "Beta APIs"
+    },
+    {
+      "description": "Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications\n\n- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.\n\n- To submit feedback on these preview APIs, please fill out [this form](https://forms.gle/up7uFmJ8f2EKq8xm7).\n\n- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).\n\n- If an issue or bug is experienced with any of these APIs, please submit an entry in the [feedback form](https://forms.gle/up7uFmJ8f2EKq8xm7).",
+      "name": "Preview APIs"
     }
   ]
 }
