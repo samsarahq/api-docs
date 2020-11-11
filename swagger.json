@@ -24511,6 +24511,9 @@
         },
         "txId": {
           "$ref": "#/definitions/VehicleStatsFaultCodesTxId"
+        },
+        "vendorSpecificFields": {
+          "$ref": "#/definitions/VehicleStatsFaultCodesVendorSpecificFields"
         }
       }
     },
@@ -24768,6 +24771,22 @@
                     "type": "integer",
                     "format": "int32",
                     "example": 0
+                  },
+                  "vendorSpecificFields": {
+                    "description": "Vendor specific data for J1939 vehicles.",
+                    "type": "object",
+                    "properties": {
+                      "dtcDescription": {
+                        "description": "The DTC description, if available.",
+                        "type": "string",
+                        "example": false
+                      },
+                      "repairInstructionsUrl": {
+                        "description": "A link to vendor repair instructions, if available.",
+                        "type": "string",
+                        "example": false
+                      }
+                    }
                   }
                 }
               }
@@ -25009,6 +25028,22 @@
               }
             }
           }
+        }
+      }
+    },
+    "VehicleStatsFaultCodesVendorSpecificFields": {
+      "description": "Vendor specific data for J1939 vehicles.",
+      "type": "object",
+      "properties": {
+        "dtcDescription": {
+          "description": "The DTC description, if available.",
+          "type": "string",
+          "example": false
+        },
+        "repairInstructionsUrl": {
+          "description": "A link to vendor repair instructions, if available.",
+          "type": "string",
+          "example": false
         }
       }
     },
