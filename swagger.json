@@ -1798,7 +1798,7 @@
         }
       },
       "patch": {
-        "description": "Update a specific driver's information. This can also be used to activate or de-activate a given driver by setting the driverActivationStatus field.",
+        "description": "Update a specific driver's information. This can also be used to activate or de-activate a given driver by setting the driverActivationStatus field. If the driverActivationStatus field is 'deactivated' then the user can also specify the deactivatedAtTime. The deactivatedAtTime cannot be more than 6 months in the past and must not come before the dirver's latest active HOS log. It will be considered an error if deactivatedAtTime is provided with a driverActivationStatus of active",
         "tags": [
           "Drivers"
         ],
@@ -11298,6 +11298,12 @@
         "password"
       ],
       "properties": {
+        "attributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/attributeTiny"
+          }
+        },
         "carrierSettings": {
           "$ref": "#/definitions/DriverCarrierSettings"
         },
@@ -12106,6 +12112,12 @@
       "description": "A driver object",
       "type": "object",
       "properties": {
+        "attributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/attributeTiny"
+          }
+        },
         "carrierSettings": {
           "$ref": "#/definitions/DriverCarrierSettings"
         },
@@ -12269,6 +12281,11 @@
     },
     "DriverCreatedAtTime": {
       "description": "The date and time this driver was created in RFC 3339 format.",
+      "type": "string",
+      "example": "2019-05-18T20:27:35Z"
+    },
+    "DriverDeactivatedAtTime": {
+      "description": "The date and time this driver is considered to be deactivated in RFC 3339 format.",
       "type": "string",
       "example": "2019-05-18T20:27:35Z"
     },
@@ -12516,7 +12533,7 @@
       "example": "123"
     },
     "DriverIdCardCode": {
-      "description": "The ID Card Code on the back of the physical card assigned to the driver.",
+      "description": "The ID Card Code on the back of the physical card assigned to the driver.  Contact Samsara if you would like to enable this feature.",
       "type": "string",
       "example": "941767043"
     },
@@ -17340,11 +17357,20 @@
       "description": "Driver that should be updated.",
       "type": "object",
       "properties": {
+        "attributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/attributeTiny"
+          }
+        },
         "carrierSettings": {
           "$ref": "#/definitions/DriverCarrierSettings"
         },
         "currentIdCardCode": {
           "$ref": "#/definitions/DriverIdCardCode"
+        },
+        "deactivatedAtTime": {
+          "$ref": "#/definitions/DriverDeactivatedAtTime"
         },
         "driverActivationStatus": {
           "$ref": "#/definitions/DriverActivationStatus"
@@ -26801,6 +26827,37 @@
         },
         "id": "494123",
         "name": "Bus-123"
+      }
+    },
+    "attributeTiny": {
+      "description": "A minified attribute.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The samsara id of the attribute object.",
+          "type": "string",
+          "example": "123e4567-e89b-12d3-a456-426614174000"
+        },
+        "name": {
+          "description": "Name of attribute.",
+          "type": "string",
+          "example": "License Certifications"
+        },
+        "numberValues": {
+          "description": "Number values that are associated with this attribute.",
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "stringValues": {
+          "description": "String values that are associated with this attribute.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     },
     "conditionalFieldSectionObjectResponseBody": {
