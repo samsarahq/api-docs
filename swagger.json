@@ -28206,6 +28206,24 @@
       "required": true
     }
   },
+  "securityDefinitions": {
+    "AccessTokenHeader": {
+      "type": "apiKey",
+      "name": "Authorization: Bearer",
+      "in": "header"
+    },
+    "AccessTokenParameter": {
+      "type": "apiKey",
+      "name": "access_token",
+      "in": "query"
+    },
+    "OAuth2": {
+      "type": "oauth2",
+      "flow": "accessCode",
+      "authorizationUrl": "https://api.samsara.com/oauth2/authorize",
+      "tokenUrl": "https://api.samsara.com/oauth2/token"
+    }
+  },
   "tags": [
     {
       "description": "Address book entries in Samsara can be used to collect useful data about operations within a particular address's geofence area. Once an address book entry is established, this address can then subsequently be used in order to create routes, set geofence arrival alerts, or detect trips that begin or end within a given geofence area.",
