@@ -8725,7 +8725,15 @@
           "example": "2019-05-18T20:27:35Z"
         },
         "externalIds": {
-          "$ref": "#/definitions/externalIds"
+          "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "example": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          }
         },
         "formattedAddress": {
           "description": "The full street address for this address/geofence, as it might be recognized by Google Maps.",
@@ -9110,7 +9118,15 @@
           "format": "int64"
         },
         "externalIds": {
-          "$ref": "#/definitions/externalIds"
+          "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "example": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          }
         },
         "name": {
           "type": "string"
@@ -9173,7 +9189,6 @@
     "CameraMediaGetCameraMediaBadRequestResponseBody": {
       "description": "Bad request parameters",
       "type": "object",
-      "title": "CameraMediaGetCameraMediaBadRequestResponseBody",
       "required": [
         "message",
         "requestId"
@@ -9198,7 +9213,6 @@
     "CameraMediaGetCameraMediaInternalErrorResponseBody": {
       "description": "An internal server error occurred",
       "type": "object",
-      "title": "CameraMediaGetCameraMediaInternalErrorResponseBody",
       "required": [
         "message",
         "requestId"
@@ -9223,7 +9237,6 @@
     "CameraMediaGetCameraMediaNotFoundResponseBody": {
       "description": "Resource not found",
       "type": "object",
-      "title": "CameraMediaGetCameraMediaNotFoundResponseBody",
       "required": [
         "message",
         "requestId"
@@ -9248,7 +9261,6 @@
     "CameraMediaGetCameraMediaNotImplementedResponseBody": {
       "description": "Endpoint is not yet implemented",
       "type": "object",
-      "title": "CameraMediaGetCameraMediaNotImplementedResponseBody",
       "required": [
         "message",
         "requestId"
@@ -9272,7 +9284,6 @@
     },
     "CameraMediaGetCameraMediaResponseBody": {
       "type": "object",
-      "title": "CameraMediaGetCameraMediaResponseBody",
       "properties": {
         "data": {
           "description": "List of vehicle and their camera media.",
@@ -10775,7 +10786,6 @@
     },
     "CameraObjectResponseBody": {
       "type": "object",
-      "title": "CameraObjectResponseBody",
       "properties": {
         "id": {
           "description": "ID of the camera.",
@@ -11200,7 +11210,15 @@
           }
         },
         "externalIds": {
-          "$ref": "#/definitions/externalIds"
+          "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "example": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          }
         },
         "formattedAddress": {
           "description": "The full street address for this address/geofence, as it might be recognized by Google Maps.",
@@ -11209,7 +11227,85 @@
           "example": "350 Rhode Island St, San Francisco, CA"
         },
         "geofence": {
-          "$ref": "#/definitions/AddressGeofence"
+          "description": "The geofence that defines this address and its bounds. This can either be a circle or a polygon, but not both.",
+          "type": "object",
+          "properties": {
+            "circle": {
+              "description": "Information about a circular geofence. This field is only needed if the geofence is a circle.",
+              "type": "object",
+              "required": [
+                "radiusMeters"
+              ],
+              "properties": {
+                "latitude": {
+                  "description": "Latitude of the address. Will be geocoded from `formattedAddress` if not provided.",
+                  "type": "number",
+                  "format": "double",
+                  "example": 37.765363
+                },
+                "longitude": {
+                  "description": "Longitude of the address. Will be geocoded from `formattedAddress` if not provided.",
+                  "type": "number",
+                  "format": "double",
+                  "example": -122.4029238
+                },
+                "radiusMeters": {
+                  "description": "The radius of the circular geofence in meters.",
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 25
+                }
+              }
+            },
+            "polygon": {
+              "description": "Information about a polygon geofence. This field is only needed if the geofence is a polygon.",
+              "type": "object",
+              "required": [
+                "vertices"
+              ],
+              "properties": {
+                "vertices": {
+                  "description": "The vertices of the polygon geofence. These geofence vertices describe the perimeter of the polygon, and must consist of at least 3 vertices and less than 40.",
+                  "type": "array",
+                  "maxItems": 40,
+                  "minItems": 3,
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "latitude",
+                      "longitude"
+                    ],
+                    "properties": {
+                      "latitude": {
+                        "description": "The latitude of a geofence vertex in decimal degrees.",
+                        "type": "number",
+                        "format": "double"
+                      },
+                      "longitude": {
+                        "description": "The longitude of a geofence vertex in decimal degrees.",
+                        "type": "number",
+                        "format": "double"
+                      }
+                    }
+                  },
+                  "example": [
+                    {
+                      "latitude": 37.765363,
+                      "longitude": -122.403098
+                    },
+                    {
+                      "latitude": 38.765363,
+                      "longitude": -122.403098
+                    },
+                    {
+                      "latitude": 37.765363,
+                      "longitude": -123.403098
+                    }
+                  ]
+                }
+              }
+            }
+          }
         },
         "latitude": {
           "description": "Latitude of the address. Will be geocoded from `formattedAddress` if not provided.",
@@ -11286,7 +11382,15 @@
                 "type": "string"
               },
               "externalIds": {
-                "$ref": "#/definitions/externalIds"
+                "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "example": {
+                  "maintenanceId": "250020",
+                  "payrollId": "ABFS18600"
+                }
               },
               "numberValues": {
                 "description": "Number values that can be associated with this attribute",
@@ -11346,19 +11450,36 @@
       ],
       "properties": {
         "activeTime": {
-          "$ref": "#/definitions/CarrierProposedAssignmentActiveTime"
+          "description": "Time after which this assignment will be active and visible to the driver on the mobile app. Not setting it makes it active now. UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`.",
+          "type": "string",
+          "example": "2020-01-27T07:06:25Z"
         },
         "driverId": {
-          "$ref": "#/definitions/CarrierProposedAssignmentDriverId"
+          "description": "Samsara ID for the driver that this assignment is for.",
+          "type": "string",
+          "example": "42"
         },
         "shippingDocs": {
-          "$ref": "#/definitions/CarrierProposedAssignmentShippingDocs"
+          "description": "Shipping Documents that this assignment will propose to the driver.",
+          "type": "string",
+          "maxLength": 40,
+          "example": "Delivery 123, chips and soda"
         },
         "trailerNames": {
-          "$ref": "#/definitions/CarrierProposedAssignmentTrailerNames"
+          "description": "Names of trailers to propose.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "example": [
+            "Trailer123",
+            "TrailerABC"
+          ]
         },
         "vehicleId": {
-          "$ref": "#/definitions/CarrierProposedAssignmentVehicleId"
+          "description": "Samsara ID for the vehicle to propose.",
+          "type": "string",
+          "example": "123"
         }
       }
     },
@@ -11367,16 +11488,28 @@
       "type": "object",
       "properties": {
         "email": {
-          "$ref": "#/definitions/ContactEmail"
+          "description": "Email address of the contact.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "jane.jones@yahoo.com"
         },
         "firstName": {
-          "$ref": "#/definitions/ContactFirstName"
+          "description": "First name of the contact.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "Jane"
         },
         "lastName": {
-          "$ref": "#/definitions/ContactLastName"
+          "description": "Last name of the contact.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "Jones"
         },
         "phone": {
-          "$ref": "#/definitions/ContactPhone"
+          "description": "Phone number of the contact.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "111-222-3344"
         }
       }
     },
@@ -11392,77 +11525,196 @@
         "attributes": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/attributeTiny"
+            "description": "A minified attribute.",
+            "type": "object",
+            "properties": {
+              "id": {
+                "description": "The samsara id of the attribute object.",
+                "type": "string",
+                "example": "123e4567-e89b-12d3-a456-426614174000"
+              },
+              "name": {
+                "description": "Name of attribute.",
+                "type": "string",
+                "example": "License Certifications"
+              },
+              "numberValues": {
+                "description": "Number values that are associated with this attribute.",
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "format": "double"
+                }
+              },
+              "stringValues": {
+                "description": "String values that are associated with this attribute.",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
           }
         },
         "carrierSettings": {
-          "$ref": "#/definitions/DriverCarrierSettings"
+          "description": "Carrier for a given driver. If the driver's carrier differs from the general organization's carrier settings, the override value is used. Updating this value only updates the override setting for this driver.",
+          "type": "object",
+          "properties": {
+            "carrierName": {
+              "description": "Carrier for a given driver.",
+              "type": "string",
+              "maxLength": 255,
+              "example": "Acme Inc."
+            },
+            "dotNumber": {
+              "description": "Carrier US DOT Number. If this differs from the general organization's settings, the override value is used. Updating this value only updates the override setting for this driver.",
+              "type": "integer",
+              "format": "int64",
+              "example": 98231
+            },
+            "mainOfficeAddress": {
+              "description": "Main office address for a given driver. If this differs from the general organization's settings, the override value is used. ",
+              "type": "string",
+              "maxLength": 255,
+              "example": "1234 Pear St., Scranton, PA 62814"
+            }
+          }
         },
         "currentIdCardCode": {
-          "$ref": "#/definitions/DriverIdCardCode"
+          "description": "The ID Card Code on the back of the physical card assigned to the driver.  Contact Samsara if you would like to enable this feature.",
+          "type": "string",
+          "example": "941767043"
         },
         "eldAdverseWeatherExemptionEnabled": {
-          "$ref": "#/definitions/DriverEldAdverseWeatherExemptionEnabled"
+          "description": "Flag indicating this driver may use Adverse Weather exemptions in ELD logs.",
+          "type": "boolean"
         },
         "eldBigDayExemptionEnabled": {
-          "$ref": "#/definitions/DriverEldBigDayExemptionEnabled"
+          "description": "Flag indicating this driver may use Big Day exemption in ELD logs.",
+          "type": "boolean"
         },
         "eldDayStartHour": {
-          "$ref": "#/definitions/DriverEldDayStartHour"
+          "description": "`0` indicating midnight-to-midnight ELD driving hours, `12` to indicate noon-to-noon driving hours.",
+          "type": "integer",
+          "default": 0
         },
         "eldExempt": {
-          "$ref": "#/definitions/DriverEldExempt"
+          "description": "Flag indicating this driver is exempt from the Electronic Logging Mandate.",
+          "type": "boolean"
         },
         "eldExemptReason": {
-          "$ref": "#/definitions/DriverEldExemptReason"
+          "description": "Reason that this driver is exempt from the Electronic Logging Mandate (see eldExempt).",
+          "type": "string",
+          "example": "Bad driver"
         },
         "eldPcEnabled": {
-          "$ref": "#/definitions/DriverEldPcEnabled"
+          "description": "Flag indicating this driver may select the Personal Conveyance duty status in ELD logs.",
+          "type": "boolean"
         },
         "eldYmEnabled": {
-          "$ref": "#/definitions/DriverEldYmEnabled"
+          "description": "Flag indicating this driver may select the Yard Move duty status in ELD logs.",
+          "type": "boolean"
         },
         "externalIds": {
-          "$ref": "#/definitions/DriverExternalIds"
+          "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "example": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          }
         },
         "licenseNumber": {
-          "$ref": "#/definitions/DriverLicenseNumber"
+          "description": "Driver's state issued license number. The combination of this number and `licenseState` must be unique.",
+          "type": "string",
+          "example": "E1234567"
         },
         "licenseState": {
-          "$ref": "#/definitions/DriverLicenseState"
+          "description": "Abbreviation of US state, Canadian province, or US territory that issued driver's license.",
+          "type": "string",
+          "example": "CA"
         },
         "locale": {
-          "$ref": "#/definitions/DriverLocale"
+          "description": "Locale override (uncommon). These are specified by ISO 3166-2 country codes for supported locales.",
+          "type": "string",
+          "enum": [
+            "us",
+            "at",
+            "be",
+            "ca",
+            "gb",
+            "fr",
+            "de",
+            "ie",
+            "it",
+            "lu",
+            "mx",
+            "nl",
+            "es",
+            "ch",
+            "pr"
+          ]
         },
         "name": {
-          "$ref": "#/definitions/DriverName"
+          "description": "Driver's name.",
+          "type": "string",
+          "maxLength": 255,
+          "minLength": 1,
+          "example": "Susan Jones"
         },
         "notes": {
-          "$ref": "#/definitions/DriverNotes"
+          "description": "Notes about the driver.",
+          "type": "string",
+          "maxLength": 4096,
+          "example": "Also goes by the nickname Furious Fred."
         },
         "password": {
-          "$ref": "#/definitions/DriverPassword"
+          "description": "Password that the driver can use to login to the Samsara driver app.",
+          "type": "string",
+          "example": "aSecurePassword1234"
         },
         "phone": {
-          "$ref": "#/definitions/DriverPhone"
+          "description": "Phone number of the driver.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "5558234327"
         },
         "staticAssignedVehicleId": {
-          "$ref": "#/definitions/DriverStaticAssignedVehicleId"
+          "description": "ID of vehicle that the driver is permanently assigned to. (uncommon).",
+          "type": "string",
+          "example": "456"
         },
         "tachographCardNumber": {
-          "$ref": "#/definitions/DriverTachographCardNumber"
+          "description": "Driver's assigned tachograph card number (Europe specific)",
+          "type": "string",
+          "example": "1000000492436002"
         },
         "tagIds": {
-          "$ref": "#/definitions/DriverTagIds"
+          "description": "IDs of tags the driver is associated with.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "147"
+          }
         },
         "timezone": {
-          "$ref": "#/definitions/DriverTimezone"
+          "description": "Home terminal timezone, in order to indicate what time zone should be used to calculate the ELD logs. Driver timezones use [IANA timezone database](https://www.iana.org/time-zones) keys (e.g. `America/Los_Angeles`, `America/New_York`, `Europe/London`, etc.). You can find a mapping of common timezone formats to IANA timezone keys [here](https://unicode.org/cldr/charts/latest/supplemental/zone_tzid.html).",
+          "type": "string",
+          "example": "America/Los_Angeles"
         },
         "username": {
-          "$ref": "#/definitions/DriverUsername"
+          "description": "Driver's login username into the driver app. The username may not contain spaces or the '@' symbol. The username must be unique.",
+          "type": "string",
+          "maxLength": 189,
+          "minLength": 1,
+          "example": "SusanJones"
         },
         "vehicleGroupTagId": {
-          "$ref": "#/definitions/DriverVehicleGroupTagId"
+          "description": "Tag ID which determines which vehicles a driver will see when selecting vehicles.",
+          "type": "string",
+          "example": "342417"
         }
       }
     },
@@ -11481,16 +11733,25 @@
           "example": "11"
         },
         "licensePlate": {
-          "$ref": "#/definitions/DvirLicensePlate"
+          "description": "The license plate of this vehicle.",
+          "type": "string",
+          "maxLength": 12,
+          "example": "XHK1234"
         },
         "location": {
-          "$ref": "#/definitions/DvirLocation"
+          "description": "Optional string if your jurisdiction requires a location of the DVIR.",
+          "type": "string",
+          "example": "350 Rhode Island St Ste. 400S, San Francisco, CA 94103"
         },
         "mechanicNotes": {
-          "$ref": "#/definitions/DvirMechanicNotes"
+          "description": "The mechanics notes on the DVIR.",
+          "type": "string",
+          "example": "Replaced headlight on passenger side."
         },
         "odometerMeters": {
-          "$ref": "#/definitions/DvirOdometerMeters"
+          "description": "The odometer reading in meters.",
+          "type": "integer",
+          "example": 14010293
         },
         "resolvedDefectIds": {
           "description": "Array of ids for defects being resolved with this DVIR.",
@@ -11556,7 +11817,15 @@
           }
         },
         "externalIds": {
-          "$ref": "#/definitions/externalIds"
+          "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "example": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          }
         },
         "machines": {
           "description": "The machines that belong to this tag.",
@@ -11566,10 +11835,16 @@
           }
         },
         "name": {
-          "$ref": "#/definitions/TagName"
+          "description": "Name of this tag.",
+          "type": "string",
+          "maxLength": 191,
+          "minLength": 1,
+          "example": "California"
         },
         "parentTagId": {
-          "$ref": "#/definitions/ParentTagId"
+          "description": "If this tag is part a hierarchical tag tree, this is the ID of the parent tag, otherwise this will be omitted.",
+          "type": "string",
+          "example": "4815"
         },
         "sensors": {
           "description": "The sensors that belong to this tag.",
@@ -11598,16 +11873,45 @@
       ],
       "properties": {
         "authType": {
-          "$ref": "#/definitions/UserAuthType"
+          "description": "The authentication type the user uses to authenticate. To use SAML this organization must have a configured SAML integration.",
+          "type": "string",
+          "enum": [
+            "default",
+            "saml"
+          ]
         },
         "email": {
-          "$ref": "#/definitions/UserEmail"
+          "description": "The email address of this user.",
+          "type": "string",
+          "example": "user@company.com"
         },
         "name": {
-          "$ref": "#/definitions/UserName"
+          "description": "The first and last name of the user.",
+          "type": "string",
+          "example": "Bob Smith"
         },
         "roles": {
-          "$ref": "#/definitions/UserRolesRequest"
+          "description": "The list of roles that applies to this user. A user may have \"organizational\" roles, which apply to the user at the organizational level, and \"tag-specific\" roles, which apply to the user for a given tag.",
+          "type": "array",
+          "items": {
+            "description": "A role that applies to a user. If the role has a `tagId`, then the role applies for that tag. If there is no `tagId`, then the role applies at the organizational level. A user may have many tag-specific roles, but may only have one organizational role. If the organizational level role has higher privileges than a tag-specific role, then the organizational role privileges will take precedence.",
+            "type": "object",
+            "required": [
+              "roleId"
+            ],
+            "properties": {
+              "roleId": {
+                "description": "The unique ID for the role.",
+                "type": "string",
+                "example": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
+              },
+              "tagId": {
+                "description": "ID of the tag this role applies to.",
+                "type": "string",
+                "example": "3914"
+              }
+            }
+          }
         }
       }
     },
@@ -11934,7 +12238,6 @@
     },
     "DistanceTraveledObjectResponseBody": {
       "type": "object",
-      "title": "DistanceTraveledObjectResponseBody",
       "properties": {
         "driveDistanceMeters": {
           "description": "Distance driven in meters, rounded to two decimal places.",
@@ -12045,7 +12348,6 @@
     "DocumentsGetDocumentTypesBadRequestResponseBody": {
       "description": "Bad request parameters",
       "type": "object",
-      "title": "DocumentsGetDocumentTypesBadRequestResponseBody",
       "required": [
         "message",
         "requestId"
@@ -12070,7 +12372,6 @@
     "DocumentsGetDocumentTypesInternalErrorResponseBody": {
       "description": "An internal server error occurred",
       "type": "object",
-      "title": "DocumentsGetDocumentTypesInternalErrorResponseBody",
       "required": [
         "message",
         "requestId"
@@ -12094,7 +12395,6 @@
     },
     "DocumentsGetDocumentTypesResponseBody": {
       "type": "object",
-      "title": "DocumentsGetDocumentTypesResponseBody",
       "properties": {
         "data": {
           "description": "List of all document types for the organization",
@@ -12336,7 +12636,6 @@
     },
     "DriverAssignmentObjectResponseBody": {
       "type": "object",
-      "title": "DriverAssignmentObjectResponseBody",
       "properties": {
         "assignmentType": {
           "description": "Assignment type of the driver-vehicle assignment, indicating the provenance of the assignment. This list could change, so it is recommended that clients gracefully handle any types not enumerated in this list.",
@@ -12391,13 +12690,22 @@
       "type": "object",
       "properties": {
         "carrierName": {
-          "$ref": "#/definitions/DriverCarrierName"
+          "description": "Carrier for a given driver.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "Acme Inc."
         },
         "dotNumber": {
-          "$ref": "#/definitions/DriverDotNumber"
+          "description": "Carrier US DOT Number. If this differs from the general organization's settings, the override value is used. Updating this value only updates the override setting for this driver.",
+          "type": "integer",
+          "format": "int64",
+          "example": 98231
         },
         "mainOfficeAddress": {
-          "$ref": "#/definitions/DriverMainOfficeAddress"
+          "description": "Main office address for a given driver. If this differs from the general organization's settings, the override value is used. ",
+          "type": "string",
+          "maxLength": 255,
+          "example": "1234 Pear St., Scranton, PA 62814"
         }
       }
     },
@@ -12649,7 +12957,15 @@
       "default": false
     },
     "DriverExternalIds": {
-      "$ref": "#/definitions/externalIds"
+      "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "example": {
+        "maintenanceId": "250020",
+        "payrollId": "ABFS18600"
+      }
     },
     "DriverId": {
       "description": "Samsara ID for the driver.",
@@ -12738,7 +13054,6 @@
     },
     "DriverRulesetObjectResponseBody": {
       "type": "object",
-      "title": "DriverRulesetObjectResponseBody",
       "properties": {
         "break": {
           "description": "The rest break required setting of the ELD ruleset applied to this driver.",
@@ -12903,7 +13218,6 @@
     },
     "DriverWithTimezoneEldSettingsObjectResponseBody": {
       "type": "object",
-      "title": "DriverWithTimezoneEldSettingsObjectResponseBody",
       "properties": {
         "eldSettings": {
           "$ref": "#/definitions/EldSettingsObjectResponseBody"
@@ -12965,7 +13279,6 @@
     "DriversVehicleAssignmentsGetDriversVehicleAssignmentsBadRequestResponseBody": {
       "description": "Bad Request parameters",
       "type": "object",
-      "title": "DriversVehicleAssignmentsGetDriversVehicleAssignmentsBadRequestResponseBody",
       "required": [
         "message",
         "requestId"
@@ -12990,7 +13303,6 @@
     "DriversVehicleAssignmentsGetDriversVehicleAssignmentsInternalErrorResponseBody": {
       "description": "An internal server error occurred",
       "type": "object",
-      "title": "DriversVehicleAssignmentsGetDriversVehicleAssignmentsInternalErrorResponseBody",
       "required": [
         "message",
         "requestId"
@@ -13015,7 +13327,6 @@
     "DriversVehicleAssignmentsGetDriversVehicleAssignmentsNotFoundResponseBody": {
       "description": "Resource not found",
       "type": "object",
-      "title": "DriversVehicleAssignmentsGetDriversVehicleAssignmentsNotFoundResponseBody",
       "required": [
         "message",
         "requestId"
@@ -13040,7 +13351,6 @@
     "DriversVehicleAssignmentsGetDriversVehicleAssignmentsNotImplementedResponseBody": {
       "description": "Requested endpoint is not yet implemented",
       "type": "object",
-      "title": "DriversVehicleAssignmentsGetDriversVehicleAssignmentsNotImplementedResponseBody",
       "required": [
         "message",
         "requestId"
@@ -13064,7 +13374,6 @@
     },
     "DriversVehicleAssignmentsGetDriversVehicleAssignmentsResponseBody": {
       "type": "object",
-      "title": "DriversVehicleAssignmentsGetDriversVehicleAssignmentsResponseBody",
       "required": [
         "data",
         "pagination"
@@ -13518,7 +13827,6 @@
     },
     "DriversVehicleAssignmentsObjectResponseBody": {
       "type": "object",
-      "title": "DriversVehicleAssignmentsObjectResponseBody",
       "required": [
         "id",
         "name",
@@ -13676,7 +13984,6 @@
     },
     "DutyStatusDurationObjectResponseBody": {
       "type": "object",
-      "title": "DutyStatusDurationObjectResponseBody",
       "properties": {
         "activeDurationMs": {
           "description": "Duration the driver was active for in the log period in milliseconds.",
@@ -13970,7 +14277,6 @@
     },
     "EldSettingsObjectResponseBody": {
       "type": "object",
-      "title": "EldSettingsObjectResponseBody",
       "properties": {
         "rulesets": {
           "description": "The driver's ELD rulesets and overrides.",
@@ -14586,7 +14892,15 @@
       "type": "object",
       "properties": {
         "externalIds": {
-          "$ref": "#/definitions/externalIds"
+          "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "example": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          }
         },
         "id": {
           "description": "ID of the driver.",
@@ -14673,7 +14987,6 @@
     "GoaAddressTinyResponseResponseBody": {
       "description": "A minified Address object",
       "type": "object",
-      "title": "GoaAddressTinyResponseResponseBody",
       "required": [
         "name",
         "id"
@@ -14711,7 +15024,6 @@
     "GoaDocumentTinyResponseResponseBody": {
       "description": "A minified Document object",
       "type": "object",
-      "title": "GoaDocumentTinyResponseResponseBody",
       "required": [
         "id"
       ],
@@ -14735,7 +15047,6 @@
     "GoaDriverTinyResponseResponseBody": {
       "description": "A minified driver object",
       "type": "object",
-      "title": "GoaDriverTinyResponseResponseBody",
       "properties": {
         "externalIds": {
           "description": "A map of external ids",
@@ -14769,7 +15080,6 @@
     "GoaPaginationResponseResponseBody": {
       "description": "Pagination parameters.",
       "type": "object",
-      "title": "GoaPaginationResponseResponseBody",
       "required": [
         "endCursor",
         "hasNextPage"
@@ -14794,7 +15104,6 @@
     "GoaTagTinyResponseResponseBody": {
       "description": "A minified tag object",
       "type": "object",
-      "title": "GoaTagTinyResponseResponseBody",
       "required": [
         "id",
         "name"
@@ -14825,7 +15134,6 @@
     "GoaTrailerTinyResponseResponseBody": {
       "description": "A minified trailer object",
       "type": "object",
-      "title": "GoaTrailerTinyResponseResponseBody",
       "properties": {
         "externalIds": {
           "description": "A map of external ids",
@@ -14859,7 +15167,6 @@
     "GoaVehicleTinyResponseResponseBody": {
       "description": "A minified vehicle object",
       "type": "object",
-      "title": "GoaVehicleTinyResponseResponseBody",
       "properties": {
         "externalIds": {
           "description": "A map of external ids",
@@ -14985,7 +15292,6 @@
     "HosDailyLogsGetHosDailyLogsBadRequestResponseBody": {
       "description": "Bad Request parameters",
       "type": "object",
-      "title": "HosDailyLogsGetHosDailyLogsBadRequestResponseBody",
       "required": [
         "message",
         "requestId"
@@ -15010,7 +15316,6 @@
     "HosDailyLogsGetHosDailyLogsInternalErrorResponseBody": {
       "description": "An internal server error occurred",
       "type": "object",
-      "title": "HosDailyLogsGetHosDailyLogsInternalErrorResponseBody",
       "required": [
         "message",
         "requestId"
@@ -15035,7 +15340,6 @@
     "HosDailyLogsGetHosDailyLogsNotFoundResponseBody": {
       "description": "Resource not found",
       "type": "object",
-      "title": "HosDailyLogsGetHosDailyLogsNotFoundResponseBody",
       "required": [
         "message",
         "requestId"
@@ -15060,7 +15364,6 @@
     "HosDailyLogsGetHosDailyLogsNotImplementedResponseBody": {
       "description": "Requested endpoint is not yet implemented",
       "type": "object",
-      "title": "HosDailyLogsGetHosDailyLogsNotImplementedResponseBody",
       "required": [
         "message",
         "requestId"
@@ -15084,7 +15387,6 @@
     },
     "HosDailyLogsGetHosDailyLogsResponseBody": {
       "type": "object",
-      "title": "HosDailyLogsGetHosDailyLogsResponseBody",
       "required": [
         "data",
         "pagination"
@@ -15870,7 +16172,6 @@
     },
     "HosDailyLogsObjectResponseBody": {
       "type": "object",
-      "title": "HosDailyLogsObjectResponseBody",
       "properties": {
         "distanceTraveled": {
           "$ref": "#/definitions/DistanceTraveledObjectResponseBody"
@@ -16129,7 +16430,6 @@
     },
     "ImageDataObjectResponseBody": {
       "type": "object",
-      "title": "ImageDataObjectResponseBody",
       "properties": {
         "cameraView": {
           "description": "A description of the cameras view. Empty if none can be inferred. (Examples: `frontFacing`, `driverFacing`).",
@@ -16155,7 +16455,6 @@
     },
     "ImageObjectResponseBody": {
       "type": "object",
-      "title": "ImageObjectResponseBody",
       "properties": {
         "captureTime": {
           "description": "The capture time of the image in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
@@ -16518,7 +16817,6 @@
     },
     "LogMetaDataObjectResponseBody": {
       "type": "object",
-      "title": "LogMetaDataObjectResponseBody",
       "properties": {
         "certifiedAtTime": {
           "description": "The time this log was certified in RFC 3339 format.",
@@ -16706,7 +17004,15 @@
           "example": "2006-01-02T15:04:05+07:00"
         },
         "externalIds": {
-          "$ref": "#/definitions/externalIds"
+          "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "example": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          }
         },
         "id": {
           "description": "Unique identifier for the route stop.",
@@ -16852,7 +17158,15 @@
           }
         },
         "externalIds": {
-          "$ref": "#/definitions/externalIds"
+          "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "example": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          }
         },
         "machines": {
           "description": "The machines that belong to this tag.",
@@ -16862,10 +17176,16 @@
           }
         },
         "name": {
-          "$ref": "#/definitions/TagName"
+          "description": "Name of this tag.",
+          "type": "string",
+          "maxLength": 191,
+          "minLength": 1,
+          "example": "California"
         },
         "parentTagId": {
-          "$ref": "#/definitions/ParentTagId"
+          "description": "If this tag is part a hierarchical tag tree, this is the ID of the parent tag, otherwise this will be omitted.",
+          "type": "string",
+          "example": "4815"
         },
         "sensors": {
           "description": "The sensors that belong to this tag.",
@@ -16919,10 +17239,16 @@
           }
         },
         "name": {
-          "$ref": "#/definitions/TagName"
+          "description": "Name of this tag.",
+          "type": "string",
+          "maxLength": 191,
+          "minLength": 1,
+          "example": "California"
         },
         "parentTagId": {
-          "$ref": "#/definitions/ParentTagId"
+          "description": "If this tag is part a hierarchical tag tree, this is the ID of the parent tag, otherwise this will be omitted.",
+          "type": "string",
+          "example": "4815"
         },
         "sensors": {
           "description": "The sensors that belong to this tag.",
@@ -17038,7 +17364,6 @@
     "RouteSettingsRequestBody": {
       "description": "An optional dictionary, only necessary to override the defaults for route start and end conditions.",
       "type": "object",
-      "title": "RouteSettingsRequestBody",
       "properties": {
         "routeCompletionCondition": {
           "description": "Defaults to 'arriveLastStop' which ends the route upon arriving at the final stop. The condition 'departLastStop' \nends the route upon departing the last stop. If 'arriveLastStop' is set, then the departure time of the final stop should not be set.",
@@ -17069,7 +17394,6 @@
     "RouteSettingsResponseBody": {
       "description": "An optional dictionary, only necessary to override the defaults for route start and end conditions.",
       "type": "object",
-      "title": "RouteSettingsResponseBody",
       "properties": {
         "routeCompletionCondition": {
           "description": "Defaults to 'arriveLastStop' which ends the route upon arriving at the final stop. The condition 'departLastStop' \nends the route upon departing the last stop. If 'arriveLastStop' is set, then the departure time of the final stop should not be set.",
@@ -17100,7 +17424,6 @@
     "RoutesCreateRouteBadRequestResponseBody": {
       "description": "Bad request parameters",
       "type": "object",
-      "title": "RoutesCreateRouteBadRequestResponseBody",
       "required": [
         "message",
         "requestId"
@@ -17125,7 +17448,6 @@
     "RoutesCreateRouteInternalErrorResponseBody": {
       "description": "An internal server error occurred",
       "type": "object",
-      "title": "RoutesCreateRouteInternalErrorResponseBody",
       "required": [
         "message",
         "requestId"
@@ -17150,7 +17472,6 @@
     "RoutesCreateRouteNotFoundResponseBody": {
       "description": "Resource not found",
       "type": "object",
-      "title": "RoutesCreateRouteNotFoundResponseBody",
       "required": [
         "message",
         "requestId"
@@ -17175,7 +17496,6 @@
     "RoutesCreateRouteNotImplementedResponseBody": {
       "description": "Endpoint is not yet implemented",
       "type": "object",
-      "title": "RoutesCreateRouteNotImplementedResponseBody",
       "required": [
         "message",
         "requestId"
@@ -17199,7 +17519,6 @@
     },
     "RoutesCreateRouteRequestBody": {
       "type": "object",
-      "title": "RoutesCreateRouteRequestBody",
       "required": [
         "stops",
         "name"
@@ -17225,6 +17544,7 @@
           "example": "Bid 123"
         },
         "notes": {
+          "description": "Notes about the route.",
           "type": "string",
           "maxLength": 2000,
           "example": "These are my notes"
@@ -17347,7 +17667,6 @@
     },
     "RoutesCreateRouteResponseBody": {
       "type": "object",
-      "title": "RoutesCreateRouteResponseBody",
       "required": [
         "name",
         "stops",
@@ -17591,7 +17910,6 @@
     "RoutesPatchRouteBadRequestResponseBody": {
       "description": "Bad request parameters",
       "type": "object",
-      "title": "RoutesPatchRouteBadRequestResponseBody",
       "required": [
         "message",
         "requestId"
@@ -17616,7 +17934,6 @@
     "RoutesPatchRouteInternalErrorResponseBody": {
       "description": "An internal server error occurred",
       "type": "object",
-      "title": "RoutesPatchRouteInternalErrorResponseBody",
       "required": [
         "message",
         "requestId"
@@ -17641,7 +17958,6 @@
     "RoutesPatchRouteNotFoundResponseBody": {
       "description": "Resource not found",
       "type": "object",
-      "title": "RoutesPatchRouteNotFoundResponseBody",
       "required": [
         "message",
         "requestId"
@@ -17666,7 +17982,6 @@
     "RoutesPatchRouteNotImplementedResponseBody": {
       "description": "Endpoint is not yet implemented",
       "type": "object",
-      "title": "RoutesPatchRouteNotImplementedResponseBody",
       "required": [
         "message",
         "requestId"
@@ -17690,7 +18005,6 @@
     },
     "RoutesPatchRouteRequestBody": {
       "type": "object",
-      "title": "RoutesPatchRouteRequestBody",
       "properties": {
         "driverId": {
           "description": "ID of the driver",
@@ -17712,6 +18026,7 @@
           "example": "Bid 123"
         },
         "notes": {
+          "description": "Notes about the route.",
           "type": "string",
           "maxLength": 2000,
           "example": "These are my notes"
@@ -17817,7 +18132,6 @@
     },
     "RoutesPatchRouteResponseBody": {
       "type": "object",
-      "title": "RoutesPatchRouteResponseBody",
       "required": [
         "name",
         "stops",
@@ -18013,7 +18327,6 @@
     "RoutesSingleUseAddressObjectRequestBody": {
       "description": "This field is used to indicate stops along the route for which an address has not been persisted. This field is mutually exclusive with addressId.",
       "type": "object",
-      "title": "RoutesSingleUseAddressObjectRequestBody",
       "required": [
         "latitude",
         "longitude"
@@ -18046,7 +18359,6 @@
     "RoutesSingleUseAddressObjectResponseBody": {
       "description": "This field is used to indicate stops along the route for which an address has not been persisted. This field is mutually exclusive with addressId.",
       "type": "object",
-      "title": "RoutesSingleUseAddressObjectResponseBody",
       "required": [
         "latitude",
         "longitude"
@@ -18078,7 +18390,6 @@
     },
     "RoutesStopRequestObjectRequestBody": {
       "type": "object",
-      "title": "RoutesStopRequestObjectRequestBody",
       "required": [
         "name"
       ],
@@ -18141,7 +18452,6 @@
     },
     "RoutesStopResponseObjectResponseBody": {
       "type": "object",
-      "title": "RoutesStopResponseObjectResponseBody",
       "required": [
         "name",
         "id"
@@ -18612,7 +18922,15 @@
               }
             },
             "externalIds": {
-              "$ref": "#/definitions/externalIds"
+              "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "example": {
+                "maintenanceId": "250020",
+                "payrollId": "ABFS18600"
+              }
             },
             "machines": {
               "description": "The machines that belong to thistag.",
@@ -18735,7 +19053,15 @@
           }
         },
         "externalIds": {
-          "$ref": "#/definitions/externalIds"
+          "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "example": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          }
         },
         "formattedAddress": {
           "description": "The full street address for this address/geofence, as it might be recognized by Google Maps.",
@@ -18744,7 +19070,85 @@
           "example": "350 Rhode Island St, San Francisco, CA"
         },
         "geofence": {
-          "$ref": "#/definitions/AddressGeofence"
+          "description": "The geofence that defines this address and its bounds. This can either be a circle or a polygon, but not both.",
+          "type": "object",
+          "properties": {
+            "circle": {
+              "description": "Information about a circular geofence. This field is only needed if the geofence is a circle.",
+              "type": "object",
+              "required": [
+                "radiusMeters"
+              ],
+              "properties": {
+                "latitude": {
+                  "description": "Latitude of the address. Will be geocoded from `formattedAddress` if not provided.",
+                  "type": "number",
+                  "format": "double",
+                  "example": 37.765363
+                },
+                "longitude": {
+                  "description": "Longitude of the address. Will be geocoded from `formattedAddress` if not provided.",
+                  "type": "number",
+                  "format": "double",
+                  "example": -122.4029238
+                },
+                "radiusMeters": {
+                  "description": "The radius of the circular geofence in meters.",
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 25
+                }
+              }
+            },
+            "polygon": {
+              "description": "Information about a polygon geofence. This field is only needed if the geofence is a polygon.",
+              "type": "object",
+              "required": [
+                "vertices"
+              ],
+              "properties": {
+                "vertices": {
+                  "description": "The vertices of the polygon geofence. These geofence vertices describe the perimeter of the polygon, and must consist of at least 3 vertices and less than 40.",
+                  "type": "array",
+                  "maxItems": 40,
+                  "minItems": 3,
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "latitude",
+                      "longitude"
+                    ],
+                    "properties": {
+                      "latitude": {
+                        "description": "The latitude of a geofence vertex in decimal degrees.",
+                        "type": "number",
+                        "format": "double"
+                      },
+                      "longitude": {
+                        "description": "The longitude of a geofence vertex in decimal degrees.",
+                        "type": "number",
+                        "format": "double"
+                      }
+                    }
+                  },
+                  "example": [
+                    {
+                      "latitude": 37.765363,
+                      "longitude": -122.403098
+                    },
+                    {
+                      "latitude": 38.765363,
+                      "longitude": -122.403098
+                    },
+                    {
+                      "latitude": 37.765363,
+                      "longitude": -123.403098
+                    }
+                  ]
+                }
+              }
+            }
+          }
         },
         "latitude": {
           "description": "Latitude of the address. Will be geocoded from `formattedAddress` if not provided.",
@@ -18818,7 +19222,15 @@
                 "type": "string"
               },
               "externalIds": {
-                "$ref": "#/definitions/externalIds"
+                "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "example": {
+                  "maintenanceId": "250020",
+                  "payrollId": "ABFS18600"
+                }
               },
               "numberValues": {
                 "description": "Number values that can be associated with this attribute",
@@ -18874,16 +19286,28 @@
       "type": "object",
       "properties": {
         "email": {
-          "$ref": "#/definitions/ContactEmail"
+          "description": "Email address of the contact.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "jane.jones@yahoo.com"
         },
         "firstName": {
-          "$ref": "#/definitions/ContactFirstName"
+          "description": "First name of the contact.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "Jane"
         },
         "lastName": {
-          "$ref": "#/definitions/ContactLastName"
+          "description": "Last name of the contact.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "Jones"
         },
         "phone": {
-          "$ref": "#/definitions/ContactPhone"
+          "description": "Phone number of the contact.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "111-222-3344"
         }
       }
     },
@@ -18894,83 +19318,209 @@
         "attributes": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/attributeTiny"
+            "description": "A minified attribute.",
+            "type": "object",
+            "properties": {
+              "id": {
+                "description": "The samsara id of the attribute object.",
+                "type": "string",
+                "example": "123e4567-e89b-12d3-a456-426614174000"
+              },
+              "name": {
+                "description": "Name of attribute.",
+                "type": "string",
+                "example": "License Certifications"
+              },
+              "numberValues": {
+                "description": "Number values that are associated with this attribute.",
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "format": "double"
+                }
+              },
+              "stringValues": {
+                "description": "String values that are associated with this attribute.",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
           }
         },
         "carrierSettings": {
-          "$ref": "#/definitions/DriverCarrierSettings"
+          "description": "Carrier for a given driver. If the driver's carrier differs from the general organization's carrier settings, the override value is used. Updating this value only updates the override setting for this driver.",
+          "type": "object",
+          "properties": {
+            "carrierName": {
+              "description": "Carrier for a given driver.",
+              "type": "string",
+              "maxLength": 255,
+              "example": "Acme Inc."
+            },
+            "dotNumber": {
+              "description": "Carrier US DOT Number. If this differs from the general organization's settings, the override value is used. Updating this value only updates the override setting for this driver.",
+              "type": "integer",
+              "format": "int64",
+              "example": 98231
+            },
+            "mainOfficeAddress": {
+              "description": "Main office address for a given driver. If this differs from the general organization's settings, the override value is used. ",
+              "type": "string",
+              "maxLength": 255,
+              "example": "1234 Pear St., Scranton, PA 62814"
+            }
+          }
         },
         "currentIdCardCode": {
-          "$ref": "#/definitions/DriverIdCardCode"
+          "description": "The ID Card Code on the back of the physical card assigned to the driver.  Contact Samsara if you would like to enable this feature.",
+          "type": "string",
+          "example": "941767043"
         },
         "deactivatedAtTime": {
-          "$ref": "#/definitions/DriverDeactivatedAtTime"
+          "description": "The date and time this driver is considered to be deactivated in RFC 3339 format.",
+          "type": "string",
+          "example": "2019-05-18T20:27:35Z"
         },
         "driverActivationStatus": {
-          "$ref": "#/definitions/DriverActivationStatus"
+          "description": "A value indicating whether the driver is active or deactivated.",
+          "type": "string",
+          "enum": [
+            "active",
+            "deactivated"
+          ]
         },
         "eldAdverseWeatherExemptionEnabled": {
-          "$ref": "#/definitions/DriverEldAdverseWeatherExemptionEnabled"
+          "description": "Flag indicating this driver may use Adverse Weather exemptions in ELD logs.",
+          "type": "boolean"
         },
         "eldBigDayExemptionEnabled": {
-          "$ref": "#/definitions/DriverEldBigDayExemptionEnabled"
+          "description": "Flag indicating this driver may use Big Day exemption in ELD logs.",
+          "type": "boolean"
         },
         "eldDayStartHour": {
-          "$ref": "#/definitions/DriverEldDayStartHour"
+          "description": "`0` indicating midnight-to-midnight ELD driving hours, `12` to indicate noon-to-noon driving hours.",
+          "type": "integer",
+          "default": 0
         },
         "eldExempt": {
-          "$ref": "#/definitions/DriverEldExempt"
+          "description": "Flag indicating this driver is exempt from the Electronic Logging Mandate.",
+          "type": "boolean"
         },
         "eldExemptReason": {
-          "$ref": "#/definitions/DriverEldExemptReason"
+          "description": "Reason that this driver is exempt from the Electronic Logging Mandate (see eldExempt).",
+          "type": "string",
+          "example": "Bad driver"
         },
         "eldPcEnabled": {
-          "$ref": "#/definitions/DriverEldPcEnabled"
+          "description": "Flag indicating this driver may select the Personal Conveyance duty status in ELD logs.",
+          "type": "boolean"
         },
         "eldYmEnabled": {
-          "$ref": "#/definitions/DriverEldYmEnabled"
+          "description": "Flag indicating this driver may select the Yard Move duty status in ELD logs.",
+          "type": "boolean"
         },
         "externalIds": {
-          "$ref": "#/definitions/DriverExternalIds"
+          "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "example": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          }
         },
         "licenseNumber": {
-          "$ref": "#/definitions/DriverLicenseNumber"
+          "description": "Driver's state issued license number. The combination of this number and `licenseState` must be unique.",
+          "type": "string",
+          "example": "E1234567"
         },
         "licenseState": {
-          "$ref": "#/definitions/DriverLicenseState"
+          "description": "Abbreviation of US state, Canadian province, or US territory that issued driver's license.",
+          "type": "string",
+          "example": "CA"
         },
         "locale": {
-          "$ref": "#/definitions/DriverLocale"
+          "description": "Locale override (uncommon). These are specified by ISO 3166-2 country codes for supported locales.",
+          "type": "string",
+          "enum": [
+            "us",
+            "at",
+            "be",
+            "ca",
+            "gb",
+            "fr",
+            "de",
+            "ie",
+            "it",
+            "lu",
+            "mx",
+            "nl",
+            "es",
+            "ch",
+            "pr"
+          ]
         },
         "name": {
-          "$ref": "#/definitions/DriverName"
+          "description": "Driver's name.",
+          "type": "string",
+          "maxLength": 255,
+          "minLength": 1,
+          "example": "Susan Jones"
         },
         "notes": {
-          "$ref": "#/definitions/DriverNotes"
+          "description": "Notes about the driver.",
+          "type": "string",
+          "maxLength": 4096,
+          "example": "Also goes by the nickname Furious Fred."
         },
         "password": {
-          "$ref": "#/definitions/DriverPassword"
+          "description": "Password that the driver can use to login to the Samsara driver app.",
+          "type": "string",
+          "example": "aSecurePassword1234"
         },
         "phone": {
-          "$ref": "#/definitions/DriverPhone"
+          "description": "Phone number of the driver.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "5558234327"
         },
         "staticAssignedVehicleId": {
-          "$ref": "#/definitions/DriverStaticAssignedVehicleId"
+          "description": "ID of vehicle that the driver is permanently assigned to. (uncommon).",
+          "type": "string",
+          "example": "456"
         },
         "tachographCardNumber": {
-          "$ref": "#/definitions/DriverTachographCardNumber"
+          "description": "Driver's assigned tachograph card number (Europe specific)",
+          "type": "string",
+          "example": "1000000492436002"
         },
         "tagIds": {
-          "$ref": "#/definitions/DriverTagIds"
+          "description": "IDs of tags the driver is associated with.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "147"
+          }
         },
         "timezone": {
-          "$ref": "#/definitions/DriverTimezone"
+          "description": "Home terminal timezone, in order to indicate what time zone should be used to calculate the ELD logs. Driver timezones use [IANA timezone database](https://www.iana.org/time-zones) keys (e.g. `America/Los_Angeles`, `America/New_York`, `Europe/London`, etc.). You can find a mapping of common timezone formats to IANA timezone keys [here](https://unicode.org/cldr/charts/latest/supplemental/zone_tzid.html).",
+          "type": "string",
+          "example": "America/Los_Angeles"
         },
         "username": {
-          "$ref": "#/definitions/DriverUsername"
+          "description": "Driver's login username into the driver app. The username may not contain spaces or the '@' symbol. The username must be unique.",
+          "type": "string",
+          "maxLength": 189,
+          "minLength": 1,
+          "example": "SusanJones"
         },
         "vehicleGroupTagId": {
-          "$ref": "#/definitions/DriverVehicleGroupTagId"
+          "description": "Tag ID which determines which vehicles a driver will see when selecting vehicles.",
+          "type": "string",
+          "example": "342417"
         }
       }
     },
@@ -18992,7 +19542,9 @@
           "type": "boolean"
         },
         "mechanicNotes": {
-          "$ref": "#/definitions/DvirMechanicNotes"
+          "description": "The mechanics notes on the DVIR.",
+          "type": "string",
+          "example": "Replaced headlight on passenger side."
         },
         "signedAtTime": {
           "description": "Time when user signed this DVIR. Defaults to now. UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`.",
@@ -19006,13 +19558,40 @@
       "type": "object",
       "properties": {
         "authType": {
-          "$ref": "#/definitions/UserAuthType"
+          "description": "The authentication type the user uses to authenticate. To use SAML this organization must have a configured SAML integration.",
+          "type": "string",
+          "enum": [
+            "default",
+            "saml"
+          ]
         },
         "name": {
-          "$ref": "#/definitions/UserName"
+          "description": "The first and last name of the user.",
+          "type": "string",
+          "example": "Bob Smith"
         },
         "roles": {
-          "$ref": "#/definitions/UserRolesRequest"
+          "description": "The list of roles that applies to this user. A user may have \"organizational\" roles, which apply to the user at the organizational level, and \"tag-specific\" roles, which apply to the user for a given tag.",
+          "type": "array",
+          "items": {
+            "description": "A role that applies to a user. If the role has a `tagId`, then the role applies for that tag. If there is no `tagId`, then the role applies at the organizational level. A user may have many tag-specific roles, but may only have one organizational role. If the organizational level role has higher privileges than a tag-specific role, then the organizational role privileges will take precedence.",
+            "type": "object",
+            "required": [
+              "roleId"
+            ],
+            "properties": {
+              "roleId": {
+                "description": "The unique ID for the role.",
+                "type": "string",
+                "example": "8a9371af-82d1-4158-bf91-4ecc8d3a114c"
+              },
+              "tagId": {
+                "description": "ID of the tag this role applies to.",
+                "type": "string",
+                "example": "3914"
+              }
+            }
+          }
         }
       }
     },
@@ -19021,64 +19600,286 @@
       "type": "object",
       "properties": {
         "auxInputType1": {
-          "$ref": "#/definitions/VehicleAuxInputType1"
+          "description": "The type of [auxiliary input](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) configured for this Vehicle. Once configured, these inputs will generate dynamic, time-series data that will be available to view in the Samsara Dashboard. **By default**: empty. This can be set or updated through the Samsara Dashboard or the API at any time. Inputs 3-10 are only available on gateways with an attached aux expander.",
+          "type": "string",
+          "enum": [
+            "none",
+            "emergencyLights",
+            "emergencyAlarm",
+            "stopPaddle",
+            "powerTakeOff",
+            "plow",
+            "sweeper",
+            "salter",
+            "reefer",
+            "door",
+            "boom",
+            "auxiliaryEngine",
+            "generator",
+            "eightWayLights"
+          ],
+          "example": "boom"
         },
         "auxInputType10": {
-          "$ref": "#/definitions/VehicleAuxInputType10"
+          "description": "The type of [auxiliary input](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) configured for this Vehicle. Once configured, these inputs will generate dynamic, time-series data that will be available to view in the Samsara Dashboard. **By default**: empty. This can be set or updated through the Samsara Dashboard or the API at any time. Inputs 3-10 are only available on gateways with an attached aux expander.",
+          "type": "string",
+          "enum": [
+            "none",
+            "emergencyLights",
+            "emergencyAlarm",
+            "stopPaddle",
+            "powerTakeOff",
+            "plow",
+            "sweeper",
+            "salter",
+            "reefer",
+            "door",
+            "boom",
+            "auxiliaryEngine",
+            "generator",
+            "eightWayLights"
+          ],
+          "example": "boom"
         },
         "auxInputType2": {
-          "$ref": "#/definitions/VehicleAuxInputType2"
+          "description": "The type of [auxiliary input](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) configured for this Vehicle. Once configured, these inputs will generate dynamic, time-series data that will be available to view in the Samsara Dashboard. **By default**: empty. This can be set or updated through the Samsara Dashboard or the API at any time. Inputs 3-10 are only available on gateways with an attached aux expander.",
+          "type": "string",
+          "enum": [
+            "none",
+            "emergencyLights",
+            "emergencyAlarm",
+            "stopPaddle",
+            "powerTakeOff",
+            "plow",
+            "sweeper",
+            "salter",
+            "reefer",
+            "door",
+            "boom",
+            "auxiliaryEngine",
+            "generator",
+            "eightWayLights"
+          ],
+          "example": "boom"
         },
         "auxInputType3": {
-          "$ref": "#/definitions/VehicleAuxInputType3"
+          "description": "The type of [auxiliary input](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) configured for this Vehicle. Once configured, these inputs will generate dynamic, time-series data that will be available to view in the Samsara Dashboard. **By default**: empty. This can be set or updated through the Samsara Dashboard or the API at any time. Inputs 3-10 are only available on gateways with an attached aux expander.",
+          "type": "string",
+          "enum": [
+            "none",
+            "emergencyLights",
+            "emergencyAlarm",
+            "stopPaddle",
+            "powerTakeOff",
+            "plow",
+            "sweeper",
+            "salter",
+            "reefer",
+            "door",
+            "boom",
+            "auxiliaryEngine",
+            "generator",
+            "eightWayLights"
+          ],
+          "example": "boom"
         },
         "auxInputType4": {
-          "$ref": "#/definitions/VehicleAuxInputType4"
+          "description": "The type of [auxiliary input](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) configured for this Vehicle. Once configured, these inputs will generate dynamic, time-series data that will be available to view in the Samsara Dashboard. **By default**: empty. This can be set or updated through the Samsara Dashboard or the API at any time. Inputs 3-10 are only available on gateways with an attached aux expander.",
+          "type": "string",
+          "enum": [
+            "none",
+            "emergencyLights",
+            "emergencyAlarm",
+            "stopPaddle",
+            "powerTakeOff",
+            "plow",
+            "sweeper",
+            "salter",
+            "reefer",
+            "door",
+            "boom",
+            "auxiliaryEngine",
+            "generator",
+            "eightWayLights"
+          ],
+          "example": "boom"
         },
         "auxInputType5": {
-          "$ref": "#/definitions/VehicleAuxInputType5"
+          "description": "The type of [auxiliary input](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) configured for this Vehicle. Once configured, these inputs will generate dynamic, time-series data that will be available to view in the Samsara Dashboard. **By default**: empty. This can be set or updated through the Samsara Dashboard or the API at any time. Inputs 3-10 are only available on gateways with an attached aux expander.",
+          "type": "string",
+          "enum": [
+            "none",
+            "emergencyLights",
+            "emergencyAlarm",
+            "stopPaddle",
+            "powerTakeOff",
+            "plow",
+            "sweeper",
+            "salter",
+            "reefer",
+            "door",
+            "boom",
+            "auxiliaryEngine",
+            "generator",
+            "eightWayLights"
+          ],
+          "example": "boom"
         },
         "auxInputType6": {
-          "$ref": "#/definitions/VehicleAuxInputType6"
+          "description": "The type of [auxiliary input](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) configured for this Vehicle. Once configured, these inputs will generate dynamic, time-series data that will be available to view in the Samsara Dashboard. **By default**: empty. This can be set or updated through the Samsara Dashboard or the API at any time. Inputs 3-10 are only available on gateways with an attached aux expander.",
+          "type": "string",
+          "enum": [
+            "none",
+            "emergencyLights",
+            "emergencyAlarm",
+            "stopPaddle",
+            "powerTakeOff",
+            "plow",
+            "sweeper",
+            "salter",
+            "reefer",
+            "door",
+            "boom",
+            "auxiliaryEngine",
+            "generator",
+            "eightWayLights"
+          ],
+          "example": "boom"
         },
         "auxInputType7": {
-          "$ref": "#/definitions/VehicleAuxInputType7"
+          "description": "The type of [auxiliary input](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) configured for this Vehicle. Once configured, these inputs will generate dynamic, time-series data that will be available to view in the Samsara Dashboard. **By default**: empty. This can be set or updated through the Samsara Dashboard or the API at any time. Inputs 3-10 are only available on gateways with an attached aux expander.",
+          "type": "string",
+          "enum": [
+            "none",
+            "emergencyLights",
+            "emergencyAlarm",
+            "stopPaddle",
+            "powerTakeOff",
+            "plow",
+            "sweeper",
+            "salter",
+            "reefer",
+            "door",
+            "boom",
+            "auxiliaryEngine",
+            "generator",
+            "eightWayLights"
+          ],
+          "example": "boom"
         },
         "auxInputType8": {
-          "$ref": "#/definitions/VehicleAuxInputType8"
+          "description": "The type of [auxiliary input](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) configured for this Vehicle. Once configured, these inputs will generate dynamic, time-series data that will be available to view in the Samsara Dashboard. **By default**: empty. This can be set or updated through the Samsara Dashboard or the API at any time. Inputs 3-10 are only available on gateways with an attached aux expander.",
+          "type": "string",
+          "enum": [
+            "none",
+            "emergencyLights",
+            "emergencyAlarm",
+            "stopPaddle",
+            "powerTakeOff",
+            "plow",
+            "sweeper",
+            "salter",
+            "reefer",
+            "door",
+            "boom",
+            "auxiliaryEngine",
+            "generator",
+            "eightWayLights"
+          ],
+          "example": "boom"
         },
         "auxInputType9": {
-          "$ref": "#/definitions/VehicleAuxInputType9"
+          "description": "The type of [auxiliary input](https://kb.samsara.com/hc/en-us/articles/232232368-Auxiliary-Inputs) configured for this Vehicle. Once configured, these inputs will generate dynamic, time-series data that will be available to view in the Samsara Dashboard. **By default**: empty. This can be set or updated through the Samsara Dashboard or the API at any time. Inputs 3-10 are only available on gateways with an attached aux expander.",
+          "type": "string",
+          "enum": [
+            "none",
+            "emergencyLights",
+            "emergencyAlarm",
+            "stopPaddle",
+            "powerTakeOff",
+            "plow",
+            "sweeper",
+            "salter",
+            "reefer",
+            "door",
+            "boom",
+            "auxiliaryEngine",
+            "generator",
+            "eightWayLights"
+          ],
+          "example": "boom"
         },
         "engineHours": {
-          "$ref": "#/definitions/VehicleEngineHours"
+          "description": "A manual override for the vehicle's engine hours. You may only override a vehicle's engine hours if it cannot be read from on-board diagnostics. When you provide a manual engine hours override, Samsara will begin updating a vehicle's engine hours based on when the Samsara Vehicle Gateway is recieving power or not.",
+          "type": "integer",
+          "format": "int64",
+          "example": 10943
         },
         "externalIds": {
-          "$ref": "#/definitions/VehicleExternalIds"
+          "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "example": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          }
         },
         "harshAccelerationSettingType": {
-          "$ref": "#/definitions/VehicleHarshAccelerationSettingType"
+          "description": "The harsh acceleration setting type. This setting influences the acceleration sensitivity from which a [harsh event](https://kb.samsara.com/hc/en-us/articles/360006938891-Harsh-Events) is triggered. **By default**, this setting is inferred by the Samsara Vehicle Gateway from the engine computer, but it may be set or updated through the Samsara Dashboard or the API at any time. If set to `off`, then no acceleration based harsh events are triggered for the vehicle.",
+          "type": "string",
+          "enum": [
+            "passengerCar",
+            "lightTruck",
+            "heavyDuty",
+            "off",
+            "automatic"
+          ],
+          "example": "off"
         },
         "licensePlate": {
-          "$ref": "#/definitions/VehicleLicensePlate"
+          "description": "The license plate of the Vehicle. **By default**: empty. Can be set or updated through the Samsara Dashboard or the API at any time.",
+          "type": "string",
+          "maxLength": 12,
+          "example": "XHK1234"
         },
         "name": {
-          "$ref": "#/definitions/VehicleName"
+          "description": "The human-readable name of the Vehicle. This is set by a fleet administrator and will appear in both Samsara’s cloud dashboard as well as the Samsara Driver mobile app. **By default**, this name is the serial number of the Samsara Vehicle Gateway. It can be set or updated through the Samsara Dashboard or through the API at any time.",
+          "type": "string",
+          "example": "Truck A7"
         },
         "notes": {
-          "$ref": "#/definitions/VehicleNotes"
+          "description": "These are generic notes about the Vehicle. Empty by default. Can be set or updated through the Samsara Dashboard or the API at any time.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "These are notes about this given vehicle."
         },
         "odometerMeters": {
-          "$ref": "#/definitions/VehicleOdometerMeters"
+          "description": "A manual override for the vehicle's odometer. You may only override a vehicle's odometer if it cannot be read from on-board diagnostics. When you provide a manual odometer override, Samsara will begin updating a vehicle's odometer using GPS distance traveled since this override was set. See [here](https://kb.samsara.com/hc/en-us/articles/115005273667) for more details.",
+          "type": "integer",
+          "format": "int64",
+          "example": 9182
         },
         "staticAssignedDriverId": {
-          "$ref": "#/definitions/VehicleStaticAssignedDriverId"
+          "description": "ID for the static assigned driver of the vehicle.",
+          "type": "string",
+          "example": "123"
         },
         "tagIds": {
-          "$ref": "#/definitions/VehicleTagIds"
+          "description": "An array of IDs of tags to associate with this vehicle.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "321"
+          }
         },
         "vin": {
-          "$ref": "#/definitions/VehicleVin"
+          "description": "The VIN of the Vehicle. Most of the time, this will be automatically read from the engine computer by the Samsara Vehicle Gateway. It will be empty if it cannot be read. It can be set or updated through the Samsara Dashboard or the API at any time.",
+          "type": "string",
+          "maxLength": 17,
+          "minLength": 11,
+          "example": "1FUJA6BD31LJ09646"
         }
       }
     },
@@ -19145,7 +19946,6 @@
     "UserResponseDataResponseBody": {
       "description": "A user object.",
       "type": "object",
-      "title": "UserResponseDataResponseBody",
       "required": [
         "id",
         "authType",
@@ -19304,7 +20104,6 @@
     "UserRoleAssignmentRequestRequestBody": {
       "description": "A role that applies to a user. If the role has a `tagId`, then the role applies for that tag. If there is no `tagId`, then the role applies at the organizational level. A user may have many tag-specific roles, but may only have one organizational role. If the organizational level role has higher privileges than a tag-specific role, then the organizational role privileges will take precedence.",
       "type": "object",
-      "title": "UserRoleAssignmentRequestRequestBody",
       "required": [
         "roleId"
       ],
@@ -19329,7 +20128,6 @@
     "UserRoleAssignmentResponseBody": {
       "description": "A role that applies to a user. If the role has a `tag`, then the role applies for that tag. If there is no `tag`, then the role applies at the organizational level. A user may have many tag-specific roles, but may only have one organizational level role. If the organizational level role has higher privileges than a tag-specific role, then the organizational role privileges will take precedence.",
       "type": "object",
-      "title": "UserRoleAssignmentResponseBody",
       "properties": {
         "role": {
           "$ref": "#/definitions/UserRoleResponseBody"
@@ -19353,7 +20151,6 @@
     "UserRoleResponseBody": {
       "description": "A user role object.",
       "type": "object",
-      "title": "UserRoleResponseBody",
       "properties": {
         "id": {
           "description": "The unique ID for the role",
@@ -19390,7 +20187,6 @@
     "UsersCreateUserGoaBadRequestResponseBody": {
       "description": "Bad Request parameters",
       "type": "object",
-      "title": "UsersCreateUserGoaBadRequestResponseBody",
       "required": [
         "message",
         "requestId"
@@ -19415,7 +20211,6 @@
     "UsersCreateUserGoaInternalErrorResponseBody": {
       "description": "An internal server error occurred",
       "type": "object",
-      "title": "UsersCreateUserGoaInternalErrorResponseBody",
       "required": [
         "message",
         "requestId"
@@ -19440,7 +20235,6 @@
     "UsersCreateUserGoaNotFoundResponseBody": {
       "description": "No vehicle found for id",
       "type": "object",
-      "title": "UsersCreateUserGoaNotFoundResponseBody",
       "required": [
         "message",
         "requestId"
@@ -19465,7 +20259,6 @@
     "UsersCreateUserGoaNotImplementedResponseBody": {
       "description": "Requested endpoint is not yet implemented",
       "type": "object",
-      "title": "UsersCreateUserGoaNotImplementedResponseBody",
       "required": [
         "message",
         "requestId"
@@ -19489,7 +20282,6 @@
     },
     "UsersCreateUserGoaRequestBody": {
       "type": "object",
-      "title": "UsersCreateUserGoaRequestBody",
       "required": [
         "name",
         "email",
@@ -19570,7 +20362,6 @@
     "UsersCreateUserGoaResponseBody": {
       "description": "CreateUserGoaResponseBody result type (default view)",
       "type": "object",
-      "title": "Mediatype identifier: user_response; view=default",
       "properties": {
         "data": {
           "$ref": "#/definitions/UserResponseDataResponseBody"
@@ -20803,7 +21594,15 @@
       }
     },
     "V1DispatchRouteExternalIds": {
-      "$ref": "#/definitions/externalIds"
+      "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "example": {
+        "maintenanceId": "250020",
+        "payrollId": "ABFS18600"
+      }
     },
     "V1DispatchRouteHistoricalEntry": {
       "type": "object",
@@ -20832,7 +21631,15 @@
       }
     },
     "V1DispatchRouteJobExternalIds": {
-      "$ref": "#/definitions/externalIds"
+      "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "example": {
+        "maintenanceId": "250020",
+        "payrollId": "ABFS18600"
+      }
     },
     "V1DispatchRouteUpdate": {
       "allOf": [
@@ -24254,7 +25061,6 @@
     },
     "VehicleAssignmentObjectResponseBody": {
       "type": "object",
-      "title": "VehicleAssignmentObjectResponseBody",
       "required": [
         "vehicle",
         "isPassenger",
@@ -24357,7 +25163,6 @@
     },
     "VehicleCameraMediaObjectResponseBody": {
       "type": "object",
-      "title": "VehicleCameraMediaObjectResponseBody",
       "properties": {
         "cameras": {
           "description": "List of camera objects.",
@@ -24674,7 +25479,15 @@
       "example": 10943
     },
     "VehicleExternalIds": {
-      "$ref": "#/definitions/externalIds"
+      "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "example": {
+        "maintenanceId": "250020",
+        "payrollId": "ABFS18600"
+      }
     },
     "VehicleHarshAccelerationSettingType": {
       "description": "The harsh acceleration setting type. This setting influences the acceleration sensitivity from which a [harsh event](https://kb.samsara.com/hc/en-us/articles/360006938891-Harsh-Events) is triggered. **By default**, this setting is inferred by the Samsara Vehicle Gateway from the engine computer, but it may be set or updated through the Samsara Dashboard or the API at any time. If set to `off`, then no acceleration based harsh events are triggered for the vehicle.",
@@ -24864,7 +25677,6 @@
     "VehicleNotes": {
       "description": "These are generic notes about the Vehicle. Empty by default. Can be set or updated through the Samsara Dashboard or the API at any time.",
       "type": "string",
-      "default": "",
       "maxLength": 255,
       "example": "These are notes about this given vehicle."
     },
@@ -27303,7 +28115,6 @@
     "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsBadRequestResponseBody": {
       "description": "Bad Request parameters",
       "type": "object",
-      "title": "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsBadRequestResponseBody",
       "required": [
         "message",
         "requestId"
@@ -27328,7 +28139,6 @@
     "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsInternalErrorResponseBody": {
       "description": "An internal server error occurred",
       "type": "object",
-      "title": "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsInternalErrorResponseBody",
       "required": [
         "message",
         "requestId"
@@ -27353,7 +28163,6 @@
     "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsNotFoundResponseBody": {
       "description": "Resource not found",
       "type": "object",
-      "title": "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsNotFoundResponseBody",
       "required": [
         "message",
         "requestId"
@@ -27378,7 +28187,6 @@
     "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsNotImplementedResponseBody": {
       "description": "Requested endpoint is not yet implemented",
       "type": "object",
-      "title": "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsNotImplementedResponseBody",
       "required": [
         "message",
         "requestId"
@@ -27402,7 +28210,6 @@
     },
     "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsResponseBody": {
       "type": "object",
-      "title": "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsResponseBody",
       "required": [
         "data",
         "pagination"
@@ -27848,7 +28655,6 @@
     },
     "VehiclesDriverAssignmentsObjectResponseBody": {
       "type": "object",
-      "title": "VehiclesDriverAssignmentsObjectResponseBody",
       "required": [
         "id",
         "driverAssignments"
@@ -28039,7 +28845,6 @@
     },
     "conditionalFieldSectionObjectResponseBody": {
       "type": "object",
-      "title": "conditionalFieldSectionObjectResponseBody",
       "properties": {
         "conditionalFieldFirstIndex": {
           "description": "The index of the first conditional field associated with the triggeringFieldValue in the fieldTypes list.",
@@ -28229,20 +29034,8 @@
       },
       "x-go-gen-location": "models"
     },
-    "externalIds": {
-      "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
-      "type": "object",
-      "additionalProperties": {
-        "type": "string"
-      },
-      "example": {
-        "maintenanceId": "250020",
-        "payrollId": "ABFS18600"
-      }
-    },
     "fieldTypesObjectResponseBody": {
       "type": "object",
-      "title": "fieldTypesObjectResponseBody",
       "required": [
         "label",
         "fieldType",
@@ -28311,7 +29104,6 @@
     },
     "getDocumentTypeResponseObjectResponseBody": {
       "type": "object",
-      "title": "getDocumentTypeResponseObjectResponseBody",
       "properties": {
         "conditionalFieldSections": {
           "description": "List of the document type conditional field sections.",
@@ -28500,7 +29292,6 @@
     },
     "getDocumentTypesResponsePaginationObjectResponseBody": {
       "type": "object",
-      "title": "getDocumentTypesResponsePaginationObjectResponseBody",
       "properties": {
         "endCursor": {
           "type": "string",
@@ -28565,7 +29356,6 @@
     },
     "multipleChoiceFieldTypeMetaDataObjectResponseBody": {
       "type": "object",
-      "title": "multipleChoiceFieldTypeMetaDataObjectResponseBody",
       "properties": {
         "label": {
           "description": "The option choice label.",
@@ -28579,7 +29369,6 @@
     },
     "numberFieldTypeMetaDataObjectResponseBody": {
       "type": "object",
-      "title": "numberFieldTypeMetaDataObjectResponseBody",
       "properties": {
         "numberOfDecimalPlaces": {
           "description": "The number of decimal places allowed for the field.",
@@ -28647,7 +29436,6 @@
     },
     "signatureFieldTypeMetaDataObjectResponseBody": {
       "type": "object",
-      "title": "signatureFieldTypeMetaDataObjectResponseBody",
       "properties": {
         "legalText": {
           "description": "The signature field legal text.",
