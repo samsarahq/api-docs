@@ -211,7 +211,10 @@
         "operationId": "deleteAddress",
         "responses": {
           "204": {
-            "description": "Empty success body"
+            "description": "A successful DELETE response is a 204 with no content.",
+            "schema": {
+              "$ref": "#/definitions/standardDeleteResponse"
+            }
           },
           "default": {
             "description": "Unexpected error.",
@@ -407,7 +410,10 @@
         ],
         "responses": {
           "204": {
-            "description": "Returns an empty success response."
+            "description": "A successful DELETE response is a 204 with no content.",
+            "schema": {
+              "$ref": "#/definitions/standardDeleteResponse"
+            }
           },
           "default": {
             "description": "Error response",
@@ -566,7 +572,10 @@
         "operationId": "deleteContact",
         "responses": {
           "204": {
-            "description": "Returns an empty success response."
+            "description": "A successful DELETE response is a 204 with no content.",
+            "schema": {
+              "$ref": "#/definitions/standardDeleteResponse"
+            }
           },
           "default": {
             "description": "Error response",
@@ -718,7 +727,10 @@
         "operationId": "deleteCarrierProposedAssignment",
         "responses": {
           "204": {
-            "description": "Empty success body"
+            "description": "A successful DELETE response is a 204 with no content.",
+            "schema": {
+              "$ref": "#/definitions/standardDeleteResponse"
+            }
           },
           "default": {
             "description": "Error response",
@@ -5892,7 +5904,10 @@
         ],
         "responses": {
           "204": {
-            "description": "Successfully deleted the asset. No response body."
+            "description": "A successful DELETE response is a 204 with no content.",
+            "schema": {
+              "$ref": "#/definitions/standardDeleteResponse"
+            }
           },
           "default": {
             "description": "Error response",
@@ -6415,7 +6430,10 @@
         "operationId": "deleteTag",
         "responses": {
           "204": {
-            "description": "Successfully deleted the tag. No response body is returned."
+            "description": "A successful DELETE response is a 204 with no content.",
+            "schema": {
+              "$ref": "#/definitions/standardDeleteResponse"
+            }
           },
           "default": {
             "description": "Error response",
@@ -6614,7 +6632,10 @@
         "operationId": "deleteUser",
         "responses": {
           "204": {
-            "description": "Returns an empty success response."
+            "description": "A successful DELETE response is a 204 with no content.",
+            "schema": {
+              "$ref": "#/definitions/standardDeleteResponse"
+            }
           },
           "default": {
             "description": "Error response",
@@ -8912,9 +8933,6 @@
         "externalIds": {
           "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
           "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
           "example": {
             "maintenanceId": "250020",
             "payrollId": "ABFS18600"
@@ -9305,9 +9323,6 @@
         "externalIds": {
           "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
           "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
           "example": {
             "maintenanceId": "250020",
             "payrollId": "ABFS18600"
@@ -13328,9 +13343,6 @@
     "DriverExternalIds": {
       "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
       "type": "object",
-      "additionalProperties": {
-        "type": "string"
-      },
       "example": {
         "maintenanceId": "250020",
         "payrollId": "ABFS18600"
@@ -15263,9 +15275,6 @@
         "externalIds": {
           "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
           "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
           "example": {
             "maintenanceId": "250020",
             "payrollId": "ABFS18600"
@@ -17432,9 +17441,6 @@
         "externalIds": {
           "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
           "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
           "example": {
             "maintenanceId": "250020",
             "payrollId": "ABFS18600"
@@ -19350,9 +19356,6 @@
             "externalIds": {
               "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
               "type": "object",
-              "additionalProperties": {
-                "type": "string"
-              },
               "example": {
                 "maintenanceId": "250020",
                 "payrollId": "ABFS18600"
@@ -22022,9 +22025,6 @@
     "V1DispatchRouteExternalIds": {
       "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
       "type": "object",
-      "additionalProperties": {
-        "type": "string"
-      },
       "example": {
         "maintenanceId": "250020",
         "payrollId": "ABFS18600"
@@ -22059,9 +22059,6 @@
     "V1DispatchRouteJobExternalIds": {
       "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
       "type": "object",
-      "additionalProperties": {
-        "type": "string"
-      },
       "example": {
         "maintenanceId": "250020",
         "payrollId": "ABFS18600"
@@ -25907,9 +25904,6 @@
     "VehicleExternalIds": {
       "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
       "type": "object",
-      "additionalProperties": {
-        "type": "string"
-      },
       "example": {
         "maintenanceId": "250020",
         "payrollId": "ABFS18600"
@@ -30406,6 +30400,11 @@
         "signedAtTime": "1990-12-22T16:21:38Z",
         "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
       }
+    },
+    "standardDeleteResponse": {
+      "description": "A successful DELETE response is a 204 with no content.",
+      "type": "string",
+      "example": "\u003cempty content\u003e"
     },
     "standardErrorResponse": {
       "description": "Error response",
