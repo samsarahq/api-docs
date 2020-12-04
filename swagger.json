@@ -8684,6 +8684,191 @@
           }
         }
       }
+    },
+    "/{id}": {
+      "get": {
+        "description": "Returns a single document",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Preview APIs"
+        ],
+        "summary": "[beta] Fetch document",
+        "operationId": "getDocument",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID of the document",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "GetDocumentRequestBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "data": {
+                  "conditionalFieldSections": [
+                    {
+                      "conditionalFieldFirstIndex": 6028619342668202000,
+                      "conditionalFieldLastIndex": 6084642650296197000,
+                      "triggeringFieldIndex": 5704642708594049000,
+                      "triggeringFieldValue": "Numquam ut praesentium veritatis saepe eos."
+                    },
+                    {
+                      "conditionalFieldFirstIndex": 6028619342668202000,
+                      "conditionalFieldLastIndex": 6084642650296197000,
+                      "triggeringFieldIndex": 5704642708594049000,
+                      "triggeringFieldValue": "Numquam ut praesentium veritatis saepe eos."
+                    }
+                  ],
+                  "createdAtTime": "1990-07-06T11:15:11Z",
+                  "documentType": {
+                    "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                    "name": "Fleet Truck List"
+                  },
+                  "driver": {
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "45646",
+                    "name": "Driver Bob"
+                  },
+                  "fields": [
+                    {
+                      "label": "Load weight",
+                      "type": "scannedDocument",
+                      "value": {
+                        "barcodeValue": {
+                          "barcodeType": "org.gs1.EAN-13",
+                          "barcodeValue": "0853883003114"
+                        },
+                        "dateTimeValue": {
+                          "dateTime": "2012-12-01T07:41:55Z"
+                        },
+                        "multipleChoiceValue": {
+                          "selected": false,
+                          "value": "Yes"
+                        },
+                        "numberValue": 123,
+                        "photoValue": {
+                          "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                          "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                        },
+                        "signatureValue": {
+                          "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                          "name": "John Smith",
+                          "signedAtTime": "1978-04-21T01:34:42Z",
+                          "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                        },
+                        "stringValue": "Red Truck"
+                      }
+                    },
+                    {
+                      "label": "Load weight",
+                      "type": "scannedDocument",
+                      "value": {
+                        "barcodeValue": {
+                          "barcodeType": "org.gs1.EAN-13",
+                          "barcodeValue": "0853883003114"
+                        },
+                        "dateTimeValue": {
+                          "dateTime": "2012-12-01T07:41:55Z"
+                        },
+                        "multipleChoiceValue": {
+                          "selected": false,
+                          "value": "Yes"
+                        },
+                        "numberValue": 123,
+                        "photoValue": {
+                          "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                          "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                        },
+                        "signatureValue": {
+                          "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                          "name": "John Smith",
+                          "signedAtTime": "1978-04-21T01:34:42Z",
+                          "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                        },
+                        "stringValue": "Red Truck"
+                      }
+                    }
+                  ],
+                  "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                  "name": "Dropoff Slip 123",
+                  "notes": "Missing a crate",
+                  "routeStop": {
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "494123",
+                    "name": "Company Warehouse #1"
+                  },
+                  "state": "required",
+                  "updatedAtTime": "2007-08-14T16:23:47Z",
+                  "vehicle": {
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "494123",
+                    "name": "Fleet Truck #1"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentInternalErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Failed to execute GraphQL query.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentBadRequestResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Invalid value for parameter.",
+                "requestId": "8916e1c1"
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "ID of the document",
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
     }
   },
   "definitions": {
@@ -12345,6 +12530,190 @@
         }
       }
     },
+    "DocumentsGetDocumentBadRequestResponseBody": {
+      "description": "Bad request parameters",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid value for parameter."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Invalid value for parameter.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "DocumentsGetDocumentInternalErrorResponseBody": {
+      "description": "An internal server error occurred",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Failed to execute GraphQL query."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Failed to execute GraphQL query.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "DocumentsGetDocumentRequestBody": {
+      "type": "object",
+      "required": [
+        "driverId"
+      ],
+      "properties": {
+        "driverId": {
+          "description": "ID of the driver",
+          "type": "string",
+          "example": "1234"
+        }
+      },
+      "example": {
+        "driverId": "1234"
+      }
+    },
+    "DocumentsGetDocumentResponseBody": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/documentResponseObjectResponseBody"
+        }
+      },
+      "example": {
+        "data": {
+          "conditionalFieldSections": [
+            {
+              "conditionalFieldFirstIndex": 6028619342668202000,
+              "conditionalFieldLastIndex": 6084642650296197000,
+              "triggeringFieldIndex": 5704642708594049000,
+              "triggeringFieldValue": "Numquam ut praesentium veritatis saepe eos."
+            },
+            {
+              "conditionalFieldFirstIndex": 6028619342668202000,
+              "conditionalFieldLastIndex": 6084642650296197000,
+              "triggeringFieldIndex": 5704642708594049000,
+              "triggeringFieldValue": "Numquam ut praesentium veritatis saepe eos."
+            }
+          ],
+          "createdAtTime": "1990-07-06T11:15:11Z",
+          "documentType": {
+            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+            "name": "Fleet Truck List"
+          },
+          "driver": {
+            "externalIds": {
+              "maintenanceId": "250020",
+              "payrollId": "ABFS18600"
+            },
+            "id": "45646",
+            "name": "Driver Bob"
+          },
+          "fields": [
+            {
+              "label": "Load weight",
+              "type": "scannedDocument",
+              "value": {
+                "barcodeValue": {
+                  "barcodeType": "org.gs1.EAN-13",
+                  "barcodeValue": "0853883003114"
+                },
+                "dateTimeValue": {
+                  "dateTime": "2012-12-01T07:41:55Z"
+                },
+                "multipleChoiceValue": {
+                  "selected": false,
+                  "value": "Yes"
+                },
+                "numberValue": 123,
+                "photoValue": {
+                  "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                  "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                },
+                "signatureValue": {
+                  "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                  "name": "John Smith",
+                  "signedAtTime": "1978-04-21T01:34:42Z",
+                  "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                },
+                "stringValue": "Red Truck"
+              }
+            },
+            {
+              "label": "Load weight",
+              "type": "scannedDocument",
+              "value": {
+                "barcodeValue": {
+                  "barcodeType": "org.gs1.EAN-13",
+                  "barcodeValue": "0853883003114"
+                },
+                "dateTimeValue": {
+                  "dateTime": "2012-12-01T07:41:55Z"
+                },
+                "multipleChoiceValue": {
+                  "selected": false,
+                  "value": "Yes"
+                },
+                "numberValue": 123,
+                "photoValue": {
+                  "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                  "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                },
+                "signatureValue": {
+                  "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                  "name": "John Smith",
+                  "signedAtTime": "1978-04-21T01:34:42Z",
+                  "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                },
+                "stringValue": "Red Truck"
+              }
+            }
+          ],
+          "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+          "name": "Dropoff Slip 123",
+          "notes": "Missing a crate",
+          "routeStop": {
+            "externalIds": {
+              "maintenanceId": "250020",
+              "payrollId": "ABFS18600"
+            },
+            "id": "494123",
+            "name": "Company Warehouse #1"
+          },
+          "state": "required",
+          "updatedAtTime": "2007-08-14T16:23:47Z",
+          "vehicle": {
+            "externalIds": {
+              "maintenanceId": "250020",
+              "payrollId": "ABFS18600"
+            },
+            "id": "494123",
+            "name": "Fleet Truck #1"
+          }
+        }
+      }
+    },
     "DocumentsGetDocumentTypesBadRequestResponseBody": {
       "description": "Bad request parameters",
       "type": "object",
@@ -15044,6 +15413,26 @@
         "name": "Fuel Receipt Wichita"
       }
     },
+    "GoaDocumentTypeTinyResponseResponseBody": {
+      "description": "A minified document type object",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "ID of the document type.",
+          "type": "string",
+          "example": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7"
+        },
+        "name": {
+          "description": "Name of the document type.",
+          "type": "string",
+          "example": "Fleet Truck List"
+        }
+      },
+      "example": {
+        "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+        "name": "Fleet Truck List"
+      }
+    },
     "GoaDriverTinyResponseResponseBody": {
       "description": "A minified driver object",
       "type": "object",
@@ -15099,6 +15488,43 @@
       "example": {
         "endCursor": "MjkY",
         "hasNextPage": true
+      }
+    },
+    "GoaRouteTinyResponseResponseBody": {
+      "description": "A minified route stop object",
+      "type": "object",
+      "required": [
+        "name",
+        "id"
+      ],
+      "properties": {
+        "externalIds": {
+          "description": "A map of external ids",
+          "type": "object",
+          "additionalProperties": true,
+          "example": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          }
+        },
+        "id": {
+          "description": "Id of the route stop",
+          "type": "string",
+          "example": "494123"
+        },
+        "name": {
+          "description": "Name of the route stop",
+          "type": "string",
+          "example": "Company Warehouse #1"
+        }
+      },
+      "example": {
+        "externalIds": {
+          "maintenanceId": "250020",
+          "payrollId": "ABFS18600"
+        },
+        "id": "494123",
+        "name": "Company Warehouse #1"
       }
     },
     "GoaTagTinyResponseResponseBody": {
@@ -28843,6 +29269,25 @@
         }
       }
     },
+    "barcodeValueObjectResponseBody": {
+      "type": "object",
+      "properties": {
+        "barcodeType": {
+          "description": "The barcode type that was scanned.",
+          "type": "string",
+          "example": "org.gs1.EAN-13"
+        },
+        "barcodeValue": {
+          "description": "The captured barcode value.",
+          "type": "string",
+          "example": "0853883003114"
+        }
+      },
+      "example": {
+        "barcodeType": "org.gs1.EAN-13",
+        "barcodeValue": "0853883003114"
+      }
+    },
     "conditionalFieldSectionObjectResponseBody": {
       "type": "object",
       "properties": {
@@ -28895,6 +29340,338 @@
           "description": "Last name of the contact.",
           "type": "string",
           "example": "Jones"
+        }
+      }
+    },
+    "dateTimeValueObjectResponseBody": {
+      "type": "object",
+      "properties": {
+        "dateTime": {
+          "description": "Date time value inin RFC 3339 format.",
+          "type": "string",
+          "format": "date-time",
+          "example": "1992-05-11T00:24:50Z"
+        }
+      },
+      "example": {
+        "dateTime": "2008-09-20T18:06:03Z"
+      }
+    },
+    "documentResponseObjectResponseBody": {
+      "type": "object",
+      "required": [
+        "driver",
+        "id",
+        "createdAtTime",
+        "state",
+        "documentType",
+        "fields"
+      ],
+      "properties": {
+        "conditionalFieldSections": {
+          "description": "List of the document conditional field sections.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/conditionalFieldSectionObjectResponseBody"
+          },
+          "example": [
+            {
+              "conditionalFieldFirstIndex": 6028619342668202000,
+              "conditionalFieldLastIndex": 6084642650296197000,
+              "triggeringFieldIndex": 5704642708594049000,
+              "triggeringFieldValue": "Numquam ut praesentium veritatis saepe eos."
+            },
+            {
+              "conditionalFieldFirstIndex": 6028619342668202000,
+              "conditionalFieldLastIndex": 6084642650296197000,
+              "triggeringFieldIndex": 5704642708594049000,
+              "triggeringFieldValue": "Numquam ut praesentium veritatis saepe eos."
+            }
+          ]
+        },
+        "createdAtTime": {
+          "description": "Time the document was created in RFC 3339 format.",
+          "type": "string",
+          "format": "date-time",
+          "example": "2001-11-12T09:28:06Z"
+        },
+        "documentType": {
+          "$ref": "#/definitions/GoaDocumentTypeTinyResponseResponseBody"
+        },
+        "driver": {
+          "$ref": "#/definitions/GoaDriverTinyResponseResponseBody"
+        },
+        "fields": {
+          "description": "The fields associated with this document.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/fieldObjectResponseBody"
+          },
+          "example": [
+            {
+              "label": "Load weight",
+              "type": "scannedDocument",
+              "value": {
+                "barcodeValue": {
+                  "barcodeType": "org.gs1.EAN-13",
+                  "barcodeValue": "0853883003114"
+                },
+                "dateTimeValue": {
+                  "dateTime": "2012-12-01T07:41:55Z"
+                },
+                "multipleChoiceValue": {
+                  "selected": false,
+                  "value": "Yes"
+                },
+                "numberValue": 123,
+                "photoValue": {
+                  "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                  "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                },
+                "signatureValue": {
+                  "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                  "name": "John Smith",
+                  "signedAtTime": "1978-04-21T01:34:42Z",
+                  "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                },
+                "stringValue": "Red Truck"
+              }
+            },
+            {
+              "label": "Load weight",
+              "type": "scannedDocument",
+              "value": {
+                "barcodeValue": {
+                  "barcodeType": "org.gs1.EAN-13",
+                  "barcodeValue": "0853883003114"
+                },
+                "dateTimeValue": {
+                  "dateTime": "2012-12-01T07:41:55Z"
+                },
+                "multipleChoiceValue": {
+                  "selected": false,
+                  "value": "Yes"
+                },
+                "numberValue": 123,
+                "photoValue": {
+                  "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                  "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                },
+                "signatureValue": {
+                  "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                  "name": "John Smith",
+                  "signedAtTime": "1978-04-21T01:34:42Z",
+                  "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                },
+                "stringValue": "Red Truck"
+              }
+            },
+            {
+              "label": "Load weight",
+              "type": "scannedDocument",
+              "value": {
+                "barcodeValue": {
+                  "barcodeType": "org.gs1.EAN-13",
+                  "barcodeValue": "0853883003114"
+                },
+                "dateTimeValue": {
+                  "dateTime": "2012-12-01T07:41:55Z"
+                },
+                "multipleChoiceValue": {
+                  "selected": false,
+                  "value": "Yes"
+                },
+                "numberValue": 123,
+                "photoValue": {
+                  "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                  "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                },
+                "signatureValue": {
+                  "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                  "name": "John Smith",
+                  "signedAtTime": "1978-04-21T01:34:42Z",
+                  "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                },
+                "stringValue": "Red Truck"
+              }
+            }
+          ]
+        },
+        "id": {
+          "description": "Universally unique identifier for the document.",
+          "type": "string",
+          "example": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7"
+        },
+        "name": {
+          "description": "Name of the document.",
+          "type": "string",
+          "example": "Dropoff Slip 123"
+        },
+        "notes": {
+          "description": "Notes on the document.",
+          "type": "string",
+          "example": "Missing a crate"
+        },
+        "routeStop": {
+          "$ref": "#/definitions/GoaRouteTinyResponseResponseBody"
+        },
+        "state": {
+          "description": "The condition of the document created for the driver. Can be either Required or Submitted. Required documents are pre-populated documents for the Driver to fill out in the Driver App and have not yet been submitted. Submitted documents have been submitted by the driver in the Driver App. Archived documents have been archived by the admin in the cloud dashboard.",
+          "type": "string",
+          "enum": [
+            "submitted",
+            "required",
+            "archived"
+          ],
+          "example": "archived"
+        },
+        "updatedAtTime": {
+          "description": "Time the document was updated in RFC 3339 format.",
+          "type": "string",
+          "format": "date-time",
+          "example": "1970-05-09T04:24:39Z"
+        },
+        "vehicle": {
+          "$ref": "#/definitions/GoaVehicleTinyResponseResponseBody"
+        }
+      },
+      "example": {
+        "conditionalFieldSections": [
+          {
+            "conditionalFieldFirstIndex": 6028619342668202000,
+            "conditionalFieldLastIndex": 6084642650296197000,
+            "triggeringFieldIndex": 5704642708594049000,
+            "triggeringFieldValue": "Numquam ut praesentium veritatis saepe eos."
+          },
+          {
+            "conditionalFieldFirstIndex": 6028619342668202000,
+            "conditionalFieldLastIndex": 6084642650296197000,
+            "triggeringFieldIndex": 5704642708594049000,
+            "triggeringFieldValue": "Numquam ut praesentium veritatis saepe eos."
+          }
+        ],
+        "createdAtTime": "2002-05-26T10:09:16Z",
+        "documentType": {
+          "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+          "name": "Fleet Truck List"
+        },
+        "driver": {
+          "externalIds": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          },
+          "id": "45646",
+          "name": "Driver Bob"
+        },
+        "fields": [
+          {
+            "label": "Load weight",
+            "type": "scannedDocument",
+            "value": {
+              "barcodeValue": {
+                "barcodeType": "org.gs1.EAN-13",
+                "barcodeValue": "0853883003114"
+              },
+              "dateTimeValue": {
+                "dateTime": "2012-12-01T07:41:55Z"
+              },
+              "multipleChoiceValue": {
+                "selected": false,
+                "value": "Yes"
+              },
+              "numberValue": 123,
+              "photoValue": {
+                "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+              },
+              "signatureValue": {
+                "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                "name": "John Smith",
+                "signedAtTime": "1978-04-21T01:34:42Z",
+                "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+              },
+              "stringValue": "Red Truck"
+            }
+          },
+          {
+            "label": "Load weight",
+            "type": "scannedDocument",
+            "value": {
+              "barcodeValue": {
+                "barcodeType": "org.gs1.EAN-13",
+                "barcodeValue": "0853883003114"
+              },
+              "dateTimeValue": {
+                "dateTime": "2012-12-01T07:41:55Z"
+              },
+              "multipleChoiceValue": {
+                "selected": false,
+                "value": "Yes"
+              },
+              "numberValue": 123,
+              "photoValue": {
+                "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+              },
+              "signatureValue": {
+                "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                "name": "John Smith",
+                "signedAtTime": "1978-04-21T01:34:42Z",
+                "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+              },
+              "stringValue": "Red Truck"
+            }
+          },
+          {
+            "label": "Load weight",
+            "type": "scannedDocument",
+            "value": {
+              "barcodeValue": {
+                "barcodeType": "org.gs1.EAN-13",
+                "barcodeValue": "0853883003114"
+              },
+              "dateTimeValue": {
+                "dateTime": "2012-12-01T07:41:55Z"
+              },
+              "multipleChoiceValue": {
+                "selected": false,
+                "value": "Yes"
+              },
+              "numberValue": 123,
+              "photoValue": {
+                "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+              },
+              "signatureValue": {
+                "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                "name": "John Smith",
+                "signedAtTime": "1978-04-21T01:34:42Z",
+                "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+              },
+              "stringValue": "Red Truck"
+            }
+          }
+        ],
+        "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+        "name": "Dropoff Slip 123",
+        "notes": "Missing a crate",
+        "routeStop": {
+          "externalIds": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          },
+          "id": "494123",
+          "name": "Company Warehouse #1"
+        },
+        "state": "submitted",
+        "updatedAtTime": "1977-01-03T06:42:50Z",
+        "vehicle": {
+          "externalIds": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          },
+          "id": "494123",
+          "name": "Fleet Truck #1"
         }
       }
     },
@@ -29033,6 +29810,119 @@
         }
       },
       "x-go-gen-location": "models"
+    },
+    "fieldObjectResponseBody": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "description": "The name of the field.",
+          "type": "string",
+          "example": "Load weight"
+        },
+        "type": {
+          "description": "The type of field.",
+          "type": "string",
+          "enum": [
+            "photo",
+            "string",
+            "number",
+            "multipleChoice",
+            "signature",
+            "dateTime",
+            "scannedDocument",
+            "barcode"
+          ],
+          "example": "photo"
+        },
+        "value": {
+          "$ref": "#/definitions/fieldObjectValueResponseBody"
+        }
+      },
+      "example": {
+        "label": "Load weight",
+        "type": "string",
+        "value": {
+          "barcodeValue": {
+            "barcodeType": "org.gs1.EAN-13",
+            "barcodeValue": "0853883003114"
+          },
+          "dateTimeValue": {
+            "dateTime": "2012-12-01T07:41:55Z"
+          },
+          "multipleChoiceValue": {
+            "selected": false,
+            "value": "Yes"
+          },
+          "numberValue": 123,
+          "photoValue": {
+            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+          },
+          "signatureValue": {
+            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+            "name": "John Smith",
+            "signedAtTime": "1978-04-21T01:34:42Z",
+            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+          },
+          "stringValue": "Red Truck"
+        }
+      }
+    },
+    "fieldObjectValueResponseBody": {
+      "type": "object",
+      "properties": {
+        "barcodeValue": {
+          "$ref": "#/definitions/barcodeValueObjectResponseBody"
+        },
+        "dateTimeValue": {
+          "$ref": "#/definitions/dateTimeValueObjectResponseBody"
+        },
+        "multipleChoiceValue": {
+          "$ref": "#/definitions/multipleChoiceValueObjectResponseBody"
+        },
+        "numberValue": {
+          "description": "The value of a number field. Only present for number fields.",
+          "type": "integer",
+          "format": "int64",
+          "example": 123
+        },
+        "photoValue": {
+          "$ref": "#/definitions/photoValueObjectResponseBody"
+        },
+        "signatureValue": {
+          "$ref": "#/definitions/signatureValueObjectResponseBody"
+        },
+        "stringValue": {
+          "description": "The value of a string field. Only present for string fields.",
+          "type": "string",
+          "example": "Red Truck"
+        }
+      },
+      "example": {
+        "barcodeValue": {
+          "barcodeType": "org.gs1.EAN-13",
+          "barcodeValue": "0853883003114"
+        },
+        "dateTimeValue": {
+          "dateTime": "2012-12-01T07:41:55Z"
+        },
+        "multipleChoiceValue": {
+          "selected": false,
+          "value": "Yes"
+        },
+        "numberValue": 123,
+        "photoValue": {
+          "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+          "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+        },
+        "signatureValue": {
+          "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+          "name": "John Smith",
+          "signedAtTime": "1978-04-21T01:34:42Z",
+          "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+        },
+        "stringValue": "Red Truck"
+      }
     },
     "fieldTypesObjectResponseBody": {
       "type": "object",
@@ -29367,6 +30257,25 @@
         "label": "Omnis fuga voluptas."
       }
     },
+    "multipleChoiceValueObjectResponseBody": {
+      "type": "object",
+      "properties": {
+        "selected": {
+          "description": "Boolean representing if the choice has been selected.",
+          "type": "boolean",
+          "example": false
+        },
+        "value": {
+          "description": "Description of the choice.",
+          "type": "string",
+          "example": "Yes"
+        }
+      },
+      "example": {
+        "selected": false,
+        "value": "Yes"
+      }
+    },
     "numberFieldTypeMetaDataObjectResponseBody": {
       "type": "object",
       "properties": {
@@ -29400,6 +30309,25 @@
           "type": "boolean",
           "example": true
         }
+      }
+    },
+    "photoValueObjectResponseBody": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Id of the photo.",
+          "type": "string",
+          "example": "f5271458-21f9-4a9f-a290-780c6d8840ff"
+        },
+        "url": {
+          "description": "Url of the photo.",
+          "type": "string",
+          "example": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+        }
+      },
+      "example": {
+        "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+        "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
       }
     },
     "routeTinyResponse": {
@@ -29445,6 +30373,38 @@
       },
       "example": {
         "legalText": "Labore odio tenetur nemo."
+      }
+    },
+    "signatureValueObjectResponseBody": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Id of the signature field.",
+          "type": "string",
+          "example": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7"
+        },
+        "name": {
+          "description": "Name of the signee for a signature field.",
+          "type": "string",
+          "example": "John Smith"
+        },
+        "signedAtTime": {
+          "description": "Time the signature was captured in RFC 3339 format.",
+          "type": "string",
+          "format": "date-time",
+          "example": "1970-10-20T13:13:55Z"
+        },
+        "url": {
+          "description": "Url of a signature field's PNG signature image.",
+          "type": "string",
+          "example": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+        }
+      },
+      "example": {
+        "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+        "name": "John Smith",
+        "signedAtTime": "1990-12-22T16:21:38Z",
+        "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
       }
     },
     "standardErrorResponse": {
