@@ -12600,6 +12600,10 @@
     },
     "DocumentTypesGetDocumentTypesResponseBody": {
       "type": "object",
+      "required": [
+        "data",
+        "pagination"
+      ],
       "properties": {
         "data": {
           "description": "List of all document types for the organization",
@@ -12665,7 +12669,7 @@
           ]
         },
         "pagination": {
-          "$ref": "#/definitions/getDocumentTypesResponsePaginationObjectResponseBody"
+          "$ref": "#/definitions/GoaPaginationResponseResponseBody"
         }
       },
       "example": {
@@ -30226,23 +30230,6 @@
         "id": "Molestias error.",
         "name": "Voluptatum omnis.",
         "orgId": 1974407181164274200
-      }
-    },
-    "getDocumentTypesResponsePaginationObjectResponseBody": {
-      "type": "object",
-      "properties": {
-        "endCursor": {
-          "type": "string",
-          "example": "MjkY"
-        },
-        "hasNextPage": {
-          "type": "boolean",
-          "example": true
-        }
-      },
-      "example": {
-        "endCursor": "MjkY",
-        "hasNextPage": true
       }
     },
     "hosStatusType": {
