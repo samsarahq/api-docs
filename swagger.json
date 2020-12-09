@@ -1386,7 +1386,7 @@
     },
     "/fleet/drivers/vehicle-assignments": {
       "get": {
-        "description": "Get all driver assignments for the requested vehicles in the requested time range.",
+        "description": "Get all driver assignments for the requested vehicles in the requested time range. The only type of assignment supported right now are assignments created through the driver app.",
         "schemes": [
           "https"
         ],
@@ -4628,7 +4628,7 @@
     },
     "/fleet/vehicles/driver-assignments": {
       "get": {
-        "description": "Get all vehicle assignments for the requested drivers in the requested time range.",
+        "description": "Get all vehicle assignments for the requested drivers in the requested time range. The only type of assignment supported right now are assignments created through the driver app.",
         "schemes": [
           "https"
         ],
@@ -12964,7 +12964,7 @@
       "type": "object",
       "properties": {
         "assignmentType": {
-          "description": "Assignment type of the driver-vehicle assignment, indicating the provenance of the assignment. This list could change, so it is recommended that clients gracefully handle any types not enumerated in this list.",
+          "description": "Assignment type of the driver-vehicle assignment, indicating the provenance of the assignment. The only type of assignment supported right now is `driverApp` assignments. This list could change, so it is recommended that clients gracefully handle any types not enumerated in this list.",
           "type": "string",
           "enum": [
             "driverApp"
@@ -25235,7 +25235,7 @@
       ],
       "properties": {
         "assignmentType": {
-          "description": "Assignment type of the driver-vehicle assignment, indicating the provenance of the assignment. This list could change, so it is recommended that clients gracefully handle any types not enumerated in this list.",
+          "description": "Assignment type of the driver-vehicle assignment, indicating the provenance of the assignment. The only type of assignment supported right now is `driverApp` assignments. This list could change, so it is recommended that clients gracefully handle any types not enumerated in this list.",
           "type": "string",
           "enum": [
             "driverApp"
