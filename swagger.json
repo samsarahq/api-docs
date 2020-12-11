@@ -3527,6 +3527,246 @@
         }
       }
     },
+    "/fleet/trailers": {
+      "get": {
+        "description": "[beta] List all trailers.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Beta APIs"
+        ],
+        "summary": "[beta] List all trailers.",
+        "operationId": "listTrailers",
+        "parameters": [
+          {
+            "type": "string",
+            "description": " A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+            "name": "tagIds",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": " A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+            "name": "parentTagIds",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "maximum": 512,
+            "minimum": 1,
+            "type": "integer",
+            "default": 512,
+            "description": "The limit for how many objects will be in the response.",
+            "name": "limit",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersListTrailersResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "data": [
+                  {
+                    "enabledForMobile": true,
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "494123",
+                    "installedGateway": {
+                      "model": "VG34",
+                      "serial": "GFRV-43N-VGX"
+                    },
+                    "licensePlate": "7TYP290",
+                    "name": "Trailer-123",
+                    "notes": "These are my trailer notes",
+                    "tags": [
+                      {
+                        "id": "3914",
+                        "name": "East Coast",
+                        "parentTagId": "4815"
+                      },
+                      {
+                        "id": "3914",
+                        "name": "East Coast",
+                        "parentTagId": "4815"
+                      },
+                      {
+                        "id": "3914",
+                        "name": "East Coast",
+                        "parentTagId": "4815"
+                      }
+                    ],
+                    "trailerSerialNumber": "8V8WD530FLN016251"
+                  },
+                  {
+                    "enabledForMobile": true,
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "494123",
+                    "installedGateway": {
+                      "model": "VG34",
+                      "serial": "GFRV-43N-VGX"
+                    },
+                    "licensePlate": "7TYP290",
+                    "name": "Trailer-123",
+                    "notes": "These are my trailer notes",
+                    "tags": [
+                      {
+                        "id": "3914",
+                        "name": "East Coast",
+                        "parentTagId": "4815"
+                      },
+                      {
+                        "id": "3914",
+                        "name": "East Coast",
+                        "parentTagId": "4815"
+                      },
+                      {
+                        "id": "3914",
+                        "name": "East Coast",
+                        "parentTagId": "4815"
+                      }
+                    ],
+                    "trailerSerialNumber": "8V8WD530FLN016251"
+                  },
+                  {
+                    "enabledForMobile": true,
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "494123",
+                    "installedGateway": {
+                      "model": "VG34",
+                      "serial": "GFRV-43N-VGX"
+                    },
+                    "licensePlate": "7TYP290",
+                    "name": "Trailer-123",
+                    "notes": "These are my trailer notes",
+                    "tags": [
+                      {
+                        "id": "3914",
+                        "name": "East Coast",
+                        "parentTagId": "4815"
+                      },
+                      {
+                        "id": "3914",
+                        "name": "East Coast",
+                        "parentTagId": "4815"
+                      },
+                      {
+                        "id": "3914",
+                        "name": "East Coast",
+                        "parentTagId": "4815"
+                      }
+                    ],
+                    "trailerSerialNumber": "8V8WD530FLN016251"
+                  },
+                  {
+                    "enabledForMobile": true,
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "494123",
+                    "installedGateway": {
+                      "model": "VG34",
+                      "serial": "GFRV-43N-VGX"
+                    },
+                    "licensePlate": "7TYP290",
+                    "name": "Trailer-123",
+                    "notes": "These are my trailer notes",
+                    "tags": [
+                      {
+                        "id": "3914",
+                        "name": "East Coast",
+                        "parentTagId": "4815"
+                      },
+                      {
+                        "id": "3914",
+                        "name": "East Coast",
+                        "parentTagId": "4815"
+                      },
+                      {
+                        "id": "3914",
+                        "name": "East Coast",
+                        "parentTagId": "4815"
+                      }
+                    ],
+                    "trailerSerialNumber": "8V8WD530FLN016251"
+                  }
+                ],
+                "pagination": {
+                  "endCursor": "MjkY",
+                  "hasNextPage": true
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersListTrailersNotFoundResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Object not found.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersListTrailersInternalErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Failed to execute GraphQL query.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersListTrailersNotImplementedResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Not implemented.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersListTrailersBadRequestResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Invalid value for parameter.",
+                "requestId": "8916e1c1"
+              }
+            }
+          }
+        }
+      }
+    },
     "/fleet/vehicles": {
       "get": {
         "description": "Returns a list of all vehicles.",
@@ -8597,25 +8837,19 @@
                 "data": {
                   "conditionalFieldSections": [
                     {
-                      "conditionalFieldFirstIndex": 4183211541072084000,
-                      "conditionalFieldLastIndex": 8537324634275340000,
-                      "triggeringFieldIndex": 1988765416939699000,
-                      "triggeringFieldValue": "Sapiente incidunt aut excepturi dolore quam."
+                      "conditionalFieldFirstIndex": 8206250838582204000,
+                      "conditionalFieldLastIndex": 4308892717982422500,
+                      "triggeringFieldIndex": 8229187897244601000,
+                      "triggeringFieldValue": "Facilis quisquam laudantium."
                     },
                     {
-                      "conditionalFieldFirstIndex": 4183211541072084000,
-                      "conditionalFieldLastIndex": 8537324634275340000,
-                      "triggeringFieldIndex": 1988765416939699000,
-                      "triggeringFieldValue": "Sapiente incidunt aut excepturi dolore quam."
-                    },
-                    {
-                      "conditionalFieldFirstIndex": 4183211541072084000,
-                      "conditionalFieldLastIndex": 8537324634275340000,
-                      "triggeringFieldIndex": 1988765416939699000,
-                      "triggeringFieldValue": "Sapiente incidunt aut excepturi dolore quam."
+                      "conditionalFieldFirstIndex": 8206250838582204000,
+                      "conditionalFieldLastIndex": 4308892717982422500,
+                      "triggeringFieldIndex": 8229187897244601000,
+                      "triggeringFieldValue": "Facilis quisquam laudantium."
                     }
                   ],
-                  "createdAtTime": "2015-04-08T09:51:03Z",
+                  "createdAtTime": "2010-07-10T14:19:09Z",
                   "documentType": {
                     "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
                     "name": "Fleet Truck List"
@@ -8631,14 +8865,14 @@
                   "fields": [
                     {
                       "label": "Load weight",
-                      "type": "barcode",
+                      "type": "string",
                       "value": {
                         "barcodeValue": {
                           "barcodeType": "org.gs1.EAN-13",
                           "barcodeValue": "0853883003114"
                         },
                         "dateTimeValue": {
-                          "dateTime": "1980-05-23T21:51:34Z"
+                          "dateTime": "1996-02-21T06:57:25Z"
                         },
                         "multipleChoiceValue": {
                           "selected": false,
@@ -8652,7 +8886,7 @@
                         "signatureValue": {
                           "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
                           "name": "John Smith",
-                          "signedAtTime": "2014-04-18T01:15:32Z",
+                          "signedAtTime": "2010-10-09T04:06:42Z",
                           "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
                         },
                         "stringValue": "Red Truck"
@@ -8660,14 +8894,14 @@
                     },
                     {
                       "label": "Load weight",
-                      "type": "barcode",
+                      "type": "string",
                       "value": {
                         "barcodeValue": {
                           "barcodeType": "org.gs1.EAN-13",
                           "barcodeValue": "0853883003114"
                         },
                         "dateTimeValue": {
-                          "dateTime": "1980-05-23T21:51:34Z"
+                          "dateTime": "1996-02-21T06:57:25Z"
                         },
                         "multipleChoiceValue": {
                           "selected": false,
@@ -8681,7 +8915,7 @@
                         "signatureValue": {
                           "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
                           "name": "John Smith",
-                          "signedAtTime": "2014-04-18T01:15:32Z",
+                          "signedAtTime": "2010-10-09T04:06:42Z",
                           "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
                         },
                         "stringValue": "Red Truck"
@@ -8699,8 +8933,8 @@
                     "id": "494123",
                     "name": "Company Warehouse #1"
                   },
-                  "state": "submitted",
-                  "updatedAtTime": "1991-04-23T15:05:50Z",
+                  "state": "required",
+                  "updatedAtTime": "2011-12-19T11:29:57Z",
                   "vehicle": {
                     "externalIds": {
                       "maintenanceId": "250020",
@@ -12662,25 +12896,19 @@
         "data": {
           "conditionalFieldSections": [
             {
-              "conditionalFieldFirstIndex": 4183211541072084000,
-              "conditionalFieldLastIndex": 8537324634275340000,
-              "triggeringFieldIndex": 1988765416939699000,
-              "triggeringFieldValue": "Sapiente incidunt aut excepturi dolore quam."
+              "conditionalFieldFirstIndex": 8206250838582204000,
+              "conditionalFieldLastIndex": 4308892717982422500,
+              "triggeringFieldIndex": 8229187897244601000,
+              "triggeringFieldValue": "Facilis quisquam laudantium."
             },
             {
-              "conditionalFieldFirstIndex": 4183211541072084000,
-              "conditionalFieldLastIndex": 8537324634275340000,
-              "triggeringFieldIndex": 1988765416939699000,
-              "triggeringFieldValue": "Sapiente incidunt aut excepturi dolore quam."
-            },
-            {
-              "conditionalFieldFirstIndex": 4183211541072084000,
-              "conditionalFieldLastIndex": 8537324634275340000,
-              "triggeringFieldIndex": 1988765416939699000,
-              "triggeringFieldValue": "Sapiente incidunt aut excepturi dolore quam."
+              "conditionalFieldFirstIndex": 8206250838582204000,
+              "conditionalFieldLastIndex": 4308892717982422500,
+              "triggeringFieldIndex": 8229187897244601000,
+              "triggeringFieldValue": "Facilis quisquam laudantium."
             }
           ],
-          "createdAtTime": "2015-04-08T09:51:03Z",
+          "createdAtTime": "2010-07-10T14:19:09Z",
           "documentType": {
             "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
             "name": "Fleet Truck List"
@@ -12696,14 +12924,14 @@
           "fields": [
             {
               "label": "Load weight",
-              "type": "barcode",
+              "type": "string",
               "value": {
                 "barcodeValue": {
                   "barcodeType": "org.gs1.EAN-13",
                   "barcodeValue": "0853883003114"
                 },
                 "dateTimeValue": {
-                  "dateTime": "1980-05-23T21:51:34Z"
+                  "dateTime": "1996-02-21T06:57:25Z"
                 },
                 "multipleChoiceValue": {
                   "selected": false,
@@ -12717,7 +12945,7 @@
                 "signatureValue": {
                   "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
                   "name": "John Smith",
-                  "signedAtTime": "2014-04-18T01:15:32Z",
+                  "signedAtTime": "2010-10-09T04:06:42Z",
                   "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
                 },
                 "stringValue": "Red Truck"
@@ -12725,14 +12953,14 @@
             },
             {
               "label": "Load weight",
-              "type": "barcode",
+              "type": "string",
               "value": {
                 "barcodeValue": {
                   "barcodeType": "org.gs1.EAN-13",
                   "barcodeValue": "0853883003114"
                 },
                 "dateTimeValue": {
-                  "dateTime": "1980-05-23T21:51:34Z"
+                  "dateTime": "1996-02-21T06:57:25Z"
                 },
                 "multipleChoiceValue": {
                   "selected": false,
@@ -12746,7 +12974,7 @@
                 "signatureValue": {
                   "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
                   "name": "John Smith",
-                  "signedAtTime": "2014-04-18T01:15:32Z",
+                  "signedAtTime": "2010-10-09T04:06:42Z",
                   "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
                 },
                 "stringValue": "Red Truck"
@@ -12764,8 +12992,8 @@
             "id": "494123",
             "name": "Company Warehouse #1"
           },
-          "state": "submitted",
-          "updatedAtTime": "1991-04-23T15:05:50Z",
+          "state": "required",
+          "updatedAtTime": "2011-12-19T11:29:57Z",
           "vehicle": {
             "externalIds": {
               "maintenanceId": "250020",
@@ -15317,6 +15545,30 @@
         },
         "id": "45646",
         "name": "Driver Bob"
+      }
+    },
+    "GoaGatewayTinyResponseResponseBody": {
+      "description": "A minified gateway object",
+      "type": "object",
+      "required": [
+        "serial",
+        "model"
+      ],
+      "properties": {
+        "model": {
+          "description": "The model of the gateway installed on the asset.",
+          "type": "string",
+          "example": "VG34"
+        },
+        "serial": {
+          "description": "The serial number of the gateway installed on the asset.",
+          "type": "string",
+          "example": "GFRV-43N-VGX"
+        }
+      },
+      "example": {
+        "model": "VG34",
+        "serial": "GFRV-43N-VGX"
       }
     },
     "GoaPaginationResponseResponseBody": {
@@ -18977,6 +19229,486 @@
         },
         "parentTagId": {
           "$ref": "#/definitions/ParentTagId"
+        }
+      }
+    },
+    "TrailerResponseObjectResponseBody": {
+      "description": "TrailerResponseObjectResponseBody result type (default view)",
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "enabledForMobile": {
+          "description": "Indicates if the trailer is visible on the Samsara mobile apps.",
+          "type": "boolean",
+          "example": true
+        },
+        "externalIds": {
+          "description": "A map of external ids",
+          "type": "object",
+          "additionalProperties": true,
+          "example": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          }
+        },
+        "id": {
+          "description": "The unique Samsara ID of the Trailer. This is automatically generated when the Trailer object is created. It cannot be changed.",
+          "type": "string",
+          "example": "494123"
+        },
+        "installedGateway": {
+          "$ref": "#/definitions/GoaGatewayTinyResponseResponseBody"
+        },
+        "licensePlate": {
+          "description": "The license plate of the Trailer. **By default**: empty. Can be set or updated through the Samsara Dashboard or the API at any time.",
+          "type": "string",
+          "maxLength": 12,
+          "example": "7TYP290"
+        },
+        "name": {
+          "description": "The human-readable name of the Trailer. This is set by a fleet administrator and will appear in both Samsara’s cloud dashboard as well as the Samsara Driver mobile app. By default, this name is the serial number of the Samsara Asset Gateway. It can be set or updated through the Samsara Dashboard or through the API at any time.",
+          "type": "string",
+          "example": "Trailer-123"
+        },
+        "notes": {
+          "description": "These are generic notes about the Trailer. Empty by default. Can be set or updated through the Samsara Dashboard or the API at any time.",
+          "type": "string",
+          "default": "",
+          "maxLength": 255,
+          "example": "These are my trailer notes"
+        },
+        "tags": {
+          "description": "The list of [tags](https://kb.samsara.com/hc/en-us/articles/360026674631-Using-Tags-and-Tag-Nesting) associated with the Vehicle. **By default**: empty. Can be set or updated through the Samsara Dashboard or the API at any time.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GoaTagTinyResponseResponseBody"
+          },
+          "example": [
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            }
+          ]
+        },
+        "trailerSerialNumber": {
+          "description": "The serial number of the trailer.",
+          "type": "string",
+          "example": "8V8WD530FLN016251"
+        }
+      },
+      "example": {
+        "enabledForMobile": true,
+        "externalIds": {
+          "maintenanceId": "250020",
+          "payrollId": "ABFS18600"
+        },
+        "id": "494123",
+        "installedGateway": {
+          "model": "VG34",
+          "serial": "GFRV-43N-VGX"
+        },
+        "licensePlate": "7TYP290",
+        "name": "Trailer-123",
+        "notes": "These are my trailer notes",
+        "tags": [
+          {
+            "id": "3914",
+            "name": "East Coast",
+            "parentTagId": "4815"
+          },
+          {
+            "id": "3914",
+            "name": "East Coast",
+            "parentTagId": "4815"
+          }
+        ],
+        "trailerSerialNumber": "8V8WD530FLN016251"
+      }
+    },
+    "TrailerResponseObjectResponseBodyCollection": {
+      "description": "TrailerResponseObjectCollectionResponseBody is the result type for an array of TrailerResponseObjectResponseBody (default view)",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/TrailerResponseObjectResponseBody"
+      },
+      "example": [
+        {
+          "enabledForMobile": true,
+          "externalIds": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          },
+          "id": "494123",
+          "installedGateway": {
+            "model": "VG34",
+            "serial": "GFRV-43N-VGX"
+          },
+          "licensePlate": "7TYP290",
+          "name": "Trailer-123",
+          "notes": "These are my trailer notes",
+          "tags": [
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            }
+          ],
+          "trailerSerialNumber": "8V8WD530FLN016251"
+        },
+        {
+          "enabledForMobile": true,
+          "externalIds": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          },
+          "id": "494123",
+          "installedGateway": {
+            "model": "VG34",
+            "serial": "GFRV-43N-VGX"
+          },
+          "licensePlate": "7TYP290",
+          "name": "Trailer-123",
+          "notes": "These are my trailer notes",
+          "tags": [
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            }
+          ],
+          "trailerSerialNumber": "8V8WD530FLN016251"
+        },
+        {
+          "enabledForMobile": true,
+          "externalIds": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          },
+          "id": "494123",
+          "installedGateway": {
+            "model": "VG34",
+            "serial": "GFRV-43N-VGX"
+          },
+          "licensePlate": "7TYP290",
+          "name": "Trailer-123",
+          "notes": "These are my trailer notes",
+          "tags": [
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            }
+          ],
+          "trailerSerialNumber": "8V8WD530FLN016251"
+        }
+      ]
+    },
+    "TrailersListTrailersBadRequestResponseBody": {
+      "description": "Bad request parameters",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid value for parameter."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Invalid value for parameter.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersListTrailersInternalErrorResponseBody": {
+      "description": "An internal server error occurred",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Failed to execute GraphQL query."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Failed to execute GraphQL query.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersListTrailersNotFoundResponseBody": {
+      "description": "Resource not found",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Object not found."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Object not found.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersListTrailersNotImplementedResponseBody": {
+      "description": "Endpoint is not yet implemented",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Not implemented."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Not implemented.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersListTrailersResponseBody": {
+      "type": "object",
+      "required": [
+        "data",
+        "pagination"
+      ],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/TrailerResponseObjectResponseBodyCollection"
+        },
+        "pagination": {
+          "$ref": "#/definitions/GoaPaginationResponseResponseBody"
+        }
+      },
+      "example": {
+        "data": [
+          {
+            "enabledForMobile": true,
+            "externalIds": {
+              "maintenanceId": "250020",
+              "payrollId": "ABFS18600"
+            },
+            "id": "494123",
+            "installedGateway": {
+              "model": "VG34",
+              "serial": "GFRV-43N-VGX"
+            },
+            "licensePlate": "7TYP290",
+            "name": "Trailer-123",
+            "notes": "These are my trailer notes",
+            "tags": [
+              {
+                "id": "3914",
+                "name": "East Coast",
+                "parentTagId": "4815"
+              },
+              {
+                "id": "3914",
+                "name": "East Coast",
+                "parentTagId": "4815"
+              },
+              {
+                "id": "3914",
+                "name": "East Coast",
+                "parentTagId": "4815"
+              }
+            ],
+            "trailerSerialNumber": "8V8WD530FLN016251"
+          },
+          {
+            "enabledForMobile": true,
+            "externalIds": {
+              "maintenanceId": "250020",
+              "payrollId": "ABFS18600"
+            },
+            "id": "494123",
+            "installedGateway": {
+              "model": "VG34",
+              "serial": "GFRV-43N-VGX"
+            },
+            "licensePlate": "7TYP290",
+            "name": "Trailer-123",
+            "notes": "These are my trailer notes",
+            "tags": [
+              {
+                "id": "3914",
+                "name": "East Coast",
+                "parentTagId": "4815"
+              },
+              {
+                "id": "3914",
+                "name": "East Coast",
+                "parentTagId": "4815"
+              },
+              {
+                "id": "3914",
+                "name": "East Coast",
+                "parentTagId": "4815"
+              }
+            ],
+            "trailerSerialNumber": "8V8WD530FLN016251"
+          },
+          {
+            "enabledForMobile": true,
+            "externalIds": {
+              "maintenanceId": "250020",
+              "payrollId": "ABFS18600"
+            },
+            "id": "494123",
+            "installedGateway": {
+              "model": "VG34",
+              "serial": "GFRV-43N-VGX"
+            },
+            "licensePlate": "7TYP290",
+            "name": "Trailer-123",
+            "notes": "These are my trailer notes",
+            "tags": [
+              {
+                "id": "3914",
+                "name": "East Coast",
+                "parentTagId": "4815"
+              },
+              {
+                "id": "3914",
+                "name": "East Coast",
+                "parentTagId": "4815"
+              },
+              {
+                "id": "3914",
+                "name": "East Coast",
+                "parentTagId": "4815"
+              }
+            ],
+            "trailerSerialNumber": "8V8WD530FLN016251"
+          },
+          {
+            "enabledForMobile": true,
+            "externalIds": {
+              "maintenanceId": "250020",
+              "payrollId": "ABFS18600"
+            },
+            "id": "494123",
+            "installedGateway": {
+              "model": "VG34",
+              "serial": "GFRV-43N-VGX"
+            },
+            "licensePlate": "7TYP290",
+            "name": "Trailer-123",
+            "notes": "These are my trailer notes",
+            "tags": [
+              {
+                "id": "3914",
+                "name": "East Coast",
+                "parentTagId": "4815"
+              },
+              {
+                "id": "3914",
+                "name": "East Coast",
+                "parentTagId": "4815"
+              },
+              {
+                "id": "3914",
+                "name": "East Coast",
+                "parentTagId": "4815"
+              }
+            ],
+            "trailerSerialNumber": "8V8WD530FLN016251"
+          }
+        ],
+        "pagination": {
+          "endCursor": "MjkY",
+          "hasNextPage": true
         }
       }
     },
@@ -28812,31 +29544,31 @@
           "description": "The index of the first conditional field associated with the triggeringFieldValue in the fieldTypes list.",
           "type": "integer",
           "format": "int64",
-          "example": 6795956238644624000
+          "example": 956237210080358500
         },
         "conditionalFieldLastIndex": {
           "description": "The index of the last conditional field associated with the triggeringFieldValue in the fieldTypes list.",
           "type": "integer",
           "format": "int64",
-          "example": 5142172346615362000
+          "example": 3279029184186765000
         },
         "triggeringFieldIndex": {
           "description": "The index of the multiple choice field in the fieldTypes list that triggers one or more conditional fields.",
           "type": "integer",
           "format": "int64",
-          "example": 62514956679877740
+          "example": 6730089034837532000
         },
         "triggeringFieldValue": {
           "description": "The multiple choice option value that triggers the conditional fields.",
           "type": "string",
-          "example": "Officiis omnis enim mollitia quasi."
+          "example": "Quia reprehenderit pariatur nam et quis dolores."
         }
       },
       "example": {
-        "conditionalFieldFirstIndex": 5124676120240638000,
-        "conditionalFieldLastIndex": 956237210080358500,
-        "triggeringFieldIndex": 389488684161994300,
-        "triggeringFieldValue": "Nam et quis."
+        "conditionalFieldFirstIndex": 4183211541072084000,
+        "conditionalFieldLastIndex": 8537324634275340000,
+        "triggeringFieldIndex": 1988765416939699000,
+        "triggeringFieldValue": "Sapiente incidunt aut excepturi dolore quam."
       }
     },
     "contactTinyResponse": {
@@ -28867,11 +29599,11 @@
           "description": "Date time value inin RFC 3339 format.",
           "type": "string",
           "format": "date-time",
-          "example": "2007-10-08T03:34:24Z"
+          "example": "1995-09-17T19:16:28Z"
         }
       },
       "example": {
-        "dateTime": "1998-01-15T17:31:36Z"
+        "dateTime": "1971-03-19T21:11:19Z"
       }
     },
     "documentResponseObjectResponseBody": {
@@ -28893,28 +29625,28 @@
           },
           "example": [
             {
-              "conditionalFieldFirstIndex": 4183211541072084000,
-              "conditionalFieldLastIndex": 8537324634275340000,
-              "triggeringFieldIndex": 1988765416939699000,
-              "triggeringFieldValue": "Sapiente incidunt aut excepturi dolore quam."
+              "conditionalFieldFirstIndex": 8206250838582204000,
+              "conditionalFieldLastIndex": 4308892717982422500,
+              "triggeringFieldIndex": 8229187897244601000,
+              "triggeringFieldValue": "Facilis quisquam laudantium."
             },
             {
-              "conditionalFieldFirstIndex": 4183211541072084000,
-              "conditionalFieldLastIndex": 8537324634275340000,
-              "triggeringFieldIndex": 1988765416939699000,
-              "triggeringFieldValue": "Sapiente incidunt aut excepturi dolore quam."
+              "conditionalFieldFirstIndex": 8206250838582204000,
+              "conditionalFieldLastIndex": 4308892717982422500,
+              "triggeringFieldIndex": 8229187897244601000,
+              "triggeringFieldValue": "Facilis quisquam laudantium."
             },
             {
-              "conditionalFieldFirstIndex": 4183211541072084000,
-              "conditionalFieldLastIndex": 8537324634275340000,
-              "triggeringFieldIndex": 1988765416939699000,
-              "triggeringFieldValue": "Sapiente incidunt aut excepturi dolore quam."
+              "conditionalFieldFirstIndex": 8206250838582204000,
+              "conditionalFieldLastIndex": 4308892717982422500,
+              "triggeringFieldIndex": 8229187897244601000,
+              "triggeringFieldValue": "Facilis quisquam laudantium."
             },
             {
-              "conditionalFieldFirstIndex": 4183211541072084000,
-              "conditionalFieldLastIndex": 8537324634275340000,
-              "triggeringFieldIndex": 1988765416939699000,
-              "triggeringFieldValue": "Sapiente incidunt aut excepturi dolore quam."
+              "conditionalFieldFirstIndex": 8206250838582204000,
+              "conditionalFieldLastIndex": 4308892717982422500,
+              "triggeringFieldIndex": 8229187897244601000,
+              "triggeringFieldValue": "Facilis quisquam laudantium."
             }
           ]
         },
@@ -28922,7 +29654,7 @@
           "description": "Time the document was created in RFC 3339 format.",
           "type": "string",
           "format": "date-time",
-          "example": "1990-04-26T04:53:57Z"
+          "example": "1986-07-02T08:34:35Z"
         },
         "documentType": {
           "$ref": "#/definitions/GoaDocumentTypeTinyResponseResponseBody"
@@ -28939,14 +29671,14 @@
           "example": [
             {
               "label": "Load weight",
-              "type": "barcode",
+              "type": "string",
               "value": {
                 "barcodeValue": {
                   "barcodeType": "org.gs1.EAN-13",
                   "barcodeValue": "0853883003114"
                 },
                 "dateTimeValue": {
-                  "dateTime": "1980-05-23T21:51:34Z"
+                  "dateTime": "1996-02-21T06:57:25Z"
                 },
                 "multipleChoiceValue": {
                   "selected": false,
@@ -28960,7 +29692,7 @@
                 "signatureValue": {
                   "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
                   "name": "John Smith",
-                  "signedAtTime": "2014-04-18T01:15:32Z",
+                  "signedAtTime": "2010-10-09T04:06:42Z",
                   "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
                 },
                 "stringValue": "Red Truck"
@@ -28968,14 +29700,14 @@
             },
             {
               "label": "Load weight",
-              "type": "barcode",
+              "type": "string",
               "value": {
                 "barcodeValue": {
                   "barcodeType": "org.gs1.EAN-13",
                   "barcodeValue": "0853883003114"
                 },
                 "dateTimeValue": {
-                  "dateTime": "1980-05-23T21:51:34Z"
+                  "dateTime": "1996-02-21T06:57:25Z"
                 },
                 "multipleChoiceValue": {
                   "selected": false,
@@ -28989,7 +29721,7 @@
                 "signatureValue": {
                   "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
                   "name": "John Smith",
-                  "signedAtTime": "2014-04-18T01:15:32Z",
+                  "signedAtTime": "2010-10-09T04:06:42Z",
                   "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
                 },
                 "stringValue": "Red Truck"
@@ -28997,14 +29729,14 @@
             },
             {
               "label": "Load weight",
-              "type": "barcode",
+              "type": "string",
               "value": {
                 "barcodeValue": {
                   "barcodeType": "org.gs1.EAN-13",
                   "barcodeValue": "0853883003114"
                 },
                 "dateTimeValue": {
-                  "dateTime": "1980-05-23T21:51:34Z"
+                  "dateTime": "1996-02-21T06:57:25Z"
                 },
                 "multipleChoiceValue": {
                   "selected": false,
@@ -29018,36 +29750,7 @@
                 "signatureValue": {
                   "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
                   "name": "John Smith",
-                  "signedAtTime": "2014-04-18T01:15:32Z",
-                  "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                },
-                "stringValue": "Red Truck"
-              }
-            },
-            {
-              "label": "Load weight",
-              "type": "barcode",
-              "value": {
-                "barcodeValue": {
-                  "barcodeType": "org.gs1.EAN-13",
-                  "barcodeValue": "0853883003114"
-                },
-                "dateTimeValue": {
-                  "dateTime": "1980-05-23T21:51:34Z"
-                },
-                "multipleChoiceValue": {
-                  "selected": false,
-                  "value": "Yes"
-                },
-                "numberValue": 123,
-                "photoValue": {
-                  "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                  "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                },
-                "signatureValue": {
-                  "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                  "name": "John Smith",
-                  "signedAtTime": "2014-04-18T01:15:32Z",
+                  "signedAtTime": "2010-10-09T04:06:42Z",
                   "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
                 },
                 "stringValue": "Red Truck"
@@ -29081,13 +29784,13 @@
             "required",
             "archived"
           ],
-          "example": "archived"
+          "example": "required"
         },
         "updatedAtTime": {
           "description": "Time the document was updated in RFC 3339 format.",
           "type": "string",
           "format": "date-time",
-          "example": "1995-02-28T12:52:56Z"
+          "example": "1998-06-03T07:37:04Z"
         },
         "vehicle": {
           "$ref": "#/definitions/GoaVehicleTinyResponseResponseBody"
@@ -29096,25 +29799,31 @@
       "example": {
         "conditionalFieldSections": [
           {
-            "conditionalFieldFirstIndex": 4183211541072084000,
-            "conditionalFieldLastIndex": 8537324634275340000,
-            "triggeringFieldIndex": 1988765416939699000,
-            "triggeringFieldValue": "Sapiente incidunt aut excepturi dolore quam."
+            "conditionalFieldFirstIndex": 8206250838582204000,
+            "conditionalFieldLastIndex": 4308892717982422500,
+            "triggeringFieldIndex": 8229187897244601000,
+            "triggeringFieldValue": "Facilis quisquam laudantium."
           },
           {
-            "conditionalFieldFirstIndex": 4183211541072084000,
-            "conditionalFieldLastIndex": 8537324634275340000,
-            "triggeringFieldIndex": 1988765416939699000,
-            "triggeringFieldValue": "Sapiente incidunt aut excepturi dolore quam."
+            "conditionalFieldFirstIndex": 8206250838582204000,
+            "conditionalFieldLastIndex": 4308892717982422500,
+            "triggeringFieldIndex": 8229187897244601000,
+            "triggeringFieldValue": "Facilis quisquam laudantium."
           },
           {
-            "conditionalFieldFirstIndex": 4183211541072084000,
-            "conditionalFieldLastIndex": 8537324634275340000,
-            "triggeringFieldIndex": 1988765416939699000,
-            "triggeringFieldValue": "Sapiente incidunt aut excepturi dolore quam."
+            "conditionalFieldFirstIndex": 8206250838582204000,
+            "conditionalFieldLastIndex": 4308892717982422500,
+            "triggeringFieldIndex": 8229187897244601000,
+            "triggeringFieldValue": "Facilis quisquam laudantium."
+          },
+          {
+            "conditionalFieldFirstIndex": 8206250838582204000,
+            "conditionalFieldLastIndex": 4308892717982422500,
+            "triggeringFieldIndex": 8229187897244601000,
+            "triggeringFieldValue": "Facilis quisquam laudantium."
           }
         ],
-        "createdAtTime": "1975-01-19T04:28:19Z",
+        "createdAtTime": "2004-04-30T17:24:53Z",
         "documentType": {
           "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
           "name": "Fleet Truck List"
@@ -29130,14 +29839,14 @@
         "fields": [
           {
             "label": "Load weight",
-            "type": "barcode",
+            "type": "string",
             "value": {
               "barcodeValue": {
                 "barcodeType": "org.gs1.EAN-13",
                 "barcodeValue": "0853883003114"
               },
               "dateTimeValue": {
-                "dateTime": "1980-05-23T21:51:34Z"
+                "dateTime": "1996-02-21T06:57:25Z"
               },
               "multipleChoiceValue": {
                 "selected": false,
@@ -29151,7 +29860,7 @@
               "signatureValue": {
                 "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
                 "name": "John Smith",
-                "signedAtTime": "2014-04-18T01:15:32Z",
+                "signedAtTime": "2010-10-09T04:06:42Z",
                 "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
               },
               "stringValue": "Red Truck"
@@ -29159,14 +29868,14 @@
           },
           {
             "label": "Load weight",
-            "type": "barcode",
+            "type": "string",
             "value": {
               "barcodeValue": {
                 "barcodeType": "org.gs1.EAN-13",
                 "barcodeValue": "0853883003114"
               },
               "dateTimeValue": {
-                "dateTime": "1980-05-23T21:51:34Z"
+                "dateTime": "1996-02-21T06:57:25Z"
               },
               "multipleChoiceValue": {
                 "selected": false,
@@ -29180,65 +29889,7 @@
               "signatureValue": {
                 "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
                 "name": "John Smith",
-                "signedAtTime": "2014-04-18T01:15:32Z",
-                "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-              },
-              "stringValue": "Red Truck"
-            }
-          },
-          {
-            "label": "Load weight",
-            "type": "barcode",
-            "value": {
-              "barcodeValue": {
-                "barcodeType": "org.gs1.EAN-13",
-                "barcodeValue": "0853883003114"
-              },
-              "dateTimeValue": {
-                "dateTime": "1980-05-23T21:51:34Z"
-              },
-              "multipleChoiceValue": {
-                "selected": false,
-                "value": "Yes"
-              },
-              "numberValue": 123,
-              "photoValue": {
-                "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-              },
-              "signatureValue": {
-                "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                "name": "John Smith",
-                "signedAtTime": "2014-04-18T01:15:32Z",
-                "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-              },
-              "stringValue": "Red Truck"
-            }
-          },
-          {
-            "label": "Load weight",
-            "type": "barcode",
-            "value": {
-              "barcodeValue": {
-                "barcodeType": "org.gs1.EAN-13",
-                "barcodeValue": "0853883003114"
-              },
-              "dateTimeValue": {
-                "dateTime": "1980-05-23T21:51:34Z"
-              },
-              "multipleChoiceValue": {
-                "selected": false,
-                "value": "Yes"
-              },
-              "numberValue": 123,
-              "photoValue": {
-                "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-              },
-              "signatureValue": {
-                "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                "name": "John Smith",
-                "signedAtTime": "2014-04-18T01:15:32Z",
+                "signedAtTime": "2010-10-09T04:06:42Z",
                 "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
               },
               "stringValue": "Red Truck"
@@ -29257,7 +29908,7 @@
           "name": "Company Warehouse #1"
         },
         "state": "required",
-        "updatedAtTime": "2001-09-27T06:27:41Z",
+        "updatedAtTime": "1993-09-10T03:52:17Z",
         "vehicle": {
           "externalIds": {
             "maintenanceId": "250020",
@@ -29425,7 +30076,7 @@
             "scannedDocument",
             "barcode"
           ],
-          "example": "string"
+          "example": "multipleChoice"
         },
         "value": {
           "$ref": "#/definitions/fieldObjectValueResponseBody"
@@ -29433,14 +30084,14 @@
       },
       "example": {
         "label": "Load weight",
-        "type": "photo",
+        "type": "signature",
         "value": {
           "barcodeValue": {
             "barcodeType": "org.gs1.EAN-13",
             "barcodeValue": "0853883003114"
           },
           "dateTimeValue": {
-            "dateTime": "1980-05-23T21:51:34Z"
+            "dateTime": "1996-02-21T06:57:25Z"
           },
           "multipleChoiceValue": {
             "selected": false,
@@ -29454,7 +30105,7 @@
           "signatureValue": {
             "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
             "name": "John Smith",
-            "signedAtTime": "2014-04-18T01:15:32Z",
+            "signedAtTime": "2010-10-09T04:06:42Z",
             "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
           },
           "stringValue": "Red Truck"
@@ -29497,7 +30148,7 @@
           "barcodeValue": "0853883003114"
         },
         "dateTimeValue": {
-          "dateTime": "1980-05-23T21:51:34Z"
+          "dateTime": "1996-02-21T06:57:25Z"
         },
         "multipleChoiceValue": {
           "selected": false,
@@ -29511,7 +30162,7 @@
         "signatureValue": {
           "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
           "name": "John Smith",
-          "signedAtTime": "2014-04-18T01:15:32Z",
+          "signedAtTime": "2010-10-09T04:06:42Z",
           "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
         },
         "stringValue": "Red Truck"
@@ -29533,7 +30184,7 @@
         "label": {
           "description": "The name of the field type.",
           "type": "string",
-          "example": "Hic voluptatum."
+          "example": "Odio non incidunt ipsam."
         },
         "multipleChoiceFieldTypeMetaData": {
           "description": "A list of the multiple choice field option labels.",
@@ -29543,16 +30194,10 @@
           },
           "example": [
             {
-              "label": "Omnis aut provident."
+              "label": "Saepe blanditiis."
             },
             {
-              "label": "Omnis aut provident."
-            },
-            {
-              "label": "Omnis aut provident."
-            },
-            {
-              "label": "Omnis aut provident."
+              "label": "Saepe blanditiis."
             }
           ]
         },
@@ -29562,7 +30207,7 @@
         "requiredField": {
           "description": "The indicator that states if the field is required.",
           "type": "boolean",
-          "example": false
+          "example": true
         },
         "signatureFieldTypeMetaData": {
           "$ref": "#/definitions/signatureFieldTypeMetaDataObjectResponseBody"
@@ -29570,21 +30215,24 @@
       },
       "example": {
         "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-        "label": "Explicabo earum voluptates quisquam.",
+        "label": "Necessitatibus odit beatae.",
         "multipleChoiceFieldTypeMetaData": [
           {
-            "label": "Omnis aut provident."
+            "label": "Saepe blanditiis."
           },
           {
-            "label": "Omnis aut provident."
+            "label": "Saepe blanditiis."
+          },
+          {
+            "label": "Saepe blanditiis."
           }
         ],
         "numberFieldTypeMetaData": {
-          "numberOfDecimalPlaces": 2474476577891565000
+          "numberOfDecimalPlaces": 7867137164320575000
         },
-        "requiredField": true,
+        "requiredField": false,
         "signatureFieldTypeMetaData": {
-          "legalText": "Sed laboriosam temporibus aut facere necessitatibus."
+          "legalText": "Officia eum."
         }
       }
     },
@@ -29599,22 +30247,28 @@
           },
           "example": [
             {
-              "conditionalFieldFirstIndex": 4183211541072084000,
-              "conditionalFieldLastIndex": 8537324634275340000,
-              "triggeringFieldIndex": 1988765416939699000,
-              "triggeringFieldValue": "Sapiente incidunt aut excepturi dolore quam."
+              "conditionalFieldFirstIndex": 8206250838582204000,
+              "conditionalFieldLastIndex": 4308892717982422500,
+              "triggeringFieldIndex": 8229187897244601000,
+              "triggeringFieldValue": "Facilis quisquam laudantium."
             },
             {
-              "conditionalFieldFirstIndex": 4183211541072084000,
-              "conditionalFieldLastIndex": 8537324634275340000,
-              "triggeringFieldIndex": 1988765416939699000,
-              "triggeringFieldValue": "Sapiente incidunt aut excepturi dolore quam."
+              "conditionalFieldFirstIndex": 8206250838582204000,
+              "conditionalFieldLastIndex": 4308892717982422500,
+              "triggeringFieldIndex": 8229187897244601000,
+              "triggeringFieldValue": "Facilis quisquam laudantium."
             },
             {
-              "conditionalFieldFirstIndex": 4183211541072084000,
-              "conditionalFieldLastIndex": 8537324634275340000,
-              "triggeringFieldIndex": 1988765416939699000,
-              "triggeringFieldValue": "Sapiente incidunt aut excepturi dolore quam."
+              "conditionalFieldFirstIndex": 8206250838582204000,
+              "conditionalFieldLastIndex": 4308892717982422500,
+              "triggeringFieldIndex": 8229187897244601000,
+              "triggeringFieldValue": "Facilis quisquam laudantium."
+            },
+            {
+              "conditionalFieldFirstIndex": 8206250838582204000,
+              "conditionalFieldLastIndex": 4308892717982422500,
+              "triggeringFieldIndex": 8229187897244601000,
+              "triggeringFieldValue": "Facilis quisquam laudantium."
             }
           ]
         },
@@ -29627,78 +30281,40 @@
           "example": [
             {
               "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-              "label": "Nostrum qui molestias.",
+              "label": "Omnis possimus dicta molestias error autem.",
               "multipleChoiceFieldTypeMetaData": [
                 {
-                  "label": "Omnis aut provident."
+                  "label": "Saepe blanditiis."
                 },
                 {
-                  "label": "Omnis aut provident."
+                  "label": "Saepe blanditiis."
                 }
               ],
               "numberFieldTypeMetaData": {
-                "numberOfDecimalPlaces": 2474476577891565000
+                "numberOfDecimalPlaces": 7867137164320575000
               },
               "requiredField": true,
               "signatureFieldTypeMetaData": {
-                "legalText": "Sed laboriosam temporibus aut facere necessitatibus."
+                "legalText": "Officia eum."
               }
             },
             {
               "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-              "label": "Nostrum qui molestias.",
+              "label": "Omnis possimus dicta molestias error autem.",
               "multipleChoiceFieldTypeMetaData": [
                 {
-                  "label": "Omnis aut provident."
+                  "label": "Saepe blanditiis."
                 },
                 {
-                  "label": "Omnis aut provident."
+                  "label": "Saepe blanditiis."
                 }
               ],
               "numberFieldTypeMetaData": {
-                "numberOfDecimalPlaces": 2474476577891565000
+                "numberOfDecimalPlaces": 7867137164320575000
               },
               "requiredField": true,
               "signatureFieldTypeMetaData": {
-                "legalText": "Sed laboriosam temporibus aut facere necessitatibus."
-              }
-            },
-            {
-              "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-              "label": "Nostrum qui molestias.",
-              "multipleChoiceFieldTypeMetaData": [
-                {
-                  "label": "Omnis aut provident."
-                },
-                {
-                  "label": "Omnis aut provident."
-                }
-              ],
-              "numberFieldTypeMetaData": {
-                "numberOfDecimalPlaces": 2474476577891565000
-              },
-              "requiredField": true,
-              "signatureFieldTypeMetaData": {
-                "legalText": "Sed laboriosam temporibus aut facere necessitatibus."
-              }
-            },
-            {
-              "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-              "label": "Nostrum qui molestias.",
-              "multipleChoiceFieldTypeMetaData": [
-                {
-                  "label": "Omnis aut provident."
-                },
-                {
-                  "label": "Omnis aut provident."
-                }
-              ],
-              "numberFieldTypeMetaData": {
-                "numberOfDecimalPlaces": 2474476577891565000
-              },
-              "requiredField": true,
-              "signatureFieldTypeMetaData": {
-                "legalText": "Sed laboriosam temporibus aut facere necessitatibus."
+                "legalText": "Officia eum."
               }
             }
           ]
@@ -29706,97 +30322,103 @@
         "id": {
           "description": "Universally unique identifier for the document type. This value can be passed in as the documentTypeId when creating a document.",
           "type": "string",
-          "example": "Cupiditate eligendi."
+          "example": "Excepturi est similique enim quos corrupti."
         },
         "name": {
           "description": "Name of the document type.",
           "type": "string",
-          "example": "Voluptas officiis eos aut exercitationem quidem."
+          "example": "Ipsam hic voluptatum ratione aut voluptas."
         },
         "orgId": {
           "description": "ID for the organization this document type belongs to.",
           "type": "integer",
           "format": "int64",
-          "example": 6990289440791755000
+          "example": 7540159348423735000
         }
       },
       "example": {
         "conditionalFieldSections": [
           {
-            "conditionalFieldFirstIndex": 4183211541072084000,
-            "conditionalFieldLastIndex": 8537324634275340000,
-            "triggeringFieldIndex": 1988765416939699000,
-            "triggeringFieldValue": "Sapiente incidunt aut excepturi dolore quam."
+            "conditionalFieldFirstIndex": 8206250838582204000,
+            "conditionalFieldLastIndex": 4308892717982422500,
+            "triggeringFieldIndex": 8229187897244601000,
+            "triggeringFieldValue": "Facilis quisquam laudantium."
           },
           {
-            "conditionalFieldFirstIndex": 4183211541072084000,
-            "conditionalFieldLastIndex": 8537324634275340000,
-            "triggeringFieldIndex": 1988765416939699000,
-            "triggeringFieldValue": "Sapiente incidunt aut excepturi dolore quam."
+            "conditionalFieldFirstIndex": 8206250838582204000,
+            "conditionalFieldLastIndex": 4308892717982422500,
+            "triggeringFieldIndex": 8229187897244601000,
+            "triggeringFieldValue": "Facilis quisquam laudantium."
+          },
+          {
+            "conditionalFieldFirstIndex": 8206250838582204000,
+            "conditionalFieldLastIndex": 4308892717982422500,
+            "triggeringFieldIndex": 8229187897244601000,
+            "triggeringFieldValue": "Facilis quisquam laudantium."
           }
         ],
         "fieldTypes": [
           {
             "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-            "label": "Nostrum qui molestias.",
+            "label": "Omnis possimus dicta molestias error autem.",
             "multipleChoiceFieldTypeMetaData": [
               {
-                "label": "Omnis aut provident."
+                "label": "Saepe blanditiis."
               },
               {
-                "label": "Omnis aut provident."
+                "label": "Saepe blanditiis."
               }
             ],
             "numberFieldTypeMetaData": {
-              "numberOfDecimalPlaces": 2474476577891565000
+              "numberOfDecimalPlaces": 7867137164320575000
             },
             "requiredField": true,
             "signatureFieldTypeMetaData": {
-              "legalText": "Sed laboriosam temporibus aut facere necessitatibus."
+              "legalText": "Officia eum."
             }
           },
           {
             "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-            "label": "Nostrum qui molestias.",
+            "label": "Omnis possimus dicta molestias error autem.",
             "multipleChoiceFieldTypeMetaData": [
               {
-                "label": "Omnis aut provident."
+                "label": "Saepe blanditiis."
               },
               {
-                "label": "Omnis aut provident."
+                "label": "Saepe blanditiis."
               }
             ],
             "numberFieldTypeMetaData": {
-              "numberOfDecimalPlaces": 2474476577891565000
+              "numberOfDecimalPlaces": 7867137164320575000
             },
             "requiredField": true,
             "signatureFieldTypeMetaData": {
-              "legalText": "Sed laboriosam temporibus aut facere necessitatibus."
+              "legalText": "Officia eum."
             }
           },
           {
             "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-            "label": "Nostrum qui molestias.",
+            "label": "Omnis possimus dicta molestias error autem.",
             "multipleChoiceFieldTypeMetaData": [
               {
-                "label": "Omnis aut provident."
+                "label": "Saepe blanditiis."
               },
               {
-                "label": "Omnis aut provident."
+                "label": "Saepe blanditiis."
               }
             ],
             "numberFieldTypeMetaData": {
-              "numberOfDecimalPlaces": 2474476577891565000
+              "numberOfDecimalPlaces": 7867137164320575000
             },
             "requiredField": true,
             "signatureFieldTypeMetaData": {
-              "legalText": "Sed laboriosam temporibus aut facere necessitatibus."
+              "legalText": "Officia eum."
             }
           }
         ],
-        "id": "Molestias error.",
-        "name": "Voluptatum omnis.",
-        "orgId": 1974407181164274200
+        "id": "Officiis cumque tenetur dignissimos id reiciendis culpa.",
+        "name": "Qui veniam.",
+        "orgId": 9193714782389544000
       }
     },
     "hosStatusType": {
@@ -29852,11 +30474,11 @@
         "label": {
           "description": "The option choice label.",
           "type": "string",
-          "example": "Voluptas impedit vel excepturi est similique."
+          "example": "Omnis aut provident."
         }
       },
       "example": {
-        "label": "Quos corrupti ullam odio non incidunt ipsam."
+        "label": "Doloribus rerum nemo officiis."
       }
     },
     "multipleChoiceValueObjectResponseBody": {
@@ -29885,11 +30507,11 @@
           "description": "The number of decimal places allowed for the field.",
           "type": "integer",
           "format": "int64",
-          "example": 2437249864131108000
+          "example": 79483827805336220
         }
       },
       "example": {
-        "numberOfDecimalPlaces": 7500099241419798000
+        "numberOfDecimalPlaces": 4217519919010756000
       }
     },
     "paginationResponse": {
@@ -29970,11 +30592,11 @@
         "legalText": {
           "description": "The signature field legal text.",
           "type": "string",
-          "example": "Nemo officiis."
+          "example": "Voluptates quisquam."
         }
       },
       "example": {
-        "legalText": "Vero saepe blanditiis."
+        "legalText": "Nulla veritatis doloremque sed laboriosam temporibus aut."
       }
     },
     "signatureValueObjectResponseBody": {
@@ -29994,7 +30616,7 @@
           "description": "Time the signature was captured in RFC 3339 format.",
           "type": "string",
           "format": "date-time",
-          "example": "2009-08-11T05:54:58Z"
+          "example": "2013-11-10T15:50:36Z"
         },
         "url": {
           "description": "Url of a signature field's PNG signature image.",
@@ -30005,7 +30627,7 @@
       "example": {
         "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
         "name": "John Smith",
-        "signedAtTime": "1987-01-06T20:20:08Z",
+        "signedAtTime": "1988-11-10T02:42:05Z",
         "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
       }
     },
