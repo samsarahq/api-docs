@@ -22327,7 +22327,7 @@
               "example": 773
             },
             "job_state": {
-              "$ref": "#/definitions/V1jobStatus"
+              "$ref": "#/definitions/V1JobStatus"
             },
             "skipped_at_ms": {
               "description": "The time at which the job was marked skipped.",
@@ -22510,7 +22510,7 @@
               "example": 773
             },
             "job_state": {
-              "$ref": "#/definitions/V1jobStatus"
+              "$ref": "#/definitions/V1JobStatus"
             },
             "skipped_at_ms": {
               "description": "The time at which the job was marked skipped.",
@@ -24248,6 +24248,51 @@
               }
             }
           }
+        }
+      }
+    },
+    "V1JobStatus": {
+      "description": "The state of the dispatch job.",
+      "type": "string",
+      "enum": [
+        "JobState_Unassigned",
+        "JobState_Scheduled",
+        "JobState_EnRoute",
+        "JobState_Arrived",
+        "JobState_Completed",
+        "JobState_Skipped"
+      ],
+      "example": "JobState_Arrived"
+    },
+    "V1JobUpdateObject": {
+      "type": "object",
+      "properties": {
+        "changed_at_ms": {
+          "description": "Timestamp that this event was updated, represented as Unix milliseconds since epoch.",
+          "type": "integer",
+          "format": "int64",
+          "example": 1462881998034
+        },
+        "job_id": {
+          "description": "ID of the Samsara job.",
+          "type": "integer",
+          "format": "int64",
+          "example": 773
+        },
+        "job_state": {
+          "$ref": "#/definitions/V1JobStatus"
+        },
+        "prev_job_state": {
+          "$ref": "#/definitions/V1JobStatus"
+        },
+        "route": {
+          "$ref": "#/definitions/V1DispatchRoute"
+        },
+        "route_id": {
+          "description": "ID of the Samsara dispatch route.",
+          "type": "integer",
+          "format": "int64",
+          "example": 556
         }
       }
     },
@@ -26110,58 +26155,13 @@
         "job_updates": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/V1jobUpdateObject"
+            "$ref": "#/definitions/V1JobUpdateObject"
           }
         },
         "sequence_id": {
           "description": "Sequence ID of the last update returned in the response",
           "type": "string",
           "example": "eyJpZCI6MywiY3JlYXRlZF9hdCI6MTQ5OTQyOTIyMDAwMn0="
-        }
-      }
-    },
-    "V1jobStatus": {
-      "description": "The state of the dispatch job.",
-      "type": "string",
-      "enum": [
-        "JobState_Unassigned",
-        "JobState_Scheduled",
-        "JobState_EnRoute",
-        "JobState_Arrived",
-        "JobState_Completed",
-        "JobState_Skipped"
-      ],
-      "example": "JobState_Arrived"
-    },
-    "V1jobUpdateObject": {
-      "type": "object",
-      "properties": {
-        "changed_at_ms": {
-          "description": "Timestamp that this event was updated, represented as Unix milliseconds since epoch.",
-          "type": "integer",
-          "format": "int64",
-          "example": 1462881998034
-        },
-        "job_id": {
-          "description": "ID of the Samsara job.",
-          "type": "integer",
-          "format": "int64",
-          "example": 773
-        },
-        "job_state": {
-          "$ref": "#/definitions/V1jobStatus"
-        },
-        "prev_job_state": {
-          "$ref": "#/definitions/V1jobStatus"
-        },
-        "route": {
-          "$ref": "#/definitions/V1DispatchRoute"
-        },
-        "route_id": {
-          "description": "ID of the Samsara dispatch route.",
-          "type": "integer",
-          "format": "int64",
-          "example": 556
         }
       }
     },
@@ -31027,6 +31027,12 @@
       "in": "path",
       "required": true
     },
+    "V1JobUpdatesIncludeParam": {
+      "type": "string",
+      "description": "Optionally set include=route to include route object in response payload.",
+      "name": "include",
+      "in": "query"
+    },
     "V1assetHistoryEndTimeParam": {
       "type": "integer",
       "format": "int64",
@@ -31242,12 +31248,6 @@
       "name": "timestamp",
       "in": "query",
       "required": true
-    },
-    "V1jobUpdatesIncludeParam": {
-      "type": "string",
-      "description": "Optionally set include=route to include route object in response payload.",
-      "name": "include",
-      "in": "query"
     },
     "V1lastReceivedSequenceIDParam": {
       "type": "string",
