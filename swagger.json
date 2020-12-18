@@ -4162,6 +4162,143 @@
         }
       }
     },
+    "/fleet/trailers/{id}": {
+      "patch": {
+        "description": "Update a trailer.  **Note** this implementation of patch uses [the JSON merge patch](https://tools.ietf.org/html/rfc7396) proposed standard.\n This means that any fields included in the patch request will _overwrite_ fields which exist on the target resource.\n For arrays, this means any array included in the request will _replace_ the array that exists at the specified path, it will not _add_ to the existing array\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Beta APIs"
+        ],
+        "summary": "[beta] Update a trailer.",
+        "operationId": "updateTrailer",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID of the trailer to update. Needs to match the ID from the request URL",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "UpdateTrailerRequestBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TrailersUpdateTrailerRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersUpdateTrailerResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "data": {
+                  "enabledForMobile": true,
+                  "externalIds": {
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
+                  },
+                  "id": "494123",
+                  "installedGateway": {
+                    "model": "VG34",
+                    "serial": "GFRV-43N-VGX"
+                  },
+                  "licensePlate": "7TYP290",
+                  "name": "Trailer-123",
+                  "notes": "These are my trailer notes",
+                  "tags": [
+                    {
+                      "id": "3914",
+                      "name": "East Coast",
+                      "parentTagId": "4815"
+                    },
+                    {
+                      "id": "3914",
+                      "name": "East Coast",
+                      "parentTagId": "4815"
+                    },
+                    {
+                      "id": "3914",
+                      "name": "East Coast",
+                      "parentTagId": "4815"
+                    },
+                    {
+                      "id": "3914",
+                      "name": "East Coast",
+                      "parentTagId": "4815"
+                    }
+                  ],
+                  "trailerSerialNumber": "8V8WD530FLN016251"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersUpdateTrailerNotFoundResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Object not found.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersUpdateTrailerInternalErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Failed to execute GraphQL query.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersUpdateTrailerNotImplementedResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Not implemented.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersUpdateTrailerBadRequestResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Invalid value for parameter.",
+                "requestId": "8916e1c1"
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "ID of the trailer to update. Needs to match the ID from the request URL",
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
     "/fleet/vehicles": {
       "get": {
         "description": "Returns a list of all vehicles. \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
@@ -20218,6 +20355,213 @@
         "pagination": {
           "endCursor": "MjkY",
           "hasNextPage": true
+        }
+      }
+    },
+    "TrailersUpdateTrailerBadRequestResponseBody": {
+      "description": "Bad request parameters",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid value for parameter."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Invalid value for parameter.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersUpdateTrailerInternalErrorResponseBody": {
+      "description": "An internal server error occurred",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Failed to execute GraphQL query."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Failed to execute GraphQL query.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersUpdateTrailerNotFoundResponseBody": {
+      "description": "Resource not found",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Object not found."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Object not found.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersUpdateTrailerNotImplementedResponseBody": {
+      "description": "Endpoint is not yet implemented",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Not implemented."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Not implemented.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersUpdateTrailerRequestBody": {
+      "type": "object",
+      "properties": {
+        "assetSerial": {
+          "description": "The serial of the trailer.",
+          "type": "string",
+          "example": "123xyz"
+        },
+        "enabledForMobile": {
+          "description": "A toggle that determines if a trailer will show up in the Samsara Mobile App for assignments and DVIRs.",
+          "type": "boolean",
+          "example": true
+        },
+        "externalIds": {
+          "description": "A map of external ids",
+          "type": "object",
+          "additionalProperties": true,
+          "example": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          }
+        },
+        "licensePlate": {
+          "description": "The license plate of the trailer.",
+          "type": "string",
+          "example": "123xyz"
+        },
+        "name": {
+          "description": "The name of the trailer.",
+          "type": "string",
+          "example": "Trailer 123"
+        },
+        "notes": {
+          "type": "string",
+          "maxLength": 2000,
+          "example": "These are my notes"
+        },
+        "odometerMeters": {
+          "description": "When you provide a manual odometer override, Samsara will begin updating a trailer's odometer using GPS distance traveled since this override was set.",
+          "type": "integer",
+          "format": "int64",
+          "example": 1234
+        },
+        "tagIds": {
+          "description": " A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+          "type": "string",
+          "example": "1234,5678"
+        }
+      },
+      "example": {
+        "assetSerial": "123xyz",
+        "enabledForMobile": true,
+        "externalIds": {
+          "maintenanceId": "250020",
+          "payrollId": "ABFS18600"
+        },
+        "licensePlate": "123xyz",
+        "name": "Trailer 123",
+        "notes": "These are my notes",
+        "odometerMeters": 1234,
+        "tagIds": "1234,5678"
+      }
+    },
+    "TrailersUpdateTrailerResponseBody": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/TrailerResponseObjectResponseBody"
+        }
+      },
+      "example": {
+        "data": {
+          "enabledForMobile": true,
+          "externalIds": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          },
+          "id": "494123",
+          "installedGateway": {
+            "model": "VG34",
+            "serial": "GFRV-43N-VGX"
+          },
+          "licensePlate": "7TYP290",
+          "name": "Trailer-123",
+          "notes": "These are my trailer notes",
+          "tags": [
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            }
+          ],
+          "trailerSerialNumber": "8V8WD530FLN016251"
         }
       }
     },
