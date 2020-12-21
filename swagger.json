@@ -4176,7 +4176,7 @@
         "parameters": [
           {
             "type": "string",
-            "description": "ID of the trailer to update. Needs to match the ID from the request URL",
+            "description": "The unique Samsara ID of the Trailer. This is automatically generated when the Trailer object is created. It cannot be changed.",
             "name": "id",
             "in": "path",
             "required": true
@@ -4292,7 +4292,7 @@
       "parameters": [
         {
           "type": "string",
-          "description": "ID of the trailer to update. Needs to match the ID from the request URL",
+          "description": "The unique Samsara ID of the Trailer. This is automatically generated when the Trailer object is created. It cannot be changed.",
           "name": "id",
           "in": "path",
           "required": true
@@ -19939,12 +19939,11 @@
         "notes": {
           "description": "These are generic notes about the Trailer. Empty by default. Can be set or updated through the Samsara Dashboard or the API at any time.",
           "type": "string",
-          "default": "",
           "maxLength": 255,
           "example": "These are my trailer notes"
         },
         "tags": {
-          "description": "The list of [tags](https://kb.samsara.com/hc/en-us/articles/360026674631-Using-Tags-and-Tag-Nesting) associated with the Vehicle. **By default**: empty. Can be set or updated through the Samsara Dashboard or the API at any time.",
+          "description": "The list of [tags](https://kb.samsara.com/hc/en-us/articles/360026674631-Using-Tags-and-Tag-Nesting) associated with the Trailer.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/GoaTagTinyResponseResponseBody"
@@ -20457,13 +20456,8 @@
     "TrailersUpdateTrailerRequestBody": {
       "type": "object",
       "properties": {
-        "assetSerial": {
-          "description": "The serial of the trailer.",
-          "type": "string",
-          "example": "123xyz"
-        },
         "enabledForMobile": {
-          "description": "A toggle that determines if a trailer will show up in the Samsara Mobile App for assignments and DVIRs.",
+          "description": "Indicates if the trailer is visible on the Samsara mobile apps.",
           "type": "boolean",
           "example": true
         },
@@ -20477,19 +20471,21 @@
           }
         },
         "licensePlate": {
-          "description": "The license plate of the trailer.",
+          "description": "The license plate of the Trailer. **By default**: empty. Can be set or updated through the Samsara Dashboard or the API at any time.",
           "type": "string",
-          "example": "123xyz"
+          "maxLength": 12,
+          "example": "7TYP290"
         },
         "name": {
-          "description": "The name of the trailer.",
+          "description": "The human-readable name of the Trailer. This is set by a fleet administrator and will appear in both Samsara’s cloud dashboard as well as the Samsara Driver mobile app. By default, this name is the serial number of the Samsara Asset Gateway. It can be set or updated through the Samsara Dashboard or through the API at any time.",
           "type": "string",
-          "example": "Trailer 123"
+          "example": "Trailer-123"
         },
         "notes": {
+          "description": "These are generic notes about the Trailer. Empty by default. Can be set or updated through the Samsara Dashboard or the API at any time.",
           "type": "string",
-          "maxLength": 2000,
-          "example": "These are my notes"
+          "maxLength": 255,
+          "example": "These are my trailer notes"
         },
         "odometerMeters": {
           "description": "When you provide a manual odometer override, Samsara will begin updating a trailer's odometer using GPS distance traveled since this override was set.",
@@ -20498,27 +20494,48 @@
           "example": 1234
         },
         "tagIds": {
-          "description": " A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+          "description": "An array of IDs of tags to associate with this trailer.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "Quibusdam provident cupiditate eligendi."
+          },
+          "example": [
+            "Voluptatum ratione aut voluptas impedit vel excepturi.",
+            "Similique enim quos corrupti.",
+            "Odio non incidunt ipsam."
+          ]
+        },
+        "trailerSerialNumber": {
+          "description": "The serial number of the trailer.",
           "type": "string",
-          "example": "1234,5678"
+          "example": "8V8WD530FLN016251"
         }
       },
       "example": {
-        "assetSerial": "123xyz",
         "enabledForMobile": true,
         "externalIds": {
           "maintenanceId": "250020",
           "payrollId": "ABFS18600"
         },
-        "licensePlate": "123xyz",
-        "name": "Trailer 123",
-        "notes": "These are my notes",
+        "licensePlate": "7TYP290",
+        "name": "Trailer-123",
+        "notes": "These are my trailer notes",
         "odometerMeters": 1234,
-        "tagIds": "1234,5678"
+        "tagIds": [
+          "Omnis aut provident.",
+          "Doloribus rerum nemo officiis.",
+          "Vero saepe blanditiis.",
+          "Explicabo earum voluptates quisquam."
+        ],
+        "trailerSerialNumber": "8V8WD530FLN016251"
       }
     },
     "TrailersUpdateTrailerResponseBody": {
       "type": "object",
+      "required": [
+        "data"
+      ],
       "properties": {
         "data": {
           "$ref": "#/definitions/TrailerResponseObjectResponseBody"
@@ -30767,7 +30784,7 @@
         "label": {
           "description": "The name of the field type.",
           "type": "string",
-          "example": "Similique enim quos corrupti."
+          "example": "Quo officia eum consequatur voluptatum."
         },
         "multipleChoiceFieldTypeMetaData": {
           "description": "A list of the multiple choice field option labels.",
@@ -30777,10 +30794,13 @@
           },
           "example": [
             {
-              "label": "Maxime doloribus."
+              "label": "Cumque tenetur dignissimos id reiciendis culpa."
             },
             {
-              "label": "Maxime doloribus."
+              "label": "Cumque tenetur dignissimos id reiciendis culpa."
+            },
+            {
+              "label": "Cumque tenetur dignissimos id reiciendis culpa."
             }
           ]
         },
@@ -30790,7 +30810,7 @@
         "requiredField": {
           "description": "The indicator that states if the field is required.",
           "type": "boolean",
-          "example": true
+          "example": false
         },
         "signatureFieldTypeMetaData": {
           "$ref": "#/definitions/signatureFieldTypeMetaDataObjectResponseBody"
@@ -30798,27 +30818,27 @@
       },
       "example": {
         "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-        "label": "Doloremque sed.",
+        "label": "Aliquid quia amet.",
         "multipleChoiceFieldTypeMetaData": [
           {
-            "label": "Maxime doloribus."
+            "label": "Cumque tenetur dignissimos id reiciendis culpa."
           },
           {
-            "label": "Maxime doloribus."
+            "label": "Cumque tenetur dignissimos id reiciendis culpa."
           },
           {
-            "label": "Maxime doloribus."
+            "label": "Cumque tenetur dignissimos id reiciendis culpa."
           },
           {
-            "label": "Maxime doloribus."
+            "label": "Cumque tenetur dignissimos id reiciendis culpa."
           }
         ],
         "numberFieldTypeMetaData": {
-          "numberOfDecimalPlaces": 5628103227747262000
+          "numberOfDecimalPlaces": 4709708644248978000
         },
         "requiredField": true,
         "signatureFieldTypeMetaData": {
-          "legalText": "Necessitatibus odit beatae."
+          "legalText": "Doloribus rem cumque."
         }
       }
     },
@@ -30843,6 +30863,12 @@
               "conditionalFieldLastIndex": 5188021910068834000,
               "triggeringFieldIndex": 6312989348082117000,
               "triggeringFieldValue": "Amet sapiente non tempora id reprehenderit."
+            },
+            {
+              "conditionalFieldFirstIndex": 2949691048040286700,
+              "conditionalFieldLastIndex": 5188021910068834000,
+              "triggeringFieldIndex": 6312989348082117000,
+              "triggeringFieldValue": "Amet sapiente non tempora id reprehenderit."
             }
           ]
         },
@@ -30855,68 +30881,78 @@
           "example": [
             {
               "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-              "label": "Molestias quo officia eum.",
+              "label": "In qui.",
               "multipleChoiceFieldTypeMetaData": [
                 {
-                  "label": "Maxime doloribus."
+                  "label": "Cumque tenetur dignissimos id reiciendis culpa."
                 },
                 {
-                  "label": "Maxime doloribus."
-                },
-                {
-                  "label": "Maxime doloribus."
+                  "label": "Cumque tenetur dignissimos id reiciendis culpa."
                 }
               ],
               "numberFieldTypeMetaData": {
-                "numberOfDecimalPlaces": 5628103227747262000
+                "numberOfDecimalPlaces": 4709708644248978000
               },
-              "requiredField": false,
+              "requiredField": true,
               "signatureFieldTypeMetaData": {
-                "legalText": "Necessitatibus odit beatae."
+                "legalText": "Doloribus rem cumque."
               }
             },
             {
               "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-              "label": "Molestias quo officia eum.",
+              "label": "In qui.",
               "multipleChoiceFieldTypeMetaData": [
                 {
-                  "label": "Maxime doloribus."
+                  "label": "Cumque tenetur dignissimos id reiciendis culpa."
                 },
                 {
-                  "label": "Maxime doloribus."
-                },
-                {
-                  "label": "Maxime doloribus."
+                  "label": "Cumque tenetur dignissimos id reiciendis culpa."
                 }
               ],
               "numberFieldTypeMetaData": {
-                "numberOfDecimalPlaces": 5628103227747262000
+                "numberOfDecimalPlaces": 4709708644248978000
               },
-              "requiredField": false,
+              "requiredField": true,
               "signatureFieldTypeMetaData": {
-                "legalText": "Necessitatibus odit beatae."
+                "legalText": "Doloribus rem cumque."
               }
             },
             {
               "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-              "label": "Molestias quo officia eum.",
+              "label": "In qui.",
               "multipleChoiceFieldTypeMetaData": [
                 {
-                  "label": "Maxime doloribus."
+                  "label": "Cumque tenetur dignissimos id reiciendis culpa."
                 },
                 {
-                  "label": "Maxime doloribus."
-                },
-                {
-                  "label": "Maxime doloribus."
+                  "label": "Cumque tenetur dignissimos id reiciendis culpa."
                 }
               ],
               "numberFieldTypeMetaData": {
-                "numberOfDecimalPlaces": 5628103227747262000
+                "numberOfDecimalPlaces": 4709708644248978000
               },
-              "requiredField": false,
+              "requiredField": true,
               "signatureFieldTypeMetaData": {
-                "legalText": "Necessitatibus odit beatae."
+                "legalText": "Doloribus rem cumque."
+              }
+            },
+            {
+              "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
+              "label": "In qui.",
+              "multipleChoiceFieldTypeMetaData": [
+                {
+                  "label": "Cumque tenetur dignissimos id reiciendis culpa."
+                },
+                {
+                  "label": "Cumque tenetur dignissimos id reiciendis culpa."
+                }
+              ],
+              "numberFieldTypeMetaData": {
+                "numberOfDecimalPlaces": 4709708644248978000
+              },
+              "requiredField": true,
+              "signatureFieldTypeMetaData": {
+                "legalText": "Doloribus rem cumque."
               }
             }
           ]
@@ -30924,22 +30960,28 @@
         "id": {
           "description": "Universally unique identifier for the document type. This value can be passed in as the documentTypeId when creating a document.",
           "type": "string",
-          "example": "Voluptatum ratione aut voluptas impedit vel excepturi."
+          "example": "Odit beatae nostrum qui."
         },
         "name": {
           "description": "Name of the document type.",
           "type": "string",
-          "example": "Quibusdam provident cupiditate eligendi."
+          "example": "Nulla veritatis doloremque sed laboriosam temporibus aut."
         },
         "orgId": {
           "description": "ID for the organization this document type belongs to.",
           "type": "integer",
           "format": "int64",
-          "example": 6686015252982573000
+          "example": 5921786857472023000
         }
       },
       "example": {
         "conditionalFieldSections": [
+          {
+            "conditionalFieldFirstIndex": 2949691048040286700,
+            "conditionalFieldLastIndex": 5188021910068834000,
+            "triggeringFieldIndex": 6312989348082117000,
+            "triggeringFieldValue": "Amet sapiente non tempora id reprehenderit."
+          },
           {
             "conditionalFieldFirstIndex": 2949691048040286700,
             "conditionalFieldLastIndex": 5188021910068834000,
@@ -30956,74 +30998,84 @@
         "fieldTypes": [
           {
             "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-            "label": "Molestias quo officia eum.",
+            "label": "In qui.",
             "multipleChoiceFieldTypeMetaData": [
               {
-                "label": "Maxime doloribus."
+                "label": "Cumque tenetur dignissimos id reiciendis culpa."
               },
               {
-                "label": "Maxime doloribus."
-              },
-              {
-                "label": "Maxime doloribus."
+                "label": "Cumque tenetur dignissimos id reiciendis culpa."
               }
             ],
             "numberFieldTypeMetaData": {
-              "numberOfDecimalPlaces": 5628103227747262000
+              "numberOfDecimalPlaces": 4709708644248978000
             },
-            "requiredField": false,
+            "requiredField": true,
             "signatureFieldTypeMetaData": {
-              "legalText": "Necessitatibus odit beatae."
+              "legalText": "Doloribus rem cumque."
             }
           },
           {
             "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-            "label": "Molestias quo officia eum.",
+            "label": "In qui.",
             "multipleChoiceFieldTypeMetaData": [
               {
-                "label": "Maxime doloribus."
+                "label": "Cumque tenetur dignissimos id reiciendis culpa."
               },
               {
-                "label": "Maxime doloribus."
-              },
-              {
-                "label": "Maxime doloribus."
+                "label": "Cumque tenetur dignissimos id reiciendis culpa."
               }
             ],
             "numberFieldTypeMetaData": {
-              "numberOfDecimalPlaces": 5628103227747262000
+              "numberOfDecimalPlaces": 4709708644248978000
             },
-            "requiredField": false,
+            "requiredField": true,
             "signatureFieldTypeMetaData": {
-              "legalText": "Necessitatibus odit beatae."
+              "legalText": "Doloribus rem cumque."
             }
           },
           {
             "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-            "label": "Molestias quo officia eum.",
+            "label": "In qui.",
             "multipleChoiceFieldTypeMetaData": [
               {
-                "label": "Maxime doloribus."
+                "label": "Cumque tenetur dignissimos id reiciendis culpa."
               },
               {
-                "label": "Maxime doloribus."
-              },
-              {
-                "label": "Maxime doloribus."
+                "label": "Cumque tenetur dignissimos id reiciendis culpa."
               }
             ],
             "numberFieldTypeMetaData": {
-              "numberOfDecimalPlaces": 5628103227747262000
+              "numberOfDecimalPlaces": 4709708644248978000
             },
-            "requiredField": false,
+            "requiredField": true,
             "signatureFieldTypeMetaData": {
-              "legalText": "Necessitatibus odit beatae."
+              "legalText": "Doloribus rem cumque."
+            }
+          },
+          {
+            "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
+            "label": "In qui.",
+            "multipleChoiceFieldTypeMetaData": [
+              {
+                "label": "Cumque tenetur dignissimos id reiciendis culpa."
+              },
+              {
+                "label": "Cumque tenetur dignissimos id reiciendis culpa."
+              }
+            ],
+            "numberFieldTypeMetaData": {
+              "numberOfDecimalPlaces": 4709708644248978000
+            },
+            "requiredField": true,
+            "signatureFieldTypeMetaData": {
+              "legalText": "Doloribus rem cumque."
             }
           }
         ],
-        "id": "Non aliquam qui veniam molestiae tempore.",
-        "name": "Dicta molestias error autem.",
-        "orgId": 2496636876549391000
+        "id": "Consequatur sit est ea libero aliquid culpa.",
+        "name": "Molestiae saepe sit pariatur et.",
+        "orgId": 792535686393347300
       }
     },
     "hosStatusType": {
@@ -31079,11 +31131,11 @@
         "label": {
           "description": "The option choice label.",
           "type": "string",
-          "example": "Non incidunt ipsam."
+          "example": "Dicta molestias error autem."
         }
       },
       "example": {
-        "label": "Consequatur omnis."
+        "label": "Voluptates non aliquam qui veniam molestiae."
       }
     },
     "multipleChoiceValueObjectResponseBody": {
@@ -31112,11 +31164,11 @@
           "description": "The number of decimal places allowed for the field.",
           "type": "integer",
           "format": "int64",
-          "example": 605096925308697200
+          "example": 3292850715196417000
         }
       },
       "example": {
-        "numberOfDecimalPlaces": 8389989517472915000
+        "numberOfDecimalPlaces": 6244357260985884000
       }
     },
     "paginationResponse": {
@@ -31197,11 +31249,11 @@
         "legalText": {
           "description": "The signature field legal text.",
           "type": "string",
-          "example": "Nihil vero saepe."
+          "example": "Qui quia."
         }
       },
       "example": {
-        "legalText": "Quis explicabo earum voluptates quisquam repudiandae nulla."
+        "legalText": "Similique distinctio ut dicta."
       }
     },
     "signatureValueObjectResponseBody": {
