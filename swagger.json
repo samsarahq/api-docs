@@ -3031,9 +3031,9 @@
           "https"
         ],
         "tags": [
-          "Preview APIs"
+          "Beta APIs"
         ],
-        "summary": "[preview] Get all driver HOS daily logs.",
+        "summary": "[beta] Get all driver HOS daily logs.",
         "operationId": "getHosDailyLogs",
         "parameters": [
           {
@@ -3095,9 +3095,9 @@
                 "data": [
                   {
                     "distanceTraveled": {
-                      "driveDistanceMeters": 796625.28,
-                      "personalConveyanceDistanceMeters": 27358.85,
-                      "yardMoveDistanceMeters": 1287.48
+                      "driveDistanceMeters": 796625,
+                      "personalConveyanceDistanceMeters": 27358,
+                      "yardMoveDistanceMeters": 1287
                     },
                     "driver": {
                       "eldSettings": {
@@ -3186,9 +3186,9 @@
                   },
                   {
                     "distanceTraveled": {
-                      "driveDistanceMeters": 796625.28,
-                      "personalConveyanceDistanceMeters": 27358.85,
-                      "yardMoveDistanceMeters": 1287.48
+                      "driveDistanceMeters": 796625,
+                      "personalConveyanceDistanceMeters": 27358,
+                      "yardMoveDistanceMeters": 1287
                     },
                     "driver": {
                       "eldSettings": {
@@ -3277,9 +3277,9 @@
                   },
                   {
                     "distanceTraveled": {
-                      "driveDistanceMeters": 796625.28,
-                      "personalConveyanceDistanceMeters": 27358.85,
-                      "yardMoveDistanceMeters": 1287.48
+                      "driveDistanceMeters": 796625,
+                      "personalConveyanceDistanceMeters": 27358,
+                      "yardMoveDistanceMeters": 1287
                     },
                     "driver": {
                       "eldSettings": {
@@ -12747,27 +12747,27 @@
       "properties": {
         "driveDistanceMeters": {
           "description": "Distance driven in meters, rounded to two decimal places.",
-          "type": "number",
-          "format": "double",
-          "example": 796625.28
+          "type": "integer",
+          "format": "int64",
+          "example": 796625
         },
         "personalConveyanceDistanceMeters": {
           "description": "Distance driven for personal conveyance, rounded to two decimal places.",
-          "type": "number",
-          "format": "double",
-          "example": 27358.85
+          "type": "integer",
+          "format": "int64",
+          "example": 27358
         },
         "yardMoveDistanceMeters": {
           "description": "Distance driven for yard moves, rounded to two decimal places.",
-          "type": "number",
-          "format": "double",
-          "example": 1287.48
+          "type": "integer",
+          "format": "int64",
+          "example": 1287
         }
       },
       "example": {
-        "driveDistanceMeters": 796625.28,
-        "personalConveyanceDistanceMeters": 27358.85,
-        "yardMoveDistanceMeters": 1287.48
+        "driveDistanceMeters": 796625,
+        "personalConveyanceDistanceMeters": 27358,
+        "yardMoveDistanceMeters": 1287
       }
     },
     "DocumentPdfGenerationRequest": {
@@ -14568,6 +14568,10 @@
     },
     "DriverWithTimezoneEldSettingsObjectResponseBody": {
       "type": "object",
+      "required": [
+        "id",
+        "name"
+      ],
       "properties": {
         "eldSettings": {
           "$ref": "#/definitions/EldSettingsObjectResponseBody"
@@ -16646,9 +16650,9 @@
           "example": [
             {
               "distanceTraveled": {
-                "driveDistanceMeters": 796625.28,
-                "personalConveyanceDistanceMeters": 27358.85,
-                "yardMoveDistanceMeters": 1287.48
+                "driveDistanceMeters": 796625,
+                "personalConveyanceDistanceMeters": 27358,
+                "yardMoveDistanceMeters": 1287
               },
               "driver": {
                 "eldSettings": {
@@ -16737,9 +16741,9 @@
             },
             {
               "distanceTraveled": {
-                "driveDistanceMeters": 796625.28,
-                "personalConveyanceDistanceMeters": 27358.85,
-                "yardMoveDistanceMeters": 1287.48
+                "driveDistanceMeters": 796625,
+                "personalConveyanceDistanceMeters": 27358,
+                "yardMoveDistanceMeters": 1287
               },
               "driver": {
                 "eldSettings": {
@@ -16836,9 +16840,9 @@
         "data": [
           {
             "distanceTraveled": {
-              "driveDistanceMeters": 796625.28,
-              "personalConveyanceDistanceMeters": 27358.85,
-              "yardMoveDistanceMeters": 1287.48
+              "driveDistanceMeters": 796625,
+              "personalConveyanceDistanceMeters": 27358,
+              "yardMoveDistanceMeters": 1287
             },
             "driver": {
               "eldSettings": {
@@ -16927,9 +16931,9 @@
           },
           {
             "distanceTraveled": {
-              "driveDistanceMeters": 796625.28,
-              "personalConveyanceDistanceMeters": 27358.85,
-              "yardMoveDistanceMeters": 1287.48
+              "driveDistanceMeters": 796625,
+              "personalConveyanceDistanceMeters": 27358,
+              "yardMoveDistanceMeters": 1287
             },
             "driver": {
               "eldSettings": {
@@ -17018,9 +17022,9 @@
           },
           {
             "distanceTraveled": {
-              "driveDistanceMeters": 796625.28,
-              "personalConveyanceDistanceMeters": 27358.85,
-              "yardMoveDistanceMeters": 1287.48
+              "driveDistanceMeters": 796625,
+              "personalConveyanceDistanceMeters": 27358,
+              "yardMoveDistanceMeters": 1287
             },
             "driver": {
               "eldSettings": {
@@ -17116,6 +17120,11 @@
     },
     "HosDailyLogsObjectResponseBody": {
       "type": "object",
+      "required": [
+        "driver",
+        "startTime",
+        "endTime"
+      ],
       "properties": {
         "distanceTraveled": {
           "$ref": "#/definitions/DistanceTraveledObjectResponseBody"
@@ -17145,9 +17154,9 @@
       },
       "example": {
         "distanceTraveled": {
-          "driveDistanceMeters": 796625.28,
-          "personalConveyanceDistanceMeters": 27358.85,
-          "yardMoveDistanceMeters": 1287.48
+          "driveDistanceMeters": 796625,
+          "personalConveyanceDistanceMeters": 27358,
+          "yardMoveDistanceMeters": 1287
         },
         "driver": {
           "eldSettings": {
