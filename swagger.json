@@ -4953,14 +4953,7 @@
           "200": {
             "description": "Returns the route updates that have occurred since the previous cursor.",
             "schema": {
-              "properties": {
-                "data": {
-                  "$ref": "#/definitions/RouteFeedResponse"
-                },
-                "pagination": {
-                  "$ref": "#/definitions/paginationResponse"
-                }
-              }
+              "$ref": "#/definitions/GetRouteFeedResponse"
             }
           },
           "default": {
@@ -19295,6 +19288,18 @@
           "items": {
             "$ref": "#/definitions/Attribute"
           }
+        },
+        "pagination": {
+          "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "GetRouteFeedResponse": {
+      "description": "The route updates that have occurred since the previous cursor.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/RouteFeedResponse"
         },
         "pagination": {
           "$ref": "#/definitions/paginationResponse"
