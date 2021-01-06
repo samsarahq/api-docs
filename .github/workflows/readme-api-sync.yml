@@ -26,3 +26,21 @@ jobs:
           README_API_TOKEN: ${{ secrets.README_API_TOKEN }}
         run: |
           python scripts/readme_orderer.py
+      - name: Notify slack success
+        if: success()
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.API_DOCS_SLACK_TOKEN }}
+        uses: voxmedia/github-action-slack-notify-build@v1
+        with:
+          channel: alerts-api-docs
+          status: SUCCESS
+          color: good
+      - name: Notify slack fail
+        if: failure()
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.API_DOCS_SLACK_TOKEN }}
+        uses: voxmedia/github-action-slack-notify-build@v1
+        with:
+          channel: alerts-api-docs
+          status: FAILED
+          color: danger
