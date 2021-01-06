@@ -466,6 +466,370 @@
         }
       ]
     },
+    "/beta/fleet/routes": {
+      "post": {
+        "description": "Create a route\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Beta APIs"
+        ],
+        "summary": "[beta] Create a route",
+        "operationId": "createRoute",
+        "parameters": [
+          {
+            "name": "CreateRouteRequestBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RoutesCreateRouteRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesCreateRouteResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "driver": {
+                  "externalIds": {
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
+                  },
+                  "id": "45646",
+                  "name": "Driver Bob"
+                },
+                "externalIds": {
+                  "maintenanceId": "250020",
+                  "payrollId": "ABFS18600"
+                },
+                "id": "342341",
+                "name": "Bid 123",
+                "notes": "These are my notes",
+                "scheduledRouteEndTime": "2019-06-13T19:08:25Z",
+                "scheduledRouteStartTime": "2019-06-13T19:08:25Z",
+                "settings": {
+                  "routeCompletionCondition": "arriveLastStop",
+                  "routeStartingCondition": "departFirstStop"
+                },
+                "stops": [
+                  {
+                    "address": {
+                      "externalIds": {
+                        "maintenanceId": "250020",
+                        "payrollId": "ABFS18600"
+                      },
+                      "id": "494123",
+                      "name": "Company Office #1"
+                    },
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "324231",
+                    "name": "Stop #1",
+                    "notes": "These are my notes",
+                    "scheduledArrivalTime": "2019-06-13T19:08:25Z",
+                    "scheduledDepartureTime": "2019-06-13T19:08:25Z",
+                    "singleUseLocation": {
+                      "address": "1234 Main St, San Jose, CA",
+                      "latitude": 123.456,
+                      "longitude": 37.459
+                    }
+                  },
+                  {
+                    "address": {
+                      "externalIds": {
+                        "maintenanceId": "250020",
+                        "payrollId": "ABFS18600"
+                      },
+                      "id": "494123",
+                      "name": "Company Office #1"
+                    },
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "324231",
+                    "name": "Stop #1",
+                    "notes": "These are my notes",
+                    "scheduledArrivalTime": "2019-06-13T19:08:25Z",
+                    "scheduledDepartureTime": "2019-06-13T19:08:25Z",
+                    "singleUseLocation": {
+                      "address": "1234 Main St, San Jose, CA",
+                      "latitude": 123.456,
+                      "longitude": 37.459
+                    }
+                  },
+                  {
+                    "address": {
+                      "externalIds": {
+                        "maintenanceId": "250020",
+                        "payrollId": "ABFS18600"
+                      },
+                      "id": "494123",
+                      "name": "Company Office #1"
+                    },
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "324231",
+                    "name": "Stop #1",
+                    "notes": "These are my notes",
+                    "scheduledArrivalTime": "2019-06-13T19:08:25Z",
+                    "scheduledDepartureTime": "2019-06-13T19:08:25Z",
+                    "singleUseLocation": {
+                      "address": "1234 Main St, San Jose, CA",
+                      "latitude": 123.456,
+                      "longitude": 37.459
+                    }
+                  }
+                ],
+                "vehicle": {
+                  "externalIds": {
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
+                  },
+                  "id": "494123",
+                  "name": "Fleet Truck #1"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesCreateRouteNotFoundResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Object not found.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesCreateRouteInternalErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Failed to execute GraphQL query.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesCreateRouteNotImplementedResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Not implemented.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesCreateRouteBadRequestResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Invalid value for parameter.",
+                "requestId": "8916e1c1"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/beta/fleet/routes/{id}": {
+      "patch": {
+        "description": "Update a route.  **Note** this implementation of patch uses [the JSON merge patch](https://tools.ietf.org/html/rfc7396) proposed standard.\n This means that any fields included in the patch request will _overwrite_ fields which exist on the target resource.\n For arrays, this means any array included in the request will _replace_ the array that exists at the specified path, it will not _add_ to the existing array\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Beta APIs"
+        ],
+        "summary": "[beta] Update a route",
+        "operationId": "patchRoute",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "id of the route to update",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "PatchRouteRequestBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RoutesPatchRouteRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesPatchRouteResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "driver": {
+                  "externalIds": {
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
+                  },
+                  "id": "45646",
+                  "name": "Driver Bob"
+                },
+                "externalIds": {
+                  "maintenanceId": "250020",
+                  "payrollId": "ABFS18600"
+                },
+                "id": "342341",
+                "name": "Bid 123",
+                "notes": "These are my notes",
+                "scheduledRouteEndTime": "2019-06-13T19:08:25Z",
+                "scheduledRouteStartTime": "2019-06-13T19:08:25Z",
+                "settings": {
+                  "routeCompletionCondition": "arriveLastStop",
+                  "routeStartingCondition": "departFirstStop"
+                },
+                "stops": [
+                  {
+                    "address": {
+                      "externalIds": {
+                        "maintenanceId": "250020",
+                        "payrollId": "ABFS18600"
+                      },
+                      "id": "494123",
+                      "name": "Company Office #1"
+                    },
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "324231",
+                    "name": "Stop #1",
+                    "notes": "These are my notes",
+                    "scheduledArrivalTime": "2019-06-13T19:08:25Z",
+                    "scheduledDepartureTime": "2019-06-13T19:08:25Z",
+                    "singleUseLocation": {
+                      "address": "1234 Main St, San Jose, CA",
+                      "latitude": 123.456,
+                      "longitude": 37.459
+                    }
+                  },
+                  {
+                    "address": {
+                      "externalIds": {
+                        "maintenanceId": "250020",
+                        "payrollId": "ABFS18600"
+                      },
+                      "id": "494123",
+                      "name": "Company Office #1"
+                    },
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "324231",
+                    "name": "Stop #1",
+                    "notes": "These are my notes",
+                    "scheduledArrivalTime": "2019-06-13T19:08:25Z",
+                    "scheduledDepartureTime": "2019-06-13T19:08:25Z",
+                    "singleUseLocation": {
+                      "address": "1234 Main St, San Jose, CA",
+                      "latitude": 123.456,
+                      "longitude": 37.459
+                    }
+                  }
+                ],
+                "vehicle": {
+                  "externalIds": {
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
+                  },
+                  "id": "494123",
+                  "name": "Fleet Truck #1"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesPatchRouteNotFoundResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Object not found.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesPatchRouteInternalErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Failed to execute GraphQL query.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesPatchRouteNotImplementedResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Not implemented.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesPatchRouteBadRequestResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Invalid value for parameter.",
+                "requestId": "8916e1c1"
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "id of the route to update",
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
     "/contacts": {
       "get": {
         "description": "Returns a list of all contacts in an organization. \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
@@ -4747,192 +5111,6 @@
         }
       }
     },
-    "/fleet/routes": {
-      "post": {
-        "description": "Create a route\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
-        "schemes": [
-          "https"
-        ],
-        "tags": [
-          "Beta APIs"
-        ],
-        "summary": "[beta] Create a route",
-        "operationId": "createRoute",
-        "parameters": [
-          {
-            "name": "CreateRouteRequestBody",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/RoutesCreateRouteRequestBody"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK response.",
-            "schema": {
-              "$ref": "#/definitions/RoutesCreateRouteResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "driver": {
-                  "externalIds": {
-                    "maintenanceId": "250020",
-                    "payrollId": "ABFS18600"
-                  },
-                  "id": "45646",
-                  "name": "Driver Bob"
-                },
-                "externalIds": {
-                  "maintenanceId": "250020",
-                  "payrollId": "ABFS18600"
-                },
-                "id": "342341",
-                "name": "Bid 123",
-                "notes": "These are my notes",
-                "scheduledRouteEndTime": "2019-06-13T19:08:25Z",
-                "scheduledRouteStartTime": "2019-06-13T19:08:25Z",
-                "settings": {
-                  "routeCompletionCondition": "arriveLastStop",
-                  "routeStartingCondition": "departFirstStop"
-                },
-                "stops": [
-                  {
-                    "address": {
-                      "externalIds": {
-                        "maintenanceId": "250020",
-                        "payrollId": "ABFS18600"
-                      },
-                      "id": "494123",
-                      "name": "Company Office #1"
-                    },
-                    "externalIds": {
-                      "maintenanceId": "250020",
-                      "payrollId": "ABFS18600"
-                    },
-                    "id": "324231",
-                    "name": "Stop #1",
-                    "notes": "These are my notes",
-                    "scheduledArrivalTime": "2019-06-13T19:08:25Z",
-                    "scheduledDepartureTime": "2019-06-13T19:08:25Z",
-                    "singleUseLocation": {
-                      "address": "1234 Main St, San Jose, CA",
-                      "latitude": 123.456,
-                      "longitude": 37.459
-                    }
-                  },
-                  {
-                    "address": {
-                      "externalIds": {
-                        "maintenanceId": "250020",
-                        "payrollId": "ABFS18600"
-                      },
-                      "id": "494123",
-                      "name": "Company Office #1"
-                    },
-                    "externalIds": {
-                      "maintenanceId": "250020",
-                      "payrollId": "ABFS18600"
-                    },
-                    "id": "324231",
-                    "name": "Stop #1",
-                    "notes": "These are my notes",
-                    "scheduledArrivalTime": "2019-06-13T19:08:25Z",
-                    "scheduledDepartureTime": "2019-06-13T19:08:25Z",
-                    "singleUseLocation": {
-                      "address": "1234 Main St, San Jose, CA",
-                      "latitude": 123.456,
-                      "longitude": 37.459
-                    }
-                  },
-                  {
-                    "address": {
-                      "externalIds": {
-                        "maintenanceId": "250020",
-                        "payrollId": "ABFS18600"
-                      },
-                      "id": "494123",
-                      "name": "Company Office #1"
-                    },
-                    "externalIds": {
-                      "maintenanceId": "250020",
-                      "payrollId": "ABFS18600"
-                    },
-                    "id": "324231",
-                    "name": "Stop #1",
-                    "notes": "These are my notes",
-                    "scheduledArrivalTime": "2019-06-13T19:08:25Z",
-                    "scheduledDepartureTime": "2019-06-13T19:08:25Z",
-                    "singleUseLocation": {
-                      "address": "1234 Main St, San Jose, CA",
-                      "latitude": 123.456,
-                      "longitude": 37.459
-                    }
-                  }
-                ],
-                "vehicle": {
-                  "externalIds": {
-                    "maintenanceId": "250020",
-                    "payrollId": "ABFS18600"
-                  },
-                  "id": "494123",
-                  "name": "Fleet Truck #1"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found response.",
-            "schema": {
-              "$ref": "#/definitions/RoutesCreateRouteNotFoundResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "message": "Object not found.",
-                "requestId": "8916e1c1"
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error response.",
-            "schema": {
-              "$ref": "#/definitions/RoutesCreateRouteInternalErrorResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "message": "Failed to execute GraphQL query.",
-                "requestId": "8916e1c1"
-              }
-            }
-          },
-          "501": {
-            "description": "Not Implemented response.",
-            "schema": {
-              "$ref": "#/definitions/RoutesCreateRouteNotImplementedResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "message": "Not implemented.",
-                "requestId": "8916e1c1"
-              }
-            }
-          },
-          "default": {
-            "description": "Bad Request response.",
-            "schema": {
-              "$ref": "#/definitions/RoutesCreateRouteBadRequestResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "message": "Invalid value for parameter.",
-                "requestId": "8916e1c1"
-              }
-            }
-          }
-        }
-      }
-    },
     "/fleet/routes/audit-logs/feed": {
       "get": {
         "description": "Subscribes to a feed of immutable, append-only updates for routes. The initial request to this feed endpoint returns a cursor, which can be used on the next request to fetch updated routes that have had state changes since that request. \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
@@ -4964,184 +5142,6 @@
           }
         }
       }
-    },
-    "/fleet/routes/{id}": {
-      "patch": {
-        "description": "Update a route.  **Note** this implementation of patch uses [the JSON merge patch](https://tools.ietf.org/html/rfc7396) proposed standard.\n This means that any fields included in the patch request will _overwrite_ fields which exist on the target resource.\n For arrays, this means any array included in the request will _replace_ the array that exists at the specified path, it will not _add_ to the existing array\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
-        "schemes": [
-          "https"
-        ],
-        "tags": [
-          "Beta APIs"
-        ],
-        "summary": "[beta] Update a route.",
-        "operationId": "patchRoute",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "id of the route to update",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "PatchRouteRequestBody",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/RoutesPatchRouteRequestBody"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK response.",
-            "schema": {
-              "$ref": "#/definitions/RoutesPatchRouteResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "driver": {
-                  "externalIds": {
-                    "maintenanceId": "250020",
-                    "payrollId": "ABFS18600"
-                  },
-                  "id": "45646",
-                  "name": "Driver Bob"
-                },
-                "externalIds": {
-                  "maintenanceId": "250020",
-                  "payrollId": "ABFS18600"
-                },
-                "id": "342341",
-                "name": "Bid 123",
-                "notes": "These are my notes",
-                "scheduledRouteEndTime": "2019-06-13T19:08:25Z",
-                "scheduledRouteStartTime": "2019-06-13T19:08:25Z",
-                "settings": {
-                  "routeCompletionCondition": "arriveLastStop",
-                  "routeStartingCondition": "departFirstStop"
-                },
-                "stops": [
-                  {
-                    "address": {
-                      "externalIds": {
-                        "maintenanceId": "250020",
-                        "payrollId": "ABFS18600"
-                      },
-                      "id": "494123",
-                      "name": "Company Office #1"
-                    },
-                    "externalIds": {
-                      "maintenanceId": "250020",
-                      "payrollId": "ABFS18600"
-                    },
-                    "id": "324231",
-                    "name": "Stop #1",
-                    "notes": "These are my notes",
-                    "scheduledArrivalTime": "2019-06-13T19:08:25Z",
-                    "scheduledDepartureTime": "2019-06-13T19:08:25Z",
-                    "singleUseLocation": {
-                      "address": "1234 Main St, San Jose, CA",
-                      "latitude": 123.456,
-                      "longitude": 37.459
-                    }
-                  },
-                  {
-                    "address": {
-                      "externalIds": {
-                        "maintenanceId": "250020",
-                        "payrollId": "ABFS18600"
-                      },
-                      "id": "494123",
-                      "name": "Company Office #1"
-                    },
-                    "externalIds": {
-                      "maintenanceId": "250020",
-                      "payrollId": "ABFS18600"
-                    },
-                    "id": "324231",
-                    "name": "Stop #1",
-                    "notes": "These are my notes",
-                    "scheduledArrivalTime": "2019-06-13T19:08:25Z",
-                    "scheduledDepartureTime": "2019-06-13T19:08:25Z",
-                    "singleUseLocation": {
-                      "address": "1234 Main St, San Jose, CA",
-                      "latitude": 123.456,
-                      "longitude": 37.459
-                    }
-                  }
-                ],
-                "vehicle": {
-                  "externalIds": {
-                    "maintenanceId": "250020",
-                    "payrollId": "ABFS18600"
-                  },
-                  "id": "494123",
-                  "name": "Fleet Truck #1"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found response.",
-            "schema": {
-              "$ref": "#/definitions/RoutesPatchRouteNotFoundResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "message": "Object not found.",
-                "requestId": "8916e1c1"
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error response.",
-            "schema": {
-              "$ref": "#/definitions/RoutesPatchRouteInternalErrorResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "message": "Failed to execute GraphQL query.",
-                "requestId": "8916e1c1"
-              }
-            }
-          },
-          "501": {
-            "description": "Not Implemented response.",
-            "schema": {
-              "$ref": "#/definitions/RoutesPatchRouteNotImplementedResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "message": "Not implemented.",
-                "requestId": "8916e1c1"
-              }
-            }
-          },
-          "default": {
-            "description": "Bad Request response.",
-            "schema": {
-              "$ref": "#/definitions/RoutesPatchRouteBadRequestResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "message": "Invalid value for parameter.",
-                "requestId": "8916e1c1"
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "type": "string",
-          "description": "id of the route to update",
-          "name": "id",
-          "in": "path",
-          "required": true
-        }
-      ]
     },
     "/fleet/safety-events": {
       "get": {
@@ -21742,7 +21742,7 @@
       }
     },
     "RoutesCreateRouteBadRequestResponseBody": {
-      "description": "Bad request parameters",
+      "description": "Bad Request parameters",
       "type": "object",
       "required": [
         "message",
@@ -21814,7 +21814,7 @@
       }
     },
     "RoutesCreateRouteNotImplementedResponseBody": {
-      "description": "Endpoint is not yet implemented",
+      "description": "Requested endpoint is not yet implemented",
       "type": "object",
       "required": [
         "message",
@@ -22228,7 +22228,7 @@
       }
     },
     "RoutesPatchRouteBadRequestResponseBody": {
-      "description": "Bad request parameters",
+      "description": "Bad Request parameters",
       "type": "object",
       "required": [
         "message",
@@ -22300,7 +22300,7 @@
       }
     },
     "RoutesPatchRouteNotImplementedResponseBody": {
-      "description": "Endpoint is not yet implemented",
+      "description": "Requested endpoint is not yet implemented",
       "type": "object",
       "required": [
         "message",
