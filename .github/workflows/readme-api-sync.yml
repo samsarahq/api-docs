@@ -13,3 +13,16 @@ jobs:
           readme-oas-key: ${{ secrets.README_OAS_KEY }}
           oas-file-path: './swagger-readme.json'
           api-version: '2019.01.01'
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+      - name: Run python script
+        env:
+          README_CATEGORY_ID: ${{ secrets.README_CATEGORY_ID }}
+          README_API_TOKEN: ${{ secrets.README_API_TOKEN }}
+        run: |
+          python scripts/readme_orderer.py
