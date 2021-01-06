@@ -1,11 +1,9 @@
 import requests
-import sys
+import os
 
-args = sys.argv
+README_CATEGORY_ID = os.getenv('README_CATEGORY_ID')
 
-README_CATEGORY_ID = args[1] 
-
-README_API_TOKEN = args[2] 
+README_API_TOKEN = os.environ.get('README_API_TOKEN')
 
 class BasicAuth(requests.auth.AuthBase):
     def __init__(self, token):
