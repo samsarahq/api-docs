@@ -11903,7 +11903,7 @@
 	   	   	   	   "type": "object"
 	   	   	   },
 	   	   	   "RoutesCreateRouteBadRequestResponseBody": {
-	   	   	   	   "description": "Bad request parameters",
+	   	   	   	   "description": "Bad Request parameters",
 	   	   	   	   "example": {
 	   	   	   	   	   "message": "Invalid value for parameter.",
 	   	   	   	   	   "requestId": "8916e1c1"
@@ -11975,7 +11975,7 @@
 	   	   	   	   "type": "object"
 	   	   	   },
 	   	   	   "RoutesCreateRouteNotImplementedResponseBody": {
-	   	   	   	   "description": "Endpoint is not yet implemented",
+	   	   	   	   "description": "Requested endpoint is not yet implemented",
 	   	   	   	   "example": {
 	   	   	   	   	   "message": "Not implemented.",
 	   	   	   	   	   "requestId": "8916e1c1"
@@ -12389,7 +12389,7 @@
 	   	   	   	   "type": "object"
 	   	   	   },
 	   	   	   "RoutesPatchRouteBadRequestResponseBody": {
-	   	   	   	   "description": "Bad request parameters",
+	   	   	   	   "description": "Bad Request parameters",
 	   	   	   	   "example": {
 	   	   	   	   	   "message": "Invalid value for parameter.",
 	   	   	   	   	   "requestId": "8916e1c1"
@@ -12461,7 +12461,7 @@
 	   	   	   	   "type": "object"
 	   	   	   },
 	   	   	   "RoutesPatchRouteNotImplementedResponseBody": {
-	   	   	   	   "description": "Endpoint is not yet implemented",
+	   	   	   	   "description": "Requested endpoint is not yet implemented",
 	   	   	   	   "example": {
 	   	   	   	   	   "message": "Not implemented.",
 	   	   	   	   	   "requestId": "8916e1c1"
@@ -26698,6 +26698,383 @@
 	   	   	   	   "x-codegen-request-body-name": "attribute"
 	   	   	   }
 	   	   },
+	   	   "/beta/fleet/routes": {
+	   	   	   "post": {
+	   	   	   	   "description": "Create a route\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
+	   	   	   	   "operationId": "createRoute",
+	   	   	   	   "requestBody": {
+	   	   	   	   	   "content": {
+	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteRequestBody"
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   }
+	   	   	   	   	   },
+	   	   	   	   	   "required": true
+	   	   	   	   },
+	   	   	   	   "responses": {
+	   	   	   	   	   "200": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "driver": {
+	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "id": "45646",
+	   	   	   	   	   	   	   	   	   	   "name": "Driver Bob"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "id": "342341",
+	   	   	   	   	   	   	   	   	   "name": "Bid 123",
+	   	   	   	   	   	   	   	   	   "notes": "These are my notes",
+	   	   	   	   	   	   	   	   	   "scheduledRouteEndTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "scheduledRouteStartTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "settings": {
+	   	   	   	   	   	   	   	   	   	   "routeCompletionCondition": "arriveLastStop",
+	   	   	   	   	   	   	   	   	   	   "routeStartingCondition": "departFirstStop"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "stops": [
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "address": {
+	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   "id": "494123",
+	   	   	   	   	   	   	   	   	   	   	   	   "name": "Company Office #1"
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   "id": "324231",
+	   	   	   	   	   	   	   	   	   	   	   "name": "Stop #1",
+	   	   	   	   	   	   	   	   	   	   	   "notes": "These are my notes",
+	   	   	   	   	   	   	   	   	   	   	   "scheduledArrivalTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "scheduledDepartureTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "singleUseLocation": {
+	   	   	   	   	   	   	   	   	   	   	   	   "address": "1234 Main St, San Jose, CA",
+	   	   	   	   	   	   	   	   	   	   	   	   "latitude": 123.456,
+	   	   	   	   	   	   	   	   	   	   	   	   "longitude": 37.459
+	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "address": {
+	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   "id": "494123",
+	   	   	   	   	   	   	   	   	   	   	   	   "name": "Company Office #1"
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   "id": "324231",
+	   	   	   	   	   	   	   	   	   	   	   "name": "Stop #1",
+	   	   	   	   	   	   	   	   	   	   	   "notes": "These are my notes",
+	   	   	   	   	   	   	   	   	   	   	   "scheduledArrivalTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "scheduledDepartureTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "singleUseLocation": {
+	   	   	   	   	   	   	   	   	   	   	   	   "address": "1234 Main St, San Jose, CA",
+	   	   	   	   	   	   	   	   	   	   	   	   "latitude": 123.456,
+	   	   	   	   	   	   	   	   	   	   	   	   "longitude": 37.459
+	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "address": {
+	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   "id": "494123",
+	   	   	   	   	   	   	   	   	   	   	   	   "name": "Company Office #1"
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   "id": "324231",
+	   	   	   	   	   	   	   	   	   	   	   "name": "Stop #1",
+	   	   	   	   	   	   	   	   	   	   	   "notes": "These are my notes",
+	   	   	   	   	   	   	   	   	   	   	   "scheduledArrivalTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "scheduledDepartureTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "singleUseLocation": {
+	   	   	   	   	   	   	   	   	   	   	   	   "address": "1234 Main St, San Jose, CA",
+	   	   	   	   	   	   	   	   	   	   	   	   "latitude": 123.456,
+	   	   	   	   	   	   	   	   	   	   	   	   "longitude": 37.459
+	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   "vehicle": {
+	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "id": "494123",
+	   	   	   	   	   	   	   	   	   	   "name": "Fleet Truck #1"
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "OK response."
+	   	   	   	   	   },
+	   	   	   	   	   "404": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Object not found.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteNotFoundResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Found response."
+	   	   	   	   	   },
+	   	   	   	   	   "500": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Failed to execute GraphQL query.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteInternalErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Internal Server Error response."
+	   	   	   	   	   },
+	   	   	   	   	   "501": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Not implemented.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteNotImplementedResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Implemented response."
+	   	   	   	   	   },
+	   	   	   	   	   "default": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Invalid value for parameter.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteBadRequestResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Request response."
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "summary": "[beta] Create a route",
+	   	   	   	   "tags": [
+	   	   	   	   	   "Beta APIs"
+	   	   	   	   ],
+	   	   	   	   "x-codegen-request-body-name": "CreateRouteRequestBody"
+	   	   	   }
+	   	   },
+	   	   "/beta/fleet/routes/{id}": {
+	   	   	   "patch": {
+	   	   	   	   "description": "Update a route.  **Note** this implementation of patch uses [the JSON merge patch](https://tools.ietf.org/html/rfc7396) proposed standard.\n This means that any fields included in the patch request will _overwrite_ fields which exist on the target resource.\n For arrays, this means any array included in the request will _replace_ the array that exists at the specified path, it will not _add_ to the existing array\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
+	   	   	   	   "operationId": "patchRoute",
+	   	   	   	   "parameters": [
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": "id of the route to update",
+	   	   	   	   	   	   "explode": false,
+	   	   	   	   	   	   "in": "path",
+	   	   	   	   	   	   "name": "id",
+	   	   	   	   	   	   "required": true,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "simple"
+	   	   	   	   	   }
+	   	   	   	   ],
+	   	   	   	   "requestBody": {
+	   	   	   	   	   "content": {
+	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteRequestBody"
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   }
+	   	   	   	   	   },
+	   	   	   	   	   "required": true
+	   	   	   	   },
+	   	   	   	   "responses": {
+	   	   	   	   	   "200": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "driver": {
+	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "id": "45646",
+	   	   	   	   	   	   	   	   	   	   "name": "Driver Bob"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "id": "342341",
+	   	   	   	   	   	   	   	   	   "name": "Bid 123",
+	   	   	   	   	   	   	   	   	   "notes": "These are my notes",
+	   	   	   	   	   	   	   	   	   "scheduledRouteEndTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "scheduledRouteStartTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "settings": {
+	   	   	   	   	   	   	   	   	   	   "routeCompletionCondition": "arriveLastStop",
+	   	   	   	   	   	   	   	   	   	   "routeStartingCondition": "departFirstStop"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "stops": [
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "address": {
+	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   "id": "494123",
+	   	   	   	   	   	   	   	   	   	   	   	   "name": "Company Office #1"
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   "id": "324231",
+	   	   	   	   	   	   	   	   	   	   	   "name": "Stop #1",
+	   	   	   	   	   	   	   	   	   	   	   "notes": "These are my notes",
+	   	   	   	   	   	   	   	   	   	   	   "scheduledArrivalTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "scheduledDepartureTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "singleUseLocation": {
+	   	   	   	   	   	   	   	   	   	   	   	   "address": "1234 Main St, San Jose, CA",
+	   	   	   	   	   	   	   	   	   	   	   	   "latitude": 123.456,
+	   	   	   	   	   	   	   	   	   	   	   	   "longitude": 37.459
+	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "address": {
+	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   "id": "494123",
+	   	   	   	   	   	   	   	   	   	   	   	   "name": "Company Office #1"
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   "id": "324231",
+	   	   	   	   	   	   	   	   	   	   	   "name": "Stop #1",
+	   	   	   	   	   	   	   	   	   	   	   "notes": "These are my notes",
+	   	   	   	   	   	   	   	   	   	   	   "scheduledArrivalTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "scheduledDepartureTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "singleUseLocation": {
+	   	   	   	   	   	   	   	   	   	   	   	   "address": "1234 Main St, San Jose, CA",
+	   	   	   	   	   	   	   	   	   	   	   	   "latitude": 123.456,
+	   	   	   	   	   	   	   	   	   	   	   	   "longitude": 37.459
+	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   "vehicle": {
+	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "id": "494123",
+	   	   	   	   	   	   	   	   	   	   "name": "Fleet Truck #1"
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "OK response."
+	   	   	   	   	   },
+	   	   	   	   	   "404": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Object not found.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteNotFoundResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Found response."
+	   	   	   	   	   },
+	   	   	   	   	   "500": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Failed to execute GraphQL query.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteInternalErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Internal Server Error response."
+	   	   	   	   	   },
+	   	   	   	   	   "501": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Not implemented.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteNotImplementedResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Implemented response."
+	   	   	   	   	   },
+	   	   	   	   	   "default": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Invalid value for parameter.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteBadRequestResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Request response."
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "summary": "[beta] Update a route",
+	   	   	   	   "tags": [
+	   	   	   	   	   "Beta APIs"
+	   	   	   	   ],
+	   	   	   	   "x-codegen-request-body-name": "PatchRouteRequestBody"
+	   	   	   }
+	   	   },
 	   	   "/contacts": {
 	   	   	   "get": {
 	   	   	   	   "description": "Returns a list of all contacts in an organization. \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
@@ -31819,200 +32196,6 @@
 	   	   	   	   ]
 	   	   	   }
 	   	   },
-	   	   "/fleet/routes": {
-	   	   	   "post": {
-	   	   	   	   "description": "Create a route\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
-	   	   	   	   "operationId": "createRoute",
-	   	   	   	   "requestBody": {
-	   	   	   	   	   "content": {
-	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteRequestBody"
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   }
-	   	   	   	   	   },
-	   	   	   	   	   "required": true
-	   	   	   	   },
-	   	   	   	   "responses": {
-	   	   	   	   	   "200": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "driver": {
-	   	   	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   "id": "45646",
-	   	   	   	   	   	   	   	   	   	   "name": "Driver Bob"
-	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   "id": "342341",
-	   	   	   	   	   	   	   	   	   "name": "Bid 123",
-	   	   	   	   	   	   	   	   	   "notes": "These are my notes",
-	   	   	   	   	   	   	   	   	   "scheduledRouteEndTime": "2019-06-13T19:08:25Z",
-	   	   	   	   	   	   	   	   	   "scheduledRouteStartTime": "2019-06-13T19:08:25Z",
-	   	   	   	   	   	   	   	   	   "settings": {
-	   	   	   	   	   	   	   	   	   	   "routeCompletionCondition": "arriveLastStop",
-	   	   	   	   	   	   	   	   	   	   "routeStartingCondition": "departFirstStop"
-	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   "stops": [
-	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   "address": {
-	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   	   "id": "494123",
-	   	   	   	   	   	   	   	   	   	   	   	   "name": "Company Office #1"
-	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   "id": "324231",
-	   	   	   	   	   	   	   	   	   	   	   "name": "Stop #1",
-	   	   	   	   	   	   	   	   	   	   	   "notes": "These are my notes",
-	   	   	   	   	   	   	   	   	   	   	   "scheduledArrivalTime": "2019-06-13T19:08:25Z",
-	   	   	   	   	   	   	   	   	   	   	   "scheduledDepartureTime": "2019-06-13T19:08:25Z",
-	   	   	   	   	   	   	   	   	   	   	   "singleUseLocation": {
-	   	   	   	   	   	   	   	   	   	   	   	   "address": "1234 Main St, San Jose, CA",
-	   	   	   	   	   	   	   	   	   	   	   	   "latitude": 123.456,
-	   	   	   	   	   	   	   	   	   	   	   	   "longitude": 37.459
-	   	   	   	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   "address": {
-	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   	   "id": "494123",
-	   	   	   	   	   	   	   	   	   	   	   	   "name": "Company Office #1"
-	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   "id": "324231",
-	   	   	   	   	   	   	   	   	   	   	   "name": "Stop #1",
-	   	   	   	   	   	   	   	   	   	   	   "notes": "These are my notes",
-	   	   	   	   	   	   	   	   	   	   	   "scheduledArrivalTime": "2019-06-13T19:08:25Z",
-	   	   	   	   	   	   	   	   	   	   	   "scheduledDepartureTime": "2019-06-13T19:08:25Z",
-	   	   	   	   	   	   	   	   	   	   	   "singleUseLocation": {
-	   	   	   	   	   	   	   	   	   	   	   	   "address": "1234 Main St, San Jose, CA",
-	   	   	   	   	   	   	   	   	   	   	   	   "latitude": 123.456,
-	   	   	   	   	   	   	   	   	   	   	   	   "longitude": 37.459
-	   	   	   	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   "address": {
-	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   	   "id": "494123",
-	   	   	   	   	   	   	   	   	   	   	   	   "name": "Company Office #1"
-	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   "id": "324231",
-	   	   	   	   	   	   	   	   	   	   	   "name": "Stop #1",
-	   	   	   	   	   	   	   	   	   	   	   "notes": "These are my notes",
-	   	   	   	   	   	   	   	   	   	   	   "scheduledArrivalTime": "2019-06-13T19:08:25Z",
-	   	   	   	   	   	   	   	   	   	   	   "scheduledDepartureTime": "2019-06-13T19:08:25Z",
-	   	   	   	   	   	   	   	   	   	   	   "singleUseLocation": {
-	   	   	   	   	   	   	   	   	   	   	   	   "address": "1234 Main St, San Jose, CA",
-	   	   	   	   	   	   	   	   	   	   	   	   "latitude": 123.456,
-	   	   	   	   	   	   	   	   	   	   	   	   "longitude": 37.459
-	   	   	   	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   	   	   ],
-	   	   	   	   	   	   	   	   	   "vehicle": {
-	   	   	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   "id": "494123",
-	   	   	   	   	   	   	   	   	   	   "name": "Fleet Truck #1"
-	   	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "OK response."
-	   	   	   	   	   },
-	   	   	   	   	   "404": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "Object not found.",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteNotFoundResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Found response."
-	   	   	   	   	   },
-	   	   	   	   	   "500": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "Failed to execute GraphQL query.",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteInternalErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Internal Server Error response."
-	   	   	   	   	   },
-	   	   	   	   	   "501": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "Not implemented.",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteNotImplementedResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Implemented response."
-	   	   	   	   	   },
-	   	   	   	   	   "default": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "Invalid value for parameter.",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteBadRequestResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Request response."
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "summary": "[beta] Create a route",
-	   	   	   	   "tags": [
-	   	   	   	   	   "Beta APIs"
-	   	   	   	   ],
-	   	   	   	   "x-codegen-request-body-name": "CreateRouteRequestBody"
-	   	   	   }
-	   	   },
 	   	   "/fleet/routes/audit-logs/feed": {
 	   	   	   "get": {
 	   	   	   	   "description": "Subscribes to a feed of immutable, append-only updates for routes. The initial request to this feed endpoint returns a cursor, which can be used on the next request to fetch updated routes that have had state changes since that request. \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
@@ -32056,189 +32239,6 @@
 	   	   	   	   "tags": [
 	   	   	   	   	   "Beta APIs"
 	   	   	   	   ]
-	   	   	   }
-	   	   },
-	   	   "/fleet/routes/{id}": {
-	   	   	   "patch": {
-	   	   	   	   "description": "Update a route.  **Note** this implementation of patch uses [the JSON merge patch](https://tools.ietf.org/html/rfc7396) proposed standard.\n This means that any fields included in the patch request will _overwrite_ fields which exist on the target resource.\n For arrays, this means any array included in the request will _replace_ the array that exists at the specified path, it will not _add_ to the existing array\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
-	   	   	   	   "operationId": "patchRoute",
-	   	   	   	   "parameters": [
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": "id of the route to update",
-	   	   	   	   	   	   "explode": false,
-	   	   	   	   	   	   "in": "path",
-	   	   	   	   	   	   "name": "id",
-	   	   	   	   	   	   "required": true,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "simple"
-	   	   	   	   	   }
-	   	   	   	   ],
-	   	   	   	   "requestBody": {
-	   	   	   	   	   "content": {
-	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteRequestBody"
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   }
-	   	   	   	   	   },
-	   	   	   	   	   "required": true
-	   	   	   	   },
-	   	   	   	   "responses": {
-	   	   	   	   	   "200": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "driver": {
-	   	   	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   "id": "45646",
-	   	   	   	   	   	   	   	   	   	   "name": "Driver Bob"
-	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   "id": "342341",
-	   	   	   	   	   	   	   	   	   "name": "Bid 123",
-	   	   	   	   	   	   	   	   	   "notes": "These are my notes",
-	   	   	   	   	   	   	   	   	   "scheduledRouteEndTime": "2019-06-13T19:08:25Z",
-	   	   	   	   	   	   	   	   	   "scheduledRouteStartTime": "2019-06-13T19:08:25Z",
-	   	   	   	   	   	   	   	   	   "settings": {
-	   	   	   	   	   	   	   	   	   	   "routeCompletionCondition": "arriveLastStop",
-	   	   	   	   	   	   	   	   	   	   "routeStartingCondition": "departFirstStop"
-	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   "stops": [
-	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   "address": {
-	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   	   "id": "494123",
-	   	   	   	   	   	   	   	   	   	   	   	   "name": "Company Office #1"
-	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   "id": "324231",
-	   	   	   	   	   	   	   	   	   	   	   "name": "Stop #1",
-	   	   	   	   	   	   	   	   	   	   	   "notes": "These are my notes",
-	   	   	   	   	   	   	   	   	   	   	   "scheduledArrivalTime": "2019-06-13T19:08:25Z",
-	   	   	   	   	   	   	   	   	   	   	   "scheduledDepartureTime": "2019-06-13T19:08:25Z",
-	   	   	   	   	   	   	   	   	   	   	   "singleUseLocation": {
-	   	   	   	   	   	   	   	   	   	   	   	   "address": "1234 Main St, San Jose, CA",
-	   	   	   	   	   	   	   	   	   	   	   	   "latitude": 123.456,
-	   	   	   	   	   	   	   	   	   	   	   	   "longitude": 37.459
-	   	   	   	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   "address": {
-	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   	   "id": "494123",
-	   	   	   	   	   	   	   	   	   	   	   	   "name": "Company Office #1"
-	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   "id": "324231",
-	   	   	   	   	   	   	   	   	   	   	   "name": "Stop #1",
-	   	   	   	   	   	   	   	   	   	   	   "notes": "These are my notes",
-	   	   	   	   	   	   	   	   	   	   	   "scheduledArrivalTime": "2019-06-13T19:08:25Z",
-	   	   	   	   	   	   	   	   	   	   	   "scheduledDepartureTime": "2019-06-13T19:08:25Z",
-	   	   	   	   	   	   	   	   	   	   	   "singleUseLocation": {
-	   	   	   	   	   	   	   	   	   	   	   	   "address": "1234 Main St, San Jose, CA",
-	   	   	   	   	   	   	   	   	   	   	   	   "latitude": 123.456,
-	   	   	   	   	   	   	   	   	   	   	   	   "longitude": 37.459
-	   	   	   	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   	   	   ],
-	   	   	   	   	   	   	   	   	   "vehicle": {
-	   	   	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   "id": "494123",
-	   	   	   	   	   	   	   	   	   	   "name": "Fleet Truck #1"
-	   	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "OK response."
-	   	   	   	   	   },
-	   	   	   	   	   "404": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "Object not found.",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteNotFoundResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Found response."
-	   	   	   	   	   },
-	   	   	   	   	   "500": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "Failed to execute GraphQL query.",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteInternalErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Internal Server Error response."
-	   	   	   	   	   },
-	   	   	   	   	   "501": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "Not implemented.",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteNotImplementedResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Implemented response."
-	   	   	   	   	   },
-	   	   	   	   	   "default": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "Invalid value for parameter.",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteBadRequestResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Request response."
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "summary": "[beta] Update a route.",
-	   	   	   	   "tags": [
-	   	   	   	   	   "Beta APIs"
-	   	   	   	   ],
-	   	   	   	   "x-codegen-request-body-name": "PatchRouteRequestBody"
 	   	   	   }
 	   	   },
 	   	   "/fleet/safety-events": {
