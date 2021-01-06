@@ -32,7 +32,7 @@ jobs:
           SLACK_BOT_TOKEN: ${{ secrets.API_DOCS_SLACK_TOKEN }}
         uses: voxmedia/github-action-slack-notify-build@v1
         with:
-          channel: alerts-api-docs
+          channel_id: C01JAV5FNBW
           status: SUCCESS
           color: good
       - name: Notify slack fail
@@ -41,6 +41,6 @@ jobs:
           SLACK_BOT_TOKEN: ${{ secrets.API_DOCS_SLACK_TOKEN }}
         uses: voxmedia/github-action-slack-notify-build@v1
         with:
-          channel: alerts-api-docs
+          channel_id: C01JAV5FNBW
           status: FAILED
           color: danger
