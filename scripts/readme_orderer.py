@@ -59,7 +59,7 @@ for slug in slugToBody:
         "body": body,
     }
 
-    resp = requests.put("https://dash.readme.io/api/v1/docs/" + tag["slug"], auth=readme_auth, data=payload)
+    resp = requests.put("https://dash.readme.io/api/v1/docs/" + slug, auth=readme_auth, data=payload)
     print(slug + ": " + str(resp.status_code))
 
 # Start at order=1, because overview is at order=0.
