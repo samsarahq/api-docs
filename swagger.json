@@ -601,10 +601,22 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesCreateRouteUnauthorizedErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Invalid token.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
           "404": {
             "description": "Not Found response.",
             "schema": {
-              "$ref": "#/definitions/RoutesCreateRouteNotFoundResponseBody"
+              "$ref": "#/definitions/RoutesCreateRouteNotFoundErrorErrorResponseBody"
             },
             "examples": {
               "application/json": {
@@ -613,10 +625,34 @@
               }
             }
           },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesCreateRouteMethodNotAllowedErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "DELETE not allowed on /endpoint.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesCreateRouteTooManyRequestsErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Exceeded rate limit.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
           "500": {
             "description": "Internal Server Error response.",
             "schema": {
-              "$ref": "#/definitions/RoutesCreateRouteInternalErrorResponseBody"
+              "$ref": "#/definitions/RoutesCreateRouteInternalServerErrorResponseBody"
             },
             "examples": {
               "application/json": {
@@ -628,7 +664,7 @@
           "501": {
             "description": "Not Implemented response.",
             "schema": {
-              "$ref": "#/definitions/RoutesCreateRouteNotImplementedResponseBody"
+              "$ref": "#/definitions/RoutesCreateRouteNotImplementedErrorResponseBody"
             },
             "examples": {
               "application/json": {
@@ -637,10 +673,46 @@
               }
             }
           },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesCreateRouteBadGatewayErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "rpc error: code = Unknown desc = connection refused",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesCreateRouteServiceUnavailableErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "context deadline exceeded",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesCreateRouteGatewayTimeoutErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "context deadline exceeded",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
           "default": {
             "description": "Bad Request response.",
             "schema": {
-              "$ref": "#/definitions/RoutesCreateRouteBadRequestResponseBody"
+              "$ref": "#/definitions/RoutesCreateRouteBadRequestErrorResponseBody"
             },
             "examples": {
               "application/json": {
@@ -770,10 +842,22 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesPatchRouteUnauthorizedErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Invalid token.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
           "404": {
             "description": "Not Found response.",
             "schema": {
-              "$ref": "#/definitions/RoutesPatchRouteNotFoundResponseBody"
+              "$ref": "#/definitions/RoutesPatchRouteNotFoundErrorErrorResponseBody"
             },
             "examples": {
               "application/json": {
@@ -782,10 +866,34 @@
               }
             }
           },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesPatchRouteMethodNotAllowedErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "DELETE not allowed on /endpoint.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesPatchRouteTooManyRequestsErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Exceeded rate limit.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
           "500": {
             "description": "Internal Server Error response.",
             "schema": {
-              "$ref": "#/definitions/RoutesPatchRouteInternalErrorResponseBody"
+              "$ref": "#/definitions/RoutesPatchRouteInternalServerErrorResponseBody"
             },
             "examples": {
               "application/json": {
@@ -797,7 +905,7 @@
           "501": {
             "description": "Not Implemented response.",
             "schema": {
-              "$ref": "#/definitions/RoutesPatchRouteNotImplementedResponseBody"
+              "$ref": "#/definitions/RoutesPatchRouteNotImplementedErrorResponseBody"
             },
             "examples": {
               "application/json": {
@@ -806,10 +914,46 @@
               }
             }
           },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesPatchRouteBadGatewayErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "rpc error: code = Unknown desc = connection refused",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesPatchRouteServiceUnavailableErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "context deadline exceeded",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/RoutesPatchRouteGatewayTimeoutErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "context deadline exceeded",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
           "default": {
             "description": "Bad Request response.",
             "schema": {
-              "$ref": "#/definitions/RoutesPatchRouteBadRequestResponseBody"
+              "$ref": "#/definitions/RoutesPatchRouteBadRequestErrorResponseBody"
             },
             "examples": {
               "application/json": {
@@ -6859,10 +7003,22 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsUnauthorizedErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Invalid token.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
           "404": {
             "description": "Not Found response.",
             "schema": {
-              "$ref": "#/definitions/VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsNotFoundResponseBody"
+              "$ref": "#/definitions/VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsNotFoundErrorErrorResponseBody"
             },
             "examples": {
               "application/json": {
@@ -6871,10 +7027,34 @@
               }
             }
           },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsMethodNotAllowedErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "DELETE not allowed on /endpoint.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsTooManyRequestsErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Exceeded rate limit.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
           "500": {
             "description": "Internal Server Error response.",
             "schema": {
-              "$ref": "#/definitions/VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsInternalErrorResponseBody"
+              "$ref": "#/definitions/VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsInternalServerErrorResponseBody"
             },
             "examples": {
               "application/json": {
@@ -6886,7 +7066,7 @@
           "501": {
             "description": "Not Implemented response.",
             "schema": {
-              "$ref": "#/definitions/VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsNotImplementedResponseBody"
+              "$ref": "#/definitions/VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsNotImplementedErrorResponseBody"
             },
             "examples": {
               "application/json": {
@@ -6895,10 +7075,46 @@
               }
             }
           },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsBadGatewayErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "rpc error: code = Unknown desc = connection refused",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsServiceUnavailableErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "context deadline exceeded",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsGatewayTimeoutErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "context deadline exceeded",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
           "default": {
             "description": "Bad Request response.",
             "schema": {
-              "$ref": "#/definitions/VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsBadRequestResponseBody"
+              "$ref": "#/definitions/VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsBadRequestErrorResponseBody"
             },
             "examples": {
               "application/json": {
@@ -21741,7 +21957,31 @@
         "routeStartingCondition": "departFirstStop"
       }
     },
-    "RoutesCreateRouteBadRequestResponseBody": {
+    "RoutesCreateRouteBadGatewayErrorResponseBody": {
+      "description": "Bad Gateway",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "rpc error: code = Unknown desc = connection refused"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "rpc error: code = Unknown desc = connection refused",
+        "requestId": "8916e1c1"
+      }
+    },
+    "RoutesCreateRouteBadRequestErrorResponseBody": {
       "description": "Bad Request parameters",
       "type": "object",
       "required": [
@@ -21765,7 +22005,31 @@
         "requestId": "8916e1c1"
       }
     },
-    "RoutesCreateRouteInternalErrorResponseBody": {
+    "RoutesCreateRouteGatewayTimeoutErrorResponseBody": {
+      "description": "Gateway timeout",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
+        "requestId": "8916e1c1"
+      }
+    },
+    "RoutesCreateRouteInternalServerErrorResponseBody": {
       "description": "An internal server error occurred",
       "type": "object",
       "required": [
@@ -21789,7 +22053,31 @@
         "requestId": "8916e1c1"
       }
     },
-    "RoutesCreateRouteNotFoundResponseBody": {
+    "RoutesCreateRouteMethodNotAllowedErrorResponseBody": {
+      "description": "Method not allowed",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "DELETE not allowed on /endpoint."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "DELETE not allowed on /endpoint.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "RoutesCreateRouteNotFoundErrorErrorResponseBody": {
       "description": "Resource not found",
       "type": "object",
       "required": [
@@ -21813,7 +22101,7 @@
         "requestId": "8916e1c1"
       }
     },
-    "RoutesCreateRouteNotImplementedResponseBody": {
+    "RoutesCreateRouteNotImplementedErrorResponseBody": {
       "description": "Requested endpoint is not yet implemented",
       "type": "object",
       "required": [
@@ -22227,7 +22515,103 @@
         }
       }
     },
-    "RoutesPatchRouteBadRequestResponseBody": {
+    "RoutesCreateRouteServiceUnavailableErrorResponseBody": {
+      "description": "Service unavailable",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
+        "requestId": "8916e1c1"
+      }
+    },
+    "RoutesCreateRouteTooManyRequestsErrorResponseBody": {
+      "description": "Too many requests",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Exceeded rate limit."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Exceeded rate limit.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "RoutesCreateRouteUnauthorizedErrorResponseBody": {
+      "description": "Unauthorized",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid token."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Invalid token.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "RoutesPatchRouteBadGatewayErrorResponseBody": {
+      "description": "Bad Gateway",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "rpc error: code = Unknown desc = connection refused"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "rpc error: code = Unknown desc = connection refused",
+        "requestId": "8916e1c1"
+      }
+    },
+    "RoutesPatchRouteBadRequestErrorResponseBody": {
       "description": "Bad Request parameters",
       "type": "object",
       "required": [
@@ -22251,7 +22635,31 @@
         "requestId": "8916e1c1"
       }
     },
-    "RoutesPatchRouteInternalErrorResponseBody": {
+    "RoutesPatchRouteGatewayTimeoutErrorResponseBody": {
+      "description": "Gateway timeout",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
+        "requestId": "8916e1c1"
+      }
+    },
+    "RoutesPatchRouteInternalServerErrorResponseBody": {
       "description": "An internal server error occurred",
       "type": "object",
       "required": [
@@ -22275,7 +22683,31 @@
         "requestId": "8916e1c1"
       }
     },
-    "RoutesPatchRouteNotFoundResponseBody": {
+    "RoutesPatchRouteMethodNotAllowedErrorResponseBody": {
+      "description": "Method not allowed",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "DELETE not allowed on /endpoint."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "DELETE not allowed on /endpoint.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "RoutesPatchRouteNotFoundErrorErrorResponseBody": {
       "description": "Resource not found",
       "type": "object",
       "required": [
@@ -22299,7 +22731,7 @@
         "requestId": "8916e1c1"
       }
     },
-    "RoutesPatchRouteNotImplementedResponseBody": {
+    "RoutesPatchRouteNotImplementedErrorResponseBody": {
       "description": "Requested endpoint is not yet implemented",
       "type": "object",
       "required": [
@@ -22642,6 +23074,78 @@
           "id": "494123",
           "name": "Fleet Truck #1"
         }
+      }
+    },
+    "RoutesPatchRouteServiceUnavailableErrorResponseBody": {
+      "description": "Service unavailable",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
+        "requestId": "8916e1c1"
+      }
+    },
+    "RoutesPatchRouteTooManyRequestsErrorResponseBody": {
+      "description": "Too many requests",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Exceeded rate limit."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Exceeded rate limit.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "RoutesPatchRouteUnauthorizedErrorResponseBody": {
+      "description": "Unauthorized",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid token."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Invalid token.",
+        "requestId": "8916e1c1"
       }
     },
     "RoutesSingleUseAddressObjectRequestBody": {
@@ -33194,7 +33698,31 @@
       "type": "string",
       "example": "2008"
     },
-    "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsBadRequestResponseBody": {
+    "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsBadGatewayErrorResponseBody": {
+      "description": "Bad Gateway",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "rpc error: code = Unknown desc = connection refused"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "rpc error: code = Unknown desc = connection refused",
+        "requestId": "8916e1c1"
+      }
+    },
+    "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsBadRequestErrorResponseBody": {
       "description": "Bad Request parameters",
       "type": "object",
       "required": [
@@ -33218,7 +33746,31 @@
         "requestId": "8916e1c1"
       }
     },
-    "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsInternalErrorResponseBody": {
+    "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsGatewayTimeoutErrorResponseBody": {
+      "description": "Gateway timeout",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
+        "requestId": "8916e1c1"
+      }
+    },
+    "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsInternalServerErrorResponseBody": {
       "description": "An internal server error occurred",
       "type": "object",
       "required": [
@@ -33242,7 +33794,31 @@
         "requestId": "8916e1c1"
       }
     },
-    "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsNotFoundResponseBody": {
+    "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsMethodNotAllowedErrorResponseBody": {
+      "description": "Method not allowed",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "DELETE not allowed on /endpoint."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "DELETE not allowed on /endpoint.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsNotFoundErrorErrorResponseBody": {
       "description": "Resource not found",
       "type": "object",
       "required": [
@@ -33266,7 +33842,7 @@
         "requestId": "8916e1c1"
       }
     },
-    "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsNotImplementedResponseBody": {
+    "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsNotImplementedErrorResponseBody": {
       "description": "Requested endpoint is not yet implemented",
       "type": "object",
       "required": [
@@ -33577,6 +34153,78 @@
           "endCursor": "MjkY",
           "hasNextPage": true
         }
+      }
+    },
+    "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsServiceUnavailableErrorResponseBody": {
+      "description": "Service unavailable",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
+        "requestId": "8916e1c1"
+      }
+    },
+    "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsTooManyRequestsErrorResponseBody": {
+      "description": "Too many requests",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Exceeded rate limit."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Exceeded rate limit.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsUnauthorizedErrorResponseBody": {
+      "description": "Unauthorized",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid token."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Invalid token.",
+        "requestId": "8916e1c1"
       }
     },
     "VehiclesDriverAssignmentsObjectResponseBody": {
