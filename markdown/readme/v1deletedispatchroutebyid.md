@@ -1,0 +1,1 @@
+Successfully deleted the dispatch route. No response body is returned.

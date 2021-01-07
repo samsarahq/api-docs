@@ -1,0 +1,1 @@
+Equipment objects represent powered assets connected to a [Samsara AG24](https://www.samsara.com/products/models/ag24) device via an APWR, CAT, or J1939 cable. They are automatically created with a unique Samsara Equipment ID whenever a Samsara AG24 is activated in your organization.

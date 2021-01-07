@@ -1,0 +1,1 @@
+Dispatch routes include start and end times and locations and an array of jobs along the route. The jobs also include locations and scheduled arrival and departure times. As routes are completed, job skip, arrival, and completion times are made available in real-time. Routes can be associated with drivers, vehicles, and trailers, and jobs can be associated with documents.

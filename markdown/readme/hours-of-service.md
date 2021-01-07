@@ -1,0 +1,3 @@
+Driver logs containing duty status, certification details, and associated vehicles and trailers are available. You can also retrieve summarized total active time logs. Signin/Signout logs are also available. Drivers can track hours of service via the Samsara Driver mobile app.
+
+**Note:** If data is still being uploaded from the Samsara Driver App, it may not be completely reflected by the API. The best practice is to wait a couple of days before querying the API to make sure that all data from the Samsara Driver App has been uploaded.

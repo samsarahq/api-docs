@@ -1,0 +1,1 @@
+List trailer assignments over a given time period for all trailers or a given one. Trailer assignments include which driver the trailer was assigned to and for which time period.
