@@ -18,7 +18,6 @@ markdownFilePath = "./markdown"
 
 files = []
 for f in os.listdir(markdownFilePath):
-    print(f + "\n")
     filePath = os.path.join(markdownFilePath, f)
     if os.path.isfile(filePath):
         files.append(filePath)
@@ -34,7 +33,7 @@ response_body = response.json()
 slugToDocTitle = {}
 tags = []
 for doc in response_body:
-    slugToDoc[doc["slug"]] = doc["title"]
+    slugToDocTitle[doc["slug"]] = doc["title"]
     if "children" in doc and doc["children"] != []:
         tags.append({
             "title": doc["title"],
@@ -61,7 +60,7 @@ for slug in slugToBody:
     }
 
     resp = requests.put("https://dash.readme.io/api/v1/docs/" + tag["slug"], auth=readme_auth, data=payload)
-    print(slug + ": " + str(resp.status_code) + "\n")
+    print(slug + ": " + str(resp.status_code))
 
 # Start at order=1, because overview is at order=0.
 order = 1
@@ -82,7 +81,7 @@ for tag in tags:
         "order": order,
     }
     resp = requests.put("https://dash.readme.io/api/v1/docs/" + tag["slug"], auth=readme_auth, data=payload)
-    print(tag["slug"] + ": " + str(resp.status_code) + "\n")
+    print(tag["slug"] + ": " + str(resp.status_code))
     order += 1
 
 # Add Beta APIs and Preview APIs at the end.
@@ -93,7 +92,7 @@ if betaApi:
         "order": order,
     }
     resp = requests.put("https://dash.readme.io/api/v1/docs/" + betaApi["slug"], auth=readme_auth, data=payload)
-    print(betaApi["slug"] + ": " + str(resp.status_code) + "\n")
+    print(betaApi["slug"] + ": " + str(resp.status_code))
     order += 1
 
 if previewApi:
@@ -103,5 +102,5 @@ if previewApi:
         "order": order,
     }
     resp = requests.put("https://dash.readme.io/api/v1/docs/" + previewApi["slug"], auth=readme_auth, data=payload)
-    print(previewApi["slug"] + ": " + str(resp.status_code) + "\n")
+    print(previewApi["slug"] + ": " + str(resp.status_code))
     order += 1
