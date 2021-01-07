@@ -40,7 +40,7 @@ for doc in response_body:
             "slug": doc["slug"],
         })
         for child in doc["children"]:
-            slugtoDocTitle[child["slug"]] = child["title"]
+            slugToDocTitle[child["slug"]] = child["title"]
 
 tags = sorted(tags, key=lambda x: x["title"])
 
