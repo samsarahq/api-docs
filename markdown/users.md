@@ -1,0 +1,1 @@
+The users API allows you to manage access to the Samsara dashboard. This can be particularly useful if you are looking to set up a connection with your identity provider to manage roles and permissions for certain types of users within your system.

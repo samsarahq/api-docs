@@ -1,0 +1,1 @@
+A successful DELETE response is a 204 with no content.

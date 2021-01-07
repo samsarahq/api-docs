@@ -1,0 +1,2 @@
+Driver objects allow you to track your driver-vehicle assignments, manage driver profiles, and update mobile app credential logins. You can retrieve a list of all drivers, or you can fetch each driver object individually.
+Drivers can be either active or inactive. You should inactivate a driver if you wish to keep the driver's driving history and HOS logs. If your driver is inactive, you can still get information about a driver summary.

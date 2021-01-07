@@ -1,0 +1,1 @@
+Successfully changed duty status. No response body is returned.

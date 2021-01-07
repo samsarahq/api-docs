@@ -1,0 +1,1 @@
+The documents feature allows you to manage driver-submitted documents from the Samsara app. Submitted documents are grouped by document types, and back office users can create new types of documents. For more information on the driver workflow around documents, see this [KB article](https://kb.samsara.com/hc/en-us/articles/360006911551-Using-Documents-in-the-Dashboard).

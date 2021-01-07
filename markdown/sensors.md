@@ -1,0 +1,1 @@
+The sensor object describes a sensor's attributes and settings within Samsara. Samsara has many different types of sensors, such as temperature and humidity monitors, door monitors, and more.

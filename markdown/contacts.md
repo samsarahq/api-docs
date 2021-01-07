@@ -1,0 +1,1 @@
+Contacts are an easy way to manage which users receive alerts (via sms or email).
