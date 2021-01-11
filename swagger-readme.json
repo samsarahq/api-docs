@@ -7890,7 +7890,31 @@
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
-	   	   	   "DriversVehicleAssignmentsGetDriversVehicleAssignmentsBadRequestResponseBody": {
+	   	   	   "DriversVehicleAssignmentsGetDriversVehicleAssignmentsBadGatewayErrorResponseBody": {
+	   	   	   	   "description": "Bad Gateway",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "rpc error: code = Unknown desc = connection refused",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "rpc error: code = Unknown desc = connection refused",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DriversVehicleAssignmentsGetDriversVehicleAssignmentsBadRequestErrorResponseBody": {
 	   	   	   	   "description": "Bad Request parameters",
 	   	   	   	   "example": {
 	   	   	   	   	   "message": "Invalid value for parameter.",
@@ -7914,7 +7938,31 @@
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
-	   	   	   "DriversVehicleAssignmentsGetDriversVehicleAssignmentsInternalErrorResponseBody": {
+	   	   	   "DriversVehicleAssignmentsGetDriversVehicleAssignmentsGatewayTimeoutErrorResponseBody": {
+	   	   	   	   "description": "Gateway timeout",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "context deadline exceeded",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DriversVehicleAssignmentsGetDriversVehicleAssignmentsInternalServerErrorResponseBody": {
 	   	   	   	   "description": "An internal server error occurred",
 	   	   	   	   "example": {
 	   	   	   	   	   "message": "Failed to execute GraphQL query.",
@@ -7938,7 +7986,31 @@
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
-	   	   	   "DriversVehicleAssignmentsGetDriversVehicleAssignmentsNotFoundResponseBody": {
+	   	   	   "DriversVehicleAssignmentsGetDriversVehicleAssignmentsMethodNotAllowedErrorResponseBody": {
+	   	   	   	   "description": "Method not allowed",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "DELETE not allowed on /endpoint.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "DELETE not allowed on /endpoint.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DriversVehicleAssignmentsGetDriversVehicleAssignmentsNotFoundErrorErrorResponseBody": {
 	   	   	   	   "description": "Resource not found",
 	   	   	   	   "example": {
 	   	   	   	   	   "message": "Object not found.",
@@ -7962,7 +8034,7 @@
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
-	   	   	   "DriversVehicleAssignmentsGetDriversVehicleAssignmentsNotImplementedResponseBody": {
+	   	   	   "DriversVehicleAssignmentsGetDriversVehicleAssignmentsNotImplementedErrorResponseBody": {
 	   	   	   	   "description": "Requested endpoint is not yet implemented",
 	   	   	   	   "example": {
 	   	   	   	   	   "message": "Not implemented.",
@@ -8285,6 +8357,78 @@
 	   	   	   	   "required": [
 	   	   	   	   	   "data",
 	   	   	   	   	   "pagination"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DriversVehicleAssignmentsGetDriversVehicleAssignmentsServiceUnavailableErrorResponseBody": {
+	   	   	   	   "description": "Service unavailable",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "context deadline exceeded",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DriversVehicleAssignmentsGetDriversVehicleAssignmentsTooManyRequestsErrorResponseBody": {
+	   	   	   	   "description": "Too many requests",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "Exceeded rate limit.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "Exceeded rate limit.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DriversVehicleAssignmentsGetDriversVehicleAssignmentsUnauthorizedErrorResponseBody": {
+	   	   	   	   "description": "Unauthorized",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "Invalid token.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "Invalid token.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
@@ -30970,6 +31114,20 @@
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "description": "OK response."
 	   	   	   	   	   },
+	   	   	   	   	   "401": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Invalid token.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DriversVehicleAssignmentsGetDriversVehicleAssignmentsUnauthorizedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Unauthorized response."
+	   	   	   	   	   },
 	   	   	   	   	   "404": {
 	   	   	   	   	   	   "content": {
 	   	   	   	   	   	   	   "application/json": {
@@ -30978,11 +31136,39 @@
 	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
 	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DriversVehicleAssignmentsGetDriversVehicleAssignmentsNotFoundResponseBody"
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DriversVehicleAssignmentsGetDriversVehicleAssignmentsNotFoundErrorErrorResponseBody"
 	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "description": "Not Found response."
+	   	   	   	   	   },
+	   	   	   	   	   "405": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "DELETE not allowed on /endpoint.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DriversVehicleAssignmentsGetDriversVehicleAssignmentsMethodNotAllowedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Method Not Allowed response."
+	   	   	   	   	   },
+	   	   	   	   	   "429": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Exceeded rate limit.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DriversVehicleAssignmentsGetDriversVehicleAssignmentsTooManyRequestsErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Too Many Requests response."
 	   	   	   	   	   },
 	   	   	   	   	   "500": {
 	   	   	   	   	   	   "content": {
@@ -30992,7 +31178,7 @@
 	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
 	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DriversVehicleAssignmentsGetDriversVehicleAssignmentsInternalErrorResponseBody"
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DriversVehicleAssignmentsGetDriversVehicleAssignmentsInternalServerErrorResponseBody"
 	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   },
@@ -31006,11 +31192,53 @@
 	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
 	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DriversVehicleAssignmentsGetDriversVehicleAssignmentsNotImplementedResponseBody"
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DriversVehicleAssignmentsGetDriversVehicleAssignmentsNotImplementedErrorResponseBody"
 	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "description": "Not Implemented response."
+	   	   	   	   	   },
+	   	   	   	   	   "502": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "rpc error: code = Unknown desc = connection refused",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DriversVehicleAssignmentsGetDriversVehicleAssignmentsBadGatewayErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Gateway response."
+	   	   	   	   	   },
+	   	   	   	   	   "503": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DriversVehicleAssignmentsGetDriversVehicleAssignmentsServiceUnavailableErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Service Unavailable response."
+	   	   	   	   	   },
+	   	   	   	   	   "504": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DriversVehicleAssignmentsGetDriversVehicleAssignmentsGatewayTimeoutErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Gateway Timeout response."
 	   	   	   	   	   },
 	   	   	   	   	   "default": {
 	   	   	   	   	   	   "content": {
@@ -31020,7 +31248,7 @@
 	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
 	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DriversVehicleAssignmentsGetDriversVehicleAssignmentsBadRequestResponseBody"
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DriversVehicleAssignmentsGetDriversVehicleAssignmentsBadRequestErrorResponseBody"
 	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   },
