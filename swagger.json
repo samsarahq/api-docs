@@ -6934,10 +6934,22 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/CameraMediaGetCameraMediaUnauthorizedErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Invalid token.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
           "404": {
             "description": "Not Found response.",
             "schema": {
-              "$ref": "#/definitions/CameraMediaGetCameraMediaNotFoundResponseBody"
+              "$ref": "#/definitions/CameraMediaGetCameraMediaNotFoundErrorErrorResponseBody"
             },
             "examples": {
               "application/json": {
@@ -6946,10 +6958,34 @@
               }
             }
           },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/CameraMediaGetCameraMediaMethodNotAllowedErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "DELETE not allowed on /endpoint.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/CameraMediaGetCameraMediaTooManyRequestsErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Exceeded rate limit.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
           "500": {
             "description": "Internal Server Error response.",
             "schema": {
-              "$ref": "#/definitions/CameraMediaGetCameraMediaInternalErrorResponseBody"
+              "$ref": "#/definitions/CameraMediaGetCameraMediaInternalServerErrorResponseBody"
             },
             "examples": {
               "application/json": {
@@ -6961,7 +6997,7 @@
           "501": {
             "description": "Not Implemented response.",
             "schema": {
-              "$ref": "#/definitions/CameraMediaGetCameraMediaNotImplementedResponseBody"
+              "$ref": "#/definitions/CameraMediaGetCameraMediaNotImplementedErrorResponseBody"
             },
             "examples": {
               "application/json": {
@@ -6970,10 +7006,46 @@
               }
             }
           },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/CameraMediaGetCameraMediaBadGatewayErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "rpc error: code = Unknown desc = connection refused",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/CameraMediaGetCameraMediaServiceUnavailableErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "context deadline exceeded",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/CameraMediaGetCameraMediaGatewayTimeoutErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "context deadline exceeded",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
           "default": {
             "description": "Bad Request response.",
             "schema": {
-              "$ref": "#/definitions/CameraMediaGetCameraMediaBadRequestResponseBody"
+              "$ref": "#/definitions/CameraMediaGetCameraMediaBadRequestErrorResponseBody"
             },
             "examples": {
               "application/json": {
@@ -11455,8 +11527,32 @@
         }
       }
     },
-    "CameraMediaGetCameraMediaBadRequestResponseBody": {
-      "description": "Bad request parameters",
+    "CameraMediaGetCameraMediaBadGatewayErrorResponseBody": {
+      "description": "Bad Gateway",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "rpc error: code = Unknown desc = connection refused"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "rpc error: code = Unknown desc = connection refused",
+        "requestId": "8916e1c1"
+      }
+    },
+    "CameraMediaGetCameraMediaBadRequestErrorResponseBody": {
+      "description": "Bad Request parameters",
       "type": "object",
       "required": [
         "message",
@@ -11479,7 +11575,31 @@
         "requestId": "8916e1c1"
       }
     },
-    "CameraMediaGetCameraMediaInternalErrorResponseBody": {
+    "CameraMediaGetCameraMediaGatewayTimeoutErrorResponseBody": {
+      "description": "Gateway timeout",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
+        "requestId": "8916e1c1"
+      }
+    },
+    "CameraMediaGetCameraMediaInternalServerErrorResponseBody": {
       "description": "An internal server error occurred",
       "type": "object",
       "required": [
@@ -11503,7 +11623,31 @@
         "requestId": "8916e1c1"
       }
     },
-    "CameraMediaGetCameraMediaNotFoundResponseBody": {
+    "CameraMediaGetCameraMediaMethodNotAllowedErrorResponseBody": {
+      "description": "Method not allowed",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "DELETE not allowed on /endpoint."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "DELETE not allowed on /endpoint.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "CameraMediaGetCameraMediaNotFoundErrorErrorResponseBody": {
       "description": "Resource not found",
       "type": "object",
       "required": [
@@ -11527,8 +11671,8 @@
         "requestId": "8916e1c1"
       }
     },
-    "CameraMediaGetCameraMediaNotImplementedResponseBody": {
-      "description": "Endpoint is not yet implemented",
+    "CameraMediaGetCameraMediaNotImplementedErrorResponseBody": {
+      "description": "Requested endpoint is not yet implemented",
       "type": "object",
       "required": [
         "message",
@@ -13051,6 +13195,78 @@
           "endCursor": "MjkY",
           "hasNextPage": true
         }
+      }
+    },
+    "CameraMediaGetCameraMediaServiceUnavailableErrorResponseBody": {
+      "description": "Service unavailable",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
+        "requestId": "8916e1c1"
+      }
+    },
+    "CameraMediaGetCameraMediaTooManyRequestsErrorResponseBody": {
+      "description": "Too many requests",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Exceeded rate limit."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Exceeded rate limit.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "CameraMediaGetCameraMediaUnauthorizedErrorResponseBody": {
+      "description": "Unauthorized",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid token."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Invalid token.",
+        "requestId": "8916e1c1"
       }
     },
     "CameraObjectResponseBody": {
