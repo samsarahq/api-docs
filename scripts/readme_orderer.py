@@ -14,7 +14,7 @@ class BasicAuth(requests.auth.AuthBase):
 
 # Read markdown files and store by slug.
 slugToBody = {}
-markdownFilePath = "./markdown"
+markdownFilePath = "./markdown/readme"
 
 files = []
 for f in os.listdir(markdownFilePath):
