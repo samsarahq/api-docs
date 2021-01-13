@@ -2,4 +2,4 @@
 
 Get real-time or historical GPS data.
 
-Related guide: [Vehicle Locations](https://developers.samsara.com/docs/vehicle-locations)
+Related guide: [Vehicle Locations](https://developers.samsara.com/docs/vehicle-locations-1)
