@@ -4506,8 +4506,32 @@
 	   	   	   	   },
 	   	   	   	   "type": "object"
 	   	   	   },
-	   	   	   "DocumentTypesGetDocumentTypesBadRequestResponseBody": {
-	   	   	   	   "description": "Bad request parameters",
+	   	   	   "DocumentTypesGetDocumentTypesBadGatewayErrorResponseBody": {
+	   	   	   	   "description": "Bad Gateway",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "rpc error: code = Unknown desc = connection refused",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "rpc error: code = Unknown desc = connection refused",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DocumentTypesGetDocumentTypesBadRequestErrorResponseBody": {
+	   	   	   	   "description": "Bad Request parameters",
 	   	   	   	   "example": {
 	   	   	   	   	   "message": "Invalid value for parameter.",
 	   	   	   	   	   "requestId": "8916e1c1"
@@ -4530,7 +4554,31 @@
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
-	   	   	   "DocumentTypesGetDocumentTypesInternalErrorResponseBody": {
+	   	   	   "DocumentTypesGetDocumentTypesGatewayTimeoutErrorResponseBody": {
+	   	   	   	   "description": "Gateway timeout",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "context deadline exceeded",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DocumentTypesGetDocumentTypesInternalServerErrorResponseBody": {
 	   	   	   	   "description": "An internal server error occurred",
 	   	   	   	   "example": {
 	   	   	   	   	   "message": "Failed to execute GraphQL query.",
@@ -4540,6 +4588,78 @@
 	   	   	   	   	   "message": {
 	   	   	   	   	   	   "description": "Message of error",
 	   	   	   	   	   	   "example": "Failed to execute GraphQL query.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DocumentTypesGetDocumentTypesMethodNotAllowedErrorResponseBody": {
+	   	   	   	   "description": "Method not allowed",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "DELETE not allowed on /endpoint.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "DELETE not allowed on /endpoint.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DocumentTypesGetDocumentTypesNotFoundErrorErrorResponseBody": {
+	   	   	   	   "description": "Resource not found",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "Object not found.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "Object not found.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DocumentTypesGetDocumentTypesNotImplementedErrorResponseBody": {
+	   	   	   	   "description": "Requested endpoint is not yet implemented",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "Not implemented.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "Not implemented.",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "requestId": {
@@ -4688,6 +4808,78 @@
 	   	   	   	   "required": [
 	   	   	   	   	   "data",
 	   	   	   	   	   "pagination"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DocumentTypesGetDocumentTypesServiceUnavailableErrorResponseBody": {
+	   	   	   	   "description": "Service unavailable",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "context deadline exceeded",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DocumentTypesGetDocumentTypesTooManyRequestsErrorResponseBody": {
+	   	   	   	   "description": "Too many requests",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "Exceeded rate limit.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "Exceeded rate limit.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DocumentTypesGetDocumentTypesUnauthorizedErrorResponseBody": {
+	   	   	   	   "description": "Unauthorized",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "Invalid token.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "Invalid token.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
@@ -7806,11 +7998,11 @@
 	   	   	   },
 	   	   	   "DriverRulesetObjectResponseBody": {
 	   	   	   	   "example": {
-	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
-	   	   	   	   	   "cycle": "TX 70 hour / 7 day",
+	   	   	   	   	   "break": "Property (off-duty/sleeper)",
+	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   "jurisdiction": "AR",
 	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   },
 	   	   	   	   "properties": {
 	   	   	   	   	   "break": {
@@ -7851,7 +8043,7 @@
 	   	   	   	   	   	   	   "Canada North Cycle 1 (80 hour / 7 day)",
 	   	   	   	   	   	   	   "Canada North Cycle 2 (120 hour / 14 day)"
 	   	   	   	   	   	   ],
-	   	   	   	   	   	   "example": "OK 70 hour / 8 day",
+	   	   	   	   	   	   "example": "OR 80 hour / 8 day",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "jurisdiction": {
@@ -7975,18 +8167,25 @@
 	   	   	   	   	   "eldSettings": {
 	   	   	   	   	   	   "rulesets": [
 	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
+	   	   	   	   	   	   	   	   "jurisdiction": "AR",
+	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   ]
 	   	   	   	   	   },
@@ -8448,45 +8647,6 @@
 	   	   	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   	   ]
-	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   "driverActivationStatus": "active",
-	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "id": "494123",
-	   	   	   	   	   	   	   	   "name": "Joe Driver",
-	   	   	   	   	   	   	   	   "vehicleAssignments": [
-	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   "assignmentType": "driverApp",
-	   	   	   	   	   	   	   	   	   	   "endTime": "2019-06-13T19:08:25Z",
-	   	   	   	   	   	   	   	   	   	   "isPassenger": false,
-	   	   	   	   	   	   	   	   	   	   "startTime": "2019-06-13T19:08:25Z",
-	   	   	   	   	   	   	   	   	   	   "vehicle": {
-	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   "id": "494123",
-	   	   	   	   	   	   	   	   	   	   	   "name": "Fleet Truck #1"
-	   	   	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   "assignmentType": "driverApp",
-	   	   	   	   	   	   	   	   	   	   "endTime": "2019-06-13T19:08:25Z",
-	   	   	   	   	   	   	   	   	   	   "isPassenger": false,
-	   	   	   	   	   	   	   	   	   	   "startTime": "2019-06-13T19:08:25Z",
-	   	   	   	   	   	   	   	   	   	   "vehicle": {
-	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   "id": "494123",
-	   	   	   	   	   	   	   	   	   	   	   "name": "Fleet Truck #1"
-	   	   	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   	   ]
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   ],
 	   	   	   	   	   	   "items": {
@@ -8613,20 +8773,6 @@
 	   	   	   	   	   	   	   	   "id": "494123",
 	   	   	   	   	   	   	   	   "name": "Fleet Truck #1"
 	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   {
-	   	   	   	   	   	   	   "assignmentType": "driverApp",
-	   	   	   	   	   	   	   "endTime": "2019-06-13T19:08:25Z",
-	   	   	   	   	   	   	   "isPassenger": false,
-	   	   	   	   	   	   	   "startTime": "2019-06-13T19:08:25Z",
-	   	   	   	   	   	   	   "vehicle": {
-	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "id": "494123",
-	   	   	   	   	   	   	   	   "name": "Fleet Truck #1"
-	   	   	   	   	   	   	   }
 	   	   	   	   	   	   }
 	   	   	   	   	   ]
 	   	   	   	   },
@@ -8662,6 +8808,20 @@
 	   	   	   	   	   "vehicleAssignments": {
 	   	   	   	   	   	   "description": "List of vehicle assignment objects.",
 	   	   	   	   	   	   "example": [
+	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "assignmentType": "driverApp",
+	   	   	   	   	   	   	   	   "endTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   "isPassenger": false,
+	   	   	   	   	   	   	   	   "startTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   "vehicle": {
+	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "id": "494123",
+	   	   	   	   	   	   	   	   	   "name": "Fleet Truck #1"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   {
 	   	   	   	   	   	   	   	   "assignmentType": "driverApp",
 	   	   	   	   	   	   	   	   "endTime": "2019-06-13T19:08:25Z",
@@ -9009,32 +9169,25 @@
 	   	   	   	   "example": {
 	   	   	   	   	   "rulesets": [
 	   	   	   	   	   	   {
-	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   },
 	   	   	   	   	   	   {
-	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   },
 	   	   	   	   	   	   {
-	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   {
-	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
-	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   }
 	   	   	   	   	   ]
 	   	   	   	   },
@@ -9043,18 +9196,18 @@
 	   	   	   	   	   	   "description": "The driver's ELD rulesets and overrides.",
 	   	   	   	   	   	   "example": [
 	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   ],
 	   	   	   	   	   	   "items": {
@@ -10246,18 +10399,25 @@
 	   	   	   	   	   	   	   	   "eldSettings": {
 	   	   	   	   	   	   	   	   	   "rulesets": [
 	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
+	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
+	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   	   	   ]
 	   	   	   	   	   	   	   	   },
@@ -10282,7 +10442,7 @@
 	   	   	   	   	   	   	   "endTime": "2019-06-20T19:08:25Z",
 	   	   	   	   	   	   	   "logMetaData": {
 	   	   	   	   	   	   	   	   "certifiedAtTime": "2020-01-01T06:00:00Z",
-	   	   	   	   	   	   	   	   "isCertified": false,
+	   	   	   	   	   	   	   	   "isCertified": true,
 	   	   	   	   	   	   	   	   "shippingDocs": "Delivery 123, chips and soda",
 	   	   	   	   	   	   	   	   "trailerNames": [
 	   	   	   	   	   	   	   	   	   "10293",
@@ -10345,18 +10505,25 @@
 	   	   	   	   	   	   	   	   "eldSettings": {
 	   	   	   	   	   	   	   	   	   "rulesets": [
 	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
+	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
+	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   	   	   ]
 	   	   	   	   	   	   	   	   },
@@ -10381,7 +10548,7 @@
 	   	   	   	   	   	   	   "endTime": "2019-06-20T19:08:25Z",
 	   	   	   	   	   	   	   "logMetaData": {
 	   	   	   	   	   	   	   	   "certifiedAtTime": "2020-01-01T06:00:00Z",
-	   	   	   	   	   	   	   	   "isCertified": false,
+	   	   	   	   	   	   	   	   "isCertified": true,
 	   	   	   	   	   	   	   	   "shippingDocs": "Delivery 123, chips and soda",
 	   	   	   	   	   	   	   	   "trailerNames": [
 	   	   	   	   	   	   	   	   	   "10293",
@@ -10444,18 +10611,25 @@
 	   	   	   	   	   	   	   	   "eldSettings": {
 	   	   	   	   	   	   	   	   	   "rulesets": [
 	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
+	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
+	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   	   	   ]
 	   	   	   	   	   	   	   	   },
@@ -10480,7 +10654,7 @@
 	   	   	   	   	   	   	   "endTime": "2019-06-20T19:08:25Z",
 	   	   	   	   	   	   	   "logMetaData": {
 	   	   	   	   	   	   	   	   "certifiedAtTime": "2020-01-01T06:00:00Z",
-	   	   	   	   	   	   	   	   "isCertified": false,
+	   	   	   	   	   	   	   	   "isCertified": true,
 	   	   	   	   	   	   	   	   "shippingDocs": "Delivery 123, chips and soda",
 	   	   	   	   	   	   	   	   "trailerNames": [
 	   	   	   	   	   	   	   	   	   "10293",
@@ -10543,18 +10717,25 @@
 	   	   	   	   	   	   	   	   "eldSettings": {
 	   	   	   	   	   	   	   	   	   "rulesets": [
 	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
+	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
+	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   	   	   ]
 	   	   	   	   	   	   	   	   },
@@ -10579,7 +10760,7 @@
 	   	   	   	   	   	   	   "endTime": "2019-06-20T19:08:25Z",
 	   	   	   	   	   	   	   "logMetaData": {
 	   	   	   	   	   	   	   	   "certifiedAtTime": "2020-01-01T06:00:00Z",
-	   	   	   	   	   	   	   	   "isCertified": false,
+	   	   	   	   	   	   	   	   "isCertified": true,
 	   	   	   	   	   	   	   	   "shippingDocs": "Delivery 123, chips and soda",
 	   	   	   	   	   	   	   	   "trailerNames": [
 	   	   	   	   	   	   	   	   	   "10293",
@@ -10652,18 +10833,25 @@
 	   	   	   	   	   	   	   	   	   "eldSettings": {
 	   	   	   	   	   	   	   	   	   	   "rulesets": [
 	   	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
+	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
+	   	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   	   	   	   ]
 	   	   	   	   	   	   	   	   	   },
@@ -10688,7 +10876,7 @@
 	   	   	   	   	   	   	   	   "endTime": "2019-06-20T19:08:25Z",
 	   	   	   	   	   	   	   	   "logMetaData": {
 	   	   	   	   	   	   	   	   	   "certifiedAtTime": "2020-01-01T06:00:00Z",
-	   	   	   	   	   	   	   	   	   "isCertified": false,
+	   	   	   	   	   	   	   	   	   "isCertified": true,
 	   	   	   	   	   	   	   	   	   "shippingDocs": "Delivery 123, chips and soda",
 	   	   	   	   	   	   	   	   	   "trailerNames": [
 	   	   	   	   	   	   	   	   	   	   "10293",
@@ -10751,18 +10939,25 @@
 	   	   	   	   	   	   	   	   	   "eldSettings": {
 	   	   	   	   	   	   	   	   	   	   "rulesets": [
 	   	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
+	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
+	   	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   	   	   	   ]
 	   	   	   	   	   	   	   	   	   },
@@ -10787,7 +10982,7 @@
 	   	   	   	   	   	   	   	   "endTime": "2019-06-20T19:08:25Z",
 	   	   	   	   	   	   	   	   "logMetaData": {
 	   	   	   	   	   	   	   	   	   "certifiedAtTime": "2020-01-01T06:00:00Z",
-	   	   	   	   	   	   	   	   	   "isCertified": false,
+	   	   	   	   	   	   	   	   	   "isCertified": true,
 	   	   	   	   	   	   	   	   	   "shippingDocs": "Delivery 123, chips and soda",
 	   	   	   	   	   	   	   	   	   "trailerNames": [
 	   	   	   	   	   	   	   	   	   	   "10293",
@@ -10850,18 +11045,25 @@
 	   	   	   	   	   	   	   	   	   "eldSettings": {
 	   	   	   	   	   	   	   	   	   	   "rulesets": [
 	   	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
+	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
+	   	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   	   	   	   ]
 	   	   	   	   	   	   	   	   	   },
@@ -10886,106 +11088,7 @@
 	   	   	   	   	   	   	   	   "endTime": "2019-06-20T19:08:25Z",
 	   	   	   	   	   	   	   	   "logMetaData": {
 	   	   	   	   	   	   	   	   	   "certifiedAtTime": "2020-01-01T06:00:00Z",
-	   	   	   	   	   	   	   	   	   "isCertified": false,
-	   	   	   	   	   	   	   	   	   "shippingDocs": "Delivery 123, chips and soda",
-	   	   	   	   	   	   	   	   	   "trailerNames": [
-	   	   	   	   	   	   	   	   	   	   "10293",
-	   	   	   	   	   	   	   	   	   	   "Trailer ID 1"
-	   	   	   	   	   	   	   	   	   ],
-	   	   	   	   	   	   	   	   	   "vehicles": [
-	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   "id": "494123",
-	   	   	   	   	   	   	   	   	   	   	   "name": "Fleet Truck #1"
-	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   "id": "494123",
-	   	   	   	   	   	   	   	   	   	   	   "name": "Fleet Truck #1"
-	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   "id": "494123",
-	   	   	   	   	   	   	   	   	   	   	   "name": "Fleet Truck #1"
-	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   "id": "494123",
-	   	   	   	   	   	   	   	   	   	   	   "name": "Fleet Truck #1"
-	   	   	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   	   	   ]
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "pendingDutyStatusDurations": {
-	   	   	   	   	   	   	   	   	   "activeDurationMs": 38825000,
-	   	   	   	   	   	   	   	   	   "driveDurationMs": 31970000,
-	   	   	   	   	   	   	   	   	   "offDutyDurationMs": 20555000,
-	   	   	   	   	   	   	   	   	   "onDutyDurationMs": 5423000,
-	   	   	   	   	   	   	   	   	   "personalConveyanceDurationMs": 4358000,
-	   	   	   	   	   	   	   	   	   "sleeperBerthDurationMs": 27020000,
-	   	   	   	   	   	   	   	   	   "waitingTimeDurationMs": 1560000,
-	   	   	   	   	   	   	   	   	   "yardMoveDurationMs": 1432000
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "startTime": "2019-06-13T19:08:25Z"
-	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   "distanceTraveled": {
-	   	   	   	   	   	   	   	   	   "driveDistanceMeters": 796625,
-	   	   	   	   	   	   	   	   	   "personalConveyanceDistanceMeters": 27358,
-	   	   	   	   	   	   	   	   	   "yardMoveDistanceMeters": 1287
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "driver": {
-	   	   	   	   	   	   	   	   	   "eldSettings": {
-	   	   	   	   	   	   	   	   	   	   "rulesets": [
-	   	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
-	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
-	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
-	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
-	   	   	   	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   	   	   	   ]
-	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   "id": "45646",
-	   	   	   	   	   	   	   	   	   "name": "Driver Bob",
-	   	   	   	   	   	   	   	   	   "timezone": "America/Los_Angeles"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "dutyStatusDurations": {
-	   	   	   	   	   	   	   	   	   "activeDurationMs": 38825000,
-	   	   	   	   	   	   	   	   	   "driveDurationMs": 31970000,
-	   	   	   	   	   	   	   	   	   "offDutyDurationMs": 20555000,
-	   	   	   	   	   	   	   	   	   "onDutyDurationMs": 5423000,
-	   	   	   	   	   	   	   	   	   "personalConveyanceDurationMs": 4358000,
-	   	   	   	   	   	   	   	   	   "sleeperBerthDurationMs": 27020000,
-	   	   	   	   	   	   	   	   	   "waitingTimeDurationMs": 1560000,
-	   	   	   	   	   	   	   	   	   "yardMoveDurationMs": 1432000
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "endTime": "2019-06-20T19:08:25Z",
-	   	   	   	   	   	   	   	   "logMetaData": {
-	   	   	   	   	   	   	   	   	   "certifiedAtTime": "2020-01-01T06:00:00Z",
-	   	   	   	   	   	   	   	   	   "isCertified": false,
+	   	   	   	   	   	   	   	   	   "isCertified": true,
 	   	   	   	   	   	   	   	   	   "shippingDocs": "Delivery 123, chips and soda",
 	   	   	   	   	   	   	   	   	   "trailerNames": [
 	   	   	   	   	   	   	   	   	   	   "10293",
@@ -11137,18 +11240,25 @@
 	   	   	   	   	   	   "eldSettings": {
 	   	   	   	   	   	   	   "rulesets": [
 	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
+	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
+	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   ]
 	   	   	   	   	   	   },
@@ -11173,7 +11283,7 @@
 	   	   	   	   	   "endTime": "2019-06-20T19:08:25Z",
 	   	   	   	   	   "logMetaData": {
 	   	   	   	   	   	   "certifiedAtTime": "2020-01-01T06:00:00Z",
-	   	   	   	   	   	   "isCertified": false,
+	   	   	   	   	   	   "isCertified": true,
 	   	   	   	   	   	   "shippingDocs": "Delivery 123, chips and soda",
 	   	   	   	   	   	   "trailerNames": [
 	   	   	   	   	   	   	   "10293",
@@ -11801,22 +11911,6 @@
 	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   "id": "494123",
 	   	   	   	   	   	   	   "name": "Fleet Truck #1"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   {
-	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   "id": "494123",
-	   	   	   	   	   	   	   "name": "Fleet Truck #1"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   {
-	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   "id": "494123",
-	   	   	   	   	   	   	   "name": "Fleet Truck #1"
 	   	   	   	   	   	   }
 	   	   	   	   	   ]
 	   	   	   	   },
@@ -11843,7 +11937,7 @@
 	   	   	   	   	   	   	   "Trailer ID 1"
 	   	   	   	   	   	   ],
 	   	   	   	   	   	   "items": {
-	   	   	   	   	   	   	   "example": "Quidem quibusdam provident cupiditate eligendi ipsam.",
+	   	   	   	   	   	   	   "example": "Accusamus qui quia ea.",
 	   	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "type": "array"
@@ -11851,6 +11945,14 @@
 	   	   	   	   	   "vehicles": {
 	   	   	   	   	   	   "description": "List of vehicles associated with the driver for the day.",
 	   	   	   	   	   	   "example": [
+	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "id": "494123",
+	   	   	   	   	   	   	   	   "name": "Fleet Truck #1"
+	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   {
 	   	   	   	   	   	   	   	   "externalIds": {
 	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
@@ -14368,29 +14470,6 @@
 	   	   	   	   	   	   	   	   "id": "3914",
 	   	   	   	   	   	   	   	   "name": "East Coast",
 	   	   	   	   	   	   	   	   "parentTagId": "4815"
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   ],
-	   	   	   	   	   	   "trailerSerialNumber": "8V8WD530FLN016251"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "enabledForMobile": true,
-	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "id": "494123",
-	   	   	   	   	   	   "installedGateway": {
-	   	   	   	   	   	   	   "model": "VG34",
-	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "licensePlate": "7TYP290",
-	   	   	   	   	   	   "name": "Trailer-123",
-	   	   	   	   	   	   "notes": "These are my trailer notes",
-	   	   	   	   	   	   "tags": [
-	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   "id": "3914",
-	   	   	   	   	   	   	   	   "name": "East Coast",
-	   	   	   	   	   	   	   	   "parentTagId": "4815"
 	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   {
 	   	   	   	   	   	   	   	   "id": "3914",
@@ -14415,6 +14494,11 @@
 	   	   	   	   	   	   "name": "Trailer-123",
 	   	   	   	   	   	   "notes": "These are my trailer notes",
 	   	   	   	   	   	   "tags": [
+	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   {
 	   	   	   	   	   	   	   	   "id": "3914",
 	   	   	   	   	   	   	   	   "name": "East Coast",
@@ -14851,6 +14935,44 @@
 	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   ],
 	   	   	   	   	   	   	   "trailerSerialNumber": "8V8WD530FLN016251"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   {
+	   	   	   	   	   	   	   "enabledForMobile": true,
+	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "id": "494123",
+	   	   	   	   	   	   	   "installedGateway": {
+	   	   	   	   	   	   	   	   "model": "VG34",
+	   	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "licensePlate": "7TYP290",
+	   	   	   	   	   	   	   "name": "Trailer-123",
+	   	   	   	   	   	   	   "notes": "These are my trailer notes",
+	   	   	   	   	   	   	   "tags": [
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   "trailerSerialNumber": "8V8WD530FLN016251"
 	   	   	   	   	   	   }
 	   	   	   	   	   ],
 	   	   	   	   	   "pagination": {
@@ -14980,9 +15102,8 @@
 	   	   	   	   	   "notes": "These are my trailer notes",
 	   	   	   	   	   "odometerMeters": 1234,
 	   	   	   	   	   "tagIds": [
-	   	   	   	   	   	   "Veritatis doloremque sed laboriosam temporibus.",
-	   	   	   	   	   	   "Facere necessitatibus odit beatae nostrum.",
-	   	   	   	   	   	   "Molestias quo officia eum."
+	   	   	   	   	   	   "Consequatur sit est ea libero aliquid culpa.",
+	   	   	   	   	   	   "In velit odit pariatur."
 	   	   	   	   	   ],
 	   	   	   	   	   "trailerSerialNumber": "8V8WD530FLN016251"
 	   	   	   	   },
@@ -15027,13 +15148,11 @@
 	   	   	   	   	   "tagIds": {
 	   	   	   	   	   	   "description": "An array of IDs of tags to associate with this trailer.",
 	   	   	   	   	   	   "example": [
-	   	   	   	   	   	   	   "Omnis aut provident.",
-	   	   	   	   	   	   	   "Doloribus rerum nemo officiis.",
-	   	   	   	   	   	   	   "Vero saepe blanditiis.",
-	   	   	   	   	   	   	   "Explicabo earum voluptates quisquam."
+	   	   	   	   	   	   	   "Perspiciatis et voluptas.",
+	   	   	   	   	   	   	   "Molestiae saepe sit pariatur et."
 	   	   	   	   	   	   ],
 	   	   	   	   	   	   "items": {
-	   	   	   	   	   	   	   "example": "Non incidunt ipsam.",
+	   	   	   	   	   	   	   "example": "Dolorem non.",
 	   	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "type": "array"
@@ -24517,6 +24636,58 @@
 	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   "id": "494123",
 	   	   	   	   	   	   	   	   "name": "Bus-123"
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "driverAssignments": [
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "assignmentType": "driverApp",
+	   	   	   	   	   	   	   	   	   	   "driver": {
+	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   "id": "45646",
+	   	   	   	   	   	   	   	   	   	   	   "name": "Driver Bob"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "endTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "isPassenger": false,
+	   	   	   	   	   	   	   	   	   	   "startTime": "2019-06-13T19:08:25Z"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "assignmentType": "driverApp",
+	   	   	   	   	   	   	   	   	   	   "driver": {
+	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   "id": "45646",
+	   	   	   	   	   	   	   	   	   	   	   "name": "Driver Bob"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "endTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "isPassenger": false,
+	   	   	   	   	   	   	   	   	   	   "startTime": "2019-06-13T19:08:25Z"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "assignmentType": "driverApp",
+	   	   	   	   	   	   	   	   	   	   "driver": {
+	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   "id": "45646",
+	   	   	   	   	   	   	   	   	   	   	   "name": "Driver Bob"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "endTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "isPassenger": false,
+	   	   	   	   	   	   	   	   	   	   "startTime": "2019-06-13T19:08:25Z"
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "id": "494123",
+	   	   	   	   	   	   	   	   "name": "Bus-123"
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   ],
 	   	   	   	   	   	   "items": {
@@ -24650,20 +24821,6 @@
 	   	   	   	   	   	   	   "endTime": "2019-06-13T19:08:25Z",
 	   	   	   	   	   	   	   "isPassenger": false,
 	   	   	   	   	   	   	   "startTime": "2019-06-13T19:08:25Z"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   {
-	   	   	   	   	   	   	   "assignmentType": "driverApp",
-	   	   	   	   	   	   	   "driver": {
-	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "id": "45646",
-	   	   	   	   	   	   	   	   "name": "Driver Bob"
-	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   "endTime": "2019-06-13T19:08:25Z",
-	   	   	   	   	   	   	   "isPassenger": false,
-	   	   	   	   	   	   	   "startTime": "2019-06-13T19:08:25Z"
 	   	   	   	   	   	   }
 	   	   	   	   	   ],
 	   	   	   	   	   "externalIds": {
@@ -24677,6 +24834,20 @@
 	   	   	   	   	   "driverAssignments": {
 	   	   	   	   	   	   "description": "List of driver assignment objects.",
 	   	   	   	   	   	   "example": [
+	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "assignmentType": "driverApp",
+	   	   	   	   	   	   	   	   "driver": {
+	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "id": "45646",
+	   	   	   	   	   	   	   	   	   "name": "Driver Bob"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "endTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   "isPassenger": false,
+	   	   	   	   	   	   	   	   "startTime": "2019-06-13T19:08:25Z"
+	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   {
 	   	   	   	   	   	   	   	   "assignmentType": "driverApp",
 	   	   	   	   	   	   	   	   "driver": {
@@ -26278,27 +26449,27 @@
 	   	   	   "fieldTypesObjectResponseBody": {
 	   	   	   	   "example": {
 	   	   	   	   	   "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-	   	   	   	   	   "label": "Nobis voluptatum neque doloribus.",
+	   	   	   	   	   "label": "Provident maxime.",
 	   	   	   	   	   "multipleChoiceFieldTypeMetaData": [
 	   	   	   	   	   	   {
-	   	   	   	   	   	   	   "label": "Reiciendis culpa exercitationem ut accusamus."
+	   	   	   	   	   	   	   "label": "Aut voluptas impedit vel excepturi."
 	   	   	   	   	   	   },
 	   	   	   	   	   	   {
-	   	   	   	   	   	   	   "label": "Reiciendis culpa exercitationem ut accusamus."
+	   	   	   	   	   	   	   "label": "Aut voluptas impedit vel excepturi."
 	   	   	   	   	   	   },
 	   	   	   	   	   	   {
-	   	   	   	   	   	   	   "label": "Reiciendis culpa exercitationem ut accusamus."
+	   	   	   	   	   	   	   "label": "Aut voluptas impedit vel excepturi."
 	   	   	   	   	   	   },
 	   	   	   	   	   	   {
-	   	   	   	   	   	   	   "label": "Reiciendis culpa exercitationem ut accusamus."
+	   	   	   	   	   	   	   "label": "Aut voluptas impedit vel excepturi."
 	   	   	   	   	   	   }
 	   	   	   	   	   ],
 	   	   	   	   	   "numberFieldTypeMetaData": {
-	   	   	   	   	   	   "numberOfDecimalPlaces": 6427179715002325000
+	   	   	   	   	   	   "numberOfDecimalPlaces": 8389989517472915000
 	   	   	   	   	   },
 	   	   	   	   	   "requiredField": true,
 	   	   	   	   	   "signatureFieldTypeMetaData": {
-	   	   	   	   	   	   "legalText": "In qui."
+	   	   	   	   	   	   "legalText": "Nihil vero saepe."
 	   	   	   	   	   }
 	   	   	   	   },
 	   	   	   	   "properties": {
@@ -26309,23 +26480,17 @@
 	   	   	   	   	   },
 	   	   	   	   	   "label": {
 	   	   	   	   	   	   "description": "The name of the field type.",
-	   	   	   	   	   	   "example": "Sit voluptates.",
+	   	   	   	   	   	   "example": "Necessitatibus minima beatae consequatur ipsa.",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "multipleChoiceFieldTypeMetaData": {
 	   	   	   	   	   	   "description": "A list of the multiple choice field option labels.",
 	   	   	   	   	   	   "example": [
 	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   "label": "Reiciendis culpa exercitationem ut accusamus."
+	   	   	   	   	   	   	   	   "label": "Aut voluptas impedit vel excepturi."
 	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   "label": "Reiciendis culpa exercitationem ut accusamus."
-	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   "label": "Reiciendis culpa exercitationem ut accusamus."
-	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   "label": "Reiciendis culpa exercitationem ut accusamus."
+	   	   	   	   	   	   	   	   "label": "Aut voluptas impedit vel excepturi."
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   ],
 	   	   	   	   	   	   "items": {
@@ -26338,7 +26503,7 @@
 	   	   	   	   	   },
 	   	   	   	   	   "requiredField": {
 	   	   	   	   	   	   "description": "The indicator that states if the field is required.",
-	   	   	   	   	   	   "example": false,
+	   	   	   	   	   	   "example": true,
 	   	   	   	   	   	   "type": "boolean"
 	   	   	   	   	   },
 	   	   	   	   	   "signatureFieldTypeMetaData": {
@@ -26366,68 +26531,81 @@
 	   	   	   	   	   	   	   "conditionalFieldLastIndex": 8613854102992773000,
 	   	   	   	   	   	   	   "triggeringFieldIndex": 832931191248950900,
 	   	   	   	   	   	   	   "triggeringFieldValue": "Doloribus reprehenderit sit velit placeat."
-	   	   	   	   	   	   },
-	   	   	   	   	   	   {
-	   	   	   	   	   	   	   "conditionalFieldFirstIndex": 4390182947667394600,
-	   	   	   	   	   	   	   "conditionalFieldLastIndex": 8613854102992773000,
-	   	   	   	   	   	   	   "triggeringFieldIndex": 832931191248950900,
-	   	   	   	   	   	   	   "triggeringFieldValue": "Doloribus reprehenderit sit velit placeat."
-	   	   	   	   	   	   },
-	   	   	   	   	   	   {
-	   	   	   	   	   	   	   "conditionalFieldFirstIndex": 4390182947667394600,
-	   	   	   	   	   	   	   "conditionalFieldLastIndex": 8613854102992773000,
-	   	   	   	   	   	   	   "triggeringFieldIndex": 832931191248950900,
-	   	   	   	   	   	   	   "triggeringFieldValue": "Doloribus reprehenderit sit velit placeat."
 	   	   	   	   	   	   }
 	   	   	   	   	   ],
 	   	   	   	   	   "fieldTypes": [
 	   	   	   	   	   	   {
 	   	   	   	   	   	   	   "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-	   	   	   	   	   	   	   "label": "Voluptas et molestiae saepe.",
+	   	   	   	   	   	   	   "label": "Explicabo earum voluptates quisquam.",
 	   	   	   	   	   	   	   "multipleChoiceFieldTypeMetaData": [
 	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   "label": "Reiciendis culpa exercitationem ut accusamus."
+	   	   	   	   	   	   	   	   	   "label": "Aut voluptas impedit vel excepturi."
 	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   "label": "Reiciendis culpa exercitationem ut accusamus."
+	   	   	   	   	   	   	   	   	   "label": "Aut voluptas impedit vel excepturi."
 	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   ],
 	   	   	   	   	   	   	   "numberFieldTypeMetaData": {
-	   	   	   	   	   	   	   	   "numberOfDecimalPlaces": 6427179715002325000
+	   	   	   	   	   	   	   	   "numberOfDecimalPlaces": 8389989517472915000
 	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   "requiredField": true,
 	   	   	   	   	   	   	   "signatureFieldTypeMetaData": {
-	   	   	   	   	   	   	   	   "legalText": "In qui."
+	   	   	   	   	   	   	   	   "legalText": "Nihil vero saepe."
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   },
 	   	   	   	   	   	   {
 	   	   	   	   	   	   	   "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-	   	   	   	   	   	   	   "label": "Voluptas et molestiae saepe.",
+	   	   	   	   	   	   	   "label": "Explicabo earum voluptates quisquam.",
 	   	   	   	   	   	   	   "multipleChoiceFieldTypeMetaData": [
 	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   "label": "Reiciendis culpa exercitationem ut accusamus."
+	   	   	   	   	   	   	   	   	   "label": "Aut voluptas impedit vel excepturi."
 	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   "label": "Reiciendis culpa exercitationem ut accusamus."
+	   	   	   	   	   	   	   	   	   "label": "Aut voluptas impedit vel excepturi."
 	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   ],
 	   	   	   	   	   	   	   "numberFieldTypeMetaData": {
-	   	   	   	   	   	   	   	   "numberOfDecimalPlaces": 6427179715002325000
+	   	   	   	   	   	   	   	   "numberOfDecimalPlaces": 8389989517472915000
 	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   "requiredField": true,
 	   	   	   	   	   	   	   "signatureFieldTypeMetaData": {
-	   	   	   	   	   	   	   	   "legalText": "In qui."
+	   	   	   	   	   	   	   	   "legalText": "Nihil vero saepe."
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   {
+	   	   	   	   	   	   	   "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
+	   	   	   	   	   	   	   "label": "Explicabo earum voluptates quisquam.",
+	   	   	   	   	   	   	   "multipleChoiceFieldTypeMetaData": [
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "label": "Aut voluptas impedit vel excepturi."
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "label": "Aut voluptas impedit vel excepturi."
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   "numberFieldTypeMetaData": {
+	   	   	   	   	   	   	   	   "numberOfDecimalPlaces": 8389989517472915000
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "requiredField": true,
+	   	   	   	   	   	   	   "signatureFieldTypeMetaData": {
+	   	   	   	   	   	   	   	   "legalText": "Nihil vero saepe."
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   }
 	   	   	   	   	   ],
-	   	   	   	   	   "id": "Libero aliquid culpa voluptate in velit odit.",
-	   	   	   	   	   "name": "In consequatur sit.",
-	   	   	   	   	   "orgId": 4170410389497459700
+	   	   	   	   	   "id": "Nostrum qui molestias.",
+	   	   	   	   	   "name": "Sed laboriosam temporibus aut facere necessitatibus.",
+	   	   	   	   	   "orgId": 2562118864710741000
 	   	   	   	   },
 	   	   	   	   "properties": {
 	   	   	   	   	   "conditionalFieldSections": {
 	   	   	   	   	   	   "description": "List of the document type conditional field sections.",
 	   	   	   	   	   	   "example": [
+	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "conditionalFieldFirstIndex": 4390182947667394600,
+	   	   	   	   	   	   	   	   "conditionalFieldLastIndex": 8613854102992773000,
+	   	   	   	   	   	   	   	   "triggeringFieldIndex": 832931191248950900,
+	   	   	   	   	   	   	   	   "triggeringFieldValue": "Doloribus reprehenderit sit velit placeat."
+	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   {
 	   	   	   	   	   	   	   	   "conditionalFieldFirstIndex": 4390182947667394600,
 	   	   	   	   	   	   	   	   "conditionalFieldLastIndex": 8613854102992773000,
@@ -26457,40 +26635,59 @@
 	   	   	   	   	   	   "example": [
 	   	   	   	   	   	   	   {
 	   	   	   	   	   	   	   	   "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-	   	   	   	   	   	   	   	   "label": "Voluptas et molestiae saepe.",
+	   	   	   	   	   	   	   	   "label": "Explicabo earum voluptates quisquam.",
 	   	   	   	   	   	   	   	   "multipleChoiceFieldTypeMetaData": [
 	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   "label": "Reiciendis culpa exercitationem ut accusamus."
+	   	   	   	   	   	   	   	   	   	   "label": "Aut voluptas impedit vel excepturi."
 	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   "label": "Reiciendis culpa exercitationem ut accusamus."
+	   	   	   	   	   	   	   	   	   	   "label": "Aut voluptas impedit vel excepturi."
 	   	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   	   ],
 	   	   	   	   	   	   	   	   "numberFieldTypeMetaData": {
-	   	   	   	   	   	   	   	   	   "numberOfDecimalPlaces": 6427179715002325000
+	   	   	   	   	   	   	   	   	   "numberOfDecimalPlaces": 8389989517472915000
 	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   "requiredField": true,
 	   	   	   	   	   	   	   	   "signatureFieldTypeMetaData": {
-	   	   	   	   	   	   	   	   	   "legalText": "In qui."
+	   	   	   	   	   	   	   	   	   "legalText": "Nihil vero saepe."
 	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   {
 	   	   	   	   	   	   	   	   "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
-	   	   	   	   	   	   	   	   "label": "Voluptas et molestiae saepe.",
+	   	   	   	   	   	   	   	   "label": "Explicabo earum voluptates quisquam.",
 	   	   	   	   	   	   	   	   "multipleChoiceFieldTypeMetaData": [
 	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   "label": "Reiciendis culpa exercitationem ut accusamus."
+	   	   	   	   	   	   	   	   	   	   "label": "Aut voluptas impedit vel excepturi."
 	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   "label": "Reiciendis culpa exercitationem ut accusamus."
+	   	   	   	   	   	   	   	   	   	   "label": "Aut voluptas impedit vel excepturi."
 	   	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   	   ],
 	   	   	   	   	   	   	   	   "numberFieldTypeMetaData": {
-	   	   	   	   	   	   	   	   	   "numberOfDecimalPlaces": 6427179715002325000
+	   	   	   	   	   	   	   	   	   "numberOfDecimalPlaces": 8389989517472915000
 	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   "requiredField": true,
 	   	   	   	   	   	   	   	   "signatureFieldTypeMetaData": {
-	   	   	   	   	   	   	   	   	   "legalText": "In qui."
+	   	   	   	   	   	   	   	   	   "legalText": "Nihil vero saepe."
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "fieldType": "number, string, photo, datetime, multipleChoice, etc.",
+	   	   	   	   	   	   	   	   "label": "Explicabo earum voluptates quisquam.",
+	   	   	   	   	   	   	   	   "multipleChoiceFieldTypeMetaData": [
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "label": "Aut voluptas impedit vel excepturi."
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "label": "Aut voluptas impedit vel excepturi."
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   "numberFieldTypeMetaData": {
+	   	   	   	   	   	   	   	   	   "numberOfDecimalPlaces": 8389989517472915000
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "requiredField": true,
+	   	   	   	   	   	   	   	   "signatureFieldTypeMetaData": {
+	   	   	   	   	   	   	   	   	   "legalText": "Nihil vero saepe."
 	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   ],
@@ -26501,17 +26698,17 @@
 	   	   	   	   	   },
 	   	   	   	   	   "id": {
 	   	   	   	   	   	   "description": "Universally unique identifier for the document type. This value can be passed in as the documentTypeId when creating a document.",
-	   	   	   	   	   	   "example": "Molestias error.",
+	   	   	   	   	   	   "example": "Veritatis voluptas consequatur quis assumenda.",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "name": {
 	   	   	   	   	   	   "description": "Name of the document type.",
-	   	   	   	   	   	   "example": "Voluptatum omnis.",
+	   	   	   	   	   	   "example": "Repudiandae est minus voluptate.",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "orgId": {
 	   	   	   	   	   	   "description": "ID for the organization this document type belongs to.",
-	   	   	   	   	   	   "example": 1974407181164274200,
+	   	   	   	   	   	   "example": 6973607092999118000,
 	   	   	   	   	   	   "format": "int64",
 	   	   	   	   	   	   "type": "integer"
 	   	   	   	   	   }
@@ -26679,12 +26876,12 @@
 	   	   	   },
 	   	   	   "multipleChoiceFieldTypeMetaDataObjectResponseBody": {
 	   	   	   	   "example": {
-	   	   	   	   	   "label": "Tempore officiis cumque tenetur."
+	   	   	   	   	   "label": "Provident cupiditate eligendi ipsam hic."
 	   	   	   	   },
 	   	   	   	   "properties": {
 	   	   	   	   	   "label": {
 	   	   	   	   	   	   "description": "The option choice label.",
-	   	   	   	   	   	   "example": "Qui veniam.",
+	   	   	   	   	   	   "example": "Odio voluptas officiis eos aut exercitationem quidem.",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   }
 	   	   	   	   },
@@ -26711,12 +26908,12 @@
 	   	   	   },
 	   	   	   "numberFieldTypeMetaDataObjectResponseBody": {
 	   	   	   	   "example": {
-	   	   	   	   	   "numberOfDecimalPlaces": 110170356788398270
+	   	   	   	   	   "numberOfDecimalPlaces": 8944373934295909000
 	   	   	   	   },
 	   	   	   	   "properties": {
 	   	   	   	   	   "numberOfDecimalPlaces": {
 	   	   	   	   	   	   "description": "The number of decimal places allowed for the field.",
-	   	   	   	   	   	   "example": 171693757729725020,
+	   	   	   	   	   	   "example": 1533334027513114600,
 	   	   	   	   	   	   "format": "int64",
 	   	   	   	   	   	   "type": "integer"
 	   	   	   	   	   }
@@ -26816,12 +27013,12 @@
 	   	   	   },
 	   	   	   "signatureFieldTypeMetaDataObjectResponseBody": {
 	   	   	   	   "example": {
-	   	   	   	   	   "legalText": "Aliquid quia amet."
+	   	   	   	   	   "legalText": "Consequatur omnis."
 	   	   	   	   },
 	   	   	   	   "properties": {
 	   	   	   	   	   "legalText": {
 	   	   	   	   	   	   "description": "The signature field legal text.",
-	   	   	   	   	   	   "example": "Similique distinctio ut dicta.",
+	   	   	   	   	   	   "example": "Quos corrupti ullam odio non incidunt ipsam.",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   }
 	   	   	   	   },
@@ -27735,6 +27932,62 @@
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "description": "OK response."
 	   	   	   	   	   },
+	   	   	   	   	   "401": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Invalid token.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentTypesGetDocumentTypesUnauthorizedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Unauthorized response."
+	   	   	   	   	   },
+	   	   	   	   	   "404": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Object not found.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentTypesGetDocumentTypesNotFoundErrorErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Found response."
+	   	   	   	   	   },
+	   	   	   	   	   "405": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "DELETE not allowed on /endpoint.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentTypesGetDocumentTypesMethodNotAllowedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Method Not Allowed response."
+	   	   	   	   	   },
+	   	   	   	   	   "429": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Exceeded rate limit.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentTypesGetDocumentTypesTooManyRequestsErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Too Many Requests response."
+	   	   	   	   	   },
 	   	   	   	   	   "500": {
 	   	   	   	   	   	   "content": {
 	   	   	   	   	   	   	   "application/json": {
@@ -27743,11 +27996,67 @@
 	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
 	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentTypesGetDocumentTypesInternalErrorResponseBody"
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentTypesGetDocumentTypesInternalServerErrorResponseBody"
 	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "description": "Internal Server Error response."
+	   	   	   	   	   },
+	   	   	   	   	   "501": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Not implemented.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentTypesGetDocumentTypesNotImplementedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Implemented response."
+	   	   	   	   	   },
+	   	   	   	   	   "502": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "rpc error: code = Unknown desc = connection refused",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentTypesGetDocumentTypesBadGatewayErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Gateway response."
+	   	   	   	   	   },
+	   	   	   	   	   "503": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentTypesGetDocumentTypesServiceUnavailableErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Service Unavailable response."
+	   	   	   	   	   },
+	   	   	   	   	   "504": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentTypesGetDocumentTypesGatewayTimeoutErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Gateway Timeout response."
 	   	   	   	   	   },
 	   	   	   	   	   "default": {
 	   	   	   	   	   	   "content": {
@@ -27757,7 +28066,7 @@
 	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
 	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentTypesGetDocumentTypesBadRequestResponseBody"
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentTypesGetDocumentTypesBadRequestErrorResponseBody"
 	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   },
@@ -28000,18 +28309,25 @@
 	   	   	   	   	   	   	   	   	   	   	   	   "eldSettings": {
 	   	   	   	   	   	   	   	   	   	   	   	   	   "rulesets": [
 	   	   	   	   	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   	   	   	   	   	   	   ]
 	   	   	   	   	   	   	   	   	   	   	   	   },
@@ -28036,7 +28352,7 @@
 	   	   	   	   	   	   	   	   	   	   	   "endTime": "2019-06-20T19:08:25Z",
 	   	   	   	   	   	   	   	   	   	   	   "logMetaData": {
 	   	   	   	   	   	   	   	   	   	   	   	   "certifiedAtTime": "2020-01-01T06:00:00Z",
-	   	   	   	   	   	   	   	   	   	   	   	   "isCertified": false,
+	   	   	   	   	   	   	   	   	   	   	   	   "isCertified": true,
 	   	   	   	   	   	   	   	   	   	   	   	   "shippingDocs": "Delivery 123, chips and soda",
 	   	   	   	   	   	   	   	   	   	   	   	   "trailerNames": [
 	   	   	   	   	   	   	   	   	   	   	   	   	   "10293",
@@ -28099,18 +28415,25 @@
 	   	   	   	   	   	   	   	   	   	   	   	   "eldSettings": {
 	   	   	   	   	   	   	   	   	   	   	   	   	   "rulesets": [
 	   	   	   	   	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   	   	   	   	   	   	   ]
 	   	   	   	   	   	   	   	   	   	   	   	   },
@@ -28135,7 +28458,7 @@
 	   	   	   	   	   	   	   	   	   	   	   "endTime": "2019-06-20T19:08:25Z",
 	   	   	   	   	   	   	   	   	   	   	   "logMetaData": {
 	   	   	   	   	   	   	   	   	   	   	   	   "certifiedAtTime": "2020-01-01T06:00:00Z",
-	   	   	   	   	   	   	   	   	   	   	   	   "isCertified": false,
+	   	   	   	   	   	   	   	   	   	   	   	   "isCertified": true,
 	   	   	   	   	   	   	   	   	   	   	   	   "shippingDocs": "Delivery 123, chips and soda",
 	   	   	   	   	   	   	   	   	   	   	   	   "trailerNames": [
 	   	   	   	   	   	   	   	   	   	   	   	   	   "10293",
@@ -28198,18 +28521,25 @@
 	   	   	   	   	   	   	   	   	   	   	   	   "eldSettings": {
 	   	   	   	   	   	   	   	   	   	   	   	   	   "rulesets": [
 	   	   	   	   	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   	   	   	   	   	   	   ]
 	   	   	   	   	   	   	   	   	   	   	   	   },
@@ -28234,7 +28564,7 @@
 	   	   	   	   	   	   	   	   	   	   	   "endTime": "2019-06-20T19:08:25Z",
 	   	   	   	   	   	   	   	   	   	   	   "logMetaData": {
 	   	   	   	   	   	   	   	   	   	   	   	   "certifiedAtTime": "2020-01-01T06:00:00Z",
-	   	   	   	   	   	   	   	   	   	   	   	   "isCertified": false,
+	   	   	   	   	   	   	   	   	   	   	   	   "isCertified": true,
 	   	   	   	   	   	   	   	   	   	   	   	   "shippingDocs": "Delivery 123, chips and soda",
 	   	   	   	   	   	   	   	   	   	   	   	   "trailerNames": [
 	   	   	   	   	   	   	   	   	   	   	   	   	   "10293",
@@ -28297,18 +28627,25 @@
 	   	   	   	   	   	   	   	   	   	   	   	   "eldSettings": {
 	   	   	   	   	   	   	   	   	   	   	   	   	   "rulesets": [
 	   	   	   	   	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "break": "Property (off-duty/sleeper)",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "AK 70 hour / 7 day",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
 	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "restart": "34-hour Restart",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Passenger"
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "break": "Explosives/HazMat (on-duty)",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "cycle": "WI 80 hour / 8 day",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "AR",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "restart": "36-hour Restart",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   	   "shift": "US Interstate Property"
 	   	   	   	   	   	   	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   	   	   	   	   	   	   ]
 	   	   	   	   	   	   	   	   	   	   	   	   },
@@ -28333,7 +28670,7 @@
 	   	   	   	   	   	   	   	   	   	   	   "endTime": "2019-06-20T19:08:25Z",
 	   	   	   	   	   	   	   	   	   	   	   "logMetaData": {
 	   	   	   	   	   	   	   	   	   	   	   	   "certifiedAtTime": "2020-01-01T06:00:00Z",
-	   	   	   	   	   	   	   	   	   	   	   	   "isCertified": false,
+	   	   	   	   	   	   	   	   	   	   	   	   "isCertified": true,
 	   	   	   	   	   	   	   	   	   	   	   	   "shippingDocs": "Delivery 123, chips and soda",
 	   	   	   	   	   	   	   	   	   	   	   	   "trailerNames": [
 	   	   	   	   	   	   	   	   	   	   	   	   	   "10293",
@@ -29195,6 +29532,44 @@
 	   	   	   	   	   	   	   "application/json": {
 	   	   	   	   	   	   	   	   "example": {
 	   	   	   	   	   	   	   	   	   "data": [
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "enabledForMobile": true,
+	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   "id": "494123",
+	   	   	   	   	   	   	   	   	   	   	   "installedGateway": {
+	   	   	   	   	   	   	   	   	   	   	   	   "model": "VG34",
+	   	   	   	   	   	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   "licensePlate": "7TYP290",
+	   	   	   	   	   	   	   	   	   	   	   "name": "Trailer-123",
+	   	   	   	   	   	   	   	   	   	   	   "notes": "These are my trailer notes",
+	   	   	   	   	   	   	   	   	   	   	   "tags": [
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   "trailerSerialNumber": "8V8WD530FLN016251"
+	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   {
 	   	   	   	   	   	   	   	   	   	   	   "enabledForMobile": true,
 	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
