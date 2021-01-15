@@ -2172,6 +2172,44 @@
             "examples": {
               "application/json": {
                 "data": {
+                  "attributes": [
+                    {
+                      "id": "494123",
+                      "name": "Compliance/ELD",
+                      "numberValues": [
+                        867,
+                        5309
+                      ],
+                      "stringValues": [
+                        "HQ",
+                        "Leased"
+                      ]
+                    },
+                    {
+                      "id": "494123",
+                      "name": "Compliance/ELD",
+                      "numberValues": [
+                        867,
+                        5309
+                      ],
+                      "stringValues": [
+                        "HQ",
+                        "Leased"
+                      ]
+                    },
+                    {
+                      "id": "494123",
+                      "name": "Compliance/ELD",
+                      "numberValues": [
+                        867,
+                        5309
+                      ],
+                      "stringValues": [
+                        "HQ",
+                        "Leased"
+                      ]
+                    }
+                  ],
                   "enabledForMobile": true,
                   "externalIds": {
                     "maintenanceId": "250020",
@@ -2186,16 +2224,6 @@
                   "name": "Trailer-123",
                   "notes": "These are my trailer notes",
                   "tags": [
-                    {
-                      "id": "3914",
-                      "name": "East Coast",
-                      "parentTagId": "4815"
-                    },
-                    {
-                      "id": "3914",
-                      "name": "East Coast",
-                      "parentTagId": "4815"
-                    },
                     {
                       "id": "3914",
                       "name": "East Coast",
@@ -2371,6 +2399,44 @@
             "examples": {
               "application/json": {
                 "data": {
+                  "attributes": [
+                    {
+                      "id": "494123",
+                      "name": "Compliance/ELD",
+                      "numberValues": [
+                        867,
+                        5309
+                      ],
+                      "stringValues": [
+                        "HQ",
+                        "Leased"
+                      ]
+                    },
+                    {
+                      "id": "494123",
+                      "name": "Compliance/ELD",
+                      "numberValues": [
+                        867,
+                        5309
+                      ],
+                      "stringValues": [
+                        "HQ",
+                        "Leased"
+                      ]
+                    },
+                    {
+                      "id": "494123",
+                      "name": "Compliance/ELD",
+                      "numberValues": [
+                        867,
+                        5309
+                      ],
+                      "stringValues": [
+                        "HQ",
+                        "Leased"
+                      ]
+                    }
+                  ],
                   "enabledForMobile": true,
                   "externalIds": {
                     "maintenanceId": "250020",
@@ -2385,16 +2451,6 @@
                   "name": "Trailer-123",
                   "notes": "These are my trailer notes",
                   "tags": [
-                    {
-                      "id": "3914",
-                      "name": "East Coast",
-                      "parentTagId": "4815"
-                    },
-                    {
-                      "id": "3914",
-                      "name": "East Coast",
-                      "parentTagId": "4815"
-                    },
                     {
                       "id": "3914",
                       "name": "East Coast",
@@ -20459,6 +20515,112 @@
         "name": "Company Office #1"
       }
     },
+    "GoaAttributeTinyRequestBody": {
+      "description": "Attribute properties.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Id of the attribute",
+          "type": "string",
+          "example": "494123"
+        },
+        "name": {
+          "description": "Name of the attribute",
+          "type": "string",
+          "example": "Compliance/ELD"
+        },
+        "numberValues": {
+          "description": "List of number values associated with the attribute",
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double",
+            "example": 0.3165363585766987
+          },
+          "example": [
+            867,
+            5309
+          ]
+        },
+        "stringValues": {
+          "description": "List of string values associated with the attribute.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "Doloremque illum."
+          },
+          "example": [
+            "HQ",
+            "Leased"
+          ]
+        }
+      },
+      "example": {
+        "id": "494123",
+        "name": "Compliance/ELD",
+        "numberValues": [
+          867,
+          5309
+        ],
+        "stringValues": [
+          "HQ",
+          "Leased"
+        ]
+      }
+    },
+    "GoaAttributeTinyResponseBody": {
+      "description": "Attribute properties.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Id of the attribute",
+          "type": "string",
+          "example": "494123"
+        },
+        "name": {
+          "description": "Name of the attribute",
+          "type": "string",
+          "example": "Compliance/ELD"
+        },
+        "numberValues": {
+          "description": "List of number values associated with the attribute",
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double",
+            "example": 0.6968362209960286
+          },
+          "example": [
+            867,
+            5309
+          ]
+        },
+        "stringValues": {
+          "description": "List of string values associated with the attribute.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "In qui."
+          },
+          "example": [
+            "HQ",
+            "Leased"
+          ]
+        }
+      },
+      "example": {
+        "id": "494123",
+        "name": "Compliance/ELD",
+        "numberValues": [
+          867,
+          5309
+        ],
+        "stringValues": [
+          "HQ",
+          "Leased"
+        ]
+      }
+    },
     "GoaDocumentTypeTinyResponseResponseBody": {
       "description": "A minified document type object",
       "type": "object",
@@ -25031,6 +25193,187 @@
         }
       ]
     },
+    "TrailerWithAttributesResponseObjectResponseBody": {
+      "description": "TrailerWithAttributesResponseObjectResponseBody result type (default view)",
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "attributes": {
+          "description": "List of attributes associated with the entity",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GoaAttributeTinyResponseBody"
+          },
+          "example": [
+            {
+              "id": "494123",
+              "name": "Compliance/ELD",
+              "numberValues": [
+                867,
+                5309
+              ],
+              "stringValues": [
+                "HQ",
+                "Leased"
+              ]
+            },
+            {
+              "id": "494123",
+              "name": "Compliance/ELD",
+              "numberValues": [
+                867,
+                5309
+              ],
+              "stringValues": [
+                "HQ",
+                "Leased"
+              ]
+            }
+          ]
+        },
+        "enabledForMobile": {
+          "description": "Indicates if the trailer is visible on the Samsara mobile apps.",
+          "type": "boolean",
+          "example": true
+        },
+        "externalIds": {
+          "description": "A map of external ids",
+          "type": "object",
+          "additionalProperties": true,
+          "example": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          }
+        },
+        "id": {
+          "description": "The unique Samsara ID of the Trailer. This is automatically generated when the Trailer object is created. It cannot be changed.",
+          "type": "string",
+          "example": "494123"
+        },
+        "installedGateway": {
+          "$ref": "#/definitions/GoaGatewayTinyResponseResponseBody"
+        },
+        "licensePlate": {
+          "description": "The license plate of the Trailer. **By default**: empty. Can be set or updated through the Samsara Dashboard or the API at any time.",
+          "type": "string",
+          "maxLength": 12,
+          "example": "7TYP290"
+        },
+        "name": {
+          "description": "The human-readable name of the Trailer. This is set by a fleet administrator and will appear in both Samsara’s cloud dashboard as well as the Samsara Driver mobile app. By default, this name is the serial number of the Samsara Asset Gateway. It can be set or updated through the Samsara Dashboard or through the API at any time.",
+          "type": "string",
+          "example": "Trailer-123"
+        },
+        "notes": {
+          "description": "These are generic notes about the Trailer. Empty by default. Can be set or updated through the Samsara Dashboard or the API at any time.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "These are my trailer notes"
+        },
+        "tags": {
+          "description": "The list of [tags](https://kb.samsara.com/hc/en-us/articles/360026674631-Using-Tags-and-Tag-Nesting) associated with the Trailer.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GoaTagTinyResponseResponseBody"
+          },
+          "example": [
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            }
+          ]
+        },
+        "trailerSerialNumber": {
+          "description": "The serial number of the trailer.",
+          "type": "string",
+          "example": "8V8WD530FLN016251"
+        }
+      },
+      "example": {
+        "attributes": [
+          {
+            "id": "494123",
+            "name": "Compliance/ELD",
+            "numberValues": [
+              867,
+              5309
+            ],
+            "stringValues": [
+              "HQ",
+              "Leased"
+            ]
+          },
+          {
+            "id": "494123",
+            "name": "Compliance/ELD",
+            "numberValues": [
+              867,
+              5309
+            ],
+            "stringValues": [
+              "HQ",
+              "Leased"
+            ]
+          },
+          {
+            "id": "494123",
+            "name": "Compliance/ELD",
+            "numberValues": [
+              867,
+              5309
+            ],
+            "stringValues": [
+              "HQ",
+              "Leased"
+            ]
+          }
+        ],
+        "enabledForMobile": true,
+        "externalIds": {
+          "maintenanceId": "250020",
+          "payrollId": "ABFS18600"
+        },
+        "id": "494123",
+        "installedGateway": {
+          "model": "VG34",
+          "serial": "GFRV-43N-VGX"
+        },
+        "licensePlate": "7TYP290",
+        "name": "Trailer-123",
+        "notes": "These are my trailer notes",
+        "tags": [
+          {
+            "id": "3914",
+            "name": "East Coast",
+            "parentTagId": "4815"
+          },
+          {
+            "id": "3914",
+            "name": "East Coast",
+            "parentTagId": "4815"
+          }
+        ],
+        "trailerSerialNumber": "8V8WD530FLN016251"
+      }
+    },
     "TrailersDeleteTrailerBadRequestResponseBody": {
       "description": "Bad request parameters",
       "type": "object",
@@ -25230,11 +25573,49 @@
       ],
       "properties": {
         "data": {
-          "$ref": "#/definitions/TrailerResponseObjectResponseBody"
+          "$ref": "#/definitions/TrailerWithAttributesResponseObjectResponseBody"
         }
       },
       "example": {
         "data": {
+          "attributes": [
+            {
+              "id": "494123",
+              "name": "Compliance/ELD",
+              "numberValues": [
+                867,
+                5309
+              ],
+              "stringValues": [
+                "HQ",
+                "Leased"
+              ]
+            },
+            {
+              "id": "494123",
+              "name": "Compliance/ELD",
+              "numberValues": [
+                867,
+                5309
+              ],
+              "stringValues": [
+                "HQ",
+                "Leased"
+              ]
+            },
+            {
+              "id": "494123",
+              "name": "Compliance/ELD",
+              "numberValues": [
+                867,
+                5309
+              ],
+              "stringValues": [
+                "HQ",
+                "Leased"
+              ]
+            }
+          ],
           "enabledForMobile": true,
           "externalIds": {
             "maintenanceId": "250020",
@@ -25249,16 +25630,6 @@
           "name": "Trailer-123",
           "notes": "These are my trailer notes",
           "tags": [
-            {
-              "id": "3914",
-              "name": "East Coast",
-              "parentTagId": "4815"
-            },
-            {
-              "id": "3914",
-              "name": "East Coast",
-              "parentTagId": "4815"
-            },
             {
               "id": "3914",
               "name": "East Coast",
@@ -25606,6 +25977,63 @@
     "TrailersUpdateTrailerRequestBody": {
       "type": "object",
       "properties": {
+        "attributes": {
+          "description": "A list of attributes to assign to the trailer.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GoaAttributeTinyRequestBody"
+          },
+          "example": [
+            {
+              "id": "494123",
+              "name": "Compliance/ELD",
+              "numberValues": [
+                867,
+                5309
+              ],
+              "stringValues": [
+                "HQ",
+                "Leased"
+              ]
+            },
+            {
+              "id": "494123",
+              "name": "Compliance/ELD",
+              "numberValues": [
+                867,
+                5309
+              ],
+              "stringValues": [
+                "HQ",
+                "Leased"
+              ]
+            },
+            {
+              "id": "494123",
+              "name": "Compliance/ELD",
+              "numberValues": [
+                867,
+                5309
+              ],
+              "stringValues": [
+                "HQ",
+                "Leased"
+              ]
+            },
+            {
+              "id": "494123",
+              "name": "Compliance/ELD",
+              "numberValues": [
+                867,
+                5309
+              ],
+              "stringValues": [
+                "HQ",
+                "Leased"
+              ]
+            }
+          ]
+        },
         "enabledForMobile": {
           "description": "Indicates if the trailer is visible on the Samsara mobile apps.",
           "type": "boolean",
@@ -25648,11 +26076,12 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Dolorem non."
+            "example": "Sit pariatur et expedita in."
           },
           "example": [
-            "Perspiciatis et voluptas.",
-            "Molestiae saepe sit pariatur et."
+            "Est ea.",
+            "Aliquid culpa voluptate.",
+            "Velit odit pariatur repellendus."
           ]
         },
         "trailerSerialNumber": {
@@ -25662,6 +26091,56 @@
         }
       },
       "example": {
+        "attributes": [
+          {
+            "id": "494123",
+            "name": "Compliance/ELD",
+            "numberValues": [
+              867,
+              5309
+            ],
+            "stringValues": [
+              "HQ",
+              "Leased"
+            ]
+          },
+          {
+            "id": "494123",
+            "name": "Compliance/ELD",
+            "numberValues": [
+              867,
+              5309
+            ],
+            "stringValues": [
+              "HQ",
+              "Leased"
+            ]
+          },
+          {
+            "id": "494123",
+            "name": "Compliance/ELD",
+            "numberValues": [
+              867,
+              5309
+            ],
+            "stringValues": [
+              "HQ",
+              "Leased"
+            ]
+          },
+          {
+            "id": "494123",
+            "name": "Compliance/ELD",
+            "numberValues": [
+              867,
+              5309
+            ],
+            "stringValues": [
+              "HQ",
+              "Leased"
+            ]
+          }
+        ],
         "enabledForMobile": true,
         "externalIds": {
           "maintenanceId": "250020",
@@ -25672,8 +26151,10 @@
         "notes": "These are my trailer notes",
         "odometerMeters": 1234,
         "tagIds": [
-          "Consequatur sit est ea libero aliquid culpa.",
-          "In velit odit pariatur."
+          "Ipsa ipsam quisquam aut minima amet.",
+          "Dolore sint dolorem adipisci sapiente hic cum.",
+          "Qui quae voluptas molestiae quasi doloremque.",
+          "Blanditiis voluptas voluptas facilis sed."
         ],
         "trailerSerialNumber": "8V8WD530FLN016251"
       }
@@ -25685,11 +26166,49 @@
       ],
       "properties": {
         "data": {
-          "$ref": "#/definitions/TrailerResponseObjectResponseBody"
+          "$ref": "#/definitions/TrailerWithAttributesResponseObjectResponseBody"
         }
       },
       "example": {
         "data": {
+          "attributes": [
+            {
+              "id": "494123",
+              "name": "Compliance/ELD",
+              "numberValues": [
+                867,
+                5309
+              ],
+              "stringValues": [
+                "HQ",
+                "Leased"
+              ]
+            },
+            {
+              "id": "494123",
+              "name": "Compliance/ELD",
+              "numberValues": [
+                867,
+                5309
+              ],
+              "stringValues": [
+                "HQ",
+                "Leased"
+              ]
+            },
+            {
+              "id": "494123",
+              "name": "Compliance/ELD",
+              "numberValues": [
+                867,
+                5309
+              ],
+              "stringValues": [
+                "HQ",
+                "Leased"
+              ]
+            }
+          ],
           "enabledForMobile": true,
           "externalIds": {
             "maintenanceId": "250020",
@@ -25704,16 +26223,6 @@
           "name": "Trailer-123",
           "notes": "These are my trailer notes",
           "tags": [
-            {
-              "id": "3914",
-              "name": "East Coast",
-              "parentTagId": "4815"
-            },
-            {
-              "id": "3914",
-              "name": "East Coast",
-              "parentTagId": "4815"
-            },
             {
               "id": "3914",
               "name": "East Coast",
