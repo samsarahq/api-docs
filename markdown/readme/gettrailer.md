@@ -1,7 +1,12 @@
 # 200 Response Schema
 | Property Name | Description |
 | :------------ | :---------- |
-| **data**<br/>_object_ | TrailerResponseObjectResponseBody result type (default view) |
+| **data**<br/>_object_ | TrailerWithAttributesResponseObjectResponseBody result type (default view) |
+| **&nbsp;&nbsp;&nbsp;&nbsp;attributes**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;object array_ | List of attributes associated with the entity |
+| **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Id of the attribute |
+| **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Name of the attribute |
+| **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;numberValues**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number array_ | List of number values associated with the attribute |
+| **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stringValues**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string array_ | List of string values associated with the attribute. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;enabledForMobile**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;boolean_ | Indicates if the trailer is visible on the Samsara mobile apps. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;externalIds**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;object_ | A map of external ids |
 | **&nbsp;&nbsp;&nbsp;&nbsp;id**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | The unique Samsara ID of the Trailer. This is automatically generated when the Trailer object is created. It cannot be changed. |
