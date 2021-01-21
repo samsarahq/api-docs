@@ -25981,6 +25981,667 @@
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
+	   	   	   "WorkflowsGetIncidentsFeedBadGatewayErrorResponseBody": {
+	   	   	   	   "description": "Bad Gateway",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "rpc error: code = Unknown desc = connection refused",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "rpc error: code = Unknown desc = connection refused",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "WorkflowsGetIncidentsFeedBadRequestErrorResponseBody": {
+	   	   	   	   "description": "Bad Request parameters",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "Invalid value for parameter.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "Invalid value for parameter.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "WorkflowsGetIncidentsFeedGatewayTimeoutErrorResponseBody": {
+	   	   	   	   "description": "Gateway timeout",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "context deadline exceeded",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "WorkflowsGetIncidentsFeedInternalServerErrorResponseBody": {
+	   	   	   	   "description": "An internal server error occurred",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "Failed to execute GraphQL query.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "Failed to execute GraphQL query.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "WorkflowsGetIncidentsFeedMethodNotAllowedErrorResponseBody": {
+	   	   	   	   "description": "Method not allowed",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "DELETE not allowed on /endpoint.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "DELETE not allowed on /endpoint.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "WorkflowsGetIncidentsFeedNotFoundErrorErrorResponseBody": {
+	   	   	   	   "description": "Resource not found",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "Object not found.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "Object not found.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "WorkflowsGetIncidentsFeedNotImplementedErrorResponseBody": {
+	   	   	   	   "description": "Requested endpoint is not yet implemented",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "Not implemented.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "Not implemented.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "WorkflowsGetIncidentsFeedResponseBody": {
+	   	   	   	   "example": {
+	   	   	   	   	   "data": [
+	   	   	   	   	   	   {
+	   	   	   	   	   	   	   "createdAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   "objects": [
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   "triggersSatisfied": [
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   ]
+	   	   	   	   	   	   },
+	   	   	   	   	   	   {
+	   	   	   	   	   	   	   "createdAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   "objects": [
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   "triggersSatisfied": [
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   ]
+	   	   	   	   	   	   },
+	   	   	   	   	   	   {
+	   	   	   	   	   	   	   "createdAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   "objects": [
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   "triggersSatisfied": [
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   ]
+	   	   	   	   	   	   },
+	   	   	   	   	   	   {
+	   	   	   	   	   	   	   "createdAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   "objects": [
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   "triggersSatisfied": [
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   ]
+	   	   	   	   	   	   }
+	   	   	   	   	   ],
+	   	   	   	   	   "pagination": {
+	   	   	   	   	   	   "endCursor": "MjkY",
+	   	   	   	   	   	   "hasNextPage": true
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "data": {
+	   	   	   	   	   	   "description": "List of incidents.",
+	   	   	   	   	   	   "example": [
+	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "createdAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   "objects": [
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   "triggersSatisfied": [
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   ]
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "createdAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   "objects": [
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   "triggersSatisfied": [
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   ]
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "createdAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   "objects": [
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   "triggersSatisfied": [
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   ]
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   ],
+	   	   	   	   	   	   "items": {
+	   	   	   	   	   	   	   "$ref": "#/components/schemas/IncidentObjectResponseBody"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "type": "array"
+	   	   	   	   	   },
+	   	   	   	   	   "pagination": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/GoaPaginationResponseResponseBody"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "data",
+	   	   	   	   	   "pagination"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "WorkflowsGetIncidentsFeedServiceUnavailableErrorResponseBody": {
+	   	   	   	   "description": "Service unavailable",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "context deadline exceeded",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "WorkflowsGetIncidentsFeedTooManyRequestsErrorResponseBody": {
+	   	   	   	   "description": "Too many requests",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "Exceeded rate limit.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "Exceeded rate limit.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "WorkflowsGetIncidentsFeedUnauthorizedErrorResponseBody": {
+	   	   	   	   "description": "Unauthorized",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "Invalid token.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "Invalid token.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
 	   	   	   "WorkflowsGetIncidentsHistoryBadGatewayErrorResponseBody": {
 	   	   	   	   "description": "Bad Gateway",
 	   	   	   	   "example": {
@@ -39720,6 +40381,948 @@
 	   	   	   	   "summary": "[preview] Fetch document",
 	   	   	   	   "tags": [
 	   	   	   	   	   "Beta APIs"
+	   	   	   	   ]
+	   	   	   }
+	   	   },
+	   	   "/preview/workflows/incidents/feed": {
+	   	   	   "get": {
+	   	   	   	   "description": "Get all recent incidents for the given trigger type.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
+	   	   	   	   "operationId": "getIncidentsFeed",
+	   	   	   	   "parameters": [
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": "A list of Trigger types. A request must include 1-5 trigger types.",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "triggerTypes",
+	   	   	   	   	   	   "required": true,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "items": {
+	   	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "type": "array"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "after",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": "The limit for how many objects will be in the response. Default and max for this value is 512 objects.",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "limit",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "default": 512,
+	   	   	   	   	   	   	   "maximum": 512,
+	   	   	   	   	   	   	   "minimum": 1,
+	   	   	   	   	   	   	   "type": "integer"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": "The type of object (either driver or vehicle) to filter on.",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "objectType",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": "The IDs of the driver or vehicle objects to filter on. External IDs are also acceptable.",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "objectIds",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "items": {
+	   	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "type": "array"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   }
+	   	   	   	   ],
+	   	   	   	   "responses": {
+	   	   	   	   	   "200": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "data": [
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "createdAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "objects": [
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "triggersSatisfied": [
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   	   ]
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "createdAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "objects": [
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "triggersSatisfied": [
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   	   ]
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "createdAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "objects": [
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "triggersSatisfied": [
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   	   ]
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "createdAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "objects": [
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "triggersSatisfied": [
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   	   ]
+	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   "pagination": {
+	   	   	   	   	   	   	   	   	   	   "endCursor": "MjkY",
+	   	   	   	   	   	   	   	   	   	   "hasNextPage": true
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/WorkflowsGetIncidentsFeedResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "OK response."
+	   	   	   	   	   },
+	   	   	   	   	   "401": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Invalid token.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/WorkflowsGetIncidentsFeedUnauthorizedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Unauthorized response."
+	   	   	   	   	   },
+	   	   	   	   	   "404": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Object not found.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/WorkflowsGetIncidentsFeedNotFoundErrorErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Found response."
+	   	   	   	   	   },
+	   	   	   	   	   "405": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "DELETE not allowed on /endpoint.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/WorkflowsGetIncidentsFeedMethodNotAllowedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Method Not Allowed response."
+	   	   	   	   	   },
+	   	   	   	   	   "429": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Exceeded rate limit.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/WorkflowsGetIncidentsFeedTooManyRequestsErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Too Many Requests response."
+	   	   	   	   	   },
+	   	   	   	   	   "500": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Failed to execute GraphQL query.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/WorkflowsGetIncidentsFeedInternalServerErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Internal Server Error response."
+	   	   	   	   	   },
+	   	   	   	   	   "501": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Not implemented.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/WorkflowsGetIncidentsFeedNotImplementedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Implemented response."
+	   	   	   	   	   },
+	   	   	   	   	   "502": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "rpc error: code = Unknown desc = connection refused",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/WorkflowsGetIncidentsFeedBadGatewayErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Gateway response."
+	   	   	   	   	   },
+	   	   	   	   	   "503": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/WorkflowsGetIncidentsFeedServiceUnavailableErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Service Unavailable response."
+	   	   	   	   	   },
+	   	   	   	   	   "504": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/WorkflowsGetIncidentsFeedGatewayTimeoutErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Gateway Timeout response."
+	   	   	   	   	   },
+	   	   	   	   	   "default": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Invalid value for parameter.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/WorkflowsGetIncidentsFeedBadRequestErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Request response."
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "summary": "Get a feed of all incidents.",
+	   	   	   	   "tags": [
+	   	   	   	   	   "Preview APIs"
+	   	   	   	   ]
+	   	   	   }
+	   	   },
+	   	   "/preview/workflows/incidents/history": {
+	   	   	   "get": {
+	   	   	   	   "description": "Get all incidents for the given time range and trigger type.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
+	   	   	   	   "operationId": "getIncidentsHistory",
+	   	   	   	   "parameters": [
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": "A list of Trigger types. A request must include 1-5 trigger types.",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "triggerTypes",
+	   	   	   	   	   	   "required": true,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "items": {
+	   	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "type": "array"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": "A start time in RFC 3339 format. Millisecond precision and timezones are supported. The earliest allowed startTime is 90 days previous to the current time.",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "startTime",
+	   	   	   	   	   	   "required": true,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": "An end time in RFC 3339 format. Millisecond precision and timezones are supported. The maximum allowed startTime-endTime range is 7 days.",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "endTime",
+	   	   	   	   	   	   "required": true,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "after",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": "The limit for how many objects will be in the response. Default and max for this value is 512 objects.",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "limit",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "default": 512,
+	   	   	   	   	   	   	   "maximum": 512,
+	   	   	   	   	   	   	   "minimum": 1,
+	   	   	   	   	   	   	   "type": "integer"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": "The type of object (either driver or vehicle) to filter on.",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "objectType",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": "The IDs of the driver or vehicle objects to filter on. External IDs are also acceptable.",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "objectIds",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "items": {
+	   	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "type": "array"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   }
+	   	   	   	   ],
+	   	   	   	   "responses": {
+	   	   	   	   	   "200": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "data": [
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "createdAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "objects": [
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "triggersSatisfied": [
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   	   ]
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "createdAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "objects": [
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "triggersSatisfied": [
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   	   ]
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "createdAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "objects": [
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "triggersSatisfied": [
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   	   ]
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "createdAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "objects": [
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payroll:4841",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenance:250020"
+	   	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectId": "12345",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "objectType": "vehicle"
+	   	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "triggersSatisfied": [
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "occurredAtTime": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "triggerType": "widgetDisconnected"
+	   	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   	   ]
+	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   "pagination": {
+	   	   	   	   	   	   	   	   	   	   "endCursor": "MjkY",
+	   	   	   	   	   	   	   	   	   	   "hasNextPage": true
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/WorkflowsGetIncidentsHistoryResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "OK response."
+	   	   	   	   	   },
+	   	   	   	   	   "401": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Invalid token.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/WorkflowsGetIncidentsHistoryUnauthorizedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Unauthorized response."
+	   	   	   	   	   },
+	   	   	   	   	   "404": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Object not found.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/WorkflowsGetIncidentsHistoryNotFoundErrorErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Found response."
+	   	   	   	   	   },
+	   	   	   	   	   "405": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "DELETE not allowed on /endpoint.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/WorkflowsGetIncidentsHistoryMethodNotAllowedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Method Not Allowed response."
+	   	   	   	   	   },
+	   	   	   	   	   "429": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Exceeded rate limit.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/WorkflowsGetIncidentsHistoryTooManyRequestsErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Too Many Requests response."
+	   	   	   	   	   },
+	   	   	   	   	   "500": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Failed to execute GraphQL query.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/WorkflowsGetIncidentsHistoryInternalServerErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Internal Server Error response."
+	   	   	   	   	   },
+	   	   	   	   	   "501": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Not implemented.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/WorkflowsGetIncidentsHistoryNotImplementedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Implemented response."
+	   	   	   	   	   },
+	   	   	   	   	   "502": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "rpc error: code = Unknown desc = connection refused",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/WorkflowsGetIncidentsHistoryBadGatewayErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Gateway response."
+	   	   	   	   	   },
+	   	   	   	   	   "503": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/WorkflowsGetIncidentsHistoryServiceUnavailableErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Service Unavailable response."
+	   	   	   	   	   },
+	   	   	   	   	   "504": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/WorkflowsGetIncidentsHistoryGatewayTimeoutErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Gateway Timeout response."
+	   	   	   	   	   },
+	   	   	   	   	   "default": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Invalid value for parameter.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/WorkflowsGetIncidentsHistoryBadRequestErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Request response."
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "summary": "Get historical incidents.",
+	   	   	   	   "tags": [
+	   	   	   	   	   "Preview APIs"
 	   	   	   	   ]
 	   	   	   }
 	   	   },
