@@ -7301,7 +7301,7 @@
           "https"
         ],
         "tags": [
-          "Preview APIs"
+          "Beta APIs"
         ],
         "summary": "[preview] Fetch all documents",
         "operationId": "getDocuments",
@@ -7310,13 +7310,15 @@
             "type": "string",
             "description": " A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
             "name": "startTime",
-            "in": "query"
+            "in": "query",
+            "required": true
           },
           {
             "type": "string",
             "description": " An end time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
             "name": "endTime",
-            "in": "query"
+            "in": "query",
+            "required": true
           },
           {
             "type": "string",
@@ -8586,7 +8588,7 @@
           "https"
         ],
         "tags": [
-          "Preview APIs"
+          "Beta APIs"
         ],
         "summary": "[preview] Fetch document",
         "operationId": "getDocument",
@@ -16058,6 +16060,10 @@
     },
     "DocumentsGetDocumentsResponseBody": {
       "type": "object",
+      "required": [
+        "data",
+        "pagination"
+      ],
       "properties": {
         "data": {
           "description": "Multiple documents.",
