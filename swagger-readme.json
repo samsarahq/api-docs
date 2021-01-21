@@ -7469,6 +7469,10 @@
 	   	   	   	   	   	   "$ref": "#/components/schemas/GoaPaginationResponseResponseBody"
 	   	   	   	   	   }
 	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "data",
+	   	   	   	   	   "pagination"
+	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
 	   	   	   "DriveTimeDurationMs": {
@@ -37158,7 +37162,7 @@
 	   	   	   	   	   	   "explode": true,
 	   	   	   	   	   	   "in": "query",
 	   	   	   	   	   	   "name": "startTime",
-	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "required": true,
 	   	   	   	   	   	   "schema": {
 	   	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   	   },
@@ -37169,7 +37173,7 @@
 	   	   	   	   	   	   "explode": true,
 	   	   	   	   	   	   "in": "query",
 	   	   	   	   	   	   "name": "endTime",
-	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "required": true,
 	   	   	   	   	   	   "schema": {
 	   	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   	   },
@@ -38456,7 +38460,7 @@
 	   	   	   	   },
 	   	   	   	   "summary": "[preview] Fetch all documents",
 	   	   	   	   "tags": [
-	   	   	   	   	   "Preview APIs"
+	   	   	   	   	   "Beta APIs"
 	   	   	   	   ]
 	   	   	   }
 	   	   },
@@ -38844,7 +38848,7 @@
 	   	   	   	   },
 	   	   	   	   "summary": "[preview] Fetch document",
 	   	   	   	   "tags": [
-	   	   	   	   	   "Preview APIs"
+	   	   	   	   	   "Beta APIs"
 	   	   	   	   ]
 	   	   	   }
 	   	   },
