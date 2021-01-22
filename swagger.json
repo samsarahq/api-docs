@@ -671,6 +671,1679 @@
         }
       }
     },
+    "/beta/fleet/documents": {
+      "get": {
+        "description": "Get all documents for the given time range\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Beta APIs"
+        ],
+        "summary": "[beta] Fetch all documents",
+        "operationId": "getDocuments",
+        "parameters": [
+          {
+            "type": "string",
+            "description": " A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "startTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": " An end time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "endTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "ID of the document template type.",
+            "name": "documentTypeId",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentsResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "data": [
+                  {
+                    "conditionalFieldSections": [
+                      {
+                        "conditionalFieldFirstIndex": 4390182947667394600,
+                        "conditionalFieldLastIndex": 8613854102992773000,
+                        "triggeringFieldIndex": 832931191248950900,
+                        "triggeringFieldValue": "Doloribus reprehenderit sit velit placeat."
+                      },
+                      {
+                        "conditionalFieldFirstIndex": 4390182947667394600,
+                        "conditionalFieldLastIndex": 8613854102992773000,
+                        "triggeringFieldIndex": 832931191248950900,
+                        "triggeringFieldValue": "Doloribus reprehenderit sit velit placeat."
+                      }
+                    ],
+                    "createdAtTime": "2010-05-07T04:03:59Z",
+                    "documentType": {
+                      "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                      "name": "Fleet Truck List"
+                    },
+                    "driver": {
+                      "externalIds": {
+                        "maintenanceId": "250020",
+                        "payrollId": "ABFS18600"
+                      },
+                      "id": "45646",
+                      "name": "Driver Bob"
+                    },
+                    "fields": [
+                      {
+                        "label": "Load weight",
+                        "type": "barcode",
+                        "value": {
+                          "barcodeValue": [
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            },
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            },
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            }
+                          ],
+                          "dateTimeValue": {
+                            "dateTime": "2003-08-03T21:49:46Z"
+                          },
+                          "multipleChoiceValue": [
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            },
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            },
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            }
+                          ],
+                          "numberValue": 123,
+                          "photoValue": [
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            }
+                          ],
+                          "scannedDocumentValue": [
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            }
+                          ],
+                          "signatureValue": {
+                            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                            "name": "John Smith",
+                            "signedAtTime": "2009-12-16T10:59:55Z",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          "stringValue": "Red Truck"
+                        }
+                      },
+                      {
+                        "label": "Load weight",
+                        "type": "barcode",
+                        "value": {
+                          "barcodeValue": [
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            },
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            },
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            }
+                          ],
+                          "dateTimeValue": {
+                            "dateTime": "2003-08-03T21:49:46Z"
+                          },
+                          "multipleChoiceValue": [
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            },
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            },
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            }
+                          ],
+                          "numberValue": 123,
+                          "photoValue": [
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            }
+                          ],
+                          "scannedDocumentValue": [
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            }
+                          ],
+                          "signatureValue": {
+                            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                            "name": "John Smith",
+                            "signedAtTime": "2009-12-16T10:59:55Z",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          "stringValue": "Red Truck"
+                        }
+                      },
+                      {
+                        "label": "Load weight",
+                        "type": "barcode",
+                        "value": {
+                          "barcodeValue": [
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            },
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            },
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            }
+                          ],
+                          "dateTimeValue": {
+                            "dateTime": "2003-08-03T21:49:46Z"
+                          },
+                          "multipleChoiceValue": [
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            },
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            },
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            }
+                          ],
+                          "numberValue": 123,
+                          "photoValue": [
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            }
+                          ],
+                          "scannedDocumentValue": [
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            }
+                          ],
+                          "signatureValue": {
+                            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                            "name": "John Smith",
+                            "signedAtTime": "2009-12-16T10:59:55Z",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          "stringValue": "Red Truck"
+                        }
+                      }
+                    ],
+                    "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                    "name": "Dropoff Slip 123",
+                    "notes": "Missing a crate",
+                    "routeStop": {
+                      "externalIds": {
+                        "maintenanceId": "250020",
+                        "payrollId": "ABFS18600"
+                      },
+                      "id": "494123",
+                      "name": "Company Warehouse #1"
+                    },
+                    "state": "submitted",
+                    "updatedAtTime": "1988-03-12T09:29:03Z",
+                    "vehicle": {
+                      "externalIds": {
+                        "maintenanceId": "250020",
+                        "payrollId": "ABFS18600"
+                      },
+                      "id": "494123",
+                      "name": "Fleet Truck #1"
+                    }
+                  },
+                  {
+                    "conditionalFieldSections": [
+                      {
+                        "conditionalFieldFirstIndex": 4390182947667394600,
+                        "conditionalFieldLastIndex": 8613854102992773000,
+                        "triggeringFieldIndex": 832931191248950900,
+                        "triggeringFieldValue": "Doloribus reprehenderit sit velit placeat."
+                      },
+                      {
+                        "conditionalFieldFirstIndex": 4390182947667394600,
+                        "conditionalFieldLastIndex": 8613854102992773000,
+                        "triggeringFieldIndex": 832931191248950900,
+                        "triggeringFieldValue": "Doloribus reprehenderit sit velit placeat."
+                      }
+                    ],
+                    "createdAtTime": "2010-05-07T04:03:59Z",
+                    "documentType": {
+                      "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                      "name": "Fleet Truck List"
+                    },
+                    "driver": {
+                      "externalIds": {
+                        "maintenanceId": "250020",
+                        "payrollId": "ABFS18600"
+                      },
+                      "id": "45646",
+                      "name": "Driver Bob"
+                    },
+                    "fields": [
+                      {
+                        "label": "Load weight",
+                        "type": "barcode",
+                        "value": {
+                          "barcodeValue": [
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            },
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            },
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            }
+                          ],
+                          "dateTimeValue": {
+                            "dateTime": "2003-08-03T21:49:46Z"
+                          },
+                          "multipleChoiceValue": [
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            },
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            },
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            }
+                          ],
+                          "numberValue": 123,
+                          "photoValue": [
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            }
+                          ],
+                          "scannedDocumentValue": [
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            }
+                          ],
+                          "signatureValue": {
+                            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                            "name": "John Smith",
+                            "signedAtTime": "2009-12-16T10:59:55Z",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          "stringValue": "Red Truck"
+                        }
+                      },
+                      {
+                        "label": "Load weight",
+                        "type": "barcode",
+                        "value": {
+                          "barcodeValue": [
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            },
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            },
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            }
+                          ],
+                          "dateTimeValue": {
+                            "dateTime": "2003-08-03T21:49:46Z"
+                          },
+                          "multipleChoiceValue": [
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            },
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            },
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            }
+                          ],
+                          "numberValue": 123,
+                          "photoValue": [
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            }
+                          ],
+                          "scannedDocumentValue": [
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            }
+                          ],
+                          "signatureValue": {
+                            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                            "name": "John Smith",
+                            "signedAtTime": "2009-12-16T10:59:55Z",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          "stringValue": "Red Truck"
+                        }
+                      },
+                      {
+                        "label": "Load weight",
+                        "type": "barcode",
+                        "value": {
+                          "barcodeValue": [
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            },
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            },
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            }
+                          ],
+                          "dateTimeValue": {
+                            "dateTime": "2003-08-03T21:49:46Z"
+                          },
+                          "multipleChoiceValue": [
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            },
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            },
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            }
+                          ],
+                          "numberValue": 123,
+                          "photoValue": [
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            }
+                          ],
+                          "scannedDocumentValue": [
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            }
+                          ],
+                          "signatureValue": {
+                            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                            "name": "John Smith",
+                            "signedAtTime": "2009-12-16T10:59:55Z",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          "stringValue": "Red Truck"
+                        }
+                      }
+                    ],
+                    "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                    "name": "Dropoff Slip 123",
+                    "notes": "Missing a crate",
+                    "routeStop": {
+                      "externalIds": {
+                        "maintenanceId": "250020",
+                        "payrollId": "ABFS18600"
+                      },
+                      "id": "494123",
+                      "name": "Company Warehouse #1"
+                    },
+                    "state": "submitted",
+                    "updatedAtTime": "1988-03-12T09:29:03Z",
+                    "vehicle": {
+                      "externalIds": {
+                        "maintenanceId": "250020",
+                        "payrollId": "ABFS18600"
+                      },
+                      "id": "494123",
+                      "name": "Fleet Truck #1"
+                    }
+                  },
+                  {
+                    "conditionalFieldSections": [
+                      {
+                        "conditionalFieldFirstIndex": 4390182947667394600,
+                        "conditionalFieldLastIndex": 8613854102992773000,
+                        "triggeringFieldIndex": 832931191248950900,
+                        "triggeringFieldValue": "Doloribus reprehenderit sit velit placeat."
+                      },
+                      {
+                        "conditionalFieldFirstIndex": 4390182947667394600,
+                        "conditionalFieldLastIndex": 8613854102992773000,
+                        "triggeringFieldIndex": 832931191248950900,
+                        "triggeringFieldValue": "Doloribus reprehenderit sit velit placeat."
+                      }
+                    ],
+                    "createdAtTime": "2010-05-07T04:03:59Z",
+                    "documentType": {
+                      "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                      "name": "Fleet Truck List"
+                    },
+                    "driver": {
+                      "externalIds": {
+                        "maintenanceId": "250020",
+                        "payrollId": "ABFS18600"
+                      },
+                      "id": "45646",
+                      "name": "Driver Bob"
+                    },
+                    "fields": [
+                      {
+                        "label": "Load weight",
+                        "type": "barcode",
+                        "value": {
+                          "barcodeValue": [
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            },
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            },
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            }
+                          ],
+                          "dateTimeValue": {
+                            "dateTime": "2003-08-03T21:49:46Z"
+                          },
+                          "multipleChoiceValue": [
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            },
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            },
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            }
+                          ],
+                          "numberValue": 123,
+                          "photoValue": [
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            }
+                          ],
+                          "scannedDocumentValue": [
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            }
+                          ],
+                          "signatureValue": {
+                            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                            "name": "John Smith",
+                            "signedAtTime": "2009-12-16T10:59:55Z",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          "stringValue": "Red Truck"
+                        }
+                      },
+                      {
+                        "label": "Load weight",
+                        "type": "barcode",
+                        "value": {
+                          "barcodeValue": [
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            },
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            },
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            }
+                          ],
+                          "dateTimeValue": {
+                            "dateTime": "2003-08-03T21:49:46Z"
+                          },
+                          "multipleChoiceValue": [
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            },
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            },
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            }
+                          ],
+                          "numberValue": 123,
+                          "photoValue": [
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            }
+                          ],
+                          "scannedDocumentValue": [
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            }
+                          ],
+                          "signatureValue": {
+                            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                            "name": "John Smith",
+                            "signedAtTime": "2009-12-16T10:59:55Z",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          "stringValue": "Red Truck"
+                        }
+                      },
+                      {
+                        "label": "Load weight",
+                        "type": "barcode",
+                        "value": {
+                          "barcodeValue": [
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            },
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            },
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            }
+                          ],
+                          "dateTimeValue": {
+                            "dateTime": "2003-08-03T21:49:46Z"
+                          },
+                          "multipleChoiceValue": [
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            },
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            },
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            }
+                          ],
+                          "numberValue": 123,
+                          "photoValue": [
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            }
+                          ],
+                          "scannedDocumentValue": [
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            }
+                          ],
+                          "signatureValue": {
+                            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                            "name": "John Smith",
+                            "signedAtTime": "2009-12-16T10:59:55Z",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          "stringValue": "Red Truck"
+                        }
+                      }
+                    ],
+                    "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                    "name": "Dropoff Slip 123",
+                    "notes": "Missing a crate",
+                    "routeStop": {
+                      "externalIds": {
+                        "maintenanceId": "250020",
+                        "payrollId": "ABFS18600"
+                      },
+                      "id": "494123",
+                      "name": "Company Warehouse #1"
+                    },
+                    "state": "submitted",
+                    "updatedAtTime": "1988-03-12T09:29:03Z",
+                    "vehicle": {
+                      "externalIds": {
+                        "maintenanceId": "250020",
+                        "payrollId": "ABFS18600"
+                      },
+                      "id": "494123",
+                      "name": "Fleet Truck #1"
+                    }
+                  },
+                  {
+                    "conditionalFieldSections": [
+                      {
+                        "conditionalFieldFirstIndex": 4390182947667394600,
+                        "conditionalFieldLastIndex": 8613854102992773000,
+                        "triggeringFieldIndex": 832931191248950900,
+                        "triggeringFieldValue": "Doloribus reprehenderit sit velit placeat."
+                      },
+                      {
+                        "conditionalFieldFirstIndex": 4390182947667394600,
+                        "conditionalFieldLastIndex": 8613854102992773000,
+                        "triggeringFieldIndex": 832931191248950900,
+                        "triggeringFieldValue": "Doloribus reprehenderit sit velit placeat."
+                      }
+                    ],
+                    "createdAtTime": "2010-05-07T04:03:59Z",
+                    "documentType": {
+                      "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                      "name": "Fleet Truck List"
+                    },
+                    "driver": {
+                      "externalIds": {
+                        "maintenanceId": "250020",
+                        "payrollId": "ABFS18600"
+                      },
+                      "id": "45646",
+                      "name": "Driver Bob"
+                    },
+                    "fields": [
+                      {
+                        "label": "Load weight",
+                        "type": "barcode",
+                        "value": {
+                          "barcodeValue": [
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            },
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            },
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            }
+                          ],
+                          "dateTimeValue": {
+                            "dateTime": "2003-08-03T21:49:46Z"
+                          },
+                          "multipleChoiceValue": [
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            },
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            },
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            }
+                          ],
+                          "numberValue": 123,
+                          "photoValue": [
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            }
+                          ],
+                          "scannedDocumentValue": [
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            }
+                          ],
+                          "signatureValue": {
+                            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                            "name": "John Smith",
+                            "signedAtTime": "2009-12-16T10:59:55Z",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          "stringValue": "Red Truck"
+                        }
+                      },
+                      {
+                        "label": "Load weight",
+                        "type": "barcode",
+                        "value": {
+                          "barcodeValue": [
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            },
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            },
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            }
+                          ],
+                          "dateTimeValue": {
+                            "dateTime": "2003-08-03T21:49:46Z"
+                          },
+                          "multipleChoiceValue": [
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            },
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            },
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            }
+                          ],
+                          "numberValue": 123,
+                          "photoValue": [
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            }
+                          ],
+                          "scannedDocumentValue": [
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            }
+                          ],
+                          "signatureValue": {
+                            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                            "name": "John Smith",
+                            "signedAtTime": "2009-12-16T10:59:55Z",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          "stringValue": "Red Truck"
+                        }
+                      },
+                      {
+                        "label": "Load weight",
+                        "type": "barcode",
+                        "value": {
+                          "barcodeValue": [
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            },
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            },
+                            {
+                              "barcodeType": "org.gs1.EAN-13",
+                              "barcodeValue": "0853883003114"
+                            }
+                          ],
+                          "dateTimeValue": {
+                            "dateTime": "2003-08-03T21:49:46Z"
+                          },
+                          "multipleChoiceValue": [
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            },
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            },
+                            {
+                              "selected": false,
+                              "value": "Yes"
+                            }
+                          ],
+                          "numberValue": 123,
+                          "photoValue": [
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            }
+                          ],
+                          "scannedDocumentValue": [
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            },
+                            {
+                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                            }
+                          ],
+                          "signatureValue": {
+                            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                            "name": "John Smith",
+                            "signedAtTime": "2009-12-16T10:59:55Z",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          "stringValue": "Red Truck"
+                        }
+                      }
+                    ],
+                    "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                    "name": "Dropoff Slip 123",
+                    "notes": "Missing a crate",
+                    "routeStop": {
+                      "externalIds": {
+                        "maintenanceId": "250020",
+                        "payrollId": "ABFS18600"
+                      },
+                      "id": "494123",
+                      "name": "Company Warehouse #1"
+                    },
+                    "state": "submitted",
+                    "updatedAtTime": "1988-03-12T09:29:03Z",
+                    "vehicle": {
+                      "externalIds": {
+                        "maintenanceId": "250020",
+                        "payrollId": "ABFS18600"
+                      },
+                      "id": "494123",
+                      "name": "Fleet Truck #1"
+                    }
+                  }
+                ],
+                "pagination": {
+                  "endCursor": "MjkY",
+                  "hasNextPage": true
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentsNotFoundResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Object not found.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentsInternalErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Failed to execute GraphQL query.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentsNotImplementedResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Not implemented.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentsBadRequestResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Invalid value for parameter.",
+                "requestId": "8916e1c1"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/beta/fleet/documents/{id}": {
+      "get": {
+        "description": "Returns a single document\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Beta APIs"
+        ],
+        "summary": "[beta] Fetch document",
+        "operationId": "getDocument",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID of the document",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "data": {
+                  "conditionalFieldSections": [
+                    {
+                      "conditionalFieldFirstIndex": 4390182947667394600,
+                      "conditionalFieldLastIndex": 8613854102992773000,
+                      "triggeringFieldIndex": 832931191248950900,
+                      "triggeringFieldValue": "Doloribus reprehenderit sit velit placeat."
+                    },
+                    {
+                      "conditionalFieldFirstIndex": 4390182947667394600,
+                      "conditionalFieldLastIndex": 8613854102992773000,
+                      "triggeringFieldIndex": 832931191248950900,
+                      "triggeringFieldValue": "Doloribus reprehenderit sit velit placeat."
+                    }
+                  ],
+                  "createdAtTime": "2010-05-07T04:03:59Z",
+                  "documentType": {
+                    "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                    "name": "Fleet Truck List"
+                  },
+                  "driver": {
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "45646",
+                    "name": "Driver Bob"
+                  },
+                  "fields": [
+                    {
+                      "label": "Load weight",
+                      "type": "barcode",
+                      "value": {
+                        "barcodeValue": [
+                          {
+                            "barcodeType": "org.gs1.EAN-13",
+                            "barcodeValue": "0853883003114"
+                          },
+                          {
+                            "barcodeType": "org.gs1.EAN-13",
+                            "barcodeValue": "0853883003114"
+                          },
+                          {
+                            "barcodeType": "org.gs1.EAN-13",
+                            "barcodeValue": "0853883003114"
+                          }
+                        ],
+                        "dateTimeValue": {
+                          "dateTime": "2003-08-03T21:49:46Z"
+                        },
+                        "multipleChoiceValue": [
+                          {
+                            "selected": false,
+                            "value": "Yes"
+                          },
+                          {
+                            "selected": false,
+                            "value": "Yes"
+                          },
+                          {
+                            "selected": false,
+                            "value": "Yes"
+                          }
+                        ],
+                        "numberValue": 123,
+                        "photoValue": [
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          }
+                        ],
+                        "scannedDocumentValue": [
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          }
+                        ],
+                        "signatureValue": {
+                          "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                          "name": "John Smith",
+                          "signedAtTime": "2009-12-16T10:59:55Z",
+                          "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                        },
+                        "stringValue": "Red Truck"
+                      }
+                    },
+                    {
+                      "label": "Load weight",
+                      "type": "barcode",
+                      "value": {
+                        "barcodeValue": [
+                          {
+                            "barcodeType": "org.gs1.EAN-13",
+                            "barcodeValue": "0853883003114"
+                          },
+                          {
+                            "barcodeType": "org.gs1.EAN-13",
+                            "barcodeValue": "0853883003114"
+                          },
+                          {
+                            "barcodeType": "org.gs1.EAN-13",
+                            "barcodeValue": "0853883003114"
+                          }
+                        ],
+                        "dateTimeValue": {
+                          "dateTime": "2003-08-03T21:49:46Z"
+                        },
+                        "multipleChoiceValue": [
+                          {
+                            "selected": false,
+                            "value": "Yes"
+                          },
+                          {
+                            "selected": false,
+                            "value": "Yes"
+                          },
+                          {
+                            "selected": false,
+                            "value": "Yes"
+                          }
+                        ],
+                        "numberValue": 123,
+                        "photoValue": [
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          }
+                        ],
+                        "scannedDocumentValue": [
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          }
+                        ],
+                        "signatureValue": {
+                          "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                          "name": "John Smith",
+                          "signedAtTime": "2009-12-16T10:59:55Z",
+                          "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                        },
+                        "stringValue": "Red Truck"
+                      }
+                    },
+                    {
+                      "label": "Load weight",
+                      "type": "barcode",
+                      "value": {
+                        "barcodeValue": [
+                          {
+                            "barcodeType": "org.gs1.EAN-13",
+                            "barcodeValue": "0853883003114"
+                          },
+                          {
+                            "barcodeType": "org.gs1.EAN-13",
+                            "barcodeValue": "0853883003114"
+                          },
+                          {
+                            "barcodeType": "org.gs1.EAN-13",
+                            "barcodeValue": "0853883003114"
+                          }
+                        ],
+                        "dateTimeValue": {
+                          "dateTime": "2003-08-03T21:49:46Z"
+                        },
+                        "multipleChoiceValue": [
+                          {
+                            "selected": false,
+                            "value": "Yes"
+                          },
+                          {
+                            "selected": false,
+                            "value": "Yes"
+                          },
+                          {
+                            "selected": false,
+                            "value": "Yes"
+                          }
+                        ],
+                        "numberValue": 123,
+                        "photoValue": [
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          }
+                        ],
+                        "scannedDocumentValue": [
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          },
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          }
+                        ],
+                        "signatureValue": {
+                          "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                          "name": "John Smith",
+                          "signedAtTime": "2009-12-16T10:59:55Z",
+                          "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                        },
+                        "stringValue": "Red Truck"
+                      }
+                    }
+                  ],
+                  "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                  "name": "Dropoff Slip 123",
+                  "notes": "Missing a crate",
+                  "routeStop": {
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "494123",
+                    "name": "Company Warehouse #1"
+                  },
+                  "state": "submitted",
+                  "updatedAtTime": "1988-03-12T09:29:03Z",
+                  "vehicle": {
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "494123",
+                    "name": "Fleet Truck #1"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentNotFoundResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Object not found.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentInternalErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Failed to execute GraphQL query.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentNotImplementedResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Not implemented.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentBadRequestResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Invalid value for parameter.",
+                "requestId": "8916e1c1"
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "ID of the document",
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
     "/beta/fleet/drivers/efficiency": {
       "get": {
         "description": "Get all drivers' efficiencies. \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
@@ -7294,1304 +8967,17 @@
         }
       }
     },
-    "/preview/fleet/documents": {
-      "get": {
-        "description": "Get all documents for the given time range\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
-        "schemes": [
-          "https"
-        ],
-        "tags": [
-          "Beta APIs"
-        ],
-        "summary": "[preview] Fetch all documents",
-        "operationId": "getDocuments",
-        "parameters": [
-          {
-            "type": "string",
-            "description": " A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
-            "name": "startTime",
-            "in": "query",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": " An end time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
-            "name": "endTime",
-            "in": "query",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
-            "name": "after",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "ID of the document template type.",
-            "name": "documentTypeId",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentsResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "data": [
-                  {
-                    "conditionalFieldSections": [
-                      {
-                        "conditionalFieldFirstIndex": 4390182947667394600,
-                        "conditionalFieldLastIndex": 8613854102992773000,
-                        "triggeringFieldIndex": 832931191248950900,
-                        "triggeringFieldValue": "Doloribus reprehenderit sit velit placeat."
-                      },
-                      {
-                        "conditionalFieldFirstIndex": 4390182947667394600,
-                        "conditionalFieldLastIndex": 8613854102992773000,
-                        "triggeringFieldIndex": 832931191248950900,
-                        "triggeringFieldValue": "Doloribus reprehenderit sit velit placeat."
-                      }
-                    ],
-                    "createdAtTime": "2010-05-07T04:03:59Z",
-                    "documentType": {
-                      "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                      "name": "Fleet Truck List"
-                    },
-                    "driver": {
-                      "externalIds": {
-                        "maintenanceId": "250020",
-                        "payrollId": "ABFS18600"
-                      },
-                      "id": "45646",
-                      "name": "Driver Bob"
-                    },
-                    "fields": [
-                      {
-                        "label": "Load weight",
-                        "type": "barcode",
-                        "value": {
-                          "barcodeValue": [
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            },
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            },
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            }
-                          ],
-                          "dateTimeValue": {
-                            "dateTime": "2003-08-03T21:49:46Z"
-                          },
-                          "multipleChoiceValue": [
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            },
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            },
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            }
-                          ],
-                          "numberValue": 123,
-                          "photoValue": [
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            }
-                          ],
-                          "scannedDocumentValue": [
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            }
-                          ],
-                          "signatureValue": {
-                            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                            "name": "John Smith",
-                            "signedAtTime": "2009-12-16T10:59:55Z",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          "stringValue": "Red Truck"
-                        }
-                      },
-                      {
-                        "label": "Load weight",
-                        "type": "barcode",
-                        "value": {
-                          "barcodeValue": [
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            },
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            },
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            }
-                          ],
-                          "dateTimeValue": {
-                            "dateTime": "2003-08-03T21:49:46Z"
-                          },
-                          "multipleChoiceValue": [
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            },
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            },
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            }
-                          ],
-                          "numberValue": 123,
-                          "photoValue": [
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            }
-                          ],
-                          "scannedDocumentValue": [
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            }
-                          ],
-                          "signatureValue": {
-                            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                            "name": "John Smith",
-                            "signedAtTime": "2009-12-16T10:59:55Z",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          "stringValue": "Red Truck"
-                        }
-                      },
-                      {
-                        "label": "Load weight",
-                        "type": "barcode",
-                        "value": {
-                          "barcodeValue": [
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            },
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            },
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            }
-                          ],
-                          "dateTimeValue": {
-                            "dateTime": "2003-08-03T21:49:46Z"
-                          },
-                          "multipleChoiceValue": [
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            },
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            },
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            }
-                          ],
-                          "numberValue": 123,
-                          "photoValue": [
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            }
-                          ],
-                          "scannedDocumentValue": [
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            }
-                          ],
-                          "signatureValue": {
-                            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                            "name": "John Smith",
-                            "signedAtTime": "2009-12-16T10:59:55Z",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          "stringValue": "Red Truck"
-                        }
-                      }
-                    ],
-                    "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                    "name": "Dropoff Slip 123",
-                    "notes": "Missing a crate",
-                    "routeStop": {
-                      "externalIds": {
-                        "maintenanceId": "250020",
-                        "payrollId": "ABFS18600"
-                      },
-                      "id": "494123",
-                      "name": "Company Warehouse #1"
-                    },
-                    "state": "submitted",
-                    "updatedAtTime": "1988-03-12T09:29:03Z",
-                    "vehicle": {
-                      "externalIds": {
-                        "maintenanceId": "250020",
-                        "payrollId": "ABFS18600"
-                      },
-                      "id": "494123",
-                      "name": "Fleet Truck #1"
-                    }
-                  },
-                  {
-                    "conditionalFieldSections": [
-                      {
-                        "conditionalFieldFirstIndex": 4390182947667394600,
-                        "conditionalFieldLastIndex": 8613854102992773000,
-                        "triggeringFieldIndex": 832931191248950900,
-                        "triggeringFieldValue": "Doloribus reprehenderit sit velit placeat."
-                      },
-                      {
-                        "conditionalFieldFirstIndex": 4390182947667394600,
-                        "conditionalFieldLastIndex": 8613854102992773000,
-                        "triggeringFieldIndex": 832931191248950900,
-                        "triggeringFieldValue": "Doloribus reprehenderit sit velit placeat."
-                      }
-                    ],
-                    "createdAtTime": "2010-05-07T04:03:59Z",
-                    "documentType": {
-                      "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                      "name": "Fleet Truck List"
-                    },
-                    "driver": {
-                      "externalIds": {
-                        "maintenanceId": "250020",
-                        "payrollId": "ABFS18600"
-                      },
-                      "id": "45646",
-                      "name": "Driver Bob"
-                    },
-                    "fields": [
-                      {
-                        "label": "Load weight",
-                        "type": "barcode",
-                        "value": {
-                          "barcodeValue": [
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            },
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            },
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            }
-                          ],
-                          "dateTimeValue": {
-                            "dateTime": "2003-08-03T21:49:46Z"
-                          },
-                          "multipleChoiceValue": [
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            },
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            },
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            }
-                          ],
-                          "numberValue": 123,
-                          "photoValue": [
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            }
-                          ],
-                          "scannedDocumentValue": [
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            }
-                          ],
-                          "signatureValue": {
-                            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                            "name": "John Smith",
-                            "signedAtTime": "2009-12-16T10:59:55Z",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          "stringValue": "Red Truck"
-                        }
-                      },
-                      {
-                        "label": "Load weight",
-                        "type": "barcode",
-                        "value": {
-                          "barcodeValue": [
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            },
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            },
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            }
-                          ],
-                          "dateTimeValue": {
-                            "dateTime": "2003-08-03T21:49:46Z"
-                          },
-                          "multipleChoiceValue": [
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            },
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            },
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            }
-                          ],
-                          "numberValue": 123,
-                          "photoValue": [
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            }
-                          ],
-                          "scannedDocumentValue": [
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            }
-                          ],
-                          "signatureValue": {
-                            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                            "name": "John Smith",
-                            "signedAtTime": "2009-12-16T10:59:55Z",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          "stringValue": "Red Truck"
-                        }
-                      },
-                      {
-                        "label": "Load weight",
-                        "type": "barcode",
-                        "value": {
-                          "barcodeValue": [
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            },
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            },
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            }
-                          ],
-                          "dateTimeValue": {
-                            "dateTime": "2003-08-03T21:49:46Z"
-                          },
-                          "multipleChoiceValue": [
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            },
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            },
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            }
-                          ],
-                          "numberValue": 123,
-                          "photoValue": [
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            }
-                          ],
-                          "scannedDocumentValue": [
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            }
-                          ],
-                          "signatureValue": {
-                            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                            "name": "John Smith",
-                            "signedAtTime": "2009-12-16T10:59:55Z",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          "stringValue": "Red Truck"
-                        }
-                      }
-                    ],
-                    "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                    "name": "Dropoff Slip 123",
-                    "notes": "Missing a crate",
-                    "routeStop": {
-                      "externalIds": {
-                        "maintenanceId": "250020",
-                        "payrollId": "ABFS18600"
-                      },
-                      "id": "494123",
-                      "name": "Company Warehouse #1"
-                    },
-                    "state": "submitted",
-                    "updatedAtTime": "1988-03-12T09:29:03Z",
-                    "vehicle": {
-                      "externalIds": {
-                        "maintenanceId": "250020",
-                        "payrollId": "ABFS18600"
-                      },
-                      "id": "494123",
-                      "name": "Fleet Truck #1"
-                    }
-                  },
-                  {
-                    "conditionalFieldSections": [
-                      {
-                        "conditionalFieldFirstIndex": 4390182947667394600,
-                        "conditionalFieldLastIndex": 8613854102992773000,
-                        "triggeringFieldIndex": 832931191248950900,
-                        "triggeringFieldValue": "Doloribus reprehenderit sit velit placeat."
-                      },
-                      {
-                        "conditionalFieldFirstIndex": 4390182947667394600,
-                        "conditionalFieldLastIndex": 8613854102992773000,
-                        "triggeringFieldIndex": 832931191248950900,
-                        "triggeringFieldValue": "Doloribus reprehenderit sit velit placeat."
-                      }
-                    ],
-                    "createdAtTime": "2010-05-07T04:03:59Z",
-                    "documentType": {
-                      "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                      "name": "Fleet Truck List"
-                    },
-                    "driver": {
-                      "externalIds": {
-                        "maintenanceId": "250020",
-                        "payrollId": "ABFS18600"
-                      },
-                      "id": "45646",
-                      "name": "Driver Bob"
-                    },
-                    "fields": [
-                      {
-                        "label": "Load weight",
-                        "type": "barcode",
-                        "value": {
-                          "barcodeValue": [
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            },
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            },
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            }
-                          ],
-                          "dateTimeValue": {
-                            "dateTime": "2003-08-03T21:49:46Z"
-                          },
-                          "multipleChoiceValue": [
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            },
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            },
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            }
-                          ],
-                          "numberValue": 123,
-                          "photoValue": [
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            }
-                          ],
-                          "scannedDocumentValue": [
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            }
-                          ],
-                          "signatureValue": {
-                            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                            "name": "John Smith",
-                            "signedAtTime": "2009-12-16T10:59:55Z",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          "stringValue": "Red Truck"
-                        }
-                      },
-                      {
-                        "label": "Load weight",
-                        "type": "barcode",
-                        "value": {
-                          "barcodeValue": [
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            },
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            },
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            }
-                          ],
-                          "dateTimeValue": {
-                            "dateTime": "2003-08-03T21:49:46Z"
-                          },
-                          "multipleChoiceValue": [
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            },
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            },
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            }
-                          ],
-                          "numberValue": 123,
-                          "photoValue": [
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            }
-                          ],
-                          "scannedDocumentValue": [
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            }
-                          ],
-                          "signatureValue": {
-                            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                            "name": "John Smith",
-                            "signedAtTime": "2009-12-16T10:59:55Z",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          "stringValue": "Red Truck"
-                        }
-                      },
-                      {
-                        "label": "Load weight",
-                        "type": "barcode",
-                        "value": {
-                          "barcodeValue": [
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            },
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            },
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            }
-                          ],
-                          "dateTimeValue": {
-                            "dateTime": "2003-08-03T21:49:46Z"
-                          },
-                          "multipleChoiceValue": [
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            },
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            },
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            }
-                          ],
-                          "numberValue": 123,
-                          "photoValue": [
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            }
-                          ],
-                          "scannedDocumentValue": [
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            }
-                          ],
-                          "signatureValue": {
-                            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                            "name": "John Smith",
-                            "signedAtTime": "2009-12-16T10:59:55Z",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          "stringValue": "Red Truck"
-                        }
-                      }
-                    ],
-                    "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                    "name": "Dropoff Slip 123",
-                    "notes": "Missing a crate",
-                    "routeStop": {
-                      "externalIds": {
-                        "maintenanceId": "250020",
-                        "payrollId": "ABFS18600"
-                      },
-                      "id": "494123",
-                      "name": "Company Warehouse #1"
-                    },
-                    "state": "submitted",
-                    "updatedAtTime": "1988-03-12T09:29:03Z",
-                    "vehicle": {
-                      "externalIds": {
-                        "maintenanceId": "250020",
-                        "payrollId": "ABFS18600"
-                      },
-                      "id": "494123",
-                      "name": "Fleet Truck #1"
-                    }
-                  },
-                  {
-                    "conditionalFieldSections": [
-                      {
-                        "conditionalFieldFirstIndex": 4390182947667394600,
-                        "conditionalFieldLastIndex": 8613854102992773000,
-                        "triggeringFieldIndex": 832931191248950900,
-                        "triggeringFieldValue": "Doloribus reprehenderit sit velit placeat."
-                      },
-                      {
-                        "conditionalFieldFirstIndex": 4390182947667394600,
-                        "conditionalFieldLastIndex": 8613854102992773000,
-                        "triggeringFieldIndex": 832931191248950900,
-                        "triggeringFieldValue": "Doloribus reprehenderit sit velit placeat."
-                      }
-                    ],
-                    "createdAtTime": "2010-05-07T04:03:59Z",
-                    "documentType": {
-                      "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                      "name": "Fleet Truck List"
-                    },
-                    "driver": {
-                      "externalIds": {
-                        "maintenanceId": "250020",
-                        "payrollId": "ABFS18600"
-                      },
-                      "id": "45646",
-                      "name": "Driver Bob"
-                    },
-                    "fields": [
-                      {
-                        "label": "Load weight",
-                        "type": "barcode",
-                        "value": {
-                          "barcodeValue": [
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            },
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            },
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            }
-                          ],
-                          "dateTimeValue": {
-                            "dateTime": "2003-08-03T21:49:46Z"
-                          },
-                          "multipleChoiceValue": [
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            },
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            },
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            }
-                          ],
-                          "numberValue": 123,
-                          "photoValue": [
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            }
-                          ],
-                          "scannedDocumentValue": [
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            }
-                          ],
-                          "signatureValue": {
-                            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                            "name": "John Smith",
-                            "signedAtTime": "2009-12-16T10:59:55Z",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          "stringValue": "Red Truck"
-                        }
-                      },
-                      {
-                        "label": "Load weight",
-                        "type": "barcode",
-                        "value": {
-                          "barcodeValue": [
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            },
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            },
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            }
-                          ],
-                          "dateTimeValue": {
-                            "dateTime": "2003-08-03T21:49:46Z"
-                          },
-                          "multipleChoiceValue": [
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            },
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            },
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            }
-                          ],
-                          "numberValue": 123,
-                          "photoValue": [
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            }
-                          ],
-                          "scannedDocumentValue": [
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            }
-                          ],
-                          "signatureValue": {
-                            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                            "name": "John Smith",
-                            "signedAtTime": "2009-12-16T10:59:55Z",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          "stringValue": "Red Truck"
-                        }
-                      },
-                      {
-                        "label": "Load weight",
-                        "type": "barcode",
-                        "value": {
-                          "barcodeValue": [
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            },
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            },
-                            {
-                              "barcodeType": "org.gs1.EAN-13",
-                              "barcodeValue": "0853883003114"
-                            }
-                          ],
-                          "dateTimeValue": {
-                            "dateTime": "2003-08-03T21:49:46Z"
-                          },
-                          "multipleChoiceValue": [
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            },
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            },
-                            {
-                              "selected": false,
-                              "value": "Yes"
-                            }
-                          ],
-                          "numberValue": 123,
-                          "photoValue": [
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            }
-                          ],
-                          "scannedDocumentValue": [
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            },
-                            {
-                              "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                              "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                            }
-                          ],
-                          "signatureValue": {
-                            "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                            "name": "John Smith",
-                            "signedAtTime": "2009-12-16T10:59:55Z",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          "stringValue": "Red Truck"
-                        }
-                      }
-                    ],
-                    "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                    "name": "Dropoff Slip 123",
-                    "notes": "Missing a crate",
-                    "routeStop": {
-                      "externalIds": {
-                        "maintenanceId": "250020",
-                        "payrollId": "ABFS18600"
-                      },
-                      "id": "494123",
-                      "name": "Company Warehouse #1"
-                    },
-                    "state": "submitted",
-                    "updatedAtTime": "1988-03-12T09:29:03Z",
-                    "vehicle": {
-                      "externalIds": {
-                        "maintenanceId": "250020",
-                        "payrollId": "ABFS18600"
-                      },
-                      "id": "494123",
-                      "name": "Fleet Truck #1"
-                    }
-                  }
-                ],
-                "pagination": {
-                  "endCursor": "MjkY",
-                  "hasNextPage": true
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentsNotFoundResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "message": "Object not found.",
-                "requestId": "8916e1c1"
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentsInternalErrorResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "message": "Failed to execute GraphQL query.",
-                "requestId": "8916e1c1"
-              }
-            }
-          },
-          "501": {
-            "description": "Not Implemented response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentsNotImplementedResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "message": "Not implemented.",
-                "requestId": "8916e1c1"
-              }
-            }
-          },
-          "default": {
-            "description": "Bad Request response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentsBadRequestResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "message": "Invalid value for parameter.",
-                "requestId": "8916e1c1"
-              }
-            }
-          }
-        }
-      }
-    },
     "/preview/fleet/documents/{id}": {
-      "get": {
-        "description": "Returns a single document\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
+      "delete": {
+        "description": "Deletes a single document\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
         "schemes": [
           "https"
         ],
         "tags": [
-          "Beta APIs"
+          "Preview APIs"
         ],
-        "summary": "[preview] Fetch document",
-        "operationId": "getDocument",
+        "summary": "[preview] Delete document",
+        "operationId": "deleteDocument",
         "parameters": [
           {
             "type": "string",
@@ -8602,315 +8988,13 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "data": {
-                  "conditionalFieldSections": [
-                    {
-                      "conditionalFieldFirstIndex": 4390182947667394600,
-                      "conditionalFieldLastIndex": 8613854102992773000,
-                      "triggeringFieldIndex": 832931191248950900,
-                      "triggeringFieldValue": "Doloribus reprehenderit sit velit placeat."
-                    },
-                    {
-                      "conditionalFieldFirstIndex": 4390182947667394600,
-                      "conditionalFieldLastIndex": 8613854102992773000,
-                      "triggeringFieldIndex": 832931191248950900,
-                      "triggeringFieldValue": "Doloribus reprehenderit sit velit placeat."
-                    }
-                  ],
-                  "createdAtTime": "2010-05-07T04:03:59Z",
-                  "documentType": {
-                    "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                    "name": "Fleet Truck List"
-                  },
-                  "driver": {
-                    "externalIds": {
-                      "maintenanceId": "250020",
-                      "payrollId": "ABFS18600"
-                    },
-                    "id": "45646",
-                    "name": "Driver Bob"
-                  },
-                  "fields": [
-                    {
-                      "label": "Load weight",
-                      "type": "barcode",
-                      "value": {
-                        "barcodeValue": [
-                          {
-                            "barcodeType": "org.gs1.EAN-13",
-                            "barcodeValue": "0853883003114"
-                          },
-                          {
-                            "barcodeType": "org.gs1.EAN-13",
-                            "barcodeValue": "0853883003114"
-                          },
-                          {
-                            "barcodeType": "org.gs1.EAN-13",
-                            "barcodeValue": "0853883003114"
-                          }
-                        ],
-                        "dateTimeValue": {
-                          "dateTime": "2003-08-03T21:49:46Z"
-                        },
-                        "multipleChoiceValue": [
-                          {
-                            "selected": false,
-                            "value": "Yes"
-                          },
-                          {
-                            "selected": false,
-                            "value": "Yes"
-                          },
-                          {
-                            "selected": false,
-                            "value": "Yes"
-                          }
-                        ],
-                        "numberValue": 123,
-                        "photoValue": [
-                          {
-                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          {
-                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          {
-                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          {
-                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          }
-                        ],
-                        "scannedDocumentValue": [
-                          {
-                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          {
-                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          {
-                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          {
-                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          }
-                        ],
-                        "signatureValue": {
-                          "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                          "name": "John Smith",
-                          "signedAtTime": "2009-12-16T10:59:55Z",
-                          "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                        },
-                        "stringValue": "Red Truck"
-                      }
-                    },
-                    {
-                      "label": "Load weight",
-                      "type": "barcode",
-                      "value": {
-                        "barcodeValue": [
-                          {
-                            "barcodeType": "org.gs1.EAN-13",
-                            "barcodeValue": "0853883003114"
-                          },
-                          {
-                            "barcodeType": "org.gs1.EAN-13",
-                            "barcodeValue": "0853883003114"
-                          },
-                          {
-                            "barcodeType": "org.gs1.EAN-13",
-                            "barcodeValue": "0853883003114"
-                          }
-                        ],
-                        "dateTimeValue": {
-                          "dateTime": "2003-08-03T21:49:46Z"
-                        },
-                        "multipleChoiceValue": [
-                          {
-                            "selected": false,
-                            "value": "Yes"
-                          },
-                          {
-                            "selected": false,
-                            "value": "Yes"
-                          },
-                          {
-                            "selected": false,
-                            "value": "Yes"
-                          }
-                        ],
-                        "numberValue": 123,
-                        "photoValue": [
-                          {
-                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          {
-                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          {
-                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          {
-                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          }
-                        ],
-                        "scannedDocumentValue": [
-                          {
-                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          {
-                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          {
-                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          {
-                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          }
-                        ],
-                        "signatureValue": {
-                          "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                          "name": "John Smith",
-                          "signedAtTime": "2009-12-16T10:59:55Z",
-                          "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                        },
-                        "stringValue": "Red Truck"
-                      }
-                    },
-                    {
-                      "label": "Load weight",
-                      "type": "barcode",
-                      "value": {
-                        "barcodeValue": [
-                          {
-                            "barcodeType": "org.gs1.EAN-13",
-                            "barcodeValue": "0853883003114"
-                          },
-                          {
-                            "barcodeType": "org.gs1.EAN-13",
-                            "barcodeValue": "0853883003114"
-                          },
-                          {
-                            "barcodeType": "org.gs1.EAN-13",
-                            "barcodeValue": "0853883003114"
-                          }
-                        ],
-                        "dateTimeValue": {
-                          "dateTime": "2003-08-03T21:49:46Z"
-                        },
-                        "multipleChoiceValue": [
-                          {
-                            "selected": false,
-                            "value": "Yes"
-                          },
-                          {
-                            "selected": false,
-                            "value": "Yes"
-                          },
-                          {
-                            "selected": false,
-                            "value": "Yes"
-                          }
-                        ],
-                        "numberValue": 123,
-                        "photoValue": [
-                          {
-                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          {
-                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          {
-                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          {
-                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          }
-                        ],
-                        "scannedDocumentValue": [
-                          {
-                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          {
-                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          {
-                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          },
-                          {
-                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
-                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                          }
-                        ],
-                        "signatureValue": {
-                          "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                          "name": "John Smith",
-                          "signedAtTime": "2009-12-16T10:59:55Z",
-                          "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
-                        },
-                        "stringValue": "Red Truck"
-                      }
-                    }
-                  ],
-                  "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                  "name": "Dropoff Slip 123",
-                  "notes": "Missing a crate",
-                  "routeStop": {
-                    "externalIds": {
-                      "maintenanceId": "250020",
-                      "payrollId": "ABFS18600"
-                    },
-                    "id": "494123",
-                    "name": "Company Warehouse #1"
-                  },
-                  "state": "submitted",
-                  "updatedAtTime": "1988-03-12T09:29:03Z",
-                  "vehicle": {
-                    "externalIds": {
-                      "maintenanceId": "250020",
-                      "payrollId": "ABFS18600"
-                    },
-                    "id": "494123",
-                    "name": "Fleet Truck #1"
-                  }
-                }
-              }
-            }
+          "204": {
+            "description": "No Content response."
           },
           "404": {
             "description": "Not Found response.",
             "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentNotFoundResponseBody"
+              "$ref": "#/definitions/DocumentsDeleteDocumentNotFoundResponseBody"
             },
             "examples": {
               "application/json": {
@@ -8922,7 +9006,7 @@
           "500": {
             "description": "Internal Server Error response.",
             "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentInternalErrorResponseBody"
+              "$ref": "#/definitions/DocumentsDeleteDocumentInternalErrorResponseBody"
             },
             "examples": {
               "application/json": {
@@ -8934,7 +9018,7 @@
           "501": {
             "description": "Not Implemented response.",
             "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentNotImplementedResponseBody"
+              "$ref": "#/definitions/DocumentsDeleteDocumentNotImplementedResponseBody"
             },
             "examples": {
               "application/json": {
@@ -8946,7 +9030,7 @@
           "default": {
             "description": "Bad Request response.",
             "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentBadRequestResponseBody"
+              "$ref": "#/definitions/DocumentsDeleteDocumentBadRequestResponseBody"
             },
             "examples": {
               "application/json": {
@@ -16410,6 +16494,102 @@
       },
       "example": {
         "message": "Invalid token.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "DocumentsDeleteDocumentBadRequestResponseBody": {
+      "description": "Bad request parameters",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid value for parameter."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Invalid value for parameter.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "DocumentsDeleteDocumentInternalErrorResponseBody": {
+      "description": "An internal server error occurred",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Failed to execute GraphQL query."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Failed to execute GraphQL query.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "DocumentsDeleteDocumentNotFoundResponseBody": {
+      "description": "Resource not found",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Object not found."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Object not found.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "DocumentsDeleteDocumentNotImplementedResponseBody": {
+      "description": "Endpoint is not yet implemented",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Not implemented."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Not implemented.",
         "requestId": "8916e1c1"
       }
     },
