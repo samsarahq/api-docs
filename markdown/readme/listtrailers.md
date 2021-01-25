@@ -1,7 +1,7 @@
 # 200 Response Schema
 | Property Name | Description |
 | :------------ | :---------- |
-| **data**<br/>_array_ | TrailerResponseObjectCollectionResponseBody is the result type for an array of TrailerResponseObjectResponseBody (default view) |
+| **data**<br/>_object array_ | List of trailer objects. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;enabledForMobile**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;boolean_ | Indicates if the trailer is visible on the Samsara mobile apps. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;externalIds**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;object_ | A map of external ids |
 | **&nbsp;&nbsp;&nbsp;&nbsp;id**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | The unique Samsara ID of the Trailer. This is automatically generated when the Trailer object is created. It cannot be changed. |

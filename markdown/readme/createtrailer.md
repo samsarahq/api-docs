@@ -1,7 +1,7 @@
 # 200 Response Schema
 | Property Name | Description |
 | :------------ | :---------- |
-| **data**<br/>_object_ | TrailerWithAttributesResponseObjectResponseBody result type (default view) |
+| **data**<br/>_object_ |  |
 | **&nbsp;&nbsp;&nbsp;&nbsp;attributes**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;object array_ | List of attributes associated with the entity |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Id of the attribute |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Name of the attribute |
