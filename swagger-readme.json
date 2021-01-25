@@ -4884,8 +4884,32 @@
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
+	   	   	   "DocumentsDeleteDocumentBadGatewayErrorResponseBody": {
+	   	   	   	   "description": "Bad Gateway",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "rpc error: code = Unknown desc = connection refused",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "rpc error: code = Unknown desc = connection refused",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
 	   	   	   "DocumentsDeleteDocumentBadRequestErrorResponseBody": {
-	   	   	   	   "description": "Bad request parameters",
+	   	   	   	   "description": "Bad Request parameters",
 	   	   	   	   "example": {
 	   	   	   	   	   "message": "Invalid value for parameter.",
 	   	   	   	   	   "requestId": "8916e1c1"
@@ -4894,6 +4918,30 @@
 	   	   	   	   	   "message": {
 	   	   	   	   	   	   "description": "Message of error",
 	   	   	   	   	   	   "example": "Invalid value for parameter.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DocumentsDeleteDocumentGatewayTimeoutErrorResponseBody": {
+	   	   	   	   "description": "Gateway timeout",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "context deadline exceeded",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "requestId": {
@@ -4918,6 +4966,30 @@
 	   	   	   	   	   "message": {
 	   	   	   	   	   	   "description": "Message of error",
 	   	   	   	   	   	   "example": "Failed to execute GraphQL query.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DocumentsDeleteDocumentMethodNotAllowedErrorResponseBody": {
+	   	   	   	   "description": "Method not allowed",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "DELETE not allowed on /endpoint.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "DELETE not allowed on /endpoint.",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "requestId": {
@@ -4957,7 +5029,7 @@
 	   	   	   	   "type": "object"
 	   	   	   },
 	   	   	   "DocumentsDeleteDocumentNotImplementedErrorResponseBody": {
-	   	   	   	   "description": "Endpoint is not yet implemented",
+	   	   	   	   "description": "Requested endpoint is not yet implemented",
 	   	   	   	   "example": {
 	   	   	   	   	   "message": "Not implemented.",
 	   	   	   	   	   "requestId": "8916e1c1"
@@ -4980,8 +5052,104 @@
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
+	   	   	   "DocumentsDeleteDocumentServiceUnavailableErrorResponseBody": {
+	   	   	   	   "description": "Service unavailable",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "context deadline exceeded",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DocumentsDeleteDocumentTooManyRequestsErrorResponseBody": {
+	   	   	   	   "description": "Too many requests",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "Exceeded rate limit.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "Exceeded rate limit.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DocumentsDeleteDocumentUnauthorizedErrorResponseBody": {
+	   	   	   	   "description": "Unauthorized",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "Invalid token.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "Invalid token.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DocumentsGetDocumentBadGatewayErrorResponseBody": {
+	   	   	   	   "description": "Bad Gateway",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "rpc error: code = Unknown desc = connection refused",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "rpc error: code = Unknown desc = connection refused",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
 	   	   	   "DocumentsGetDocumentBadRequestErrorResponseBody": {
-	   	   	   	   "description": "Bad request parameters",
+	   	   	   	   "description": "Bad Request parameters",
 	   	   	   	   "example": {
 	   	   	   	   	   "message": "Invalid value for parameter.",
 	   	   	   	   	   "requestId": "8916e1c1"
@@ -4990,6 +5158,30 @@
 	   	   	   	   	   "message": {
 	   	   	   	   	   	   "description": "Message of error",
 	   	   	   	   	   	   "example": "Invalid value for parameter.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DocumentsGetDocumentGatewayTimeoutErrorResponseBody": {
+	   	   	   	   "description": "Gateway timeout",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "context deadline exceeded",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "requestId": {
@@ -5014,6 +5206,30 @@
 	   	   	   	   	   "message": {
 	   	   	   	   	   	   "description": "Message of error",
 	   	   	   	   	   	   "example": "Failed to execute GraphQL query.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DocumentsGetDocumentMethodNotAllowedErrorResponseBody": {
+	   	   	   	   "description": "Method not allowed",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "DELETE not allowed on /endpoint.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "DELETE not allowed on /endpoint.",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "requestId": {
@@ -5053,7 +5269,7 @@
 	   	   	   	   "type": "object"
 	   	   	   },
 	   	   	   "DocumentsGetDocumentNotImplementedErrorResponseBody": {
-	   	   	   	   "description": "Endpoint is not yet implemented",
+	   	   	   	   "description": "Requested endpoint is not yet implemented",
 	   	   	   	   "example": {
 	   	   	   	   	   "message": "Not implemented.",
 	   	   	   	   	   "requestId": "8916e1c1"
@@ -5381,8 +5597,104 @@
 	   	   	   	   },
 	   	   	   	   "type": "object"
 	   	   	   },
+	   	   	   "DocumentsGetDocumentServiceUnavailableErrorResponseBody": {
+	   	   	   	   "description": "Service unavailable",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "context deadline exceeded",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DocumentsGetDocumentTooManyRequestsErrorResponseBody": {
+	   	   	   	   "description": "Too many requests",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "Exceeded rate limit.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "Exceeded rate limit.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DocumentsGetDocumentUnauthorizedErrorResponseBody": {
+	   	   	   	   "description": "Unauthorized",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "Invalid token.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "Invalid token.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DocumentsGetDocumentsBadGatewayErrorResponseBody": {
+	   	   	   	   "description": "Bad Gateway",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "rpc error: code = Unknown desc = connection refused",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "rpc error: code = Unknown desc = connection refused",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
 	   	   	   "DocumentsGetDocumentsBadRequestErrorResponseBody": {
-	   	   	   	   "description": "Bad request parameters",
+	   	   	   	   "description": "Bad Request parameters",
 	   	   	   	   "example": {
 	   	   	   	   	   "message": "Invalid value for parameter.",
 	   	   	   	   	   "requestId": "8916e1c1"
@@ -5391,6 +5703,30 @@
 	   	   	   	   	   "message": {
 	   	   	   	   	   	   "description": "Message of error",
 	   	   	   	   	   	   "example": "Invalid value for parameter.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DocumentsGetDocumentsGatewayTimeoutErrorResponseBody": {
+	   	   	   	   "description": "Gateway timeout",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "context deadline exceeded",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "requestId": {
@@ -5415,6 +5751,30 @@
 	   	   	   	   	   "message": {
 	   	   	   	   	   	   "description": "Message of error",
 	   	   	   	   	   	   "example": "Failed to execute GraphQL query.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DocumentsGetDocumentsMethodNotAllowedErrorResponseBody": {
+	   	   	   	   "description": "Method not allowed",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "DELETE not allowed on /endpoint.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "DELETE not allowed on /endpoint.",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "requestId": {
@@ -5454,7 +5814,7 @@
 	   	   	   	   "type": "object"
 	   	   	   },
 	   	   	   "DocumentsGetDocumentsNotImplementedErrorResponseBody": {
-	   	   	   	   "description": "Endpoint is not yet implemented",
+	   	   	   	   "description": "Requested endpoint is not yet implemented",
 	   	   	   	   "example": {
 	   	   	   	   	   "message": "Not implemented.",
 	   	   	   	   	   "requestId": "8916e1c1"
@@ -7568,6 +7928,78 @@
 	   	   	   	   "required": [
 	   	   	   	   	   "data",
 	   	   	   	   	   "pagination"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DocumentsGetDocumentsServiceUnavailableErrorResponseBody": {
+	   	   	   	   "description": "Service unavailable",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "context deadline exceeded",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DocumentsGetDocumentsTooManyRequestsErrorResponseBody": {
+	   	   	   	   "description": "Too many requests",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "Exceeded rate limit.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "Exceeded rate limit.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DocumentsGetDocumentsUnauthorizedErrorResponseBody": {
+	   	   	   	   "description": "Unauthorized",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "Invalid token.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "Invalid token.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
@@ -31875,6 +32307,20 @@
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "description": "OK response."
 	   	   	   	   	   },
+	   	   	   	   	   "401": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Invalid token.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentsGetDocumentsUnauthorizedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Unauthorized response."
+	   	   	   	   	   },
 	   	   	   	   	   "404": {
 	   	   	   	   	   	   "content": {
 	   	   	   	   	   	   	   "application/json": {
@@ -31888,6 +32334,34 @@
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "description": "Not Found response."
+	   	   	   	   	   },
+	   	   	   	   	   "405": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "DELETE not allowed on /endpoint.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentsGetDocumentsMethodNotAllowedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Method Not Allowed response."
+	   	   	   	   	   },
+	   	   	   	   	   "429": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Exceeded rate limit.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentsGetDocumentsTooManyRequestsErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Too Many Requests response."
 	   	   	   	   	   },
 	   	   	   	   	   "500": {
 	   	   	   	   	   	   "content": {
@@ -31916,6 +32390,48 @@
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "description": "Not Implemented response."
+	   	   	   	   	   },
+	   	   	   	   	   "502": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "rpc error: code = Unknown desc = connection refused",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentsGetDocumentsBadGatewayErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Gateway response."
+	   	   	   	   	   },
+	   	   	   	   	   "503": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentsGetDocumentsServiceUnavailableErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Service Unavailable response."
+	   	   	   	   	   },
+	   	   	   	   	   "504": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentsGetDocumentsGatewayTimeoutErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Gateway Timeout response."
 	   	   	   	   	   },
 	   	   	   	   	   "default": {
 	   	   	   	   	   	   "content": {
@@ -32263,6 +32779,20 @@
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "description": "OK response."
 	   	   	   	   	   },
+	   	   	   	   	   "401": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Invalid token.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentsGetDocumentUnauthorizedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Unauthorized response."
+	   	   	   	   	   },
 	   	   	   	   	   "404": {
 	   	   	   	   	   	   "content": {
 	   	   	   	   	   	   	   "application/json": {
@@ -32276,6 +32806,34 @@
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "description": "Not Found response."
+	   	   	   	   	   },
+	   	   	   	   	   "405": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "DELETE not allowed on /endpoint.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentsGetDocumentMethodNotAllowedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Method Not Allowed response."
+	   	   	   	   	   },
+	   	   	   	   	   "429": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Exceeded rate limit.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentsGetDocumentTooManyRequestsErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Too Many Requests response."
 	   	   	   	   	   },
 	   	   	   	   	   "500": {
 	   	   	   	   	   	   "content": {
@@ -32304,6 +32862,48 @@
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "description": "Not Implemented response."
+	   	   	   	   	   },
+	   	   	   	   	   "502": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "rpc error: code = Unknown desc = connection refused",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentsGetDocumentBadGatewayErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Gateway response."
+	   	   	   	   	   },
+	   	   	   	   	   "503": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentsGetDocumentServiceUnavailableErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Service Unavailable response."
+	   	   	   	   	   },
+	   	   	   	   	   "504": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentsGetDocumentGatewayTimeoutErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Gateway Timeout response."
 	   	   	   	   	   },
 	   	   	   	   	   "default": {
 	   	   	   	   	   	   "content": {
@@ -40481,7 +41081,7 @@
 	   	   	   }
 	   	   },
 	   	   "/preview/fleet/documents/{id}": {
-	   	   	   "delete": {
+	   	   	   "get": {
 	   	   	   	   "description": "Deletes a single document\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
 	   	   	   	   "operationId": "deleteDocument",
 	   	   	   	   "parameters": [
@@ -40502,6 +41102,20 @@
 	   	   	   	   	   	   "content": {},
 	   	   	   	   	   	   "description": "No Content response."
 	   	   	   	   	   },
+	   	   	   	   	   "401": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Invalid token.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentsDeleteDocumentUnauthorizedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Unauthorized response."
+	   	   	   	   	   },
 	   	   	   	   	   "404": {
 	   	   	   	   	   	   "content": {
 	   	   	   	   	   	   	   "application/json": {
@@ -40515,6 +41129,34 @@
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "description": "Not Found response."
+	   	   	   	   	   },
+	   	   	   	   	   "405": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "DELETE not allowed on /endpoint.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentsDeleteDocumentMethodNotAllowedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Method Not Allowed response."
+	   	   	   	   	   },
+	   	   	   	   	   "429": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Exceeded rate limit.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentsDeleteDocumentTooManyRequestsErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Too Many Requests response."
 	   	   	   	   	   },
 	   	   	   	   	   "500": {
 	   	   	   	   	   	   "content": {
@@ -40543,6 +41185,48 @@
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "description": "Not Implemented response."
+	   	   	   	   	   },
+	   	   	   	   	   "502": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "rpc error: code = Unknown desc = connection refused",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentsDeleteDocumentBadGatewayErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Gateway response."
+	   	   	   	   	   },
+	   	   	   	   	   "503": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentsDeleteDocumentServiceUnavailableErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Service Unavailable response."
+	   	   	   	   	   },
+	   	   	   	   	   "504": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/DocumentsDeleteDocumentGatewayTimeoutErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Gateway Timeout response."
 	   	   	   	   	   },
 	   	   	   	   	   "default": {
 	   	   	   	   	   	   "content": {
