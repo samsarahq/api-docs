@@ -3139,18 +3139,18 @@
             "in": "query"
           },
           {
-            "type": "string",
-            "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
-            "name": "after",
-            "in": "query"
-          },
-          {
             "maximum": 512,
             "minimum": 1,
             "type": "integer",
             "default": 512,
-            "description": "The limit for how many objects will be in the response.",
+            "description": "The limit for how many objects will be in the response. Default and max for this value is 512 objects.",
             "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
             "in": "query"
           }
         ],
@@ -3255,6 +3255,18 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersListTrailersUnauthorizedErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Invalid token.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
           "404": {
             "description": "Not Found response.",
             "schema": {
@@ -3263,6 +3275,30 @@
             "examples": {
               "application/json": {
                 "message": "Object not found.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersListTrailersMethodNotAllowedErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "DELETE not allowed on /endpoint.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersListTrailersTooManyRequestsErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Exceeded rate limit.",
                 "requestId": "8916e1c1"
               }
             }
@@ -3287,6 +3323,42 @@
             "examples": {
               "application/json": {
                 "message": "Not implemented.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersListTrailersBadGatewayErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "rpc error: code = Unknown desc = connection refused",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersListTrailersServiceUnavailableErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "context deadline exceeded",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersListTrailersGatewayTimeoutErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "context deadline exceeded",
                 "requestId": "8916e1c1"
               }
             }
@@ -3400,6 +3472,18 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersCreateTrailerUnauthorizedErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Invalid token.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
           "404": {
             "description": "Not Found response.",
             "schema": {
@@ -3408,6 +3492,30 @@
             "examples": {
               "application/json": {
                 "message": "Object not found.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersCreateTrailerMethodNotAllowedErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "DELETE not allowed on /endpoint.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersCreateTrailerTooManyRequestsErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Exceeded rate limit.",
                 "requestId": "8916e1c1"
               }
             }
@@ -3436,6 +3544,42 @@
               }
             }
           },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersCreateTrailerBadGatewayErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "rpc error: code = Unknown desc = connection refused",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersCreateTrailerServiceUnavailableErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "context deadline exceeded",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersCreateTrailerGatewayTimeoutErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "context deadline exceeded",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
           "default": {
             "description": "Bad Request response.",
             "schema": {
@@ -3453,7 +3597,7 @@
     },
     "/beta/fleet/trailers/{id}": {
       "get": {
-        "description": "Retrieve a trailer with the given ID.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
+        "description": "Retrieve a trailer with given ID.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
         "schemes": [
           "https"
         ],
@@ -3546,6 +3690,18 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersGetTrailerUnauthorizedErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Invalid token.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
           "404": {
             "description": "Not Found response.",
             "schema": {
@@ -3554,6 +3710,30 @@
             "examples": {
               "application/json": {
                 "message": "Object not found.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersGetTrailerMethodNotAllowedErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "DELETE not allowed on /endpoint.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersGetTrailerTooManyRequestsErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Exceeded rate limit.",
                 "requestId": "8916e1c1"
               }
             }
@@ -3578,6 +3758,42 @@
             "examples": {
               "application/json": {
                 "message": "Not implemented.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersGetTrailerBadGatewayErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "rpc error: code = Unknown desc = connection refused",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersGetTrailerServiceUnavailableErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "context deadline exceeded",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersGetTrailerGatewayTimeoutErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "context deadline exceeded",
                 "requestId": "8916e1c1"
               }
             }
@@ -3619,6 +3835,18 @@
           "204": {
             "description": "No Content response."
           },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersDeleteTrailerUnauthorizedErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Invalid token.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
           "404": {
             "description": "Not Found response.",
             "schema": {
@@ -3627,6 +3855,30 @@
             "examples": {
               "application/json": {
                 "message": "Object not found.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersDeleteTrailerMethodNotAllowedErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "DELETE not allowed on /endpoint.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersDeleteTrailerTooManyRequestsErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Exceeded rate limit.",
                 "requestId": "8916e1c1"
               }
             }
@@ -3651,6 +3903,42 @@
             "examples": {
               "application/json": {
                 "message": "Not implemented.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersDeleteTrailerBadGatewayErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "rpc error: code = Unknown desc = connection refused",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersDeleteTrailerServiceUnavailableErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "context deadline exceeded",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersDeleteTrailerGatewayTimeoutErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "context deadline exceeded",
                 "requestId": "8916e1c1"
               }
             }
@@ -3770,6 +4058,18 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersUpdateTrailerUnauthorizedErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Invalid token.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
           "404": {
             "description": "Not Found response.",
             "schema": {
@@ -3778,6 +4078,30 @@
             "examples": {
               "application/json": {
                 "message": "Object not found.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersUpdateTrailerMethodNotAllowedErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "DELETE not allowed on /endpoint.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersUpdateTrailerTooManyRequestsErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Exceeded rate limit.",
                 "requestId": "8916e1c1"
               }
             }
@@ -3802,6 +4126,42 @@
             "examples": {
               "application/json": {
                 "message": "Not implemented.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersUpdateTrailerBadGatewayErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "rpc error: code = Unknown desc = connection refused",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersUpdateTrailerServiceUnavailableErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "context deadline exceeded",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/TrailersUpdateTrailerGatewayTimeoutErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "context deadline exceeded",
                 "requestId": "8916e1c1"
               }
             }
@@ -27142,8 +27502,32 @@
         "trailerSerialNumber": "8V8WD530FLN016251"
       }
     },
+    "TrailersCreateTrailerBadGatewayErrorResponseBody": {
+      "description": "Bad Gateway",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "rpc error: code = Unknown desc = connection refused"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "rpc error: code = Unknown desc = connection refused",
+        "requestId": "8916e1c1"
+      }
+    },
     "TrailersCreateTrailerBadRequestErrorResponseBody": {
-      "description": "Bad request parameters",
+      "description": "Bad Request parameters",
       "type": "object",
       "required": [
         "message",
@@ -27163,6 +27547,30 @@
       },
       "example": {
         "message": "Invalid value for parameter.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersCreateTrailerGatewayTimeoutErrorResponseBody": {
+      "description": "Gateway timeout",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
         "requestId": "8916e1c1"
       }
     },
@@ -27187,6 +27595,30 @@
       },
       "example": {
         "message": "Failed to execute GraphQL query.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersCreateTrailerMethodNotAllowedErrorResponseBody": {
+      "description": "Method not allowed",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "DELETE not allowed on /endpoint."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "DELETE not allowed on /endpoint.",
         "requestId": "8916e1c1"
       }
     },
@@ -27215,7 +27647,7 @@
       }
     },
     "TrailersCreateTrailerNotImplementedErrorResponseBody": {
-      "description": "Endpoint is not yet implemented",
+      "description": "Requested endpoint is not yet implemented",
       "type": "object",
       "required": [
         "message",
@@ -27251,6 +27683,18 @@
             "$ref": "#/definitions/GoaAttributeTinyRequestBody"
           },
           "example": [
+            {
+              "id": "494123",
+              "name": "Compliance/ELD",
+              "numberValues": [
+                867,
+                5309
+              ],
+              "stringValues": [
+                "HQ",
+                "Leased"
+              ]
+            },
             {
               "id": "494123",
               "name": "Compliance/ELD",
@@ -27319,13 +27763,12 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Doloribus rem cumque."
+            "example": "Molestiae quasi doloremque."
           },
           "example": [
-            "In qui.",
-            "Et voluptas et molestiae saepe.",
-            "Pariatur et expedita in consequatur.",
-            "Est ea."
+            "Voluptas voluptas facilis sed dolor illo doloribus.",
+            "Culpa omnis repudiandae et sit maiores.",
+            "Est impedit."
           ]
         },
         "trailerSerialNumber": {
@@ -27336,18 +27779,6 @@
       },
       "example": {
         "attributes": [
-          {
-            "id": "494123",
-            "name": "Compliance/ELD",
-            "numberValues": [
-              867,
-              5309
-            ],
-            "stringValues": [
-              "HQ",
-              "Leased"
-            ]
-          },
           {
             "id": "494123",
             "name": "Compliance/ELD",
@@ -27395,10 +27826,8 @@
         "notes": "These are my trailer notes",
         "odometerMeters": 1234,
         "tagIds": [
-          "Aspernatur doloremque illum corrupti voluptatem asperiores.",
-          "Ipsam quisquam aut.",
-          "Amet aut dolore sint dolorem.",
-          "Sapiente hic cum neque qui."
+          "Nisi doloribus voluptate modi optio.",
+          "Tempore aliquid eligendi."
         ],
         "trailerSerialNumber": "8V8WD530FLN016251"
       }
@@ -27480,8 +27909,104 @@
         }
       }
     },
+    "TrailersCreateTrailerServiceUnavailableErrorResponseBody": {
+      "description": "Service unavailable",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersCreateTrailerTooManyRequestsErrorResponseBody": {
+      "description": "Too many requests",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Exceeded rate limit."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Exceeded rate limit.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersCreateTrailerUnauthorizedErrorResponseBody": {
+      "description": "Unauthorized",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid token."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Invalid token.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersDeleteTrailerBadGatewayErrorResponseBody": {
+      "description": "Bad Gateway",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "rpc error: code = Unknown desc = connection refused"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "rpc error: code = Unknown desc = connection refused",
+        "requestId": "8916e1c1"
+      }
+    },
     "TrailersDeleteTrailerBadRequestErrorResponseBody": {
-      "description": "Bad request parameters",
+      "description": "Bad Request parameters",
       "type": "object",
       "required": [
         "message",
@@ -27501,6 +28026,30 @@
       },
       "example": {
         "message": "Invalid value for parameter.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersDeleteTrailerGatewayTimeoutErrorResponseBody": {
+      "description": "Gateway timeout",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
         "requestId": "8916e1c1"
       }
     },
@@ -27525,6 +28074,30 @@
       },
       "example": {
         "message": "Failed to execute GraphQL query.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersDeleteTrailerMethodNotAllowedErrorResponseBody": {
+      "description": "Method not allowed",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "DELETE not allowed on /endpoint."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "DELETE not allowed on /endpoint.",
         "requestId": "8916e1c1"
       }
     },
@@ -27553,7 +28126,7 @@
       }
     },
     "TrailersDeleteTrailerNotImplementedErrorResponseBody": {
-      "description": "Endpoint is not yet implemented",
+      "description": "Requested endpoint is not yet implemented",
       "type": "object",
       "required": [
         "message",
@@ -27576,8 +28149,104 @@
         "requestId": "8916e1c1"
       }
     },
+    "TrailersDeleteTrailerServiceUnavailableErrorResponseBody": {
+      "description": "Service unavailable",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersDeleteTrailerTooManyRequestsErrorResponseBody": {
+      "description": "Too many requests",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Exceeded rate limit."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Exceeded rate limit.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersDeleteTrailerUnauthorizedErrorResponseBody": {
+      "description": "Unauthorized",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid token."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Invalid token.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersGetTrailerBadGatewayErrorResponseBody": {
+      "description": "Bad Gateway",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "rpc error: code = Unknown desc = connection refused"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "rpc error: code = Unknown desc = connection refused",
+        "requestId": "8916e1c1"
+      }
+    },
     "TrailersGetTrailerBadRequestErrorResponseBody": {
-      "description": "Bad request parameters",
+      "description": "Bad Request parameters",
       "type": "object",
       "required": [
         "message",
@@ -27597,6 +28266,30 @@
       },
       "example": {
         "message": "Invalid value for parameter.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersGetTrailerGatewayTimeoutErrorResponseBody": {
+      "description": "Gateway timeout",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
         "requestId": "8916e1c1"
       }
     },
@@ -27621,6 +28314,30 @@
       },
       "example": {
         "message": "Failed to execute GraphQL query.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersGetTrailerMethodNotAllowedErrorResponseBody": {
+      "description": "Method not allowed",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "DELETE not allowed on /endpoint."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "DELETE not allowed on /endpoint.",
         "requestId": "8916e1c1"
       }
     },
@@ -27649,7 +28366,7 @@
       }
     },
     "TrailersGetTrailerNotImplementedErrorResponseBody": {
-      "description": "Endpoint is not yet implemented",
+      "description": "Requested endpoint is not yet implemented",
       "type": "object",
       "required": [
         "message",
@@ -27749,8 +28466,104 @@
         }
       }
     },
+    "TrailersGetTrailerServiceUnavailableErrorResponseBody": {
+      "description": "Service unavailable",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersGetTrailerTooManyRequestsErrorResponseBody": {
+      "description": "Too many requests",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Exceeded rate limit."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Exceeded rate limit.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersGetTrailerUnauthorizedErrorResponseBody": {
+      "description": "Unauthorized",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid token."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Invalid token.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersListTrailersBadGatewayErrorResponseBody": {
+      "description": "Bad Gateway",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "rpc error: code = Unknown desc = connection refused"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "rpc error: code = Unknown desc = connection refused",
+        "requestId": "8916e1c1"
+      }
+    },
     "TrailersListTrailersBadRequestErrorResponseBody": {
-      "description": "Bad request parameters",
+      "description": "Bad Request parameters",
       "type": "object",
       "required": [
         "message",
@@ -27770,6 +28583,30 @@
       },
       "example": {
         "message": "Invalid value for parameter.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersListTrailersGatewayTimeoutErrorResponseBody": {
+      "description": "Gateway timeout",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
         "requestId": "8916e1c1"
       }
     },
@@ -27794,6 +28631,30 @@
       },
       "example": {
         "message": "Failed to execute GraphQL query.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersListTrailersMethodNotAllowedErrorResponseBody": {
+      "description": "Method not allowed",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "DELETE not allowed on /endpoint."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "DELETE not allowed on /endpoint.",
         "requestId": "8916e1c1"
       }
     },
@@ -27822,7 +28683,7 @@
       }
     },
     "TrailersListTrailersNotImplementedErrorResponseBody": {
-      "description": "Endpoint is not yet implemented",
+      "description": "Requested endpoint is not yet implemented",
       "type": "object",
       "required": [
         "message",
@@ -28070,8 +28931,104 @@
         }
       }
     },
+    "TrailersListTrailersServiceUnavailableErrorResponseBody": {
+      "description": "Service unavailable",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersListTrailersTooManyRequestsErrorResponseBody": {
+      "description": "Too many requests",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Exceeded rate limit."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Exceeded rate limit.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersListTrailersUnauthorizedErrorResponseBody": {
+      "description": "Unauthorized",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid token."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Invalid token.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersUpdateTrailerBadGatewayErrorResponseBody": {
+      "description": "Bad Gateway",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "rpc error: code = Unknown desc = connection refused"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "rpc error: code = Unknown desc = connection refused",
+        "requestId": "8916e1c1"
+      }
+    },
     "TrailersUpdateTrailerBadRequestErrorResponseBody": {
-      "description": "Bad request parameters",
+      "description": "Bad Request parameters",
       "type": "object",
       "required": [
         "message",
@@ -28091,6 +29048,30 @@
       },
       "example": {
         "message": "Invalid value for parameter.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersUpdateTrailerGatewayTimeoutErrorResponseBody": {
+      "description": "Gateway timeout",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
         "requestId": "8916e1c1"
       }
     },
@@ -28115,6 +29096,30 @@
       },
       "example": {
         "message": "Failed to execute GraphQL query.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersUpdateTrailerMethodNotAllowedErrorResponseBody": {
+      "description": "Method not allowed",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "DELETE not allowed on /endpoint."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "DELETE not allowed on /endpoint.",
         "requestId": "8916e1c1"
       }
     },
@@ -28143,7 +29148,7 @@
       }
     },
     "TrailersUpdateTrailerNotImplementedErrorResponseBody": {
-      "description": "Endpoint is not yet implemented",
+      "description": "Requested endpoint is not yet implemented",
       "type": "object",
       "required": [
         "message",
@@ -28176,18 +29181,6 @@
             "$ref": "#/definitions/GoaAttributeTinyRequestBody"
           },
           "example": [
-            {
-              "id": "494123",
-              "name": "Compliance/ELD",
-              "numberValues": [
-                867,
-                5309
-              ],
-              "stringValues": [
-                "HQ",
-                "Leased"
-              ]
-            },
             {
               "id": "494123",
               "name": "Compliance/ELD",
@@ -28256,12 +29249,13 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Molestiae quasi doloremque."
+            "example": "Doloribus rem cumque."
           },
           "example": [
-            "Voluptas voluptas facilis sed dolor illo doloribus.",
-            "Culpa omnis repudiandae et sit maiores.",
-            "Est impedit."
+            "In qui.",
+            "Et voluptas et molestiae saepe.",
+            "Pariatur et expedita in consequatur.",
+            "Est ea."
           ]
         },
         "trailerSerialNumber": {
@@ -28272,6 +29266,18 @@
       },
       "example": {
         "attributes": [
+          {
+            "id": "494123",
+            "name": "Compliance/ELD",
+            "numberValues": [
+              867,
+              5309
+            ],
+            "stringValues": [
+              "HQ",
+              "Leased"
+            ]
+          },
           {
             "id": "494123",
             "name": "Compliance/ELD",
@@ -28319,8 +29325,10 @@
         "notes": "These are my trailer notes",
         "odometerMeters": 1234,
         "tagIds": [
-          "Nisi doloribus voluptate modi optio.",
-          "Tempore aliquid eligendi."
+          "Aspernatur doloremque illum corrupti voluptatem asperiores.",
+          "Ipsam quisquam aut.",
+          "Amet aut dolore sint dolorem.",
+          "Sapiente hic cum neque qui."
         ],
         "trailerSerialNumber": "8V8WD530FLN016251"
       }
@@ -28400,6 +29408,78 @@
           ],
           "trailerSerialNumber": "8V8WD530FLN016251"
         }
+      }
+    },
+    "TrailersUpdateTrailerServiceUnavailableErrorResponseBody": {
+      "description": "Service unavailable",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersUpdateTrailerTooManyRequestsErrorResponseBody": {
+      "description": "Too many requests",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Exceeded rate limit."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Exceeded rate limit.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "TrailersUpdateTrailerUnauthorizedErrorResponseBody": {
+      "description": "Unauthorized",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid token."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Invalid token.",
+        "requestId": "8916e1c1"
       }
     },
     "TriggerMatchObjectResponseBody": {
