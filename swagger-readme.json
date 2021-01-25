@@ -37050,7 +37050,7 @@
 	   	   },
 	   	   "/fleet/hos/daily-logs": {
 	   	   	   "get": {
-	   	   	   	   "description": "Get summarized daily Hours of Service charts for the specified drivers.\n\nThe time range for a log is defined by the `driver`'s `eldDayStartHour`. This value is configurable per driver.\n\nThe `startDate` and `endDate` parameters indicate the date range you'd like to retrieve daily logs for. A daily log will be returned if its `startTime` is on any of the days within in this date range (inclusive of `startDate` and `endDate`).\n\n**Note:** If data is still being uploaded from the Samsara Driver App, it may not be completely reflected in the response from this endpoint. The best practice is to wait a couple of days before querying this endpoint to make sure that all data from the Samsara Driver App has been uploaded.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
+	   	   	   	   "description": "Get summarized daily Hours of Service charts for the specified drivers.\n\nThe time range for a log is defined by the `driver`'s `eldDayStartHour`. This value is configurable per driver.\n\nThe `startDate` and `endDate` parameters indicate the date range you'd like to retrieve daily logs for. A daily log will be returned if its `startTime` is on any of the days within in this date range (inclusive of `startDate` and `endDate`).\n\n**Note:** If data is still being uploaded from the Samsara Driver App, it may not be completely reflected in the response from this endpoint. The best practice is to wait a couple of days before querying this endpoint to make sure that all data from the Samsara Driver App has been uploaded.\n\nIf you are using the legacy version of this endpoint and looking for its documentation, you can find it [here](https://www.samsara.com/api-legacy#operation/getFleetDriversHosDailyLogs).\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
 	   	   	   	   "operationId": "getHosDailyLogs",
 	   	   	   	   "parameters": [
 	   	   	   	   	   {
@@ -43882,76 +43882,6 @@
 	   	   	   	   	   "Hours of Service"
 	   	   	   	   ],
 	   	   	   	   "x-codegen-request-body-name": "dutyStatusParams"
-	   	   	   }
-	   	   },
-	   	   "/v1/fleet/drivers/{driver_id}/hos_daily_logs": {
-	   	   	   "get": {
-	   	   	   	   "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nGet summarized daily Hours of Service charts for a specified driver.\n\nThe response will contain a list of `days`, where each entry in the list is the driver's summarized hours of service for that entire day.\n\nThe time range for a \"day\" is defined by the `driver`'s `eldDayStartHour`. By default, this is `0`, which indicates the `driver`'s \"day\" is from midnight to midnight in the `driver`'s respective `timezone`. This value is configurable per driver.\n\nThe `startMs` and `endMs` parameters indicate start and end for the date range you'd like to query. These parameters are inclusive. This means that the response will include the \"day\" that contains `startMs` and the \"day\" that contains `endMs`. For example:\n\nLet's say a `driver`'s `eldDayStartHour` is `0` and their timezone is `America/Chicago`.\n\nIf `startMs` was `1576080000000` (December 11, 2019 10:00:00 AM America/Chicago) and an `endMs` was `1576166400000` (December 12, 2019 10:00:00 AM America/Los_Angeles), then the response will contain a two `day` entries: [December 11, 2019 12:00:00 AM America/Chicago to December 12, 2019 12:00:00 AM America/Chicago], and [December 12, 2019 12:00:00 AM America/Chicago to December 13, 2019 12:00:00 AM America/Chicago].\n\n**Note:** If data is still being uploaded from the Samsara Driver App, it may not be completely reflected in the response from this endpoint. The best practice is to wait a couple of days before querying this endpoint to make sure that all data from the Samsara Driver App has been uploaded. \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
-	   	   	   	   "operationId": "V1getFleetDriversHosDailyLogs",
-	   	   	   	   "parameters": [
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": "ID of the driver with HOS logs.",
-	   	   	   	   	   	   "explode": false,
-	   	   	   	   	   	   "in": "path",
-	   	   	   	   	   	   "name": "driver_id",
-	   	   	   	   	   	   "required": true,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "format": "int64",
-	   	   	   	   	   	   	   "type": "integer"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "simple"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": "Beginning of the time range, specified in milliseconds UNIX time.",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "startMs",
-	   	   	   	   	   	   "required": true,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "format": "int64",
-	   	   	   	   	   	   	   "type": "integer"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": "End of the time range, specified in milliseconds UNIX time. **Note:** This timestamp **should not** be in the future. Providing a timestamp in the future will result in unpredictable behavior from the API. (I.e. this field should always be less than or equal to the current time).",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "endMs",
-	   	   	   	   	   	   "required": true,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "format": "int64",
-	   	   	   	   	   	   	   "type": "integer"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   }
-	   	   	   	   ],
-	   	   	   	   "responses": {
-	   	   	   	   	   "200": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/V1DriverDailyLogResponse"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Distance traveled and time active for each driver in the organization over the specified time period."
-	   	   	   	   	   },
-	   	   	   	   	   "default": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/V1ErrorResponse"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Unexpected error."
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "summary": "Get daily HOS logs for a specific driver",
-	   	   	   	   "tags": [
-	   	   	   	   	   "Hours of Service"
-	   	   	   	   ]
 	   	   	   }
 	   	   },
 	   	   "/v1/fleet/hos_authentication_logs": {
