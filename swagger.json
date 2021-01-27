@@ -21447,8 +21447,25 @@
           "type": "string",
           "example": "1FUJA6BD31LJ09646"
         },
+        "externalIds": {
+          "$ref": "#/definitions/externalIds"
+        },
         "id": {
           "$ref": "#/definitions/EquipmentId"
+        },
+        "installedGateway": {
+          "type": "object",
+          "properties": {
+            "model": {
+              "description": "The model of the installed Samsara gateway.",
+              "type": "string",
+              "example": "Ag26"
+            },
+            "serial": {
+              "description": "The serial of the installed Samsara gateway.",
+              "type": "string"
+            }
+          }
         },
         "name": {
           "$ref": "#/definitions/EquipmentName"
@@ -41366,6 +41383,17 @@
         }
       },
       "x-go-gen-location": "models"
+    },
+    "externalIds": {
+      "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "example": {
+        "maintenanceId": "250020",
+        "payrollId": "ABFS18600"
+      }
     },
     "fieldObjectResponseBody": {
       "type": "object",
