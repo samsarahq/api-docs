@@ -9585,425 +9585,6 @@
         }
       }
     },
-    "/preview/workflows/incidents/feed": {
-      "get": {
-        "description": "Get all recent incidents for the given trigger type.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
-        "schemes": [
-          "https"
-        ],
-        "tags": [
-          "Preview APIs"
-        ],
-        "summary": "Get a feed of all incidents.",
-        "operationId": "getIncidentsFeed",
-        "parameters": [
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "multi",
-            "description": "A list of Trigger types. A request must include 1-5 trigger types.",
-            "name": "triggerTypes",
-            "in": "query",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
-            "name": "after",
-            "in": "query"
-          },
-          {
-            "maximum": 512,
-            "minimum": 1,
-            "type": "integer",
-            "default": 512,
-            "description": "The limit for how many objects will be in the response. Default and max for this value is 512 objects.",
-            "name": "limit",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "The type of object (either driver or vehicle) to filter on.",
-            "name": "objectType",
-            "in": "query"
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "multi",
-            "description": "The IDs of the driver or vehicle objects to filter on. External IDs are also acceptable.",
-            "name": "objectIds",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK response.",
-            "schema": {
-              "$ref": "#/definitions/WorkflowsGetIncidentsFeedResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "data": [
-                  {
-                    "createdAtTime": "2019-06-13T19:08:25Z",
-                    "objects": [
-                      {
-                        "externalIds": [
-                          "payroll:4841",
-                          "maintenance:250020"
-                        ],
-                        "objectId": "12345",
-                        "objectType": "vehicle"
-                      },
-                      {
-                        "externalIds": [
-                          "payroll:4841",
-                          "maintenance:250020"
-                        ],
-                        "objectId": "12345",
-                        "objectType": "vehicle"
-                      },
-                      {
-                        "externalIds": [
-                          "payroll:4841",
-                          "maintenance:250020"
-                        ],
-                        "objectId": "12345",
-                        "objectType": "vehicle"
-                      },
-                      {
-                        "externalIds": [
-                          "payroll:4841",
-                          "maintenance:250020"
-                        ],
-                        "objectId": "12345",
-                        "objectType": "vehicle"
-                      }
-                    ],
-                    "occurredAtTime": "2019-06-13T19:08:25Z",
-                    "triggersSatisfied": [
-                      {
-                        "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
-                      },
-                      {
-                        "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
-                      },
-                      {
-                        "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
-                      },
-                      {
-                        "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
-                      }
-                    ]
-                  },
-                  {
-                    "createdAtTime": "2019-06-13T19:08:25Z",
-                    "objects": [
-                      {
-                        "externalIds": [
-                          "payroll:4841",
-                          "maintenance:250020"
-                        ],
-                        "objectId": "12345",
-                        "objectType": "vehicle"
-                      },
-                      {
-                        "externalIds": [
-                          "payroll:4841",
-                          "maintenance:250020"
-                        ],
-                        "objectId": "12345",
-                        "objectType": "vehicle"
-                      },
-                      {
-                        "externalIds": [
-                          "payroll:4841",
-                          "maintenance:250020"
-                        ],
-                        "objectId": "12345",
-                        "objectType": "vehicle"
-                      },
-                      {
-                        "externalIds": [
-                          "payroll:4841",
-                          "maintenance:250020"
-                        ],
-                        "objectId": "12345",
-                        "objectType": "vehicle"
-                      }
-                    ],
-                    "occurredAtTime": "2019-06-13T19:08:25Z",
-                    "triggersSatisfied": [
-                      {
-                        "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
-                      },
-                      {
-                        "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
-                      },
-                      {
-                        "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
-                      },
-                      {
-                        "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
-                      }
-                    ]
-                  },
-                  {
-                    "createdAtTime": "2019-06-13T19:08:25Z",
-                    "objects": [
-                      {
-                        "externalIds": [
-                          "payroll:4841",
-                          "maintenance:250020"
-                        ],
-                        "objectId": "12345",
-                        "objectType": "vehicle"
-                      },
-                      {
-                        "externalIds": [
-                          "payroll:4841",
-                          "maintenance:250020"
-                        ],
-                        "objectId": "12345",
-                        "objectType": "vehicle"
-                      },
-                      {
-                        "externalIds": [
-                          "payroll:4841",
-                          "maintenance:250020"
-                        ],
-                        "objectId": "12345",
-                        "objectType": "vehicle"
-                      },
-                      {
-                        "externalIds": [
-                          "payroll:4841",
-                          "maintenance:250020"
-                        ],
-                        "objectId": "12345",
-                        "objectType": "vehicle"
-                      }
-                    ],
-                    "occurredAtTime": "2019-06-13T19:08:25Z",
-                    "triggersSatisfied": [
-                      {
-                        "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
-                      },
-                      {
-                        "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
-                      },
-                      {
-                        "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
-                      },
-                      {
-                        "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
-                      }
-                    ]
-                  },
-                  {
-                    "createdAtTime": "2019-06-13T19:08:25Z",
-                    "objects": [
-                      {
-                        "externalIds": [
-                          "payroll:4841",
-                          "maintenance:250020"
-                        ],
-                        "objectId": "12345",
-                        "objectType": "vehicle"
-                      },
-                      {
-                        "externalIds": [
-                          "payroll:4841",
-                          "maintenance:250020"
-                        ],
-                        "objectId": "12345",
-                        "objectType": "vehicle"
-                      },
-                      {
-                        "externalIds": [
-                          "payroll:4841",
-                          "maintenance:250020"
-                        ],
-                        "objectId": "12345",
-                        "objectType": "vehicle"
-                      },
-                      {
-                        "externalIds": [
-                          "payroll:4841",
-                          "maintenance:250020"
-                        ],
-                        "objectId": "12345",
-                        "objectType": "vehicle"
-                      }
-                    ],
-                    "occurredAtTime": "2019-06-13T19:08:25Z",
-                    "triggersSatisfied": [
-                      {
-                        "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
-                      },
-                      {
-                        "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
-                      },
-                      {
-                        "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
-                      },
-                      {
-                        "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
-                      }
-                    ]
-                  }
-                ],
-                "pagination": {
-                  "endCursor": "MjkY",
-                  "hasNextPage": true
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized response.",
-            "schema": {
-              "$ref": "#/definitions/WorkflowsGetIncidentsFeedUnauthorizedErrorResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "message": "Invalid token.",
-                "requestId": "8916e1c1"
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found response.",
-            "schema": {
-              "$ref": "#/definitions/WorkflowsGetIncidentsFeedNotFoundErrorResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "message": "Object not found.",
-                "requestId": "8916e1c1"
-              }
-            }
-          },
-          "405": {
-            "description": "Method Not Allowed response.",
-            "schema": {
-              "$ref": "#/definitions/WorkflowsGetIncidentsFeedMethodNotAllowedErrorResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "message": "DELETE not allowed on /endpoint.",
-                "requestId": "8916e1c1"
-              }
-            }
-          },
-          "429": {
-            "description": "Too Many Requests response.",
-            "schema": {
-              "$ref": "#/definitions/WorkflowsGetIncidentsFeedTooManyRequestsErrorResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "message": "Exceeded rate limit.",
-                "requestId": "8916e1c1"
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error response.",
-            "schema": {
-              "$ref": "#/definitions/WorkflowsGetIncidentsFeedInternalServerErrorResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "message": "Failed to execute GraphQL query.",
-                "requestId": "8916e1c1"
-              }
-            }
-          },
-          "501": {
-            "description": "Not Implemented response.",
-            "schema": {
-              "$ref": "#/definitions/WorkflowsGetIncidentsFeedNotImplementedErrorResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "message": "Not implemented.",
-                "requestId": "8916e1c1"
-              }
-            }
-          },
-          "502": {
-            "description": "Bad Gateway response.",
-            "schema": {
-              "$ref": "#/definitions/WorkflowsGetIncidentsFeedBadGatewayErrorResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "message": "rpc error: code = Unknown desc = connection refused",
-                "requestId": "8916e1c1"
-              }
-            }
-          },
-          "503": {
-            "description": "Service Unavailable response.",
-            "schema": {
-              "$ref": "#/definitions/WorkflowsGetIncidentsFeedServiceUnavailableErrorResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "message": "context deadline exceeded",
-                "requestId": "8916e1c1"
-              }
-            }
-          },
-          "504": {
-            "description": "Gateway Timeout response.",
-            "schema": {
-              "$ref": "#/definitions/WorkflowsGetIncidentsFeedGatewayTimeoutErrorResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "message": "context deadline exceeded",
-                "requestId": "8916e1c1"
-              }
-            }
-          },
-          "default": {
-            "description": "Bad Request response.",
-            "schema": {
-              "$ref": "#/definitions/WorkflowsGetIncidentsFeedBadRequestErrorResponseBody"
-            },
-            "examples": {
-              "application/json": {
-                "message": "Invalid value for parameter.",
-                "requestId": "8916e1c1"
-              }
-            }
-          }
-        }
-      }
-    },
     "/preview/workflows/incidents/history": {
       "get": {
         "description": "Get all incidents for the given time range and trigger type.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
@@ -10048,17 +9629,21 @@
             "in": "query"
           },
           {
-            "maximum": 512,
+            "maximum": 200,
             "minimum": 1,
             "type": "integer",
-            "default": 512,
-            "description": "The limit for how many objects will be in the response. Default and max for this value is 512 objects.",
+            "default": 200,
+            "description": "The limit for how many objects will be in the response. Default and max for this value is 200 objects.",
             "name": "limit",
             "in": "query"
           },
           {
+            "enum": [
+              "otDriver",
+              "otDevice"
+            ],
             "type": "string",
-            "description": "The type of object (either driver or vehicle) to filter on.",
+            "description": "The type of object to filter on.",
             "name": "objectType",
             "in": "query"
           },
@@ -10091,7 +9676,7 @@
                           "maintenance:250020"
                         ],
                         "objectId": "12345",
-                        "objectType": "vehicle"
+                        "objectType": "otDevice"
                       },
                       {
                         "externalIds": [
@@ -10099,7 +9684,7 @@
                           "maintenance:250020"
                         ],
                         "objectId": "12345",
-                        "objectType": "vehicle"
+                        "objectType": "otDevice"
                       },
                       {
                         "externalIds": [
@@ -10107,7 +9692,7 @@
                           "maintenance:250020"
                         ],
                         "objectId": "12345",
-                        "objectType": "vehicle"
+                        "objectType": "otDevice"
                       },
                       {
                         "externalIds": [
@@ -10115,26 +9700,26 @@
                           "maintenance:250020"
                         ],
                         "objectId": "12345",
-                        "objectType": "vehicle"
+                        "objectType": "otDevice"
                       }
                     ],
                     "occurredAtTime": "2019-06-13T19:08:25Z",
                     "triggersSatisfied": [
                       {
                         "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
+                        "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                       },
                       {
                         "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
+                        "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                       },
                       {
                         "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
+                        "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                       },
                       {
                         "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
+                        "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                       }
                     ]
                   },
@@ -10147,7 +9732,7 @@
                           "maintenance:250020"
                         ],
                         "objectId": "12345",
-                        "objectType": "vehicle"
+                        "objectType": "otDevice"
                       },
                       {
                         "externalIds": [
@@ -10155,7 +9740,7 @@
                           "maintenance:250020"
                         ],
                         "objectId": "12345",
-                        "objectType": "vehicle"
+                        "objectType": "otDevice"
                       },
                       {
                         "externalIds": [
@@ -10163,7 +9748,7 @@
                           "maintenance:250020"
                         ],
                         "objectId": "12345",
-                        "objectType": "vehicle"
+                        "objectType": "otDevice"
                       },
                       {
                         "externalIds": [
@@ -10171,26 +9756,26 @@
                           "maintenance:250020"
                         ],
                         "objectId": "12345",
-                        "objectType": "vehicle"
+                        "objectType": "otDevice"
                       }
                     ],
                     "occurredAtTime": "2019-06-13T19:08:25Z",
                     "triggersSatisfied": [
                       {
                         "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
+                        "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                       },
                       {
                         "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
+                        "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                       },
                       {
                         "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
+                        "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                       },
                       {
                         "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
+                        "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                       }
                     ]
                   },
@@ -10203,7 +9788,7 @@
                           "maintenance:250020"
                         ],
                         "objectId": "12345",
-                        "objectType": "vehicle"
+                        "objectType": "otDevice"
                       },
                       {
                         "externalIds": [
@@ -10211,7 +9796,7 @@
                           "maintenance:250020"
                         ],
                         "objectId": "12345",
-                        "objectType": "vehicle"
+                        "objectType": "otDevice"
                       },
                       {
                         "externalIds": [
@@ -10219,7 +9804,7 @@
                           "maintenance:250020"
                         ],
                         "objectId": "12345",
-                        "objectType": "vehicle"
+                        "objectType": "otDevice"
                       },
                       {
                         "externalIds": [
@@ -10227,26 +9812,26 @@
                           "maintenance:250020"
                         ],
                         "objectId": "12345",
-                        "objectType": "vehicle"
+                        "objectType": "otDevice"
                       }
                     ],
                     "occurredAtTime": "2019-06-13T19:08:25Z",
                     "triggersSatisfied": [
                       {
                         "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
+                        "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                       },
                       {
                         "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
+                        "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                       },
                       {
                         "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
+                        "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                       },
                       {
                         "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
+                        "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                       }
                     ]
                   },
@@ -10259,7 +9844,7 @@
                           "maintenance:250020"
                         ],
                         "objectId": "12345",
-                        "objectType": "vehicle"
+                        "objectType": "otDevice"
                       },
                       {
                         "externalIds": [
@@ -10267,7 +9852,7 @@
                           "maintenance:250020"
                         ],
                         "objectId": "12345",
-                        "objectType": "vehicle"
+                        "objectType": "otDevice"
                       },
                       {
                         "externalIds": [
@@ -10275,7 +9860,7 @@
                           "maintenance:250020"
                         ],
                         "objectId": "12345",
-                        "objectType": "vehicle"
+                        "objectType": "otDevice"
                       },
                       {
                         "externalIds": [
@@ -10283,26 +9868,26 @@
                           "maintenance:250020"
                         ],
                         "objectId": "12345",
-                        "objectType": "vehicle"
+                        "objectType": "otDevice"
                       }
                     ],
                     "occurredAtTime": "2019-06-13T19:08:25Z",
                     "triggersSatisfied": [
                       {
                         "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
+                        "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                       },
                       {
                         "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
+                        "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                       },
                       {
                         "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
+                        "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                       },
                       {
                         "occurredAtTime": "2019-06-13T19:08:25Z",
-                        "triggerType": "widgetDisconnected"
+                        "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                       }
                     ]
                   }
@@ -24355,6 +23940,12 @@
     "IncidentObjectResponseBody": {
       "description": "A single occurrence of an event.",
       "type": "object",
+      "required": [
+        "triggersSatisfied",
+        "createdAtTime",
+        "occurredAtTime",
+        "objects"
+      ],
       "properties": {
         "createdAtTime": {
           "description": "The time the incident was created in RFC 3339 format.",
@@ -24374,7 +23965,7 @@
                 "maintenance:250020"
               ],
               "objectId": "12345",
-              "objectType": "vehicle"
+              "objectType": "otDevice"
             },
             {
               "externalIds": [
@@ -24382,7 +23973,7 @@
                 "maintenance:250020"
               ],
               "objectId": "12345",
-              "objectType": "vehicle"
+              "objectType": "otDevice"
             }
           ]
         },
@@ -24400,11 +23991,11 @@
           "example": [
             {
               "occurredAtTime": "2019-06-13T19:08:25Z",
-              "triggerType": "widgetDisconnected"
+              "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
             },
             {
               "occurredAtTime": "2019-06-13T19:08:25Z",
-              "triggerType": "widgetDisconnected"
+              "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
             }
           ]
         }
@@ -24418,7 +24009,7 @@
               "maintenance:250020"
             ],
             "objectId": "12345",
-            "objectType": "vehicle"
+            "objectType": "otDevice"
           },
           {
             "externalIds": [
@@ -24426,7 +24017,7 @@
               "maintenance:250020"
             ],
             "objectId": "12345",
-            "objectType": "vehicle"
+            "objectType": "otDevice"
           },
           {
             "externalIds": [
@@ -24434,18 +24025,18 @@
               "maintenance:250020"
             ],
             "objectId": "12345",
-            "objectType": "vehicle"
+            "objectType": "otDevice"
           }
         ],
         "occurredAtTime": "2019-06-13T19:08:25Z",
         "triggersSatisfied": [
           {
             "occurredAtTime": "2019-06-13T19:08:25Z",
-            "triggerType": "widgetDisconnected"
+            "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
           },
           {
             "occurredAtTime": "2019-06-13T19:08:25Z",
-            "triggerType": "widgetDisconnected"
+            "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
           }
         ]
       }
@@ -29481,6 +29072,10 @@
     "TriggerMatchObjectResponseBody": {
       "description": "A trigger fulfilled to meet the conditions of the rule, with timestamp data.",
       "type": "object",
+      "required": [
+        "triggerType",
+        "occurredAtTime"
+      ],
       "properties": {
         "occurredAtTime": {
           "description": "The time the trigger occurred in RFC 3339 format.",
@@ -29490,20 +29085,36 @@
         "triggerType": {
           "description": "A type of condition used to generate incidents. This list could change, so it is recommended that clients gracefully handle any types not enumerated in this list.",
           "type": "string",
-          "example": "widgetDisconnected"
+          "enum": [
+            "AlertConditionType_DiscreteDVIRSubmittedDevice",
+            "AlertConditionType_DiscreteSafeDVIRSubmittedDevice",
+            "AlertConditionType_DiscreteUnsafeDVIRSubmittedDevice",
+            "AlertConditionType_DiscreteDVIRDefectCreatedDevice",
+            "AlertConditionType_DiscreteDriverDocumentSubmitted",
+            "AlertConditionType_DiscreteDriverMessageSent",
+            "AlertConditionType_DiscreteDriverMessageReceived",
+            "AlertConditionType_DiscreteRouteStopArrival",
+            "AlertConditionType_DiscreteRouteStopDeparture"
+          ],
+          "example": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
         }
       },
       "example": {
         "occurredAtTime": "2019-06-13T19:08:25Z",
-        "triggerType": "widgetDisconnected"
+        "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
       }
     },
     "TriggerObjectResponseBody": {
       "description": "A driver or vehicle associated with the trigger.",
       "type": "object",
+      "required": [
+        "objectType",
+        "objectId",
+        "externalIds"
+      ],
       "properties": {
         "externalIds": {
-          "description": "The driver or vehicle's external IDs.",
+          "description": "The entity's external IDs.",
           "type": "array",
           "items": {
             "type": "string",
@@ -29520,9 +29131,13 @@
           "example": "12345"
         },
         "objectType": {
-          "description": "The type of object (either driver or vehicle) to filter on.",
+          "description": "The type of object to filter on.",
           "type": "string",
-          "example": "vehicle"
+          "enum": [
+            "otDriver",
+            "otDevice"
+          ],
+          "example": "otDevice"
         }
       },
       "example": {
@@ -29531,7 +29146,7 @@
           "maintenance:250020"
         ],
         "objectId": "12345",
-        "objectType": "vehicle"
+        "objectType": "otDevice"
       }
     },
     "UpdateAddressRequest": {
@@ -39512,7 +39127,7 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 },
                 {
                   "externalIds": [
@@ -39520,7 +39135,7 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 },
                 {
                   "externalIds": [
@@ -39528,7 +39143,7 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 },
                 {
                   "externalIds": [
@@ -39536,26 +39151,26 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 }
               ],
               "occurredAtTime": "2019-06-13T19:08:25Z",
               "triggersSatisfied": [
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 },
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 },
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 },
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 }
               ]
             },
@@ -39568,7 +39183,7 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 },
                 {
                   "externalIds": [
@@ -39576,7 +39191,7 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 },
                 {
                   "externalIds": [
@@ -39584,7 +39199,7 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 },
                 {
                   "externalIds": [
@@ -39592,26 +39207,26 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 }
               ],
               "occurredAtTime": "2019-06-13T19:08:25Z",
               "triggersSatisfied": [
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 },
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 },
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 },
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 }
               ]
             },
@@ -39624,7 +39239,7 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 },
                 {
                   "externalIds": [
@@ -39632,7 +39247,7 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 },
                 {
                   "externalIds": [
@@ -39640,7 +39255,7 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 },
                 {
                   "externalIds": [
@@ -39648,26 +39263,26 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 }
               ],
               "occurredAtTime": "2019-06-13T19:08:25Z",
               "triggersSatisfied": [
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 },
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 },
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 },
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 }
               ]
             }
@@ -39688,7 +39303,7 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               },
               {
                 "externalIds": [
@@ -39696,7 +39311,7 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               },
               {
                 "externalIds": [
@@ -39704,7 +39319,7 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               },
               {
                 "externalIds": [
@@ -39712,26 +39327,26 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               }
             ],
             "occurredAtTime": "2019-06-13T19:08:25Z",
             "triggersSatisfied": [
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               },
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               },
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               },
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               }
             ]
           },
@@ -39744,7 +39359,7 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               },
               {
                 "externalIds": [
@@ -39752,7 +39367,7 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               },
               {
                 "externalIds": [
@@ -39760,7 +39375,7 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               },
               {
                 "externalIds": [
@@ -39768,26 +39383,26 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               }
             ],
             "occurredAtTime": "2019-06-13T19:08:25Z",
             "triggersSatisfied": [
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               },
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               },
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               },
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               }
             ]
           },
@@ -39800,7 +39415,7 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               },
               {
                 "externalIds": [
@@ -39808,7 +39423,7 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               },
               {
                 "externalIds": [
@@ -39816,7 +39431,7 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               },
               {
                 "externalIds": [
@@ -39824,26 +39439,26 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               }
             ],
             "occurredAtTime": "2019-06-13T19:08:25Z",
             "triggersSatisfied": [
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               },
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               },
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               },
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               }
             ]
           },
@@ -39856,7 +39471,7 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               },
               {
                 "externalIds": [
@@ -39864,7 +39479,7 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               },
               {
                 "externalIds": [
@@ -39872,7 +39487,7 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               },
               {
                 "externalIds": [
@@ -39880,26 +39495,26 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               }
             ],
             "occurredAtTime": "2019-06-13T19:08:25Z",
             "triggersSatisfied": [
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               },
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               },
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               },
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               }
             ]
           }
@@ -40173,7 +39788,7 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 },
                 {
                   "externalIds": [
@@ -40181,7 +39796,7 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 },
                 {
                   "externalIds": [
@@ -40189,7 +39804,7 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 },
                 {
                   "externalIds": [
@@ -40197,26 +39812,26 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 }
               ],
               "occurredAtTime": "2019-06-13T19:08:25Z",
               "triggersSatisfied": [
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 },
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 },
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 },
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 }
               ]
             },
@@ -40229,7 +39844,7 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 },
                 {
                   "externalIds": [
@@ -40237,7 +39852,7 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 },
                 {
                   "externalIds": [
@@ -40245,7 +39860,7 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 },
                 {
                   "externalIds": [
@@ -40253,26 +39868,26 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 }
               ],
               "occurredAtTime": "2019-06-13T19:08:25Z",
               "triggersSatisfied": [
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 },
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 },
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 },
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 }
               ]
             },
@@ -40285,7 +39900,7 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 },
                 {
                   "externalIds": [
@@ -40293,7 +39908,7 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 },
                 {
                   "externalIds": [
@@ -40301,7 +39916,7 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 },
                 {
                   "externalIds": [
@@ -40309,26 +39924,26 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 }
               ],
               "occurredAtTime": "2019-06-13T19:08:25Z",
               "triggersSatisfied": [
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 },
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 },
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 },
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 }
               ]
             },
@@ -40341,7 +39956,7 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 },
                 {
                   "externalIds": [
@@ -40349,7 +39964,7 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 },
                 {
                   "externalIds": [
@@ -40357,7 +39972,7 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 },
                 {
                   "externalIds": [
@@ -40365,26 +39980,26 @@
                     "maintenance:250020"
                   ],
                   "objectId": "12345",
-                  "objectType": "vehicle"
+                  "objectType": "otDevice"
                 }
               ],
               "occurredAtTime": "2019-06-13T19:08:25Z",
               "triggersSatisfied": [
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 },
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 },
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 },
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "widgetDisconnected"
+                  "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
                 }
               ]
             }
@@ -40405,7 +40020,7 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               },
               {
                 "externalIds": [
@@ -40413,7 +40028,7 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               },
               {
                 "externalIds": [
@@ -40421,7 +40036,7 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               },
               {
                 "externalIds": [
@@ -40429,26 +40044,26 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               }
             ],
             "occurredAtTime": "2019-06-13T19:08:25Z",
             "triggersSatisfied": [
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               },
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               },
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               },
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               }
             ]
           },
@@ -40461,7 +40076,7 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               },
               {
                 "externalIds": [
@@ -40469,7 +40084,7 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               },
               {
                 "externalIds": [
@@ -40477,7 +40092,7 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               },
               {
                 "externalIds": [
@@ -40485,26 +40100,26 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               }
             ],
             "occurredAtTime": "2019-06-13T19:08:25Z",
             "triggersSatisfied": [
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               },
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               },
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               },
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               }
             ]
           },
@@ -40517,7 +40132,7 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               },
               {
                 "externalIds": [
@@ -40525,7 +40140,7 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               },
               {
                 "externalIds": [
@@ -40533,7 +40148,7 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               },
               {
                 "externalIds": [
@@ -40541,26 +40156,26 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               }
             ],
             "occurredAtTime": "2019-06-13T19:08:25Z",
             "triggersSatisfied": [
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               },
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               },
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               },
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               }
             ]
           },
@@ -40573,7 +40188,7 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               },
               {
                 "externalIds": [
@@ -40581,7 +40196,7 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               },
               {
                 "externalIds": [
@@ -40589,7 +40204,7 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               },
               {
                 "externalIds": [
@@ -40597,26 +40212,26 @@
                   "maintenance:250020"
                 ],
                 "objectId": "12345",
-                "objectType": "vehicle"
+                "objectType": "otDevice"
               }
             ],
             "occurredAtTime": "2019-06-13T19:08:25Z",
             "triggersSatisfied": [
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               },
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               },
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               },
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "widgetDisconnected"
+                "triggerType": "AlertConditionType_DiscreteDVIRDefectCreatedDevice"
               }
             ]
           }
