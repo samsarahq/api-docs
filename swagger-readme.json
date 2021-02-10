@@ -18078,11 +18078,7 @@
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "cable": {
-	   	   	   	   	   	   "description": "The cable connected to the asset",
-	   	   	   	   	   	   "items": {
-	   	   	   	   	   	   	   "$ref": "#/components/schemas/V1Asset_cable"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "type": "array"
+	   	   	   	   	   	   "$ref": "#/components/schemas/V1Asset_cable"
 	   	   	   	   	   },
 	   	   	   	   	   "engineHours": {
 	   	   	   	   	   	   "description": "Engine hours",
@@ -18152,7 +18148,7 @@
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "cable": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/V1AssetCurrentLocationsResponse_cable"
+	   	   	   	   	   	   "$ref": "#/components/schemas/V1Asset_cable"
 	   	   	   	   	   },
 	   	   	   	   	   "engineHours": {
 	   	   	   	   	   	   "description": "Engine hours",
@@ -18181,17 +18177,6 @@
 	   	   	   	   "required": [
 	   	   	   	   	   "id"
 	   	   	   	   ],
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "V1AssetCurrentLocationsResponse_cable": {
-	   	   	   	   "description": "The cable connected to the asset",
-	   	   	   	   "properties": {
-	   	   	   	   	   "assetType": {
-	   	   	   	   	   	   "description": "Asset type",
-	   	   	   	   	   	   "example": "Thermo King",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   }
-	   	   	   	   },
 	   	   	   	   "type": "object"
 	   	   	   },
 	   	   	   "V1AssetLocationResponse": {
@@ -18432,6 +18417,7 @@
 	   	   	   	   "type": "object"
 	   	   	   },
 	   	   	   "V1Asset_cable": {
+	   	   	   	   "description": "The cable connected to the asset",
 	   	   	   	   "properties": {
 	   	   	   	   	   "assetType": {
 	   	   	   	   	   	   "description": "Asset type",
