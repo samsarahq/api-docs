@@ -2,9 +2,9 @@
 | Property Name | Description |
 | :------------ | :---------- |
 | **data**<br/>_object array_ |  |
-| **&nbsp;&nbsp;&nbsp;&nbsp;attributeType**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Denotes the data type of the attribute's values. |
-| **&nbsp;&nbsp;&nbsp;&nbsp;attributeValueQuantity**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Defines whether or not this attribute can be used on the same entity many times (with different values). |
-| **&nbsp;&nbsp;&nbsp;&nbsp;entityType**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Denotes the type of entity, driver or vehicle. |
+| **&nbsp;&nbsp;&nbsp;&nbsp;attributeType**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Denotes the data type of the attribute's values. Valid values: `string`, `number`. |
+| **&nbsp;&nbsp;&nbsp;&nbsp;attributeValueQuantity**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Defines whether or not this attribute can be used on the same entity many times (with different values). Valid values: `single`, `multi`. |
+| **&nbsp;&nbsp;&nbsp;&nbsp;entityType**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Denotes the type of entity, driver or vehicle. Valid values: `driver`, `vehicle`. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;id**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | The samsara id of the attribute object. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;name**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Name of attribute. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;numberValues**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;number array_ | Number values that can be associated with this attribute |

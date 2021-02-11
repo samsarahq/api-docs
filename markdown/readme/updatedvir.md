@@ -4,21 +4,21 @@
 | **data**<br/>_object_ | Information about a DVIR. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;authorSignature**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;object_ |  |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;signedAtTime**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | The time when the DVIR was signed. UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`. |
-| **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Whether the DVIR was submitted by a `driver` or `mechanic`. |
+| **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Whether the DVIR was submitted by a `driver` or `mechanic`. Valid values: `driver`, `mechanic`. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;endTime**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Time when driver signed and completed this DVIR. UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;id**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Unique Samsara ID for the DVIR. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;licensePlate**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | The license plate of this vehicle. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;location**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Optional string if your jurisdiction requires a location of the DVIR. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;mechanicNotes**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | The mechanics notes on the DVIR. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;odometerMeters**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;integer_ | The odometer reading in meters. |
-| **&nbsp;&nbsp;&nbsp;&nbsp;safetyStatus**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | The condition of vehicle on which DVIR was done. |
+| **&nbsp;&nbsp;&nbsp;&nbsp;safetyStatus**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | The condition of vehicle on which DVIR was done. Valid values: `safe`, `unsafe`, `resolved`. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;secondSignature**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;object_ |  |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;signedAtTime**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | The time when the DVIR was signed. UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`. |
-| **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Whether the DVIR was submitted by a `driver` or `mechanic`. |
+| **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Whether the DVIR was submitted by a `driver` or `mechanic`. Valid values: `driver`, `mechanic`. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;startTime**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Time when driver began filling out this DVIR. UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;thirdSignature**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;object_ |  |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;signedAtTime**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | The time when the DVIR was signed. UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`. |
-| **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Whether the DVIR was submitted by a `driver` or `mechanic`. |
+| **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Whether the DVIR was submitted by a `driver` or `mechanic`. Valid values: `driver`, `mechanic`. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;trailer**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;object_ |  |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | ID of the trailer. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Name of the trailer. |
@@ -34,9 +34,9 @@
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;resolvedBy**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object_ | The person who resolved this defect.  Will not be returned if the defect is unresolved. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | ID of the entity that resolved this defect. If the defect was resolved by a driver, this will be a Samsara Driver ID. If the defect was resolved by a mechanic, this will be the Samsara Dashboard User ID of the mechanic. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Name of the person who resolved this defect. |
-| **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Indicates whether this defect was resolved by a `driver` or a `mechanic`. |
+| **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Indicates whether this defect was resolved by a `driver` or a `mechanic`. Valid values: `driver`, `mechanic`. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;trailerName**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | The name of the trailer the DVIR was submitted for.  Only included for tractor+trailer DVIRs. |
-| **&nbsp;&nbsp;&nbsp;&nbsp;type**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Inspection type of the DVIR. |
+| **&nbsp;&nbsp;&nbsp;&nbsp;type**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Inspection type of the DVIR. Valid values: `preTrip`, `postTrip`, `mechanic`, `unspecified`. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;vehicle**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;object_ |  |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | ID of the vehicle. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Name of the vehicle. |
@@ -52,4 +52,4 @@
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;resolvedBy**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object_ | The person who resolved this defect.  Will not be returned if the defect is unresolved. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | ID of the entity that resolved this defect. If the defect was resolved by a driver, this will be a Samsara Driver ID. If the defect was resolved by a mechanic, this will be the Samsara Dashboard User ID of the mechanic. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Name of the person who resolved this defect. |
-| **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Indicates whether this defect was resolved by a `driver` or a `mechanic`. |
+| **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Indicates whether this defect was resolved by a `driver` or a `mechanic`. Valid values: `driver`, `mechanic`. |

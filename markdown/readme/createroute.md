@@ -12,8 +12,8 @@
 | **scheduledRouteEndTime**<br/>_string_ |  |
 | **scheduledRouteStartTime**<br/>_string_ |  |
 | **settings**<br/>_object_ | An optional dictionary, only necessary to override the defaults for route start and end conditions. |
-| **&nbsp;&nbsp;&nbsp;&nbsp;routeCompletionCondition**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Defaults to 'arriveLastStop' which ends the route upon arriving at the final stop. The condition 'departLastStop' <br/>ends the route upon departing the last stop. If 'arriveLastStop' is set, then the departure time of the final stop should not be set. |
-| **&nbsp;&nbsp;&nbsp;&nbsp;routeStartingCondition**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Defaults to 'departFirstStop' which starts the route upon departing the first stop in the route.<br/> The condition 'arriveFirstStop' starts the route upon arriving at the first stop in the route. If 'departFirstStop' is set,<br/>the arrival time of the first stop should not be set. |
+| **&nbsp;&nbsp;&nbsp;&nbsp;routeCompletionCondition**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Defaults to 'arriveLastStop' which ends the route upon arriving at the final stop. The condition 'departLastStop' <br/>ends the route upon departing the last stop. If 'arriveLastStop' is set, then the departure time of the final stop should not be set. Valid values: `arriveLastStop`, `departLastStop`. |
+| **&nbsp;&nbsp;&nbsp;&nbsp;routeStartingCondition**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Defaults to 'departFirstStop' which starts the route upon departing the first stop in the route.<br/> The condition 'arriveFirstStop' starts the route upon arriving at the first stop in the route. If 'departFirstStop' is set,<br/>the arrival time of the first stop should not be set. Valid values: `departFirstStop`, `arriveFirstStop`. |
 | **stops**<br/>_object array_ | List of stops along the route |
 | **&nbsp;&nbsp;&nbsp;&nbsp;address**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;object_ | A minified Address object |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;externalIds**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object_ | A map of external ids |
