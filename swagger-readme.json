@@ -3303,7 +3303,17 @@
 	   	   	   	   "description": "The current HOS status type and time the driver started being in this status.",
 	   	   	   	   "properties": {
 	   	   	   	   	   "hosStatusType": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/hosStatusType"
+	   	   	   	   	   	   "description": "The Hours of Service status type.",
+	   	   	   	   	   	   "enum": [
+	   	   	   	   	   	   	   "offDuty",
+	   	   	   	   	   	   	   "sleeperBed",
+	   	   	   	   	   	   	   "driving",
+	   	   	   	   	   	   	   "onDuty",
+	   	   	   	   	   	   	   "yardMove",
+	   	   	   	   	   	   	   "personalConveyance"
+	   	   	   	   	   	   ],
+	   	   	   	   	   	   "example": "offDuty",
+	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   }
 	   	   	   	   },
 	   	   	   	   "type": "object"
@@ -11898,7 +11908,17 @@
 	   	   	   	   	   	   "type": "array"
 	   	   	   	   	   },
 	   	   	   	   	   "hosStatusType": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/hosStatusType"
+	   	   	   	   	   	   "description": "The Hours of Service status type.",
+	   	   	   	   	   	   "enum": [
+	   	   	   	   	   	   	   "offDuty",
+	   	   	   	   	   	   	   "sleeperBed",
+	   	   	   	   	   	   	   "driving",
+	   	   	   	   	   	   	   "onDuty",
+	   	   	   	   	   	   	   "yardMove",
+	   	   	   	   	   	   	   "personalConveyance"
+	   	   	   	   	   	   ],
+	   	   	   	   	   	   "example": "offDuty",
+	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "logEndTime": {
 	   	   	   	   	   	   "$ref": "#/components/schemas/time"
@@ -29468,19 +29488,6 @@
 	   	   	   	   	   }
 	   	   	   	   },
 	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "hosStatusType": {
-	   	   	   	   "description": "The Hours of Service status type.",
-	   	   	   	   "enum": [
-	   	   	   	   	   "offDuty",
-	   	   	   	   	   "sleeperBed",
-	   	   	   	   	   "driving",
-	   	   	   	   	   "onDuty",
-	   	   	   	   	   "yardMove",
-	   	   	   	   	   "personalConveyance"
-	   	   	   	   ],
-	   	   	   	   "example": "offDuty",
-	   	   	   	   "type": "string"
 	   	   	   },
 	   	   	   "inline_response_200": {
 	   	   	   	   "properties": {
