@@ -11,7 +11,7 @@
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;longitude**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_ | The longitude of the asset in decimal degrees. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;locationDataInput**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;object_ | The associated location data input (only applicable when locationType is "dataInput"). |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Id of the data input |
-| **&nbsp;&nbsp;&nbsp;&nbsp;locationType**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | The format of the location. This field is required if a location is provided. |
+| **&nbsp;&nbsp;&nbsp;&nbsp;locationType**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | The format of the location. This field is required if a location is provided. Valid values: `point`, `address`, `dataInput`. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;name**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | The name of the asset. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;parentAsset**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;object_ | The asset's parent |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | The id of the parent asset that the asset belongs to. |
