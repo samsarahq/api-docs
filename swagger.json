@@ -14213,7 +14213,17 @@
       "type": "object",
       "properties": {
         "hosStatusType": {
-          "$ref": "#/definitions/hosStatusType"
+          "description": "The Hours of Service status type.",
+          "type": "string",
+          "enum": [
+            "offDuty",
+            "sleeperBed",
+            "driving",
+            "onDuty",
+            "yardMove",
+            "personalConveyance"
+          ],
+          "example": "offDuty"
         }
       }
     },
@@ -22770,7 +22780,17 @@
           }
         },
         "hosStatusType": {
-          "$ref": "#/definitions/hosStatusType"
+          "description": "The Hours of Service status type.",
+          "type": "string",
+          "enum": [
+            "offDuty",
+            "sleeperBed",
+            "driving",
+            "onDuty",
+            "yardMove",
+            "personalConveyance"
+          ],
+          "example": "offDuty"
         },
         "logEndTime": {
           "$ref": "#/definitions/time"
@@ -40233,19 +40253,6 @@
         "name": "Asperiores magni aperiam fugit adipisci et.",
         "orgId": 3492286411020528600
       }
-    },
-    "hosStatusType": {
-      "description": "The Hours of Service status type.",
-      "type": "string",
-      "enum": [
-        "offDuty",
-        "sleeperBed",
-        "driving",
-        "onDuty",
-        "yardMove",
-        "personalConveyance"
-      ],
-      "example": "offDuty"
     },
     "latitude": {
       "description": "The latitude of the asset in decimal degrees.",
