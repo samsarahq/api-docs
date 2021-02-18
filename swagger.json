@@ -5221,7 +5221,11 @@
         "operationId": "getDriversVehicleAssignments",
         "parameters": [
           {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
             "description": " A filter on the data based on this comma-separated list of driver IDs and externalIds. Example: `driverIds=1234,5678,payroll:4841`",
             "name": "driverIds",
             "in": "query"
@@ -6348,7 +6352,11 @@
         "operationId": "getHosDailyLogs",
         "parameters": [
           {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
             "description": " A filter on the data based on this comma-separated list of driver IDs and externalIds. Example: `driverIds=1234,5678,payroll:4841`",
             "name": "driverIds",
             "in": "query"
