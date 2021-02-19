@@ -477,6 +477,14 @@
         ],
         "summary": "[beta] Fetch document types",
         "operationId": "getDocumentTypes",
+        "parameters": [
+          {
+            "type": "string",
+            "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK response.",
