@@ -32967,6 +32967,19 @@
 	   	   	   "get": {
 	   	   	   	   "description": "Returns a list of the organization document types.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
 	   	   	   	   "operationId": "getDocumentTypes",
+	   	   	   	   "parameters": [
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "after",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   }
+	   	   	   	   ],
 	   	   	   	   "responses": {
 	   	   	   	   	   "200": {
 	   	   	   	   	   	   "content": {
@@ -44422,7 +44435,7 @@
 	   	   },
 	   	   "/v1/fleet/dispatch/routes": {
 	   	   	   "get": {
-	   	   	   	   "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch all dispatch routes for a given time period. The time period is defined as `end_time` and the `duration` before which to query.\n\nRoutes are returned if the route's `scheduled_start_ms` and `scheduled_end_ms` overlap with the requested time period.\n\nMore concretely, if the route's `scheduled_start_ms` is before `end_time` and the `scheduled_end_ms` is within or after the given duration, then the route is returned. \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
+	   	   	   	   "description": "\u003cn class=\"warning\"\u003e\n  \u003cnh\u003e\n    \u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\n    This endpoint is still on our legacy API.\n  \u003c/nh\u003e\n\u003c/n\u003e\n\nList all routes scheduled within a given time period. Routes are returned if *both* of the following conditions are met:\n\n- The route's `scheduled_start_ms` is *before* the timestamp: `end_time` (defaults to *now*)\n- The route's `scheduled_end_ms` is *after* the timestamp: `end_time - duration` (defaults to *now - 24 hours*)\n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
 	   	   	   	   "operationId": "V1fetchAllDispatchRoutes",
 	   	   	   	   "parameters": [
 	   	   	   	   	   {
