@@ -4253,6 +4253,7 @@
         "parameters": [
           {
             "type": "string",
+            "description": "Unique identifier for the trailer to update.",
             "name": "id",
             "in": "path",
             "required": true
@@ -4487,6 +4488,7 @@
         },
         {
           "type": "string",
+          "description": "Unique identifier for the trailer to update.",
           "name": "id",
           "in": "path",
           "required": true
@@ -14880,6 +14882,7 @@
       "type": "number"
     },
     "DistanceTraveledObjectResponseBody": {
+      "description": "The distance traveled information of the log.",
       "type": "object",
       "properties": {
         "driveDistanceMeters": {
@@ -19125,6 +19128,7 @@
       "example": "342417"
     },
     "DriverWithTimezoneEldSettingsObjectResponseBody": {
+      "description": "The driver the log applies to.",
       "type": "object",
       "required": [
         "id",
@@ -19696,8 +19700,8 @@
       "required": [
         "id",
         "name",
-        "vehicleAssignments",
-        "driverActivationStatus"
+        "driverActivationStatus",
+        "vehicleAssignments"
       ],
       "properties": {
         "driverActivationStatus": {
@@ -19821,6 +19825,7 @@
       }
     },
     "DutyStatusDurationObjectResponseBody": {
+      "description": "The duty status durations of the log.",
       "type": "object",
       "properties": {
         "activeDurationMs": {
@@ -20114,6 +20119,7 @@
       }
     },
     "EldSettingsObjectResponseBody": {
+      "description": "The driver's ELD settings.",
       "type": "object",
       "properties": {
         "rulesets": {
@@ -20847,8 +20853,8 @@
       "description": "A minified Address object",
       "type": "object",
       "required": [
-        "name",
-        "id"
+        "id",
+        "name"
       ],
       "properties": {
         "externalIds": {
@@ -22961,6 +22967,7 @@
       ]
     },
     "LogMetaDataObjectResponseBody": {
+      "description": "The metadata of the log.",
       "type": "object",
       "properties": {
         "certifiedAtTime": {
@@ -23912,8 +23919,8 @@
     "RoutesCreateRouteRequestBody": {
       "type": "object",
       "required": [
-        "stops",
-        "name"
+        "name",
+        "stops"
       ],
       "properties": {
         "driverId": {
@@ -24060,11 +24067,11 @@
     "RoutesCreateRouteResponseBody": {
       "type": "object",
       "required": [
+        "id",
         "name",
         "stops",
         "scheduledRouteStartTime",
-        "scheduledRouteEndTime",
-        "id"
+        "scheduledRouteEndTime"
       ],
       "properties": {
         "driver": {
@@ -25350,11 +25357,11 @@
     "RoutesPatchRouteResponseBody": {
       "type": "object",
       "required": [
+        "id",
         "name",
         "stops",
         "scheduledRouteStartTime",
-        "scheduledRouteEndTime",
-        "id"
+        "scheduledRouteEndTime"
       ],
       "properties": {
         "driver": {
@@ -25790,8 +25797,8 @@
     "RoutesStopResponseObjectResponseBody": {
       "type": "object",
       "required": [
-        "name",
-        "id"
+        "id",
+        "name"
       ],
       "properties": {
         "address": {
@@ -35504,8 +35511,8 @@
     "VehicleAssignmentObjectResponseBody": {
       "type": "object",
       "required": [
-        "vehicle",
         "isPassenger",
+        "vehicle",
         "startTime",
         "assignmentType"
       ],
@@ -40728,6 +40735,7 @@
       }
     },
     "dateTimeValueObjectRequestBody": {
+      "description": "The value of a date time field. Only present for date time fields.",
       "type": "object",
       "properties": {
         "dateTime": {
@@ -40742,6 +40750,7 @@
       }
     },
     "dateTimeValueObjectResponseBody": {
+      "description": "The value of a date time field. Only present for date time fields.",
       "type": "object",
       "properties": {
         "dateTime": {
@@ -40756,6 +40765,7 @@
       }
     },
     "documentResponseObjectResponseBody": {
+      "description": "A single document.",
       "type": "object",
       "required": [
         "driver",
@@ -41926,6 +41936,7 @@
       }
     },
     "fieldObjectValueRequestBody": {
+      "description": "The value of the document field. The shape of value depends on the type.",
       "type": "object",
       "properties": {
         "barcodeValue": {
@@ -42117,6 +42128,7 @@
       }
     },
     "fieldObjectValueResponseBody": {
+      "description": "The value of the document field. The shape of value depends on the type.",
       "type": "object",
       "properties": {
         "barcodeValue": {
@@ -42287,8 +42299,8 @@
       "type": "object",
       "required": [
         "label",
-        "fieldType",
-        "requiredField"
+        "requiredField",
+        "fieldType"
       ],
       "properties": {
         "fieldType": {
@@ -42689,6 +42701,7 @@
       }
     },
     "numberFieldTypeMetaDataObjectResponseBody": {
+      "description": "The number field metadata.",
       "type": "object",
       "properties": {
         "numberOfDecimalPlaces": {
@@ -42800,6 +42813,7 @@
       }
     },
     "signatureFieldTypeMetaDataObjectResponseBody": {
+      "description": "The signature field metadata.",
       "type": "object",
       "properties": {
         "legalText": {
@@ -42813,6 +42827,7 @@
       }
     },
     "signatureValueObjectRequestBody": {
+      "description": "The value of a signature field. Only present for signature fields.",
       "type": "object",
       "properties": {
         "id": {
@@ -42845,6 +42860,7 @@
       }
     },
     "signatureValueObjectResponseBody": {
+      "description": "The value of a signature field. Only present for signature fields.",
       "type": "object",
       "properties": {
         "id": {
