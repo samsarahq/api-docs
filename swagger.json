@@ -3428,25 +3428,7 @@
                         "id": "3914",
                         "name": "East Coast",
                         "parentTagId": "4815"
-                      }
-                    ],
-                    "trailerSerialNumber": "8V8WD530FLN016251"
-                  },
-                  {
-                    "enabledForMobile": true,
-                    "externalIds": {
-                      "maintenanceId": "250020",
-                      "payrollId": "ABFS18600"
-                    },
-                    "id": "494123",
-                    "installedGateway": {
-                      "model": "VG34",
-                      "serial": "GFRV-43N-VGX"
-                    },
-                    "licensePlate": "7TYP290",
-                    "name": "Trailer-123",
-                    "notes": "These are my trailer notes",
-                    "tags": [
+                      },
                       {
                         "id": "3914",
                         "name": "East Coast",
@@ -3484,25 +3466,7 @@
                         "id": "3914",
                         "name": "East Coast",
                         "parentTagId": "4815"
-                      }
-                    ],
-                    "trailerSerialNumber": "8V8WD530FLN016251"
-                  },
-                  {
-                    "enabledForMobile": true,
-                    "externalIds": {
-                      "maintenanceId": "250020",
-                      "payrollId": "ABFS18600"
-                    },
-                    "id": "494123",
-                    "installedGateway": {
-                      "model": "VG34",
-                      "serial": "GFRV-43N-VGX"
-                    },
-                    "licensePlate": "7TYP290",
-                    "name": "Trailer-123",
-                    "notes": "These are my trailer notes",
-                    "tags": [
+                      },
                       {
                         "id": "3914",
                         "name": "East Coast",
@@ -3736,11 +3700,6 @@
                       "id": "3914",
                       "name": "East Coast",
                       "parentTagId": "4815"
-                    },
-                    {
-                      "id": "3914",
-                      "name": "East Coast",
-                      "parentTagId": "4815"
                     }
                   ],
                   "trailerSerialNumber": "8V8WD530FLN016251"
@@ -3952,11 +3911,6 @@
                   "name": "Trailer-123",
                   "notes": "These are my trailer notes",
                   "tags": [
-                    {
-                      "id": "3914",
-                      "name": "East Coast",
-                      "parentTagId": "4815"
-                    },
                     {
                       "id": "3914",
                       "name": "East Coast",
@@ -4328,11 +4282,6 @@
                   "name": "Trailer-123",
                   "notes": "These are my trailer notes",
                   "tags": [
-                    {
-                      "id": "3914",
-                      "name": "East Coast",
-                      "parentTagId": "4815"
-                    },
                     {
                       "id": "3914",
                       "name": "East Coast",
@@ -20906,7 +20855,7 @@
           "items": {
             "type": "number",
             "format": "double",
-            "example": 0.24016674356704176
+            "example": 0.16473531715670583
           },
           "example": [
             867,
@@ -20918,7 +20867,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Ut qui aut voluptas soluta et quia."
+            "example": "Est architecto vel id voluptas tenetur."
           },
           "example": [
             "HQ",
@@ -20959,7 +20908,7 @@
           "items": {
             "type": "number",
             "format": "double",
-            "example": 0.9043402081229919
+            "example": 0.2091047966533891
           },
           "example": [
             867,
@@ -20971,7 +20920,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Repellendus animi voluptatum quos amet repellendus sunt."
+            "example": "Enim doloribus maiores et."
           },
           "example": [
             "HQ",
@@ -22448,6 +22397,1015 @@
       "description": "Time spent idling in milliseconds.",
       "type": "number"
     },
+    "IftaJurisdictionReportDataObjectResponseBody": {
+      "description": "Dictionary containing summarized jurisdiction report data.",
+      "type": "object",
+      "required": [
+        "jurisdictionReports",
+        "year"
+      ],
+      "properties": {
+        "jurisdictionReports": {
+          "description": "List of summarized jurisdiction reports.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IftaJurisdictionSummaryObjectResponseBody"
+          },
+          "example": [
+            {
+              "jurisdiction": "GA",
+              "taxPaidLiters": 25.5,
+              "taxableMeters": 2350,
+              "totalMeters": 2350
+            },
+            {
+              "jurisdiction": "GA",
+              "taxPaidLiters": 25.5,
+              "taxableMeters": 2350,
+              "totalMeters": 2350
+            },
+            {
+              "jurisdiction": "GA",
+              "taxPaidLiters": 25.5,
+              "taxableMeters": 2350,
+              "totalMeters": 2350
+            }
+          ]
+        },
+        "month": {
+          "description": "The specified month duration for this IFTA report.",
+          "type": "string",
+          "example": "January"
+        },
+        "quarter": {
+          "description": "The specified quarter duration for this IFTA report.",
+          "type": "string",
+          "example": "Q4"
+        },
+        "troubleshooting": {
+          "$ref": "#/definitions/IftaReportTroubleshootingObjectResponseBody"
+        },
+        "year": {
+          "description": "The specified year for this IFTA report.",
+          "type": "integer",
+          "format": "int64",
+          "example": 2021
+        }
+      },
+      "example": {
+        "jurisdictionReports": [
+          {
+            "jurisdiction": "GA",
+            "taxPaidLiters": 25.5,
+            "taxableMeters": 2350,
+            "totalMeters": 2350
+          },
+          {
+            "jurisdiction": "GA",
+            "taxPaidLiters": 25.5,
+            "taxableMeters": 2350,
+            "totalMeters": 2350
+          },
+          {
+            "jurisdiction": "GA",
+            "taxPaidLiters": 25.5,
+            "taxableMeters": 2350,
+            "totalMeters": 2350
+          }
+        ],
+        "month": "January",
+        "quarter": "Q4",
+        "troubleshooting": {
+          "noPurchasesFound": false,
+          "unassignedFuelTypePurchases": 200,
+          "unassignedFuelTypeVehicles": 2500,
+          "unassignedVehiclePurchases": 2500
+        },
+        "year": 2021
+      }
+    },
+    "IftaJurisdictionReportsGetIftaJurisdictionReportsBadGatewayErrorResponseBody": {
+      "description": "Bad Gateway",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "rpc error: code = Unknown desc = connection refused"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "rpc error: code = Unknown desc = connection refused",
+        "requestId": "8916e1c1"
+      }
+    },
+    "IftaJurisdictionReportsGetIftaJurisdictionReportsBadRequestErrorResponseBody": {
+      "description": "Bad Request parameters",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid value for parameter."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Invalid value for parameter.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "IftaJurisdictionReportsGetIftaJurisdictionReportsGatewayTimeoutErrorResponseBody": {
+      "description": "Gateway timeout",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
+        "requestId": "8916e1c1"
+      }
+    },
+    "IftaJurisdictionReportsGetIftaJurisdictionReportsInternalServerErrorResponseBody": {
+      "description": "An internal server error occurred",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Failed to execute GraphQL query."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Failed to execute GraphQL query.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "IftaJurisdictionReportsGetIftaJurisdictionReportsMethodNotAllowedErrorResponseBody": {
+      "description": "Method not allowed",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "DELETE not allowed on /endpoint."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "DELETE not allowed on /endpoint.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "IftaJurisdictionReportsGetIftaJurisdictionReportsNotFoundErrorResponseBody": {
+      "description": "Resource not found",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Object not found."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Object not found.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "IftaJurisdictionReportsGetIftaJurisdictionReportsNotImplementedErrorResponseBody": {
+      "description": "Requested endpoint is not yet implemented",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Not implemented."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Not implemented.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "IftaJurisdictionReportsGetIftaJurisdictionReportsResponseBody": {
+      "type": "object",
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/IftaJurisdictionReportDataObjectResponseBody"
+        }
+      },
+      "example": {
+        "data": {
+          "jurisdictionReports": [
+            {
+              "jurisdiction": "GA",
+              "taxPaidLiters": 25.5,
+              "taxableMeters": 2350,
+              "totalMeters": 2350
+            },
+            {
+              "jurisdiction": "GA",
+              "taxPaidLiters": 25.5,
+              "taxableMeters": 2350,
+              "totalMeters": 2350
+            },
+            {
+              "jurisdiction": "GA",
+              "taxPaidLiters": 25.5,
+              "taxableMeters": 2350,
+              "totalMeters": 2350
+            }
+          ],
+          "month": "January",
+          "quarter": "Q4",
+          "troubleshooting": {
+            "noPurchasesFound": false,
+            "unassignedFuelTypePurchases": 200,
+            "unassignedFuelTypeVehicles": 2500,
+            "unassignedVehiclePurchases": 2500
+          },
+          "year": 2021
+        }
+      }
+    },
+    "IftaJurisdictionReportsGetIftaJurisdictionReportsServiceUnavailableErrorResponseBody": {
+      "description": "Service unavailable",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
+        "requestId": "8916e1c1"
+      }
+    },
+    "IftaJurisdictionReportsGetIftaJurisdictionReportsTooManyRequestsErrorResponseBody": {
+      "description": "Too many requests",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Exceeded rate limit."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Exceeded rate limit.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "IftaJurisdictionReportsGetIftaJurisdictionReportsUnauthorizedErrorResponseBody": {
+      "description": "Unauthorized",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid token."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Invalid token.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "IftaJurisdictionSummaryObjectResponseBody": {
+      "description": "A summary of this jurisdiction's IFTA data.",
+      "type": "object",
+      "required": [
+        "jurisdiction",
+        "totalMeters",
+        "taxableMeters"
+      ],
+      "properties": {
+        "jurisdiction": {
+          "description": "Jurisdiction code.",
+          "type": "string",
+          "example": "GA"
+        },
+        "taxPaidLiters": {
+          "description": "Liters purchased for all qualified vehicles.",
+          "type": "number",
+          "format": "double",
+          "example": 25.5
+        },
+        "taxableMeters": {
+          "description": "Distance in meters traveled on public roads in an IFTA jurisdiction.",
+          "type": "number",
+          "format": "double",
+          "example": 2350
+        },
+        "totalMeters": {
+          "description": "Total meters driven in this jurisdiction, taxable and non-taxable.",
+          "type": "number",
+          "format": "double",
+          "example": 2350
+        }
+      },
+      "example": {
+        "jurisdiction": "GA",
+        "taxPaidLiters": 25.5,
+        "taxableMeters": 2350,
+        "totalMeters": 2350
+      }
+    },
+    "IftaReportTroubleshootingObjectResponseBody": {
+      "description": "IFTA report troubleshooting information.",
+      "type": "object",
+      "required": [
+        "unassignedFuelTypePurchases",
+        "unassignedFuelTypeVehicles",
+        "unassignedVehiclePurchases",
+        "noPurchasesFound"
+      ],
+      "properties": {
+        "noPurchasesFound": {
+          "description": "Whether or not fuel purchases were found for this report.",
+          "type": "boolean",
+          "example": false
+        },
+        "unassignedFuelTypePurchases": {
+          "description": "The number of fuel purchases without a fuel type assigned. Fuel purchases are used to calculate tax paid gallons.",
+          "type": "integer",
+          "format": "int64",
+          "example": 200
+        },
+        "unassignedFuelTypeVehicles": {
+          "description": "The number of vehicles without a fuel type assigned. Vehicles without an assigned fuel type may affect total mileage.",
+          "type": "integer",
+          "format": "int64",
+          "example": 2500
+        },
+        "unassignedVehiclePurchases": {
+          "description": "Purchases without an assigned fuel type may affect tax-paid gallons and fleet mpg.",
+          "type": "integer",
+          "format": "int64",
+          "example": 2500
+        }
+      },
+      "example": {
+        "noPurchasesFound": true,
+        "unassignedFuelTypePurchases": 200,
+        "unassignedFuelTypeVehicles": 2500,
+        "unassignedVehiclePurchases": 2500
+      }
+    },
+    "IftaVehicleReportDataObjectResponseBody": {
+      "description": "Dictionary containing summarized vehicle report data.",
+      "type": "object",
+      "required": [
+        "vehicleReports",
+        "year"
+      ],
+      "properties": {
+        "month": {
+          "description": "The specified month duration for this IFTA report.",
+          "type": "string",
+          "example": "January"
+        },
+        "quarter": {
+          "description": "The specified quarter duration for this IFTA report.",
+          "type": "string",
+          "example": "Q4"
+        },
+        "troubleshooting": {
+          "$ref": "#/definitions/IftaReportTroubleshootingObjectResponseBody"
+        },
+        "vehicleReports": {
+          "description": "List of summarized vehicle reports.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IftaVehicleReportObjectResponseBody"
+          },
+          "example": [
+            {
+              "jurisdictions": [
+                {
+                  "jurisdiction": "GA",
+                  "taxPaidLiters": 25.5,
+                  "taxableMeters": 2350,
+                  "totalMeters": 2350
+                },
+                {
+                  "jurisdiction": "GA",
+                  "taxPaidLiters": 25.5,
+                  "taxableMeters": 2350,
+                  "totalMeters": 2350
+                }
+              ],
+              "vehicle": {
+                "externalIds": {
+                  "maintenanceId": "250020",
+                  "payrollId": "ABFS18600"
+                },
+                "id": "494123",
+                "name": "Fleet Truck #1"
+              }
+            },
+            {
+              "jurisdictions": [
+                {
+                  "jurisdiction": "GA",
+                  "taxPaidLiters": 25.5,
+                  "taxableMeters": 2350,
+                  "totalMeters": 2350
+                },
+                {
+                  "jurisdiction": "GA",
+                  "taxPaidLiters": 25.5,
+                  "taxableMeters": 2350,
+                  "totalMeters": 2350
+                }
+              ],
+              "vehicle": {
+                "externalIds": {
+                  "maintenanceId": "250020",
+                  "payrollId": "ABFS18600"
+                },
+                "id": "494123",
+                "name": "Fleet Truck #1"
+              }
+            },
+            {
+              "jurisdictions": [
+                {
+                  "jurisdiction": "GA",
+                  "taxPaidLiters": 25.5,
+                  "taxableMeters": 2350,
+                  "totalMeters": 2350
+                },
+                {
+                  "jurisdiction": "GA",
+                  "taxPaidLiters": 25.5,
+                  "taxableMeters": 2350,
+                  "totalMeters": 2350
+                }
+              ],
+              "vehicle": {
+                "externalIds": {
+                  "maintenanceId": "250020",
+                  "payrollId": "ABFS18600"
+                },
+                "id": "494123",
+                "name": "Fleet Truck #1"
+              }
+            }
+          ]
+        },
+        "year": {
+          "description": "The specified year for this IFTA report.",
+          "type": "integer",
+          "format": "int64",
+          "example": 2021
+        }
+      },
+      "example": {
+        "month": "January",
+        "quarter": "Q4",
+        "troubleshooting": {
+          "noPurchasesFound": false,
+          "unassignedFuelTypePurchases": 200,
+          "unassignedFuelTypeVehicles": 2500,
+          "unassignedVehiclePurchases": 2500
+        },
+        "vehicleReports": [
+          {
+            "jurisdictions": [
+              {
+                "jurisdiction": "GA",
+                "taxPaidLiters": 25.5,
+                "taxableMeters": 2350,
+                "totalMeters": 2350
+              },
+              {
+                "jurisdiction": "GA",
+                "taxPaidLiters": 25.5,
+                "taxableMeters": 2350,
+                "totalMeters": 2350
+              }
+            ],
+            "vehicle": {
+              "externalIds": {
+                "maintenanceId": "250020",
+                "payrollId": "ABFS18600"
+              },
+              "id": "494123",
+              "name": "Fleet Truck #1"
+            }
+          },
+          {
+            "jurisdictions": [
+              {
+                "jurisdiction": "GA",
+                "taxPaidLiters": 25.5,
+                "taxableMeters": 2350,
+                "totalMeters": 2350
+              },
+              {
+                "jurisdiction": "GA",
+                "taxPaidLiters": 25.5,
+                "taxableMeters": 2350,
+                "totalMeters": 2350
+              }
+            ],
+            "vehicle": {
+              "externalIds": {
+                "maintenanceId": "250020",
+                "payrollId": "ABFS18600"
+              },
+              "id": "494123",
+              "name": "Fleet Truck #1"
+            }
+          }
+        ],
+        "year": 2021
+      }
+    },
+    "IftaVehicleReportObjectResponseBody": {
+      "description": "A summary of this vehicle's IFTA data.",
+      "type": "object",
+      "required": [
+        "vehicle",
+        "jurisdictions"
+      ],
+      "properties": {
+        "jurisdictions": {
+          "description": "List of jurisdiction summaries.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IftaJurisdictionSummaryObjectResponseBody"
+          },
+          "example": [
+            {
+              "jurisdiction": "GA",
+              "taxPaidLiters": 25.5,
+              "taxableMeters": 2350,
+              "totalMeters": 2350
+            },
+            {
+              "jurisdiction": "GA",
+              "taxPaidLiters": 25.5,
+              "taxableMeters": 2350,
+              "totalMeters": 2350
+            }
+          ]
+        },
+        "vehicle": {
+          "$ref": "#/definitions/GoaVehicleTinyResponseResponseBody"
+        }
+      },
+      "example": {
+        "jurisdictions": [
+          {
+            "jurisdiction": "GA",
+            "taxPaidLiters": 25.5,
+            "taxableMeters": 2350,
+            "totalMeters": 2350
+          },
+          {
+            "jurisdiction": "GA",
+            "taxPaidLiters": 25.5,
+            "taxableMeters": 2350,
+            "totalMeters": 2350
+          },
+          {
+            "jurisdiction": "GA",
+            "taxPaidLiters": 25.5,
+            "taxableMeters": 2350,
+            "totalMeters": 2350
+          }
+        ],
+        "vehicle": {
+          "externalIds": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          },
+          "id": "494123",
+          "name": "Fleet Truck #1"
+        }
+      }
+    },
+    "IftaVehicleReportsGetIftaVehicleReportsBadGatewayErrorResponseBody": {
+      "description": "Bad Gateway",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "rpc error: code = Unknown desc = connection refused"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "rpc error: code = Unknown desc = connection refused",
+        "requestId": "8916e1c1"
+      }
+    },
+    "IftaVehicleReportsGetIftaVehicleReportsBadRequestErrorResponseBody": {
+      "description": "Bad Request parameters",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid value for parameter."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Invalid value for parameter.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "IftaVehicleReportsGetIftaVehicleReportsGatewayTimeoutErrorResponseBody": {
+      "description": "Gateway timeout",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
+        "requestId": "8916e1c1"
+      }
+    },
+    "IftaVehicleReportsGetIftaVehicleReportsInternalServerErrorResponseBody": {
+      "description": "An internal server error occurred",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Failed to execute GraphQL query."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Failed to execute GraphQL query.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "IftaVehicleReportsGetIftaVehicleReportsMethodNotAllowedErrorResponseBody": {
+      "description": "Method not allowed",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "DELETE not allowed on /endpoint."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "DELETE not allowed on /endpoint.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "IftaVehicleReportsGetIftaVehicleReportsNotFoundErrorResponseBody": {
+      "description": "Resource not found",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Object not found."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Object not found.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "IftaVehicleReportsGetIftaVehicleReportsNotImplementedErrorResponseBody": {
+      "description": "Requested endpoint is not yet implemented",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Not implemented."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Not implemented.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "IftaVehicleReportsGetIftaVehicleReportsResponseBody": {
+      "type": "object",
+      "required": [
+        "data",
+        "pagination"
+      ],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/IftaVehicleReportDataObjectResponseBody"
+        },
+        "pagination": {
+          "$ref": "#/definitions/GoaPaginationResponseResponseBody"
+        }
+      },
+      "example": {
+        "data": {
+          "month": "January",
+          "quarter": "Q4",
+          "troubleshooting": {
+            "noPurchasesFound": false,
+            "unassignedFuelTypePurchases": 200,
+            "unassignedFuelTypeVehicles": 2500,
+            "unassignedVehiclePurchases": 2500
+          },
+          "vehicleReports": [
+            {
+              "jurisdictions": [
+                {
+                  "jurisdiction": "GA",
+                  "taxPaidLiters": 25.5,
+                  "taxableMeters": 2350,
+                  "totalMeters": 2350
+                },
+                {
+                  "jurisdiction": "GA",
+                  "taxPaidLiters": 25.5,
+                  "taxableMeters": 2350,
+                  "totalMeters": 2350
+                }
+              ],
+              "vehicle": {
+                "externalIds": {
+                  "maintenanceId": "250020",
+                  "payrollId": "ABFS18600"
+                },
+                "id": "494123",
+                "name": "Fleet Truck #1"
+              }
+            },
+            {
+              "jurisdictions": [
+                {
+                  "jurisdiction": "GA",
+                  "taxPaidLiters": 25.5,
+                  "taxableMeters": 2350,
+                  "totalMeters": 2350
+                },
+                {
+                  "jurisdiction": "GA",
+                  "taxPaidLiters": 25.5,
+                  "taxableMeters": 2350,
+                  "totalMeters": 2350
+                }
+              ],
+              "vehicle": {
+                "externalIds": {
+                  "maintenanceId": "250020",
+                  "payrollId": "ABFS18600"
+                },
+                "id": "494123",
+                "name": "Fleet Truck #1"
+              }
+            }
+          ],
+          "year": 2021
+        },
+        "pagination": {
+          "endCursor": "MjkY",
+          "hasNextPage": true
+        }
+      }
+    },
+    "IftaVehicleReportsGetIftaVehicleReportsServiceUnavailableErrorResponseBody": {
+      "description": "Service unavailable",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
+        "requestId": "8916e1c1"
+      }
+    },
+    "IftaVehicleReportsGetIftaVehicleReportsTooManyRequestsErrorResponseBody": {
+      "description": "Too many requests",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Exceeded rate limit."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Exceeded rate limit.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "IftaVehicleReportsGetIftaVehicleReportsUnauthorizedErrorResponseBody": {
+      "description": "Unauthorized",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid token."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Invalid token.",
+        "requestId": "8916e1c1"
+      }
+    },
     "ImageDataObjectResponseBody": {
       "type": "object",
       "properties": {
@@ -22644,10 +23602,6 @@
         ],
         "occurredAtTime": "2019-06-13T19:08:25Z",
         "triggersSatisfied": [
-          {
-            "occurredAtTime": "2019-06-13T19:08:25Z",
-            "triggerType": "DVIRDefectCreatedDevice"
-          },
           {
             "occurredAtTime": "2019-06-13T19:08:25Z",
             "triggerType": "DVIRDefectCreatedDevice"
@@ -27514,6 +28468,16 @@
               "id": "3914",
               "name": "East Coast",
               "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
             }
           ]
         },
@@ -27538,11 +28502,6 @@
         "name": "Trailer-123",
         "notes": "These are my trailer notes",
         "tags": [
-          {
-            "id": "3914",
-            "name": "East Coast",
-            "parentTagId": "4815"
-          },
           {
             "id": "3914",
             "name": "East Coast",
@@ -27675,6 +28634,16 @@
               "id": "3914",
               "name": "East Coast",
               "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
             }
           ]
         },
@@ -27686,30 +28655,6 @@
       },
       "example": {
         "attributes": [
-          {
-            "id": "494123",
-            "name": "Compliance/ELD",
-            "numberValues": [
-              867,
-              5309
-            ],
-            "stringValues": [
-              "HQ",
-              "Leased"
-            ]
-          },
-          {
-            "id": "494123",
-            "name": "Compliance/ELD",
-            "numberValues": [
-              867,
-              5309
-            ],
-            "stringValues": [
-              "HQ",
-              "Leased"
-            ]
-          },
           {
             "id": "494123",
             "name": "Compliance/ELD",
@@ -27749,6 +28694,11 @@
         "name": "Trailer-123",
         "notes": "These are my trailer notes",
         "tags": [
+          {
+            "id": "3914",
+            "name": "East Coast",
+            "parentTagId": "4815"
+          },
           {
             "id": "3914",
             "name": "East Coast",
@@ -27979,18 +28929,6 @@
                 "HQ",
                 "Leased"
               ]
-            },
-            {
-              "id": "494123",
-              "name": "Compliance/ELD",
-              "numberValues": [
-                867,
-                5309
-              ],
-              "stringValues": [
-                "HQ",
-                "Leased"
-              ]
             }
           ]
         },
@@ -28036,13 +28974,11 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Tenetur suscipit laboriosam sequi."
+            "example": "Non tenetur suscipit laboriosam sequi maxime magni."
           },
           "example": [
-            "Iure voluptatem et dolorum.",
-            "Odit tempora velit laborum ipsa culpa qui.",
-            "Dolores dolorum exercitationem cum praesentium expedita.",
-            "Sunt a ipsa omnis possimus unde quidem."
+            "Et dolorum aperiam odit tempora velit laborum.",
+            "Culpa qui est dolores dolorum exercitationem."
           ]
         },
         "trailerSerialNumber": {
@@ -28112,8 +29048,10 @@
         "notes": "These are my trailer notes",
         "odometerMeters": 1234,
         "tagIds": [
-          "Fugit consequatur vitae.",
-          "Earum sit."
+          "Officia sunt a.",
+          "Omnis possimus unde.",
+          "Quisquam exercitationem facere fugit consequatur vitae aliquam.",
+          "Sit praesentium."
         ],
         "trailerSerialNumber": "8V8WD530FLN016251"
       }
@@ -28182,11 +29120,6 @@
           "name": "Trailer-123",
           "notes": "These are my trailer notes",
           "tags": [
-            {
-              "id": "3914",
-              "name": "East Coast",
-              "parentTagId": "4815"
-            },
             {
               "id": "3914",
               "name": "East Coast",
@@ -28755,11 +29688,6 @@
               "id": "3914",
               "name": "East Coast",
               "parentTagId": "4815"
-            },
-            {
-              "id": "3914",
-              "name": "East Coast",
-              "parentTagId": "4815"
             }
           ],
           "trailerSerialNumber": "8V8WD530FLN016251"
@@ -29044,25 +29972,7 @@
                   "id": "3914",
                   "name": "East Coast",
                   "parentTagId": "4815"
-                }
-              ],
-              "trailerSerialNumber": "8V8WD530FLN016251"
-            },
-            {
-              "enabledForMobile": true,
-              "externalIds": {
-                "maintenanceId": "250020",
-                "payrollId": "ABFS18600"
-              },
-              "id": "494123",
-              "installedGateway": {
-                "model": "VG34",
-                "serial": "GFRV-43N-VGX"
-              },
-              "licensePlate": "7TYP290",
-              "name": "Trailer-123",
-              "notes": "These are my trailer notes",
-              "tags": [
+                },
                 {
                   "id": "3914",
                   "name": "East Coast",
@@ -29091,6 +30001,16 @@
               "name": "Trailer-123",
               "notes": "These are my trailer notes",
               "tags": [
+                {
+                  "id": "3914",
+                  "name": "East Coast",
+                  "parentTagId": "4815"
+                },
+                {
+                  "id": "3914",
+                  "name": "East Coast",
+                  "parentTagId": "4815"
+                },
                 {
                   "id": "3914",
                   "name": "East Coast",
@@ -29136,25 +30056,7 @@
                 "id": "3914",
                 "name": "East Coast",
                 "parentTagId": "4815"
-              }
-            ],
-            "trailerSerialNumber": "8V8WD530FLN016251"
-          },
-          {
-            "enabledForMobile": true,
-            "externalIds": {
-              "maintenanceId": "250020",
-              "payrollId": "ABFS18600"
-            },
-            "id": "494123",
-            "installedGateway": {
-              "model": "VG34",
-              "serial": "GFRV-43N-VGX"
-            },
-            "licensePlate": "7TYP290",
-            "name": "Trailer-123",
-            "notes": "These are my trailer notes",
-            "tags": [
+              },
               {
                 "id": "3914",
                 "name": "East Coast",
@@ -29192,25 +30094,7 @@
                 "id": "3914",
                 "name": "East Coast",
                 "parentTagId": "4815"
-              }
-            ],
-            "trailerSerialNumber": "8V8WD530FLN016251"
-          },
-          {
-            "enabledForMobile": true,
-            "externalIds": {
-              "maintenanceId": "250020",
-              "payrollId": "ABFS18600"
-            },
-            "id": "494123",
-            "installedGateway": {
-              "model": "VG34",
-              "serial": "GFRV-43N-VGX"
-            },
-            "licensePlate": "7TYP290",
-            "name": "Trailer-123",
-            "notes": "These are my trailer notes",
-            "tags": [
+              },
               {
                 "id": "3914",
                 "name": "East Coast",
@@ -29573,12 +30457,12 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Doloribus maiores et inventore neque nemo voluptatem."
+            "example": "Et delectus ab est a architecto."
           },
           "example": [
-            "Et delectus ab est a architecto.",
-            "Delectus alias molestiae.",
-            "Nam ut."
+            "Alias molestiae iure nam ut.",
+            "Eum ut qui aut voluptas soluta.",
+            "Quia corrupti."
           ]
         },
         "trailerSerialNumber": {
@@ -29589,30 +30473,6 @@
       },
       "example": {
         "attributes": [
-          {
-            "id": "494123",
-            "name": "Compliance/ELD",
-            "numberValues": [
-              867,
-              5309
-            ],
-            "stringValues": [
-              "HQ",
-              "Leased"
-            ]
-          },
-          {
-            "id": "494123",
-            "name": "Compliance/ELD",
-            "numberValues": [
-              867,
-              5309
-            ],
-            "stringValues": [
-              "HQ",
-              "Leased"
-            ]
-          },
           {
             "id": "494123",
             "name": "Compliance/ELD",
@@ -29648,9 +30508,8 @@
         "notes": "These are my trailer notes",
         "odometerMeters": 1234,
         "tagIds": [
-          "Est architecto vel id voluptas tenetur.",
-          "Repellat dignissimos.",
-          "Ipsa rerum eos quo et consequuntur ex."
+          "Animi ipsa rerum eos.",
+          "Et consequuntur."
         ],
         "trailerSerialNumber": "8V8WD530FLN016251"
       }
@@ -29719,11 +30578,6 @@
           "name": "Trailer-123",
           "notes": "These are my trailer notes",
           "tags": [
-            {
-              "id": "3914",
-              "name": "East Coast",
-              "parentTagId": "4815"
-            },
             {
               "id": "3914",
               "name": "East Coast",
@@ -29862,7 +30716,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Aut sequi accusantium vitae nulla quisquam."
+            "example": "Sequi accusantium vitae nulla."
           },
           "example": [
             "payroll:4841",
@@ -39749,6 +40603,62 @@
                   "triggerType": "DVIRDefectCreatedDevice"
                 }
               ]
+            },
+            {
+              "createdAtTime": "2019-06-13T19:08:25Z",
+              "objects": [
+                {
+                  "externalIds": [
+                    "payroll:4841",
+                    "maintenance:250020"
+                  ],
+                  "objectId": "12345",
+                  "objectType": "Driver"
+                },
+                {
+                  "externalIds": [
+                    "payroll:4841",
+                    "maintenance:250020"
+                  ],
+                  "objectId": "12345",
+                  "objectType": "Driver"
+                },
+                {
+                  "externalIds": [
+                    "payroll:4841",
+                    "maintenance:250020"
+                  ],
+                  "objectId": "12345",
+                  "objectType": "Driver"
+                },
+                {
+                  "externalIds": [
+                    "payroll:4841",
+                    "maintenance:250020"
+                  ],
+                  "objectId": "12345",
+                  "objectType": "Driver"
+                }
+              ],
+              "occurredAtTime": "2019-06-13T19:08:25Z",
+              "triggersSatisfied": [
+                {
+                  "occurredAtTime": "2019-06-13T19:08:25Z",
+                  "triggerType": "DVIRDefectCreatedDevice"
+                },
+                {
+                  "occurredAtTime": "2019-06-13T19:08:25Z",
+                  "triggerType": "DVIRDefectCreatedDevice"
+                },
+                {
+                  "occurredAtTime": "2019-06-13T19:08:25Z",
+                  "triggerType": "DVIRDefectCreatedDevice"
+                },
+                {
+                  "occurredAtTime": "2019-06-13T19:08:25Z",
+                  "triggerType": "DVIRDefectCreatedDevice"
+                }
+              ]
             }
           ]
         },
@@ -40363,6 +41273,62 @@
       },
       "example": {
         "data": [
+          {
+            "createdAtTime": "2019-06-13T19:08:25Z",
+            "objects": [
+              {
+                "externalIds": [
+                  "payroll:4841",
+                  "maintenance:250020"
+                ],
+                "objectId": "12345",
+                "objectType": "Driver"
+              },
+              {
+                "externalIds": [
+                  "payroll:4841",
+                  "maintenance:250020"
+                ],
+                "objectId": "12345",
+                "objectType": "Driver"
+              },
+              {
+                "externalIds": [
+                  "payroll:4841",
+                  "maintenance:250020"
+                ],
+                "objectId": "12345",
+                "objectType": "Driver"
+              },
+              {
+                "externalIds": [
+                  "payroll:4841",
+                  "maintenance:250020"
+                ],
+                "objectId": "12345",
+                "objectType": "Driver"
+              }
+            ],
+            "occurredAtTime": "2019-06-13T19:08:25Z",
+            "triggersSatisfied": [
+              {
+                "occurredAtTime": "2019-06-13T19:08:25Z",
+                "triggerType": "DVIRDefectCreatedDevice"
+              },
+              {
+                "occurredAtTime": "2019-06-13T19:08:25Z",
+                "triggerType": "DVIRDefectCreatedDevice"
+              },
+              {
+                "occurredAtTime": "2019-06-13T19:08:25Z",
+                "triggerType": "DVIRDefectCreatedDevice"
+              },
+              {
+                "occurredAtTime": "2019-06-13T19:08:25Z",
+                "triggerType": "DVIRDefectCreatedDevice"
+              }
+            ]
+          },
           {
             "createdAtTime": "2019-06-13T19:08:25Z",
             "objects": [
