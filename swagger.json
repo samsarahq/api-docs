@@ -28016,11 +28016,12 @@
         "driverFleetId": {
           "description": "Global login user name for the fleet driver app",
           "type": "string",
-          "example": "abc_trucking_co"
+          "pattern": "^[a-zA-Z0-9-:]*$",
+          "example": "abc-trucking-co"
         }
       },
       "example": {
-        "driverFleetId": "abc_trucking_co"
+        "driverFleetId": "abc-trucking-co"
       }
     },
     "SettingsPatchDriverAppSettingsResponseBody": {
