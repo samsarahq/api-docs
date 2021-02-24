@@ -17150,12 +17150,13 @@
 	   	   	   "SettingsPatchDriverAppSettingsRequestBody": {
 	   	   	   	   "description": "The configuration settings for the Samsara Driver App. Can be set or updated through the Samsara Settings page or the API at any time.",
 	   	   	   	   "example": {
-	   	   	   	   	   "driverFleetId": "abc_trucking_co"
+	   	   	   	   	   "driverFleetId": "abc-trucking-co"
 	   	   	   	   },
 	   	   	   	   "properties": {
 	   	   	   	   	   "driverFleetId": {
 	   	   	   	   	   	   "description": "Global login user name for the fleet driver app",
-	   	   	   	   	   	   "example": "abc_trucking_co",
+	   	   	   	   	   	   "example": "abc-trucking-co",
+	   	   	   	   	   	   "pattern": "^[a-zA-Z0-9-:]*$",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   }
 	   	   	   	   },
