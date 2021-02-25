@@ -27026,6 +27026,33 @@
       "type": "string",
       "example": "VG12345"
     },
+    "SettingsComplianceResponseObjectResponseBody": {
+      "description": "Information set here will be displayed in roadside inspections and in the transferred US DOT datafile.",
+      "type": "object",
+      "properties": {
+        "carrierName": {
+          "description": "Carrier name of the organization",
+          "type": "string",
+          "example": "ABC Trucking"
+        },
+        "dotNumber": {
+          "description": "DOT Number",
+          "type": "integer",
+          "format": "int64",
+          "example": 12345678
+        },
+        "mainOfficeFormattedAddress": {
+          "description": "Office Address",
+          "type": "string",
+          "example": "123 Main Street"
+        }
+      },
+      "example": {
+        "carrierName": "ABC Trucking",
+        "dotNumber": 12345678,
+        "mainOfficeFormattedAddress": "123 Main Street"
+      }
+    },
     "SettingsGetComplianceSettingsBadGatewayErrorResponseBody": {
       "description": "Bad Gateway",
       "type": "object",
@@ -27196,28 +27223,20 @@
     },
     "SettingsGetComplianceSettingsResponseBody": {
       "type": "object",
+      "required": [
+        "data"
+      ],
       "properties": {
-        "carrierName": {
-          "description": "Carrier name of the organization",
-          "type": "string",
-          "example": "ABC Trucking"
-        },
-        "dotNumber": {
-          "description": "DOT Number",
-          "type": "integer",
-          "format": "int64",
-          "example": 12345678
-        },
-        "mainOfficeFormattedAddress": {
-          "description": "Office Address",
-          "type": "string",
-          "example": "123 Main Street"
+        "data": {
+          "$ref": "#/definitions/SettingsComplianceResponseObjectResponseBody"
         }
       },
       "example": {
-        "carrierName": "ABC Trucking",
-        "dotNumber": 12345678,
-        "mainOfficeFormattedAddress": "123 Main Street"
+        "data": {
+          "carrierName": "ABC Trucking",
+          "dotNumber": 12345678,
+          "mainOfficeFormattedAddress": "123 Main Street"
+        }
       }
     },
     "SettingsGetComplianceSettingsServiceUnavailableErrorResponseBody": {
@@ -27745,28 +27764,20 @@
     },
     "SettingsPatchComplianceSettingsResponseBody": {
       "type": "object",
+      "required": [
+        "data"
+      ],
       "properties": {
-        "carrierName": {
-          "description": "Carrier name of the organization",
-          "type": "string",
-          "example": "ABC Trucking"
-        },
-        "dotNumber": {
-          "description": "DOT Number",
-          "type": "integer",
-          "format": "int64",
-          "example": 12345678
-        },
-        "mainOfficeFormattedAddress": {
-          "description": "Office Address",
-          "type": "string",
-          "example": "123 Main Street"
+        "data": {
+          "$ref": "#/definitions/SettingsComplianceResponseObjectResponseBody"
         }
       },
       "example": {
-        "carrierName": "ABC Trucking",
-        "dotNumber": 12345678,
-        "mainOfficeFormattedAddress": "123 Main Street"
+        "data": {
+          "carrierName": "ABC Trucking",
+          "dotNumber": 12345678,
+          "mainOfficeFormattedAddress": "123 Main Street"
+        }
       }
     },
     "SettingsPatchComplianceSettingsServiceUnavailableErrorResponseBody": {
