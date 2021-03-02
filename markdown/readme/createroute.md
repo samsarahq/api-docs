@@ -1,6 +1,8 @@
 # 200 Response Schema
 | Property Name | Description |
 | :------------ | :---------- |
+| **actualRouteEndTime**<br/>_string_ |  |
+| **actualRouteStartTime**<br/>_string_ |  |
 | **driver**<br/>_object_ | A minified driver object |
 | **&nbsp;&nbsp;&nbsp;&nbsp;externalIds**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;object_ | A map of external ids |
 | **&nbsp;&nbsp;&nbsp;&nbsp;id**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | ID of the driver |
@@ -15,10 +17,14 @@
 | **&nbsp;&nbsp;&nbsp;&nbsp;routeCompletionCondition**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Defaults to 'arriveLastStop' which ends the route upon arriving at the final stop. The condition 'departLastStop' <br/>ends the route upon departing the last stop. If 'arriveLastStop' is set, then the departure time of the final stop should not be set. Valid values: `arriveLastStop`, `departLastStop`. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;routeStartingCondition**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Defaults to 'departFirstStop' which starts the route upon departing the first stop in the route.<br/> The condition 'arriveFirstStop' starts the route upon arriving at the first stop in the route. If 'departFirstStop' is set,<br/>the arrival time of the first stop should not be set. Valid values: `departFirstStop`, `arriveFirstStop`. |
 | **stops**<br/>_object array_ | List of stops along the route |
+| **&nbsp;&nbsp;&nbsp;&nbsp;actualArrivalTime**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Actual arrival time, if it exists, for the route stop in RFC 3339 format. |
+| **&nbsp;&nbsp;&nbsp;&nbsp;actualDepartureTime**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Actual departure time, if it exists, for the route stop in RFC 3339 format. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;address**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;object_ | A minified Address object |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;externalIds**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object_ | A map of external ids |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Id of the address |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Name of the address |
+| **&nbsp;&nbsp;&nbsp;&nbsp;enRouteTime**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | The time the stop became en-route, in RFC 3339 format. |
+| **&nbsp;&nbsp;&nbsp;&nbsp;eta**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Estimated time of arrival, if this stop is currently en-route, in RFC 3339 format. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;externalIds**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;object_ | A map of external ids |
 | **&nbsp;&nbsp;&nbsp;&nbsp;id**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Id of the stop |
 | **&nbsp;&nbsp;&nbsp;&nbsp;name**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Name of the stop |
@@ -29,6 +35,8 @@
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;address**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Address of the stop. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;latitude**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_ | The latitude of the location |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;longitude**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_ | The longitude of the location |
+| **&nbsp;&nbsp;&nbsp;&nbsp;skippedTime**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Skipped time, if it exists, for the route stop in RFC 3339 format. |
+| **&nbsp;&nbsp;&nbsp;&nbsp;state**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | The current state of the route stop. Valid values: `unassigned`, `scheduled`, `en route`, `skipped`, `arrived`, `departed`. |
 | **vehicle**<br/>_object_ | A minified vehicle object |
 | **&nbsp;&nbsp;&nbsp;&nbsp;externalIds**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;object_ | A map of external ids |
 | **&nbsp;&nbsp;&nbsp;&nbsp;id**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | ID of the vehicle |
