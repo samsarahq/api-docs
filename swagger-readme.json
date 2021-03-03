@@ -37723,6 +37723,701 @@
 	   	   	   	   ]
 	   	   	   }
 	   	   },
+	   	   "/beta/fleet/reports/ifta/jurisdiction": {
+	   	   	   "get": {
+	   	   	   	   "description": "Get all jurisdiction IFTA reports for the requested time duration. Data is returned in your organization's defined timezone.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
+	   	   	   	   "operationId": "getIftaJurisdictionReports",
+	   	   	   	   "parameters": [
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": " The year of the requested IFTA report summary. Must be provided with a month or quarter param. Example: `year=2021`",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "year",
+	   	   	   	   	   	   "required": true,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "maximum": 2100,
+	   	   	   	   	   	   	   "minimum": 2015,
+	   	   	   	   	   	   	   "type": "integer"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": " The month of the requested IFTA report summary. Can not be provided with the quarter param. Example: `month=January`",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "month",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "enum": [
+	   	   	   	   	   	   	   	   "January",
+	   	   	   	   	   	   	   	   "February",
+	   	   	   	   	   	   	   	   "March",
+	   	   	   	   	   	   	   	   "April",
+	   	   	   	   	   	   	   	   "May",
+	   	   	   	   	   	   	   	   "June",
+	   	   	   	   	   	   	   	   "July",
+	   	   	   	   	   	   	   	   "August",
+	   	   	   	   	   	   	   	   "September",
+	   	   	   	   	   	   	   	   "October",
+	   	   	   	   	   	   	   	   "November",
+	   	   	   	   	   	   	   	   "December"
+	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": " The quarter of the requested IFTA report summary. Can not be provided with the month param. Q1: January, February, March. Q2: April, May, June. Q3: July, August, September. Q4: October, November, December. Example: `quarter=Q1`",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "quarter",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "enum": [
+	   	   	   	   	   	   	   	   "Q1",
+	   	   	   	   	   	   	   	   "Q2",
+	   	   	   	   	   	   	   	   "Q3",
+	   	   	   	   	   	   	   	   "Q4"
+	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": " A filter on the data based on this comma-separated list of jurisdictions. Example: `jurisdictions=GA`",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "jurisdictions",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": " A filter on the data based on this comma-separated list of IFTA fuel types. Example: `fuelType=Diesel`",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "fuelType",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "enum": [
+	   	   	   	   	   	   	   	   "Unspecified",
+	   	   	   	   	   	   	   	   "A55",
+	   	   	   	   	   	   	   	   "Biodiesel",
+	   	   	   	   	   	   	   	   "CompressedNaturalGas",
+	   	   	   	   	   	   	   	   "Diesel",
+	   	   	   	   	   	   	   	   "E85",
+	   	   	   	   	   	   	   	   "Electricity",
+	   	   	   	   	   	   	   	   "Ethanol",
+	   	   	   	   	   	   	   	   "Gasohol",
+	   	   	   	   	   	   	   	   "Gasoline",
+	   	   	   	   	   	   	   	   "Hydrogen",
+	   	   	   	   	   	   	   	   "LiquifiedNaturalGas",
+	   	   	   	   	   	   	   	   "M85",
+	   	   	   	   	   	   	   	   "Methanol",
+	   	   	   	   	   	   	   	   "Propane",
+	   	   	   	   	   	   	   	   "Other"
+	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": " A filter on the data based on this comma-separated list of vehicle IDs and externalIds. Example: `vehicleIds=1234,5678,samsara.vin:1HGBH41JXMN109186`",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "vehicleIds",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": " A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "tagIds",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": " A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "parentTagIds",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   }
+	   	   	   	   ],
+	   	   	   	   "responses": {
+	   	   	   	   	   "200": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "data": {
+	   	   	   	   	   	   	   	   	   	   "jurisdictionReports": [
+	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "GA",
+	   	   	   	   	   	   	   	   	   	   	   	   "taxPaidLiters": 25.5,
+	   	   	   	   	   	   	   	   	   	   	   	   "taxableMeters": 2350,
+	   	   	   	   	   	   	   	   	   	   	   	   "totalMeters": 2350
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "GA",
+	   	   	   	   	   	   	   	   	   	   	   	   "taxPaidLiters": 25.5,
+	   	   	   	   	   	   	   	   	   	   	   	   "taxableMeters": 2350,
+	   	   	   	   	   	   	   	   	   	   	   	   "totalMeters": 2350
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "GA",
+	   	   	   	   	   	   	   	   	   	   	   	   "taxPaidLiters": 25.5,
+	   	   	   	   	   	   	   	   	   	   	   	   "taxableMeters": 2350,
+	   	   	   	   	   	   	   	   	   	   	   	   "totalMeters": 2350
+	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   "month": "January",
+	   	   	   	   	   	   	   	   	   	   "quarter": "Q4",
+	   	   	   	   	   	   	   	   	   	   "troubleshooting": {
+	   	   	   	   	   	   	   	   	   	   	   "noPurchasesFound": false,
+	   	   	   	   	   	   	   	   	   	   	   "unassignedFuelTypePurchases": 200,
+	   	   	   	   	   	   	   	   	   	   	   "unassignedFuelTypeVehicles": 2500,
+	   	   	   	   	   	   	   	   	   	   	   "unassignedVehiclePurchases": 2500
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "year": 2021
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaJurisdictionReportsGetIftaJurisdictionReportsResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "OK response."
+	   	   	   	   	   },
+	   	   	   	   	   "401": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Invalid token.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaJurisdictionReportsGetIftaJurisdictionReportsUnauthorizedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Unauthorized response."
+	   	   	   	   	   },
+	   	   	   	   	   "404": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Object not found.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaJurisdictionReportsGetIftaJurisdictionReportsNotFoundErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Found response."
+	   	   	   	   	   },
+	   	   	   	   	   "405": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "DELETE not allowed on /endpoint.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaJurisdictionReportsGetIftaJurisdictionReportsMethodNotAllowedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Method Not Allowed response."
+	   	   	   	   	   },
+	   	   	   	   	   "429": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Exceeded rate limit.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaJurisdictionReportsGetIftaJurisdictionReportsTooManyRequestsErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Too Many Requests response."
+	   	   	   	   	   },
+	   	   	   	   	   "500": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Failed to execute GraphQL query.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaJurisdictionReportsGetIftaJurisdictionReportsInternalServerErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Internal Server Error response."
+	   	   	   	   	   },
+	   	   	   	   	   "501": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Not implemented.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaJurisdictionReportsGetIftaJurisdictionReportsNotImplementedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Implemented response."
+	   	   	   	   	   },
+	   	   	   	   	   "502": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "rpc error: code = Unknown desc = connection refused",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaJurisdictionReportsGetIftaJurisdictionReportsBadGatewayErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Gateway response."
+	   	   	   	   	   },
+	   	   	   	   	   "503": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaJurisdictionReportsGetIftaJurisdictionReportsServiceUnavailableErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Service Unavailable response."
+	   	   	   	   	   },
+	   	   	   	   	   "504": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaJurisdictionReportsGetIftaJurisdictionReportsGatewayTimeoutErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Gateway Timeout response."
+	   	   	   	   	   },
+	   	   	   	   	   "default": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Invalid value for parameter.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaJurisdictionReportsGetIftaJurisdictionReportsBadRequestErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Request response."
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "summary": "[beta] Get IFTA jurisdiction reports.",
+	   	   	   	   "tags": [
+	   	   	   	   	   "Beta APIs"
+	   	   	   	   ]
+	   	   	   }
+	   	   },
+	   	   "/beta/fleet/reports/ifta/vehicle": {
+	   	   	   "get": {
+	   	   	   	   "description": "Get all vehicle IFTA reports for the requested time duration. Data is returned in your organization's defined timezone.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
+	   	   	   	   "operationId": "getIftaVehicleReports",
+	   	   	   	   "parameters": [
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": " The year of the requested IFTA report summary. Must be provided with a month or quarter param. Example: `year=2021`",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "year",
+	   	   	   	   	   	   "required": true,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "maximum": 2100,
+	   	   	   	   	   	   	   "minimum": 2015,
+	   	   	   	   	   	   	   "type": "integer"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": " The month of the requested IFTA report summary. Can not be provided with the quarter param. Example: `month=January`",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "month",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "enum": [
+	   	   	   	   	   	   	   	   "January",
+	   	   	   	   	   	   	   	   "February",
+	   	   	   	   	   	   	   	   "March",
+	   	   	   	   	   	   	   	   "April",
+	   	   	   	   	   	   	   	   "May",
+	   	   	   	   	   	   	   	   "June",
+	   	   	   	   	   	   	   	   "July",
+	   	   	   	   	   	   	   	   "August",
+	   	   	   	   	   	   	   	   "September",
+	   	   	   	   	   	   	   	   "October",
+	   	   	   	   	   	   	   	   "November",
+	   	   	   	   	   	   	   	   "December"
+	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": " The quarter of the requested IFTA report summary. Can not be provided with the month param. Q1: January, February, March. Q2: April, May, June. Q3: July, August, September. Q4: October, November, December. Example: `quarter=Q1`",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "quarter",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "enum": [
+	   	   	   	   	   	   	   	   "Q1",
+	   	   	   	   	   	   	   	   "Q2",
+	   	   	   	   	   	   	   	   "Q3",
+	   	   	   	   	   	   	   	   "Q4"
+	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": " A filter on the data based on this comma-separated list of jurisdictions. Example: `jurisdictions=GA`",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "jurisdictions",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": " A filter on the data based on this comma-separated list of IFTA fuel types. Example: `fuelType=Diesel`",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "fuelType",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "enum": [
+	   	   	   	   	   	   	   	   "Unspecified",
+	   	   	   	   	   	   	   	   "A55",
+	   	   	   	   	   	   	   	   "Biodiesel",
+	   	   	   	   	   	   	   	   "CompressedNaturalGas",
+	   	   	   	   	   	   	   	   "Diesel",
+	   	   	   	   	   	   	   	   "E85",
+	   	   	   	   	   	   	   	   "Electricity",
+	   	   	   	   	   	   	   	   "Ethanol",
+	   	   	   	   	   	   	   	   "Gasohol",
+	   	   	   	   	   	   	   	   "Gasoline",
+	   	   	   	   	   	   	   	   "Hydrogen",
+	   	   	   	   	   	   	   	   "LiquifiedNaturalGas",
+	   	   	   	   	   	   	   	   "M85",
+	   	   	   	   	   	   	   	   "Methanol",
+	   	   	   	   	   	   	   	   "Propane",
+	   	   	   	   	   	   	   	   "Other"
+	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": " A filter on the data based on this comma-separated list of vehicle IDs and externalIds. Example: `vehicleIds=1234,5678,samsara.vin:1HGBH41JXMN109186`",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "vehicleIds",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": " A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "tagIds",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": " A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "parentTagIds",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "after",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   }
+	   	   	   	   ],
+	   	   	   	   "responses": {
+	   	   	   	   	   "200": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "data": {
+	   	   	   	   	   	   	   	   	   	   "month": "January",
+	   	   	   	   	   	   	   	   	   	   "quarter": "Q4",
+	   	   	   	   	   	   	   	   	   	   "troubleshooting": {
+	   	   	   	   	   	   	   	   	   	   	   "noPurchasesFound": false,
+	   	   	   	   	   	   	   	   	   	   	   "unassignedFuelTypePurchases": 200,
+	   	   	   	   	   	   	   	   	   	   	   "unassignedFuelTypeVehicles": 2500,
+	   	   	   	   	   	   	   	   	   	   	   "unassignedVehiclePurchases": 2500
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "vehicleReports": [
+	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   "jurisdictions": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "GA",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "taxPaidLiters": 25.5,
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "taxableMeters": 2350,
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "totalMeters": 2350
+	   	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "GA",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "taxPaidLiters": 25.5,
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "taxableMeters": 2350,
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "totalMeters": 2350
+	   	   	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   "vehicle": {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   	   "id": "494123",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "name": "Fleet Truck #1"
+	   	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   "jurisdictions": [
+	   	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "GA",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "taxPaidLiters": 25.5,
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "taxableMeters": 2350,
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "totalMeters": 2350
+	   	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "GA",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "taxPaidLiters": 25.5,
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "taxableMeters": 2350,
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "totalMeters": 2350
+	   	   	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   	   	   "vehicle": {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   	   "id": "494123",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "name": "Fleet Truck #1"
+	   	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   "year": 2021
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "pagination": {
+	   	   	   	   	   	   	   	   	   	   "endCursor": "MjkY",
+	   	   	   	   	   	   	   	   	   	   "hasNextPage": true
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaVehicleReportsGetIftaVehicleReportsResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "OK response."
+	   	   	   	   	   },
+	   	   	   	   	   "401": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Invalid token.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaVehicleReportsGetIftaVehicleReportsUnauthorizedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Unauthorized response."
+	   	   	   	   	   },
+	   	   	   	   	   "404": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Object not found.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaVehicleReportsGetIftaVehicleReportsNotFoundErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Found response."
+	   	   	   	   	   },
+	   	   	   	   	   "405": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "DELETE not allowed on /endpoint.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaVehicleReportsGetIftaVehicleReportsMethodNotAllowedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Method Not Allowed response."
+	   	   	   	   	   },
+	   	   	   	   	   "429": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Exceeded rate limit.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaVehicleReportsGetIftaVehicleReportsTooManyRequestsErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Too Many Requests response."
+	   	   	   	   	   },
+	   	   	   	   	   "500": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Failed to execute GraphQL query.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaVehicleReportsGetIftaVehicleReportsInternalServerErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Internal Server Error response."
+	   	   	   	   	   },
+	   	   	   	   	   "501": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Not implemented.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaVehicleReportsGetIftaVehicleReportsNotImplementedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Implemented response."
+	   	   	   	   	   },
+	   	   	   	   	   "502": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "rpc error: code = Unknown desc = connection refused",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaVehicleReportsGetIftaVehicleReportsBadGatewayErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Gateway response."
+	   	   	   	   	   },
+	   	   	   	   	   "503": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaVehicleReportsGetIftaVehicleReportsServiceUnavailableErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Service Unavailable response."
+	   	   	   	   	   },
+	   	   	   	   	   "504": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaVehicleReportsGetIftaVehicleReportsGatewayTimeoutErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Gateway Timeout response."
+	   	   	   	   	   },
+	   	   	   	   	   "default": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   	   	   "message": "Invalid value for parameter.",
+	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaVehicleReportsGetIftaVehicleReportsBadRequestErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Request response."
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "summary": "[beta] Get IFTA vehicle reports.",
+	   	   	   	   "tags": [
+	   	   	   	   	   "Beta APIs"
+	   	   	   	   ]
+	   	   	   }
+	   	   },
 	   	   "/beta/fleet/routes": {
 	   	   	   "post": {
 	   	   	   	   "description": "Create a route.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
@@ -46800,701 +47495,6 @@
 	   	   	   	   "summary": "Get information about your organization",
 	   	   	   	   "tags": [
 	   	   	   	   	   "Organization Info"
-	   	   	   	   ]
-	   	   	   }
-	   	   },
-	   	   "/preview/fleet/reports/ifta/jurisdiction": {
-	   	   	   "get": {
-	   	   	   	   "description": "Get all jurisdiction IFTA reports for the requested time duration. Data is returned in your organization's defined timezone.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
-	   	   	   	   "operationId": "getIftaJurisdictionReports",
-	   	   	   	   "parameters": [
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": " The year of the requested IFTA report summary. Must be provided with a month or quarter param. Example: `year=2021`",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "year",
-	   	   	   	   	   	   "required": true,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "maximum": 2100,
-	   	   	   	   	   	   	   "minimum": 2015,
-	   	   	   	   	   	   	   "type": "integer"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": " The month of the requested IFTA report summary. Can not be provided with the quarter param. Example: `month=January`",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "month",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "enum": [
-	   	   	   	   	   	   	   	   "January",
-	   	   	   	   	   	   	   	   "February",
-	   	   	   	   	   	   	   	   "March",
-	   	   	   	   	   	   	   	   "April",
-	   	   	   	   	   	   	   	   "May",
-	   	   	   	   	   	   	   	   "June",
-	   	   	   	   	   	   	   	   "July",
-	   	   	   	   	   	   	   	   "August",
-	   	   	   	   	   	   	   	   "September",
-	   	   	   	   	   	   	   	   "October",
-	   	   	   	   	   	   	   	   "November",
-	   	   	   	   	   	   	   	   "December"
-	   	   	   	   	   	   	   ],
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": " The quarter of the requested IFTA report summary. Can not be provided with the month param. Q1: January, February, March. Q2: April, May, June. Q3: July, August, September. Q4: October, November, December. Example: `quarter=Q1`",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "quarter",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "enum": [
-	   	   	   	   	   	   	   	   "Q1",
-	   	   	   	   	   	   	   	   "Q2",
-	   	   	   	   	   	   	   	   "Q3",
-	   	   	   	   	   	   	   	   "Q4"
-	   	   	   	   	   	   	   ],
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": " A filter on the data based on this comma-separated list of jurisdictions. Example: `jurisdictions=GA`",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "jurisdictions",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": " A filter on the data based on this comma-separated list of IFTA fuel types. Example: `fuelType=Diesel`",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "fuelType",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "enum": [
-	   	   	   	   	   	   	   	   "Unspecified",
-	   	   	   	   	   	   	   	   "A55",
-	   	   	   	   	   	   	   	   "Biodiesel",
-	   	   	   	   	   	   	   	   "CompressedNaturalGas",
-	   	   	   	   	   	   	   	   "Diesel",
-	   	   	   	   	   	   	   	   "E85",
-	   	   	   	   	   	   	   	   "Electricity",
-	   	   	   	   	   	   	   	   "Ethanol",
-	   	   	   	   	   	   	   	   "Gasohol",
-	   	   	   	   	   	   	   	   "Gasoline",
-	   	   	   	   	   	   	   	   "Hydrogen",
-	   	   	   	   	   	   	   	   "LiquifiedNaturalGas",
-	   	   	   	   	   	   	   	   "M85",
-	   	   	   	   	   	   	   	   "Methanol",
-	   	   	   	   	   	   	   	   "Propane",
-	   	   	   	   	   	   	   	   "Other"
-	   	   	   	   	   	   	   ],
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": " A filter on the data based on this comma-separated list of vehicle IDs and externalIds. Example: `vehicleIds=1234,5678,samsara.vin:1HGBH41JXMN109186`",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "vehicleIds",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": " A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "tagIds",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": " A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "parentTagIds",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   }
-	   	   	   	   ],
-	   	   	   	   "responses": {
-	   	   	   	   	   "200": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "data": {
-	   	   	   	   	   	   	   	   	   	   "jurisdictionReports": [
-	   	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "GA",
-	   	   	   	   	   	   	   	   	   	   	   	   "taxPaidLiters": 25.5,
-	   	   	   	   	   	   	   	   	   	   	   	   "taxableMeters": 2350,
-	   	   	   	   	   	   	   	   	   	   	   	   "totalMeters": 2350
-	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "GA",
-	   	   	   	   	   	   	   	   	   	   	   	   "taxPaidLiters": 25.5,
-	   	   	   	   	   	   	   	   	   	   	   	   "taxableMeters": 2350,
-	   	   	   	   	   	   	   	   	   	   	   	   "totalMeters": 2350
-	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "GA",
-	   	   	   	   	   	   	   	   	   	   	   	   "taxPaidLiters": 25.5,
-	   	   	   	   	   	   	   	   	   	   	   	   "taxableMeters": 2350,
-	   	   	   	   	   	   	   	   	   	   	   	   "totalMeters": 2350
-	   	   	   	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   	   	   	   ],
-	   	   	   	   	   	   	   	   	   	   "month": "January",
-	   	   	   	   	   	   	   	   	   	   "quarter": "Q4",
-	   	   	   	   	   	   	   	   	   	   "troubleshooting": {
-	   	   	   	   	   	   	   	   	   	   	   "noPurchasesFound": false,
-	   	   	   	   	   	   	   	   	   	   	   "unassignedFuelTypePurchases": 200,
-	   	   	   	   	   	   	   	   	   	   	   "unassignedFuelTypeVehicles": 2500,
-	   	   	   	   	   	   	   	   	   	   	   "unassignedVehiclePurchases": 2500
-	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   "year": 2021
-	   	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaJurisdictionReportsGetIftaJurisdictionReportsResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "OK response."
-	   	   	   	   	   },
-	   	   	   	   	   "401": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "Invalid token.",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaJurisdictionReportsGetIftaJurisdictionReportsUnauthorizedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Unauthorized response."
-	   	   	   	   	   },
-	   	   	   	   	   "404": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "Object not found.",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaJurisdictionReportsGetIftaJurisdictionReportsNotFoundErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Found response."
-	   	   	   	   	   },
-	   	   	   	   	   "405": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "DELETE not allowed on /endpoint.",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaJurisdictionReportsGetIftaJurisdictionReportsMethodNotAllowedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Method Not Allowed response."
-	   	   	   	   	   },
-	   	   	   	   	   "429": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "Exceeded rate limit.",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaJurisdictionReportsGetIftaJurisdictionReportsTooManyRequestsErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Too Many Requests response."
-	   	   	   	   	   },
-	   	   	   	   	   "500": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "Failed to execute GraphQL query.",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaJurisdictionReportsGetIftaJurisdictionReportsInternalServerErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Internal Server Error response."
-	   	   	   	   	   },
-	   	   	   	   	   "501": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "Not implemented.",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaJurisdictionReportsGetIftaJurisdictionReportsNotImplementedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Implemented response."
-	   	   	   	   	   },
-	   	   	   	   	   "502": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "rpc error: code = Unknown desc = connection refused",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaJurisdictionReportsGetIftaJurisdictionReportsBadGatewayErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Gateway response."
-	   	   	   	   	   },
-	   	   	   	   	   "503": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "context deadline exceeded",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaJurisdictionReportsGetIftaJurisdictionReportsServiceUnavailableErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Service Unavailable response."
-	   	   	   	   	   },
-	   	   	   	   	   "504": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "context deadline exceeded",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaJurisdictionReportsGetIftaJurisdictionReportsGatewayTimeoutErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Gateway Timeout response."
-	   	   	   	   	   },
-	   	   	   	   	   "default": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "Invalid value for parameter.",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaJurisdictionReportsGetIftaJurisdictionReportsBadRequestErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Request response."
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "summary": "[preview] Get IFTA jurisdiction reports.",
-	   	   	   	   "tags": [
-	   	   	   	   	   "Preview APIs"
-	   	   	   	   ]
-	   	   	   }
-	   	   },
-	   	   "/preview/fleet/reports/ifta/vehicle": {
-	   	   	   "get": {
-	   	   	   	   "description": "Get all vehicle IFTA reports for the requested time duration. Data is returned in your organization's defined timezone.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
-	   	   	   	   "operationId": "getIftaVehicleReports",
-	   	   	   	   "parameters": [
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": " The year of the requested IFTA report summary. Must be provided with a month or quarter param. Example: `year=2021`",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "year",
-	   	   	   	   	   	   "required": true,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "maximum": 2100,
-	   	   	   	   	   	   	   "minimum": 2015,
-	   	   	   	   	   	   	   "type": "integer"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": " The month of the requested IFTA report summary. Can not be provided with the quarter param. Example: `month=January`",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "month",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "enum": [
-	   	   	   	   	   	   	   	   "January",
-	   	   	   	   	   	   	   	   "February",
-	   	   	   	   	   	   	   	   "March",
-	   	   	   	   	   	   	   	   "April",
-	   	   	   	   	   	   	   	   "May",
-	   	   	   	   	   	   	   	   "June",
-	   	   	   	   	   	   	   	   "July",
-	   	   	   	   	   	   	   	   "August",
-	   	   	   	   	   	   	   	   "September",
-	   	   	   	   	   	   	   	   "October",
-	   	   	   	   	   	   	   	   "November",
-	   	   	   	   	   	   	   	   "December"
-	   	   	   	   	   	   	   ],
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": " The quarter of the requested IFTA report summary. Can not be provided with the month param. Q1: January, February, March. Q2: April, May, June. Q3: July, August, September. Q4: October, November, December. Example: `quarter=Q1`",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "quarter",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "enum": [
-	   	   	   	   	   	   	   	   "Q1",
-	   	   	   	   	   	   	   	   "Q2",
-	   	   	   	   	   	   	   	   "Q3",
-	   	   	   	   	   	   	   	   "Q4"
-	   	   	   	   	   	   	   ],
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": " A filter on the data based on this comma-separated list of jurisdictions. Example: `jurisdictions=GA`",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "jurisdictions",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": " A filter on the data based on this comma-separated list of IFTA fuel types. Example: `fuelType=Diesel`",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "fuelType",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "enum": [
-	   	   	   	   	   	   	   	   "Unspecified",
-	   	   	   	   	   	   	   	   "A55",
-	   	   	   	   	   	   	   	   "Biodiesel",
-	   	   	   	   	   	   	   	   "CompressedNaturalGas",
-	   	   	   	   	   	   	   	   "Diesel",
-	   	   	   	   	   	   	   	   "E85",
-	   	   	   	   	   	   	   	   "Electricity",
-	   	   	   	   	   	   	   	   "Ethanol",
-	   	   	   	   	   	   	   	   "Gasohol",
-	   	   	   	   	   	   	   	   "Gasoline",
-	   	   	   	   	   	   	   	   "Hydrogen",
-	   	   	   	   	   	   	   	   "LiquifiedNaturalGas",
-	   	   	   	   	   	   	   	   "M85",
-	   	   	   	   	   	   	   	   "Methanol",
-	   	   	   	   	   	   	   	   "Propane",
-	   	   	   	   	   	   	   	   "Other"
-	   	   	   	   	   	   	   ],
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": " A filter on the data based on this comma-separated list of vehicle IDs and externalIds. Example: `vehicleIds=1234,5678,samsara.vin:1HGBH41JXMN109186`",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "vehicleIds",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": " A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "tagIds",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": " A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "parentTagIds",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "after",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   }
-	   	   	   	   ],
-	   	   	   	   "responses": {
-	   	   	   	   	   "200": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "data": {
-	   	   	   	   	   	   	   	   	   	   "month": "January",
-	   	   	   	   	   	   	   	   	   	   "quarter": "Q4",
-	   	   	   	   	   	   	   	   	   	   "troubleshooting": {
-	   	   	   	   	   	   	   	   	   	   	   "noPurchasesFound": false,
-	   	   	   	   	   	   	   	   	   	   	   "unassignedFuelTypePurchases": 200,
-	   	   	   	   	   	   	   	   	   	   	   "unassignedFuelTypeVehicles": 2500,
-	   	   	   	   	   	   	   	   	   	   	   "unassignedVehiclePurchases": 2500
-	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   "vehicleReports": [
-	   	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   	   "jurisdictions": [
-	   	   	   	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "GA",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   "taxPaidLiters": 25.5,
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   "taxableMeters": 2350,
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   "totalMeters": 2350
-	   	   	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "GA",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   "taxPaidLiters": 25.5,
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   "taxableMeters": 2350,
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   "totalMeters": 2350
-	   	   	   	   	   	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   	   	   	   	   	   ],
-	   	   	   	   	   	   	   	   	   	   	   	   "vehicle": {
-	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   	   	   "id": "494123",
-	   	   	   	   	   	   	   	   	   	   	   	   	   "name": "Fleet Truck #1"
-	   	   	   	   	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   	   "jurisdictions": [
-	   	   	   	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "GA",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   "taxPaidLiters": 25.5,
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   "taxableMeters": 2350,
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   "totalMeters": 2350
-	   	   	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   	   	   {
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   "jurisdiction": "GA",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   "taxPaidLiters": 25.5,
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   "taxableMeters": 2350,
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   "totalMeters": 2350
-	   	   	   	   	   	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   	   	   	   	   	   ],
-	   	   	   	   	   	   	   	   	   	   	   	   "vehicle": {
-	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
-	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
-	   	   	   	   	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   	   	   	   	   "id": "494123",
-	   	   	   	   	   	   	   	   	   	   	   	   	   "name": "Fleet Truck #1"
-	   	   	   	   	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   	   	   	   ],
-	   	   	   	   	   	   	   	   	   	   "year": 2021
-	   	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   	   "pagination": {
-	   	   	   	   	   	   	   	   	   	   "endCursor": "MjkY",
-	   	   	   	   	   	   	   	   	   	   "hasNextPage": true
-	   	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaVehicleReportsGetIftaVehicleReportsResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "OK response."
-	   	   	   	   	   },
-	   	   	   	   	   "401": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "Invalid token.",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaVehicleReportsGetIftaVehicleReportsUnauthorizedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Unauthorized response."
-	   	   	   	   	   },
-	   	   	   	   	   "404": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "Object not found.",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaVehicleReportsGetIftaVehicleReportsNotFoundErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Found response."
-	   	   	   	   	   },
-	   	   	   	   	   "405": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "DELETE not allowed on /endpoint.",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaVehicleReportsGetIftaVehicleReportsMethodNotAllowedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Method Not Allowed response."
-	   	   	   	   	   },
-	   	   	   	   	   "429": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "Exceeded rate limit.",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaVehicleReportsGetIftaVehicleReportsTooManyRequestsErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Too Many Requests response."
-	   	   	   	   	   },
-	   	   	   	   	   "500": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "Failed to execute GraphQL query.",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaVehicleReportsGetIftaVehicleReportsInternalServerErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Internal Server Error response."
-	   	   	   	   	   },
-	   	   	   	   	   "501": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "Not implemented.",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaVehicleReportsGetIftaVehicleReportsNotImplementedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Implemented response."
-	   	   	   	   	   },
-	   	   	   	   	   "502": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "rpc error: code = Unknown desc = connection refused",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaVehicleReportsGetIftaVehicleReportsBadGatewayErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Gateway response."
-	   	   	   	   	   },
-	   	   	   	   	   "503": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "context deadline exceeded",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaVehicleReportsGetIftaVehicleReportsServiceUnavailableErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Service Unavailable response."
-	   	   	   	   	   },
-	   	   	   	   	   "504": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "context deadline exceeded",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaVehicleReportsGetIftaVehicleReportsGatewayTimeoutErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Gateway Timeout response."
-	   	   	   	   	   },
-	   	   	   	   	   "default": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "example": {
-	   	   	   	   	   	   	   	   	   "message": "Invalid value for parameter.",
-	   	   	   	   	   	   	   	   	   "requestId": "8916e1c1"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/IftaVehicleReportsGetIftaVehicleReportsBadRequestErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Request response."
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "summary": "[preview] Get IFTA vehicle reports.",
-	   	   	   	   "tags": [
-	   	   	   	   	   "Preview APIs"
 	   	   	   	   ]
 	   	   	   }
 	   	   },
