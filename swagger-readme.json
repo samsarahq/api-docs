@@ -10722,20 +10722,19 @@
 	   	   	   	   "type": "object"
 	   	   	   },
 	   	   	   "GatewaysPostGatewayRequestBody": {
-	   	   	   	   "description": "Activate your Samsara hardware by adding its hardware identifier here. A hardware identifier is either serial number (e.g. 'XXXX-XXX-XXX') or, if a serial number is not provided, a MAC address (e.g. '00:00:00:00:00:00'). This can be done through the Samsara Settings Devices Page or the API at any time.",
 	   	   	   	   "example": {
-	   	   	   	   	   "hardwareIdentifier": "GFRV-43N-VGX"
+	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   },
 	   	   	   	   "properties": {
-	   	   	   	   	   "hardwareIdentifier": {
-	   	   	   	   	   	   "description": "Gateway hardware identifier",
+	   	   	   	   	   "serial": {
+	   	   	   	   	   	   "description": "Gateway serial number",
 	   	   	   	   	   	   "example": "GFRV-43N-VGX",
-	   	   	   	   	   	   "pattern": "^[a-zA-Z0-9]{4}-[a-zA-Z0-9]{3}-[a-zA-Z0-9]{3}$|^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$",
+	   	   	   	   	   	   "pattern": "^[a-zA-Z0-9]{4}-[a-zA-Z0-9]{3}-[a-zA-Z0-9]{3}$",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   }
 	   	   	   	   },
 	   	   	   	   "required": [
-	   	   	   	   	   "hardwareIdentifier"
+	   	   	   	   	   "serial"
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
@@ -48593,7 +48592,7 @@
 	   	   	   	   ]
 	   	   	   },
 	   	   	   "post": {
-	   	   	   	   "description": "Activates a new gateway\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
+	   	   	   	   "description": "Activate a new gateway. To activate a device and associate it with your organization, enter its serial number. Each device's serial number can also be found on its label or packaging, or from your order confirmation email. A Not Found error could mean that the serial was not found or it has already been activated\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
 	   	   	   	   "operationId": "postGateway",
 	   	   	   	   "requestBody": {
 	   	   	   	   	   "content": {
@@ -48763,7 +48762,7 @@
 	   	   	   	   	   	   "description": "Bad Request response."
 	   	   	   	   	   }
 	   	   	   	   },
-	   	   	   	   "summary": "[preview] Activates a new gateway",
+	   	   	   	   "summary": "[preview] Activate a new gateway",
 	   	   	   	   "tags": [
 	   	   	   	   	   "Preview APIs"
 	   	   	   	   ],
@@ -48772,17 +48771,17 @@
 	   	   },
 	   	   "/preview/gateways/{id}": {
 	   	   	   "delete": {
-	   	   	   	   "description": "Deactivates a gateway\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
+	   	   	   	   "description": "Deactivate a gateway\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our [API feedback form](https://forms.gle/r4bs6HQshQAvBuwv6). If you encountered an issue or noticed inaccuracies in the API documentation, please [submit a case](http://samsara.com/help) to our support team.",
 	   	   	   	   "operationId": "deleteGateway",
 	   	   	   	   "parameters": [
 	   	   	   	   	   {
-	   	   	   	   	   	   "description": "Hardware identifier of gateway to delete",
+	   	   	   	   	   	   "description": "Gateway serial number",
 	   	   	   	   	   	   "explode": false,
 	   	   	   	   	   	   "in": "path",
 	   	   	   	   	   	   "name": "id",
 	   	   	   	   	   	   "required": true,
 	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "pattern": "^[a-zA-Z0-9]{4}-[a-zA-Z0-9]{3}-[a-zA-Z0-9]{3}$|^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$",
+	   	   	   	   	   	   	   "pattern": "^[a-zA-Z0-9]{4}-[a-zA-Z0-9]{3}-[a-zA-Z0-9]{3}$",
 	   	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "style": "simple"
@@ -48934,7 +48933,7 @@
 	   	   	   	   	   	   "description": "Bad Request response."
 	   	   	   	   	   }
 	   	   	   	   },
-	   	   	   	   "summary": "[preview] Deactivates a gateway",
+	   	   	   	   "summary": "[preview] Deactivate a gateway",
 	   	   	   	   "tags": [
 	   	   	   	   	   "Preview APIs"
 	   	   	   	   ]
