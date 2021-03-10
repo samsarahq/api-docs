@@ -16338,6 +16338,67 @@
         }
       }
     },
+    "CreateRoutesStopRequestObjectRequestBody": {
+      "type": "object",
+      "properties": {
+        "addressId": {
+          "description": "ID of the address. An address [externalId](https://developers.samsara.com/docs/external-ids#using-external-ids) can also be used interchangeably here.",
+          "type": "string",
+          "example": "45934"
+        },
+        "externalIds": {
+          "description": "A map of external ids",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "example": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          }
+        },
+        "name": {
+          "description": "Name of the stop",
+          "type": "string",
+          "example": "Stop #1"
+        },
+        "notes": {
+          "description": "Notes for the stop",
+          "type": "string",
+          "maxLength": 2000,
+          "example": "These are my notes"
+        },
+        "scheduledArrivalTime": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2019-06-13T19:08:25Z"
+        },
+        "scheduledDepartureTime": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2019-06-13T19:08:25Z"
+        },
+        "singleUseLocation": {
+          "$ref": "#/definitions/RoutesSingleUseAddressObjectRequestBody"
+        }
+      },
+      "example": {
+        "addressId": "45934",
+        "externalIds": {
+          "maintenanceId": "250020",
+          "payrollId": "ABFS18600"
+        },
+        "name": "Stop #1",
+        "notes": "These are my notes",
+        "scheduledArrivalTime": "2019-06-13T19:08:25Z",
+        "scheduledDepartureTime": "2019-06-13T19:08:25Z",
+        "singleUseLocation": {
+          "address": "1234 Main St, San Jose, CA",
+          "latitude": 123.456,
+          "longitude": 37.459
+        }
+      }
+    },
     "CreateTagRequest": {
       "type": "object",
       "required": [
@@ -27816,11 +27877,11 @@
           "$ref": "#/definitions/RouteSettingsRequestBody"
         },
         "stops": {
-          "description": "List of stops along the route",
+          "description": "List of stops along the route. For each stop, exactly one of `addressId` and `singleUseLocation` are required. Depending on the `settings` on your route, either a `scheduledArrivalTime` or `scheduledDepartureTime` must be specified for the first job.",
           "type": "array",
           "minItems": 2,
           "items": {
-            "$ref": "#/definitions/RoutesStopRequestObjectRequestBody"
+            "$ref": "#/definitions/CreateRoutesStopRequestObjectRequestBody"
           },
           "example": [
             {
@@ -27829,7 +27890,6 @@
                 "maintenanceId": "250020",
                 "payrollId": "ABFS18600"
               },
-              "id": "4125",
               "name": "Stop #1",
               "notes": "These are my notes",
               "scheduledArrivalTime": "2019-06-13T19:08:25Z",
@@ -27846,7 +27906,6 @@
                 "maintenanceId": "250020",
                 "payrollId": "ABFS18600"
               },
-              "id": "4125",
               "name": "Stop #1",
               "notes": "These are my notes",
               "scheduledArrivalTime": "2019-06-13T19:08:25Z",
@@ -27863,7 +27922,6 @@
                 "maintenanceId": "250020",
                 "payrollId": "ABFS18600"
               },
-              "id": "4125",
               "name": "Stop #1",
               "notes": "These are my notes",
               "scheduledArrivalTime": "2019-06-13T19:08:25Z",
@@ -27901,7 +27959,6 @@
               "maintenanceId": "250020",
               "payrollId": "ABFS18600"
             },
-            "id": "4125",
             "name": "Stop #1",
             "notes": "These are my notes",
             "scheduledArrivalTime": "2019-06-13T19:08:25Z",
@@ -27918,7 +27975,6 @@
               "maintenanceId": "250020",
               "payrollId": "ABFS18600"
             },
-            "id": "4125",
             "name": "Stop #1",
             "notes": "These are my notes",
             "scheduledArrivalTime": "2019-06-13T19:08:25Z",
@@ -27935,7 +27991,6 @@
               "maintenanceId": "250020",
               "payrollId": "ABFS18600"
             },
-            "id": "4125",
             "name": "Stop #1",
             "notes": "These are my notes",
             "scheduledArrivalTime": "2019-06-13T19:08:25Z",
@@ -30102,10 +30157,10 @@
           "$ref": "#/definitions/RouteSettingsRequestBody"
         },
         "stops": {
-          "description": "List of stops along the route",
+          "description": "List of stops along the route. If a valid `id` of a stop is provided, that stop will be updated. If no `id` is provided for a passed in stop, that stop will be created. If `id` value are passed in for some stops and not for others, those with `id` value specified will be retained and updated in the original route, those without `id` value specified in the body will be created, and those without `id` value specified that already existed on the route will be deleted. For each new stop, exactly one of `addressId` and `singleUseLocation` are required. Depending on the `settings` on your route, either a `scheduledArrivalTime` or `scheduledDepartureTime` must be specified for the first job, if a new first job is being added.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/RoutesStopRequestObjectRequestBody"
+            "$ref": "#/definitions/UpdateRoutesStopRequestObjectRequestBody"
           },
           "example": [
             {
@@ -30593,73 +30648,6 @@
         "address": "1234 Main St, San Jose, CA",
         "latitude": 123.456,
         "longitude": 37.459
-      }
-    },
-    "RoutesStopRequestObjectRequestBody": {
-      "type": "object",
-      "properties": {
-        "addressId": {
-          "description": "ID of the address. An address [externalId](https://developers.samsara.com/docs/external-ids#using-external-ids) can also be used interchangeably here.",
-          "type": "string",
-          "example": "45934"
-        },
-        "externalIds": {
-          "description": "A map of external ids",
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
-          "example": {
-            "maintenanceId": "250020",
-            "payrollId": "ABFS18600"
-          }
-        },
-        "id": {
-          "description": "ID of the stop",
-          "type": "string",
-          "example": "4125"
-        },
-        "name": {
-          "description": "Name of the stop",
-          "type": "string",
-          "example": "Stop #1"
-        },
-        "notes": {
-          "description": "Notes for the stop",
-          "type": "string",
-          "maxLength": 2000,
-          "example": "These are my notes"
-        },
-        "scheduledArrivalTime": {
-          "type": "string",
-          "format": "date-time",
-          "example": "2019-06-13T19:08:25Z"
-        },
-        "scheduledDepartureTime": {
-          "type": "string",
-          "format": "date-time",
-          "example": "2019-06-13T19:08:25Z"
-        },
-        "singleUseLocation": {
-          "$ref": "#/definitions/RoutesSingleUseAddressObjectRequestBody"
-        }
-      },
-      "example": {
-        "addressId": "45934",
-        "externalIds": {
-          "maintenanceId": "250020",
-          "payrollId": "ABFS18600"
-        },
-        "id": "4125",
-        "name": "Stop #1",
-        "notes": "These are my notes",
-        "scheduledArrivalTime": "2019-06-13T19:08:25Z",
-        "scheduledDepartureTime": "2019-06-13T19:08:25Z",
-        "singleUseLocation": {
-          "address": "1234 Main St, San Jose, CA",
-          "latitude": 123.456,
-          "longitude": 37.459
-        }
       }
     },
     "RoutesStopResponseObjectResponseBody": {
@@ -35254,6 +35242,73 @@
           "description": "Time when user signed this DVIR. Defaults to now. UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`.",
           "type": "string",
           "example": "2020-01-27T07:06:25Z"
+        }
+      }
+    },
+    "UpdateRoutesStopRequestObjectRequestBody": {
+      "type": "object",
+      "properties": {
+        "addressId": {
+          "description": "ID of the address. An address [externalId](https://developers.samsara.com/docs/external-ids#using-external-ids) can also be used interchangeably here.",
+          "type": "string",
+          "example": "45934"
+        },
+        "externalIds": {
+          "description": "A map of external ids",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "example": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          }
+        },
+        "id": {
+          "description": "ID of the stop",
+          "type": "string",
+          "example": "4125"
+        },
+        "name": {
+          "description": "Name of the stop",
+          "type": "string",
+          "example": "Stop #1"
+        },
+        "notes": {
+          "description": "Notes for the stop",
+          "type": "string",
+          "maxLength": 2000,
+          "example": "These are my notes"
+        },
+        "scheduledArrivalTime": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2019-06-13T19:08:25Z"
+        },
+        "scheduledDepartureTime": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2019-06-13T19:08:25Z"
+        },
+        "singleUseLocation": {
+          "$ref": "#/definitions/RoutesSingleUseAddressObjectRequestBody"
+        }
+      },
+      "example": {
+        "addressId": "45934",
+        "externalIds": {
+          "maintenanceId": "250020",
+          "payrollId": "ABFS18600"
+        },
+        "id": "4125",
+        "name": "Stop #1",
+        "notes": "These are my notes",
+        "scheduledArrivalTime": "2019-06-13T19:08:25Z",
+        "scheduledDepartureTime": "2019-06-13T19:08:25Z",
+        "singleUseLocation": {
+          "address": "1234 Main St, San Jose, CA",
+          "latitude": 123.456,
+          "longitude": 37.459
         }
       }
     },
