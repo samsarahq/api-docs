@@ -2512,6 +2512,251 @@
         }
       }
     },
+    "/beta/fleet/equipment/{id}": {
+      "patch": {
+        "description": "Update an equipment.  **Note** this implementation of patch uses [the JSON merge patch](https://tools.ietf.org/html/rfc7396) proposed standard.\n This means that any fields included in the patch request will _overwrite_ fields which exist on the target resource.\n For arrays, this means any array included in the request will _replace_ the array that exists at the specified path, it will not _add_ to the existing array\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Beta APIs"
+        ],
+        "summary": "[beta] Update an equipment",
+        "operationId": "patchEquipment",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "The unique Samsara ID of the Equipment. This is automatically generated when the Equipment object is created. It cannot be changed.",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "PatchEquipmentRequestBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EquipmentPatchEquipmentRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/EquipmentPatchEquipmentResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "data": {
+                  "attributes": [
+                    {
+                      "id": "494123",
+                      "name": "Compliance/ELD",
+                      "numberValues": [
+                        867,
+                        5309
+                      ],
+                      "stringValues": [
+                        "HQ",
+                        "Leased"
+                      ]
+                    },
+                    {
+                      "id": "494123",
+                      "name": "Compliance/ELD",
+                      "numberValues": [
+                        867,
+                        5309
+                      ],
+                      "stringValues": [
+                        "HQ",
+                        "Leased"
+                      ]
+                    },
+                    {
+                      "id": "494123",
+                      "name": "Compliance/ELD",
+                      "numberValues": [
+                        867,
+                        5309
+                      ],
+                      "stringValues": [
+                        "HQ",
+                        "Leased"
+                      ]
+                    }
+                  ],
+                  "equipmentSerialNumber": "8V8WD530FLN016251",
+                  "externalIds": {
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
+                  },
+                  "id": "494123",
+                  "installedGateway": {
+                    "model": "VG34",
+                    "serial": "GFRV-43N-VGX"
+                  },
+                  "name": "Equipment-123",
+                  "notes": "These are my equipment notes",
+                  "tags": [
+                    {
+                      "id": "3914",
+                      "name": "East Coast",
+                      "parentTagId": "4815"
+                    },
+                    {
+                      "id": "3914",
+                      "name": "East Coast",
+                      "parentTagId": "4815"
+                    },
+                    {
+                      "id": "3914",
+                      "name": "East Coast",
+                      "parentTagId": "4815"
+                    },
+                    {
+                      "id": "3914",
+                      "name": "East Coast",
+                      "parentTagId": "4815"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/EquipmentPatchEquipmentUnauthorizedErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Invalid token.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/EquipmentPatchEquipmentNotFoundErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Object not found.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/EquipmentPatchEquipmentMethodNotAllowedErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "DELETE not allowed on /endpoint.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/EquipmentPatchEquipmentTooManyRequestsErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Exceeded rate limit.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/EquipmentPatchEquipmentInternalServerErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Failed to execute GraphQL query.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/EquipmentPatchEquipmentNotImplementedErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Not implemented.",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/EquipmentPatchEquipmentBadGatewayErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "rpc error: code = Unknown desc = connection refused",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/EquipmentPatchEquipmentServiceUnavailableErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "context deadline exceeded",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/EquipmentPatchEquipmentGatewayTimeoutErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "context deadline exceeded",
+                "requestId": "8916e1c1"
+              }
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/EquipmentPatchEquipmentBadRequestErrorResponseBody"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Invalid value for parameter.",
+                "requestId": "8916e1c1"
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "The unique Samsara ID of the Equipment. This is automatically generated when the Equipment object is created. It cannot be changed.",
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
     "/beta/fleet/reports/ifta/jurisdiction": {
       "get": {
         "description": "Get all jurisdiction IFTA reports for the requested time duration. Data is returned in your organization's defined timezone.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
@@ -22976,6 +23221,483 @@
         }
       }
     },
+    "EquipmentPatchEquipmentBadGatewayErrorResponseBody": {
+      "description": "Bad Gateway",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "rpc error: code = Unknown desc = connection refused"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "rpc error: code = Unknown desc = connection refused",
+        "requestId": "8916e1c1"
+      }
+    },
+    "EquipmentPatchEquipmentBadRequestErrorResponseBody": {
+      "description": "Bad Request parameters",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid value for parameter."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Invalid value for parameter.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "EquipmentPatchEquipmentGatewayTimeoutErrorResponseBody": {
+      "description": "Gateway timeout",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
+        "requestId": "8916e1c1"
+      }
+    },
+    "EquipmentPatchEquipmentInternalServerErrorResponseBody": {
+      "description": "An internal server error occurred",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Failed to execute GraphQL query."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Failed to execute GraphQL query.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "EquipmentPatchEquipmentMethodNotAllowedErrorResponseBody": {
+      "description": "Method not allowed",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "DELETE not allowed on /endpoint."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "DELETE not allowed on /endpoint.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "EquipmentPatchEquipmentNotFoundErrorResponseBody": {
+      "description": "Resource not found",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Object not found."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Object not found.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "EquipmentPatchEquipmentNotImplementedErrorResponseBody": {
+      "description": "Requested endpoint is not yet implemented",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Not implemented."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Not implemented.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "EquipmentPatchEquipmentRequestBody": {
+      "type": "object",
+      "properties": {
+        "attributes": {
+          "description": "List of attributes associated with the entity",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GoaAttributeTiny"
+          },
+          "example": [
+            {
+              "id": "494123",
+              "name": "Compliance/ELD",
+              "numberValues": [
+                867,
+                5309
+              ],
+              "stringValues": [
+                "HQ",
+                "Leased"
+              ]
+            },
+            {
+              "id": "494123",
+              "name": "Compliance/ELD",
+              "numberValues": [
+                867,
+                5309
+              ],
+              "stringValues": [
+                "HQ",
+                "Leased"
+              ]
+            }
+          ]
+        },
+        "engineHours": {
+          "description": "When you provide a manual engine hours override, Samsara will begin updating a equipment's engine hours used since this override was set.",
+          "type": "integer",
+          "format": "int64",
+          "example": 1234
+        },
+        "equipmentSerialNumber": {
+          "description": "The serial number of the equipment.",
+          "type": "string",
+          "example": "8V8WD530FLN016251"
+        },
+        "externalIds": {
+          "description": "A map of external ids",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "example": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          }
+        },
+        "id": {
+          "description": "The unique Samsara ID of the Equipment. This is automatically generated when the Equipment object is created. It cannot be changed.",
+          "type": "string",
+          "example": "494123"
+        },
+        "name": {
+          "description": "The human-readable name of the Equipment. This is set by a fleet administrator and will appear in both Samsara’s cloud dashboard as well as the Samsara Driver mobile app. By default, this name is the serial number of the Samsara Asset Gateway. It can be set or updated through the Samsara Dashboard or through the API at any time.",
+          "type": "string",
+          "example": "Equipment-123"
+        },
+        "notes": {
+          "description": "These are generic notes about the Equipment. Empty by default. Can be set or updated through the Samsara Dashboard or the API at any time.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "These are my equipment notes"
+        },
+        "odometerMeters": {
+          "description": "When you provide a manual odometer override, Samsara will begin updating a equipment's odometer using GPS distance traveled since this override was set.",
+          "type": "integer",
+          "format": "int64",
+          "example": 1234
+        },
+        "tagIds": {
+          "description": "An array of IDs of tags to associate with this equipment.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "Sint molestias quod quasi."
+          },
+          "example": [
+            "Molestiae laborum dicta nulla recusandae quia.",
+            "Unde odit.",
+            "Labore qui iste dicta placeat deserunt.",
+            "Qui et magni exercitationem id enim."
+          ]
+        }
+      },
+      "example": {
+        "attributes": [
+          {
+            "id": "494123",
+            "name": "Compliance/ELD",
+            "numberValues": [
+              867,
+              5309
+            ],
+            "stringValues": [
+              "HQ",
+              "Leased"
+            ]
+          },
+          {
+            "id": "494123",
+            "name": "Compliance/ELD",
+            "numberValues": [
+              867,
+              5309
+            ],
+            "stringValues": [
+              "HQ",
+              "Leased"
+            ]
+          },
+          {
+            "id": "494123",
+            "name": "Compliance/ELD",
+            "numberValues": [
+              867,
+              5309
+            ],
+            "stringValues": [
+              "HQ",
+              "Leased"
+            ]
+          }
+        ],
+        "engineHours": 1234,
+        "equipmentSerialNumber": "8V8WD530FLN016251",
+        "externalIds": {
+          "maintenanceId": "250020",
+          "payrollId": "ABFS18600"
+        },
+        "id": "494123",
+        "name": "Equipment-123",
+        "notes": "These are my equipment notes",
+        "odometerMeters": 1234,
+        "tagIds": [
+          "Sed tempore optio totam.",
+          "Aspernatur iste."
+        ]
+      }
+    },
+    "EquipmentPatchEquipmentResponseBody": {
+      "type": "object",
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/EquipmentWithAttributesResponseObjectResponseBody"
+        }
+      },
+      "example": {
+        "data": {
+          "attributes": [
+            {
+              "id": "494123",
+              "name": "Compliance/ELD",
+              "numberValues": [
+                867,
+                5309
+              ],
+              "stringValues": [
+                "HQ",
+                "Leased"
+              ]
+            },
+            {
+              "id": "494123",
+              "name": "Compliance/ELD",
+              "numberValues": [
+                867,
+                5309
+              ],
+              "stringValues": [
+                "HQ",
+                "Leased"
+              ]
+            },
+            {
+              "id": "494123",
+              "name": "Compliance/ELD",
+              "numberValues": [
+                867,
+                5309
+              ],
+              "stringValues": [
+                "HQ",
+                "Leased"
+              ]
+            }
+          ],
+          "equipmentSerialNumber": "8V8WD530FLN016251",
+          "externalIds": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          },
+          "id": "494123",
+          "installedGateway": {
+            "model": "VG34",
+            "serial": "GFRV-43N-VGX"
+          },
+          "name": "Equipment-123",
+          "notes": "These are my equipment notes",
+          "tags": [
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            }
+          ]
+        }
+      }
+    },
+    "EquipmentPatchEquipmentServiceUnavailableErrorResponseBody": {
+      "description": "Service unavailable",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
+        "requestId": "8916e1c1"
+      }
+    },
+    "EquipmentPatchEquipmentTooManyRequestsErrorResponseBody": {
+      "description": "Too many requests",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Exceeded rate limit."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Exceeded rate limit.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "EquipmentPatchEquipmentUnauthorizedErrorResponseBody": {
+      "description": "Unauthorized",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid token."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Invalid token.",
+        "requestId": "8916e1c1"
+      }
+    },
     "EquipmentResponse": {
       "description": "A response containing an equipment object.",
       "type": "object",
@@ -23155,6 +23877,171 @@
       "description": "UTC timestamp of the time the data point was generated by the equipment, in RFC3339 format.",
       "type": "string",
       "example": "2019-05-03T04:30:31Z"
+    },
+    "EquipmentWithAttributesResponseObjectResponseBody": {
+      "description": "The equipment object.",
+      "type": "object",
+      "properties": {
+        "attributes": {
+          "description": "List of attributes associated with the entity",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GoaAttributeTinyResponseBody"
+          },
+          "example": [
+            {
+              "id": "494123",
+              "name": "Compliance/ELD",
+              "numberValues": [
+                867,
+                5309
+              ],
+              "stringValues": [
+                "HQ",
+                "Leased"
+              ]
+            },
+            {
+              "id": "494123",
+              "name": "Compliance/ELD",
+              "numberValues": [
+                867,
+                5309
+              ],
+              "stringValues": [
+                "HQ",
+                "Leased"
+              ]
+            }
+          ]
+        },
+        "equipmentSerialNumber": {
+          "description": "The serial number of the equipment.",
+          "type": "string",
+          "example": "8V8WD530FLN016251"
+        },
+        "externalIds": {
+          "description": "A map of external ids",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "example": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          }
+        },
+        "id": {
+          "description": "The unique Samsara ID of the Equipment. This is automatically generated when the Equipment object is created. It cannot be changed.",
+          "type": "string",
+          "example": "494123"
+        },
+        "installedGateway": {
+          "$ref": "#/definitions/GoaGatewayTinyResponseResponseBody"
+        },
+        "name": {
+          "description": "The human-readable name of the Equipment. This is set by a fleet administrator and will appear in both Samsara’s cloud dashboard as well as the Samsara Driver mobile app. By default, this name is the serial number of the Samsara Asset Gateway. It can be set or updated through the Samsara Dashboard or through the API at any time.",
+          "type": "string",
+          "example": "Equipment-123"
+        },
+        "notes": {
+          "description": "These are generic notes about the Equipment. Empty by default. Can be set or updated through the Samsara Dashboard or the API at any time.",
+          "type": "string",
+          "maxLength": 255,
+          "example": "These are my equipment notes"
+        },
+        "tags": {
+          "description": "The list of [tags](https://kb.samsara.com/hc/en-us/articles/360026674631-Using-Tags-and-Tag-Nesting) associated with the Equipment.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GoaTagTinyResponseResponseBody"
+          },
+          "example": [
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            }
+          ]
+        }
+      },
+      "example": {
+        "attributes": [
+          {
+            "id": "494123",
+            "name": "Compliance/ELD",
+            "numberValues": [
+              867,
+              5309
+            ],
+            "stringValues": [
+              "HQ",
+              "Leased"
+            ]
+          },
+          {
+            "id": "494123",
+            "name": "Compliance/ELD",
+            "numberValues": [
+              867,
+              5309
+            ],
+            "stringValues": [
+              "HQ",
+              "Leased"
+            ]
+          }
+        ],
+        "equipmentSerialNumber": "8V8WD530FLN016251",
+        "externalIds": {
+          "maintenanceId": "250020",
+          "payrollId": "ABFS18600"
+        },
+        "id": "494123",
+        "installedGateway": {
+          "model": "VG34",
+          "serial": "GFRV-43N-VGX"
+        },
+        "name": "Equipment-123",
+        "notes": "These are my equipment notes",
+        "tags": [
+          {
+            "id": "3914",
+            "name": "East Coast",
+            "parentTagId": "4815"
+          },
+          {
+            "id": "3914",
+            "name": "East Coast",
+            "parentTagId": "4815"
+          },
+          {
+            "id": "3914",
+            "name": "East Coast",
+            "parentTagId": "4815"
+          },
+          {
+            "id": "3914",
+            "name": "East Coast",
+            "parentTagId": "4815"
+          }
+        ]
+      }
     },
     "ExtendedDriverTinyResponse": {
       "description": "A minified driver object.",
@@ -23665,6 +24552,14 @@
             {
               "model": "VG34",
               "serial": "GFRV-43N-VGX"
+            },
+            {
+              "model": "VG34",
+              "serial": "GFRV-43N-VGX"
+            },
+            {
+              "model": "VG34",
+              "serial": "GFRV-43N-VGX"
             }
           ]
         },
@@ -23674,6 +24569,10 @@
       },
       "example": {
         "data": [
+          {
+            "model": "VG34",
+            "serial": "GFRV-43N-VGX"
+          },
           {
             "model": "VG34",
             "serial": "GFRV-43N-VGX"
@@ -24086,6 +24985,59 @@
         },
         "id": "494123",
         "name": "Company Office #1"
+      }
+    },
+    "GoaAttributeTiny": {
+      "description": "Attribute properties.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Id of the attribute",
+          "type": "string",
+          "example": "494123"
+        },
+        "name": {
+          "description": "Name of the attribute",
+          "type": "string",
+          "example": "Compliance/ELD"
+        },
+        "numberValues": {
+          "description": "List of number values associated with the attribute",
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double",
+            "example": 0.3635325958410958
+          },
+          "example": [
+            867,
+            5309
+          ]
+        },
+        "stringValues": {
+          "description": "List of string values associated with the attribute.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "Ad et repellendus."
+          },
+          "example": [
+            "HQ",
+            "Leased"
+          ]
+        }
+      },
+      "example": {
+        "id": "494123",
+        "name": "Compliance/ELD",
+        "numberValues": [
+          867,
+          5309
+        ],
+        "stringValues": [
+          "HQ",
+          "Leased"
+        ]
       }
     },
     "GoaAttributeTinyRequestBody": {
@@ -26806,14 +27758,6 @@
               ],
               "objectId": "12345",
               "objectType": "Driver"
-            },
-            {
-              "externalIds": [
-                "payroll:4841",
-                "maintenance:250020"
-              ],
-              "objectId": "12345",
-              "objectType": "Driver"
             }
           ]
         },
@@ -26829,10 +27773,6 @@
             "$ref": "#/definitions/TriggerMatchObjectResponseBody"
           },
           "example": [
-            {
-              "occurredAtTime": "2019-06-13T19:08:25Z",
-              "triggerType": "DVIRDefectCreatedDevice"
-            },
             {
               "occurredAtTime": "2019-06-13T19:08:25Z",
               "triggerType": "DVIRDefectCreatedDevice"
@@ -26866,30 +27806,10 @@
             ],
             "objectId": "12345",
             "objectType": "Driver"
-          },
-          {
-            "externalIds": [
-              "payroll:4841",
-              "maintenance:250020"
-            ],
-            "objectId": "12345",
-            "objectType": "Driver"
-          },
-          {
-            "externalIds": [
-              "payroll:4841",
-              "maintenance:250020"
-            ],
-            "objectId": "12345",
-            "objectType": "Driver"
           }
         ],
         "occurredAtTime": "2019-06-13T19:08:25Z",
         "triggersSatisfied": [
-          {
-            "occurredAtTime": "2019-06-13T19:08:25Z",
-            "triggerType": "DVIRDefectCreatedDevice"
-          },
           {
             "occurredAtTime": "2019-06-13T19:08:25Z",
             "triggerType": "DVIRDefectCreatedDevice"
@@ -35142,7 +36062,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Sequi accusantium vitae nulla."
+            "example": "Ducimus nam sunt voluptate."
           },
           "example": [
             "payroll:4841",
@@ -45053,14 +45973,6 @@
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
                   "triggerType": "DVIRDefectCreatedDevice"
-                },
-                {
-                  "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "DVIRDefectCreatedDevice"
-                },
-                {
-                  "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "DVIRDefectCreatedDevice"
                 }
               ]
             },
@@ -45109,14 +46021,6 @@
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
                   "triggerType": "DVIRDefectCreatedDevice"
-                },
-                {
-                  "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "DVIRDefectCreatedDevice"
-                },
-                {
-                  "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "DVIRDefectCreatedDevice"
                 }
               ]
             },
@@ -45158,14 +46062,6 @@
               ],
               "occurredAtTime": "2019-06-13T19:08:25Z",
               "triggersSatisfied": [
-                {
-                  "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "DVIRDefectCreatedDevice"
-                },
-                {
-                  "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "DVIRDefectCreatedDevice"
-                },
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
                   "triggerType": "DVIRDefectCreatedDevice"
@@ -45229,7 +46125,47 @@
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
                 "triggerType": "DVIRDefectCreatedDevice"
+              }
+            ]
+          },
+          {
+            "createdAtTime": "2019-06-13T19:08:25Z",
+            "objects": [
+              {
+                "externalIds": [
+                  "payroll:4841",
+                  "maintenance:250020"
+                ],
+                "objectId": "12345",
+                "objectType": "Driver"
               },
+              {
+                "externalIds": [
+                  "payroll:4841",
+                  "maintenance:250020"
+                ],
+                "objectId": "12345",
+                "objectType": "Driver"
+              },
+              {
+                "externalIds": [
+                  "payroll:4841",
+                  "maintenance:250020"
+                ],
+                "objectId": "12345",
+                "objectType": "Driver"
+              },
+              {
+                "externalIds": [
+                  "payroll:4841",
+                  "maintenance:250020"
+                ],
+                "objectId": "12345",
+                "objectType": "Driver"
+              }
+            ],
+            "occurredAtTime": "2019-06-13T19:08:25Z",
+            "triggersSatisfied": [
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
                 "triggerType": "DVIRDefectCreatedDevice"
@@ -45285,7 +46221,47 @@
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
                 "triggerType": "DVIRDefectCreatedDevice"
+              }
+            ]
+          },
+          {
+            "createdAtTime": "2019-06-13T19:08:25Z",
+            "objects": [
+              {
+                "externalIds": [
+                  "payroll:4841",
+                  "maintenance:250020"
+                ],
+                "objectId": "12345",
+                "objectType": "Driver"
               },
+              {
+                "externalIds": [
+                  "payroll:4841",
+                  "maintenance:250020"
+                ],
+                "objectId": "12345",
+                "objectType": "Driver"
+              },
+              {
+                "externalIds": [
+                  "payroll:4841",
+                  "maintenance:250020"
+                ],
+                "objectId": "12345",
+                "objectType": "Driver"
+              },
+              {
+                "externalIds": [
+                  "payroll:4841",
+                  "maintenance:250020"
+                ],
+                "objectId": "12345",
+                "objectType": "Driver"
+              }
+            ],
+            "occurredAtTime": "2019-06-13T19:08:25Z",
+            "triggersSatisfied": [
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
                 "triggerType": "DVIRDefectCreatedDevice"
@@ -45602,14 +46578,6 @@
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
                   "triggerType": "DVIRDefectCreatedDevice"
-                },
-                {
-                  "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "DVIRDefectCreatedDevice"
-                },
-                {
-                  "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "DVIRDefectCreatedDevice"
                 }
               ]
             },
@@ -45658,14 +46626,6 @@
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
                   "triggerType": "DVIRDefectCreatedDevice"
-                },
-                {
-                  "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "DVIRDefectCreatedDevice"
-                },
-                {
-                  "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "DVIRDefectCreatedDevice"
                 }
               ]
             },
@@ -45707,70 +46667,6 @@
               ],
               "occurredAtTime": "2019-06-13T19:08:25Z",
               "triggersSatisfied": [
-                {
-                  "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "DVIRDefectCreatedDevice"
-                },
-                {
-                  "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "DVIRDefectCreatedDevice"
-                },
-                {
-                  "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "DVIRDefectCreatedDevice"
-                },
-                {
-                  "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "DVIRDefectCreatedDevice"
-                }
-              ]
-            },
-            {
-              "createdAtTime": "2019-06-13T19:08:25Z",
-              "objects": [
-                {
-                  "externalIds": [
-                    "payroll:4841",
-                    "maintenance:250020"
-                  ],
-                  "objectId": "12345",
-                  "objectType": "Driver"
-                },
-                {
-                  "externalIds": [
-                    "payroll:4841",
-                    "maintenance:250020"
-                  ],
-                  "objectId": "12345",
-                  "objectType": "Driver"
-                },
-                {
-                  "externalIds": [
-                    "payroll:4841",
-                    "maintenance:250020"
-                  ],
-                  "objectId": "12345",
-                  "objectType": "Driver"
-                },
-                {
-                  "externalIds": [
-                    "payroll:4841",
-                    "maintenance:250020"
-                  ],
-                  "objectId": "12345",
-                  "objectType": "Driver"
-                }
-              ],
-              "occurredAtTime": "2019-06-13T19:08:25Z",
-              "triggersSatisfied": [
-                {
-                  "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "DVIRDefectCreatedDevice"
-                },
-                {
-                  "occurredAtTime": "2019-06-13T19:08:25Z",
-                  "triggerType": "DVIRDefectCreatedDevice"
-                },
                 {
                   "occurredAtTime": "2019-06-13T19:08:25Z",
                   "triggerType": "DVIRDefectCreatedDevice"
@@ -45834,14 +46730,6 @@
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
                 "triggerType": "DVIRDefectCreatedDevice"
-              },
-              {
-                "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "DVIRDefectCreatedDevice"
-              },
-              {
-                "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "DVIRDefectCreatedDevice"
               }
             ]
           },
@@ -45883,126 +46771,6 @@
             ],
             "occurredAtTime": "2019-06-13T19:08:25Z",
             "triggersSatisfied": [
-              {
-                "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "DVIRDefectCreatedDevice"
-              },
-              {
-                "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "DVIRDefectCreatedDevice"
-              },
-              {
-                "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "DVIRDefectCreatedDevice"
-              },
-              {
-                "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "DVIRDefectCreatedDevice"
-              }
-            ]
-          },
-          {
-            "createdAtTime": "2019-06-13T19:08:25Z",
-            "objects": [
-              {
-                "externalIds": [
-                  "payroll:4841",
-                  "maintenance:250020"
-                ],
-                "objectId": "12345",
-                "objectType": "Driver"
-              },
-              {
-                "externalIds": [
-                  "payroll:4841",
-                  "maintenance:250020"
-                ],
-                "objectId": "12345",
-                "objectType": "Driver"
-              },
-              {
-                "externalIds": [
-                  "payroll:4841",
-                  "maintenance:250020"
-                ],
-                "objectId": "12345",
-                "objectType": "Driver"
-              },
-              {
-                "externalIds": [
-                  "payroll:4841",
-                  "maintenance:250020"
-                ],
-                "objectId": "12345",
-                "objectType": "Driver"
-              }
-            ],
-            "occurredAtTime": "2019-06-13T19:08:25Z",
-            "triggersSatisfied": [
-              {
-                "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "DVIRDefectCreatedDevice"
-              },
-              {
-                "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "DVIRDefectCreatedDevice"
-              },
-              {
-                "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "DVIRDefectCreatedDevice"
-              },
-              {
-                "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "DVIRDefectCreatedDevice"
-              }
-            ]
-          },
-          {
-            "createdAtTime": "2019-06-13T19:08:25Z",
-            "objects": [
-              {
-                "externalIds": [
-                  "payroll:4841",
-                  "maintenance:250020"
-                ],
-                "objectId": "12345",
-                "objectType": "Driver"
-              },
-              {
-                "externalIds": [
-                  "payroll:4841",
-                  "maintenance:250020"
-                ],
-                "objectId": "12345",
-                "objectType": "Driver"
-              },
-              {
-                "externalIds": [
-                  "payroll:4841",
-                  "maintenance:250020"
-                ],
-                "objectId": "12345",
-                "objectType": "Driver"
-              },
-              {
-                "externalIds": [
-                  "payroll:4841",
-                  "maintenance:250020"
-                ],
-                "objectId": "12345",
-                "objectType": "Driver"
-              }
-            ],
-            "occurredAtTime": "2019-06-13T19:08:25Z",
-            "triggersSatisfied": [
-              {
-                "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "DVIRDefectCreatedDevice"
-              },
-              {
-                "occurredAtTime": "2019-06-13T19:08:25Z",
-                "triggerType": "DVIRDefectCreatedDevice"
-              },
               {
                 "occurredAtTime": "2019-06-13T19:08:25Z",
                 "triggerType": "DVIRDefectCreatedDevice"
