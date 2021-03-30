@@ -23935,6 +23935,294 @@
         ]
       }
     },
+    "EngineImmobilizerUpdateEngineImmobilizerStateBadGatewayErrorResponseBody": {
+      "description": "Bad Gateway",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "rpc error: code = Unknown desc = connection refused"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "rpc error: code = Unknown desc = connection refused",
+        "requestId": "8916e1c1"
+      }
+    },
+    "EngineImmobilizerUpdateEngineImmobilizerStateBadRequestErrorResponseBody": {
+      "description": "Bad Request parameters",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid value for parameter."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Invalid value for parameter.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "EngineImmobilizerUpdateEngineImmobilizerStateGatewayTimeoutErrorResponseBody": {
+      "description": "Gateway timeout",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
+        "requestId": "8916e1c1"
+      }
+    },
+    "EngineImmobilizerUpdateEngineImmobilizerStateInternalServerErrorResponseBody": {
+      "description": "An internal server error occurred",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Failed to execute GraphQL query."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Failed to execute GraphQL query.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "EngineImmobilizerUpdateEngineImmobilizerStateMethodNotAllowedErrorResponseBody": {
+      "description": "Method not allowed",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "DELETE not allowed on /endpoint."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "DELETE not allowed on /endpoint.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "EngineImmobilizerUpdateEngineImmobilizerStateNotFoundErrorResponseBody": {
+      "description": "Resource not found",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Object not found."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Object not found.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "EngineImmobilizerUpdateEngineImmobilizerStateNotImplementedErrorResponseBody": {
+      "description": "Requested endpoint is not yet implemented",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Not implemented."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Not implemented.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "EngineImmobilizerUpdateEngineImmobilizerStateRequestBody": {
+      "type": "object",
+      "required": [
+        "state"
+      ],
+      "properties": {
+        "state": {
+          "description": "Desired state of engine immobilizer.",
+          "type": "string",
+          "enum": [
+            "ignition_disabled",
+            "ignition_enabled"
+          ],
+          "example": "ignition_disabled"
+        }
+      },
+      "example": {
+        "state": "ignition_disabled"
+      }
+    },
+    "EngineImmobilizerUpdateEngineImmobilizerStateResponseBody": {
+      "type": "object",
+      "required": [
+        "id",
+        "state"
+      ],
+      "properties": {
+        "id": {
+          "description": "Vehicle ID",
+          "type": "integer",
+          "format": "int64",
+          "example": 1234
+        },
+        "state": {
+          "description": "Requested state of the engine immobilizer.",
+          "type": "string",
+          "enum": [
+            "ignition_enabled",
+            "ignition_disabled"
+          ],
+          "example": "ignition_disabled"
+        }
+      },
+      "example": {
+        "id": 1234,
+        "state": "ignition_disabled"
+      }
+    },
+    "EngineImmobilizerUpdateEngineImmobilizerStateServiceUnavailableErrorResponseBody": {
+      "description": "Service unavailable",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
+        "requestId": "8916e1c1"
+      }
+    },
+    "EngineImmobilizerUpdateEngineImmobilizerStateTooManyRequestsErrorResponseBody": {
+      "description": "Too many requests",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Exceeded rate limit."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Exceeded rate limit.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "EngineImmobilizerUpdateEngineImmobilizerStateUnauthorizedErrorResponseBody": {
+      "description": "Unauthorized",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid token."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Invalid token.",
+        "requestId": "8916e1c1"
+      }
+    },
     "Equipment": {
       "description": "An equipment object.",
       "type": "object",
