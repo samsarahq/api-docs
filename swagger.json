@@ -44283,6 +44283,9 @@
             "payrollId": "ABFS18600"
           }
         },
+        "gatewaySerial": {
+          "$ref": "#/definitions/UserIdentifierSerial"
+        },
         "harshAccelerationSettingType": {
           "description": "The harsh acceleration setting type. This setting influences the acceleration sensitivity from which a [harsh event](https://kb.samsara.com/hc/en-us/articles/360006938891-Harsh-Events) is triggered. **By default**, this setting is inferred by the Samsara Vehicle Gateway from the engine computer, but it may be set or updated through the Samsara Dashboard or the API at any time. If set to `off`, then no acceleration based harsh events are triggered for the vehicle.",
           "type": "string",
@@ -44385,6 +44388,11 @@
       "description": "ID of the user.",
       "type": "string",
       "example": "123"
+    },
+    "UserIdentifierSerial": {
+      "description": "The serial number of the gateway.",
+      "type": "string",
+      "example": "ABCD-123-XYZ"
     },
     "UserName": {
       "description": "The first and last name of the user.",
@@ -49061,6 +49069,9 @@
         },
         "externalIds": {
           "$ref": "#/definitions/VehicleExternalIds"
+        },
+        "gateway": {
+          "$ref": "#/definitions/gatewayTiny"
         },
         "harshAccelerationSettingType": {
           "$ref": "#/definitions/VehicleHarshAccelerationSettingType"
@@ -55838,6 +55849,22 @@
         "requiredField": true,
         "signatureFieldTypeMetaData": {
           "legalText": "Dicta amet asperiores magni aperiam fugit."
+        }
+      }
+    },
+    "gatewayTiny": {
+      "description": "A minified gateway including serial number and model.",
+      "type": "object",
+      "properties": {
+        "model": {
+          "description": "The gateway model",
+          "type": "string",
+          "example": "VG34"
+        },
+        "serial": {
+          "description": "The serial number of the gateway.",
+          "type": "string",
+          "example": "ABCD-123-XYZ"
         }
       }
     },
