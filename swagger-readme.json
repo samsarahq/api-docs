@@ -18154,6 +18154,44 @@
 	   	   	   	   "description": "Time spent with power take off enabled while idling in milliseconds.",
 	   	   	   	   "type": "number"
 	   	   	   },
+	   	   	   "ReeferAlarmObjectResponseBody": {
+	   	   	   	   "example": {
+	   	   	   	   	   "alarmCode": "Ut quia qui sint.",
+	   	   	   	   	   "description": "Cum nam voluptatum nihil est.",
+	   	   	   	   	   "operatorAction": "Est nemo nisi.",
+	   	   	   	   	   "severity": "yellow"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "alarmCode": {
+	   	   	   	   	   	   "description": "ID of the alarm.",
+	   	   	   	   	   	   "example": "Eos dolor magni mollitia.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "description": {
+	   	   	   	   	   	   "description": "Description of the alarm.",
+	   	   	   	   	   	   "example": "A sequi.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "operatorAction": {
+	   	   	   	   	   	   "description": "Recommended operator action.",
+	   	   	   	   	   	   "example": "Sunt molestiae fuga quisquam distinctio nostrum.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "severity": {
+	   	   	   	   	   	   "description": "Severity of the alarm",
+	   	   	   	   	   	   "enum": [
+	   	   	   	   	   	   	   "none",
+	   	   	   	   	   	   	   "green",
+	   	   	   	   	   	   	   "yellow",
+	   	   	   	   	   	   	   "red",
+	   	   	   	   	   	   	   "orange"
+	   	   	   	   	   	   ],
+	   	   	   	   	   	   "example": "yellow",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "type": "object"
+	   	   	   },
 	   	   	   "ReeferAlarmResponseBody": {
 	   	   	   	   "example": {
 	   	   	   	   	   "alarmCode": "Et repellendus quo aspernatur.",
@@ -18189,6 +18227,1624 @@
 	   	   	   	   	   "description",
 	   	   	   	   	   "operatorAction",
 	   	   	   	   	   "severity"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "ReeferAlarmStatObjectResponseBody": {
+	   	   	   	   "description": "Alarms reported by the reefer.",
+	   	   	   	   "example": {
+	   	   	   	   	   "alarms": [
+	   	   	   	   	   	   {
+	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   {
+	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   }
+	   	   	   	   	   ],
+	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "alarms": {
+	   	   	   	   	   	   "description": "All alarms that were reported at the time.",
+	   	   	   	   	   	   "example": [
+	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   ],
+	   	   	   	   	   	   "items": {
+	   	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferAlarmObjectResponseBody"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "type": "array"
+	   	   	   	   	   },
+	   	   	   	   	   "changedAtTime": {
+	   	   	   	   	   	   "description": "Time in RFC 3339 format.",
+	   	   	   	   	   	   "example": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "ReeferAmbientAirTempStatObjectResponseBody": {
+	   	   	   	   "description": "Ambient temperature of the reefer. This is the temperature of the air around the Samsara Gateway.",
+	   	   	   	   "example": {
+	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "changedAtTime": {
+	   	   	   	   	   	   "description": "Time in RFC 3339 format.",
+	   	   	   	   	   	   "example": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "tempInMilliC": {
+	   	   	   	   	   	   "description": "Temperature in millidegree Celsius.",
+	   	   	   	   	   	   "example": 5423000,
+	   	   	   	   	   	   "format": "int64",
+	   	   	   	   	   	   "type": "integer"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "ReeferDefrostStatObjectResponseBody": {
+	   	   	   	   "description": "Defrost status of the reefer.",
+	   	   	   	   "example": {
+	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   "status": "not defrosting"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "changedAtTime": {
+	   	   	   	   	   	   "description": "Time in RFC 3339 format.",
+	   	   	   	   	   	   "example": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "status": {
+	   	   	   	   	   	   "description": "Status of the defrost mode.",
+	   	   	   	   	   	   "enum": [
+	   	   	   	   	   	   	   "not defrosting",
+	   	   	   	   	   	   	   "defrosting"
+	   	   	   	   	   	   ],
+	   	   	   	   	   	   "example": "not defrosting",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "ReeferDischargeAirZonedTempStatObjectResponseBody": {
+	   	   	   	   "description": "Discharge air temperature of the reefer. This is the temperature of the air as it leaves the cooling unit.",
+	   	   	   	   "example": {
+	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   },
+	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   },
+	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferTempStatObjectResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferTempStatObjectResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferTempStatObjectResponseBody"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "ReeferDoorStatObjectResponseBody": {
+	   	   	   	   "example": {
+	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   "status": "open"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "changedAtTime": {
+	   	   	   	   	   	   "description": "Time in RFC 3339 format.",
+	   	   	   	   	   	   "example": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "status": {
+	   	   	   	   	   	   "description": "Status of the door.",
+	   	   	   	   	   	   "enum": [
+	   	   	   	   	   	   	   "closed",
+	   	   	   	   	   	   	   "open"
+	   	   	   	   	   	   ],
+	   	   	   	   	   	   "example": "open",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "ReeferEngineHoursStatObjectResponseBody": {
+	   	   	   	   "example": {
+	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   "engineHours": 5423000
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "changedAtTime": {
+	   	   	   	   	   	   "description": "Time in RFC 3339 format.",
+	   	   	   	   	   	   "example": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "engineHours": {
+	   	   	   	   	   	   "description": "Engine hours of the reefer.",
+	   	   	   	   	   	   "example": 5423000,
+	   	   	   	   	   	   "format": "int64",
+	   	   	   	   	   	   "type": "integer"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "ReeferReturnAirZonedTempStatObjectResponseBody": {
+	   	   	   	   "description": "Return air temperature of the reefer. This is the temperature read by the reefer module (Carrier, Thermo King) that shows the temperature of the air as it enters the system.",
+	   	   	   	   "example": {
+	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   },
+	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   },
+	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferTempStatObjectResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferTempStatObjectResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferTempStatObjectResponseBody"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "ReeferStateStatObjectResponseBody": {
+	   	   	   	   "example": {
+	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   "state": "error"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "changedAtTime": {
+	   	   	   	   	   	   "description": "Time in RFC 3339 format.",
+	   	   	   	   	   	   "example": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "state": {
+	   	   	   	   	   	   "description": "State of the reefer",
+	   	   	   	   	   	   "enum": [
+	   	   	   	   	   	   	   "off",
+	   	   	   	   	   	   	   "active",
+	   	   	   	   	   	   	   "error",
+	   	   	   	   	   	   	   "inactive"
+	   	   	   	   	   	   ],
+	   	   	   	   	   	   "example": "active",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "ReeferStatsSnapshotObjectResponseBody": {
+	   	   	   	   "description": "Contains the latest state changes of the reefer for the included stat types. Each state change is recorded independently.",
+	   	   	   	   "example": {
+	   	   	   	   	   "alarms": {
+	   	   	   	   	   	   "alarms": [
+	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   ],
+	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z"
+	   	   	   	   	   },
+	   	   	   	   	   "ambientAirTemperature": {
+	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   },
+	   	   	   	   	   "defrost": {
+	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "status": "not defrosting"
+	   	   	   	   	   },
+	   	   	   	   	   "dischargeAirTemperature": {
+	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   }
+	   	   	   	   	   },
+	   	   	   	   	   "door": {
+	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   	   }
+	   	   	   	   	   },
+	   	   	   	   	   "engineHours": {
+	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   "engineHours": 5423000
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   "engineHours": 5423000
+	   	   	   	   	   	   }
+	   	   	   	   	   },
+	   	   	   	   	   "returnAirTemperature": {
+	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   }
+	   	   	   	   	   },
+	   	   	   	   	   "setPoint": {
+	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   }
+	   	   	   	   	   },
+	   	   	   	   	   "state": {
+	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "state": "off",
+	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   	   }
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "alarms": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferAlarmStatObjectResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "ambientAirTemperature": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferAmbientAirTempStatObjectResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "defrost": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferDefrostStatObjectResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "dischargeAirTemperature": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferDischargeAirZonedTempStatObjectResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "door": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferZonedDoorStatObjectResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "engineHours": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferZonedEngineHoursStatObjectResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "returnAirTemperature": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferReturnAirZonedTempStatObjectResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "setPoint": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferZonedSetPointStatObjectResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "state": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferZonedStateStatObjectResponseBody"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "ReeferTempStatObjectResponseBody": {
+	   	   	   	   "example": {
+	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "changedAtTime": {
+	   	   	   	   	   	   "description": "Time in RFC 3339 format.",
+	   	   	   	   	   	   "example": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "tempInMilliC": {
+	   	   	   	   	   	   "description": "Temperature in millidegree Celsius.",
+	   	   	   	   	   	   "example": 5423000,
+	   	   	   	   	   	   "format": "int64",
+	   	   	   	   	   	   "type": "integer"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "ReeferZonedDoorStatObjectResponseBody": {
+	   	   	   	   "description": "Door status of the reefer.",
+	   	   	   	   "example": {
+	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   },
+	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   },
+	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferDoorStatObjectResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferDoorStatObjectResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferDoorStatObjectResponseBody"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "ReeferZonedEngineHoursStatObjectResponseBody": {
+	   	   	   	   "description": "Engine hours of the reefer.",
+	   	   	   	   "example": {
+	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "engineHours": 5423000
+	   	   	   	   	   },
+	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "engineHours": 5423000
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferEngineHoursStatObjectResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferEngineHoursStatObjectResponseBody"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "ReeferZonedSetPointStatObjectResponseBody": {
+	   	   	   	   "description": "Set point temperature of the reefer.",
+	   	   	   	   "example": {
+	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   },
+	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   },
+	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferTempStatObjectResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferTempStatObjectResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferTempStatObjectResponseBody"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "ReeferZonedStateStatObjectResponseBody": {
+	   	   	   	   "description": "State of the reefer.",
+	   	   	   	   "example": {
+	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   "state": "active",
+	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   },
+	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   },
+	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "changedAtTime": {
+	   	   	   	   	   	   "description": "Time in RFC 3339 format.",
+	   	   	   	   	   	   "example": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "state": {
+	   	   	   	   	   	   "description": "State of the reefer",
+	   	   	   	   	   	   "enum": [
+	   	   	   	   	   	   	   "off",
+	   	   	   	   	   	   	   "active",
+	   	   	   	   	   	   	   "error",
+	   	   	   	   	   	   	   "inactive"
+	   	   	   	   	   	   ],
+	   	   	   	   	   	   "example": "active",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferStateStatObjectResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferStateStatObjectResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferStateStatObjectResponseBody"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "ReefersGetVehicleReeferStatsSnapshotBadGatewayErrorResponseBody": {
+	   	   	   	   "description": "Bad Gateway",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "rpc error: code = Unknown desc = connection refused",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "rpc error: code = Unknown desc = connection refused",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "ReefersGetVehicleReeferStatsSnapshotBadRequestErrorResponseBody": {
+	   	   	   	   "description": "Bad Request parameters",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "Invalid value for parameter.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "Invalid value for parameter.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "ReefersGetVehicleReeferStatsSnapshotGatewayTimeoutErrorResponseBody": {
+	   	   	   	   "description": "Gateway timeout",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "context deadline exceeded",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "ReefersGetVehicleReeferStatsSnapshotInternalServerErrorResponseBody": {
+	   	   	   	   "description": "An internal server error occurred",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "Failed to execute GraphQL query.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "Failed to execute GraphQL query.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "ReefersGetVehicleReeferStatsSnapshotMethodNotAllowedErrorResponseBody": {
+	   	   	   	   "description": "Method not allowed",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "DELETE not allowed on /endpoint.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "DELETE not allowed on /endpoint.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "ReefersGetVehicleReeferStatsSnapshotNotFoundErrorResponseBody": {
+	   	   	   	   "description": "Resource not found",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "Object not found.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "Object not found.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "ReefersGetVehicleReeferStatsSnapshotNotImplementedErrorResponseBody": {
+	   	   	   	   "description": "Requested endpoint is not yet implemented",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "Not implemented.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "Not implemented.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "ReefersGetVehicleReeferStatsSnapshotResponseBody": {
+	   	   	   	   "example": {
+	   	   	   	   	   "data": [
+	   	   	   	   	   	   {
+	   	   	   	   	   	   	   "id": "494123",
+	   	   	   	   	   	   	   "make": "Carrier EU",
+	   	   	   	   	   	   	   "model": "Xarios",
+	   	   	   	   	   	   	   "name": "Vehicle-123",
+	   	   	   	   	   	   	   "stats": {
+	   	   	   	   	   	   	   	   "alarms": {
+	   	   	   	   	   	   	   	   	   "alarms": [
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "ambientAirTemperature": {
+	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "defrost": {
+	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "status": "not defrosting"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "dischargeAirTemperature": {
+	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "door": {
+	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "engineHours": {
+	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "engineHours": 5423000
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "engineHours": 5423000
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "returnAirTemperature": {
+	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "setPoint": {
+	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "state": {
+	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "state": "off",
+	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "tags": [
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   ]
+	   	   	   	   	   	   },
+	   	   	   	   	   	   {
+	   	   	   	   	   	   	   "id": "494123",
+	   	   	   	   	   	   	   "make": "Carrier EU",
+	   	   	   	   	   	   	   "model": "Xarios",
+	   	   	   	   	   	   	   "name": "Vehicle-123",
+	   	   	   	   	   	   	   "stats": {
+	   	   	   	   	   	   	   	   "alarms": {
+	   	   	   	   	   	   	   	   	   "alarms": [
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "ambientAirTemperature": {
+	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "defrost": {
+	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "status": "not defrosting"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "dischargeAirTemperature": {
+	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "door": {
+	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "engineHours": {
+	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "engineHours": 5423000
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "engineHours": 5423000
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "returnAirTemperature": {
+	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "setPoint": {
+	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "state": {
+	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "state": "off",
+	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "tags": [
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   ]
+	   	   	   	   	   	   },
+	   	   	   	   	   	   {
+	   	   	   	   	   	   	   "id": "494123",
+	   	   	   	   	   	   	   "make": "Carrier EU",
+	   	   	   	   	   	   	   "model": "Xarios",
+	   	   	   	   	   	   	   "name": "Vehicle-123",
+	   	   	   	   	   	   	   "stats": {
+	   	   	   	   	   	   	   	   "alarms": {
+	   	   	   	   	   	   	   	   	   "alarms": [
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "ambientAirTemperature": {
+	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "defrost": {
+	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "status": "not defrosting"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "dischargeAirTemperature": {
+	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "door": {
+	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "engineHours": {
+	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "engineHours": 5423000
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "engineHours": 5423000
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "returnAirTemperature": {
+	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "setPoint": {
+	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "state": {
+	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   "state": "off",
+	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "tags": [
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   ]
+	   	   	   	   	   	   }
+	   	   	   	   	   ],
+	   	   	   	   	   "pagination": {
+	   	   	   	   	   	   "endCursor": "MjkY",
+	   	   	   	   	   	   "hasNextPage": true
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "data": {
+	   	   	   	   	   	   "description": "List of reefers with each reefer containing the latest stats associated with it. Zone specific stats are shown where appropriate, 'Zone 1' can be considered to be the main reefer unit where only one zone exists.",
+	   	   	   	   	   	   "example": [
+	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "id": "494123",
+	   	   	   	   	   	   	   	   "make": "Carrier EU",
+	   	   	   	   	   	   	   	   "model": "Xarios",
+	   	   	   	   	   	   	   	   "name": "Vehicle-123",
+	   	   	   	   	   	   	   	   "stats": {
+	   	   	   	   	   	   	   	   	   "alarms": {
+	   	   	   	   	   	   	   	   	   	   "alarms": [
+	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "ambientAirTemperature": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "defrost": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "status": "not defrosting"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "dischargeAirTemperature": {
+	   	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "door": {
+	   	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "engineHours": {
+	   	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "engineHours": 5423000
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "engineHours": 5423000
+	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "returnAirTemperature": {
+	   	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "setPoint": {
+	   	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "state": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "state": "off",
+	   	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "tags": [
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   ]
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "id": "494123",
+	   	   	   	   	   	   	   	   "make": "Carrier EU",
+	   	   	   	   	   	   	   	   "model": "Xarios",
+	   	   	   	   	   	   	   	   "name": "Vehicle-123",
+	   	   	   	   	   	   	   	   "stats": {
+	   	   	   	   	   	   	   	   	   "alarms": {
+	   	   	   	   	   	   	   	   	   	   "alarms": [
+	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "ambientAirTemperature": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "defrost": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "status": "not defrosting"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "dischargeAirTemperature": {
+	   	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "door": {
+	   	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "engineHours": {
+	   	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "engineHours": 5423000
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "engineHours": 5423000
+	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "returnAirTemperature": {
+	   	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "setPoint": {
+	   	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "state": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "state": "off",
+	   	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "tags": [
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   ]
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "id": "494123",
+	   	   	   	   	   	   	   	   "make": "Carrier EU",
+	   	   	   	   	   	   	   	   "model": "Xarios",
+	   	   	   	   	   	   	   	   "name": "Vehicle-123",
+	   	   	   	   	   	   	   	   "stats": {
+	   	   	   	   	   	   	   	   	   "alarms": {
+	   	   	   	   	   	   	   	   	   	   "alarms": [
+	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "ambientAirTemperature": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "defrost": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "status": "not defrosting"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "dischargeAirTemperature": {
+	   	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "door": {
+	   	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "engineHours": {
+	   	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "engineHours": 5423000
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "engineHours": 5423000
+	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "returnAirTemperature": {
+	   	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "setPoint": {
+	   	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "state": {
+	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   "state": "off",
+	   	   	   	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "tags": [
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   	   ]
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   ],
+	   	   	   	   	   	   "items": {
+	   	   	   	   	   	   	   "$ref": "#/components/schemas/SingleVehicleReeferStatsSnapshotResponseResponseBody"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "type": "array"
+	   	   	   	   	   },
+	   	   	   	   	   "pagination": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/GoaPaginationResponseResponseBody"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "data",
+	   	   	   	   	   "pagination"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "ReefersGetVehicleReeferStatsSnapshotServiceUnavailableErrorResponseBody": {
+	   	   	   	   "description": "Service unavailable",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "context deadline exceeded",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "context deadline exceeded",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "ReefersGetVehicleReeferStatsSnapshotTooManyRequestsErrorResponseBody": {
+	   	   	   	   "description": "Too many requests",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "Exceeded rate limit.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "Exceeded rate limit.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "ReefersGetVehicleReeferStatsSnapshotUnauthorizedErrorResponseBody": {
+	   	   	   	   "description": "Unauthorized",
+	   	   	   	   "example": {
+	   	   	   	   	   "message": "Invalid token.",
+	   	   	   	   	   "requestId": "8916e1c1"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "message": {
+	   	   	   	   	   	   "description": "Message of error",
+	   	   	   	   	   	   "example": "Invalid token.",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "requestId": {
+	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
+	   	   	   	   	   	   "example": "8916e1c1",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "message",
+	   	   	   	   	   "requestId"
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
@@ -23508,6 +25164,199 @@
 	   	   	   	   "required": [
 	   	   	   	   	   "message",
 	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "SingleVehicleReeferStatsSnapshotResponseResponseBody": {
+	   	   	   	   "example": {
+	   	   	   	   	   "id": "494123",
+	   	   	   	   	   "make": "Carrier EU",
+	   	   	   	   	   "model": "Xarios",
+	   	   	   	   	   "name": "Vehicle-123",
+	   	   	   	   	   "stats": {
+	   	   	   	   	   	   "alarms": {
+	   	   	   	   	   	   	   "alarms": [
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   "alarmCode": "In ea illum ipsa.",
+	   	   	   	   	   	   	   	   	   "description": "Molestiae atque impedit dolor autem sit odio.",
+	   	   	   	   	   	   	   	   	   "operatorAction": "Laudantium dolores eos reprehenderit et.",
+	   	   	   	   	   	   	   	   	   "severity": "none"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "ambientAirTemperature": {
+	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "defrost": {
+	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   "status": "not defrosting"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "dischargeAirTemperature": {
+	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "door": {
+	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   "status": "open"
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "engineHours": {
+	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   "engineHours": 5423000
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   "engineHours": 5423000
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "returnAirTemperature": {
+	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "setPoint": {
+	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   "tempInMilliC": 5423000
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "state": {
+	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   "state": "off",
+	   	   	   	   	   	   	   "zone1": {
+	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "zone2": {
+	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "zone3": {
+	   	   	   	   	   	   	   	   "changedAtTime": "2019-06-20T19:08:25Z",
+	   	   	   	   	   	   	   	   "state": "off"
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   }
+	   	   	   	   	   },
+	   	   	   	   	   "tags": [
+	   	   	   	   	   	   {
+	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   {
+	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   {
+	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   {
+	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   }
+	   	   	   	   	   ]
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "id": {
+	   	   	   	   	   	   "description": "The unique Samsara ID of the device that the reefer is connected to.",
+	   	   	   	   	   	   "example": "494123",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "make": {
+	   	   	   	   	   	   "description": "The make of the reefer.",
+	   	   	   	   	   	   "example": "Carrier EU",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "model": {
+	   	   	   	   	   	   "description": "The model of the reefer.",
+	   	   	   	   	   	   "example": "Xarios",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "name": {
+	   	   	   	   	   	   "description": "The human-readable name of the device that the reefer is connected to. This is set by a fleet administrator and will appear in both Samsara’s cloud dashboard as well as the Samsara Driver mobile app. By default, this name is the serial number of the Samsara Gateway. It can be set or updated through the Samsara Dashboard or through the API at any time.",
+	   	   	   	   	   	   "example": "Vehicle-123",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "stats": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferStatsSnapshotObjectResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "tags": {
+	   	   	   	   	   	   "description": "The list of [tags](https://kb.samsara.com/hc/en-us/articles/360026674631-Using-Tags-and-Tag-Nesting) associated with the Reefer.",
+	   	   	   	   	   	   "example": [
+	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "id": "3914",
+	   	   	   	   	   	   	   	   "name": "East Coast",
+	   	   	   	   	   	   	   	   "parentTagId": "4815"
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   ],
+	   	   	   	   	   	   "items": {
+	   	   	   	   	   	   	   "$ref": "#/components/schemas/GoaTagTinyResponseResponseBody"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "type": "array"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "id"
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
