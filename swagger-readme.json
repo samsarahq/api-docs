@@ -12273,6 +12273,13 @@
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "id": "494123",
 	   	   	   	   	   	   "installedGateway": {
+	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   },
@@ -12596,6 +12603,13 @@
 	   	   	   	   	   },
 	   	   	   	   	   "id": "494123",
 	   	   	   	   	   "installedGateway": {
+	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   },
 	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   },
@@ -12841,6 +12855,35 @@
 	   	   	   "FuelConsumedMl": {
 	   	   	   	   "description": "Fuel consumption in milliliters.",
 	   	   	   	   "type": "number"
+	   	   	   },
+	   	   	   "GatewayAssetResponseObjectResponseBody": {
+	   	   	   	   "description": "An objecting containing information about the asset the gateway is installed on",
+	   	   	   	   "example": {
+	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   },
+	   	   	   	   	   "id": "8393848111"
+	   	   	   	   },
+	   	   	   	   "properties": {
+	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   "additionalProperties": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "A map of external ids",
+	   	   	   	   	   	   "example": {
+	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "type": "object"
+	   	   	   	   	   },
+	   	   	   	   	   "id": {
+	   	   	   	   	   	   "description": "The unique Samsara ID of the asset where the gateway is installed. This is automatically generated when the asset is created and cannot be changed. Use this ID on PATCH vehicle, equipment, or trailer endpoints to update the asset",
+	   	   	   	   	   	   "example": "8393848111",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "type": "object"
 	   	   	   },
 	   	   	   "GatewaysDeleteGatewayBadGatewayErrorResponseBody": {
 	   	   	   	   "description": "Bad Gateway",
@@ -13662,18 +13705,46 @@
 	   	   	   	   "example": {
 	   	   	   	   	   "data": [
 	   	   	   	   	   	   {
+	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   },
 	   	   	   	   	   	   {
+	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   },
 	   	   	   	   	   	   {
+	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   },
 	   	   	   	   	   	   {
+	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   }
@@ -13688,14 +13759,35 @@
 	   	   	   	   	   	   "description": "Activated gateways",
 	   	   	   	   	   	   "example": [
 	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   	   }
@@ -13791,10 +13883,24 @@
 	   	   	   	   "example": {
 	   	   	   	   	   "data": [
 	   	   	   	   	   	   {
+	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   },
 	   	   	   	   	   	   {
+	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   }
@@ -13809,18 +13915,46 @@
 	   	   	   	   	   	   "description": "Activated gateways",
 	   	   	   	   	   	   "example": [
 	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   	   }
@@ -14268,6 +14402,13 @@
 	   	   	   "GatewaysPostGatewayPreviewResponseBody": {
 	   	   	   	   "example": {
 	   	   	   	   	   "data": {
+	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   },
 	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   }
@@ -14374,6 +14515,13 @@
 	   	   	   "GatewaysPostGatewayResponseBody": {
 	   	   	   	   "example": {
 	   	   	   	   	   "data": {
+	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   },
 	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   }
@@ -14733,10 +14881,20 @@
 	   	   	   "GoaGatewayTinyResponseResponseBody": {
 	   	   	   	   "description": "A minified gateway object",
 	   	   	   	   "example": {
+	   	   	   	   	   "asset": {
+	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   },
 	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   },
 	   	   	   	   "properties": {
+	   	   	   	   	   "asset": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/GatewayAssetResponseObjectResponseBody"
+	   	   	   	   	   },
 	   	   	   	   	   "model": {
 	   	   	   	   	   	   "description": "The model of the gateway installed on the asset.",
 	   	   	   	   	   	   "enum": [
@@ -26201,6 +26359,13 @@
 	   	   	   	   	   },
 	   	   	   	   	   "id": "494123",
 	   	   	   	   	   "installedGateway": {
+	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   },
 	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   },
@@ -27667,6 +27832,13 @@
 	   	   	   	   	   },
 	   	   	   	   	   "id": "494123",
 	   	   	   	   	   "installedGateway": {
+	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   },
 	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   },
@@ -28224,6 +28396,13 @@
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "id": "494123",
 	   	   	   	   	   	   "installedGateway": {
+	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   },
@@ -28783,6 +28962,13 @@
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "id": "494123",
 	   	   	   	   	   	   "installedGateway": {
+	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   },
@@ -29065,6 +29251,13 @@
 	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   "id": "494123",
 	   	   	   	   	   	   	   "installedGateway": {
+	   	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   	   },
@@ -29103,6 +29296,13 @@
 	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   "id": "494123",
 	   	   	   	   	   	   	   "installedGateway": {
+	   	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   	   },
@@ -29151,6 +29351,13 @@
 	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   "id": "494123",
 	   	   	   	   	   	   	   	   "installedGateway": {
+	   	   	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   	   	   },
@@ -29189,6 +29396,13 @@
 	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   "id": "494123",
 	   	   	   	   	   	   	   	   "installedGateway": {
+	   	   	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   	   	   },
@@ -29684,6 +29898,13 @@
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "id": "494123",
 	   	   	   	   	   	   "installedGateway": {
+	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   },
@@ -47054,6 +47275,13 @@
 	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   "id": "494123",
 	   	   	   	   	   	   	   	   	   	   "installedGateway": {
+	   	   	   	   	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   	   	   	   	   },
@@ -50526,6 +50754,13 @@
 	   	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   	   "id": "494123",
 	   	   	   	   	   	   	   	   	   	   	   "installedGateway": {
+	   	   	   	   	   	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   	   	   	   	   	   },
@@ -50564,6 +50799,13 @@
 	   	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   	   "id": "494123",
 	   	   	   	   	   	   	   	   	   	   	   "installedGateway": {
+	   	   	   	   	   	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   	   	   	   	   	   },
@@ -50817,6 +51059,13 @@
 	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   "id": "494123",
 	   	   	   	   	   	   	   	   	   	   "installedGateway": {
+	   	   	   	   	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   	   	   	   	   },
@@ -51878,6 +52127,13 @@
 	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   "id": "494123",
 	   	   	   	   	   	   	   	   	   	   "installedGateway": {
+	   	   	   	   	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   	   	   	   	   },
@@ -52129,6 +52385,13 @@
 	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   "id": "494123",
 	   	   	   	   	   	   	   	   	   	   "installedGateway": {
+	   	   	   	   	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   	   	   	   	   },
@@ -58949,18 +59212,46 @@
 	   	   	   	   	   	   	   	   "example": {
 	   	   	   	   	   	   	   	   	   "data": [
 	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   {
+	   	   	   	   	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   	   	   	   	   }
@@ -59142,6 +59433,13 @@
 	   	   	   	   	   	   	   "application/json": {
 	   	   	   	   	   	   	   	   "example": {
 	   	   	   	   	   	   	   	   	   "data": {
+	   	   	   	   	   	   	   	   	   	   "asset": {
+	   	   	   	   	   	   	   	   	   	   	   "externalIds": {
+	   	   	   	   	   	   	   	   	   	   	   	   "maintenanceId": "250020",
+	   	   	   	   	   	   	   	   	   	   	   	   "payrollId": "ABFS18600"
+	   	   	   	   	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   	   	   	   	   "id": "8393848111"
+	   	   	   	   	   	   	   	   	   	   },
 	   	   	   	   	   	   	   	   	   	   "model": "VG34",
 	   	   	   	   	   	   	   	   	   	   "serial": "GFRV-43N-VGX"
 	   	   	   	   	   	   	   	   	   }
