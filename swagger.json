@@ -2889,18 +2889,12 @@
                       "taxPaidLiters": 25.5,
                       "taxableMeters": 2350,
                       "totalMeters": 2350
-                    },
-                    {
-                      "jurisdiction": "GA",
-                      "taxPaidLiters": 25.5,
-                      "taxableMeters": 2350,
-                      "totalMeters": 2350
                     }
                   ],
                   "month": "January",
                   "quarter": "Q4",
                   "troubleshooting": {
-                    "noPurchasesFound": false,
+                    "noPurchasesFound": true,
                     "unassignedFuelTypePurchases": 200,
                     "unassignedFuelTypeVehicles": 2500,
                     "unassignedVehiclePurchases": 2500
@@ -3153,7 +3147,7 @@
                   "month": "January",
                   "quarter": "Q4",
                   "troubleshooting": {
-                    "noPurchasesFound": false,
+                    "noPurchasesFound": true,
                     "unassignedFuelTypePurchases": 200,
                     "unassignedFuelTypeVehicles": 2500,
                     "unassignedVehiclePurchases": 2500
@@ -5837,11 +5831,6 @@
                         "id": "3914",
                         "name": "East Coast",
                         "parentTagId": "4815"
-                      },
-                      {
-                        "id": "3914",
-                        "name": "East Coast",
-                        "parentTagId": "4815"
                       }
                     ],
                     "trailerSerialNumber": "8V8WD530FLN016251"
@@ -5868,11 +5857,6 @@
                     "name": "Trailer-123",
                     "notes": "These are my trailer notes",
                     "tags": [
-                      {
-                        "id": "3914",
-                        "name": "East Coast",
-                        "parentTagId": "4815"
-                      },
                       {
                         "id": "3914",
                         "name": "East Coast",
@@ -6086,6 +6070,18 @@
                         "HQ",
                         "Leased"
                       ]
+                    },
+                    {
+                      "id": "494123",
+                      "name": "Compliance/ELD",
+                      "numberValues": [
+                        867,
+                        5309
+                      ],
+                      "stringValues": [
+                        "HQ",
+                        "Leased"
+                      ]
                     }
                   ],
                   "enabledForMobile": true,
@@ -6109,6 +6105,11 @@
                   "name": "Trailer-123",
                   "notes": "These are my trailer notes",
                   "tags": [
+                    {
+                      "id": "3914",
+                      "name": "East Coast",
+                      "parentTagId": "4815"
+                    },
                     {
                       "id": "3914",
                       "name": "East Coast",
@@ -6914,6 +6915,18 @@
                         "HQ",
                         "Leased"
                       ]
+                    },
+                    {
+                      "id": "494123",
+                      "name": "Compliance/ELD",
+                      "numberValues": [
+                        867,
+                        5309
+                      ],
+                      "stringValues": [
+                        "HQ",
+                        "Leased"
+                      ]
                     }
                   ],
                   "enabledForMobile": true,
@@ -6937,6 +6950,11 @@
                   "name": "Trailer-123",
                   "notes": "These are my trailer notes",
                   "tags": [
+                    {
+                      "id": "3914",
+                      "name": "East Coast",
+                      "parentTagId": "4815"
+                    },
                     {
                       "id": "3914",
                       "name": "East Coast",
@@ -7292,6 +7310,18 @@
                         "HQ",
                         "Leased"
                       ]
+                    },
+                    {
+                      "id": "494123",
+                      "name": "Compliance/ELD",
+                      "numberValues": [
+                        867,
+                        5309
+                      ],
+                      "stringValues": [
+                        "HQ",
+                        "Leased"
+                      ]
                     }
                   ],
                   "enabledForMobile": true,
@@ -7315,6 +7345,11 @@
                   "name": "Trailer-123",
                   "notes": "These are my trailer notes",
                   "tags": [
+                    {
+                      "id": "3914",
+                      "name": "East Coast",
+                      "parentTagId": "4815"
+                    },
                     {
                       "id": "3914",
                       "name": "East Coast",
@@ -28264,7 +28299,7 @@
           "items": {
             "type": "number",
             "format": "double",
-            "example": 0.2091047966533891
+            "example": 0.17607331990013023
           },
           "example": [
             867,
@@ -28276,7 +28311,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Enim doloribus maiores et."
+            "example": "Neque nemo voluptatem nihil."
           },
           "example": [
             "HQ",
@@ -29685,6 +29720,1116 @@
         }
       }
     },
+    "HosDriversEldEventObjectResponseBody": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "driverActivationStatus",
+        "eldEvents"
+      ],
+      "properties": {
+        "driverActivationStatus": {
+          "description": "A value indicating whether the driver is active or deactivated.",
+          "type": "string",
+          "enum": [
+            "active",
+            "deactivated"
+          ],
+          "example": "active"
+        },
+        "eldEvents": {
+          "description": "List of ELD event objects.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HosEldEventObjectResponseBody"
+          },
+          "example": [
+            {
+              "accumulatedVehicleMiles": 106,
+              "elapsedEngineHours": 284.1,
+              "eldEventCode": 3,
+              "eldEventRecordOrigin": 2,
+              "eldEventRecordStatus": 2,
+              "eldEventType": 6,
+              "location": {
+                "city": "San Francisco",
+                "latitude": 123.456,
+                "longitude": 37.459,
+                "state": "CA"
+              },
+              "malfunctionDiagnosticCode": "P",
+              "remark": "New remark",
+              "time": "2019-06-13T19:08:25Z",
+              "totalEngineHours": 2894.1,
+              "totalVehicleMiles": 1004566,
+              "vehicle": {
+                "externalIds": {
+                  "maintenanceId": "250020",
+                  "payrollId": "ABFS18600"
+                },
+                "id": "494123",
+                "name": "Fleet Truck #1"
+              }
+            },
+            {
+              "accumulatedVehicleMiles": 106,
+              "elapsedEngineHours": 284.1,
+              "eldEventCode": 3,
+              "eldEventRecordOrigin": 2,
+              "eldEventRecordStatus": 2,
+              "eldEventType": 6,
+              "location": {
+                "city": "San Francisco",
+                "latitude": 123.456,
+                "longitude": 37.459,
+                "state": "CA"
+              },
+              "malfunctionDiagnosticCode": "P",
+              "remark": "New remark",
+              "time": "2019-06-13T19:08:25Z",
+              "totalEngineHours": 2894.1,
+              "totalVehicleMiles": 1004566,
+              "vehicle": {
+                "externalIds": {
+                  "maintenanceId": "250020",
+                  "payrollId": "ABFS18600"
+                },
+                "id": "494123",
+                "name": "Fleet Truck #1"
+              }
+            }
+          ]
+        },
+        "externalIds": {
+          "description": "A map of external ids",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "example": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          }
+        },
+        "id": {
+          "description": "ID of the driver.",
+          "type": "string",
+          "example": "494123"
+        },
+        "name": {
+          "description": "Name of the driver.",
+          "type": "string",
+          "example": "Joe Driver"
+        }
+      },
+      "example": {
+        "driverActivationStatus": "active",
+        "eldEvents": [
+          {
+            "accumulatedVehicleMiles": 106,
+            "elapsedEngineHours": 284.1,
+            "eldEventCode": 3,
+            "eldEventRecordOrigin": 2,
+            "eldEventRecordStatus": 2,
+            "eldEventType": 6,
+            "location": {
+              "city": "San Francisco",
+              "latitude": 123.456,
+              "longitude": 37.459,
+              "state": "CA"
+            },
+            "malfunctionDiagnosticCode": "P",
+            "remark": "New remark",
+            "time": "2019-06-13T19:08:25Z",
+            "totalEngineHours": 2894.1,
+            "totalVehicleMiles": 1004566,
+            "vehicle": {
+              "externalIds": {
+                "maintenanceId": "250020",
+                "payrollId": "ABFS18600"
+              },
+              "id": "494123",
+              "name": "Fleet Truck #1"
+            }
+          },
+          {
+            "accumulatedVehicleMiles": 106,
+            "elapsedEngineHours": 284.1,
+            "eldEventCode": 3,
+            "eldEventRecordOrigin": 2,
+            "eldEventRecordStatus": 2,
+            "eldEventType": 6,
+            "location": {
+              "city": "San Francisco",
+              "latitude": 123.456,
+              "longitude": 37.459,
+              "state": "CA"
+            },
+            "malfunctionDiagnosticCode": "P",
+            "remark": "New remark",
+            "time": "2019-06-13T19:08:25Z",
+            "totalEngineHours": 2894.1,
+            "totalVehicleMiles": 1004566,
+            "vehicle": {
+              "externalIds": {
+                "maintenanceId": "250020",
+                "payrollId": "ABFS18600"
+              },
+              "id": "494123",
+              "name": "Fleet Truck #1"
+            }
+          },
+          {
+            "accumulatedVehicleMiles": 106,
+            "elapsedEngineHours": 284.1,
+            "eldEventCode": 3,
+            "eldEventRecordOrigin": 2,
+            "eldEventRecordStatus": 2,
+            "eldEventType": 6,
+            "location": {
+              "city": "San Francisco",
+              "latitude": 123.456,
+              "longitude": 37.459,
+              "state": "CA"
+            },
+            "malfunctionDiagnosticCode": "P",
+            "remark": "New remark",
+            "time": "2019-06-13T19:08:25Z",
+            "totalEngineHours": 2894.1,
+            "totalVehicleMiles": 1004566,
+            "vehicle": {
+              "externalIds": {
+                "maintenanceId": "250020",
+                "payrollId": "ABFS18600"
+              },
+              "id": "494123",
+              "name": "Fleet Truck #1"
+            }
+          }
+        ],
+        "externalIds": {
+          "maintenanceId": "250020",
+          "payrollId": "ABFS18600"
+        },
+        "id": "494123",
+        "name": "Joe Driver"
+      }
+    },
+    "HosEldEventLocationObjectResponseBody": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "description": "The best effort city for the latitude and longitude.",
+          "type": "string",
+          "example": "San Francisco"
+        },
+        "latitude": {
+          "description": "The latitude of the location.",
+          "type": "number",
+          "format": "double",
+          "example": 123.456
+        },
+        "longitude": {
+          "description": "The longitude of the location.",
+          "type": "number",
+          "format": "double",
+          "example": 37.459
+        },
+        "state": {
+          "description": "The best effort state for the latitude and longitude.",
+          "type": "string",
+          "example": "CA"
+        }
+      },
+      "example": {
+        "city": "San Francisco",
+        "latitude": 123.456,
+        "longitude": 37.459,
+        "state": "CA"
+      }
+    },
+    "HosEldEventObjectResponseBody": {
+      "description": "An event that refers to a discrete instance in time with various data elements. Depending on the type of event, not every field will be populated. For more information, see the ELD Mandate [section 3.1.2](https://www.ecfr.gov/cgi-bin/retrieveECFR?gp=1\u0026ty=HTML\u0026h=L\u0026mc=true\u0026=PART\u0026n=pt49.5.395#ap49.5.395_138.a).",
+      "type": "object",
+      "required": [
+        "time",
+        "eldEventType",
+        "eldEventCode"
+      ],
+      "properties": {
+        "accumulatedVehicleMiles": {
+          "description": "The accumulated miles in the given ignition power on cycle.",
+          "type": "integer",
+          "format": "int64",
+          "example": 106
+        },
+        "elapsedEngineHours": {
+          "description": "The elapsed time in the engine's operation in the given ignition power on cycle.",
+          "type": "number",
+          "format": "double",
+          "example": 284.1
+        },
+        "eldEventCode": {
+          "description": "A dependent attribute on `eldEventType` that specifies the nature of the event, as defined in the ELD Mandate [section 7.20](https://www.ecfr.gov/cgi-bin/retrieveECFR?gp=1\u0026ty=HTML\u0026h=L\u0026mc=true\u0026=PART\u0026n=pt49.5.395#ap49.5.395_138.a).",
+          "type": "integer",
+          "maximum": 9,
+          "minimum": 1,
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "example": 3
+        },
+        "eldEventRecordOrigin": {
+          "description": "An attribute for the event record indicating whether it is automatically recorded, or edited, entered or accepted by the driver, requested by another authenticated user, or assumed from unidentified driver profile, as defined in the ELD Mandate [section 7.22](https://www.ecfr.gov/cgi-bin/retrieveECFR?gp=1\u0026ty=HTML\u0026h=L\u0026mc=true\u0026=PART\u0026n=pt49.5.395#ap49.5.395_138.a).",
+          "type": "integer",
+          "maximum": 4,
+          "minimum": 1,
+          "enum": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "example": 2
+        },
+        "eldEventRecordStatus": {
+          "description": "An attribute for the event record indicating whether an event is active or inactive and further, if inactive, whether it is due to a change or lack of confirmation by the driver or due to a driver's rejection of change request, as defined in the ELD Mandate [section 7.23](https://www.ecfr.gov/cgi-bin/retrieveECFR?gp=1\u0026ty=HTML\u0026h=L\u0026mc=true\u0026=PART\u0026n=pt49.5.395#ap49.5.395_138.a).",
+          "type": "integer",
+          "maximum": 4,
+          "minimum": 1,
+          "enum": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "example": 2
+        },
+        "eldEventType": {
+          "description": "An attribute specifying the type of ELD event, as defined in the ELD Mandate [section 7.25](https://www.ecfr.gov/cgi-bin/retrieveECFR?gp=1\u0026ty=HTML\u0026h=L\u0026mc=true\u0026=PART\u0026n=pt49.5.395#ap49.5.395_138.a).",
+          "type": "integer",
+          "maximum": 7,
+          "minimum": 1,
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "example": 6
+        },
+        "location": {
+          "$ref": "#/definitions/HosEldEventLocationObjectResponseBody"
+        },
+        "malfunctionDiagnosticCode": {
+          "description": "A code that further specifies the underlying malfunction or data diagnostic event, as defined in the ELD Mandate [section 7.34](https://www.ecfr.gov/cgi-bin/retrieveECFR?gp=1\u0026ty=HTML\u0026h=L\u0026mc=true\u0026=PART\u0026n=pt49.5.395#ap49.5.395_138.a).",
+          "type": "string",
+          "enum": [
+            "P",
+            "E",
+            "T",
+            "L",
+            "R",
+            "S",
+            "O",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "example": "P"
+        },
+        "remark": {
+          "description": "Any comments or annotations applicable to the event. Length between 0-60 characters.",
+          "type": "string",
+          "example": "New remark"
+        },
+        "time": {
+          "description": "A time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+          "type": "string",
+          "example": "2019-06-13T19:08:25Z"
+        },
+        "totalEngineHours": {
+          "description": "The aggregated time of a vehicle's engine's operation since its inception.",
+          "type": "number",
+          "format": "double",
+          "example": 2894.1
+        },
+        "totalVehicleMiles": {
+          "description": "The total miles recorded for the vehicle.",
+          "type": "integer",
+          "format": "int64",
+          "example": 1004566
+        },
+        "vehicle": {
+          "$ref": "#/definitions/GoaVehicleTinyResponseResponseBody"
+        }
+      },
+      "example": {
+        "accumulatedVehicleMiles": 106,
+        "elapsedEngineHours": 284.1,
+        "eldEventCode": 3,
+        "eldEventRecordOrigin": 2,
+        "eldEventRecordStatus": 2,
+        "eldEventType": 6,
+        "location": {
+          "city": "San Francisco",
+          "latitude": 123.456,
+          "longitude": 37.459,
+          "state": "CA"
+        },
+        "malfunctionDiagnosticCode": "P",
+        "remark": "New remark",
+        "time": "2019-06-13T19:08:25Z",
+        "totalEngineHours": 2894.1,
+        "totalVehicleMiles": 1004566,
+        "vehicle": {
+          "externalIds": {
+            "maintenanceId": "250020",
+            "payrollId": "ABFS18600"
+          },
+          "id": "494123",
+          "name": "Fleet Truck #1"
+        }
+      }
+    },
+    "HosEldEventsGetHosEldEventsBadGatewayErrorResponseBody": {
+      "description": "Bad Gateway",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "rpc error: code = Unknown desc = connection refused"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "rpc error: code = Unknown desc = connection refused",
+        "requestId": "8916e1c1"
+      }
+    },
+    "HosEldEventsGetHosEldEventsBadRequestErrorResponseBody": {
+      "description": "Bad Request parameters",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid value for parameter."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Invalid value for parameter.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "HosEldEventsGetHosEldEventsGatewayTimeoutErrorResponseBody": {
+      "description": "Gateway timeout",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
+        "requestId": "8916e1c1"
+      }
+    },
+    "HosEldEventsGetHosEldEventsInternalServerErrorResponseBody": {
+      "description": "An internal server error occurred",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Failed to execute GraphQL query."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Failed to execute GraphQL query.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "HosEldEventsGetHosEldEventsMethodNotAllowedErrorResponseBody": {
+      "description": "Method not allowed",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "DELETE not allowed on /endpoint."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "DELETE not allowed on /endpoint.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "HosEldEventsGetHosEldEventsNotFoundErrorResponseBody": {
+      "description": "Resource not found",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Object not found."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Object not found.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "HosEldEventsGetHosEldEventsNotImplementedErrorResponseBody": {
+      "description": "Requested endpoint is not yet implemented",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Not implemented."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Not implemented.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "HosEldEventsGetHosEldEventsResponseBody": {
+      "type": "object",
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "data": {
+          "description": "List of drivers and their ELD event objects data.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HosDriversEldEventObjectResponseBody"
+          },
+          "example": [
+            {
+              "driverActivationStatus": "active",
+              "eldEvents": [
+                {
+                  "accumulatedVehicleMiles": 106,
+                  "elapsedEngineHours": 284.1,
+                  "eldEventCode": 3,
+                  "eldEventRecordOrigin": 2,
+                  "eldEventRecordStatus": 2,
+                  "eldEventType": 6,
+                  "location": {
+                    "city": "San Francisco",
+                    "latitude": 123.456,
+                    "longitude": 37.459,
+                    "state": "CA"
+                  },
+                  "malfunctionDiagnosticCode": "P",
+                  "remark": "New remark",
+                  "time": "2019-06-13T19:08:25Z",
+                  "totalEngineHours": 2894.1,
+                  "totalVehicleMiles": 1004566,
+                  "vehicle": {
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "494123",
+                    "name": "Fleet Truck #1"
+                  }
+                },
+                {
+                  "accumulatedVehicleMiles": 106,
+                  "elapsedEngineHours": 284.1,
+                  "eldEventCode": 3,
+                  "eldEventRecordOrigin": 2,
+                  "eldEventRecordStatus": 2,
+                  "eldEventType": 6,
+                  "location": {
+                    "city": "San Francisco",
+                    "latitude": 123.456,
+                    "longitude": 37.459,
+                    "state": "CA"
+                  },
+                  "malfunctionDiagnosticCode": "P",
+                  "remark": "New remark",
+                  "time": "2019-06-13T19:08:25Z",
+                  "totalEngineHours": 2894.1,
+                  "totalVehicleMiles": 1004566,
+                  "vehicle": {
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "494123",
+                    "name": "Fleet Truck #1"
+                  }
+                }
+              ],
+              "externalIds": {
+                "maintenanceId": "250020",
+                "payrollId": "ABFS18600"
+              },
+              "id": "494123",
+              "name": "Joe Driver"
+            },
+            {
+              "driverActivationStatus": "active",
+              "eldEvents": [
+                {
+                  "accumulatedVehicleMiles": 106,
+                  "elapsedEngineHours": 284.1,
+                  "eldEventCode": 3,
+                  "eldEventRecordOrigin": 2,
+                  "eldEventRecordStatus": 2,
+                  "eldEventType": 6,
+                  "location": {
+                    "city": "San Francisco",
+                    "latitude": 123.456,
+                    "longitude": 37.459,
+                    "state": "CA"
+                  },
+                  "malfunctionDiagnosticCode": "P",
+                  "remark": "New remark",
+                  "time": "2019-06-13T19:08:25Z",
+                  "totalEngineHours": 2894.1,
+                  "totalVehicleMiles": 1004566,
+                  "vehicle": {
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "494123",
+                    "name": "Fleet Truck #1"
+                  }
+                },
+                {
+                  "accumulatedVehicleMiles": 106,
+                  "elapsedEngineHours": 284.1,
+                  "eldEventCode": 3,
+                  "eldEventRecordOrigin": 2,
+                  "eldEventRecordStatus": 2,
+                  "eldEventType": 6,
+                  "location": {
+                    "city": "San Francisco",
+                    "latitude": 123.456,
+                    "longitude": 37.459,
+                    "state": "CA"
+                  },
+                  "malfunctionDiagnosticCode": "P",
+                  "remark": "New remark",
+                  "time": "2019-06-13T19:08:25Z",
+                  "totalEngineHours": 2894.1,
+                  "totalVehicleMiles": 1004566,
+                  "vehicle": {
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "494123",
+                    "name": "Fleet Truck #1"
+                  }
+                }
+              ],
+              "externalIds": {
+                "maintenanceId": "250020",
+                "payrollId": "ABFS18600"
+              },
+              "id": "494123",
+              "name": "Joe Driver"
+            },
+            {
+              "driverActivationStatus": "active",
+              "eldEvents": [
+                {
+                  "accumulatedVehicleMiles": 106,
+                  "elapsedEngineHours": 284.1,
+                  "eldEventCode": 3,
+                  "eldEventRecordOrigin": 2,
+                  "eldEventRecordStatus": 2,
+                  "eldEventType": 6,
+                  "location": {
+                    "city": "San Francisco",
+                    "latitude": 123.456,
+                    "longitude": 37.459,
+                    "state": "CA"
+                  },
+                  "malfunctionDiagnosticCode": "P",
+                  "remark": "New remark",
+                  "time": "2019-06-13T19:08:25Z",
+                  "totalEngineHours": 2894.1,
+                  "totalVehicleMiles": 1004566,
+                  "vehicle": {
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "494123",
+                    "name": "Fleet Truck #1"
+                  }
+                },
+                {
+                  "accumulatedVehicleMiles": 106,
+                  "elapsedEngineHours": 284.1,
+                  "eldEventCode": 3,
+                  "eldEventRecordOrigin": 2,
+                  "eldEventRecordStatus": 2,
+                  "eldEventType": 6,
+                  "location": {
+                    "city": "San Francisco",
+                    "latitude": 123.456,
+                    "longitude": 37.459,
+                    "state": "CA"
+                  },
+                  "malfunctionDiagnosticCode": "P",
+                  "remark": "New remark",
+                  "time": "2019-06-13T19:08:25Z",
+                  "totalEngineHours": 2894.1,
+                  "totalVehicleMiles": 1004566,
+                  "vehicle": {
+                    "externalIds": {
+                      "maintenanceId": "250020",
+                      "payrollId": "ABFS18600"
+                    },
+                    "id": "494123",
+                    "name": "Fleet Truck #1"
+                  }
+                }
+              ],
+              "externalIds": {
+                "maintenanceId": "250020",
+                "payrollId": "ABFS18600"
+              },
+              "id": "494123",
+              "name": "Joe Driver"
+            }
+          ]
+        },
+        "pagination": {
+          "$ref": "#/definitions/GoaPaginationResponseResponseBody"
+        }
+      },
+      "example": {
+        "data": [
+          {
+            "driverActivationStatus": "active",
+            "eldEvents": [
+              {
+                "accumulatedVehicleMiles": 106,
+                "elapsedEngineHours": 284.1,
+                "eldEventCode": 3,
+                "eldEventRecordOrigin": 2,
+                "eldEventRecordStatus": 2,
+                "eldEventType": 6,
+                "location": {
+                  "city": "San Francisco",
+                  "latitude": 123.456,
+                  "longitude": 37.459,
+                  "state": "CA"
+                },
+                "malfunctionDiagnosticCode": "P",
+                "remark": "New remark",
+                "time": "2019-06-13T19:08:25Z",
+                "totalEngineHours": 2894.1,
+                "totalVehicleMiles": 1004566,
+                "vehicle": {
+                  "externalIds": {
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
+                  },
+                  "id": "494123",
+                  "name": "Fleet Truck #1"
+                }
+              },
+              {
+                "accumulatedVehicleMiles": 106,
+                "elapsedEngineHours": 284.1,
+                "eldEventCode": 3,
+                "eldEventRecordOrigin": 2,
+                "eldEventRecordStatus": 2,
+                "eldEventType": 6,
+                "location": {
+                  "city": "San Francisco",
+                  "latitude": 123.456,
+                  "longitude": 37.459,
+                  "state": "CA"
+                },
+                "malfunctionDiagnosticCode": "P",
+                "remark": "New remark",
+                "time": "2019-06-13T19:08:25Z",
+                "totalEngineHours": 2894.1,
+                "totalVehicleMiles": 1004566,
+                "vehicle": {
+                  "externalIds": {
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
+                  },
+                  "id": "494123",
+                  "name": "Fleet Truck #1"
+                }
+              }
+            ],
+            "externalIds": {
+              "maintenanceId": "250020",
+              "payrollId": "ABFS18600"
+            },
+            "id": "494123",
+            "name": "Joe Driver"
+          },
+          {
+            "driverActivationStatus": "active",
+            "eldEvents": [
+              {
+                "accumulatedVehicleMiles": 106,
+                "elapsedEngineHours": 284.1,
+                "eldEventCode": 3,
+                "eldEventRecordOrigin": 2,
+                "eldEventRecordStatus": 2,
+                "eldEventType": 6,
+                "location": {
+                  "city": "San Francisco",
+                  "latitude": 123.456,
+                  "longitude": 37.459,
+                  "state": "CA"
+                },
+                "malfunctionDiagnosticCode": "P",
+                "remark": "New remark",
+                "time": "2019-06-13T19:08:25Z",
+                "totalEngineHours": 2894.1,
+                "totalVehicleMiles": 1004566,
+                "vehicle": {
+                  "externalIds": {
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
+                  },
+                  "id": "494123",
+                  "name": "Fleet Truck #1"
+                }
+              },
+              {
+                "accumulatedVehicleMiles": 106,
+                "elapsedEngineHours": 284.1,
+                "eldEventCode": 3,
+                "eldEventRecordOrigin": 2,
+                "eldEventRecordStatus": 2,
+                "eldEventType": 6,
+                "location": {
+                  "city": "San Francisco",
+                  "latitude": 123.456,
+                  "longitude": 37.459,
+                  "state": "CA"
+                },
+                "malfunctionDiagnosticCode": "P",
+                "remark": "New remark",
+                "time": "2019-06-13T19:08:25Z",
+                "totalEngineHours": 2894.1,
+                "totalVehicleMiles": 1004566,
+                "vehicle": {
+                  "externalIds": {
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
+                  },
+                  "id": "494123",
+                  "name": "Fleet Truck #1"
+                }
+              }
+            ],
+            "externalIds": {
+              "maintenanceId": "250020",
+              "payrollId": "ABFS18600"
+            },
+            "id": "494123",
+            "name": "Joe Driver"
+          },
+          {
+            "driverActivationStatus": "active",
+            "eldEvents": [
+              {
+                "accumulatedVehicleMiles": 106,
+                "elapsedEngineHours": 284.1,
+                "eldEventCode": 3,
+                "eldEventRecordOrigin": 2,
+                "eldEventRecordStatus": 2,
+                "eldEventType": 6,
+                "location": {
+                  "city": "San Francisco",
+                  "latitude": 123.456,
+                  "longitude": 37.459,
+                  "state": "CA"
+                },
+                "malfunctionDiagnosticCode": "P",
+                "remark": "New remark",
+                "time": "2019-06-13T19:08:25Z",
+                "totalEngineHours": 2894.1,
+                "totalVehicleMiles": 1004566,
+                "vehicle": {
+                  "externalIds": {
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
+                  },
+                  "id": "494123",
+                  "name": "Fleet Truck #1"
+                }
+              },
+              {
+                "accumulatedVehicleMiles": 106,
+                "elapsedEngineHours": 284.1,
+                "eldEventCode": 3,
+                "eldEventRecordOrigin": 2,
+                "eldEventRecordStatus": 2,
+                "eldEventType": 6,
+                "location": {
+                  "city": "San Francisco",
+                  "latitude": 123.456,
+                  "longitude": 37.459,
+                  "state": "CA"
+                },
+                "malfunctionDiagnosticCode": "P",
+                "remark": "New remark",
+                "time": "2019-06-13T19:08:25Z",
+                "totalEngineHours": 2894.1,
+                "totalVehicleMiles": 1004566,
+                "vehicle": {
+                  "externalIds": {
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
+                  },
+                  "id": "494123",
+                  "name": "Fleet Truck #1"
+                }
+              }
+            ],
+            "externalIds": {
+              "maintenanceId": "250020",
+              "payrollId": "ABFS18600"
+            },
+            "id": "494123",
+            "name": "Joe Driver"
+          },
+          {
+            "driverActivationStatus": "active",
+            "eldEvents": [
+              {
+                "accumulatedVehicleMiles": 106,
+                "elapsedEngineHours": 284.1,
+                "eldEventCode": 3,
+                "eldEventRecordOrigin": 2,
+                "eldEventRecordStatus": 2,
+                "eldEventType": 6,
+                "location": {
+                  "city": "San Francisco",
+                  "latitude": 123.456,
+                  "longitude": 37.459,
+                  "state": "CA"
+                },
+                "malfunctionDiagnosticCode": "P",
+                "remark": "New remark",
+                "time": "2019-06-13T19:08:25Z",
+                "totalEngineHours": 2894.1,
+                "totalVehicleMiles": 1004566,
+                "vehicle": {
+                  "externalIds": {
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
+                  },
+                  "id": "494123",
+                  "name": "Fleet Truck #1"
+                }
+              },
+              {
+                "accumulatedVehicleMiles": 106,
+                "elapsedEngineHours": 284.1,
+                "eldEventCode": 3,
+                "eldEventRecordOrigin": 2,
+                "eldEventRecordStatus": 2,
+                "eldEventType": 6,
+                "location": {
+                  "city": "San Francisco",
+                  "latitude": 123.456,
+                  "longitude": 37.459,
+                  "state": "CA"
+                },
+                "malfunctionDiagnosticCode": "P",
+                "remark": "New remark",
+                "time": "2019-06-13T19:08:25Z",
+                "totalEngineHours": 2894.1,
+                "totalVehicleMiles": 1004566,
+                "vehicle": {
+                  "externalIds": {
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
+                  },
+                  "id": "494123",
+                  "name": "Fleet Truck #1"
+                }
+              }
+            ],
+            "externalIds": {
+              "maintenanceId": "250020",
+              "payrollId": "ABFS18600"
+            },
+            "id": "494123",
+            "name": "Joe Driver"
+          }
+        ],
+        "pagination": {
+          "endCursor": "MjkY",
+          "hasNextPage": true
+        }
+      }
+    },
+    "HosEldEventsGetHosEldEventsServiceUnavailableErrorResponseBody": {
+      "description": "Service unavailable",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "context deadline exceeded",
+        "requestId": "8916e1c1"
+      }
+    },
+    "HosEldEventsGetHosEldEventsTooManyRequestsErrorResponseBody": {
+      "description": "Too many requests",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Exceeded rate limit."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Exceeded rate limit.",
+        "requestId": "8916e1c1"
+      }
+    },
+    "HosEldEventsGetHosEldEventsUnauthorizedErrorResponseBody": {
+      "description": "Unauthorized",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid token."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      },
+      "example": {
+        "message": "Invalid token.",
+        "requestId": "8916e1c1"
+      }
+    },
     "HosLogEntry": {
       "description": "A single HOS log entry.",
       "type": "object",
@@ -29830,12 +30975,6 @@
               "taxPaidLiters": 25.5,
               "taxableMeters": 2350,
               "totalMeters": 2350
-            },
-            {
-              "jurisdiction": "GA",
-              "taxPaidLiters": 25.5,
-              "taxableMeters": 2350,
-              "totalMeters": 2350
             }
           ]
         },
@@ -29878,12 +31017,18 @@
             "taxPaidLiters": 25.5,
             "taxableMeters": 2350,
             "totalMeters": 2350
+          },
+          {
+            "jurisdiction": "GA",
+            "taxPaidLiters": 25.5,
+            "taxableMeters": 2350,
+            "totalMeters": 2350
           }
         ],
         "month": "January",
         "quarter": "Q4",
         "troubleshooting": {
-          "noPurchasesFound": false,
+          "noPurchasesFound": true,
           "unassignedFuelTypePurchases": 200,
           "unassignedFuelTypeVehicles": 2500,
           "unassignedVehiclePurchases": 2500
@@ -30083,18 +31228,12 @@
               "taxPaidLiters": 25.5,
               "taxableMeters": 2350,
               "totalMeters": 2350
-            },
-            {
-              "jurisdiction": "GA",
-              "taxPaidLiters": 25.5,
-              "taxableMeters": 2350,
-              "totalMeters": 2350
             }
           ],
           "month": "January",
           "quarter": "Q4",
           "troubleshooting": {
-            "noPurchasesFound": false,
+            "noPurchasesFound": true,
             "unassignedFuelTypePurchases": 200,
             "unassignedFuelTypeVehicles": 2500,
             "unassignedVehiclePurchases": 2500
@@ -30250,7 +31389,7 @@
         }
       },
       "example": {
-        "noPurchasesFound": true,
+        "noPurchasesFound": false,
         "unassignedFuelTypePurchases": 200,
         "unassignedFuelTypeVehicles": 2500,
         "unassignedVehiclePurchases": 2500
@@ -30369,12 +31508,36 @@
         "month": "January",
         "quarter": "Q4",
         "troubleshooting": {
-          "noPurchasesFound": false,
+          "noPurchasesFound": true,
           "unassignedFuelTypePurchases": 200,
           "unassignedFuelTypeVehicles": 2500,
           "unassignedVehiclePurchases": 2500
         },
         "vehicleReports": [
+          {
+            "jurisdictions": [
+              {
+                "jurisdiction": "GA",
+                "taxPaidLiters": 25.5,
+                "taxableMeters": 2350,
+                "totalMeters": 2350
+              },
+              {
+                "jurisdiction": "GA",
+                "taxPaidLiters": 25.5,
+                "taxableMeters": 2350,
+                "totalMeters": 2350
+              }
+            ],
+            "vehicle": {
+              "externalIds": {
+                "maintenanceId": "250020",
+                "payrollId": "ABFS18600"
+              },
+              "id": "494123",
+              "name": "Fleet Truck #1"
+            }
+          },
           {
             "jurisdictions": [
               {
@@ -30462,12 +31625,6 @@
       },
       "example": {
         "jurisdictions": [
-          {
-            "jurisdiction": "GA",
-            "taxPaidLiters": 25.5,
-            "taxableMeters": 2350,
-            "totalMeters": 2350
-          },
           {
             "jurisdiction": "GA",
             "taxPaidLiters": 25.5,
@@ -30678,7 +31835,7 @@
           "month": "January",
           "quarter": "Q4",
           "troubleshooting": {
-            "noPurchasesFound": false,
+            "noPurchasesFound": true,
             "unassignedFuelTypePurchases": 200,
             "unassignedFuelTypeVehicles": 2500,
             "unassignedVehiclePurchases": 2500
@@ -44672,6 +45829,11 @@
             "id": "3914",
             "name": "East Coast",
             "parentTagId": "4815"
+          },
+          {
+            "id": "3914",
+            "name": "East Coast",
+            "parentTagId": "4815"
           }
         ],
         "trailerSerialNumber": "8V8WD530FLN016251"
@@ -46126,16 +47288,6 @@
               "id": "3914",
               "name": "East Coast",
               "parentTagId": "4815"
-            },
-            {
-              "id": "3914",
-              "name": "East Coast",
-              "parentTagId": "4815"
-            },
-            {
-              "id": "3914",
-              "name": "East Coast",
-              "parentTagId": "4815"
             }
           ]
         },
@@ -46147,6 +47299,18 @@
       },
       "example": {
         "attributes": [
+          {
+            "id": "494123",
+            "name": "Compliance/ELD",
+            "numberValues": [
+              867,
+              5309
+            ],
+            "stringValues": [
+              "HQ",
+              "Leased"
+            ]
+          },
           {
             "id": "494123",
             "name": "Compliance/ELD",
@@ -46193,6 +47357,11 @@
         "name": "Trailer-123",
         "notes": "These are my trailer notes",
         "tags": [
+          {
+            "id": "3914",
+            "name": "East Coast",
+            "parentTagId": "4815"
+          },
           {
             "id": "3914",
             "name": "East Coast",
@@ -46605,6 +47774,18 @@
                 "HQ",
                 "Leased"
               ]
+            },
+            {
+              "id": "494123",
+              "name": "Compliance/ELD",
+              "numberValues": [
+                867,
+                5309
+              ],
+              "stringValues": [
+                "HQ",
+                "Leased"
+              ]
             }
           ],
           "enabledForMobile": true,
@@ -46628,6 +47809,11 @@
           "name": "Trailer-123",
           "notes": "These are my trailer notes",
           "tags": [
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
             {
               "id": "3914",
               "name": "East Coast",
@@ -47171,6 +48357,18 @@
                 "HQ",
                 "Leased"
               ]
+            },
+            {
+              "id": "494123",
+              "name": "Compliance/ELD",
+              "numberValues": [
+                867,
+                5309
+              ],
+              "stringValues": [
+                "HQ",
+                "Leased"
+              ]
             }
           ],
           "enabledForMobile": true,
@@ -47194,6 +48392,11 @@
           "name": "Trailer-123",
           "notes": "These are my trailer notes",
           "tags": [
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
             {
               "id": "3914",
               "name": "East Coast",
@@ -47499,11 +48702,6 @@
                   "id": "3914",
                   "name": "East Coast",
                   "parentTagId": "4815"
-                },
-                {
-                  "id": "3914",
-                  "name": "East Coast",
-                  "parentTagId": "4815"
                 }
               ],
               "trailerSerialNumber": "8V8WD530FLN016251"
@@ -47535,6 +48733,41 @@
                   "name": "East Coast",
                   "parentTagId": "4815"
                 },
+                {
+                  "id": "3914",
+                  "name": "East Coast",
+                  "parentTagId": "4815"
+                },
+                {
+                  "id": "3914",
+                  "name": "East Coast",
+                  "parentTagId": "4815"
+                }
+              ],
+              "trailerSerialNumber": "8V8WD530FLN016251"
+            },
+            {
+              "enabledForMobile": true,
+              "externalIds": {
+                "maintenanceId": "250020",
+                "payrollId": "ABFS18600"
+              },
+              "id": "494123",
+              "installedGateway": {
+                "asset": {
+                  "externalIds": {
+                    "maintenanceId": "250020",
+                    "payrollId": "ABFS18600"
+                  },
+                  "id": "8393848111"
+                },
+                "model": "VG34",
+                "serial": "GFRV-43N-VGX"
+              },
+              "licensePlate": "7TYP290",
+              "name": "Trailer-123",
+              "notes": "These are my trailer notes",
+              "tags": [
                 {
                   "id": "3914",
                   "name": "East Coast",
@@ -47597,11 +48830,6 @@
                 "id": "3914",
                 "name": "East Coast",
                 "parentTagId": "4815"
-              },
-              {
-                "id": "3914",
-                "name": "East Coast",
-                "parentTagId": "4815"
               }
             ],
             "trailerSerialNumber": "8V8WD530FLN016251"
@@ -47628,11 +48856,6 @@
             "name": "Trailer-123",
             "notes": "These are my trailer notes",
             "tags": [
-              {
-                "id": "3914",
-                "name": "East Coast",
-                "parentTagId": "4815"
-              },
               {
                 "id": "3914",
                 "name": "East Coast",
@@ -48002,11 +49225,10 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Et delectus ab est a architecto."
+            "example": "Architecto sed delectus alias molestiae iure."
           },
           "example": [
-            "Alias molestiae iure nam ut.",
-            "Eum ut qui aut voluptas soluta.",
+            "Dolorem eum ut qui aut voluptas soluta.",
             "Quia corrupti."
           ]
         },
@@ -48107,6 +49329,18 @@
                 "HQ",
                 "Leased"
               ]
+            },
+            {
+              "id": "494123",
+              "name": "Compliance/ELD",
+              "numberValues": [
+                867,
+                5309
+              ],
+              "stringValues": [
+                "HQ",
+                "Leased"
+              ]
             }
           ],
           "enabledForMobile": true,
@@ -48130,6 +49364,11 @@
           "name": "Trailer-123",
           "notes": "These are my trailer notes",
           "tags": [
+            {
+              "id": "3914",
+              "name": "East Coast",
+              "parentTagId": "4815"
+            },
             {
               "id": "3914",
               "name": "East Coast",
