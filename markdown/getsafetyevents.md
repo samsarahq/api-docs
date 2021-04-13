@@ -3,9 +3,9 @@
 | :------------ | :---------- |
 | **data**<br/>_object array_ |  |
 | **&nbsp;&nbsp;&nbsp;&nbsp;behaviorLabels**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;array_ | The most up-to-date behavior labels associated with the safety event. These labels can be updated by the Safety Report Admin. |
-| **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | The label associated with the safety event. This list often changes, so it is recommended that clients gracefully handle any types not enumerated in this list. |
-| **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | The source of the label associated with the safety event. |
-| **&nbsp;&nbsp;&nbsp;&nbsp;coachingState**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | The current coaching status of the event. |
+| **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | The label associated with the safety event. This list often changes, so it is recommended that clients gracefully handle any types not enumerated in this list. Valid values: `genericTailgating`, `genericDistraction`, `defensiveDriving`, `rollingStop`, `nearCollison`, `speeding`, `obstructedCamera`, `didNotYield`, `noSeatbelt`, `mobileUsage`, `drowsy`, `laneDeparture`, `followingDistanceSevere`, `followingDistanceModerate`, `lateResponse`, `acceleration`, `braking`, `harshTurn`, `crash`, `rolloverProtection`, `yawControl`, `ranRedLight`, `forwardCollisionWarning`, `eatingDrinking`, `smoking`, `followingDistance`, `edgeDistractedDriving`. |
+| **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | The source of the label associated with the safety event. Valid values: `automated`, `userGenerated`. |
+| **&nbsp;&nbsp;&nbsp;&nbsp;coachingState**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | The current coaching status of the event. Valid values: `needsReview`, `coached`, `dismissed`, `reviewed`, `archived`, `manualReview`, `needsCoaching`, `autoDismissed`, `needsRecognition`, `recognized`, `invalid`. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;downloadForwardVideoUrl**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | URL to download the forward video. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;downloadInwardVideoUrl**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | URL to download the inward video. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;downloadTrackedInwardVideoUrl**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | URL to download the tracked inward video. |

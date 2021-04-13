@@ -2,7 +2,7 @@
 | Property Name | Description |
 | :------------ | :---------- |
 | **data**<br/>_object array_ | A list of users. |
-| **&nbsp;&nbsp;&nbsp;&nbsp;authType**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | The authentication type the user uses to authenticate. To use SAML this organization must have a configured SAML integration. |
+| **&nbsp;&nbsp;&nbsp;&nbsp;authType**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | The authentication type the user uses to authenticate. To use SAML this organization must have a configured SAML integration. Valid values: `default`, `saml`. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;email**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | The email address of this user. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;id**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | ID of the user. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;name**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | The first and last name of the user. |

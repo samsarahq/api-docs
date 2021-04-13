@@ -4,8 +4,8 @@
 | **job_updates**<br/>_object array_ |  |
 | **&nbsp;&nbsp;&nbsp;&nbsp;changed_at_ms**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;integer_ | Timestamp that this event was updated, represented as Unix milliseconds since epoch. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;job_id**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;integer_ | ID of the Samsara job. |
-| **&nbsp;&nbsp;&nbsp;&nbsp;job_state**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | The state of the dispatch job. |
-| **&nbsp;&nbsp;&nbsp;&nbsp;prev_job_state**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | The state of the dispatch job. |
+| **&nbsp;&nbsp;&nbsp;&nbsp;job_state**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | The state of the dispatch job. Valid values: `JobState_Unassigned`, `JobState_Scheduled`, `JobState_EnRoute`, `JobState_Arrived`, `JobState_Completed`, `JobState_Skipped`. |
+| **&nbsp;&nbsp;&nbsp;&nbsp;prev_job_state**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | The state of the dispatch job. Valid values: `JobState_Unassigned`, `JobState_Scheduled`, `JobState_EnRoute`, `JobState_Arrived`, `JobState_Completed`, `JobState_Skipped`. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;route**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;object_ |  |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;actual_end_ms**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;integer_ | The time in Unix epoch milliseconds that the route actually ended. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;actual_start_ms**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;integer_ | The time in Unix epoch milliseconds that the route actually started. |
@@ -29,7 +29,7 @@
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fleet_viewer_url**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Fleet viewer url of the dispatch job. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;group_id**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;integer_ | Deprecated. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;integer_ | ID of the Samsara dispatch job. |
-| **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;job_state**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | The state of the dispatch job. |
+| **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;job_state**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | The state of the dispatch job. Valid values: `JobState_Unassigned`, `JobState_Scheduled`, `JobState_EnRoute`, `JobState_Arrived`, `JobState_Completed`, `JobState_Skipped`. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;notes**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Notes regarding the details of this job, maximum of 2000 characters; newline characters ('\n')can be used for formatting. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scheduled_arrival_time_ms**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;integer_ | The time at which the assigned driver is scheduled to arrive at the job destination. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scheduled_departure_time_ms**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;integer_ | The time at which the assigned driver is scheduled to depart from the job destination. |

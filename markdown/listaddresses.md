@@ -2,7 +2,7 @@
 | Property Name | Description |
 | :------------ | :---------- |
 | **data**<br/>_object array_ | A list of Addresses. |
-| **&nbsp;&nbsp;&nbsp;&nbsp;addressTypes**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string array_ | Reporting location type associated with the address (used for ELD reporting purposes). |
+| **&nbsp;&nbsp;&nbsp;&nbsp;addressTypes**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string array_ | Reporting location type associated with the address (used for ELD reporting purposes). Valid values: `yard`, `shortHaul`, `workforceSite`, `riskZone`, `industrialSite`. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;contacts**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;object array_ | An array Contact mini-objects that are associated the Address. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;firstName**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | First name of the contact. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | ID of the contact. |
