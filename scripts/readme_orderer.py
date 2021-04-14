@@ -47,11 +47,14 @@ tags = sorted(tags, key=lambda x: x["title"])
 # Update the markdown docs for all slugs.
 print("Updating markdown for all docs...\n")
 for slug in slugToBody:
+    curSlug = slug
     body = slugToBody[slug]
     if slug not in slugToDocTitle:
         print(slug + " has associated markdown file, but was not found in readme")
-        continue
-    title = slugToDocTitle[slug]
+        curSlug = slug + "-1"
+        if curSlug not in slugToDocTitle:
+            continue
+    title = slugToDocTitle[curSlug]
 
     payload = {
         "title": title,
@@ -59,8 +62,8 @@ for slug in slugToBody:
         "body": body,
     }
 
-    resp = requests.put("https://dash.readme.io/api/v1/docs/" + slug, auth=readme_auth, data=payload)
-    print(slug + ": " + str(resp.status_code))
+    resp = requests.put("https://dash.readme.io/api/v1/docs/" + curSlug, auth=readme_auth, data=payload)
+    print(curSlug + ": " + str(resp.status_code))
 
 # Start at order=1, because overview is at order=0.
 order = 1
