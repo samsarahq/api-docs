@@ -19911,17 +19911,17 @@
         "alarmCode": {
           "description": "ID of the alarm.",
           "type": "string",
-          "example": "Perspiciatis deleniti eos eaque optio magnam."
+          "example": "Et perspiciatis deleniti eos eaque optio."
         },
         "description": {
           "description": "Description of the alarm.",
           "type": "string",
-          "example": "Sunt exercitationem."
+          "example": "Earum sunt exercitationem soluta."
         },
         "operatorAction": {
           "description": "Recommended operator action.",
           "type": "string",
-          "example": "Aspernatur eos exercitationem."
+          "example": "Eos exercitationem voluptate in voluptatibus."
         },
         "severity": {
           "description": "Severity of the alarm",
@@ -19933,7 +19933,7 @@
             "red",
             "orange"
           ],
-          "example": "none"
+          "example": "orange"
         }
       }
     },
@@ -19988,7 +19988,7 @@
             "not defrosting",
             "defrosting"
           ],
-          "example": "defrosting"
+          "example": "not defrosting"
         }
       }
     },
@@ -20046,7 +20046,7 @@
             "closed",
             "open"
           ],
-          "example": "open"
+          "example": "closed"
         }
       }
     },
@@ -20122,53 +20122,11 @@
             "error",
             "inactive"
           ],
-          "example": "active"
+          "example": "off"
         }
       }
     },
-    "ReeferStatsFeedObjectResponseBody": {
-      "description": "Contains all the state changes of the reefer for the included stat types. Each state change is recorded independently, so the number of records in each array may differ depending on when that stat changed state. Stat types with a continuous value (such as temperature) will be recorded at different rates depending on the reefer, but generally readings have a frequency on the order of seconds.",
-      "type": "object",
-      "properties": {
-        "alarms": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ReeferAlarmStatObjectResponseBody"
-          }
-        },
-        "ambientAirTemperature": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ReeferAmbientAirTempStatObjectResponseBody"
-          }
-        },
-        "defrost": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ReeferDefrostStatObjectResponseBody"
-          }
-        },
-        "dischargeAirTemperature": {
-          "$ref": "#/definitions/ReeferDischargeAirZonedTempStatsObjectResponseBody"
-        },
-        "door": {
-          "$ref": "#/definitions/ReeferZonedDoorStatsObjectResponseBody"
-        },
-        "engineHours": {
-          "$ref": "#/definitions/ReeferZonedEngineHoursStatsObjectResponseBody"
-        },
-        "returnAirTemperature": {
-          "$ref": "#/definitions/ReeferReturnAirZonedTempStatsObjectResponseBody"
-        },
-        "setPoint": {
-          "$ref": "#/definitions/ReeferZonedSetPointStatsObjectResponseBody"
-        },
-        "state": {
-          "$ref": "#/definitions/ReeferZonedStateStatsObjectResponseBody"
-        }
-      }
-    },
-    "ReeferStatsHistoricalObjectResponseBody": {
+    "ReeferStatsObjectResponseBody": {
       "description": "Contains all the state changes of the reefer for the included stat types. Each state change is recorded independently, so the number of records in each array may differ depending on when that stat changed state. Stat types with a continuous value (such as temperature) will be recorded at different rates depending on the reefer, but generally readings have a frequency on the order of seconds.",
       "type": "object",
       "properties": {
@@ -20385,7 +20343,7 @@
             "error",
             "inactive"
           ],
-          "example": "off"
+          "example": "inactive"
         },
         "zone1": {
           "$ref": "#/definitions/ReeferStateStatObjectResponseBody"
@@ -23785,7 +23743,7 @@
           "example": "Vehicle-123"
         },
         "stats": {
-          "$ref": "#/definitions/ReeferStatsFeedObjectResponseBody"
+          "$ref": "#/definitions/ReeferStatsObjectResponseBody"
         },
         "tags": {
           "description": "The list of [tags](https://kb.samsara.com/hc/en-us/articles/360026674631-Using-Tags-and-Tag-Nesting) associated with the Reefer.",
@@ -23823,7 +23781,7 @@
           "example": "Vehicle-123"
         },
         "stats": {
-          "$ref": "#/definitions/ReeferStatsHistoricalObjectResponseBody"
+          "$ref": "#/definitions/ReeferStatsObjectResponseBody"
         },
         "tags": {
           "description": "The list of [tags](https://kb.samsara.com/hc/en-us/articles/360026674631-Using-Tags-and-Tag-Nesting) associated with the Reefer.",

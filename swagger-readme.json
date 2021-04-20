@@ -10997,17 +10997,17 @@
 	   	   	   	   "properties": {
 	   	   	   	   	   "alarmCode": {
 	   	   	   	   	   	   "description": "ID of the alarm.",
-	   	   	   	   	   	   "example": "Perspiciatis deleniti eos eaque optio magnam.",
+	   	   	   	   	   	   "example": "Et perspiciatis deleniti eos eaque optio.",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "description": {
 	   	   	   	   	   	   "description": "Description of the alarm.",
-	   	   	   	   	   	   "example": "Sunt exercitationem.",
+	   	   	   	   	   	   "example": "Earum sunt exercitationem soluta.",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "operatorAction": {
 	   	   	   	   	   	   "description": "Recommended operator action.",
-	   	   	   	   	   	   "example": "Aspernatur eos exercitationem.",
+	   	   	   	   	   	   "example": "Eos exercitationem voluptate in voluptatibus.",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "severity": {
@@ -11019,7 +11019,7 @@
 	   	   	   	   	   	   	   "red",
 	   	   	   	   	   	   	   "orange"
 	   	   	   	   	   	   ],
-	   	   	   	   	   	   "example": "none",
+	   	   	   	   	   	   "example": "orange",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   }
 	   	   	   	   },
@@ -11074,7 +11074,7 @@
 	   	   	   	   	   	   	   "not defrosting",
 	   	   	   	   	   	   	   "defrosting"
 	   	   	   	   	   	   ],
-	   	   	   	   	   	   "example": "defrosting",
+	   	   	   	   	   	   "example": "not defrosting",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   }
 	   	   	   	   },
@@ -11132,7 +11132,7 @@
 	   	   	   	   	   	   	   "closed",
 	   	   	   	   	   	   	   "open"
 	   	   	   	   	   	   ],
-	   	   	   	   	   	   "example": "open",
+	   	   	   	   	   	   "example": "closed",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   }
 	   	   	   	   },
@@ -11208,55 +11208,13 @@
 	   	   	   	   	   	   	   "error",
 	   	   	   	   	   	   	   "inactive"
 	   	   	   	   	   	   ],
-	   	   	   	   	   	   "example": "active",
+	   	   	   	   	   	   "example": "off",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   }
 	   	   	   	   },
 	   	   	   	   "type": "object"
 	   	   	   },
-	   	   	   "ReeferStatsFeedObjectResponseBody": {
-	   	   	   	   "description": "Contains all the state changes of the reefer for the included stat types. Each state change is recorded independently, so the number of records in each array may differ depending on when that stat changed state. Stat types with a continuous value (such as temperature) will be recorded at different rates depending on the reefer, but generally readings have a frequency on the order of seconds.",
-	   	   	   	   "properties": {
-	   	   	   	   	   "alarms": {
-	   	   	   	   	   	   "items": {
-	   	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferAlarmStatObjectResponseBody"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "type": "array"
-	   	   	   	   	   },
-	   	   	   	   	   "ambientAirTemperature": {
-	   	   	   	   	   	   "items": {
-	   	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferAmbientAirTempStatObjectResponseBody"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "type": "array"
-	   	   	   	   	   },
-	   	   	   	   	   "defrost": {
-	   	   	   	   	   	   "items": {
-	   	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferDefrostStatObjectResponseBody"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "type": "array"
-	   	   	   	   	   },
-	   	   	   	   	   "dischargeAirTemperature": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferDischargeAirZonedTempStatsObjectResponseBody"
-	   	   	   	   	   },
-	   	   	   	   	   "door": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferZonedDoorStatsObjectResponseBody"
-	   	   	   	   	   },
-	   	   	   	   	   "engineHours": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferZonedEngineHoursStatsObjectResponseBody"
-	   	   	   	   	   },
-	   	   	   	   	   "returnAirTemperature": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferReturnAirZonedTempStatsObjectResponseBody"
-	   	   	   	   	   },
-	   	   	   	   	   "setPoint": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferZonedSetPointStatsObjectResponseBody"
-	   	   	   	   	   },
-	   	   	   	   	   "state": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferZonedStateStatsObjectResponseBody"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "ReeferStatsHistoricalObjectResponseBody": {
+	   	   	   "ReeferStatsObjectResponseBody": {
 	   	   	   	   "description": "Contains all the state changes of the reefer for the included stat types. Each state change is recorded independently, so the number of records in each array may differ depending on when that stat changed state. Stat types with a continuous value (such as temperature) will be recorded at different rates depending on the reefer, but generally readings have a frequency on the order of seconds.",
 	   	   	   	   "properties": {
 	   	   	   	   	   "alarms": {
@@ -11471,7 +11429,7 @@
 	   	   	   	   	   	   	   "error",
 	   	   	   	   	   	   	   "inactive"
 	   	   	   	   	   	   ],
-	   	   	   	   	   	   "example": "off",
+	   	   	   	   	   	   "example": "inactive",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "zone1": {
@@ -14869,7 +14827,7 @@
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "stats": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferStatsFeedObjectResponseBody"
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferStatsObjectResponseBody"
 	   	   	   	   	   },
 	   	   	   	   	   "tags": {
 	   	   	   	   	   	   "description": "The list of [tags](https://kb.samsara.com/hc/en-us/articles/360026674631-Using-Tags-and-Tag-Nesting) associated with the Reefer.",
@@ -14907,7 +14865,7 @@
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "stats": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferStatsHistoricalObjectResponseBody"
+	   	   	   	   	   	   "$ref": "#/components/schemas/ReeferStatsObjectResponseBody"
 	   	   	   	   	   },
 	   	   	   	   	   "tags": {
 	   	   	   	   	   	   "description": "The list of [tags](https://kb.samsara.com/hc/en-us/articles/360026674631-Using-Tags-and-Tag-Nesting) associated with the Reefer.",
