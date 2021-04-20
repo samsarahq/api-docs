@@ -10817,6 +10817,50 @@
       "type": "string",
       "example": "123"
     },
+    "ConnectionStatusResponseObjectResponseBody": {
+      "description": "An objecting containing information about the connectivity status of the gateway",
+      "type": "object",
+      "properties": {
+        "healthStatus": {
+          "description": "The most recent health status of the gateway.",
+          "type": "string",
+          "enum": [
+            "Status Not Set",
+            "Connected",
+            "Not Installed",
+            "Power Source Off - Active Vehicle",
+            "Power Source Off - Inactive Vehicle",
+            "Weak Cellular Signal",
+            "Requires Investigation",
+            "Requires Charge",
+            "Unsupported Product",
+            "Low Battery. Replace Device.",
+            "Low Vehicle Battery",
+            "Unplugged",
+            "Low Charging State",
+            "Vehicle Off",
+            "Weak GPS Signal",
+            "Low Gateway Battery",
+            "Low Gateway Battery (AG24)",
+            "Low Gateway Battery (AG45)",
+            "Low Gateway Battery (AG26)",
+            "Low Gateway Battery (AG46)",
+            "Low Gateway Battery (AG46-P)",
+            "Temporarily Offline",
+            "Prolonged Offline",
+            "Recently Offline",
+            "Replacement Required",
+            "Status Unknown"
+          ],
+          "example": "Not Installed"
+        },
+        "lastConnected": {
+          "description": "The last time the gateway was connected in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+          "type": "string",
+          "example": "2019-06-13T19:08:25Z"
+        }
+      }
+    },
     "Contact": {
       "description": "Information about a notification contact for alerts.",
       "type": "object",
@@ -15994,7 +16038,7 @@
       "type": "number"
     },
     "GatewayAssetResponseObjectResponseBody": {
-      "description": "An objecting containing information about the asset the gateway is installed on",
+      "description": "An object containing information about the asset the gateway is installed on",
       "type": "object",
       "properties": {
         "externalIds": {
@@ -16008,6 +16052,103 @@
           "description": "The unique Samsara ID of the asset where the gateway is installed. This is automatically generated when the asset is created and cannot be changed. Use this ID on PATCH vehicle, equipment, or trailer endpoints to update the asset",
           "type": "string",
           "example": "8393848111"
+        }
+      }
+    },
+    "GatewayResponseObjectResponseBody": {
+      "type": "object",
+      "required": [
+        "serial",
+        "model"
+      ],
+      "properties": {
+        "asset": {
+          "$ref": "#/definitions/GatewayAssetResponseObjectResponseBody"
+        },
+        "connectionStatus": {
+          "$ref": "#/definitions/ConnectionStatusResponseObjectResponseBody"
+        },
+        "model": {
+          "description": "The model of the gateway installed on the asset.",
+          "type": "string",
+          "enum": [
+            "none",
+            "AG45",
+            "AG41",
+            "AG46EU",
+            "IG41",
+            "VG34",
+            "IG15",
+            "EM22",
+            "PM7",
+            "VG54NA",
+            "OEMP",
+            "ACCCRGO",
+            "EM01",
+            "Baxter",
+            "IGMAO",
+            "EKM",
+            "DM1",
+            "VG54EU",
+            "IG11",
+            "CM12",
+            "AG41EU",
+            "IM32",
+            "AG46P",
+            "EM12",
+            "EM21",
+            "CM31",
+            "AG46",
+            "IG61",
+            "OEMV",
+            "Trailer",
+            "IM31",
+            "VG33",
+            "AG24",
+            "HM21",
+            "EM23",
+            "VG34EU",
+            "AG26EU",
+            "IG20",
+            "HM11",
+            "NVR10",
+            "VG34FN",
+            "IG21",
+            "IGMAI",
+            "AG15",
+            "OEM",
+            "AG26",
+            "SG1",
+            "VS25C",
+            "PM20",
+            "ACCBDH",
+            "AG24EU",
+            "CMVR",
+            "ACCHMI10",
+            "OEMR",
+            "VG32",
+            "PM10",
+            "VS2C",
+            "EM02",
+            "EM11",
+            "IM33",
+            "ACCDM11",
+            "CM52",
+            "CM11",
+            "GW22",
+            "VS25",
+            "CM22",
+            "CM32",
+            "PM8",
+            "WM11",
+            "AG45EU"
+          ],
+          "example": "VG34"
+        },
+        "serial": {
+          "description": "The serial number of the gateway installed on the asset.",
+          "type": "string",
+          "example": "GFRV-43N-VGX"
         }
       }
     },
@@ -16702,7 +16843,7 @@
           "description": "Activated gateways",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/GoaGatewayTinyResponseResponseBody"
+            "$ref": "#/definitions/GatewayResponseObjectResponseBody"
           }
         },
         "pagination": {
@@ -16781,7 +16922,7 @@
           "description": "Activated gateways",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/GoaGatewayTinyResponseResponseBody"
+            "$ref": "#/definitions/GatewayResponseObjectResponseBody"
           }
         },
         "pagination": {
@@ -17150,7 +17291,7 @@
       ],
       "properties": {
         "data": {
-          "$ref": "#/definitions/GoaGatewayTinyResponseResponseBody"
+          "$ref": "#/definitions/GatewayResponseObjectResponseBody"
         }
       }
     },
@@ -17235,7 +17376,7 @@
       ],
       "properties": {
         "data": {
-          "$ref": "#/definitions/GoaGatewayTinyResponseResponseBody"
+          "$ref": "#/definitions/GatewayResponseObjectResponseBody"
         }
       }
     },
@@ -17532,9 +17673,6 @@
         "model"
       ],
       "properties": {
-        "asset": {
-          "$ref": "#/definitions/GatewayAssetResponseObjectResponseBody"
-        },
         "model": {
           "description": "The model of the gateway installed on the asset.",
           "type": "string",
