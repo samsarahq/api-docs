@@ -12,17 +12,6 @@
 	   	   	   	   },
 	   	   	   	   "style": "simple"
 	   	   	   },
-	   	   	   "V1JobUpdatesIncludeParam": {
-	   	   	   	   "description": "Optionally set include=route to include route object in response payload.",
-	   	   	   	   "explode": true,
-	   	   	   	   "in": "query",
-	   	   	   	   "name": "include",
-	   	   	   	   "required": false,
-	   	   	   	   "schema": {
-	   	   	   	   	   "type": "string"
-	   	   	   	   },
-	   	   	   	   "style": "form"
-	   	   	   },
 	   	   	   "V1assetHistoryEndTimeParam": {
 	   	   	   	   "description": "Timestamp in milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs.",
 	   	   	   	   "explode": true,
@@ -168,17 +157,6 @@
 	   	   	   	   "schema": {
 	   	   	   	   	   "format": "int64",
 	   	   	   	   	   "type": "integer"
-	   	   	   	   },
-	   	   	   	   "style": "form"
-	   	   	   },
-	   	   	   "V1lastReceivedSequenceIDParam": {
-	   	   	   	   "description": "Sequence ID from the response payload of the last request. Defaults to fetching updates from last 24 hours.",
-	   	   	   	   "explode": true,
-	   	   	   	   "in": "query",
-	   	   	   	   "name": "sequence_id",
-	   	   	   	   "required": false,
-	   	   	   	   "schema": {
-	   	   	   	   	   "type": "string"
 	   	   	   	   },
 	   	   	   	   "style": "form"
 	   	   	   },
@@ -684,26 +662,6 @@
 	   	   	   	   	   }
 	   	   	   	   },
 	   	   	   	   "description": "To create a document for a given document type, provide the `documentTypeUuid` of the type of document you'd like to create. Then, pass in the `fields` of the document in the same order that they show up in the given document type.",
-	   	   	   	   "required": true
-	   	   	   },
-	   	   	   "V1routeCreateParam": {
-	   	   	   	   "content": {
-	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "$ref": "#/components/schemas/V1DispatchRouteCreate"
-	   	   	   	   	   	   }
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": true
-	   	   	   },
-	   	   	   "V1routeUpdateParam": {
-	   	   	   	   "content": {
-	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "$ref": "#/components/schemas/V1DispatchRouteUpdate"
-	   	   	   	   	   	   }
-	   	   	   	   	   }
-	   	   	   	   },
 	   	   	   	   "required": true
 	   	   	   },
 	   	   	   "V1sensorParam": {
@@ -17651,27 +17609,6 @@
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
-	   	   	   "V1DispatchJobUpdate": {
-	   	   	   	   "allOf": [
-	   	   	   	   	   {
-	   	   	   	   	   	   "properties": {
-	   	   	   	   	   	   	   "id": {
-	   	   	   	   	   	   	   	   "description": "ID of the Samsara dispatch job to update",
-	   	   	   	   	   	   	   	   "example": 42,
-	   	   	   	   	   	   	   	   "format": "int64",
-	   	   	   	   	   	   	   	   "type": "integer"
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "required": [
-	   	   	   	   	   	   	   "id"
-	   	   	   	   	   	   ],
-	   	   	   	   	   	   "type": "object"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "$ref": "#/components/schemas/V1DispatchJobCreate"
-	   	   	   	   	   }
-	   	   	   	   ]
-	   	   	   },
 	   	   	   "V1DispatchJobWithoutETA": {
 	   	   	   	   "allOf": [
 	   	   	   	   	   {
@@ -17900,119 +17837,6 @@
 	   	   	   	   },
 	   	   	   	   "type": "object"
 	   	   	   },
-	   	   	   "V1DispatchRouteCreate": {
-	   	   	   	   "allOf": [
-	   	   	   	   	   {
-	   	   	   	   	   	   "properties": {
-	   	   	   	   	   	   	   "dispatch_jobs": {
-	   	   	   	   	   	   	   	   "description": "The dispatch jobs to create for this route.",
-	   	   	   	   	   	   	   	   "items": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/V1DispatchJobCreate"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "type": "array"
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "required": [
-	   	   	   	   	   	   	   "dispatch_jobs"
-	   	   	   	   	   	   ],
-	   	   	   	   	   	   "type": "object"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "$ref": "#/components/schemas/V1DispatchRouteCreateBase"
-	   	   	   	   	   }
-	   	   	   	   ]
-	   	   	   },
-	   	   	   "V1DispatchRouteCreateBase": {
-	   	   	   	   "properties": {
-	   	   	   	   	   "complete_last_stop_on_arrival": {
-	   	   	   	   	   	   "default": true,
-	   	   	   	   	   	   "description": "When set to true (default), this causes the Route to complete on arrival at the final stop. When set to false, the last stop will capture arrival and departure separately as with other stops.",
-	   	   	   	   	   	   "type": "boolean"
-	   	   	   	   	   },
-	   	   	   	   	   "driver_id": {
-	   	   	   	   	   	   "description": "ID of the driver assigned to the dispatch route. Note that driver_id and vehicle_id are mutually exclusive. If neither is specified, then the route is unassigned.",
-	   	   	   	   	   	   "example": 555,
-	   	   	   	   	   	   "format": "int64",
-	   	   	   	   	   	   "type": "integer"
-	   	   	   	   	   },
-	   	   	   	   	   "externalIds": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/V1DispatchRouteExternalIds"
-	   	   	   	   	   },
-	   	   	   	   	   "name": {
-	   	   	   	   	   	   "description": "Descriptive name of this route.",
-	   	   	   	   	   	   "example": "Bid #123",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "notes": {
-	   	   	   	   	   	   "description": "Notes regarding the details of this route; maximum of 2000 characters; newline characters ('\\n')can be used for formatting.",
-	   	   	   	   	   	   "example": "Please make sure to confirm crate count at each stop on this route.\nTotal number of crates for route: 23.",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "scheduled_end_ms": {
-	   	   	   	   	   	   "description": "The time in Unix epoch milliseconds that the last job in the route is scheduled to end.",
-	   	   	   	   	   	   "example": 1462881998034,
-	   	   	   	   	   	   "format": "int64",
-	   	   	   	   	   	   "type": "integer"
-	   	   	   	   	   },
-	   	   	   	   	   "scheduled_meters": {
-	   	   	   	   	   	   "description": "The distance expected to be traveled for this route in meters.",
-	   	   	   	   	   	   "example": 10000,
-	   	   	   	   	   	   "format": "int64",
-	   	   	   	   	   	   "type": "integer"
-	   	   	   	   	   },
-	   	   	   	   	   "scheduled_start_ms": {
-	   	   	   	   	   	   "description": "The time in Unix epoch milliseconds that the route is scheduled to start.",
-	   	   	   	   	   	   "example": 1462881998034,
-	   	   	   	   	   	   "format": "int64",
-	   	   	   	   	   	   "type": "integer"
-	   	   	   	   	   },
-	   	   	   	   	   "start_location_address": {
-	   	   	   	   	   	   "description": "The address of the route's starting location, as it would be recognized if provided to maps.google.com. Optional if a valid start location address ID is provided.",
-	   	   	   	   	   	   "example": "123 Main St, Philadelphia, PA 19106",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "start_location_address_id": {
-	   	   	   	   	   	   "description": "ID of the start location associated with an address book entry. Optional if valid values are provided for start location address and latitude/longitude. If a valid start location address ID is provided, address/latitude/longitude will be used from the address book entry. Name of the address book entry will only be used if the start location name is not provided.",
-	   	   	   	   	   	   "example": 67890,
-	   	   	   	   	   	   "format": "int64",
-	   	   	   	   	   	   "type": "integer"
-	   	   	   	   	   },
-	   	   	   	   	   "start_location_lat": {
-	   	   	   	   	   	   "description": "Latitude of the start location in decimal degrees. Optional if a valid start location address ID is provided.",
-	   	   	   	   	   	   "example": 123.456,
-	   	   	   	   	   	   "format": "double",
-	   	   	   	   	   	   "type": "number"
-	   	   	   	   	   },
-	   	   	   	   	   "start_location_lng": {
-	   	   	   	   	   	   "description": "Longitude of the start location in decimal degrees. Optional if a valid start location address ID is provided.",
-	   	   	   	   	   	   "example": 37.459,
-	   	   	   	   	   	   "format": "double",
-	   	   	   	   	   	   "type": "number"
-	   	   	   	   	   },
-	   	   	   	   	   "start_location_name": {
-	   	   	   	   	   	   "description": "The name of the route's starting location. If provided, it will take precedence over the name of the address book entry.",
-	   	   	   	   	   	   "example": "ACME Inc. Philadelphia HQ",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "trailer_id": {
-	   	   	   	   	   	   "description": "ID of the trailer assigned to the dispatch route. Note that trailers can only be assigned to routes that have a Vehicle or Driver assigned to them.",
-	   	   	   	   	   	   "example": 666,
-	   	   	   	   	   	   "format": "int64",
-	   	   	   	   	   	   "type": "integer"
-	   	   	   	   	   },
-	   	   	   	   	   "vehicle_id": {
-	   	   	   	   	   	   "description": "ID of the vehicle assigned to the dispatch route. Note that vehicle_id and driver_id are mutually exclusive. If neither is specified, then the route is unassigned.",
-	   	   	   	   	   	   "example": 444,
-	   	   	   	   	   	   "format": "int64",
-	   	   	   	   	   	   "type": "integer"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "name",
-	   	   	   	   	   "scheduled_start_ms"
-	   	   	   	   ],
-	   	   	   	   "type": "object"
-	   	   	   },
 	   	   	   "V1DispatchRouteExternalIds": {
 	   	   	   	   "description": "The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.",
 	   	   	   	   "example": {
@@ -18054,49 +17878,6 @@
 	   	   	   	   	   "payrollId": "ABFS18600"
 	   	   	   	   },
 	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "V1DispatchRouteUpdate": {
-	   	   	   	   "allOf": [
-	   	   	   	   	   {
-	   	   	   	   	   	   "properties": {
-	   	   	   	   	   	   	   "dispatch_jobs": {
-	   	   	   	   	   	   	   	   "description": "The dispatch jobs for the route.",
-	   	   	   	   	   	   	   	   "items": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/V1DispatchJobUpdate"
-	   	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   	   "type": "array"
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "required": [
-	   	   	   	   	   	   	   "dispatch_jobs"
-	   	   	   	   	   	   ],
-	   	   	   	   	   	   "type": "object"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "$ref": "#/components/schemas/V1DispatchRouteUpdateBase"
-	   	   	   	   	   }
-	   	   	   	   ]
-	   	   	   },
-	   	   	   "V1DispatchRouteUpdateBase": {
-	   	   	   	   "allOf": [
-	   	   	   	   	   {
-	   	   	   	   	   	   "properties": {
-	   	   	   	   	   	   	   "id": {
-	   	   	   	   	   	   	   	   "description": "ID of route. This must match the route ID passed in URL.",
-	   	   	   	   	   	   	   	   "example": 42,
-	   	   	   	   	   	   	   	   "format": "int64",
-	   	   	   	   	   	   	   	   "type": "integer"
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "required": [
-	   	   	   	   	   	   	   "id"
-	   	   	   	   	   	   ],
-	   	   	   	   	   	   "type": "object"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "$ref": "#/components/schemas/V1DispatchRouteCreateBase"
-	   	   	   	   	   }
-	   	   	   	   ]
 	   	   	   },
 	   	   	   "V1DispatchRouteWithoutETA": {
 	   	   	   	   "allOf": [
@@ -19543,38 +19324,6 @@
 	   	   	   	   ],
 	   	   	   	   "example": "JobState_Arrived",
 	   	   	   	   "type": "string"
-	   	   	   },
-	   	   	   "V1JobUpdateObject": {
-	   	   	   	   "properties": {
-	   	   	   	   	   "changed_at_ms": {
-	   	   	   	   	   	   "description": "Timestamp that this event was updated, represented as Unix milliseconds since epoch.",
-	   	   	   	   	   	   "example": 1462881998034,
-	   	   	   	   	   	   "format": "int64",
-	   	   	   	   	   	   "type": "integer"
-	   	   	   	   	   },
-	   	   	   	   	   "job_id": {
-	   	   	   	   	   	   "description": "ID of the Samsara job.",
-	   	   	   	   	   	   "example": 773,
-	   	   	   	   	   	   "format": "int64",
-	   	   	   	   	   	   "type": "integer"
-	   	   	   	   	   },
-	   	   	   	   	   "job_state": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/V1JobStatus"
-	   	   	   	   	   },
-	   	   	   	   	   "prev_job_state": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/V1JobStatus"
-	   	   	   	   	   },
-	   	   	   	   	   "route": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/V1DispatchRoute"
-	   	   	   	   	   },
-	   	   	   	   	   "route_id": {
-	   	   	   	   	   	   "description": "ID of the Samsara dispatch route.",
-	   	   	   	   	   	   "example": 556,
-	   	   	   	   	   	   "format": "int64",
-	   	   	   	   	   	   "type": "integer"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "type": "object"
 	   	   	   },
 	   	   	   "V1Machine": {
 	   	   	   	   "description": "Contains information about a machine.",
@@ -21462,22 +21211,6 @@
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "type": "object"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "V1allRouteJobUpdates": {
-	   	   	   	   "properties": {
-	   	   	   	   	   "job_updates": {
-	   	   	   	   	   	   "items": {
-	   	   	   	   	   	   	   "$ref": "#/components/schemas/V1JobUpdateObject"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "type": "array"
-	   	   	   	   	   },
-	   	   	   	   	   "sequence_id": {
-	   	   	   	   	   	   "description": "Sequence ID of the last update returned in the response",
-	   	   	   	   	   	   "example": "eyJpZCI6MywiY3JlYXRlZF9hdCI6MTQ5OTQyOTIyMDAwMn0=",
-	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   }
 	   	   	   	   },
 	   	   	   	   "type": "object"
@@ -27845,286 +27578,6 @@
 	   	   	   	   "tags": [
 	   	   	   	   	   "Beta APIs"
 	   	   	   	   ]
-	   	   	   },
-	   	   	   "post": {
-	   	   	   	   "description": "Create a route.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-	   	   	   	   "operationId": "createRoute",
-	   	   	   	   "requestBody": {
-	   	   	   	   	   "content": {
-	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteRequestBody"
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   }
-	   	   	   	   	   },
-	   	   	   	   	   "required": true
-	   	   	   	   },
-	   	   	   	   "responses": {
-	   	   	   	   	   "200": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "OK response."
-	   	   	   	   	   },
-	   	   	   	   	   "401": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteUnauthorizedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Unauthorized response."
-	   	   	   	   	   },
-	   	   	   	   	   "404": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteNotFoundErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Found response."
-	   	   	   	   	   },
-	   	   	   	   	   "405": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteMethodNotAllowedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Method Not Allowed response."
-	   	   	   	   	   },
-	   	   	   	   	   "429": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteTooManyRequestsErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Too Many Requests response."
-	   	   	   	   	   },
-	   	   	   	   	   "500": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteInternalServerErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Internal Server Error response."
-	   	   	   	   	   },
-	   	   	   	   	   "501": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteNotImplementedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Implemented response."
-	   	   	   	   	   },
-	   	   	   	   	   "502": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteBadGatewayErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Gateway response."
-	   	   	   	   	   },
-	   	   	   	   	   "503": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteServiceUnavailableErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Service Unavailable response."
-	   	   	   	   	   },
-	   	   	   	   	   "504": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteGatewayTimeoutErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Gateway Timeout response."
-	   	   	   	   	   },
-	   	   	   	   	   "default": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteBadRequestErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Request response."
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "summary": "[beta] Create a route",
-	   	   	   	   "tags": [
-	   	   	   	   	   "Beta APIs"
-	   	   	   	   ],
-	   	   	   	   "x-codegen-request-body-name": "CreateRouteRequestBody"
-	   	   	   }
-	   	   },
-	   	   "/beta/fleet/routes/audit-logs/feed": {
-	   	   	   "get": {
-	   	   	   	   "description": "Subscribes to a feed of immutable, append-only updates for routes. The initial request to this feed endpoint returns a cursor, which can be used on the next request to fetch updated routes that have had state changes since that request.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-	   	   	   	   "operationId": "getRoutesFeed",
-	   	   	   	   "parameters": [
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "after",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": "Expands the specified value(s) in the response object. Expansion populates additional fields in an object, if supported. Unsupported fields are ignored. To expand multiple fields, input a comma-separated list.\n\nValid value: `route`",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "expand",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "enum": [
-	   	   	   	   	   	   	   	   "route"
-	   	   	   	   	   	   	   ],
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   }
-	   	   	   	   ],
-	   	   	   	   "responses": {
-	   	   	   	   	   "200": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesGetRoutesFeedResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "OK response."
-	   	   	   	   	   },
-	   	   	   	   	   "401": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesGetRoutesFeedUnauthorizedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Unauthorized response."
-	   	   	   	   	   },
-	   	   	   	   	   "404": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesGetRoutesFeedNotFoundErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Found response."
-	   	   	   	   	   },
-	   	   	   	   	   "405": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesGetRoutesFeedMethodNotAllowedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Method Not Allowed response."
-	   	   	   	   	   },
-	   	   	   	   	   "429": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesGetRoutesFeedTooManyRequestsErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Too Many Requests response."
-	   	   	   	   	   },
-	   	   	   	   	   "500": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesGetRoutesFeedInternalServerErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Internal Server Error response."
-	   	   	   	   	   },
-	   	   	   	   	   "501": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesGetRoutesFeedNotImplementedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Implemented response."
-	   	   	   	   	   },
-	   	   	   	   	   "502": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesGetRoutesFeedBadGatewayErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Gateway response."
-	   	   	   	   	   },
-	   	   	   	   	   "503": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesGetRoutesFeedServiceUnavailableErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Service Unavailable response."
-	   	   	   	   	   },
-	   	   	   	   	   "504": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesGetRoutesFeedGatewayTimeoutErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Gateway Timeout response."
-	   	   	   	   	   },
-	   	   	   	   	   "default": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesGetRoutesFeedBadRequestErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Request response."
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "summary": "[beta] Get route updates",
-	   	   	   	   "tags": [
-	   	   	   	   	   "Beta APIs"
-	   	   	   	   ]
 	   	   	   }
 	   	   },
 	   	   "/beta/fleet/routes/{id}": {
@@ -28260,150 +27713,6 @@
 	   	   	   	   "tags": [
 	   	   	   	   	   "Beta APIs"
 	   	   	   	   ]
-	   	   	   },
-	   	   	   "patch": {
-	   	   	   	   "description": "Update a route.  **Note** this implementation of patch uses [the JSON merge patch](https://tools.ietf.org/html/rfc7396) proposed standard.\n This means that any fields included in the patch request will _overwrite_ fields which exist on the target resource.\n For arrays, this means any array included in the request will _replace_ the array that exists at the specified path, it will not _add_ to the existing array\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-	   	   	   	   "operationId": "patchRoute",
-	   	   	   	   "parameters": [
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": "id of the route to update",
-	   	   	   	   	   	   "explode": false,
-	   	   	   	   	   	   "in": "path",
-	   	   	   	   	   	   "name": "id",
-	   	   	   	   	   	   "required": true,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "simple"
-	   	   	   	   	   }
-	   	   	   	   ],
-	   	   	   	   "requestBody": {
-	   	   	   	   	   "content": {
-	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteRequestBody"
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   }
-	   	   	   	   	   },
-	   	   	   	   	   "required": true
-	   	   	   	   },
-	   	   	   	   "responses": {
-	   	   	   	   	   "200": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "OK response."
-	   	   	   	   	   },
-	   	   	   	   	   "401": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteUnauthorizedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Unauthorized response."
-	   	   	   	   	   },
-	   	   	   	   	   "404": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteNotFoundErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Found response."
-	   	   	   	   	   },
-	   	   	   	   	   "405": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteMethodNotAllowedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Method Not Allowed response."
-	   	   	   	   	   },
-	   	   	   	   	   "429": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteTooManyRequestsErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Too Many Requests response."
-	   	   	   	   	   },
-	   	   	   	   	   "500": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteInternalServerErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Internal Server Error response."
-	   	   	   	   	   },
-	   	   	   	   	   "501": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteNotImplementedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Implemented response."
-	   	   	   	   	   },
-	   	   	   	   	   "502": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteBadGatewayErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Gateway response."
-	   	   	   	   	   },
-	   	   	   	   	   "503": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteServiceUnavailableErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Service Unavailable response."
-	   	   	   	   	   },
-	   	   	   	   	   "504": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteGatewayTimeoutErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Gateway Timeout response."
-	   	   	   	   	   },
-	   	   	   	   	   "default": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteBadRequestErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Request response."
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "summary": "[beta] Update a route",
-	   	   	   	   "tags": [
-	   	   	   	   	   "Beta APIs"
-	   	   	   	   ],
-	   	   	   	   "x-codegen-request-body-name": "PatchRouteRequestBody"
 	   	   	   }
 	   	   },
 	   	   "/beta/fleet/settings/compliance": {
@@ -33410,6 +32719,434 @@
 	   	   	   	   ]
 	   	   	   }
 	   	   },
+	   	   "/fleet/routes": {
+	   	   	   "post": {
+	   	   	   	   "description": "Create a route. The legacy version of this endpoint can be found at [samsara.com/api-legacy](https://www.samsara.com/api-legacy#operation/createDispatchRoute).\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+	   	   	   	   "operationId": "createRoute",
+	   	   	   	   "requestBody": {
+	   	   	   	   	   "content": {
+	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteRequestBody"
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   }
+	   	   	   	   	   },
+	   	   	   	   	   "required": true
+	   	   	   	   },
+	   	   	   	   "responses": {
+	   	   	   	   	   "200": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "OK response."
+	   	   	   	   	   },
+	   	   	   	   	   "401": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteUnauthorizedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Unauthorized response."
+	   	   	   	   	   },
+	   	   	   	   	   "404": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteNotFoundErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Found response."
+	   	   	   	   	   },
+	   	   	   	   	   "405": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteMethodNotAllowedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Method Not Allowed response."
+	   	   	   	   	   },
+	   	   	   	   	   "429": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteTooManyRequestsErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Too Many Requests response."
+	   	   	   	   	   },
+	   	   	   	   	   "500": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteInternalServerErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Internal Server Error response."
+	   	   	   	   	   },
+	   	   	   	   	   "501": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteNotImplementedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Implemented response."
+	   	   	   	   	   },
+	   	   	   	   	   "502": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteBadGatewayErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Gateway response."
+	   	   	   	   	   },
+	   	   	   	   	   "503": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteServiceUnavailableErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Service Unavailable response."
+	   	   	   	   	   },
+	   	   	   	   	   "504": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteGatewayTimeoutErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Gateway Timeout response."
+	   	   	   	   	   },
+	   	   	   	   	   "default": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesCreateRouteBadRequestErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Request response."
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "summary": "Create a route",
+	   	   	   	   "tags": [
+	   	   	   	   	   "Routes"
+	   	   	   	   ],
+	   	   	   	   "x-codegen-request-body-name": "CreateRouteRequestBody"
+	   	   	   }
+	   	   },
+	   	   "/fleet/routes/audit-logs/feed": {
+	   	   	   "get": {
+	   	   	   	   "description": "Subscribes to a feed of immutable, append-only updates for routes. The initial request to this feed endpoint returns a cursor, which can be used on the next request to fetch updated routes that have had state changes since that request.\n\nThe legacy version of this endpoint can be found at [samsara.com/api-legacy](https://www.samsara.com/api-legacy#operation/fetchAllRouteJobUpdates).\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+	   	   	   	   "operationId": "getRoutesFeed",
+	   	   	   	   "parameters": [
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "after",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": "Expands the specified value(s) in the response object. Expansion populates additional fields in an object, if supported. Unsupported fields are ignored. To expand multiple fields, input a comma-separated list.\n\nValid value: `route`",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "expand",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "enum": [
+	   	   	   	   	   	   	   	   "route"
+	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   }
+	   	   	   	   ],
+	   	   	   	   "responses": {
+	   	   	   	   	   "200": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesGetRoutesFeedResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "OK response."
+	   	   	   	   	   },
+	   	   	   	   	   "401": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesGetRoutesFeedUnauthorizedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Unauthorized response."
+	   	   	   	   	   },
+	   	   	   	   	   "404": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesGetRoutesFeedNotFoundErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Found response."
+	   	   	   	   	   },
+	   	   	   	   	   "405": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesGetRoutesFeedMethodNotAllowedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Method Not Allowed response."
+	   	   	   	   	   },
+	   	   	   	   	   "429": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesGetRoutesFeedTooManyRequestsErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Too Many Requests response."
+	   	   	   	   	   },
+	   	   	   	   	   "500": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesGetRoutesFeedInternalServerErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Internal Server Error response."
+	   	   	   	   	   },
+	   	   	   	   	   "501": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesGetRoutesFeedNotImplementedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Implemented response."
+	   	   	   	   	   },
+	   	   	   	   	   "502": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesGetRoutesFeedBadGatewayErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Gateway response."
+	   	   	   	   	   },
+	   	   	   	   	   "503": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesGetRoutesFeedServiceUnavailableErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Service Unavailable response."
+	   	   	   	   	   },
+	   	   	   	   	   "504": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesGetRoutesFeedGatewayTimeoutErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Gateway Timeout response."
+	   	   	   	   	   },
+	   	   	   	   	   "default": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesGetRoutesFeedBadRequestErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Request response."
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "summary": "Get route updates",
+	   	   	   	   "tags": [
+	   	   	   	   	   "Routes"
+	   	   	   	   ]
+	   	   	   }
+	   	   },
+	   	   "/fleet/routes/{id}": {
+	   	   	   "patch": {
+	   	   	   	   "description": "Update a route.  **Note** this implementation of patch uses [the JSON merge patch](https://tools.ietf.org/html/rfc7396) proposed standard.\n This means that any fields included in the patch request will _overwrite_ fields which exist on the target resource.\n For arrays, this means any array included in the request will _replace_ the array that exists at the specified path, it will not _add_ to the existing array.\n\nThe legacy version of this endpoint (which uses PUT instead of PATCH) can be found at [samsara.com/api-legacy](https://www.samsara.com/api-legacy#operation/updateDispatchRouteById).\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+	   	   	   	   "operationId": "patchRoute",
+	   	   	   	   "parameters": [
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": "id of the route to update",
+	   	   	   	   	   	   "explode": false,
+	   	   	   	   	   	   "in": "path",
+	   	   	   	   	   	   "name": "id",
+	   	   	   	   	   	   "required": true,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "simple"
+	   	   	   	   	   }
+	   	   	   	   ],
+	   	   	   	   "requestBody": {
+	   	   	   	   	   "content": {
+	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteRequestBody"
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   }
+	   	   	   	   	   },
+	   	   	   	   	   "required": true
+	   	   	   	   },
+	   	   	   	   "responses": {
+	   	   	   	   	   "200": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "OK response."
+	   	   	   	   	   },
+	   	   	   	   	   "401": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteUnauthorizedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Unauthorized response."
+	   	   	   	   	   },
+	   	   	   	   	   "404": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteNotFoundErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Found response."
+	   	   	   	   	   },
+	   	   	   	   	   "405": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteMethodNotAllowedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Method Not Allowed response."
+	   	   	   	   	   },
+	   	   	   	   	   "429": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteTooManyRequestsErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Too Many Requests response."
+	   	   	   	   	   },
+	   	   	   	   	   "500": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteInternalServerErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Internal Server Error response."
+	   	   	   	   	   },
+	   	   	   	   	   "501": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteNotImplementedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Implemented response."
+	   	   	   	   	   },
+	   	   	   	   	   "502": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteBadGatewayErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Gateway response."
+	   	   	   	   	   },
+	   	   	   	   	   "503": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteServiceUnavailableErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Service Unavailable response."
+	   	   	   	   	   },
+	   	   	   	   	   "504": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteGatewayTimeoutErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Gateway Timeout response."
+	   	   	   	   	   },
+	   	   	   	   	   "default": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesPatchRouteBadRequestErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Request response."
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "summary": "Update a route",
+	   	   	   	   "tags": [
+	   	   	   	   	   "Routes"
+	   	   	   	   ],
+	   	   	   	   "x-codegen-request-body-name": "PatchRouteRequestBody"
+	   	   	   }
+	   	   },
 	   	   "/fleet/safety-events": {
 	   	   	   "get": {
 	   	   	   	   "description": "Fetch safety events for the organization in a given time period. \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
@@ -37470,103 +37207,6 @@
 	   	   	   	   "tags": [
 	   	   	   	   	   "Routes"
 	   	   	   	   ]
-	   	   	   },
-	   	   	   "post": {
-	   	   	   	   "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nCreate a new dispatch route. \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-	   	   	   	   "operationId": "V1createDispatchRoute",
-	   	   	   	   "requestBody": {
-	   	   	   	   	   "content": {
-	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/V1DispatchRouteCreate"
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   }
-	   	   	   	   	   },
-	   	   	   	   	   "required": true
-	   	   	   	   },
-	   	   	   	   "responses": {
-	   	   	   	   	   "200": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/V1DispatchRoute"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Created route object including the new route ID."
-	   	   	   	   	   },
-	   	   	   	   	   "default": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/V1ErrorResponse"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Unexpected error."
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "summary": "Create a new route",
-	   	   	   	   "tags": [
-	   	   	   	   	   "Routes"
-	   	   	   	   ],
-	   	   	   	   "x-codegen-request-body-name": "createDispatchRouteParams"
-	   	   	   }
-	   	   },
-	   	   "/v1/fleet/dispatch/routes/job_updates": {
-	   	   	   "get": {
-	   	   	   	   "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch all updates to a job including route data in the last 24 hours or subsequent to an sequence ID. Returns a maximum of 500 job updates. If more than 500 job updates are available, another request made with the prior request's sequence_id will return the next set of available job updates. \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-	   	   	   	   "operationId": "V1fetchAllRouteJobUpdates",
-	   	   	   	   "parameters": [
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": "Sequence ID from the response payload of the last request. Defaults to fetching updates from last 24 hours.",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "sequence_id",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": "Optionally set include=route to include route object in response payload.",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "include",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   }
-	   	   	   	   ],
-	   	   	   	   "responses": {
-	   	   	   	   	   "200": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/V1allRouteJobUpdates"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "All job updates on routes."
-	   	   	   	   	   },
-	   	   	   	   	   "default": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/V1ErrorResponse"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Unexpected error."
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "summary": "Get route updates",
-	   	   	   	   "tags": [
-	   	   	   	   	   "Routes"
-	   	   	   	   ]
 	   	   	   }
 	   	   },
 	   	   "/v1/fleet/dispatch/routes/{route_id_or_external_id}": {
@@ -37660,60 +37300,6 @@
 	   	   	   	   "tags": [
 	   	   	   	   	   "Routes"
 	   	   	   	   ]
-	   	   	   },
-	   	   	   "put": {
-	   	   	   	   "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nUpdate the dispatch route. Allowable updates include adding or removing jobs, and changing job locations and times. \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-	   	   	   	   "operationId": "V1updateDispatchRouteById",
-	   	   	   	   "parameters": [
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": "ID of the route. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `payrollId:ABFS18600`",
-	   	   	   	   	   	   "explode": false,
-	   	   	   	   	   	   "in": "path",
-	   	   	   	   	   	   "name": "route_id_or_external_id",
-	   	   	   	   	   	   "required": true,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "simple"
-	   	   	   	   	   }
-	   	   	   	   ],
-	   	   	   	   "requestBody": {
-	   	   	   	   	   "content": {
-	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/V1DispatchRouteUpdate"
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   }
-	   	   	   	   	   },
-	   	   	   	   	   "required": true
-	   	   	   	   },
-	   	   	   	   "responses": {
-	   	   	   	   	   "200": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/V1DispatchRoute"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "The updated route corresponding to route_id."
-	   	   	   	   	   },
-	   	   	   	   	   "default": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/V1ErrorResponse"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Unexpected error."
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "summary": "Update a route",
-	   	   	   	   "tags": [
-	   	   	   	   	   "Routes"
-	   	   	   	   ],
-	   	   	   	   "x-codegen-request-body-name": "updateDispatchRouteParams"
 	   	   	   }
 	   	   },
 	   	   "/v1/fleet/dispatch/routes/{route_id_or_external_id}/history": {
