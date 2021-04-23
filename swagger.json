@@ -4298,6 +4298,15 @@
             "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
             "name": "after",
             "in": "query"
+          },
+          {
+            "enum": [
+              "vehicle"
+            ],
+            "type": "string",
+            "description": "Expands the specified value(s) in the response object. Expansion populates additional fields in an object, if supported. Unsupported fields are ignored. To expand multiple fields, input a comma-separated list.\n\nValid value: `vehicle`",
+            "name": "expand",
+            "in": "query"
           }
         ],
         "responses": {
@@ -15309,11 +15318,12 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Nihil est voluptatem est nemo nisi."
+            "example": "Quod sed veniam."
           },
           "example": [
-            "Non in ea illum ipsa tempore molestiae.",
-            "Impedit dolor."
+            "Sunt illo qui inventore nihil dolorem.",
+            "Eligendi tenetur.",
+            "Iure expedita ut soluta ea."
           ]
         }
       }
@@ -16520,7 +16530,7 @@
           "items": {
             "type": "number",
             "format": "double",
-            "example": 0.16321020618508525
+            "example": 0.4253481299824773
           },
           "example": [
             867,
@@ -16532,7 +16542,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Odio et laudantium."
+            "example": "Culpa consequatur architecto."
           },
           "example": [
             "HQ",
@@ -16561,7 +16571,7 @@
           "items": {
             "type": "number",
             "format": "double",
-            "example": 0.16473531715670583
+            "example": 0.3719340449809333
           },
           "example": [
             867,
@@ -16573,7 +16583,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Est architecto vel id voluptas tenetur."
+            "example": "Animi ipsa rerum eos."
           },
           "example": [
             "HQ",
@@ -16602,7 +16612,7 @@
           "items": {
             "type": "number",
             "format": "double",
-            "example": 0.2091047966533891
+            "example": 0.7505308202338752
           },
           "example": [
             867,
@@ -16614,7 +16624,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Enim doloribus maiores et."
+            "example": "Nemo et delectus ab est."
           },
           "example": [
             "HQ",
@@ -17852,7 +17862,7 @@
         "noPurchasesFound": {
           "description": "Whether or not fuel purchases were found for this report.",
           "type": "boolean",
-          "example": false
+          "example": true
         },
         "unassignedFuelTypePurchases": {
           "description": "The number of fuel purchases without a fuel type assigned. Fuel purchases are used to calculate tax paid gallons.",
@@ -18274,13 +18284,54 @@
       "description": "The metadata of the log.",
       "type": "object",
       "properties": {
+        "adverseDrivingClaimed": {
+          "description": "Whether the driver has claimed the [Adverse Driving Exemption](https://kb.samsara.com/hc/en-us/articles/360047336792-Adverse-Driving-Exemption) for this HOS day chart.",
+          "type": "boolean",
+          "example": true
+        },
+        "bigDayClaimed": {
+          "description": "Whether the driver has claimed the [Big Day Exemption](https://kb.samsara.com/hc/en-us/articles/360055496492-16-hour-Short-haul-Big-Day-Exemption) for this HOS day chart.",
+          "type": "boolean",
+          "example": false
+        },
+        "carrierFormattedAddress": {
+          "description": "The address of the carrier used for this HOS chart.",
+          "type": "string",
+          "example": "1990 Alameda Street, San Francisco, CA 94103"
+        },
+        "carrierName": {
+          "description": "The name of the carrier used for this HOS chart.",
+          "type": "string",
+          "example": "Carrier Name"
+        },
+        "carrierUsDotNumber": {
+          "description": "The US DOT number of the carrier used for this HOS chart.",
+          "type": "integer",
+          "format": "int64",
+          "example": 1234
+        },
         "certifiedAtTime": {
           "description": "The time this log was certified in RFC 3339 format.",
           "type": "string",
           "example": "2020-01-01T06:00:00Z"
         },
+        "homeTerminalFormattedAddress": {
+          "description": "The address of the Home Terminal used for this HOS chart.",
+          "type": "string",
+          "example": "1990 Alameda Street, San Francisco, CA 94103"
+        },
+        "homeTerminalName": {
+          "description": "The name of the Home Terminal used for this HOS chart.",
+          "type": "string",
+          "example": "Carrier Name"
+        },
         "isCertified": {
           "description": "Whether this HOS day chart was certified by the driver.",
+          "type": "boolean",
+          "example": false
+        },
+        "isUsShortHaulActive": {
+          "description": "Whether the driver has the 150 air-mile Short Haul Exemption active for this HOS day chart.",
           "type": "boolean",
           "example": false
         },
@@ -18305,7 +18356,7 @@
           "description": "List of vehicles associated with the driver for the day.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/GoaVehicleTinyResponseResponseBody"
+            "$ref": "#/definitions/VehicleResponseResponseBody"
           }
         }
       }
@@ -18671,7 +18722,7 @@
         "formattedLocation": {
           "description": "Formatted address of the reverse geocoding data.",
           "type": "string",
-          "example": "Vitae nulla quisquam sint molestias."
+          "example": "Placeat deserunt."
         }
       }
     },
@@ -20300,7 +20351,7 @@
         "canadaHosEnabled": {
           "description": "Enable Canada HOS",
           "type": "boolean",
-          "example": false
+          "example": true
         },
         "carrierName": {
           "description": "Carrier name of the organization",
@@ -20316,17 +20367,17 @@
         "driverAutoDutyEnabled": {
           "description": "Enable Driver Auto-Duty",
           "type": "boolean",
-          "example": true
+          "example": false
         },
         "editCertifiedLogsEnabled": {
           "description": "Drivers Can Edit Certified Log",
           "type": "boolean",
-          "example": true
+          "example": false
         },
         "forceManualLocationForDutyStatusChangesEnabled": {
           "description": "Force Manual Location For Duty Status Changes",
           "type": "boolean",
-          "example": false
+          "example": true
         },
         "forceReviewUnassignedHosEnabled": {
           "description": "Force Review of Unassigned HOS",
@@ -20914,12 +20965,12 @@
         "allowUnregulatedVehiclesEnabled": {
           "description": "Allow Unregulated Vehicles",
           "type": "boolean",
-          "example": true
+          "example": false
         },
         "canadaHosEnabled": {
           "description": "Enable Canada HOS",
           "type": "boolean",
-          "example": false
+          "example": true
         },
         "carrierName": {
           "description": "Carrier Name / Principal Place of Business Name",
@@ -20935,7 +20986,7 @@
         "driverAutoDutyEnabled": {
           "description": "Enable Driver Auto-Duty",
           "type": "boolean",
-          "example": false
+          "example": true
         },
         "editCertifiedLogsEnabled": {
           "description": "Drivers Can Edit Certified Log",
@@ -20945,7 +20996,7 @@
         "forceManualLocationForDutyStatusChangesEnabled": {
           "description": "Force Manual Location For Duty Status Changes",
           "type": "boolean",
-          "example": true
+          "example": false
         },
         "forceReviewUnassignedHosEnabled": {
           "description": "Force Review of Unassigned HOS",
@@ -21760,19 +21811,19 @@
           "description": "Heading of the trailer in degrees.",
           "type": "integer",
           "format": "int64",
-          "example": 8321541528930277000
+          "example": 1953902119720147200
         },
         "latitude": {
           "description": "GPS latitude represented in degrees.",
           "type": "integer",
           "format": "int64",
-          "example": 6883942581932419000
+          "example": 2460684278719888000
         },
         "longitude": {
           "description": "GPS longitude represented in degrees.",
           "type": "integer",
           "format": "int64",
-          "example": 3993234519731226000
+          "example": 2684074789949088000
         },
         "reverseGeo": {
           "$ref": "#/definitions/ReverseGeoObjectResponseBody"
@@ -21781,7 +21832,7 @@
           "description": "GPS speed of the trailer in miles per hour.",
           "type": "integer",
           "format": "int64",
-          "example": 3190418698247482400
+          "example": 3352996378965992000
         },
         "time": {
           "description": "UTC timestamp in RFC 3339 format.",
@@ -21806,19 +21857,19 @@
           "description": "Heading of the trailer in degrees.",
           "type": "integer",
           "format": "int64",
-          "example": 3700677814538519600
+          "example": 1897283212570623700
         },
         "latitude": {
           "description": "GPS latitude represented in degrees.",
           "type": "integer",
           "format": "int64",
-          "example": 956013783940251900
+          "example": 4561279440996774000
         },
         "longitude": {
           "description": "GPS longitude represented in degrees.",
           "type": "integer",
           "format": "int64",
-          "example": 831983376449886100
+          "example": 5110750766220406000
         },
         "reverseGeo": {
           "$ref": "#/definitions/ReverseGeoObjectResponseBody"
@@ -21827,7 +21878,7 @@
           "description": "GPS speed of the trailer in miles per hour.",
           "type": "integer",
           "format": "int64",
-          "example": 1432112288976369200
+          "example": 8991161326583482000
         },
         "time": {
           "description": "UTC timestamp in RFC 3339 format.",
@@ -21848,23 +21899,23 @@
         "alarmCode": {
           "description": "The ID of the alarm.",
           "type": "string",
-          "example": "Dicta placeat."
+          "example": "Perspiciatis aspernatur iste iste deleniti fuga ducimus."
         },
         "description": {
           "description": "The description of the alarm.",
           "type": "string",
-          "example": "Facere qui et magni exercitationem."
+          "example": "Sunt voluptate ipsum aut repudiandae."
         },
         "operatorAction": {
           "description": "The recommended operator action.",
           "type": "string",
-          "example": "Enim enim."
+          "example": "Ut voluptas."
         },
         "severity": {
           "description": "The severity of the alarm. `1`: Ok to run, `2`: Check as specified, `3`: Take immediate action.",
           "type": "integer",
           "format": "int64",
-          "example": 7479278493048047000
+          "example": 1713154697855488500
         }
       }
     },
@@ -23824,11 +23875,13 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Non tenetur suscipit laboriosam sequi maxime magni."
+            "example": "Exercitationem cum praesentium expedita officia sunt."
           },
           "example": [
-            "Et dolorum aperiam odit tempora velit laborum.",
-            "Culpa qui est dolores dolorum exercitationem."
+            "Omnis possimus unde.",
+            "Quisquam exercitationem facere fugit consequatur vitae aliquam.",
+            "Sit praesentium.",
+            "Eos aut sequi accusantium vitae nulla."
           ]
         },
         "trailerSerialNumber": {
@@ -24729,12 +24782,12 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Et delectus ab est a architecto."
+            "example": "Iure nam ut."
           },
           "example": [
-            "Alias molestiae iure nam ut.",
-            "Eum ut qui aut voluptas soluta.",
-            "Quia corrupti."
+            "Ut qui aut voluptas soluta et quia.",
+            "Deserunt molestiae est.",
+            "Vel id voluptas tenetur quibusdam."
           ]
         },
         "trailerSerialNumber": {
@@ -30598,6 +30651,39 @@
       "properties": {
         "data": {
           "$ref": "#/definitions/Vehicle"
+        }
+      }
+    },
+    "VehicleResponseResponseBody": {
+      "description": "A vehicle object",
+      "type": "object",
+      "properties": {
+        "externalIds": {
+          "description": "A map of external ids",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "id": {
+          "description": "ID of the vehicle",
+          "type": "string",
+          "example": "494123"
+        },
+        "licensePlate": {
+          "description": "The license plate of the vehicle.",
+          "type": "string",
+          "example": "6SAM123"
+        },
+        "name": {
+          "description": "Name of the vehicle",
+          "type": "string",
+          "example": "Fleet Truck #1"
+        },
+        "vehicleVin": {
+          "description": "The VIN of the vehicle.",
+          "type": "string",
+          "example": "1GBJ6P1B2HV112765"
         }
       }
     },
