@@ -12798,6 +12798,98 @@
 	   	   	   	   },
 	   	   	   	   "type": "object"
 	   	   	   },
+	   	   	   "TrailerGoaGatewayTinyResponseResponseBody": {
+	   	   	   	   "description": "A minified gateway object. This field will be omitted if the trailer does not have a gateway installed.",
+	   	   	   	   "properties": {
+	   	   	   	   	   "model": {
+	   	   	   	   	   	   "description": "The model of the gateway installed on the asset.",
+	   	   	   	   	   	   "enum": [
+	   	   	   	   	   	   	   "none",
+	   	   	   	   	   	   	   "AG45",
+	   	   	   	   	   	   	   "AG41",
+	   	   	   	   	   	   	   "AG46EU",
+	   	   	   	   	   	   	   "IG41",
+	   	   	   	   	   	   	   "VG34",
+	   	   	   	   	   	   	   "IG15",
+	   	   	   	   	   	   	   "EM22",
+	   	   	   	   	   	   	   "PM7",
+	   	   	   	   	   	   	   "VG54NA",
+	   	   	   	   	   	   	   "OEMP",
+	   	   	   	   	   	   	   "ACCCRGO",
+	   	   	   	   	   	   	   "EM01",
+	   	   	   	   	   	   	   "Baxter",
+	   	   	   	   	   	   	   "IGMAO",
+	   	   	   	   	   	   	   "EKM",
+	   	   	   	   	   	   	   "DM1",
+	   	   	   	   	   	   	   "VG54EU",
+	   	   	   	   	   	   	   "IG11",
+	   	   	   	   	   	   	   "CM12",
+	   	   	   	   	   	   	   "AG41EU",
+	   	   	   	   	   	   	   "IM32",
+	   	   	   	   	   	   	   "AG46P",
+	   	   	   	   	   	   	   "EM12",
+	   	   	   	   	   	   	   "EM21",
+	   	   	   	   	   	   	   "CM31",
+	   	   	   	   	   	   	   "AG46",
+	   	   	   	   	   	   	   "IG61",
+	   	   	   	   	   	   	   "OEMV",
+	   	   	   	   	   	   	   "Trailer",
+	   	   	   	   	   	   	   "IM31",
+	   	   	   	   	   	   	   "VG33",
+	   	   	   	   	   	   	   "AG24",
+	   	   	   	   	   	   	   "HM21",
+	   	   	   	   	   	   	   "EM23",
+	   	   	   	   	   	   	   "VG34EU",
+	   	   	   	   	   	   	   "AG26EU",
+	   	   	   	   	   	   	   "IG20",
+	   	   	   	   	   	   	   "HM11",
+	   	   	   	   	   	   	   "NVR10",
+	   	   	   	   	   	   	   "VG34FN",
+	   	   	   	   	   	   	   "IG21",
+	   	   	   	   	   	   	   "IGMAI",
+	   	   	   	   	   	   	   "AG15",
+	   	   	   	   	   	   	   "OEM",
+	   	   	   	   	   	   	   "AG26",
+	   	   	   	   	   	   	   "SG1",
+	   	   	   	   	   	   	   "VS25C",
+	   	   	   	   	   	   	   "PM20",
+	   	   	   	   	   	   	   "ACCBDH",
+	   	   	   	   	   	   	   "AG24EU",
+	   	   	   	   	   	   	   "CMVR",
+	   	   	   	   	   	   	   "ACCHMI10",
+	   	   	   	   	   	   	   "OEMR",
+	   	   	   	   	   	   	   "VG32",
+	   	   	   	   	   	   	   "PM10",
+	   	   	   	   	   	   	   "VS2C",
+	   	   	   	   	   	   	   "EM02",
+	   	   	   	   	   	   	   "EM11",
+	   	   	   	   	   	   	   "IM33",
+	   	   	   	   	   	   	   "ACCDM11",
+	   	   	   	   	   	   	   "CM52",
+	   	   	   	   	   	   	   "CM11",
+	   	   	   	   	   	   	   "GW22",
+	   	   	   	   	   	   	   "VS25",
+	   	   	   	   	   	   	   "CM22",
+	   	   	   	   	   	   	   "CM32",
+	   	   	   	   	   	   	   "PM8",
+	   	   	   	   	   	   	   "WM11",
+	   	   	   	   	   	   	   "AG45EU"
+	   	   	   	   	   	   ],
+	   	   	   	   	   	   "example": "VG34",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "serial": {
+	   	   	   	   	   	   "description": "The serial number of the gateway installed on the asset.",
+	   	   	   	   	   	   "example": "GFRV-43N-VGX",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "model",
+	   	   	   	   	   "serial"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
 	   	   	   "TrailerResponseObjectResponseBody": {
 	   	   	   	   "properties": {
 	   	   	   	   	   "enabledForMobile": {
@@ -12818,7 +12910,7 @@
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "installedGateway": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/GoaGatewayTinyResponseResponseBody"
+	   	   	   	   	   	   "$ref": "#/components/schemas/TrailerGoaGatewayTinyResponseResponseBody"
 	   	   	   	   	   },
 	   	   	   	   	   "licensePlate": {
 	   	   	   	   	   	   "description": "The license plate of the Trailer. **By default**: empty. Can be set or updated through the Samsara Dashboard or the API at any time.",
@@ -14813,7 +14905,7 @@
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "installedGateway": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/GoaGatewayTinyResponseResponseBody"
+	   	   	   	   	   	   "$ref": "#/components/schemas/TrailerGoaGatewayTinyResponseResponseBody"
 	   	   	   	   	   },
 	   	   	   	   	   "licensePlate": {
 	   	   	   	   	   	   "description": "The license plate of the Trailer. **By default**: empty. Can be set or updated through the Samsara Dashboard or the API at any time.",
@@ -15027,12 +15119,6 @@
 	   	   	   	   	   	   "example": "These are my trailer notes",
 	   	   	   	   	   	   "maxLength": 255,
 	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "odometerMeters": {
-	   	   	   	   	   	   "description": "When you provide a manual odometer override, Samsara will begin updating a trailer's odometer using GPS distance traveled since this override was set.",
-	   	   	   	   	   	   "example": 1234,
-	   	   	   	   	   	   "format": "int64",
-	   	   	   	   	   	   "type": "integer"
 	   	   	   	   	   },
 	   	   	   	   	   "tagIds": {
 	   	   	   	   	   	   "description": "An array of IDs of tags to associate with this trailer.",
@@ -15939,7 +16025,7 @@
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "odometerMeters": {
-	   	   	   	   	   	   "description": "When you provide a manual odometer override, Samsara will begin updating a trailer's odometer using GPS distance traveled since this override was set.",
+	   	   	   	   	   	   "description": "When you provide a manual odometer override, Samsara will begin updating a trailer's odometer using GPS distance traveled since this override was set. Only applies to trailers installed with Samsara gateways.",
 	   	   	   	   	   	   "example": 1234,
 	   	   	   	   	   	   "format": "int64",
 	   	   	   	   	   	   "type": "integer"
