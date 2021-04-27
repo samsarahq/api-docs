@@ -45,14 +45,13 @@ for doc in response_body:
 tags = sorted(tags, key=lambda x: x["title"])
 
 # Update the markdown docs for all slugs.
-print("Updating markdown for all docs...\n")
 for slug in slugToBody:
     curSlug = slug
     body = slugToBody[slug]
     if slug not in slugToDocTitle:
-        print(slug + " has associated markdown file, but was not found in readme")
         curSlug = slug + "-1"
         if curSlug not in slugToDocTitle:
+            print(slug + " has associated markdown file, but was not found in readme")
             continue
     title = slugToDocTitle[curSlug]
 
@@ -63,7 +62,8 @@ for slug in slugToBody:
     }
 
     resp = requests.put("https://dash.readme.io/api/v1/docs/" + curSlug, auth=readme_auth, data=payload)
-    print(curSlug + ": " + str(resp.status_code))
+    if resp.status_code != 200:
+        print("Failure to upload markdown: " + curSlug + ": " + str(resp.status_code))
 
 # Start at order=1, because overview is at order=0.
 order = 1
@@ -84,7 +84,8 @@ for tag in tags:
         "order": order,
     }
     resp = requests.put("https://dash.readme.io/api/v1/docs/" + tag["slug"], auth=readme_auth, data=payload)
-    print(tag["slug"] + ": " + str(resp.status_code))
+    if resp.status_code != 200:
+        print("Failure to reorder: " + tag["slug"] + ": " + str(resp.status_code))
     order += 1
 
 # Add Beta APIs and Preview APIs at the end.
@@ -95,7 +96,8 @@ if betaApi:
         "order": order,
     }
     resp = requests.put("https://dash.readme.io/api/v1/docs/" + betaApi["slug"], auth=readme_auth, data=payload)
-    print(betaApi["slug"] + ": " + str(resp.status_code))
+    if resp.status_code != 200:
+        print("Failure to reorder: " + betaApi["slug"] + ": " + str(resp.status_code))
     order += 1
 
 if previewApi:
@@ -105,5 +107,6 @@ if previewApi:
         "order": order,
     }
     resp = requests.put("https://dash.readme.io/api/v1/docs/" + previewApi["slug"], auth=readme_auth, data=payload)
-    print(previewApi["slug"] + ": " + str(resp.status_code))
+    if resp.status_code != 200:
+        print("Failure to reorder: " + previewApi["slug"] + ": " + str(resp.status_code))
     order += 1
