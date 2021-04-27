@@ -7287,6 +7287,184 @@
         }
       ]
     },
+    "/preview/metafleets/child-organizations": {
+      "get": {
+        "description": "Get child organizations of current organization.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Preview APIs"
+        ],
+        "summary": "[preview] Get child organizations of current organization.",
+        "operationId": "getChildOrganizations",
+        "parameters": [
+          {
+            "type": "string",
+            "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/ChildOrganizationsGetChildOrganizationsResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/ChildOrganizationsGetChildOrganizationsUnauthorizedErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/ChildOrganizationsGetChildOrganizationsNotFoundErrorResponseBody"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/ChildOrganizationsGetChildOrganizationsMethodNotAllowedErrorResponseBody"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/ChildOrganizationsGetChildOrganizationsTooManyRequestsErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/ChildOrganizationsGetChildOrganizationsInternalServerErrorResponseBody"
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/ChildOrganizationsGetChildOrganizationsNotImplementedErrorResponseBody"
+            }
+          },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/ChildOrganizationsGetChildOrganizationsBadGatewayErrorResponseBody"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/ChildOrganizationsGetChildOrganizationsServiceUnavailableErrorResponseBody"
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/ChildOrganizationsGetChildOrganizationsGatewayTimeoutErrorResponseBody"
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/ChildOrganizationsGetChildOrganizationsBadRequestErrorResponseBody"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Create child organization of current organization.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Preview APIs"
+        ],
+        "summary": "[preview] Create child organizations of current organization.",
+        "operationId": "postChildOrganizations",
+        "parameters": [
+          {
+            "name": "PostChildOrganizationsRequestBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChildOrganizationsPostChildOrganizationsRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/ChildOrganizationsPostChildOrganizationsResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/ChildOrganizationsPostChildOrganizationsUnauthorizedErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/ChildOrganizationsPostChildOrganizationsNotFoundErrorResponseBody"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/ChildOrganizationsPostChildOrganizationsMethodNotAllowedErrorResponseBody"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/ChildOrganizationsPostChildOrganizationsTooManyRequestsErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/ChildOrganizationsPostChildOrganizationsInternalServerErrorResponseBody"
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/ChildOrganizationsPostChildOrganizationsNotImplementedErrorResponseBody"
+            }
+          },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/ChildOrganizationsPostChildOrganizationsBadGatewayErrorResponseBody"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/ChildOrganizationsPostChildOrganizationsServiceUnavailableErrorResponseBody"
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/ChildOrganizationsPostChildOrganizationsGatewayTimeoutErrorResponseBody"
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/ChildOrganizationsPostChildOrganizationsBadRequestErrorResponseBody"
+            }
+          }
+        }
+      }
+    },
     "/tags": {
       "get": {
         "description": "Return all of the tags for an organization. \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
@@ -9742,6 +9920,31 @@
         }
       }
     },
+    "ApiTokenTinyResponseResponseBody": {
+      "description": "A minified api token response object",
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "accessToken": {
+          "description": "API access token for child organization",
+          "type": "string",
+          "example": "x1k2j34nlk1j2f90asdf"
+        },
+        "id": {
+          "description": "ID of the API token",
+          "type": "string",
+          "example": "1870917012"
+        },
+        "name": {
+          "description": "Name of the API token",
+          "type": "string",
+          "example": "Metafleet Parent Token"
+        }
+      }
+    },
     "AssetCreate": {
       "description": "The asset creation arguments",
       "type": "object",
@@ -10735,6 +10938,471 @@
       "description": "Samsara ID for the vehicle to propose.",
       "type": "string",
       "example": "123"
+    },
+    "ChildOrganizationResponseObjectResponseBody": {
+      "description": "Information about a child organization",
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "apiToken": {
+          "$ref": "#/definitions/ApiTokenTinyResponseResponseBody"
+        },
+        "id": {
+          "description": "ID of the organization",
+          "type": "string",
+          "example": "9870917012"
+        },
+        "name": {
+          "description": "Name of the organization",
+          "type": "string",
+          "example": "ABC Trucking"
+        }
+      }
+    },
+    "ChildOrganizationsGetChildOrganizationsBadGatewayErrorResponseBody": {
+      "description": "Bad Gateway",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "rpc error: code = Unknown desc = connection refused"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "ChildOrganizationsGetChildOrganizationsBadRequestErrorResponseBody": {
+      "description": "Bad Request parameters",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid value for parameter."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "ChildOrganizationsGetChildOrganizationsGatewayTimeoutErrorResponseBody": {
+      "description": "Gateway timeout",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "ChildOrganizationsGetChildOrganizationsInternalServerErrorResponseBody": {
+      "description": "An internal server error occurred",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Failed to execute GraphQL query."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "ChildOrganizationsGetChildOrganizationsMethodNotAllowedErrorResponseBody": {
+      "description": "Method not allowed",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "DELETE not allowed on /endpoint."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "ChildOrganizationsGetChildOrganizationsNotFoundErrorResponseBody": {
+      "description": "Resource not found",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Object not found."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "ChildOrganizationsGetChildOrganizationsNotImplementedErrorResponseBody": {
+      "description": "Requested endpoint is not yet implemented",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Not implemented."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "ChildOrganizationsGetChildOrganizationsResponseBody": {
+      "type": "object",
+      "required": [
+        "data",
+        "pagination"
+      ],
+      "properties": {
+        "data": {
+          "description": "Organizations information",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChildOrganizationResponseObjectResponseBody"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/GoaPaginationResponseResponseBody"
+        }
+      }
+    },
+    "ChildOrganizationsGetChildOrganizationsServiceUnavailableErrorResponseBody": {
+      "description": "Service unavailable",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "ChildOrganizationsGetChildOrganizationsTooManyRequestsErrorResponseBody": {
+      "description": "Too many requests",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Exceeded rate limit."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "ChildOrganizationsGetChildOrganizationsUnauthorizedErrorResponseBody": {
+      "description": "Unauthorized",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid token."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "ChildOrganizationsPostChildOrganizationsBadGatewayErrorResponseBody": {
+      "description": "Bad Gateway",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "rpc error: code = Unknown desc = connection refused"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "ChildOrganizationsPostChildOrganizationsBadRequestErrorResponseBody": {
+      "description": "Bad Request parameters",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid value for parameter."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "ChildOrganizationsPostChildOrganizationsGatewayTimeoutErrorResponseBody": {
+      "description": "Gateway timeout",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "ChildOrganizationsPostChildOrganizationsInternalServerErrorResponseBody": {
+      "description": "An internal server error occurred",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Failed to execute GraphQL query."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "ChildOrganizationsPostChildOrganizationsMethodNotAllowedErrorResponseBody": {
+      "description": "Method not allowed",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "DELETE not allowed on /endpoint."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "ChildOrganizationsPostChildOrganizationsNotFoundErrorResponseBody": {
+      "description": "Resource not found",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Object not found."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "ChildOrganizationsPostChildOrganizationsNotImplementedErrorResponseBody": {
+      "description": "Requested endpoint is not yet implemented",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Not implemented."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "ChildOrganizationsPostChildOrganizationsRequestBody": {
+      "description": "This creates a new child organization associated with your organization. You can modify the newly created organization either through the API or at cloud.samsara.com",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Name of the organization.",
+          "type": "string",
+          "pattern": "(.*\\S.*)",
+          "example": "ABC Trucking"
+        }
+      }
+    },
+    "ChildOrganizationsPostChildOrganizationsResponseBody": {
+      "type": "object",
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/ChildOrganizationResponseObjectResponseBody"
+        }
+      }
+    },
+    "ChildOrganizationsPostChildOrganizationsServiceUnavailableErrorResponseBody": {
+      "description": "Service unavailable",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "ChildOrganizationsPostChildOrganizationsTooManyRequestsErrorResponseBody": {
+      "description": "Too many requests",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Exceeded rate limit."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "ChildOrganizationsPostChildOrganizationsUnauthorizedErrorResponseBody": {
+      "description": "Unauthorized",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid token."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
     },
     "ConnectionStatusResponseObjectResponseBody": {
       "description": "An objecting containing information about the connectivity status of the gateway",
@@ -15324,12 +15992,11 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Quod sed veniam."
+            "example": "Nihil est voluptatem est nemo nisi."
           },
           "example": [
-            "Sunt illo qui inventore nihil dolorem.",
-            "Eligendi tenetur.",
-            "Iure expedita ut soluta ea."
+            "Non in ea illum ipsa tempore molestiae.",
+            "Impedit dolor."
           ]
         }
       }
@@ -16536,7 +17203,7 @@
           "items": {
             "type": "number",
             "format": "double",
-            "example": 0.4253481299824773
+            "example": 0.16321020618508525
           },
           "example": [
             867,
@@ -16548,7 +17215,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Culpa consequatur architecto."
+            "example": "Odio et laudantium."
           },
           "example": [
             "HQ",
@@ -16577,7 +17244,7 @@
           "items": {
             "type": "number",
             "format": "double",
-            "example": 0.3719340449809333
+            "example": 0.9247334524855075
           },
           "example": [
             867,
@@ -16589,7 +17256,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Animi ipsa rerum eos."
+            "example": "Id voluptas tenetur."
           },
           "example": [
             "HQ",
@@ -16618,7 +17285,7 @@
           "items": {
             "type": "number",
             "format": "double",
-            "example": 0.7505308202338752
+            "example": 0.26508832355505363
           },
           "example": [
             867,
@@ -16630,7 +17297,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Nemo et delectus ab est."
+            "example": "Delectus ab."
           },
           "example": [
             "HQ",
@@ -18728,7 +19395,7 @@
         "formattedLocation": {
           "description": "Formatted address of the reverse geocoding data.",
           "type": "string",
-          "example": "Placeat deserunt."
+          "example": "Vitae nulla quisquam sint molestias."
         }
       }
     },
@@ -20357,7 +21024,7 @@
         "canadaHosEnabled": {
           "description": "Enable Canada HOS",
           "type": "boolean",
-          "example": true
+          "example": false
         },
         "carrierName": {
           "description": "Carrier name of the organization",
@@ -20373,17 +21040,17 @@
         "driverAutoDutyEnabled": {
           "description": "Enable Driver Auto-Duty",
           "type": "boolean",
-          "example": false
+          "example": true
         },
         "editCertifiedLogsEnabled": {
           "description": "Drivers Can Edit Certified Log",
           "type": "boolean",
-          "example": false
+          "example": true
         },
         "forceManualLocationForDutyStatusChangesEnabled": {
           "description": "Force Manual Location For Duty Status Changes",
           "type": "boolean",
-          "example": true
+          "example": false
         },
         "forceReviewUnassignedHosEnabled": {
           "description": "Force Review of Unassigned HOS",
@@ -20971,12 +21638,12 @@
         "allowUnregulatedVehiclesEnabled": {
           "description": "Allow Unregulated Vehicles",
           "type": "boolean",
-          "example": false
+          "example": true
         },
         "canadaHosEnabled": {
           "description": "Enable Canada HOS",
           "type": "boolean",
-          "example": true
+          "example": false
         },
         "carrierName": {
           "description": "Carrier Name / Principal Place of Business Name",
@@ -20992,7 +21659,7 @@
         "driverAutoDutyEnabled": {
           "description": "Enable Driver Auto-Duty",
           "type": "boolean",
-          "example": true
+          "example": false
         },
         "editCertifiedLogsEnabled": {
           "description": "Drivers Can Edit Certified Log",
@@ -21002,7 +21669,7 @@
         "forceManualLocationForDutyStatusChangesEnabled": {
           "description": "Force Manual Location For Duty Status Changes",
           "type": "boolean",
-          "example": false
+          "example": true
         },
         "forceReviewUnassignedHosEnabled": {
           "description": "Force Review of Unassigned HOS",
@@ -21909,19 +22576,19 @@
           "description": "Heading of the trailer in degrees.",
           "type": "integer",
           "format": "int64",
-          "example": 1953902119720147200
+          "example": 8321541528930277000
         },
         "latitude": {
           "description": "GPS latitude represented in degrees.",
           "type": "integer",
           "format": "int64",
-          "example": 2460684278719888000
+          "example": 6883942581932419000
         },
         "longitude": {
           "description": "GPS longitude represented in degrees.",
           "type": "integer",
           "format": "int64",
-          "example": 2684074789949088000
+          "example": 3993234519731226000
         },
         "reverseGeo": {
           "$ref": "#/definitions/ReverseGeoObjectResponseBody"
@@ -21930,7 +22597,7 @@
           "description": "GPS speed of the trailer in miles per hour.",
           "type": "integer",
           "format": "int64",
-          "example": 3352996378965992000
+          "example": 3190418698247482400
         },
         "time": {
           "description": "UTC timestamp in RFC 3339 format.",
@@ -21955,19 +22622,19 @@
           "description": "Heading of the trailer in degrees.",
           "type": "integer",
           "format": "int64",
-          "example": 1897283212570623700
+          "example": 3700677814538519600
         },
         "latitude": {
           "description": "GPS latitude represented in degrees.",
           "type": "integer",
           "format": "int64",
-          "example": 4561279440996774000
+          "example": 956013783940251900
         },
         "longitude": {
           "description": "GPS longitude represented in degrees.",
           "type": "integer",
           "format": "int64",
-          "example": 5110750766220406000
+          "example": 831983376449886100
         },
         "reverseGeo": {
           "$ref": "#/definitions/ReverseGeoObjectResponseBody"
@@ -21976,7 +22643,7 @@
           "description": "GPS speed of the trailer in miles per hour.",
           "type": "integer",
           "format": "int64",
-          "example": 8991161326583482000
+          "example": 1432112288976369200
         },
         "time": {
           "description": "UTC timestamp in RFC 3339 format.",
@@ -21997,23 +22664,23 @@
         "alarmCode": {
           "description": "The ID of the alarm.",
           "type": "string",
-          "example": "Perspiciatis aspernatur iste iste deleniti fuga ducimus."
+          "example": "Dicta placeat."
         },
         "description": {
           "description": "The description of the alarm.",
           "type": "string",
-          "example": "Sunt voluptate ipsum aut repudiandae."
+          "example": "Facere qui et magni exercitationem."
         },
         "operatorAction": {
           "description": "The recommended operator action.",
           "type": "string",
-          "example": "Ut voluptas."
+          "example": "Enim enim."
         },
         "severity": {
           "description": "The severity of the alarm. `1`: Ok to run, `2`: Check as specified, `3`: Take immediate action.",
           "type": "integer",
           "format": "int64",
-          "example": 1713154697855488500
+          "example": 7479278493048047000
         }
       }
     },
@@ -23967,13 +24634,11 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Exercitationem cum praesentium expedita officia sunt."
+            "example": "Non tenetur suscipit laboriosam sequi maxime magni."
           },
           "example": [
-            "Omnis possimus unde.",
-            "Quisquam exercitationem facere fugit consequatur vitae aliquam.",
-            "Sit praesentium.",
-            "Eos aut sequi accusantium vitae nulla."
+            "Et dolorum aperiam odit tempora velit laborum.",
+            "Culpa qui est dolores dolorum exercitationem."
           ]
         },
         "trailerSerialNumber": {
@@ -24874,12 +25539,11 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Iure nam ut."
+            "example": "Molestiae iure nam ut dolorem."
           },
           "example": [
-            "Ut qui aut voluptas soluta et quia.",
-            "Deserunt molestiae est.",
-            "Vel id voluptas tenetur quibusdam."
+            "Qui aut voluptas.",
+            "Et quia corrupti deserunt molestiae est."
           ]
         },
         "trailerSerialNumber": {
