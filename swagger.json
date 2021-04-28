@@ -14486,14 +14486,20 @@
       }
     },
     "DriverStaticAssignedVehicle": {
-      "allOf": [
-        {
-          "description": "Vehicle assigned to the driver for static vehicle assignments. (uncommon)."
+      "description": "Vehicle assigned to the driver for static vehicle assignments. (uncommon).",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "ID of the vehicle.",
+          "type": "string",
+          "example": "123456789"
         },
-        {
-          "$ref": "#/definitions/vehicleTinyResponse"
+        "name": {
+          "description": "Name of the vehicle.",
+          "type": "string",
+          "example": "Midwest Truck #4"
         }
-      ]
+      }
     },
     "DriverStaticAssignedVehicleId": {
       "description": "ID of vehicle that the driver is permanently assigned to. (uncommon).",
@@ -14557,14 +14563,25 @@
       "example": "SusanJones"
     },
     "DriverVehicleGroupTag": {
-      "allOf": [
-        {
-          "description": "Tag which determines which vehicles a driver will see when selecting vehicles."
+      "description": "Tag which determines which vehicles a driver will see when selecting vehicles.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "ID of the tag.",
+          "type": "string",
+          "example": "3914"
         },
-        {
-          "$ref": "#/definitions/tagTinyResponse"
+        "name": {
+          "description": "Name of the tag.",
+          "type": "string",
+          "example": "East Coast"
+        },
+        "parentTagId": {
+          "description": "If this tag is part a hierarchical tag tree, this is the ID of the parent tag, otherwise this will be omitted.",
+          "type": "string",
+          "example": "4815"
         }
-      ]
+      }
     },
     "DriverVehicleGroupTagId": {
       "description": "Tag ID which determines which vehicles a driver will see when selecting vehicles.",

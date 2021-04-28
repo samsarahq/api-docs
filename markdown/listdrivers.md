@@ -37,7 +37,7 @@
 | **&nbsp;&nbsp;&nbsp;&nbsp;name**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Driver's name. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;notes**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Notes about the driver. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;phone**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Phone number of the driver. |
-| **&nbsp;&nbsp;&nbsp;&nbsp;staticAssignedVehicle**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;object_ |  |
+| **&nbsp;&nbsp;&nbsp;&nbsp;staticAssignedVehicle**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;object_ | Vehicle assigned to the driver for static vehicle assignments. (uncommon). |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | ID of the vehicle. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Name of the vehicle. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;tachographCardNumber**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Driver's assigned tachograph card number (Europe specific) |
@@ -48,7 +48,7 @@
 | **&nbsp;&nbsp;&nbsp;&nbsp;timezone**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Home terminal timezone, in order to indicate what time zone should be used to calculate the ELD logs. Driver timezones use [IANA timezone database](https://www.iana.org/time-zones) keys (e.g. `America/Los_Angeles`, `America/New_York`, `Europe/London`, etc.). You can find a mapping of common timezone formats to IANA timezone keys [here](https://unicode.org/cldr/charts/latest/supplemental/zone_tzid.html). |
 | **&nbsp;&nbsp;&nbsp;&nbsp;updatedAtTime**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | The date and time this driver was last updated in RFC 3339 format. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;username**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Driver's login username into the driver app. The username may not contain spaces or the '@' symbol. The username must be unique. |
-| **&nbsp;&nbsp;&nbsp;&nbsp;vehicleGroupTag**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;object_ |  |
+| **&nbsp;&nbsp;&nbsp;&nbsp;vehicleGroupTag**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;object_ | Tag which determines which vehicles a driver will see when selecting vehicles. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | ID of the tag. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | Name of the tag. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parentTagId**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ | If this tag is part a hierarchical tag tree, this is the ID of the parent tag, otherwise this will be omitted. |
