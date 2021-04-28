@@ -889,31 +889,6 @@
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
-	   	   	   "ApiTokenTinyResponseResponseBody": {
-	   	   	   	   "description": "A minified api token response object",
-	   	   	   	   "properties": {
-	   	   	   	   	   "accessToken": {
-	   	   	   	   	   	   "description": "API access token for child organization",
-	   	   	   	   	   	   "example": "x1k2j34nlk1j2f90asdf",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "id": {
-	   	   	   	   	   	   "description": "ID of the API token",
-	   	   	   	   	   	   "example": "1870917012",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "name": {
-	   	   	   	   	   	   "description": "Name of the API token",
-	   	   	   	   	   	   "example": "Metafleet Parent Token",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "id",
-	   	   	   	   	   "name"
-	   	   	   	   ],
-	   	   	   	   "type": "object"
-	   	   	   },
 	   	   	   "AssetCreate": {
 	   	   	   	   "description": "The asset creation arguments",
 	   	   	   	   "properties": {
@@ -1922,471 +1897,6 @@
 	   	   	   	   "description": "Samsara ID for the vehicle to propose.",
 	   	   	   	   "example": "123",
 	   	   	   	   "type": "string"
-	   	   	   },
-	   	   	   "ChildOrganizationResponseObjectResponseBody": {
-	   	   	   	   "description": "Information about a child organization",
-	   	   	   	   "properties": {
-	   	   	   	   	   "apiToken": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/ApiTokenTinyResponseResponseBody"
-	   	   	   	   	   },
-	   	   	   	   	   "id": {
-	   	   	   	   	   	   "description": "ID of the organization",
-	   	   	   	   	   	   "example": "9870917012",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "name": {
-	   	   	   	   	   	   "description": "Name of the organization",
-	   	   	   	   	   	   "example": "ABC Trucking",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "id",
-	   	   	   	   	   "name"
-	   	   	   	   ],
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "ChildOrganizationsGetChildOrganizationsBadGatewayErrorResponseBody": {
-	   	   	   	   "description": "Bad Gateway",
-	   	   	   	   "properties": {
-	   	   	   	   	   "message": {
-	   	   	   	   	   	   "description": "Message of error",
-	   	   	   	   	   	   "example": "rpc error: code = Unknown desc = connection refused",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "requestId": {
-	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
-	   	   	   	   	   	   "example": "8916e1c1",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "message",
-	   	   	   	   	   "requestId"
-	   	   	   	   ],
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "ChildOrganizationsGetChildOrganizationsBadRequestErrorResponseBody": {
-	   	   	   	   "description": "Bad Request parameters",
-	   	   	   	   "properties": {
-	   	   	   	   	   "message": {
-	   	   	   	   	   	   "description": "Message of error",
-	   	   	   	   	   	   "example": "Invalid value for parameter.",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "requestId": {
-	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
-	   	   	   	   	   	   "example": "8916e1c1",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "message",
-	   	   	   	   	   "requestId"
-	   	   	   	   ],
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "ChildOrganizationsGetChildOrganizationsGatewayTimeoutErrorResponseBody": {
-	   	   	   	   "description": "Gateway timeout",
-	   	   	   	   "properties": {
-	   	   	   	   	   "message": {
-	   	   	   	   	   	   "description": "Message of error",
-	   	   	   	   	   	   "example": "context deadline exceeded",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "requestId": {
-	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
-	   	   	   	   	   	   "example": "8916e1c1",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "message",
-	   	   	   	   	   "requestId"
-	   	   	   	   ],
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "ChildOrganizationsGetChildOrganizationsInternalServerErrorResponseBody": {
-	   	   	   	   "description": "An internal server error occurred",
-	   	   	   	   "properties": {
-	   	   	   	   	   "message": {
-	   	   	   	   	   	   "description": "Message of error",
-	   	   	   	   	   	   "example": "Failed to execute GraphQL query.",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "requestId": {
-	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
-	   	   	   	   	   	   "example": "8916e1c1",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "message",
-	   	   	   	   	   "requestId"
-	   	   	   	   ],
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "ChildOrganizationsGetChildOrganizationsMethodNotAllowedErrorResponseBody": {
-	   	   	   	   "description": "Method not allowed",
-	   	   	   	   "properties": {
-	   	   	   	   	   "message": {
-	   	   	   	   	   	   "description": "Message of error",
-	   	   	   	   	   	   "example": "DELETE not allowed on /endpoint.",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "requestId": {
-	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
-	   	   	   	   	   	   "example": "8916e1c1",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "message",
-	   	   	   	   	   "requestId"
-	   	   	   	   ],
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "ChildOrganizationsGetChildOrganizationsNotFoundErrorResponseBody": {
-	   	   	   	   "description": "Resource not found",
-	   	   	   	   "properties": {
-	   	   	   	   	   "message": {
-	   	   	   	   	   	   "description": "Message of error",
-	   	   	   	   	   	   "example": "Object not found.",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "requestId": {
-	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
-	   	   	   	   	   	   "example": "8916e1c1",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "message",
-	   	   	   	   	   "requestId"
-	   	   	   	   ],
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "ChildOrganizationsGetChildOrganizationsNotImplementedErrorResponseBody": {
-	   	   	   	   "description": "Requested endpoint is not yet implemented",
-	   	   	   	   "properties": {
-	   	   	   	   	   "message": {
-	   	   	   	   	   	   "description": "Message of error",
-	   	   	   	   	   	   "example": "Not implemented.",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "requestId": {
-	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
-	   	   	   	   	   	   "example": "8916e1c1",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "message",
-	   	   	   	   	   "requestId"
-	   	   	   	   ],
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "ChildOrganizationsGetChildOrganizationsResponseBody": {
-	   	   	   	   "properties": {
-	   	   	   	   	   "data": {
-	   	   	   	   	   	   "description": "Organizations information",
-	   	   	   	   	   	   "items": {
-	   	   	   	   	   	   	   "$ref": "#/components/schemas/ChildOrganizationResponseObjectResponseBody"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "type": "array"
-	   	   	   	   	   },
-	   	   	   	   	   "pagination": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/GoaPaginationResponseResponseBody"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "data",
-	   	   	   	   	   "pagination"
-	   	   	   	   ],
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "ChildOrganizationsGetChildOrganizationsServiceUnavailableErrorResponseBody": {
-	   	   	   	   "description": "Service unavailable",
-	   	   	   	   "properties": {
-	   	   	   	   	   "message": {
-	   	   	   	   	   	   "description": "Message of error",
-	   	   	   	   	   	   "example": "context deadline exceeded",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "requestId": {
-	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
-	   	   	   	   	   	   "example": "8916e1c1",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "message",
-	   	   	   	   	   "requestId"
-	   	   	   	   ],
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "ChildOrganizationsGetChildOrganizationsTooManyRequestsErrorResponseBody": {
-	   	   	   	   "description": "Too many requests",
-	   	   	   	   "properties": {
-	   	   	   	   	   "message": {
-	   	   	   	   	   	   "description": "Message of error",
-	   	   	   	   	   	   "example": "Exceeded rate limit.",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "requestId": {
-	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
-	   	   	   	   	   	   "example": "8916e1c1",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "message",
-	   	   	   	   	   "requestId"
-	   	   	   	   ],
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "ChildOrganizationsGetChildOrganizationsUnauthorizedErrorResponseBody": {
-	   	   	   	   "description": "Unauthorized",
-	   	   	   	   "properties": {
-	   	   	   	   	   "message": {
-	   	   	   	   	   	   "description": "Message of error",
-	   	   	   	   	   	   "example": "Invalid token.",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "requestId": {
-	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
-	   	   	   	   	   	   "example": "8916e1c1",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "message",
-	   	   	   	   	   "requestId"
-	   	   	   	   ],
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "ChildOrganizationsPostChildOrganizationsBadGatewayErrorResponseBody": {
-	   	   	   	   "description": "Bad Gateway",
-	   	   	   	   "properties": {
-	   	   	   	   	   "message": {
-	   	   	   	   	   	   "description": "Message of error",
-	   	   	   	   	   	   "example": "rpc error: code = Unknown desc = connection refused",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "requestId": {
-	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
-	   	   	   	   	   	   "example": "8916e1c1",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "message",
-	   	   	   	   	   "requestId"
-	   	   	   	   ],
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "ChildOrganizationsPostChildOrganizationsBadRequestErrorResponseBody": {
-	   	   	   	   "description": "Bad Request parameters",
-	   	   	   	   "properties": {
-	   	   	   	   	   "message": {
-	   	   	   	   	   	   "description": "Message of error",
-	   	   	   	   	   	   "example": "Invalid value for parameter.",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "requestId": {
-	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
-	   	   	   	   	   	   "example": "8916e1c1",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "message",
-	   	   	   	   	   "requestId"
-	   	   	   	   ],
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "ChildOrganizationsPostChildOrganizationsGatewayTimeoutErrorResponseBody": {
-	   	   	   	   "description": "Gateway timeout",
-	   	   	   	   "properties": {
-	   	   	   	   	   "message": {
-	   	   	   	   	   	   "description": "Message of error",
-	   	   	   	   	   	   "example": "context deadline exceeded",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "requestId": {
-	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
-	   	   	   	   	   	   "example": "8916e1c1",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "message",
-	   	   	   	   	   "requestId"
-	   	   	   	   ],
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "ChildOrganizationsPostChildOrganizationsInternalServerErrorResponseBody": {
-	   	   	   	   "description": "An internal server error occurred",
-	   	   	   	   "properties": {
-	   	   	   	   	   "message": {
-	   	   	   	   	   	   "description": "Message of error",
-	   	   	   	   	   	   "example": "Failed to execute GraphQL query.",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "requestId": {
-	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
-	   	   	   	   	   	   "example": "8916e1c1",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "message",
-	   	   	   	   	   "requestId"
-	   	   	   	   ],
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "ChildOrganizationsPostChildOrganizationsMethodNotAllowedErrorResponseBody": {
-	   	   	   	   "description": "Method not allowed",
-	   	   	   	   "properties": {
-	   	   	   	   	   "message": {
-	   	   	   	   	   	   "description": "Message of error",
-	   	   	   	   	   	   "example": "DELETE not allowed on /endpoint.",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "requestId": {
-	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
-	   	   	   	   	   	   "example": "8916e1c1",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "message",
-	   	   	   	   	   "requestId"
-	   	   	   	   ],
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "ChildOrganizationsPostChildOrganizationsNotFoundErrorResponseBody": {
-	   	   	   	   "description": "Resource not found",
-	   	   	   	   "properties": {
-	   	   	   	   	   "message": {
-	   	   	   	   	   	   "description": "Message of error",
-	   	   	   	   	   	   "example": "Object not found.",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "requestId": {
-	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
-	   	   	   	   	   	   "example": "8916e1c1",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "message",
-	   	   	   	   	   "requestId"
-	   	   	   	   ],
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "ChildOrganizationsPostChildOrganizationsNotImplementedErrorResponseBody": {
-	   	   	   	   "description": "Requested endpoint is not yet implemented",
-	   	   	   	   "properties": {
-	   	   	   	   	   "message": {
-	   	   	   	   	   	   "description": "Message of error",
-	   	   	   	   	   	   "example": "Not implemented.",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "requestId": {
-	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
-	   	   	   	   	   	   "example": "8916e1c1",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "message",
-	   	   	   	   	   "requestId"
-	   	   	   	   ],
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "ChildOrganizationsPostChildOrganizationsRequestBody": {
-	   	   	   	   "description": "This creates a new child organization associated with your organization. You can modify the newly created organization either through the API or at cloud.samsara.com",
-	   	   	   	   "properties": {
-	   	   	   	   	   "name": {
-	   	   	   	   	   	   "description": "Name of the organization.",
-	   	   	   	   	   	   "example": "ABC Trucking",
-	   	   	   	   	   	   "pattern": "(.*\\S.*)",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "ChildOrganizationsPostChildOrganizationsResponseBody": {
-	   	   	   	   "properties": {
-	   	   	   	   	   "data": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/ChildOrganizationResponseObjectResponseBody"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "data"
-	   	   	   	   ],
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "ChildOrganizationsPostChildOrganizationsServiceUnavailableErrorResponseBody": {
-	   	   	   	   "description": "Service unavailable",
-	   	   	   	   "properties": {
-	   	   	   	   	   "message": {
-	   	   	   	   	   	   "description": "Message of error",
-	   	   	   	   	   	   "example": "context deadline exceeded",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "requestId": {
-	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
-	   	   	   	   	   	   "example": "8916e1c1",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "message",
-	   	   	   	   	   "requestId"
-	   	   	   	   ],
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "ChildOrganizationsPostChildOrganizationsTooManyRequestsErrorResponseBody": {
-	   	   	   	   "description": "Too many requests",
-	   	   	   	   "properties": {
-	   	   	   	   	   "message": {
-	   	   	   	   	   	   "description": "Message of error",
-	   	   	   	   	   	   "example": "Exceeded rate limit.",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "requestId": {
-	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
-	   	   	   	   	   	   "example": "8916e1c1",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "message",
-	   	   	   	   	   "requestId"
-	   	   	   	   ],
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "ChildOrganizationsPostChildOrganizationsUnauthorizedErrorResponseBody": {
-	   	   	   	   "description": "Unauthorized",
-	   	   	   	   "properties": {
-	   	   	   	   	   "message": {
-	   	   	   	   	   	   "description": "Message of error",
-	   	   	   	   	   	   "example": "Invalid token.",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "requestId": {
-	   	   	   	   	   	   "description": "The request ID; used when reaching out to support for issues with requests.",
-	   	   	   	   	   	   "example": "8916e1c1",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "message",
-	   	   	   	   	   "requestId"
-	   	   	   	   ],
-	   	   	   	   "type": "object"
 	   	   	   },
 	   	   	   "ConnectionStatusResponseObjectResponseBody": {
 	   	   	   	   "description": "An objecting containing information about the connectivity status of the gateway",
@@ -6951,11 +6461,12 @@
 	   	   	   	   	   "tagIds": {
 	   	   	   	   	   	   "description": "An array of IDs of tags to associate with this equipment.",
 	   	   	   	   	   	   "example": [
-	   	   	   	   	   	   	   "Non in ea illum ipsa tempore molestiae.",
-	   	   	   	   	   	   	   "Impedit dolor."
+	   	   	   	   	   	   	   "Sunt illo qui inventore nihil dolorem.",
+	   	   	   	   	   	   	   "Eligendi tenetur.",
+	   	   	   	   	   	   	   "Iure expedita ut soluta ea."
 	   	   	   	   	   	   ],
 	   	   	   	   	   	   "items": {
-	   	   	   	   	   	   	   "example": "Nihil est voluptatem est nemo nisi.",
+	   	   	   	   	   	   	   "example": "Quod sed veniam.",
 	   	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "type": "array"
@@ -8189,7 +7700,7 @@
 	   	   	   	   	   	   	   5309
 	   	   	   	   	   	   ],
 	   	   	   	   	   	   "items": {
-	   	   	   	   	   	   	   "example": 0.16321020618508525,
+	   	   	   	   	   	   	   "example": 0.4253481299824773,
 	   	   	   	   	   	   	   "format": "double",
 	   	   	   	   	   	   	   "type": "number"
 	   	   	   	   	   	   },
@@ -8202,7 +7713,7 @@
 	   	   	   	   	   	   	   "Leased"
 	   	   	   	   	   	   ],
 	   	   	   	   	   	   "items": {
-	   	   	   	   	   	   	   "example": "Odio et laudantium.",
+	   	   	   	   	   	   	   "example": "Culpa consequatur architecto.",
 	   	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "type": "array"
@@ -8230,7 +7741,7 @@
 	   	   	   	   	   	   	   5309
 	   	   	   	   	   	   ],
 	   	   	   	   	   	   "items": {
-	   	   	   	   	   	   	   "example": 0.9247334524855075,
+	   	   	   	   	   	   	   "example": 0.3719340449809333,
 	   	   	   	   	   	   	   "format": "double",
 	   	   	   	   	   	   	   "type": "number"
 	   	   	   	   	   	   },
@@ -8243,7 +7754,7 @@
 	   	   	   	   	   	   	   "Leased"
 	   	   	   	   	   	   ],
 	   	   	   	   	   	   "items": {
-	   	   	   	   	   	   	   "example": "Id voluptas tenetur.",
+	   	   	   	   	   	   	   "example": "Animi ipsa rerum eos.",
 	   	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "type": "array"
@@ -8271,7 +7782,7 @@
 	   	   	   	   	   	   	   5309
 	   	   	   	   	   	   ],
 	   	   	   	   	   	   "items": {
-	   	   	   	   	   	   	   "example": 0.26508832355505363,
+	   	   	   	   	   	   	   "example": 0.7505308202338752,
 	   	   	   	   	   	   	   "format": "double",
 	   	   	   	   	   	   	   "type": "number"
 	   	   	   	   	   	   },
@@ -8284,7 +7795,7 @@
 	   	   	   	   	   	   	   "Leased"
 	   	   	   	   	   	   ],
 	   	   	   	   	   	   "items": {
-	   	   	   	   	   	   	   "example": "Delectus ab.",
+	   	   	   	   	   	   	   "example": "Nemo et delectus ab est.",
 	   	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "type": "array"
@@ -10391,7 +9902,7 @@
 	   	   	   	   "properties": {
 	   	   	   	   	   "formattedLocation": {
 	   	   	   	   	   	   "description": "Formatted address of the reverse geocoding data.",
-	   	   	   	   	   	   "example": "Vitae nulla quisquam sint molestias.",
+	   	   	   	   	   	   "example": "Placeat deserunt.",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   }
 	   	   	   	   },
@@ -12020,7 +11531,7 @@
 	   	   	   	   	   },
 	   	   	   	   	   "canadaHosEnabled": {
 	   	   	   	   	   	   "description": "Enable Canada HOS",
-	   	   	   	   	   	   "example": false,
+	   	   	   	   	   	   "example": true,
 	   	   	   	   	   	   "type": "boolean"
 	   	   	   	   	   },
 	   	   	   	   	   "carrierName": {
@@ -12036,17 +11547,17 @@
 	   	   	   	   	   },
 	   	   	   	   	   "driverAutoDutyEnabled": {
 	   	   	   	   	   	   "description": "Enable Driver Auto-Duty",
-	   	   	   	   	   	   "example": true,
+	   	   	   	   	   	   "example": false,
 	   	   	   	   	   	   "type": "boolean"
 	   	   	   	   	   },
 	   	   	   	   	   "editCertifiedLogsEnabled": {
 	   	   	   	   	   	   "description": "Drivers Can Edit Certified Log",
-	   	   	   	   	   	   "example": true,
+	   	   	   	   	   	   "example": false,
 	   	   	   	   	   	   "type": "boolean"
 	   	   	   	   	   },
 	   	   	   	   	   "forceManualLocationForDutyStatusChangesEnabled": {
 	   	   	   	   	   	   "description": "Force Manual Location For Duty Status Changes",
-	   	   	   	   	   	   "example": false,
+	   	   	   	   	   	   "example": true,
 	   	   	   	   	   	   "type": "boolean"
 	   	   	   	   	   },
 	   	   	   	   	   "forceReviewUnassignedHosEnabled": {
@@ -12634,12 +12145,12 @@
 	   	   	   	   "properties": {
 	   	   	   	   	   "allowUnregulatedVehiclesEnabled": {
 	   	   	   	   	   	   "description": "Allow Unregulated Vehicles",
-	   	   	   	   	   	   "example": true,
+	   	   	   	   	   	   "example": false,
 	   	   	   	   	   	   "type": "boolean"
 	   	   	   	   	   },
 	   	   	   	   	   "canadaHosEnabled": {
 	   	   	   	   	   	   "description": "Enable Canada HOS",
-	   	   	   	   	   	   "example": false,
+	   	   	   	   	   	   "example": true,
 	   	   	   	   	   	   "type": "boolean"
 	   	   	   	   	   },
 	   	   	   	   	   "carrierName": {
@@ -12655,7 +12166,7 @@
 	   	   	   	   	   },
 	   	   	   	   	   "driverAutoDutyEnabled": {
 	   	   	   	   	   	   "description": "Enable Driver Auto-Duty",
-	   	   	   	   	   	   "example": false,
+	   	   	   	   	   	   "example": true,
 	   	   	   	   	   	   "type": "boolean"
 	   	   	   	   	   },
 	   	   	   	   	   "editCertifiedLogsEnabled": {
@@ -12665,7 +12176,7 @@
 	   	   	   	   	   },
 	   	   	   	   	   "forceManualLocationForDutyStatusChangesEnabled": {
 	   	   	   	   	   	   "description": "Force Manual Location For Duty Status Changes",
-	   	   	   	   	   	   "example": true,
+	   	   	   	   	   	   "example": false,
 	   	   	   	   	   	   "type": "boolean"
 	   	   	   	   	   },
 	   	   	   	   	   "forceReviewUnassignedHosEnabled": {
@@ -13567,19 +13078,19 @@
 	   	   	   	   "properties": {
 	   	   	   	   	   "headingDegrees": {
 	   	   	   	   	   	   "description": "Heading of the trailer in degrees.",
-	   	   	   	   	   	   "example": 8321541528930277000,
+	   	   	   	   	   	   "example": 1953902119720147200,
 	   	   	   	   	   	   "format": "int64",
 	   	   	   	   	   	   "type": "integer"
 	   	   	   	   	   },
 	   	   	   	   	   "latitude": {
 	   	   	   	   	   	   "description": "GPS latitude represented in degrees.",
-	   	   	   	   	   	   "example": 6883942581932419000,
+	   	   	   	   	   	   "example": 2460684278719888000,
 	   	   	   	   	   	   "format": "int64",
 	   	   	   	   	   	   "type": "integer"
 	   	   	   	   	   },
 	   	   	   	   	   "longitude": {
 	   	   	   	   	   	   "description": "GPS longitude represented in degrees.",
-	   	   	   	   	   	   "example": 3993234519731226000,
+	   	   	   	   	   	   "example": 2684074789949088000,
 	   	   	   	   	   	   "format": "int64",
 	   	   	   	   	   	   "type": "integer"
 	   	   	   	   	   },
@@ -13588,7 +13099,7 @@
 	   	   	   	   	   },
 	   	   	   	   	   "speedMilesPerHour": {
 	   	   	   	   	   	   "description": "GPS speed of the trailer in miles per hour.",
-	   	   	   	   	   	   "example": 3190418698247482400,
+	   	   	   	   	   	   "example": 3352996378965992000,
 	   	   	   	   	   	   "format": "int64",
 	   	   	   	   	   	   "type": "integer"
 	   	   	   	   	   },
@@ -13613,19 +13124,19 @@
 	   	   	   	   	   },
 	   	   	   	   	   "headingDegrees": {
 	   	   	   	   	   	   "description": "Heading of the trailer in degrees.",
-	   	   	   	   	   	   "example": 3700677814538519600,
+	   	   	   	   	   	   "example": 1897283212570623700,
 	   	   	   	   	   	   "format": "int64",
 	   	   	   	   	   	   "type": "integer"
 	   	   	   	   	   },
 	   	   	   	   	   "latitude": {
 	   	   	   	   	   	   "description": "GPS latitude represented in degrees.",
-	   	   	   	   	   	   "example": 956013783940251900,
+	   	   	   	   	   	   "example": 4561279440996774000,
 	   	   	   	   	   	   "format": "int64",
 	   	   	   	   	   	   "type": "integer"
 	   	   	   	   	   },
 	   	   	   	   	   "longitude": {
 	   	   	   	   	   	   "description": "GPS longitude represented in degrees.",
-	   	   	   	   	   	   "example": 831983376449886100,
+	   	   	   	   	   	   "example": 5110750766220406000,
 	   	   	   	   	   	   "format": "int64",
 	   	   	   	   	   	   "type": "integer"
 	   	   	   	   	   },
@@ -13634,7 +13145,7 @@
 	   	   	   	   	   },
 	   	   	   	   	   "speedMilesPerHour": {
 	   	   	   	   	   	   "description": "GPS speed of the trailer in miles per hour.",
-	   	   	   	   	   	   "example": 1432112288976369200,
+	   	   	   	   	   	   "example": 8991161326583482000,
 	   	   	   	   	   	   "format": "int64",
 	   	   	   	   	   	   "type": "integer"
 	   	   	   	   	   },
@@ -13655,22 +13166,22 @@
 	   	   	   	   "properties": {
 	   	   	   	   	   "alarmCode": {
 	   	   	   	   	   	   "description": "The ID of the alarm.",
-	   	   	   	   	   	   "example": "Dicta placeat.",
+	   	   	   	   	   	   "example": "Perspiciatis aspernatur iste iste deleniti fuga ducimus.",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "description": {
 	   	   	   	   	   	   "description": "The description of the alarm.",
-	   	   	   	   	   	   "example": "Facere qui et magni exercitationem.",
+	   	   	   	   	   	   "example": "Sunt voluptate ipsum aut repudiandae.",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "operatorAction": {
 	   	   	   	   	   	   "description": "The recommended operator action.",
-	   	   	   	   	   	   "example": "Enim enim.",
+	   	   	   	   	   	   "example": "Ut voluptas.",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "severity": {
 	   	   	   	   	   	   "description": "The severity of the alarm. `1`: Ok to run, `2`: Check as specified, `3`: Take immediate action.",
-	   	   	   	   	   	   "example": 7479278493048047000,
+	   	   	   	   	   	   "example": 1713154697855488500,
 	   	   	   	   	   	   "format": "int64",
 	   	   	   	   	   	   "type": "integer"
 	   	   	   	   	   }
@@ -15627,11 +15138,13 @@
 	   	   	   	   	   "tagIds": {
 	   	   	   	   	   	   "description": "An array of IDs of tags to associate with this trailer.",
 	   	   	   	   	   	   "example": [
-	   	   	   	   	   	   	   "Et dolorum aperiam odit tempora velit laborum.",
-	   	   	   	   	   	   	   "Culpa qui est dolores dolorum exercitationem."
+	   	   	   	   	   	   	   "Omnis possimus unde.",
+	   	   	   	   	   	   	   "Quisquam exercitationem facere fugit consequatur vitae aliquam.",
+	   	   	   	   	   	   	   "Sit praesentium.",
+	   	   	   	   	   	   	   "Eos aut sequi accusantium vitae nulla."
 	   	   	   	   	   	   ],
 	   	   	   	   	   	   "items": {
-	   	   	   	   	   	   	   "example": "Non tenetur suscipit laboriosam sequi maxime magni.",
+	   	   	   	   	   	   	   "example": "Exercitationem cum praesentium expedita officia sunt.",
 	   	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "type": "array"
@@ -16535,11 +16048,12 @@
 	   	   	   	   	   "tagIds": {
 	   	   	   	   	   	   "description": "An array of IDs of tags to associate with this trailer.",
 	   	   	   	   	   	   "example": [
-	   	   	   	   	   	   	   "Qui aut voluptas.",
-	   	   	   	   	   	   	   "Et quia corrupti deserunt molestiae est."
+	   	   	   	   	   	   	   "Ut qui aut voluptas soluta et quia.",
+	   	   	   	   	   	   	   "Deserunt molestiae est.",
+	   	   	   	   	   	   	   "Vel id voluptas tenetur quibusdam."
 	   	   	   	   	   	   ],
 	   	   	   	   	   	   "items": {
-	   	   	   	   	   	   	   "example": "Molestiae iure nam ut dolorem.",
+	   	   	   	   	   	   	   "example": "Iure nam ut.",
 	   	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "type": "array"
@@ -36907,272 +36421,6 @@
 	   	   	   	   "tags": [
 	   	   	   	   	   "Preview APIs"
 	   	   	   	   ]
-	   	   	   }
-	   	   },
-	   	   "/preview/metafleets/child-organizations": {
-	   	   	   "get": {
-	   	   	   	   "description": "Get child organizations of current organization.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-	   	   	   	   "operationId": "getChildOrganizations",
-	   	   	   	   "parameters": [
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "after",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   }
-	   	   	   	   ],
-	   	   	   	   "responses": {
-	   	   	   	   	   "200": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/ChildOrganizationsGetChildOrganizationsResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "OK response."
-	   	   	   	   	   },
-	   	   	   	   	   "401": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/ChildOrganizationsGetChildOrganizationsUnauthorizedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Unauthorized response."
-	   	   	   	   	   },
-	   	   	   	   	   "404": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/ChildOrganizationsGetChildOrganizationsNotFoundErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Found response."
-	   	   	   	   	   },
-	   	   	   	   	   "405": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/ChildOrganizationsGetChildOrganizationsMethodNotAllowedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Method Not Allowed response."
-	   	   	   	   	   },
-	   	   	   	   	   "429": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/ChildOrganizationsGetChildOrganizationsTooManyRequestsErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Too Many Requests response."
-	   	   	   	   	   },
-	   	   	   	   	   "500": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/ChildOrganizationsGetChildOrganizationsInternalServerErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Internal Server Error response."
-	   	   	   	   	   },
-	   	   	   	   	   "501": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/ChildOrganizationsGetChildOrganizationsNotImplementedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Implemented response."
-	   	   	   	   	   },
-	   	   	   	   	   "502": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/ChildOrganizationsGetChildOrganizationsBadGatewayErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Gateway response."
-	   	   	   	   	   },
-	   	   	   	   	   "503": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/ChildOrganizationsGetChildOrganizationsServiceUnavailableErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Service Unavailable response."
-	   	   	   	   	   },
-	   	   	   	   	   "504": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/ChildOrganizationsGetChildOrganizationsGatewayTimeoutErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Gateway Timeout response."
-	   	   	   	   	   },
-	   	   	   	   	   "default": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/ChildOrganizationsGetChildOrganizationsBadRequestErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Request response."
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "summary": "[preview] Get child organizations of current organization.",
-	   	   	   	   "tags": [
-	   	   	   	   	   "Preview APIs"
-	   	   	   	   ]
-	   	   	   },
-	   	   	   "post": {
-	   	   	   	   "description": "Create child organization of current organization.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-	   	   	   	   "operationId": "postChildOrganizations",
-	   	   	   	   "requestBody": {
-	   	   	   	   	   "content": {
-	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/ChildOrganizationsPostChildOrganizationsRequestBody"
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   }
-	   	   	   	   	   },
-	   	   	   	   	   "required": true
-	   	   	   	   },
-	   	   	   	   "responses": {
-	   	   	   	   	   "200": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/ChildOrganizationsPostChildOrganizationsResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "OK response."
-	   	   	   	   	   },
-	   	   	   	   	   "401": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/ChildOrganizationsPostChildOrganizationsUnauthorizedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Unauthorized response."
-	   	   	   	   	   },
-	   	   	   	   	   "404": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/ChildOrganizationsPostChildOrganizationsNotFoundErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Found response."
-	   	   	   	   	   },
-	   	   	   	   	   "405": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/ChildOrganizationsPostChildOrganizationsMethodNotAllowedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Method Not Allowed response."
-	   	   	   	   	   },
-	   	   	   	   	   "429": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/ChildOrganizationsPostChildOrganizationsTooManyRequestsErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Too Many Requests response."
-	   	   	   	   	   },
-	   	   	   	   	   "500": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/ChildOrganizationsPostChildOrganizationsInternalServerErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Internal Server Error response."
-	   	   	   	   	   },
-	   	   	   	   	   "501": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/ChildOrganizationsPostChildOrganizationsNotImplementedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Implemented response."
-	   	   	   	   	   },
-	   	   	   	   	   "502": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/ChildOrganizationsPostChildOrganizationsBadGatewayErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Gateway response."
-	   	   	   	   	   },
-	   	   	   	   	   "503": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/ChildOrganizationsPostChildOrganizationsServiceUnavailableErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Service Unavailable response."
-	   	   	   	   	   },
-	   	   	   	   	   "504": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/ChildOrganizationsPostChildOrganizationsGatewayTimeoutErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Gateway Timeout response."
-	   	   	   	   	   },
-	   	   	   	   	   "default": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/ChildOrganizationsPostChildOrganizationsBadRequestErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Request response."
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "summary": "[preview] Create child organizations of current organization.",
-	   	   	   	   "tags": [
-	   	   	   	   	   "Preview APIs"
-	   	   	   	   ],
-	   	   	   	   "x-codegen-request-body-name": "PostChildOrganizationsRequestBody"
 	   	   	   }
 	   	   },
 	   	   "/tags": {
