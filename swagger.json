@@ -2670,6 +2670,292 @@
         }
       ]
     },
+    "/beta/gateways": {
+      "get": {
+        "description": "List all gateways\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Beta APIs"
+        ],
+        "summary": "[beta] List all gateways",
+        "operationId": "getGateways",
+        "parameters": [
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "Filter by a comma separated list of gateway models.",
+            "name": "models",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysGetGatewaysResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysGetGatewaysUnauthorizedErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysGetGatewaysNotFoundErrorResponseBody"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysGetGatewaysMethodNotAllowedErrorResponseBody"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysGetGatewaysTooManyRequestsErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysGetGatewaysInternalServerErrorResponseBody"
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysGetGatewaysNotImplementedErrorResponseBody"
+            }
+          },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysGetGatewaysBadGatewayErrorResponseBody"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysGetGatewaysServiceUnavailableErrorResponseBody"
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysGetGatewaysGatewayTimeoutErrorResponseBody"
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysGetGatewaysBadRequestErrorResponseBody"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Activate a new gateway. To activate a device and associate it with your organization, enter its serial number. Each device's serial number can also be found on its label or packaging, or from your order confirmation email. A Not Found error could mean that the serial was not found or it has already been activated\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Beta APIs"
+        ],
+        "summary": "[beta] Activate a new gateway",
+        "operationId": "postGateway",
+        "parameters": [
+          {
+            "name": "PostGatewayRequestBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GatewaysPostGatewayRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysPostGatewayResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysPostGatewayUnauthorizedErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysPostGatewayNotFoundErrorResponseBody"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysPostGatewayMethodNotAllowedErrorResponseBody"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysPostGatewayTooManyRequestsErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysPostGatewayInternalServerErrorResponseBody"
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysPostGatewayNotImplementedErrorResponseBody"
+            }
+          },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysPostGatewayBadGatewayErrorResponseBody"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysPostGatewayServiceUnavailableErrorResponseBody"
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysPostGatewayGatewayTimeoutErrorResponseBody"
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysPostGatewayBadRequestErrorResponseBody"
+            }
+          }
+        }
+      }
+    },
+    "/beta/gateways/{id}": {
+      "delete": {
+        "description": "Deactivate a gateway\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Beta APIs"
+        ],
+        "summary": "[beta] Deactivate a gateway",
+        "operationId": "deleteGateway",
+        "parameters": [
+          {
+            "pattern": "^[a-zA-Z0-9]{4}-[a-zA-Z0-9]{3}-[a-zA-Z0-9]{3}$",
+            "type": "string",
+            "description": "Gateway serial number",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content response."
+          },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysDeleteGatewayUnauthorizedErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysDeleteGatewayNotFoundErrorResponseBody"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysDeleteGatewayMethodNotAllowedErrorResponseBody"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysDeleteGatewayTooManyRequestsErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysDeleteGatewayInternalServerErrorResponseBody"
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysDeleteGatewayNotImplementedErrorResponseBody"
+            }
+          },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysDeleteGatewayBadGatewayErrorResponseBody"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysDeleteGatewayServiceUnavailableErrorResponseBody"
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysDeleteGatewayGatewayTimeoutErrorResponseBody"
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/GatewaysDeleteGatewayBadRequestErrorResponseBody"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "pattern": "^[a-zA-Z0-9]{4}-[a-zA-Z0-9]{3}-[a-zA-Z0-9]{3}$",
+          "type": "string",
+          "description": "Gateway serial number",
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
     "/contacts": {
       "get": {
         "description": "Returns a list of all contacts in an organization. \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
@@ -7000,292 +7286,6 @@
           }
         }
       }
-    },
-    "/preview/gateways": {
-      "get": {
-        "description": "List all gateways\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-        "schemes": [
-          "https"
-        ],
-        "tags": [
-          "Preview APIs"
-        ],
-        "summary": "[preview] List all gateways",
-        "operationId": "getGateways",
-        "parameters": [
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "description": "Filter by a comma separated list of gateway models.",
-            "name": "models",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
-            "name": "after",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysGetGatewaysResponseBody"
-            }
-          },
-          "401": {
-            "description": "Unauthorized response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysGetGatewaysUnauthorizedErrorResponseBody"
-            }
-          },
-          "404": {
-            "description": "Not Found response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysGetGatewaysNotFoundErrorResponseBody"
-            }
-          },
-          "405": {
-            "description": "Method Not Allowed response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysGetGatewaysMethodNotAllowedErrorResponseBody"
-            }
-          },
-          "429": {
-            "description": "Too Many Requests response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysGetGatewaysTooManyRequestsErrorResponseBody"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysGetGatewaysInternalServerErrorResponseBody"
-            }
-          },
-          "501": {
-            "description": "Not Implemented response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysGetGatewaysNotImplementedErrorResponseBody"
-            }
-          },
-          "502": {
-            "description": "Bad Gateway response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysGetGatewaysBadGatewayErrorResponseBody"
-            }
-          },
-          "503": {
-            "description": "Service Unavailable response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysGetGatewaysServiceUnavailableErrorResponseBody"
-            }
-          },
-          "504": {
-            "description": "Gateway Timeout response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysGetGatewaysGatewayTimeoutErrorResponseBody"
-            }
-          },
-          "default": {
-            "description": "Bad Request response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysGetGatewaysBadRequestErrorResponseBody"
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Activate a new gateway. To activate a device and associate it with your organization, enter its serial number. Each device's serial number can also be found on its label or packaging, or from your order confirmation email. A Not Found error could mean that the serial was not found or it has already been activated\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-        "schemes": [
-          "https"
-        ],
-        "tags": [
-          "Preview APIs"
-        ],
-        "summary": "[preview] Activate a new gateway",
-        "operationId": "postGateway",
-        "parameters": [
-          {
-            "name": "PostGatewayRequestBody",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/GatewaysPostGatewayRequestBody"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysPostGatewayResponseBody"
-            }
-          },
-          "401": {
-            "description": "Unauthorized response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysPostGatewayUnauthorizedErrorResponseBody"
-            }
-          },
-          "404": {
-            "description": "Not Found response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysPostGatewayNotFoundErrorResponseBody"
-            }
-          },
-          "405": {
-            "description": "Method Not Allowed response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysPostGatewayMethodNotAllowedErrorResponseBody"
-            }
-          },
-          "429": {
-            "description": "Too Many Requests response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysPostGatewayTooManyRequestsErrorResponseBody"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysPostGatewayInternalServerErrorResponseBody"
-            }
-          },
-          "501": {
-            "description": "Not Implemented response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysPostGatewayNotImplementedErrorResponseBody"
-            }
-          },
-          "502": {
-            "description": "Bad Gateway response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysPostGatewayBadGatewayErrorResponseBody"
-            }
-          },
-          "503": {
-            "description": "Service Unavailable response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysPostGatewayServiceUnavailableErrorResponseBody"
-            }
-          },
-          "504": {
-            "description": "Gateway Timeout response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysPostGatewayGatewayTimeoutErrorResponseBody"
-            }
-          },
-          "default": {
-            "description": "Bad Request response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysPostGatewayBadRequestErrorResponseBody"
-            }
-          }
-        }
-      }
-    },
-    "/preview/gateways/{id}": {
-      "delete": {
-        "description": "Deactivate a gateway\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-        "schemes": [
-          "https"
-        ],
-        "tags": [
-          "Preview APIs"
-        ],
-        "summary": "[preview] Deactivate a gateway",
-        "operationId": "deleteGateway",
-        "parameters": [
-          {
-            "pattern": "^[a-zA-Z0-9]{4}-[a-zA-Z0-9]{3}-[a-zA-Z0-9]{3}$",
-            "type": "string",
-            "description": "Gateway serial number",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content response."
-          },
-          "401": {
-            "description": "Unauthorized response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysDeleteGatewayUnauthorizedErrorResponseBody"
-            }
-          },
-          "404": {
-            "description": "Not Found response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysDeleteGatewayNotFoundErrorResponseBody"
-            }
-          },
-          "405": {
-            "description": "Method Not Allowed response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysDeleteGatewayMethodNotAllowedErrorResponseBody"
-            }
-          },
-          "429": {
-            "description": "Too Many Requests response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysDeleteGatewayTooManyRequestsErrorResponseBody"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysDeleteGatewayInternalServerErrorResponseBody"
-            }
-          },
-          "501": {
-            "description": "Not Implemented response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysDeleteGatewayNotImplementedErrorResponseBody"
-            }
-          },
-          "502": {
-            "description": "Bad Gateway response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysDeleteGatewayBadGatewayErrorResponseBody"
-            }
-          },
-          "503": {
-            "description": "Service Unavailable response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysDeleteGatewayServiceUnavailableErrorResponseBody"
-            }
-          },
-          "504": {
-            "description": "Gateway Timeout response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysDeleteGatewayGatewayTimeoutErrorResponseBody"
-            }
-          },
-          "default": {
-            "description": "Bad Request response.",
-            "schema": {
-              "$ref": "#/definitions/GatewaysDeleteGatewayBadRequestErrorResponseBody"
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "pattern": "^[a-zA-Z0-9]{4}-[a-zA-Z0-9]{3}-[a-zA-Z0-9]{3}$",
-          "type": "string",
-          "description": "Gateway serial number",
-          "name": "id",
-          "in": "path",
-          "required": true
-        }
-      ]
     },
     "/tags": {
       "get": {
