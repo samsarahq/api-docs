@@ -7942,69 +7942,7 @@
         }
       }
     },
-    "/v1/fleet/dispatch/routes": {
-      "get": {
-        "description": "\u003cn class=\"warning\"\u003e\n  \u003cnh\u003e\n    \u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\n    This endpoint is still on our legacy API.\n  \u003c/nh\u003e\n\u003c/n\u003e\n\nList all routes scheduled within a given time period. Routes are returned if *both* of the following conditions are met:\n\n- The route's `scheduled_start_ms` is *before* the timestamp: `end_time` (defaults to *now*)\n- The route's `scheduled_end_ms` is *after* the timestamp: `end_time - duration` (defaults to *now - 24 hours*)\n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-        "tags": [
-          "Routes"
-        ],
-        "summary": "Get all routes",
-        "operationId": "V1fetchAllDispatchRoutes",
-        "parameters": [
-          {
-            "type": "integer",
-            "format": "int64",
-            "description": "Time in unix milliseconds that represents the end time of the requested time interval. See above for a description of how routes are returned. Defaults to now.",
-            "name": "end_time",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "format": "int64",
-            "description": "Time in milliseconds that represents the duration before end_time to query. Defaults to 24 hours.",
-            "name": "duration",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "All dispatch route objects.",
-            "schema": {
-              "$ref": "#/definitions/V1DispatchRoutes"
-            }
-          },
-          "default": {
-            "description": "Unexpected error.",
-            "schema": {
-              "$ref": "#/definitions/V1ErrorResponse"
-            }
-          }
-        }
-      }
-    },
     "/v1/fleet/dispatch/routes/{route_id_or_external_id}": {
-      "get": {
-        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch a dispatch route by id. \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-        "tags": [
-          "Routes"
-        ],
-        "summary": "Get a route",
-        "operationId": "V1getDispatchRouteById",
-        "responses": {
-          "200": {
-            "description": "The dispatch route corresponding to route_id.",
-            "schema": {
-              "$ref": "#/definitions/V1DispatchRoute"
-            }
-          },
-          "default": {
-            "description": "Unexpected error.",
-            "schema": {
-              "$ref": "#/definitions/V1ErrorResponse"
-            }
-          }
-        }
-      },
       "delete": {
         "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nDelete a dispatch route and its associated jobs. \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
         "tags": [
@@ -8049,53 +7987,6 @@
           "required": true
         }
       ]
-    },
-    "/v1/fleet/dispatch/routes/{route_id_or_external_id}/history": {
-      "get": {
-        "description": "\u003cn class=\"warning\"\u003e\n\u003cnh\u003e\n\u003ci class=\"fa fa-exclamation-circle\"\u003e\u003c/i\u003e\nThis endpoint is still on our legacy API.\n\u003c/nh\u003e\n\u003c/n\u003e\n\nFetch the history of a dispatch route. \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-        "tags": [
-          "Routes"
-        ],
-        "summary": "Get route history",
-        "operationId": "V1getDispatchRouteHistory",
-        "parameters": [
-          {
-            "type": "integer",
-            "format": "int64",
-            "description": "Timestamp representing the start of the period to fetch, inclusive. Used in combination with end_time. Defaults to 0.",
-            "name": "start_time",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "format": "int64",
-            "description": "Timestamp representing the end of the period to fetch, inclusive. Used in combination with start_time. Defaults to nowMs.",
-            "name": "end_time",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "ID of the route. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `payrollId:ABFS18600`",
-            "name": "route_id_or_external_id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The historical route state changes between start_time and end_time.",
-            "schema": {
-              "$ref": "#/definitions/V1DispatchRouteHistory"
-            }
-          },
-          "default": {
-            "description": "Unexpected error.",
-            "schema": {
-              "$ref": "#/definitions/V1ErrorResponse"
-            }
-          }
-        }
-      }
     },
     "/v1/fleet/drivers/document_types": {
       "get": {
