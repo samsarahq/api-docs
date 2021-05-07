@@ -30526,6 +30526,11 @@
       "format": "double",
       "example": 120
     },
+    "VehicleLocationIsEcuSpeed": {
+      "description": "True if the speed value is reported from the ECU. Speed value is reported from GPS otherwise.",
+      "type": "boolean",
+      "example": true
+    },
     "VehicleLocationLatitude": {
       "description": "GPS latitude represented in degrees",
       "type": "number",
@@ -31114,6 +31119,9 @@
             },
             "headingDegrees": {
               "$ref": "#/definitions/VehicleLocationHeading"
+            },
+            "isEcuSpeed": {
+              "$ref": "#/definitions/VehicleLocationIsEcuSpeed"
             },
             "latitude": {
               "$ref": "#/definitions/VehicleLocationLatitude"
@@ -32337,6 +32345,9 @@
         "headingDegrees": {
           "$ref": "#/definitions/VehicleLocationHeading"
         },
+        "isEcuSpeed": {
+          "$ref": "#/definitions/VehicleLocationIsEcuSpeed"
+        },
         "latitude": {
           "$ref": "#/definitions/VehicleLocationLatitude"
         },
@@ -32512,6 +32523,9 @@
         },
         "headingDegrees": {
           "$ref": "#/definitions/VehicleLocationHeading"
+        },
+        "isEcuSpeed": {
+          "$ref": "#/definitions/VehicleLocationIsEcuSpeed"
         },
         "latitude": {
           "$ref": "#/definitions/VehicleLocationLatitude"
