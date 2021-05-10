@@ -10,7 +10,7 @@
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_ |  |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;numberValues**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number array_ | Number values that are associated with this attribute. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stringValues**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string array_ | String values that are associated with this attribute. |
-| **&nbsp;&nbsp;&nbsp;&nbsp;entityType**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Denotes the type of entity, driver or vehicle. Valid values: `driver`, `vehicle`. |
+| **&nbsp;&nbsp;&nbsp;&nbsp;entityType**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Denotes the type of entity, driver or aset. Valid values: `driver`, `asset`. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;id**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | The samsara id of the attribute object. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;name**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;string_ | Name of attribute. |
 | **&nbsp;&nbsp;&nbsp;&nbsp;numberValues**<br/>_&nbsp;&nbsp;&nbsp;&nbsp;number array_ | Number values that can be associated with this attribute |

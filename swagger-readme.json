@@ -1407,12 +1407,12 @@
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "entityType": {
-	   	   	   	   	   	   "description": "Denotes the type of entity, driver or vehicle.",
+	   	   	   	   	   	   "description": "Denotes the type of entity, driver or aset.",
 	   	   	   	   	   	   "enum": [
 	   	   	   	   	   	   	   "driver",
-	   	   	   	   	   	   	   "vehicle"
+	   	   	   	   	   	   	   "asset"
 	   	   	   	   	   	   ],
-	   	   	   	   	   	   "example": "vehicle",
+	   	   	   	   	   	   "example": "asset",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "id": {
@@ -2135,12 +2135,12 @@
 	   	   	   	   	   	   "type": "array"
 	   	   	   	   	   },
 	   	   	   	   	   "entityType": {
-	   	   	   	   	   	   "description": "Denotes the type of entity, driver or vehicle.",
+	   	   	   	   	   	   "description": "Denotes the type of entity, driver or asset.",
 	   	   	   	   	   	   "enum": [
 	   	   	   	   	   	   	   "driver",
-	   	   	   	   	   	   	   "vehicle"
+	   	   	   	   	   	   	   "asset"
 	   	   	   	   	   	   ],
-	   	   	   	   	   	   "example": "vehicle",
+	   	   	   	   	   	   "example": "asset",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "name": {
@@ -16247,12 +16247,12 @@
 	   	   	   	   	   	   "type": "array"
 	   	   	   	   	   },
 	   	   	   	   	   "entityType": {
-	   	   	   	   	   	   "description": "Denotes the type of entity, driver or vehicle.",
+	   	   	   	   	   	   "description": "Denotes the type of entity, driver or asset.",
 	   	   	   	   	   	   "enum": [
 	   	   	   	   	   	   	   "driver",
-	   	   	   	   	   	   	   "vehicle"
+	   	   	   	   	   	   	   "asset"
 	   	   	   	   	   	   ],
-	   	   	   	   	   	   "example": "vehicle",
+	   	   	   	   	   	   "example": "asset",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "name": {
@@ -26384,11 +26384,11 @@
 	   	   },
 	   	   "/beta/attributes": {
 	   	   	   "get": {
-	   	   	   	   "description": "Fetch all attributes in an organization associated with either drivers or vehicles. \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+	   	   	   	   "description": "Fetch all attributes in an organization associated with either drivers or assets. \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
 	   	   	   	   "operationId": "getAttributesByEntityType",
 	   	   	   	   "parameters": [
 	   	   	   	   	   {
-	   	   	   	   	   	   "description": "Denotes the type of entity, driver or vehicle.",
+	   	   	   	   	   	   "description": "Denotes the type of entity, driver or asset.",
 	   	   	   	   	   	   "explode": true,
 	   	   	   	   	   	   "in": "query",
 	   	   	   	   	   	   "name": "entityType",
@@ -26396,7 +26396,7 @@
 	   	   	   	   	   	   "schema": {
 	   	   	   	   	   	   	   "enum": [
 	   	   	   	   	   	   	   	   "driver",
-	   	   	   	   	   	   	   	   "vehicle"
+	   	   	   	   	   	   	   	   "asset"
 	   	   	   	   	   	   	   ],
 	   	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   	   },
@@ -26515,7 +26515,7 @@
 	   	   	   	   	   	   "style": "simple"
 	   	   	   	   	   },
 	   	   	   	   	   {
-	   	   	   	   	   	   "description": "Denotes the type of entity, driver or vehicle.",
+	   	   	   	   	   	   "description": "Denotes the type of entity, driver or asset.",
 	   	   	   	   	   	   "explode": true,
 	   	   	   	   	   	   "in": "query",
 	   	   	   	   	   	   "name": "entityType",
@@ -26523,7 +26523,7 @@
 	   	   	   	   	   	   "schema": {
 	   	   	   	   	   	   	   "enum": [
 	   	   	   	   	   	   	   	   "driver",
-	   	   	   	   	   	   	   	   "vehicle"
+	   	   	   	   	   	   	   	   "asset"
 	   	   	   	   	   	   	   ],
 	   	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   	   },
@@ -26573,7 +26573,7 @@
 	   	   	   	   	   	   "style": "simple"
 	   	   	   	   	   },
 	   	   	   	   	   {
-	   	   	   	   	   	   "description": "Denotes the type of entity, driver or vehicle.",
+	   	   	   	   	   	   "description": "Denotes the type of entity, driver or asset.",
 	   	   	   	   	   	   "explode": true,
 	   	   	   	   	   	   "in": "query",
 	   	   	   	   	   	   "name": "entityType",
@@ -26581,7 +26581,7 @@
 	   	   	   	   	   	   "schema": {
 	   	   	   	   	   	   	   "enum": [
 	   	   	   	   	   	   	   	   "driver",
-	   	   	   	   	   	   	   	   "vehicle"
+	   	   	   	   	   	   	   	   "asset"
 	   	   	   	   	   	   	   ],
 	   	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   	   },
