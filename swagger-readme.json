@@ -4452,28 +4452,6 @@
 	   	   	   	   ],
 	   	   	   	   "type": "string"
 	   	   	   },
-	   	   	   "DriverAppSettingsGamificationConfigTinyObjectRequestBody": {
-	   	   	   	   "description": "Gamification configuration for the Driver App.",
-	   	   	   	   "properties": {
-	   	   	   	   	   "anonymizeDriverNames": {
-	   	   	   	   	   	   "description": "Hide the names of other drivers when viewing the driver leaderboard in the mobile app.",
-	   	   	   	   	   	   "example": true,
-	   	   	   	   	   	   "type": "boolean"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "DriverAppSettingsGamificationConfigTinyObjectResponseBody": {
-	   	   	   	   "description": "Gamification configuration for the Driver App.",
-	   	   	   	   "properties": {
-	   	   	   	   	   "anonymizeDriverNames": {
-	   	   	   	   	   	   "description": "Hide the names of other drivers when viewing the driver leaderboard in the mobile app.",
-	   	   	   	   	   	   "example": false,
-	   	   	   	   	   	   "type": "boolean"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "type": "object"
-	   	   	   },
 	   	   	   "DriverAppSettingsResponseObjectResponseBody": {
 	   	   	   	   "description": "The configuration settings for the Samsara Driver App. Can be set or updated through the Samsara Settings page or the API at any time.",
 	   	   	   	   "properties": {
@@ -4481,71 +4459,6 @@
 	   	   	   	   	   	   "description": "Login user name for the fleet driver app",
 	   	   	   	   	   	   "example": "abc_trucking_co",
 	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "gamification": {
-	   	   	   	   	   	   "description": "Driver gamification feature. Enabling this will turn on the feature for all drivers using the mobile app. Drivers can be configured into peer groups within the Drivers Page. Unconfigured drivers will be grouped on an organization level.",
-	   	   	   	   	   	   "example": true,
-	   	   	   	   	   	   "type": "boolean"
-	   	   	   	   	   },
-	   	   	   	   	   "gamificationConfig": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/DriverAppSettingsGamificationConfigTinyObjectResponseBody"
-	   	   	   	   	   },
-	   	   	   	   	   "orgVehicleSearch": {
-	   	   	   	   	   	   "description": "Allow drivers to search for vehicles outside of their selection tag when connected to the internet.",
-	   	   	   	   	   	   "example": false,
-	   	   	   	   	   	   "type": "boolean"
-	   	   	   	   	   },
-	   	   	   	   	   "trailerSelection": {
-	   	   	   	   	   	   "description": "Allow drivers to see and select trailers in the Samsara Driver app. ",
-	   	   	   	   	   	   "example": true,
-	   	   	   	   	   	   "type": "boolean"
-	   	   	   	   	   },
-	   	   	   	   	   "trailerSelectionConfig": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/DriverAppSettingsTrailerSelectionConfigTinyObjectResponseBody"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "DriverAppSettingsTrailerSelectionConfigTinyObjectRequestBody": {
-	   	   	   	   "description": "Trailer selection setting configuration for the Driver App.",
-	   	   	   	   "properties": {
-	   	   	   	   	   "driverTrailerCreationEnabled": {
-	   	   	   	   	   	   "description": "Allow drivers to create new trailers in the Samsara Driver app.",
-	   	   	   	   	   	   "example": true,
-	   	   	   	   	   	   "type": "boolean"
-	   	   	   	   	   },
-	   	   	   	   	   "maxNumOfTrailersSelected": {
-	   	   	   	   	   	   "description": "Trailer selection limit.",
-	   	   	   	   	   	   "example": -3004351503975731000,
-	   	   	   	   	   	   "maximum": 8,
-	   	   	   	   	   	   "type": "integer"
-	   	   	   	   	   },
-	   	   	   	   	   "orgTrailerSearch": {
-	   	   	   	   	   	   "description": "Allow drivers to search for trailers outside of their selection tag when connected to the internet",
-	   	   	   	   	   	   "example": false,
-	   	   	   	   	   	   "type": "boolean"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "type": "object"
-	   	   	   },
-	   	   	   "DriverAppSettingsTrailerSelectionConfigTinyObjectResponseBody": {
-	   	   	   	   "description": "Trailer selection setting configuration for the Driver App.",
-	   	   	   	   "properties": {
-	   	   	   	   	   "driverTrailerCreationEnabled": {
-	   	   	   	   	   	   "description": "Allow drivers to create new trailers in the Samsara Driver app.",
-	   	   	   	   	   	   "example": true,
-	   	   	   	   	   	   "type": "boolean"
-	   	   	   	   	   },
-	   	   	   	   	   "maxNumOfTrailersSelected": {
-	   	   	   	   	   	   "description": "Trailer selection limit.",
-	   	   	   	   	   	   "example": -2674858581547320300,
-	   	   	   	   	   	   "maximum": 8,
-	   	   	   	   	   	   "type": "integer"
-	   	   	   	   	   },
-	   	   	   	   	   "orgTrailerSearch": {
-	   	   	   	   	   	   "description": "Allow drivers to search for trailers outside of their selection tag when connected to the internet",
-	   	   	   	   	   	   "example": true,
-	   	   	   	   	   	   "type": "boolean"
 	   	   	   	   	   }
 	   	   	   	   },
 	   	   	   	   "type": "object"
@@ -11639,7 +11552,7 @@
 	   	   	   	   	   },
 	   	   	   	   	   "editCertifiedLogsEnabled": {
 	   	   	   	   	   	   "description": "Drivers Can Edit Certified Log",
-	   	   	   	   	   	   "example": true,
+	   	   	   	   	   	   "example": false,
 	   	   	   	   	   	   "type": "boolean"
 	   	   	   	   	   },
 	   	   	   	   	   "forceManualLocationForDutyStatusChangesEnabled": {
@@ -12237,7 +12150,7 @@
 	   	   	   	   	   },
 	   	   	   	   	   "canadaHosEnabled": {
 	   	   	   	   	   	   "description": "Enable Canada HOS",
-	   	   	   	   	   	   "example": false,
+	   	   	   	   	   	   "example": true,
 	   	   	   	   	   	   "type": "boolean"
 	   	   	   	   	   },
 	   	   	   	   	   "carrierName": {
@@ -12253,7 +12166,7 @@
 	   	   	   	   	   },
 	   	   	   	   	   "driverAutoDutyEnabled": {
 	   	   	   	   	   	   "description": "Enable Driver Auto-Duty",
-	   	   	   	   	   	   "example": false,
+	   	   	   	   	   	   "example": true,
 	   	   	   	   	   	   "type": "boolean"
 	   	   	   	   	   },
 	   	   	   	   	   "editCertifiedLogsEnabled": {
@@ -12268,7 +12181,7 @@
 	   	   	   	   	   },
 	   	   	   	   	   "forceReviewUnassignedHosEnabled": {
 	   	   	   	   	   	   "description": "Force Review of Unassigned HOS",
-	   	   	   	   	   	   "example": false,
+	   	   	   	   	   	   "example": true,
 	   	   	   	   	   	   "type": "boolean"
 	   	   	   	   	   },
 	   	   	   	   	   "mainOfficeFormattedAddress": {
@@ -12503,27 +12416,6 @@
 	   	   	   	   	   	   "example": "abc-trucking-co",
 	   	   	   	   	   	   "pattern": "^[a-zA-Z0-9-:]*$",
 	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "gamification": {
-	   	   	   	   	   	   "description": "Driver gamification feature. Enabling this will turn on the feature for all drivers using the mobile app. Drivers can be configured into peer groups within the Drivers Page. Unconfigured drivers will be grouped on an organization level.",
-	   	   	   	   	   	   "example": true,
-	   	   	   	   	   	   "type": "boolean"
-	   	   	   	   	   },
-	   	   	   	   	   "gamificationConfig": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/DriverAppSettingsGamificationConfigTinyObjectRequestBody"
-	   	   	   	   	   },
-	   	   	   	   	   "orgVehicleSearch": {
-	   	   	   	   	   	   "description": "Allow drivers to search for vehicles outside of their selection tag when connected to the internet.",
-	   	   	   	   	   	   "example": true,
-	   	   	   	   	   	   "type": "boolean"
-	   	   	   	   	   },
-	   	   	   	   	   "trailerSelection": {
-	   	   	   	   	   	   "description": "Allow drivers to see and select trailers in the Samsara Driver app. ",
-	   	   	   	   	   	   "example": true,
-	   	   	   	   	   	   "type": "boolean"
-	   	   	   	   	   },
-	   	   	   	   	   "trailerSelectionConfig": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/DriverAppSettingsTrailerSelectionConfigTinyObjectRequestBody"
 	   	   	   	   	   }
 	   	   	   	   },
 	   	   	   	   "type": "object"

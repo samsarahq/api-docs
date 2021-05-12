@@ -13219,28 +13219,6 @@
         "deactivated"
       ]
     },
-    "DriverAppSettingsGamificationConfigTinyObjectRequestBody": {
-      "description": "Gamification configuration for the Driver App.",
-      "type": "object",
-      "properties": {
-        "anonymizeDriverNames": {
-          "description": "Hide the names of other drivers when viewing the driver leaderboard in the mobile app.",
-          "type": "boolean",
-          "example": true
-        }
-      }
-    },
-    "DriverAppSettingsGamificationConfigTinyObjectResponseBody": {
-      "description": "Gamification configuration for the Driver App.",
-      "type": "object",
-      "properties": {
-        "anonymizeDriverNames": {
-          "description": "Hide the names of other drivers when viewing the driver leaderboard in the mobile app.",
-          "type": "boolean",
-          "example": false
-        }
-      }
-    },
     "DriverAppSettingsResponseObjectResponseBody": {
       "description": "The configuration settings for the Samsara Driver App. Can be set or updated through the Samsara Settings page or the API at any time.",
       "type": "object",
@@ -13249,71 +13227,6 @@
           "description": "Login user name for the fleet driver app",
           "type": "string",
           "example": "abc_trucking_co"
-        },
-        "gamification": {
-          "description": "Driver gamification feature. Enabling this will turn on the feature for all drivers using the mobile app. Drivers can be configured into peer groups within the Drivers Page. Unconfigured drivers will be grouped on an organization level.",
-          "type": "boolean",
-          "example": true
-        },
-        "gamificationConfig": {
-          "$ref": "#/definitions/DriverAppSettingsGamificationConfigTinyObjectResponseBody"
-        },
-        "orgVehicleSearch": {
-          "description": "Allow drivers to search for vehicles outside of their selection tag when connected to the internet.",
-          "type": "boolean",
-          "example": false
-        },
-        "trailerSelection": {
-          "description": "Allow drivers to see and select trailers in the Samsara Driver app. ",
-          "type": "boolean",
-          "example": true
-        },
-        "trailerSelectionConfig": {
-          "$ref": "#/definitions/DriverAppSettingsTrailerSelectionConfigTinyObjectResponseBody"
-        }
-      }
-    },
-    "DriverAppSettingsTrailerSelectionConfigTinyObjectRequestBody": {
-      "description": "Trailer selection setting configuration for the Driver App.",
-      "type": "object",
-      "properties": {
-        "driverTrailerCreationEnabled": {
-          "description": "Allow drivers to create new trailers in the Samsara Driver app.",
-          "type": "boolean",
-          "example": true
-        },
-        "maxNumOfTrailersSelected": {
-          "description": "Trailer selection limit.",
-          "type": "integer",
-          "maximum": 8,
-          "example": -3004351503975731000
-        },
-        "orgTrailerSearch": {
-          "description": "Allow drivers to search for trailers outside of their selection tag when connected to the internet",
-          "type": "boolean",
-          "example": false
-        }
-      }
-    },
-    "DriverAppSettingsTrailerSelectionConfigTinyObjectResponseBody": {
-      "description": "Trailer selection setting configuration for the Driver App.",
-      "type": "object",
-      "properties": {
-        "driverTrailerCreationEnabled": {
-          "description": "Allow drivers to create new trailers in the Samsara Driver app.",
-          "type": "boolean",
-          "example": true
-        },
-        "maxNumOfTrailersSelected": {
-          "description": "Trailer selection limit.",
-          "type": "integer",
-          "maximum": 8,
-          "example": -2674858581547320300
-        },
-        "orgTrailerSearch": {
-          "description": "Allow drivers to search for trailers outside of their selection tag when connected to the internet",
-          "type": "boolean",
-          "example": true
         }
       }
     },
@@ -20367,7 +20280,7 @@
         "editCertifiedLogsEnabled": {
           "description": "Drivers Can Edit Certified Log",
           "type": "boolean",
-          "example": true
+          "example": false
         },
         "forceManualLocationForDutyStatusChangesEnabled": {
           "description": "Force Manual Location For Duty Status Changes",
@@ -20965,7 +20878,7 @@
         "canadaHosEnabled": {
           "description": "Enable Canada HOS",
           "type": "boolean",
-          "example": false
+          "example": true
         },
         "carrierName": {
           "description": "Carrier Name / Principal Place of Business Name",
@@ -20981,7 +20894,7 @@
         "driverAutoDutyEnabled": {
           "description": "Enable Driver Auto-Duty",
           "type": "boolean",
-          "example": false
+          "example": true
         },
         "editCertifiedLogsEnabled": {
           "description": "Drivers Can Edit Certified Log",
@@ -20996,7 +20909,7 @@
         "forceReviewUnassignedHosEnabled": {
           "description": "Force Review of Unassigned HOS",
           "type": "boolean",
-          "example": false
+          "example": true
         },
         "mainOfficeFormattedAddress": {
           "description": "Main Office Address / Principal Place of Businesss Address",
@@ -21230,27 +21143,6 @@
           "type": "string",
           "pattern": "^[a-zA-Z0-9-:]*$",
           "example": "abc-trucking-co"
-        },
-        "gamification": {
-          "description": "Driver gamification feature. Enabling this will turn on the feature for all drivers using the mobile app. Drivers can be configured into peer groups within the Drivers Page. Unconfigured drivers will be grouped on an organization level.",
-          "type": "boolean",
-          "example": true
-        },
-        "gamificationConfig": {
-          "$ref": "#/definitions/DriverAppSettingsGamificationConfigTinyObjectRequestBody"
-        },
-        "orgVehicleSearch": {
-          "description": "Allow drivers to search for vehicles outside of their selection tag when connected to the internet.",
-          "type": "boolean",
-          "example": true
-        },
-        "trailerSelection": {
-          "description": "Allow drivers to see and select trailers in the Samsara Driver app. ",
-          "type": "boolean",
-          "example": true
-        },
-        "trailerSelectionConfig": {
-          "$ref": "#/definitions/DriverAppSettingsTrailerSelectionConfigTinyObjectRequestBody"
         }
       }
     },
