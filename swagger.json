@@ -9441,6 +9441,32 @@
     }
   },
   "definitions": {
+    "AccessoryResponseObjectResponseBody": {
+      "description": "An object containing information about an accessory connected to the VG.",
+      "type": "object",
+      "properties": {
+        "firmware": {
+          "description": "The firmware version number of the accessory device",
+          "type": "string",
+          "example": "Et perferendis assumenda non."
+        },
+        "lastConnectedTime": {
+          "description": "The last time the accessory device was connected in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+          "type": "string",
+          "example": "2019-06-13T19:08:25Z"
+        },
+        "name": {
+          "description": "Name of the accessory device",
+          "type": "string",
+          "example": "Sed doloribus."
+        },
+        "serial": {
+          "description": "The serial number of the accessory device",
+          "type": "string",
+          "example": "Veniam laudantium officiis cupiditate iusto vel ut."
+        }
+      }
+    },
     "Address": {
       "description": "An Address object.",
       "type": "object",
@@ -11691,6 +11717,24 @@
         },
         "pagination": {
           "$ref": "#/definitions/paginationResponse"
+        }
+      }
+    },
+    "DataUsageResponseObjectResponseBody": {
+      "description": "An object containing information about the gateway data usage in mb for the last 30 days.",
+      "type": "object",
+      "properties": {
+        "cellularDataUsageBytes": {
+          "description": "Celluar data usage in bytes.",
+          "type": "integer",
+          "format": "int64",
+          "example": 5040721603539612000
+        },
+        "hotspotUsageBytes": {
+          "description": "Wifi hotspot data usage in bytes.",
+          "type": "integer",
+          "format": "int64",
+          "example": 8659491345121789000
         }
       }
     },
@@ -15730,11 +15774,21 @@
         "model"
       ],
       "properties": {
+        "accessoryDevices": {
+          "description": "Accessory devices on gateway",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AccessoryResponseObjectResponseBody"
+          }
+        },
         "asset": {
           "$ref": "#/definitions/GatewayAssetResponseObjectResponseBody"
         },
         "connectionStatus": {
           "$ref": "#/definitions/ConnectionStatusResponseObjectResponseBody"
+        },
+        "dataUsageLast30Days": {
+          "$ref": "#/definitions/DataUsageResponseObjectResponseBody"
         },
         "model": {
           "description": "The model of the gateway installed on the asset.",
