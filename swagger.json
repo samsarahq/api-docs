@@ -11135,28 +11135,7 @@
           }
         },
         "carrierSettings": {
-          "description": "Carrier for a given driver. If the driver's carrier differs from the general organization's carrier settings, the override value is used. Updating this value only updates the override setting for this driver.",
-          "type": "object",
-          "properties": {
-            "carrierName": {
-              "description": "Carrier for a given driver.",
-              "type": "string",
-              "maxLength": 255,
-              "example": "Acme Inc."
-            },
-            "dotNumber": {
-              "description": "Carrier US DOT Number. If this differs from the general organization's settings, the override value is used. Updating this value only updates the override setting for this driver.",
-              "type": "integer",
-              "format": "int64",
-              "example": 98231
-            },
-            "mainOfficeAddress": {
-              "description": "Main office address for a given driver. If this differs from the general organization's settings, the override value is used. ",
-              "type": "string",
-              "maxLength": 255,
-              "example": "1234 Pear St., Scranton, PA 62814"
-            }
-          }
+          "$ref": "#/definitions/DriverCarrierSettings"
         },
         "currentIdCardCode": {
           "description": "The ID Card Code on the back of the physical card assigned to the driver.  Contact Samsara if you would like to enable this feature.",
@@ -13414,6 +13393,12 @@
           "format": "int64",
           "example": 98231
         },
+        "homeTerminalAddress": {
+          "$ref": "#/definitions/DriverHomeTerminalAddress"
+        },
+        "homeTerminalName": {
+          "$ref": "#/definitions/DriverHomeTerminalName"
+        },
         "mainOfficeAddress": {
           "description": "Main office address for a given driver. If this differs from the general organization's settings, the override value is used. ",
           "type": "string",
@@ -13676,6 +13661,18 @@
         "maintenanceId": "250020",
         "payrollId": "ABFS18600"
       }
+    },
+    "DriverHomeTerminalAddress": {
+      "description": "Address of the place of business at which a driver ordinarily reports for work.",
+      "type": "string",
+      "maxLength": 255,
+      "example": "1234 Pear St., Scranton, PA 62814"
+    },
+    "DriverHomeTerminalName": {
+      "description": "Name of the place of business at which a driver ordinarily reports for work.",
+      "type": "string",
+      "maxLength": 255,
+      "example": "Acme Inc."
     },
     "DriverId": {
       "description": "Samsara ID for the driver.",
@@ -25347,28 +25344,7 @@
           }
         },
         "carrierSettings": {
-          "description": "Carrier for a given driver. If the driver's carrier differs from the general organization's carrier settings, the override value is used. Updating this value only updates the override setting for this driver.",
-          "type": "object",
-          "properties": {
-            "carrierName": {
-              "description": "Carrier for a given driver.",
-              "type": "string",
-              "maxLength": 255,
-              "example": "Acme Inc."
-            },
-            "dotNumber": {
-              "description": "Carrier US DOT Number. If this differs from the general organization's settings, the override value is used. Updating this value only updates the override setting for this driver.",
-              "type": "integer",
-              "format": "int64",
-              "example": 98231
-            },
-            "mainOfficeAddress": {
-              "description": "Main office address for a given driver. If this differs from the general organization's settings, the override value is used. ",
-              "type": "string",
-              "maxLength": 255,
-              "example": "1234 Pear St., Scranton, PA 62814"
-            }
-          }
+          "$ref": "#/definitions/DriverCarrierSettings"
         },
         "currentIdCardCode": {
           "description": "The ID Card Code on the back of the physical card assigned to the driver.  Contact Samsara if you would like to enable this feature.",
