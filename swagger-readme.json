@@ -2440,6 +2440,9 @@
 	   	   	   	   	   	   "example": "America/Los_Angeles",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
+	   	   	   	   	   "usDriverRulesetOverride": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/UsDriverRulesetOverride"
+	   	   	   	   	   },
 	   	   	   	   	   "username": {
 	   	   	   	   	   	   "description": "Driver's login username into the driver app. The username may not contain spaces or the '@' symbol. The username must be unique.",
 	   	   	   	   	   	   "example": "SusanJones",
@@ -4455,6 +4458,9 @@
 	   	   	   	   	   "updatedAtTime": {
 	   	   	   	   	   	   "$ref": "#/components/schemas/DriverUpdatedAtTime"
 	   	   	   	   	   },
+	   	   	   	   	   "usDriverRulesetOverride": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/UsDriverRulesetOverride"
+	   	   	   	   	   },
 	   	   	   	   	   "username": {
 	   	   	   	   	   	   "$ref": "#/components/schemas/DriverUsername"
 	   	   	   	   	   },
@@ -4867,7 +4873,7 @@
 	   	   	   	   "type": "string"
 	   	   	   },
 	   	   	   "DriverEldRulesets": {
-	   	   	   	   "description": "The driver's ELD rulesets and overrides.",
+	   	   	   	   "description": "The driver's ELD rulesets and overrides. This is the full set of rulesets that may apply to the driver depending on their activity. If you wish to interface with the specific US driver override, use the usDriverRulesetOverride field.",
 	   	   	   	   "items": {
 	   	   	   	   	   "$ref": "#/components/schemas/DriverEldRuleset"
 	   	   	   	   },
@@ -16615,6 +16621,9 @@
 	   	   	   	   	   	   "example": "America/Los_Angeles",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
+	   	   	   	   	   "usDriverRulesetOverride": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/UsDriverRulesetOverride"
+	   	   	   	   	   },
 	   	   	   	   	   "username": {
 	   	   	   	   	   	   "description": "Driver's login username into the driver app. The username may not contain spaces or the '@' symbol. The username must be unique.",
 	   	   	   	   	   	   "example": "SusanJones",
@@ -17026,6 +17035,93 @@
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   }
 	   	   	   	   },
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "UsDriverRulesetOverride": {
+	   	   	   	   "description": "US Driver Ruleset override for a given driver. If the driver is operating under a ruleset different from the organization default, the override is used. Updating this value only updates the override setting for this driver. Explicitly setting this field to 'null' will delete driver's ruleset override. If the driver does not have an override ruleset set, the response will not include any usDriverRulesetOverride information.",
+	   	   	   	   "properties": {
+	   	   	   	   	   "cycle": {
+	   	   	   	   	   	   "description": "The driver's working cycle.",
+	   	   	   	   	   	   "enum": [
+	   	   	   	   	   	   	   "USA Property (8/70)",
+	   	   	   	   	   	   	   "USA Property (7/60)",
+	   	   	   	   	   	   	   "USA Passenger (8/70)",
+	   	   	   	   	   	   	   "USA Passenger (7/60)",
+	   	   	   	   	   	   	   "Alaska Property (8/80)",
+	   	   	   	   	   	   	   "Alaska Property (7/70)",
+	   	   	   	   	   	   	   "Alaska Passenger (8/80)",
+	   	   	   	   	   	   	   "Alaska Passenger (7/70)",
+	   	   	   	   	   	   	   "California School/FLV (8/80)",
+	   	   	   	   	   	   	   "California Farm (8/112)",
+	   	   	   	   	   	   	   "California Property (8/80)",
+	   	   	   	   	   	   	   "California Flammable Liquid (8/80)",
+	   	   	   	   	   	   	   "California Passenger (8/80)",
+	   	   	   	   	   	   	   "California Motion Picture (8/80)",
+	   	   	   	   	   	   	   "Florida (8/80)",
+	   	   	   	   	   	   	   "Florida (7/70)",
+	   	   	   	   	   	   	   "Nebraska (8/80)",
+	   	   	   	   	   	   	   "Nebraska (7/70)",
+	   	   	   	   	   	   	   "North Carolina (8/80)",
+	   	   	   	   	   	   	   "North Carolina (7/70)",
+	   	   	   	   	   	   	   "Oklahoma (8/70)",
+	   	   	   	   	   	   	   "Oklahoma (7/60)",
+	   	   	   	   	   	   	   "Oregon (8/80)",
+	   	   	   	   	   	   	   "Oregon (7/70)",
+	   	   	   	   	   	   	   "South Carolina (8/80)",
+	   	   	   	   	   	   	   "South Carolina (7/70)",
+	   	   	   	   	   	   	   "Texas (7/70)",
+	   	   	   	   	   	   	   "Wisconsin (8/80)",
+	   	   	   	   	   	   	   "Wisconsin (7/70)"
+	   	   	   	   	   	   ],
+	   	   	   	   	   	   "example": "TX 70 hour / 7 day",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "restart": {
+	   	   	   	   	   	   "description": "Amount of time necessary for the driver to be resting in order to restart their cycle.",
+	   	   	   	   	   	   "enum": [
+	   	   	   	   	   	   	   "None",
+	   	   	   	   	   	   	   "24-hour Restart",
+	   	   	   	   	   	   	   "34-hour Restart",
+	   	   	   	   	   	   	   "36-hour Restart",
+	   	   	   	   	   	   	   "72-hour Restart"
+	   	   	   	   	   	   ],
+	   	   	   	   	   	   "example": "34-hour Restart",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "restbreak": {
+	   	   	   	   	   	   "description": "None",
+	   	   	   	   	   	   "enum": [
+	   	   	   	   	   	   	   "None",
+	   	   	   	   	   	   	   "Property (off-duty/sleeper)",
+	   	   	   	   	   	   	   "California Mealbreak (off-duty/sleeper)"
+	   	   	   	   	   	   ],
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "usStateToOverride": {
+	   	   	   	   	   	   "description": "The jurisdiction of the ruleset applied to this driver. These are specified by either the ISO 3166-2 postal code for the supported US states, or empty string '' for US Federal Ruleset jurisdiction.",
+	   	   	   	   	   	   "enum": [
+	   	   	   	   	   	   	   "",
+	   	   	   	   	   	   	   "AK",
+	   	   	   	   	   	   	   "CA",
+	   	   	   	   	   	   	   "FL",
+	   	   	   	   	   	   	   "NE",
+	   	   	   	   	   	   	   "NC",
+	   	   	   	   	   	   	   "OK",
+	   	   	   	   	   	   	   "OR",
+	   	   	   	   	   	   	   "SC",
+	   	   	   	   	   	   	   "TX",
+	   	   	   	   	   	   	   "WI"
+	   	   	   	   	   	   ],
+	   	   	   	   	   	   "example": "TX",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "cycle",
+	   	   	   	   	   "restart",
+	   	   	   	   	   "restbreak",
+	   	   	   	   	   "usStateToOverride"
+	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
 	   	   	   "User": {
