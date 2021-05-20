@@ -25969,22 +25969,23 @@
           "description": "Amount of time necessary for the driver to be resting in order to restart their cycle.",
           "type": "string",
           "enum": [
-            "None",
-            "24-hour Restart",
             "34-hour Restart",
+            "24-hour Restart",
             "36-hour Restart",
-            "72-hour Restart"
+            "72-hour Restart",
+            "None"
           ],
           "example": "34-hour Restart"
         },
         "restbreak": {
-          "description": "None",
+          "description": "The restbreak required for this driver.",
           "type": "string",
           "enum": [
-            "None",
             "Property (off-duty/sleeper)",
-            "California Mealbreak (off-duty/sleeper)"
-          ]
+            "California Mealbreak (off-duty/sleeper)",
+            "None"
+          ],
+          "example": "None"
         },
         "usStateToOverride": {
           "description": "The jurisdiction of the ruleset applied to this driver. These are specified by either the ISO 3166-2 postal code for the supported US states, or empty string '' for US Federal Ruleset jurisdiction.",
