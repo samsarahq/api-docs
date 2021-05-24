@@ -1,0 +1,57 @@
+name: Sync Changelogs to ReadMe
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - 'changelog.json'
+      - 'changelog_index.json'
+      - 'operation_ids.json'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+      - name: Run python script
+        env:
+          README_API_TOKEN: ${{ secrets.README_API_TOKEN }}
+        run: |
+          python scripts/readme_changelog.py
+      - name: Commit changed files
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "GitHub Actions [bot]"
+          git add .
+          git commit -m "Add altered changelog files"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          branch: ${{ github.ref }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
+      - name: Notify slack success
+        if: success()
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.API_DOCS_SLACK_TOKEN }}
+        uses: voxmedia/github-action-slack-notify-build@v1
+        with:
+          channel_id: C01JAV5FNBW
+          status: SUCCESS
+          color: good
+      - name: Notify slack fail
+        if: failure()
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.API_DOCS_SLACK_TOKEN }}
+        uses: voxmedia/github-action-slack-notify-build@v1
+        with:
+          channel_id: C01JAV5FNBW
+          status: FAILED
+          color: danger
