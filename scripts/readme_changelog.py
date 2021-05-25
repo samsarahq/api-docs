@@ -25,22 +25,14 @@ class Changelog():
         self.isInitialRelease = isInitialRelease
         self.isDocumentationOnly = isDocumentationOnly
         self.operationId = None
+        # TODO expand to add release state changes
+        # for new preview API: ditto below
+        # for new beta API: ditto below
+        # for new GA API: "New API <http method> <route template>: General Availability"
 
     def __str__(self):
-        title = "{} {}: {}".format(self.method, self.route, self.description)
-        details = "{}\   Version {}".format(self.details, self.versionDate)
-        logType = ""
-        if self.isBreakingChange is True:
-            logType = "improved"
-        if self.isInitialRelease is True:
-            logType = "added"
-        payload = {
-            "hidden": True,
-            "title": title,
-            "type": logType,
-            "body": details
-        }
-        return str(payload)
+        return "{} {}: {} index {}\n{}\n{}\nisBreakingChange {}\nisInitialRelease: {}\nisDocumentationOnly: {}\nswagger operation id: {}".format(
+            self.method, self.route, self.versionDate, self.index, self.description, self.details, self.isBreakingChange, self.isInitialRelease, self.isDocumentationOnly, self.operationId)
 
     def key(self):
         return "{}__{}__{}__{}".format(self.route, self.method, self.versionDate, self.index)
@@ -52,28 +44,27 @@ def changelogDecoder(obj):
         return Changelog(obj["Route"], obj["Method"],c["Index"],c["VersionDate"],c["Description"],c["Details"],c["IsBreakingChange"],c["IsInitialRelease"],c["IsDocumentationOnly"])
     return obj
 
-
-def publishChangelog(changelog):
+def formatChangelog(changelog):
     title = "{} {}: {}".format(changelog.method, changelog.route, changelog.description)
     if changelog.operationId is not None:
-        details = "[{} {}](ref:{})\n\n{}\n\nVersion {} and higher".format(changelog.method, changelog.route, changelog.operationId, changelog.details, changelog.versionDate)
+        details = "[{} {}](ref:{}): {}".format(changelog.method, changelog.route, changelog.operationId, changelog.details)
     else:
-        details = "{}\n\nVersion {} and higher".format(changelog.details, changelog.versionDate)
+        details = "{} {}: {}".format(changelog.method, changelog.route, changelog.details)
     logType = ""
     if changelog.isBreakingChange is True:
         logType = "improved"
         title = "API Version: {}".format(changelog.versionDate)
     if changelog.isInitialRelease is True:
         logType = "added"
-        title = "New API {}".format(title)
+        state = "General Availability"
+        title = "New API {} {}: {}".format(changelog.method, changelog.route, state) # TODO allow for beta and preview states
     payload = {
         "hidden": True, #TODO remove after testing end-to-end
         "title": title,
         "type": logType,
         "body": details
     }
-    response = requests.request("POST", url, json=payload, headers=headers)
-    return response
+    return payload
 
 def readChangelogFile(changelog):
     decodedChangelogs = {}
@@ -133,8 +124,9 @@ def publishChangelogs(index, changelogs):
             continue
         opKey = "{}__{}".format(c.method.lower(), c.route)
         if opKey in operationIds:
-            c.operationId = operationIds[opKey].lower()
-        response = publishChangelog(c)
+            c.operationId = operationIds[opKey]
+        payload = formatChangelog(c)
+        response = requests.request("POST", url, json=payload, headers=headers)
         if response.status_code == 201:
             index[k] = response.json()["_id"]
         else:
@@ -150,7 +142,7 @@ def readPathOperationIds():
             for k,v in o.items():
                 s = k.split("__")
                 s[1] = s[1].removeprefix("/")
-                operationIds["__".join(s)] = v
+                operationIds["__".join(s)] = v.lower()
     return operationIds
 
 if __name__ == "__main__":
