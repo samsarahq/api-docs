@@ -25,10 +25,6 @@ class Changelog():
         self.isInitialRelease = isInitialRelease
         self.isDocumentationOnly = isDocumentationOnly
         self.operationId = None
-        # TODO expand to add release state changes
-        # for new preview API: ditto below
-        # for new beta API: ditto below
-        # for new GA API: "New API <http method> <route template>: General Availability"
 
     def __str__(self):
         return "{} {}: {} index {}\n{}\n{}\nisBreakingChange {}\nisInitialRelease: {}\nisDocumentationOnly: {}\nswagger operation id: {}".format(
@@ -46,18 +42,24 @@ def changelogDecoder(obj):
 
 def formatChangelog(changelog):
     title = "{} {}: {}".format(changelog.method, changelog.route, changelog.description)
+    endpoint_ref = "{} {}".format(changelog.method, changelog.route)
     if changelog.operationId is not None:
-        details = "[{} {}](ref:{}): {}".format(changelog.method, changelog.route, changelog.operationId, changelog.details)
-    else:
-        details = "{} {}: {}".format(changelog.method, changelog.route, changelog.details)
+        endpoint_ref = "[{} {}](ref:{})".format(changelog.method, changelog.route, changelog.operationId)
+    details = "The {} has some new features! {}".format(endpoint_ref, changelog.details)
     logType = ""
     if changelog.isBreakingChange is True:
         logType = "improved"
         title = "API Version: {}".format(changelog.versionDate)
     if changelog.isInitialRelease is True:
         logType = "added"
-        state = "General Availability"
-        title = "New API {} {}: {}".format(changelog.method, changelog.route, state) # TODO allow for beta and preview states
+        details = "The {} endpoint is now generally available and fully supported for production :tada:! Check it out and happy coding :computer:".format(endpoint_ref)
+        title = "{} {} (Generally Available)".format(changelog.method, changelog.route)
+        if changelog.route.startswith("preview"):
+            details = "The {} endpoint is now in the Preview stage. Feel free to send in your comments via our [feedback](https://forms.gle/zkD4NCH7HjKb7mm69) form.  (Note this endpoint should not be used in production until it is made generally available).".format(endpoint_ref)
+            title = "New Preview API: {} {}".format(changelog.method, changelog.route)
+        elif changelog.route.startswith("beta"):
+            details = "The {} endpoint is now in the Beta stage. Feel free to send in your comments via our [feedback](https://forms.gle/zkD4NCH7HjKb7mm69) form.  (Note this endpoint should not be used in production until it is made generally available).".format(endpoint_ref)
+            title = "New Beta API: {} {}".format(changelog.method, changelog.route)
     payload = {
         "hidden": True, #TODO remove after testing end-to-end
         "title": title,
