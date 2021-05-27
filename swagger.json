@@ -466,490 +466,6 @@
         }
       ]
     },
-    "/beta/fleet/document-types": {
-      "get": {
-        "description": "Returns a list of the organization document types.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-        "schemes": [
-          "https"
-        ],
-        "tags": [
-          "Beta APIs"
-        ],
-        "summary": "[beta] Fetch document types",
-        "operationId": "getDocumentTypes",
-        "parameters": [
-          {
-            "type": "string",
-            "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
-            "name": "after",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentTypesGetDocumentTypesResponseBody"
-            }
-          },
-          "401": {
-            "description": "Unauthorized response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentTypesGetDocumentTypesUnauthorizedErrorResponseBody"
-            }
-          },
-          "404": {
-            "description": "Not Found response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentTypesGetDocumentTypesNotFoundErrorResponseBody"
-            }
-          },
-          "405": {
-            "description": "Method Not Allowed response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentTypesGetDocumentTypesMethodNotAllowedErrorResponseBody"
-            }
-          },
-          "429": {
-            "description": "Too Many Requests response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentTypesGetDocumentTypesTooManyRequestsErrorResponseBody"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentTypesGetDocumentTypesInternalServerErrorResponseBody"
-            }
-          },
-          "501": {
-            "description": "Not Implemented response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentTypesGetDocumentTypesNotImplementedErrorResponseBody"
-            }
-          },
-          "502": {
-            "description": "Bad Gateway response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentTypesGetDocumentTypesBadGatewayErrorResponseBody"
-            }
-          },
-          "503": {
-            "description": "Service Unavailable response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentTypesGetDocumentTypesServiceUnavailableErrorResponseBody"
-            }
-          },
-          "504": {
-            "description": "Gateway Timeout response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentTypesGetDocumentTypesGatewayTimeoutErrorResponseBody"
-            }
-          },
-          "default": {
-            "description": "Bad Request response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentTypesGetDocumentTypesBadRequestErrorResponseBody"
-            }
-          }
-        }
-      }
-    },
-    "/beta/fleet/documents": {
-      "get": {
-        "description": "Get all documents for the given time range.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-        "schemes": [
-          "https"
-        ],
-        "tags": [
-          "Beta APIs"
-        ],
-        "summary": "[beta] Fetch all documents",
-        "operationId": "getDocuments",
-        "parameters": [
-          {
-            "type": "string",
-            "description": " A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
-            "name": "startTime",
-            "in": "query",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": " An end time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
-            "name": "endTime",
-            "in": "query",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
-            "name": "after",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "ID of the document template type.",
-            "name": "documentTypeId",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "Query by document creation time (`created`) or updated time (`updated`). Defaults to `created`.",
-            "name": "queryBy",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentsResponseBody"
-            }
-          },
-          "401": {
-            "description": "Unauthorized response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentsUnauthorizedErrorResponseBody"
-            }
-          },
-          "404": {
-            "description": "Not Found response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentsNotFoundErrorResponseBody"
-            }
-          },
-          "405": {
-            "description": "Method Not Allowed response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentsMethodNotAllowedErrorResponseBody"
-            }
-          },
-          "429": {
-            "description": "Too Many Requests response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentsTooManyRequestsErrorResponseBody"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentsInternalServerErrorResponseBody"
-            }
-          },
-          "501": {
-            "description": "Not Implemented response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentsNotImplementedErrorResponseBody"
-            }
-          },
-          "502": {
-            "description": "Bad Gateway response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentsBadGatewayErrorResponseBody"
-            }
-          },
-          "503": {
-            "description": "Service Unavailable response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentsServiceUnavailableErrorResponseBody"
-            }
-          },
-          "504": {
-            "description": "Gateway Timeout response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentsGatewayTimeoutErrorResponseBody"
-            }
-          },
-          "default": {
-            "description": "Bad Request response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentsBadRequestErrorResponseBody"
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Creates a single document.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-        "schemes": [
-          "https"
-        ],
-        "tags": [
-          "Beta APIs"
-        ],
-        "summary": "[beta] Create document",
-        "operationId": "postDocument",
-        "parameters": [
-          {
-            "name": "PostDocumentRequestBody",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/DocumentsPostDocumentRequestBody"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsPostDocumentResponseBody"
-            }
-          },
-          "401": {
-            "description": "Unauthorized response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsPostDocumentUnauthorizedErrorResponseBody"
-            }
-          },
-          "404": {
-            "description": "Not Found response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsPostDocumentNotFoundErrorResponseBody"
-            }
-          },
-          "405": {
-            "description": "Method Not Allowed response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsPostDocumentMethodNotAllowedErrorResponseBody"
-            }
-          },
-          "429": {
-            "description": "Too Many Requests response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsPostDocumentTooManyRequestsErrorResponseBody"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsPostDocumentInternalServerErrorResponseBody"
-            }
-          },
-          "501": {
-            "description": "Not Implemented response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsPostDocumentNotImplementedErrorResponseBody"
-            }
-          },
-          "502": {
-            "description": "Bad Gateway response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsPostDocumentBadGatewayErrorResponseBody"
-            }
-          },
-          "503": {
-            "description": "Service Unavailable response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsPostDocumentServiceUnavailableErrorResponseBody"
-            }
-          },
-          "504": {
-            "description": "Gateway Timeout response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsPostDocumentGatewayTimeoutErrorResponseBody"
-            }
-          },
-          "default": {
-            "description": "Bad Request response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsPostDocumentBadRequestErrorResponseBody"
-            }
-          }
-        }
-      }
-    },
-    "/beta/fleet/documents/{id}": {
-      "get": {
-        "description": "Returns a single document.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-        "schemes": [
-          "https"
-        ],
-        "tags": [
-          "Beta APIs"
-        ],
-        "summary": "[beta] Fetch document",
-        "operationId": "getDocument",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "ID of the document",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentResponseBody"
-            }
-          },
-          "401": {
-            "description": "Unauthorized response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentUnauthorizedErrorResponseBody"
-            }
-          },
-          "404": {
-            "description": "Not Found response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentNotFoundErrorResponseBody"
-            }
-          },
-          "405": {
-            "description": "Method Not Allowed response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentMethodNotAllowedErrorResponseBody"
-            }
-          },
-          "429": {
-            "description": "Too Many Requests response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentTooManyRequestsErrorResponseBody"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentInternalServerErrorResponseBody"
-            }
-          },
-          "501": {
-            "description": "Not Implemented response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentNotImplementedErrorResponseBody"
-            }
-          },
-          "502": {
-            "description": "Bad Gateway response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentBadGatewayErrorResponseBody"
-            }
-          },
-          "503": {
-            "description": "Service Unavailable response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentServiceUnavailableErrorResponseBody"
-            }
-          },
-          "504": {
-            "description": "Gateway Timeout response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentGatewayTimeoutErrorResponseBody"
-            }
-          },
-          "default": {
-            "description": "Bad Request response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsGetDocumentBadRequestErrorResponseBody"
-            }
-          }
-        }
-      },
-      "delete": {
-        "description": "Deletes a single document.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-        "schemes": [
-          "https"
-        ],
-        "tags": [
-          "Beta APIs"
-        ],
-        "summary": "[beta] Delete document",
-        "operationId": "deleteDocument",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "ID of the document to delete",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content response."
-          },
-          "401": {
-            "description": "Unauthorized response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsDeleteDocumentUnauthorizedErrorResponseBody"
-            }
-          },
-          "404": {
-            "description": "Not Found response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsDeleteDocumentNotFoundErrorResponseBody"
-            }
-          },
-          "405": {
-            "description": "Method Not Allowed response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsDeleteDocumentMethodNotAllowedErrorResponseBody"
-            }
-          },
-          "429": {
-            "description": "Too Many Requests response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsDeleteDocumentTooManyRequestsErrorResponseBody"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsDeleteDocumentInternalServerErrorResponseBody"
-            }
-          },
-          "501": {
-            "description": "Not Implemented response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsDeleteDocumentNotImplementedErrorResponseBody"
-            }
-          },
-          "502": {
-            "description": "Bad Gateway response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsDeleteDocumentBadGatewayErrorResponseBody"
-            }
-          },
-          "503": {
-            "description": "Service Unavailable response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsDeleteDocumentServiceUnavailableErrorResponseBody"
-            }
-          },
-          "504": {
-            "description": "Gateway Timeout response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsDeleteDocumentGatewayTimeoutErrorResponseBody"
-            }
-          },
-          "default": {
-            "description": "Bad Request response.",
-            "schema": {
-              "$ref": "#/definitions/DocumentsDeleteDocumentBadRequestErrorResponseBody"
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "type": "string",
-          "description": "ID of the document",
-          "name": "id",
-          "in": "path",
-          "required": true
-        },
-        {
-          "type": "string",
-          "description": "ID of the document to delete",
-          "name": "id",
-          "in": "path",
-          "required": true
-        }
-      ]
-    },
     "/beta/fleet/drivers/efficiency": {
       "get": {
         "description": "Get all drivers' efficiencies. \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
@@ -2507,6 +2023,299 @@
         }
       ]
     },
+    "/fleet/document-types": {
+      "get": {
+        "description": "Returns a list of the organization document types. The legacy version of this endpoint can be found at [samsara.com/api-legacy](https://www.samsara.com/api-legacy#operation/getDriverDocumentTypesByOrgId).\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Documents"
+        ],
+        "summary": "Fetch document types",
+        "operationId": "getDocumentTypes",
+        "parameters": [
+          {
+            "type": "string",
+            "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentTypesGetDocumentTypesResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentTypesGetDocumentTypesUnauthorizedErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentTypesGetDocumentTypesNotFoundErrorResponseBody"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentTypesGetDocumentTypesMethodNotAllowedErrorResponseBody"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentTypesGetDocumentTypesTooManyRequestsErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentTypesGetDocumentTypesInternalServerErrorResponseBody"
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentTypesGetDocumentTypesNotImplementedErrorResponseBody"
+            }
+          },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentTypesGetDocumentTypesBadGatewayErrorResponseBody"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentTypesGetDocumentTypesServiceUnavailableErrorResponseBody"
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentTypesGetDocumentTypesGatewayTimeoutErrorResponseBody"
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentTypesGetDocumentTypesBadRequestErrorResponseBody"
+            }
+          }
+        }
+      }
+    },
+    "/fleet/documents": {
+      "get": {
+        "description": "Get all documents for the given time range. The legacy version of this endpoint can be found at [samsara.com/api-legacy](https://www.samsara.com/api-legacy#operation/getDriverDocumentsByOrgId).\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Documents"
+        ],
+        "summary": "Fetch all documents",
+        "operationId": "getDocuments",
+        "parameters": [
+          {
+            "type": "string",
+            "description": " A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "startTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": " An end time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+            "name": "endTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "ID of the document template type.",
+            "name": "documentTypeId",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Query by document creation time (`created`) or updated time (`updated`). Defaults to `created`.",
+            "name": "queryBy",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentsResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentsUnauthorizedErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentsNotFoundErrorResponseBody"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentsMethodNotAllowedErrorResponseBody"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentsTooManyRequestsErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentsInternalServerErrorResponseBody"
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentsNotImplementedErrorResponseBody"
+            }
+          },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentsBadGatewayErrorResponseBody"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentsServiceUnavailableErrorResponseBody"
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentsGatewayTimeoutErrorResponseBody"
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentsBadRequestErrorResponseBody"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a single document. The legacy version of this endpoint can be found at [samsara.com/api-legacy](https://www.samsara.com/api-legacy#operation/createDriverDocument).\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Documents"
+        ],
+        "summary": "Create document",
+        "operationId": "postDocument",
+        "parameters": [
+          {
+            "name": "PostDocumentRequestBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DocumentsPostDocumentRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsPostDocumentResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsPostDocumentUnauthorizedErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsPostDocumentNotFoundErrorResponseBody"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsPostDocumentMethodNotAllowedErrorResponseBody"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsPostDocumentTooManyRequestsErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsPostDocumentInternalServerErrorResponseBody"
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsPostDocumentNotImplementedErrorResponseBody"
+            }
+          },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsPostDocumentBadGatewayErrorResponseBody"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsPostDocumentServiceUnavailableErrorResponseBody"
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsPostDocumentGatewayTimeoutErrorResponseBody"
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsPostDocumentBadRequestErrorResponseBody"
+            }
+          }
+        }
+      }
+    },
     "/fleet/documents/pdfs": {
       "post": {
         "description": "Request creation of a document PDF. \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
@@ -2568,6 +2377,197 @@
         {
           "type": "string",
           "description": "ID of the pdf.",
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/fleet/documents/{id}": {
+      "get": {
+        "description": "Returns a single document. The legacy version of this endpoint can be found at [samsara.com/api-legacy](https://www.samsara.com/api-legacy#operation/getDriverDocumentByIdAndDriverId).\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Documents"
+        ],
+        "summary": "Fetch document",
+        "operationId": "getDocument",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID of the document",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentUnauthorizedErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentNotFoundErrorResponseBody"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentMethodNotAllowedErrorResponseBody"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentTooManyRequestsErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentInternalServerErrorResponseBody"
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentNotImplementedErrorResponseBody"
+            }
+          },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentBadGatewayErrorResponseBody"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentServiceUnavailableErrorResponseBody"
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentGatewayTimeoutErrorResponseBody"
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsGetDocumentBadRequestErrorResponseBody"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes a single document. The legacy version of this endpoint can be found at [samsara.com/api-legacy](https://www.samsara.com/api-legacy#operation/deleteDriverDocumentByIdAndDriverId).\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Documents"
+        ],
+        "summary": "Delete document",
+        "operationId": "deleteDocument",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID of the document to delete",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content response."
+          },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsDeleteDocumentUnauthorizedErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsDeleteDocumentNotFoundErrorResponseBody"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsDeleteDocumentMethodNotAllowedErrorResponseBody"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsDeleteDocumentTooManyRequestsErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsDeleteDocumentInternalServerErrorResponseBody"
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsDeleteDocumentNotImplementedErrorResponseBody"
+            }
+          },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsDeleteDocumentBadGatewayErrorResponseBody"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsDeleteDocumentServiceUnavailableErrorResponseBody"
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsDeleteDocumentGatewayTimeoutErrorResponseBody"
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/DocumentsDeleteDocumentBadRequestErrorResponseBody"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "ID of the document",
+          "name": "id",
+          "in": "path",
+          "required": true
+        },
+        {
+          "type": "string",
+          "description": "ID of the document to delete",
           "name": "id",
           "in": "path",
           "required": true
