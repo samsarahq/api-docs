@@ -6,7 +6,7 @@ changelogFile = "../changelog.json"
 changelogIndexFile = "../changelog_index.json"
 operationIdsFile = "../operation_ids.json"
 url = "https://dash.readme.com/api/v1/changelogs"
-token = os.environ.get("README_TOKEN")
+token = os.environ.get("README_API_TOKEN")
 
 headers = {
     "Content-Type": "application/json",
@@ -114,6 +114,7 @@ def diffChangelogs(index, changelogs):
     for k,c in changelogs.items():
         if k not in index:
             diff.append(c)
+            print("New changelog {}".format(c.key()))
     return diff
 
 def publishChangelogs(index, changelogs):
@@ -122,17 +123,19 @@ def publishChangelogs(index, changelogs):
     for c in diff:
         k = c.key()
         if c.isDocumentationOnly is True:
+            print("{} is documentation only changelog, ignoring".format(k))
             index[k] = "ignored"
             continue
         opKey = "{}__{}".format(c.method.lower(), c.route)
         if opKey in operationIds:
             c.operationId = operationIds[opKey]
         payload = formatChangelog(c)
+        print("Posting {} changelog".format(k))
         response = requests.request("POST", url, json=payload, headers=headers)
         if response.status_code == 201:
             index[k] = response.json()["_id"]
         else:
-            print("got non-200 status code {} from readme for changelog {}".format(response.status_code, k))
+            print("got non-201 status code {} from readme for changelog {}".format(response.status_code, k))
     writeChangelogIndexFile(index)
     return
 
@@ -148,6 +151,9 @@ def readPathOperationIds():
     return operationIds
 
 if __name__ == "__main__":
+    print("Reading changelog...")
     changelogs = readChangelogFile(changelogFile)
+    print("Reading changelog index...")
     index = readChangelogIndexFile(changelogIndexFile)
+    print("Publishing changelog diff...")
     publishChangelogs(index, changelogs)
