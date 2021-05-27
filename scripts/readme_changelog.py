@@ -2,9 +2,9 @@ import json
 import requests
 import os
 
-changelogFile = "../changelog.json"
-changelogIndexFile = "../changelog_index.json"
-operationIdsFile = "../operation_ids.json"
+changelogFile = "./changelog.json"
+changelogIndexFile = "./changelog_index.json"
+operationIdsFile = "./operation_ids.json"
 url = "https://dash.readme.com/api/v1/changelogs"
 token = os.environ.get("README_API_TOKEN")
 
