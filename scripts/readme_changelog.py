@@ -146,7 +146,8 @@ def readPathOperationIds():
             o = json.load(f)
             for k,v in o.items():
                 s = k.split("__")
-                s[1] = s[1].removeprefix("/")
+                if s[1].startswith("/"):
+                    s[1] = s[1][1:]
                 operationIds["__".join(s)] = v.lower()
     return operationIds
 
