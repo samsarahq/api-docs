@@ -690,6 +690,19 @@
   },
   {
     "Route": "fleet/drivers",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 1,
+      "VersionDate": "2018.01.01",
+      "Description": "Updates endpoint to support the driver ruleset override.",
+      "Details": "Adds an additional response object usDriverRulesetOverride that is returned only if the driver has an operating ruleset different from the organization default.",
+      "IsBreakingChange": false,
+      "IsInitialRelease": false,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "fleet/drivers",
     "Method": "POST",
     "Changelog": {
       "Index": 0,
@@ -698,6 +711,19 @@
       "Details": "Initial Release",
       "IsBreakingChange": false,
       "IsInitialRelease": true,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "fleet/drivers",
+    "Method": "POST",
+    "Changelog": {
+      "Index": 1,
+      "VersionDate": "2018.01.01",
+      "Description": "Updates endpoint to support the driver ruleset override.",
+      "Details": "Adds an additional response object usDriverRulesetOverride that is returned only if the driver has an operating ruleset different from the organization default.",
+      "IsBreakingChange": false,
+      "IsInitialRelease": false,
       "IsDocumentationOnly": false
     }
   },
@@ -716,6 +742,19 @@
   },
   {
     "Route": "fleet/drivers/.id",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 1,
+      "VersionDate": "2018.01.01",
+      "Description": "Updates endpoint to support the driver ruleset override.",
+      "Details": "Adds an additional response object usDriverRulesetOverride that is returned only if the driver has an operating ruleset different from the organization default.",
+      "IsBreakingChange": false,
+      "IsInitialRelease": false,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "fleet/drivers/.id",
     "Method": "PATCH",
     "Changelog": {
       "Index": 0,
@@ -724,6 +763,19 @@
       "Details": "Initial Release",
       "IsBreakingChange": false,
       "IsInitialRelease": true,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "fleet/drivers/.id",
+    "Method": "PATCH",
+    "Changelog": {
+      "Index": 1,
+      "VersionDate": "2018.01.01",
+      "Description": "Updates endpoint to support the driver ruleset override.",
+      "Details": "Adds an additional response object usDriverRulesetOverride that is returned only if the driver has an operating ruleset different from the organization default.",
+      "IsBreakingChange": false,
+      "IsInitialRelease": false,
       "IsDocumentationOnly": false
     }
   },
@@ -858,6 +910,19 @@
     }
   },
   {
+    "Route": "fleet/equipment/.equipmentId",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2021.02.16",
+      "Description": "Updated endpoint to properly exclude non-equipment assets.",
+      "Details": "The endpoint originally did not properly filter for the asset being a piece of equipment, leading to the endpoint being usable but not supported for non-equipment assets. We now have other endpoints that cover the other primary asset types and can be used instead.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
     "Route": "fleet/equipment/locations",
     "Method": "GET",
     "Changelog": {
@@ -910,7 +975,46 @@
     }
   },
   {
+    "Route": "fleet/equipment/stats",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 1,
+      "VersionDate": "2018.01.01",
+      "Description": "Updates endpoint to include new gatewayJ1939EngineSeconds stat type.",
+      "Details": "Adds gatewayJ1939EngineSeconds to surface manual engine second readings when using a J1939/CAT cable that supports obd readings. This allows customers to fetch engine seconds that match engine hour readings on cloud.samsara.com.",
+      "IsBreakingChange": false,
+      "IsInitialRelease": false,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
     "Route": "fleet/equipment/stats/feed",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2018.01.01",
+      "Description": "Initial Release",
+      "Details": "Initial Release",
+      "IsBreakingChange": false,
+      "IsInitialRelease": true,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "fleet/equipment/stats/feed",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 1,
+      "VersionDate": "2018.01.01",
+      "Description": "Updates endpoint to include new gatewayJ1939EngineSeconds stat type.",
+      "Details": "Adds gatewayJ1939EngineSeconds to surface manual engine second readings when using a J1939/CAT cable that supports obd readings. This allows customers to fetch engine seconds that match engine hour readings on cloud.samsara.com.",
+      "IsBreakingChange": false,
+      "IsInitialRelease": false,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "fleet/equipment/stats/history",
     "Method": "GET",
     "Changelog": {
       "Index": 0,
@@ -926,12 +1030,12 @@
     "Route": "fleet/equipment/stats/history",
     "Method": "GET",
     "Changelog": {
-      "Index": 0,
+      "Index": 1,
       "VersionDate": "2018.01.01",
-      "Description": "Initial Release",
-      "Details": "Initial Release",
+      "Description": "Updates endpoint to include new gatewayJ1939EngineSeconds stat type.",
+      "Details": "Adds gatewayJ1939EngineSeconds to surface manual engine second readings when using a J1939/CAT cable that supports obd readings. This allows customers to fetch engine seconds that match engine hour readings on cloud.samsara.com.",
       "IsBreakingChange": false,
-      "IsInitialRelease": true,
+      "IsInitialRelease": false,
       "IsDocumentationOnly": false
     }
   },
@@ -959,6 +1063,32 @@
       "IsBreakingChange": false,
       "IsInitialRelease": true,
       "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "fleet/hos/daily-logs",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 1,
+      "VersionDate": "2018.01.01",
+      "Description": "Updated documentation for GET /beta/fleet/hos/daily-logs",
+      "Details": "Added examples for certain enum types in response.",
+      "IsBreakingChange": false,
+      "IsInitialRelease": false,
+      "IsDocumentationOnly": true
+    }
+  },
+  {
+    "Route": "fleet/hos/daily-logs",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 2,
+      "VersionDate": "2018.01.01",
+      "Description": "Released GET /fleet/hos/daily-logs",
+      "Details": "Removed beta tags and added HOS daily logs tags.",
+      "IsBreakingChange": false,
+      "IsInitialRelease": false,
+      "IsDocumentationOnly": true
     }
   },
   {
@@ -1192,6 +1322,19 @@
       "Details": "Initial Release",
       "IsBreakingChange": false,
       "IsInitialRelease": true,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "fleet/vehicles/.id",
+    "Method": "PATCH",
+    "Changelog": {
+      "Index": 1,
+      "VersionDate": "2018.01.01",
+      "Description": "Updates endpoint to support gateway replace.",
+      "Details": "Adds a gatewaySerial field to allow customers to replace the connected gateway to their vehicle. Gateway needs to be activated on the same organization already. Deactivates the gateway previously linked.",
+      "IsBreakingChange": false,
+      "IsInitialRelease": false,
       "IsDocumentationOnly": false
     }
   },
@@ -2393,6 +2536,19 @@
   },
   {
     "Route": "v1/fleet/drivers",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2019.02.22",
+      "Description": "Update Driver response to omit null values",
+      "Details": "Responses from driver API calls will no longer include null values. Instead, keys for null values will be correctly omitted from the response.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "v1/fleet/drivers",
     "Method": "POST",
     "Changelog": {
       "Index": 0,
@@ -2432,7 +2588,46 @@
   },
   {
     "Route": "v1/fleet/drivers/.driver_id",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2019.02.22",
+      "Description": "Update Driver response to omit null values",
+      "Details": "Responses from driver API calls will no longer include null values. Instead, keys for null values will be correctly omitted from the response.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "v1/fleet/drivers/.driver_id",
     "Method": "PATCH",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2018.01.01",
+      "Description": "Initial Release",
+      "Details": "Initial Release",
+      "IsBreakingChange": false,
+      "IsInitialRelease": true,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "v1/fleet/drivers/.driver_id",
+    "Method": "PATCH",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2019.02.22",
+      "Description": "Update Driver response to omit null values",
+      "Details": "Responses from driver API calls will no longer include null values. Instead, keys for null values will be correctly omitted from the response.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "v1/fleet/drivers/.driver_id",
+    "Method": "POST",
     "Changelog": {
       "Index": 0,
       "VersionDate": "2018.01.01",
@@ -2448,11 +2643,11 @@
     "Method": "POST",
     "Changelog": {
       "Index": 0,
-      "VersionDate": "2018.01.01",
-      "Description": "Initial Release",
-      "Details": "Initial Release",
-      "IsBreakingChange": false,
-      "IsInitialRelease": true,
+      "VersionDate": "2019.02.22",
+      "Description": "Update Driver response to omit null values",
+      "Details": "Responses from driver API calls will no longer include null values. Instead, keys for null values will be correctly omitted from the response.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
       "IsDocumentationOnly": false
     }
   },
@@ -2535,6 +2730,19 @@
     }
   },
   {
+    "Route": "v1/fleet/drivers/.driver_id/hos/audit_logs",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2019.08.21",
+      "Description": "Updated endpoint to use the time a vehicle assignment ended as the time for signout events to accurately reflect the driver's signout time.",
+      "Details": "For signout events, HOS Audit logs retrieved will now return the time of signout for the logStartMs field rather than returning the time the vehicle assignment began.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
     "Route": "v1/fleet/drivers/.driver_id/hos/duty_status",
     "Method": "POST",
     "Changelog": {
@@ -2588,6 +2796,19 @@
   },
   {
     "Route": "v1/fleet/drivers/.driver_id/hos_daily_logs",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2020.06.15",
+      "Description": "This endpoint now returns shipping and trailer IDs as strings instead of ints. + This endpoint now accepts GET requests instead of POST requests.",
+      "Details": "Shipping and trailer IDs were previously returned as ints. As a result, shipping and trailer IDs containing non-numerical characters showed up blank in responses.Shipping and trailer IDs are now returned as strings, allowing non-numerical characters.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "v1/fleet/drivers/.driver_id/hos_daily_logs",
     "Method": "PATCH",
     "Changelog": {
       "Index": 0,
@@ -2596,6 +2817,19 @@
       "Details": "Initial Release",
       "IsBreakingChange": false,
       "IsInitialRelease": true,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "v1/fleet/drivers/.driver_id/hos_daily_logs",
+    "Method": "PATCH",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2020.06.15",
+      "Description": "This endpoint now returns shipping and trailer IDs as strings instead of ints.",
+      "Details": "Shipping and trailer IDs were previously returned as ints. As a result, shipping and trailer IDs containing non-numerical characters showed up blank in responses.Shipping and trailer IDs are now returned as strings, allowing non-numerical characters.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
       "IsDocumentationOnly": false
     }
   },
@@ -2666,7 +2900,46 @@
   },
   {
     "Route": "v1/fleet/drivers/.external_driver_id",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2019.02.22",
+      "Description": "Update Driver response to omit null values",
+      "Details": "Responses from driver API calls will no longer include null values. Instead, keys for null values will be correctly omitted from the response.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "v1/fleet/drivers/.external_driver_id",
     "Method": "PATCH",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2018.01.01",
+      "Description": "Initial Release",
+      "Details": "Initial Release",
+      "IsBreakingChange": false,
+      "IsInitialRelease": true,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "v1/fleet/drivers/.external_driver_id",
+    "Method": "PATCH",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2019.02.22",
+      "Description": "Update Driver response to omit null values",
+      "Details": "Responses from driver API calls will no longer include null values. Instead, keys for null values will be correctly omitted from the response.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "v1/fleet/drivers/.external_driver_id",
+    "Method": "POST",
     "Changelog": {
       "Index": 0,
       "VersionDate": "2018.01.01",
@@ -2682,11 +2955,11 @@
     "Method": "POST",
     "Changelog": {
       "Index": 0,
-      "VersionDate": "2018.01.01",
-      "Description": "Initial Release",
-      "Details": "Initial Release",
-      "IsBreakingChange": false,
-      "IsInitialRelease": true,
+      "VersionDate": "2019.02.22",
+      "Description": "Update Driver response to omit null values",
+      "Details": "Responses from driver API calls will no longer include null values. Instead, keys for null values will be correctly omitted from the response.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
       "IsDocumentationOnly": false
     }
   },
@@ -2718,7 +2991,46 @@
   },
   {
     "Route": "v1/fleet/drivers/create",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2019.02.22",
+      "Description": "Update Driver response to omit null values",
+      "Details": "Responses from driver API calls will no longer include null values. Instead, keys for null values will be correctly omitted from the response.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "v1/fleet/drivers/create",
     "Method": "PATCH",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2018.01.01",
+      "Description": "Initial Release",
+      "Details": "Initial Release",
+      "IsBreakingChange": false,
+      "IsInitialRelease": true,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "v1/fleet/drivers/create",
+    "Method": "PATCH",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2019.02.22",
+      "Description": "Update Driver response to omit null values",
+      "Details": "Responses from driver API calls will no longer include null values. Instead, keys for null values will be correctly omitted from the response.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "v1/fleet/drivers/create",
+    "Method": "POST",
     "Changelog": {
       "Index": 0,
       "VersionDate": "2018.01.01",
@@ -2734,11 +3046,11 @@
     "Method": "POST",
     "Changelog": {
       "Index": 0,
-      "VersionDate": "2018.01.01",
-      "Description": "Initial Release",
-      "Details": "Initial Release",
-      "IsBreakingChange": false,
-      "IsInitialRelease": true,
+      "VersionDate": "2019.02.22",
+      "Description": "Update Driver response to omit null values",
+      "Details": "Responses from driver API calls will no longer include null values. Instead, keys for null values will be correctly omitted from the response.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
       "IsDocumentationOnly": false
     }
   },
@@ -2782,6 +3094,19 @@
     }
   },
   {
+    "Route": "v1/fleet/drivers/inactive",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2019.02.22",
+      "Description": "Update Driver response to omit null values",
+      "Details": "Responses from driver API calls will no longer include null values. Instead, keys for null values will be correctly omitted from the response.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
     "Route": "v1/fleet/drivers/inactive/.driver_id",
     "Method": "GET",
     "Changelog": {
@@ -2791,6 +3116,19 @@
       "Details": "Initial Release",
       "IsBreakingChange": false,
       "IsInitialRelease": true,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "v1/fleet/drivers/inactive/.driver_id",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2019.02.22",
+      "Description": "Update Driver response to omit null values",
+      "Details": "Responses from driver API calls will no longer include null values. Instead, keys for null values will be correctly omitted from the response.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
       "IsDocumentationOnly": false
     }
   },
@@ -2817,6 +3155,19 @@
       "Details": "Initial Release",
       "IsBreakingChange": false,
       "IsInitialRelease": true,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "v1/fleet/drivers/inactive/.external_driver_id",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2019.02.22",
+      "Description": "Update Driver response to omit null values",
+      "Details": "Responses from driver API calls will no longer include null values. Instead, keys for null values will be correctly omitted from the response.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
       "IsDocumentationOnly": false
     }
   },
@@ -2843,6 +3194,32 @@
       "Details": "Initial Release",
       "IsBreakingChange": false,
       "IsInitialRelease": true,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "v1/fleet/hos/audit_logs",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2019.07.17",
+      "Description": "Updated endpoint to use the log's createdAtMs rather than logStartMs to determine the time of the log.",
+      "Details": "HOS Audit logs retrieved at the organization level will now be consistent with logs retrieved at the driver level.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "v1/fleet/hos/audit_logs",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2019.08.21",
+      "Description": "Updated endpoint to use the time a vehicle assignment ended as the time for signout events to accurately reflect the driver's signout time.",
+      "Details": "For signout events, HOS Audit logs retrieved will now return the time of signout for the logStartMs field rather than returning the time the vehicle assignment began.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
       "IsDocumentationOnly": false
     }
   },
@@ -2874,6 +3251,19 @@
   },
   {
     "Route": "v1/fleet/hos_authentication_logs",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2019.09.13",
+      "Description": "Updated endpoint to no longer include hosLogs events as signout events.",
+      "Details": "This endpoint is now consistent with the information on Hos Audit Log page on cloud.samsara.com.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "v1/fleet/hos_authentication_logs",
     "Method": "POST",
     "Changelog": {
       "Index": 0,
@@ -2882,6 +3272,19 @@
       "Details": "Initial Release",
       "IsBreakingChange": false,
       "IsInitialRelease": true,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "v1/fleet/hos_authentication_logs",
+    "Method": "POST",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2019.09.13",
+      "Description": "Updated endpoint to no longer include hosLogs events as signout events.",
+      "Details": "This endpoint is now consistent with the information on Hos Audit Log page on cloud.samsara.com.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
       "IsDocumentationOnly": false
     }
   },
@@ -2921,6 +3324,19 @@
       "Details": "Initial Release",
       "IsBreakingChange": false,
       "IsInitialRelease": true,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "v1/fleet/hos_logs_summary",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2019.07.30",
+      "Description": "Introduces driver pagination.",
+      "Details": "The api endpoint now leverages pagination on drivers for a more performant call.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
       "IsDocumentationOnly": false
     }
   },
@@ -2973,6 +3389,19 @@
       "Details": "Initial Release",
       "IsBreakingChange": false,
       "IsInitialRelease": true,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "v1/fleet/locations",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2019.12.07",
+      "Description": "Paginate the v1/fleet/locations endpoint.",
+      "Details": "Adds a pagination dictionary to the response body with endCursor and hasNextPage parameters, and removes the group ID request args requirement. The actual fleet locations response remains unchanged from past versions. Also adds optional tag IDs and vehicle IDs filters.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
       "IsDocumentationOnly": false
     }
   },
@@ -3064,6 +3493,19 @@
       "Details": "Initial Release",
       "IsBreakingChange": false,
       "IsInitialRelease": true,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "v1/fleet/messages",
+    "Method": "POST",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2019.09.30",
+      "Description": "Limit message size to 2500 characters",
+      "Details": "Creation of driver messages will no longer accept messages with a length greater than 2500 characters.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
       "IsDocumentationOnly": false
     }
   },
@@ -3121,6 +3563,19 @@
   },
   {
     "Route": "v1/fleet/trips",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2019.11.19",
+      "Description": "Return Lat/Long if matching address book entry not found.",
+      "Details": "Provides more information to user if reverse geocoding fails, but Lat/Long is present.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "v1/fleet/trips",
     "Method": "POST",
     "Changelog": {
       "Index": 0,
@@ -3129,6 +3584,19 @@
       "Details": "Initial Release",
       "IsBreakingChange": false,
       "IsInitialRelease": true,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "v1/fleet/trips",
+    "Method": "POST",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2019.11.19",
+      "Description": "Return Lat/Long if matching address book entry not found.",
+      "Details": "Provides more information to user if reverse geocoding fails, but Lat/Long is present.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
       "IsDocumentationOnly": false
     }
   },
@@ -3168,6 +3636,19 @@
       "Details": "Initial Release",
       "IsBreakingChange": false,
       "IsInitialRelease": true,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "v1/fleet/unassigned_driving_segments/.segment_id",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2019.12.12",
+      "Description": "Updated endpoint to report composite unassigned driving segments if applicable when querying for an unassigned driving segment by id.",
+      "Details": "Endpoint can now return a new status called 'MULTIPLE', which indicates that the unassigned driving segment has multiple composite segments; composite segments will be returned nested under a new field called 'segments'. Unassigned driving segments will now also return a string representing duty status.",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
       "IsDocumentationOnly": false
     }
   },
@@ -4121,6 +4602,19 @@
     }
   },
   {
+    "Route": "v1/versions/me",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2019.02.22",
+      "Description": "2019.02.22 version",
+      "Details": "2019.02.22 version",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
     "Route": "versions/me",
     "Method": "GET",
     "Changelog": {
@@ -4130,6 +4624,19 @@
       "Details": "Initial Release",
       "IsBreakingChange": false,
       "IsInitialRelease": true,
+      "IsDocumentationOnly": false
+    }
+  },
+  {
+    "Route": "versions/me",
+    "Method": "GET",
+    "Changelog": {
+      "Index": 0,
+      "VersionDate": "2019.02.22",
+      "Description": "2019.02.22 version",
+      "Details": "2019.02.22 version",
+      "IsBreakingChange": true,
+      "IsInitialRelease": false,
       "IsDocumentationOnly": false
     }
   },
