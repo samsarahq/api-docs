@@ -45,14 +45,15 @@ def formatChangelog(changelog):
     endpoint_ref = "{} {}".format(changelog.method, changelog.route)
     if changelog.operationId is not None:
         endpoint_ref = "[{} {}](ref:{})".format(changelog.method, changelog.route, changelog.operationId)
-    details = "The {} has some new features! {}".format(endpoint_ref, changelog.details)
+    details = "The {} has some new features! {}".format(endpoint_ref, changelog.details.replace("<br>","\n"))
     logType = ""
     if changelog.isBreakingChange is True:
         logType = "improved"
         title = "API Version: {}".format(changelog.versionDate)
+        details = "We've released a new [version](doc:versioning) of the API. This version updates the behavior of the {}: {}".format(endpoint_ref, changelog.details.replace("<br>","\n"))
     if changelog.isInitialRelease is True:
         logType = "added"
-        details = "The {} endpoint is now generally available and fully supported for production :tada:! Check it out and happy coding :computer:".format(endpoint_ref)
+        details = "The {} endpoint is now generally available and fully supported for production :tada:! Check it out and happy coding :computer:.".format(endpoint_ref)
         title = "{} {} (Generally Available)".format(changelog.method, changelog.route)
         if changelog.route.startswith("preview"):
             details = "The {} endpoint is now in the Preview stage. Feel free to send in your comments via our [feedback](https://forms.gle/zkD4NCH7HjKb7mm69) form.  (Note this endpoint should not be used in production until it is made generally available).".format(endpoint_ref)
