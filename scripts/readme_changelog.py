@@ -62,7 +62,7 @@ def formatChangelog(changelog):
             details = "The {} endpoint is now in the Beta stage. Feel free to send in your comments via our [feedback](https://forms.gle/zkD4NCH7HjKb7mm69) form.  (Note this endpoint should not be used in production until it is made generally available).".format(endpoint_ref)
             title = "New Beta API: {} {}".format(changelog.method, changelog.route)
     payload = {
-        "hidden": True, #TODO remove after testing end-to-end
+        "hidden": False,
         "title": title,
         "type": logType,
         "body": details
