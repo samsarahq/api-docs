@@ -7281,6 +7281,95 @@
         }
       }
     },
+    "/preview/fleet/safety-events/audit-logs/feed": {
+      "get": {
+        "description": "Get continuous safety event activity feed.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Preview APIs"
+        ],
+        "summary": "[preview] Get safety event activity feed.",
+        "operationId": "getSafetyEventActivityFeed",
+        "parameters": [
+          {
+            "type": "string",
+            "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/SafetyEventsGetSafetyEventActivityFeedResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/SafetyEventsGetSafetyEventActivityFeedUnauthorizedErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/SafetyEventsGetSafetyEventActivityFeedNotFoundErrorResponseBody"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/SafetyEventsGetSafetyEventActivityFeedMethodNotAllowedErrorResponseBody"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/SafetyEventsGetSafetyEventActivityFeedTooManyRequestsErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/SafetyEventsGetSafetyEventActivityFeedInternalServerErrorResponseBody"
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/SafetyEventsGetSafetyEventActivityFeedNotImplementedErrorResponseBody"
+            }
+          },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/SafetyEventsGetSafetyEventActivityFeedBadGatewayErrorResponseBody"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/SafetyEventsGetSafetyEventActivityFeedServiceUnavailableErrorResponseBody"
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/SafetyEventsGetSafetyEventActivityFeedGatewayTimeoutErrorResponseBody"
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/SafetyEventsGetSafetyEventActivityFeedBadRequestErrorResponseBody"
+            }
+          }
+        }
+      }
+    },
     "/preview/industrial/jobs": {
       "get": {
         "description": "Fetches jobs based on id/uuid or provided filters\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
@@ -10672,6 +10761,65 @@
       "properties": {
         "data": {
           "$ref": "#/definitions/Attribute"
+        }
+      }
+    },
+    "BehaviorLabelsObjectResponseBody": {
+      "description": "The behavior labels assigned to the safety event.",
+      "type": "object",
+      "properties": {
+        "label": {
+          "description": "The behavior label assigned to the safety event.",
+          "type": "string",
+          "enum": [
+            "invalid",
+            "genericTailgating",
+            "genericDistraction",
+            "defensiveDriving",
+            "rollingStop",
+            "nearCollision",
+            "speeding",
+            "obstructedCamera",
+            "didNotYield",
+            "noSeatbelt",
+            "mobileUsage",
+            "drowsy",
+            "laneDeparture",
+            "followingDistanceSevere",
+            "followingDistanceModerate",
+            "lateResponse",
+            "acceleration",
+            "braking",
+            "harshTurn",
+            "crash",
+            "rolloverProtection",
+            "yawControl",
+            "ranRedLight",
+            "forwardCollisionWarning",
+            "eatingDrinking",
+            "smoking",
+            "followingDistance",
+            "edgeDistractedDriving",
+            "policyViolationMask",
+            "eating",
+            "drinking",
+            "edgeRailroadCrossingViolation"
+          ],
+          "example": "genericTailgating"
+        },
+        "source": {
+          "description": "The source that assigned the behavior label to the event.",
+          "type": "string",
+          "enum": [
+            "invalid",
+            "system",
+            "samsaraUser",
+            "customerUser",
+            "dataMigration",
+            "device",
+            "driverUser"
+          ],
+          "example": "automated"
         }
       }
     },
@@ -14151,6 +14299,22 @@
       "type": "string",
       "maxLength": 4096,
       "example": "Also goes by the nickname Furious Fred."
+    },
+    "DriverObjectResponseBody": {
+      "description": "The driver assigned to the safety event.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The ID of the driver.",
+          "type": "string",
+          "example": "0987"
+        },
+        "name": {
+          "description": "The name of the driver.",
+          "type": "string",
+          "example": "Driver Name"
+        }
+      }
     },
     "DriverPassword": {
       "description": "Password that the driver can use to login to the Samsara driver app.",
@@ -21896,6 +22060,55 @@
         }
       }
     },
+    "SafetyEventActivityFeedItemResponseBody": {
+      "description": "Safety event activity feed item.",
+      "type": "object",
+      "required": [
+        "time",
+        "type",
+        "operation",
+        "id",
+        "safetyEvent"
+      ],
+      "properties": {
+        "id": {
+          "description": "The ID of the activity feed line item.",
+          "type": "string",
+          "example": "212014918174029-1550954461759-1622151765"
+        },
+        "operation": {
+          "description": "The type of operation that occured in the safety event.",
+          "type": "string",
+          "enum": [
+            "create",
+            "update",
+            "delete"
+          ],
+          "example": "create"
+        },
+        "safetyEvent": {
+          "$ref": "#/definitions/SafetyEventObjectResponseBody"
+        },
+        "time": {
+          "description": "The time the activity occurred in the corresponding safety event in RFC 3339 format.",
+          "type": "string",
+          "example": "2019-10-12T07:20:50.52Z"
+        },
+        "type": {
+          "description": "The type of activity that occurred in the safety event. We currently only support inboxActivityType, behaviorLabelActivityType, and createSafetyEventType, but we may add support for more activity types in the future.",
+          "type": "string",
+          "enum": [
+            "",
+            "",
+            "",
+            "BehaviorLabelActivityType",
+            "CreateSafetyEventActivityType",
+            "InboxActivityType"
+          ],
+          "example": "CreateSafetyEventActivityType"
+        }
+      }
+    },
     "SafetyEventBehaviorLabel": {
       "description": "The label and source of the label associated with the safety event.",
       "type": "object",
@@ -22008,6 +22221,54 @@
       "type": "number",
       "example": 0.123
     },
+    "SafetyEventObjectResponseBody": {
+      "description": "The safety event that was updated.",
+      "type": "object",
+      "properties": {
+        "behaviorLabels": {
+          "description": "List of behavior labels associated with this safety event.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BehaviorLabelsObjectResponseBody"
+          }
+        },
+        "downloadForwardVideoUrl": {
+          "description": "The URL for the video captured by the dashcam's forward-facing camera during this safety event.",
+          "type": "string",
+          "example": "https://s3.console.aws.amazon.com/s3/buckets/samsara-dashcam-videos/21575/212014918400828/1553060687222/huKA7IhpBV-camera-video-segment-1244214895.mp4"
+        },
+        "downloadInwardVideoUrl": {
+          "description": "The URL for the video captured by the dashcam's inward-facing camera during this safety event.",
+          "type": "string",
+          "example": "https://s3.console.aws.amazon.com/s3/buckets/samsara-dashcam-videos/21575/212014918400828/1553060687222/huKA7IhpBV-camera-video-segment-1244214895.mp4"
+        },
+        "driver": {
+          "$ref": "#/definitions/DriverObjectResponseBody"
+        },
+        "id": {
+          "description": "The identifier of the safety event",
+          "type": "string",
+          "example": "212014918174029-1550954461759"
+        },
+        "location": {
+          "$ref": "#/definitions/locationResponseBody"
+        },
+        "maxAccelerationGForce": {
+          "description": "The max acceleration during the safety event",
+          "type": "number",
+          "format": "double",
+          "example": 0.123
+        },
+        "time": {
+          "description": "The time at which the safety event occurred",
+          "type": "string",
+          "example": "2019-06-13T19:08:25.455Z"
+        },
+        "vehicle": {
+          "$ref": "#/definitions/VehicleObjectResponseBody"
+        }
+      }
+    },
     "SafetyEventTime": {
       "description": "The time the safety event occurred in RFC 3339 milliseconds format.",
       "type": "string",
@@ -22015,6 +22276,225 @@
     },
     "SafetyEventVehicle": {
       "$ref": "#/definitions/vehicleTinyResponse"
+    },
+    "SafetyEventsGetSafetyEventActivityFeedBadGatewayErrorResponseBody": {
+      "description": "Bad Gateway",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "rpc error: code = Unknown desc = connection refused"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "SafetyEventsGetSafetyEventActivityFeedBadRequestErrorResponseBody": {
+      "description": "Bad Request parameters",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid value for parameter."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "SafetyEventsGetSafetyEventActivityFeedGatewayTimeoutErrorResponseBody": {
+      "description": "Gateway timeout",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "SafetyEventsGetSafetyEventActivityFeedInternalServerErrorResponseBody": {
+      "description": "An internal server error occurred",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Failed to execute GraphQL query."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "SafetyEventsGetSafetyEventActivityFeedMethodNotAllowedErrorResponseBody": {
+      "description": "Method not allowed",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "DELETE not allowed on /endpoint."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "SafetyEventsGetSafetyEventActivityFeedNotFoundErrorResponseBody": {
+      "description": "Resource not found",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Object not found."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "SafetyEventsGetSafetyEventActivityFeedNotImplementedErrorResponseBody": {
+      "description": "Requested endpoint is not yet implemented",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Not implemented."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "SafetyEventsGetSafetyEventActivityFeedResponseBody": {
+      "type": "object",
+      "required": [
+        "data",
+        "pagination"
+      ],
+      "properties": {
+        "data": {
+          "description": "Paginated safety event activity feed limited to 10 events.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SafetyEventActivityFeedItemResponseBody"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/GoaPaginationResponseResponseBody"
+        }
+      }
+    },
+    "SafetyEventsGetSafetyEventActivityFeedServiceUnavailableErrorResponseBody": {
+      "description": "Service unavailable",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "SafetyEventsGetSafetyEventActivityFeedTooManyRequestsErrorResponseBody": {
+      "description": "Too many requests",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Exceeded rate limit."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "SafetyEventsGetSafetyEventActivityFeedUnauthorizedErrorResponseBody": {
+      "description": "Unauthorized",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid token."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
     },
     "SafetyEventsListResponse": {
       "description": "List of safety events.",
@@ -32543,6 +33023,22 @@
       "maxLength": 255,
       "example": "These are notes about this given vehicle."
     },
+    "VehicleObjectResponseBody": {
+      "description": "The vehicle associated with the safety event.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The ID of the vehicle.",
+          "type": "string",
+          "example": "1234"
+        },
+        "name": {
+          "description": "The name of the vehicle.",
+          "type": "string",
+          "example": "Vehicle Name"
+        }
+      }
+    },
     "VehicleOdometerMeters": {
       "description": "A manual override for the vehicle's odometer. You may only override a vehicle's odometer if it cannot be read from on-board diagnostics. When you provide a manual odometer override, Samsara will begin updating a vehicle's odometer using GPS distance traveled since this override was set. See \u003ca href=\"https://kb.samsara.com/hc/en-us/articles/115005273667\" target=\"_blank\"\u003ehere\u003c/a\u003e for more details.",
       "type": "integer",
@@ -36124,6 +36620,24 @@
           "type": "number",
           "format": "double",
           "example": -93.343
+        }
+      }
+    },
+    "locationResponseBody": {
+      "description": "The location of the safety event.",
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "description": "The latitude of the safety event location.",
+          "type": "number",
+          "format": "double",
+          "example": 37.456345
+        },
+        "longitude": {
+          "description": "The longitude of the safety event location.",
+          "type": "number",
+          "format": "double",
+          "example": 34.5633749
         }
       }
     },
