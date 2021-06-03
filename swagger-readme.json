@@ -1544,10 +1544,10 @@
 	   	   	   	   "type": "object"
 	   	   	   },
 	   	   	   "BehaviorLabelsObjectResponseBody": {
-	   	   	   	   "description": "The behavior labels assigned to the safety event.",
+	   	   	   	   "description": "The most up-to-date behavior labels associated with the safety event. These labels can be updated by the Safety Report Admin.",
 	   	   	   	   "properties": {
 	   	   	   	   	   "label": {
-	   	   	   	   	   	   "description": "The behavior label assigned to the safety event.",
+	   	   	   	   	   	   "description": "The label associated with the safety event. This list often changes, so it is recommended that clients gracefully handle any types not enumerated in this list.",
 	   	   	   	   	   	   "enum": [
 	   	   	   	   	   	   	   "invalid",
 	   	   	   	   	   	   	   "genericTailgating",
@@ -1586,7 +1586,7 @@
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "source": {
-	   	   	   	   	   	   "description": "The source that assigned the behavior label to the event.",
+	   	   	   	   	   	   "description": "The source of the label associated with the safety event.",
 	   	   	   	   	   	   "enum": [
 	   	   	   	   	   	   	   "invalid",
 	   	   	   	   	   	   	   "system",
@@ -5038,15 +5038,15 @@
 	   	   	   	   "type": "string"
 	   	   	   },
 	   	   	   "DriverObjectResponseBody": {
-	   	   	   	   "description": "The driver assigned to the safety event.",
+	   	   	   	   "description": "A minified driver object.",
 	   	   	   	   "properties": {
 	   	   	   	   	   "id": {
-	   	   	   	   	   	   "description": "The ID of the driver.",
+	   	   	   	   	   	   "description": "ID of the driver.",
 	   	   	   	   	   	   "example": "0987",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "name": {
-	   	   	   	   	   	   "description": "The name of the driver.",
+	   	   	   	   	   	   "description": "Name of the driver.",
 	   	   	   	   	   	   "example": "Driver Name",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   }
@@ -12857,16 +12857,13 @@
 	   	   	   	   	   	   "$ref": "#/components/schemas/SafetyEventObjectResponseBody"
 	   	   	   	   	   },
 	   	   	   	   	   "time": {
-	   	   	   	   	   	   "description": "The time the activity occurred in the corresponding safety event in RFC 3339 format.",
+	   	   	   	   	   	   "description": "The time the activity occurred in the corresponding safety event in RFC 3339 milliseconds format.",
 	   	   	   	   	   	   "example": "2019-10-12T07:20:50.52Z",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "type": {
-	   	   	   	   	   	   "description": "The type of activity that occurred in the safety event. We currently only support inboxActivityType, behaviorLabelActivityType, and createSafetyEventType, but we may add support for more activity types in the future.",
+	   	   	   	   	   	   "description": "The type of activity that occurred in the safety event. We currently only support InboxActivityType, BehaviorLabelActivityType, and CreateSafetyEventType, but we may add support for more activity types in the future.",
 	   	   	   	   	   	   "enum": [
-	   	   	   	   	   	   	   "",
-	   	   	   	   	   	   	   "",
-	   	   	   	   	   	   	   "",
 	   	   	   	   	   	   	   "BehaviorLabelActivityType",
 	   	   	   	   	   	   	   "CreateSafetyEventActivityType",
 	   	   	   	   	   	   	   "InboxActivityType"
@@ -13007,12 +13004,12 @@
 	   	   	   	   	   	   "type": "array"
 	   	   	   	   	   },
 	   	   	   	   	   "downloadForwardVideoUrl": {
-	   	   	   	   	   	   "description": "The URL for the video captured by the dashcam's forward-facing camera during this safety event.",
+	   	   	   	   	   	   "description": "URL to download the forward video.",
 	   	   	   	   	   	   "example": "https://s3.console.aws.amazon.com/s3/buckets/samsara-dashcam-videos/21575/212014918400828/1553060687222/huKA7IhpBV-camera-video-segment-1244214895.mp4",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "downloadInwardVideoUrl": {
-	   	   	   	   	   	   "description": "The URL for the video captured by the dashcam's inward-facing camera during this safety event.",
+	   	   	   	   	   	   "description": "URL to download the inward video.",
 	   	   	   	   	   	   "example": "https://s3.console.aws.amazon.com/s3/buckets/samsara-dashcam-videos/21575/212014918400828/1553060687222/huKA7IhpBV-camera-video-segment-1244214895.mp4",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
@@ -13020,7 +13017,7 @@
 	   	   	   	   	   	   "$ref": "#/components/schemas/DriverObjectResponseBody"
 	   	   	   	   	   },
 	   	   	   	   	   "id": {
-	   	   	   	   	   	   "description": "The identifier of the safety event",
+	   	   	   	   	   	   "description": "The unique Samsara ID of the safety event.",
 	   	   	   	   	   	   "example": "212014918174029-1550954461759",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
@@ -13028,13 +13025,13 @@
 	   	   	   	   	   	   "$ref": "#/components/schemas/locationResponseBody"
 	   	   	   	   	   },
 	   	   	   	   	   "maxAccelerationGForce": {
-	   	   	   	   	   	   "description": "The max acceleration during the safety event",
+	   	   	   	   	   	   "description": "The maximum acceleration value as a multiplier on the force of gravity (g).",
 	   	   	   	   	   	   "example": 0.123,
 	   	   	   	   	   	   "format": "double",
 	   	   	   	   	   	   "type": "number"
 	   	   	   	   	   },
 	   	   	   	   	   "time": {
-	   	   	   	   	   	   "description": "The time at which the safety event occurred",
+	   	   	   	   	   	   "description": "The time the safety event occurred in RFC 3339 milliseconds format.",
 	   	   	   	   	   	   "example": "2019-06-13T19:08:25.455Z",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
@@ -23688,15 +23685,15 @@
 	   	   	   	   "type": "string"
 	   	   	   },
 	   	   	   "VehicleObjectResponseBody": {
-	   	   	   	   "description": "The vehicle associated with the safety event.",
+	   	   	   	   "description": "A minified vehicle object.",
 	   	   	   	   "properties": {
 	   	   	   	   	   "id": {
-	   	   	   	   	   	   "description": "The ID of the vehicle.",
+	   	   	   	   	   	   "description": "ID of the vehicle.",
 	   	   	   	   	   	   "example": "1234",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "name": {
-	   	   	   	   	   	   "description": "The name of the vehicle.",
+	   	   	   	   	   	   "description": "Name of the vehicle.",
 	   	   	   	   	   	   "example": "Vehicle Name",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   }
@@ -27620,16 +27617,16 @@
 	   	   	   	   "type": "object"
 	   	   	   },
 	   	   	   "locationResponseBody": {
-	   	   	   	   "description": "The location of the safety event.",
+	   	   	   	   "description": "Location object",
 	   	   	   	   "properties": {
 	   	   	   	   	   "latitude": {
-	   	   	   	   	   	   "description": "The latitude of the safety event location.",
+	   	   	   	   	   	   "description": "GPS latitude represented in degrees",
 	   	   	   	   	   	   "example": 37.456345,
 	   	   	   	   	   	   "format": "double",
 	   	   	   	   	   	   "type": "number"
 	   	   	   	   	   },
 	   	   	   	   	   "longitude": {
-	   	   	   	   	   	   "description": "The longitude of the safety event location.",
+	   	   	   	   	   	   "description": "\tGPS longitude represented in degrees",
 	   	   	   	   	   	   "example": 34.5633749,
 	   	   	   	   	   	   "format": "double",
 	   	   	   	   	   	   "type": "number"
@@ -38569,7 +38566,7 @@
 	   	   	   	   	   	   "description": "Bad Request response."
 	   	   	   	   	   }
 	   	   	   	   },
-	   	   	   	   "summary": "[preview] Get safety event activity feed.",
+	   	   	   	   "summary": "[preview] Fetches safety event activity feed",
 	   	   	   	   "tags": [
 	   	   	   	   	   "Preview APIs"
 	   	   	   	   ]

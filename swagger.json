@@ -7290,7 +7290,7 @@
         "tags": [
           "Preview APIs"
         ],
-        "summary": "[preview] Get safety event activity feed.",
+        "summary": "[preview] Fetches safety event activity feed",
         "operationId": "getSafetyEventActivityFeed",
         "parameters": [
           {
@@ -10585,11 +10585,11 @@
       }
     },
     "BehaviorLabelsObjectResponseBody": {
-      "description": "The behavior labels assigned to the safety event.",
+      "description": "The most up-to-date behavior labels associated with the safety event. These labels can be updated by the Safety Report Admin.",
       "type": "object",
       "properties": {
         "label": {
-          "description": "The behavior label assigned to the safety event.",
+          "description": "The label associated with the safety event. This list often changes, so it is recommended that clients gracefully handle any types not enumerated in this list.",
           "type": "string",
           "enum": [
             "invalid",
@@ -10628,7 +10628,7 @@
           "example": "genericTailgating"
         },
         "source": {
-          "description": "The source that assigned the behavior label to the event.",
+          "description": "The source of the label associated with the safety event.",
           "type": "string",
           "enum": [
             "invalid",
@@ -14121,16 +14121,16 @@
       "example": "Also goes by the nickname Furious Fred."
     },
     "DriverObjectResponseBody": {
-      "description": "The driver assigned to the safety event.",
+      "description": "A minified driver object.",
       "type": "object",
       "properties": {
         "id": {
-          "description": "The ID of the driver.",
+          "description": "ID of the driver.",
           "type": "string",
           "example": "0987"
         },
         "name": {
-          "description": "The name of the driver.",
+          "description": "Name of the driver.",
           "type": "string",
           "example": "Driver Name"
         }
@@ -21910,17 +21910,14 @@
           "$ref": "#/definitions/SafetyEventObjectResponseBody"
         },
         "time": {
-          "description": "The time the activity occurred in the corresponding safety event in RFC 3339 format.",
+          "description": "The time the activity occurred in the corresponding safety event in RFC 3339 milliseconds format.",
           "type": "string",
           "example": "2019-10-12T07:20:50.52Z"
         },
         "type": {
-          "description": "The type of activity that occurred in the safety event. We currently only support inboxActivityType, behaviorLabelActivityType, and createSafetyEventType, but we may add support for more activity types in the future.",
+          "description": "The type of activity that occurred in the safety event. We currently only support InboxActivityType, BehaviorLabelActivityType, and CreateSafetyEventType, but we may add support for more activity types in the future.",
           "type": "string",
           "enum": [
-            "",
-            "",
-            "",
             "BehaviorLabelActivityType",
             "CreateSafetyEventActivityType",
             "InboxActivityType"
@@ -22053,12 +22050,12 @@
           }
         },
         "downloadForwardVideoUrl": {
-          "description": "The URL for the video captured by the dashcam's forward-facing camera during this safety event.",
+          "description": "URL to download the forward video.",
           "type": "string",
           "example": "https://s3.console.aws.amazon.com/s3/buckets/samsara-dashcam-videos/21575/212014918400828/1553060687222/huKA7IhpBV-camera-video-segment-1244214895.mp4"
         },
         "downloadInwardVideoUrl": {
-          "description": "The URL for the video captured by the dashcam's inward-facing camera during this safety event.",
+          "description": "URL to download the inward video.",
           "type": "string",
           "example": "https://s3.console.aws.amazon.com/s3/buckets/samsara-dashcam-videos/21575/212014918400828/1553060687222/huKA7IhpBV-camera-video-segment-1244214895.mp4"
         },
@@ -22066,7 +22063,7 @@
           "$ref": "#/definitions/DriverObjectResponseBody"
         },
         "id": {
-          "description": "The identifier of the safety event",
+          "description": "The unique Samsara ID of the safety event.",
           "type": "string",
           "example": "212014918174029-1550954461759"
         },
@@ -22074,13 +22071,13 @@
           "$ref": "#/definitions/locationResponseBody"
         },
         "maxAccelerationGForce": {
-          "description": "The max acceleration during the safety event",
+          "description": "The maximum acceleration value as a multiplier on the force of gravity (g).",
           "type": "number",
           "format": "double",
           "example": 0.123
         },
         "time": {
-          "description": "The time at which the safety event occurred",
+          "description": "The time the safety event occurred in RFC 3339 milliseconds format.",
           "type": "string",
           "example": "2019-06-13T19:08:25.455Z"
         },
@@ -32844,16 +32841,16 @@
       "example": "These are notes about this given vehicle."
     },
     "VehicleObjectResponseBody": {
-      "description": "The vehicle associated with the safety event.",
+      "description": "A minified vehicle object.",
       "type": "object",
       "properties": {
         "id": {
-          "description": "The ID of the vehicle.",
+          "description": "ID of the vehicle.",
           "type": "string",
           "example": "1234"
         },
         "name": {
-          "description": "The name of the vehicle.",
+          "description": "Name of the vehicle.",
           "type": "string",
           "example": "Vehicle Name"
         }
@@ -36444,17 +36441,17 @@
       }
     },
     "locationResponseBody": {
-      "description": "The location of the safety event.",
+      "description": "Location object",
       "type": "object",
       "properties": {
         "latitude": {
-          "description": "The latitude of the safety event location.",
+          "description": "GPS latitude represented in degrees",
           "type": "number",
           "format": "double",
           "example": 37.456345
         },
         "longitude": {
-          "description": "The longitude of the safety event location.",
+          "description": "\tGPS longitude represented in degrees",
           "type": "number",
           "format": "double",
           "example": 34.5633749
