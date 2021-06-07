@@ -13983,6 +13983,7 @@
       "description": "The restart of the ELD ruleset applied to this driver.",
       "type": "string",
       "enum": [
+        "None",
         "34-hour Restart",
         "24-hour Restart",
         "36-hour Restart",
@@ -13995,7 +13996,8 @@
       "type": "string",
       "enum": [
         "US Interstate Property",
-        "US Interstate Passenger"
+        "US Interstate Passenger",
+        "Texas Intrastate"
       ],
       "example": "US Interstate Property"
     },
@@ -27590,7 +27592,14 @@
             "boom",
             "auxiliaryEngine",
             "generator",
-            "eightWayLights"
+            "eightWayLights",
+            "panicButton",
+            "privacyButton",
+            "frontAxleDrive",
+            "weightSensor",
+            "other",
+            "secondaryFuelSource",
+            "ecuPowerTakeOff"
           ],
           "example": "boom"
         },
@@ -27611,7 +27620,14 @@
             "boom",
             "auxiliaryEngine",
             "generator",
-            "eightWayLights"
+            "eightWayLights",
+            "panicButton",
+            "privacyButton",
+            "frontAxleDrive",
+            "weightSensor",
+            "other",
+            "secondaryFuelSource",
+            "ecuPowerTakeOff"
           ],
           "example": "boom"
         },
@@ -27632,7 +27648,14 @@
             "boom",
             "auxiliaryEngine",
             "generator",
-            "eightWayLights"
+            "eightWayLights",
+            "panicButton",
+            "privacyButton",
+            "frontAxleDrive",
+            "weightSensor",
+            "other",
+            "secondaryFuelSource",
+            "ecuPowerTakeOff"
           ],
           "example": "boom"
         },
@@ -27653,7 +27676,14 @@
             "boom",
             "auxiliaryEngine",
             "generator",
-            "eightWayLights"
+            "eightWayLights",
+            "panicButton",
+            "privacyButton",
+            "frontAxleDrive",
+            "weightSensor",
+            "other",
+            "secondaryFuelSource",
+            "ecuPowerTakeOff"
           ],
           "example": "boom"
         },
@@ -27674,7 +27704,14 @@
             "boom",
             "auxiliaryEngine",
             "generator",
-            "eightWayLights"
+            "eightWayLights",
+            "panicButton",
+            "privacyButton",
+            "frontAxleDrive",
+            "weightSensor",
+            "other",
+            "secondaryFuelSource",
+            "ecuPowerTakeOff"
           ],
           "example": "boom"
         },
@@ -27695,7 +27732,14 @@
             "boom",
             "auxiliaryEngine",
             "generator",
-            "eightWayLights"
+            "eightWayLights",
+            "panicButton",
+            "privacyButton",
+            "frontAxleDrive",
+            "weightSensor",
+            "other",
+            "secondaryFuelSource",
+            "ecuPowerTakeOff"
           ],
           "example": "boom"
         },
@@ -27716,7 +27760,14 @@
             "boom",
             "auxiliaryEngine",
             "generator",
-            "eightWayLights"
+            "eightWayLights",
+            "panicButton",
+            "privacyButton",
+            "frontAxleDrive",
+            "weightSensor",
+            "other",
+            "secondaryFuelSource",
+            "ecuPowerTakeOff"
           ],
           "example": "boom"
         },
@@ -27737,7 +27788,14 @@
             "boom",
             "auxiliaryEngine",
             "generator",
-            "eightWayLights"
+            "eightWayLights",
+            "panicButton",
+            "privacyButton",
+            "frontAxleDrive",
+            "weightSensor",
+            "other",
+            "secondaryFuelSource",
+            "ecuPowerTakeOff"
           ],
           "example": "boom"
         },
@@ -27758,7 +27816,14 @@
             "boom",
             "auxiliaryEngine",
             "generator",
-            "eightWayLights"
+            "eightWayLights",
+            "panicButton",
+            "privacyButton",
+            "frontAxleDrive",
+            "weightSensor",
+            "other",
+            "secondaryFuelSource",
+            "ecuPowerTakeOff"
           ],
           "example": "boom"
         },
@@ -27779,7 +27844,14 @@
             "boom",
             "auxiliaryEngine",
             "generator",
-            "eightWayLights"
+            "eightWayLights",
+            "panicButton",
+            "privacyButton",
+            "frontAxleDrive",
+            "weightSensor",
+            "other",
+            "secondaryFuelSource",
+            "ecuPowerTakeOff"
           ],
           "example": "boom"
         },
@@ -32534,6 +32606,34 @@
         }
       }
     },
+    "VehicleAuxInputName": {
+      "description": "The type of \u003ca href=\"https://kb.samsara.com/hc/en-us/articles/360043040512-Auxiliary-Inputs\" target=\"_blank\"\u003eauxiliary input\u003c/a\u003e configured for this Vehicle. Once configured, these inputs will generate dynamic, time-series data that will be available to view in the Samsara Dashboard. **By default**: empty. This can be set or updated through the Samsara Dashboard or the API at any time. Inputs 3-10 are only available on gateways with an attached aux expander.",
+      "type": "string",
+      "enum": [
+        "None",
+        "Emergency Lights",
+        "Emergency Alarm",
+        "Stop Paddle",
+        "Power Take-Off",
+        "Plow",
+        "Sweeper",
+        "Salter",
+        "Reefer",
+        "Door",
+        "Boom",
+        "Auxiliary Engine",
+        "Generator",
+        "Eight-Way Lights",
+        "Panic Button",
+        "Privacy Button",
+        "Front Axle Drive",
+        "Weight Sensor",
+        "Other",
+        "Secondary Fuel Source",
+        "(ECU) Power Take-Off"
+      ],
+      "example": "Boom"
+    },
     "VehicleAuxInputType": {
       "description": "The type of \u003ca href=\"https://kb.samsara.com/hc/en-us/articles/360043040512-Auxiliary-Inputs\" target=\"_blank\"\u003eauxiliary input\u003c/a\u003e configured for this Vehicle. Once configured, these inputs will generate dynamic, time-series data that will be available to view in the Samsara Dashboard. **By default**: empty. This can be set or updated through the Samsara Dashboard or the API at any time. Inputs 3-10 are only available on gateways with an attached aux expander.",
       "type": "string",
@@ -32551,7 +32651,14 @@
         "boom",
         "auxiliaryEngine",
         "generator",
-        "eightWayLights"
+        "eightWayLights",
+        "panicButton",
+        "privacyButton",
+        "frontAxleDrive",
+        "weightSensor",
+        "other",
+        "secondaryFuelSource",
+        "ecuPowerTakeOff"
       ],
       "example": "boom"
     },
@@ -32967,7 +33074,7 @@
       "type": "object",
       "properties": {
         "name": {
-          "$ref": "#/definitions/VehicleAuxInputType"
+          "$ref": "#/definitions/VehicleAuxInputName"
         },
         "time": {
           "$ref": "#/definitions/vehicleStatsAuxInputTime"
@@ -32990,22 +33097,29 @@
           "description": "The type of \u003ca href=\"https://kb.samsara.com/hc/en-us/articles/360043040512-Auxiliary-Inputs\" target=\"_blank\"\u003eauxiliary input\u003c/a\u003e configured for this Vehicle. Once configured, these inputs will generate dynamic, time-series data that will be available to view in the Samsara Dashboard. **By default**: empty. This can be set or updated through the Samsara Dashboard or the API at any time. Inputs 3-10 are only available on gateways with an attached aux expander.",
           "type": "string",
           "enum": [
-            "none",
-            "emergencyLights",
-            "emergencyAlarm",
-            "stopPaddle",
-            "powerTakeOff",
-            "plow",
-            "sweeper",
-            "salter",
-            "reefer",
-            "door",
-            "boom",
-            "auxiliaryEngine",
-            "generator",
-            "eightWayLights"
+            "None",
+            "Emergency Lights",
+            "Emergency Alarm",
+            "Stop Paddle",
+            "Power Take-Off",
+            "Plow",
+            "Sweeper",
+            "Salter",
+            "Reefer",
+            "Door",
+            "Boom",
+            "Auxiliary Engine",
+            "Generator",
+            "Eight-Way Lights",
+            "Panic Button",
+            "Privacy Button",
+            "Front Axle Drive",
+            "Weight Sensor",
+            "Other",
+            "Secondary Fuel Source",
+            "(ECU) Power Take-Off"
           ],
-          "example": "boom"
+          "example": "Boom"
         },
         "value": {
           "$ref": "#/definitions/VehicleStatsAuxInputValue"
@@ -33025,7 +33139,7 @@
           "$ref": "#/definitions/VehicleStatsDecorations"
         },
         "name": {
-          "$ref": "#/definitions/VehicleAuxInputType"
+          "$ref": "#/definitions/VehicleAuxInputName"
         },
         "time": {
           "$ref": "#/definitions/vehicleStatsAuxInputTime"
