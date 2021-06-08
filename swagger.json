@@ -7281,6 +7281,105 @@
         }
       }
     },
+    "/preview/aemp/fleet/equipment/{id}": {
+      "get": {
+        "description": "Get an equipment following the AEMP ISO 15143-3 standard.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Preview APIs"
+        ],
+        "summary": "[preview] Get an AEMP equipment",
+        "operationId": "getAempEquipment",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "The Samsara equipment id or external id. This is automatically generated when the Equipment object is created. It cannot be changed.",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/AempEquipmentGetAempEquipmentResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/AempEquipmentGetAempEquipmentUnauthorizedErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/AempEquipmentGetAempEquipmentNotFoundErrorResponseBody"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/AempEquipmentGetAempEquipmentMethodNotAllowedErrorResponseBody"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/AempEquipmentGetAempEquipmentTooManyRequestsErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/AempEquipmentGetAempEquipmentInternalServerErrorResponseBody"
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/AempEquipmentGetAempEquipmentNotImplementedErrorResponseBody"
+            }
+          },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/AempEquipmentGetAempEquipmentBadGatewayErrorResponseBody"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/AempEquipmentGetAempEquipmentServiceUnavailableErrorResponseBody"
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/AempEquipmentGetAempEquipmentGatewayTimeoutErrorResponseBody"
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/AempEquipmentGetAempEquipmentBadRequestErrorResponseBody"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "The Samsara equipment id or external id. This is automatically generated when the Equipment object is created. It cannot be changed.",
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
     "/preview/fleet/safety-events/audit-logs/feed": {
       "get": {
         "description": "Get continuous safety event activity feed.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
@@ -9966,6 +10065,217 @@
       "properties": {
         "data": {
           "$ref": "#/definitions/Address"
+        }
+      }
+    },
+    "AempEquipmentGetAempEquipmentBadGatewayErrorResponseBody": {
+      "description": "Bad Gateway",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "rpc error: code = Unknown desc = connection refused"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "AempEquipmentGetAempEquipmentBadRequestErrorResponseBody": {
+      "description": "Bad Request parameters",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid value for parameter."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "AempEquipmentGetAempEquipmentGatewayTimeoutErrorResponseBody": {
+      "description": "Gateway timeout",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "AempEquipmentGetAempEquipmentInternalServerErrorResponseBody": {
+      "description": "An internal server error occurred",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Failed to execute GraphQL query."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "AempEquipmentGetAempEquipmentMethodNotAllowedErrorResponseBody": {
+      "description": "Method not allowed",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "DELETE not allowed on /endpoint."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "AempEquipmentGetAempEquipmentNotFoundErrorResponseBody": {
+      "description": "Resource not found",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Object not found."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "AempEquipmentGetAempEquipmentNotImplementedErrorResponseBody": {
+      "description": "Requested endpoint is not yet implemented",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Not implemented."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "AempEquipmentGetAempEquipmentResponseBody": {
+      "type": "object",
+      "required": [
+        "fleet"
+      ],
+      "properties": {
+        "fleet": {
+          "$ref": "#/definitions/EquipmentResponseBody"
+        }
+      }
+    },
+    "AempEquipmentGetAempEquipmentServiceUnavailableErrorResponseBody": {
+      "description": "Service unavailable",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "AempEquipmentGetAempEquipmentTooManyRequestsErrorResponseBody": {
+      "description": "Too many requests",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Exceeded rate limit."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "AempEquipmentGetAempEquipmentUnauthorizedErrorResponseBody": {
+      "description": "Unauthorized",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid token."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
         }
       }
     },
@@ -15844,6 +16154,84 @@
       "properties": {
         "data": {
           "$ref": "#/definitions/Equipment"
+        }
+      }
+    },
+    "EquipmentResponseBody": {
+      "description": "Contains equipment fields.",
+      "type": "object",
+      "properties": {
+        "EquipmentID": {
+          "description": "The unique Samsara ID of the equipment. This is automatically generated when the Equipment object is created. It cannot be changed.",
+          "type": "string",
+          "example": "494123"
+        },
+        "ExternalIds": {
+          "description": "A map of external ids",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "Hour": {
+          "description": "Total number of equipment operating hours.",
+          "type": "number",
+          "format": "double",
+          "example": 12.34
+        },
+        "Latitude": {
+          "description": "Location latitude.",
+          "type": "number",
+          "format": "double",
+          "example": 12.34
+        },
+        "Longitude": {
+          "description": "Location longitude.",
+          "type": "number",
+          "format": "double",
+          "example": 12.34
+        },
+        "Odometer": {
+          "description": "Odometer value reported by equipment.",
+          "type": "number",
+          "format": "double",
+          "example": 12
+        },
+        "OdometerUnits": {
+          "description": "Unit of measurement for distance.",
+          "type": "string",
+          "example": "kilometre"
+        },
+        "PIN": {
+          "description": "The PIN number of the equipment.",
+          "type": "string",
+          "example": "8V8WD530FLN016251"
+        },
+        "Percent": {
+          "description": "Percent of DEF remaining in tank.",
+          "type": "number",
+          "format": "double",
+          "example": 12
+        },
+        "Running": {
+          "description": "Boolean value for whether engine is running or not.",
+          "type": "boolean",
+          "example": true
+        },
+        "SerialNumber": {
+          "description": "The serial number of the equipment.",
+          "type": "string",
+          "example": "8V8WD530FLN016251"
+        },
+        "UnitInstallDateTime": {
+          "description": "Telematics unit install date in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+          "type": "string",
+          "example": "2019-06-13T19:08:25Z"
+        },
+        "dateTime": {
+          "description": "Date time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+          "type": "string",
+          "example": "2019-06-13T19:08:25Z"
         }
       }
     },
