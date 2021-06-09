@@ -8978,7 +8978,7 @@
 	   	   	   	   	   	   "$ref": "#/components/schemas/LogMetaDataObjectResponseBody"
 	   	   	   	   	   },
 	   	   	   	   	   "pendingDutyStatusDurations": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/DutyStatusDurationObjectResponseBody"
+	   	   	   	   	   	   "$ref": "#/components/schemas/PendingDutyStatusDurationsObjectResponseBody"
 	   	   	   	   	   },
 	   	   	   	   	   "startTime": {
 	   	   	   	   	   	   "description": "The start time of the daily log in RFC 3339 format. This will be calculated using timezone of the driver.",
@@ -11570,6 +11570,60 @@
 	   	   	   	   	   	   	   "$ref": "#/components/schemas/TaggedObjectId"
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "type": "array"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "PendingDutyStatusDurationsObjectResponseBody": {
+	   	   	   	   "description": "What the duty status durations on the driver’s log would be if all pending carrier edits are accepted by the driver.",
+	   	   	   	   "properties": {
+	   	   	   	   	   "activeDurationMs": {
+	   	   	   	   	   	   "description": "Duration the driver was active for in the log period in milliseconds.",
+	   	   	   	   	   	   "example": 38825000,
+	   	   	   	   	   	   "format": "int64",
+	   	   	   	   	   	   "type": "integer"
+	   	   	   	   	   },
+	   	   	   	   	   "driveDurationMs": {
+	   	   	   	   	   	   "description": "Duration the driver was driving for in the log period in milliseconds.",
+	   	   	   	   	   	   "example": 31970000,
+	   	   	   	   	   	   "format": "int64",
+	   	   	   	   	   	   "type": "integer"
+	   	   	   	   	   },
+	   	   	   	   	   "offDutyDurationMs": {
+	   	   	   	   	   	   "description": "Duration the driver was off duty for in the log period in milliseconds.",
+	   	   	   	   	   	   "example": 20555000,
+	   	   	   	   	   	   "format": "int64",
+	   	   	   	   	   	   "type": "integer"
+	   	   	   	   	   },
+	   	   	   	   	   "onDutyDurationMs": {
+	   	   	   	   	   	   "description": "Duration the driver was on duty for in the log period in milliseconds.",
+	   	   	   	   	   	   "example": 5423000,
+	   	   	   	   	   	   "format": "int64",
+	   	   	   	   	   	   "type": "integer"
+	   	   	   	   	   },
+	   	   	   	   	   "personalConveyanceDurationMs": {
+	   	   	   	   	   	   "description": "Duration the driver was driving for personal conveyance for in the log period in milliseconds.",
+	   	   	   	   	   	   "example": 4358000,
+	   	   	   	   	   	   "format": "int64",
+	   	   	   	   	   	   "type": "integer"
+	   	   	   	   	   },
+	   	   	   	   	   "sleeperBerthDurationMs": {
+	   	   	   	   	   	   "description": "Duration the driver was in their sleeper berth for in the log period in milliseconds.",
+	   	   	   	   	   	   "example": 27020000,
+	   	   	   	   	   	   "format": "int64",
+	   	   	   	   	   	   "type": "integer"
+	   	   	   	   	   },
+	   	   	   	   	   "waitingTimeDurationMs": {
+	   	   	   	   	   	   "description": "Duration the driver was waiting for in the log period in milliseconds.",
+	   	   	   	   	   	   "example": 1560000,
+	   	   	   	   	   	   "format": "int64",
+	   	   	   	   	   	   "type": "integer"
+	   	   	   	   	   },
+	   	   	   	   	   "yardMoveDurationMs": {
+	   	   	   	   	   	   "description": "Duration the driver was driving for yard moves for in the log period in milliseconds.",
+	   	   	   	   	   	   "example": 1432000,
+	   	   	   	   	   	   "format": "int64",
+	   	   	   	   	   	   "type": "integer"
 	   	   	   	   	   }
 	   	   	   	   },
 	   	   	   	   "type": "object"
