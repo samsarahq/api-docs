@@ -1057,12 +1057,12 @@
 	   	   	   },
 	   	   	   "AempEquipmentGetAempEquipmentResponseBody": {
 	   	   	   	   "properties": {
-	   	   	   	   	   "fleet": {
-	   	   	   	   	   	   "$ref": "#/components/schemas/EquipmentResponseBody"
+	   	   	   	   	   "Fleet": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/AempFleetResponseBody"
 	   	   	   	   	   }
 	   	   	   	   },
 	   	   	   	   "required": [
-	   	   	   	   	   "fleet"
+	   	   	   	   	   "Fleet"
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
@@ -1123,6 +1123,54 @@
 	   	   	   	   "required": [
 	   	   	   	   	   "message",
 	   	   	   	   	   "requestId"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "AempEquipmentResponseBody": {
+	   	   	   	   "description": "Contains equipment fields.",
+	   	   	   	   "properties": {
+	   	   	   	   	   "CumulativeOperatingHours": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/CumulativeOperatingHoursResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "DEFRemaining": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/DEFRemainingResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "Distance": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/DistanceResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "EngineStatus": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/EngineStatusResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "EquipmentHeader": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/EquipmentHeaderResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "FuelRemaining": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/FuelRemainingResponseBody"
+	   	   	   	   	   },
+	   	   	   	   	   "Location": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/LocationResponseBody"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "CumulativeOperatingHours",
+	   	   	   	   	   "DEFRemaining",
+	   	   	   	   	   "Distance",
+	   	   	   	   	   "EngineStatus",
+	   	   	   	   	   "EquipmentHeader",
+	   	   	   	   	   "FuelRemaining",
+	   	   	   	   	   "Location"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "AempFleetResponseBody": {
+	   	   	   	   "description": "Contains equipment object",
+	   	   	   	   "properties": {
+	   	   	   	   	   "Equipment": {
+	   	   	   	   	   	   "$ref": "#/components/schemas/AempEquipmentResponseBody"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "Equipment"
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
@@ -3005,6 +3053,23 @@
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
+	   	   	   "CumulativeOperatingHoursResponseBody": {
+	   	   	   	   "description": "Equipment operating hours.",
+	   	   	   	   "properties": {
+	   	   	   	   	   "Hour": {
+	   	   	   	   	   	   "description": "Total number of equipment operating hours.",
+	   	   	   	   	   	   "example": 12.34,
+	   	   	   	   	   	   "format": "double",
+	   	   	   	   	   	   "type": "number"
+	   	   	   	   	   },
+	   	   	   	   	   "datetime": {
+	   	   	   	   	   	   "description": "Date time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+	   	   	   	   	   	   "example": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "type": "object"
+	   	   	   },
 	   	   	   "CurrentDutyStatus": {
 	   	   	   	   "description": "The current HOS status type and time the driver started being in this status.",
 	   	   	   	   "properties": {
@@ -3032,6 +3097,23 @@
 	   	   	   	   "example": {
 	   	   	   	   	   "manufacturer": "Samsara",
 	   	   	   	   	   "serialNumber": "123ABC"
+	   	   	   	   },
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "DEFRemainingResponseBody": {
+	   	   	   	   "description": "DEF remaining in equipment.",
+	   	   	   	   "properties": {
+	   	   	   	   	   "Percent": {
+	   	   	   	   	   	   "description": "Percent of DEF remaining in tank.",
+	   	   	   	   	   	   "example": 12,
+	   	   	   	   	   	   "format": "double",
+	   	   	   	   	   	   "type": "number"
+	   	   	   	   	   },
+	   	   	   	   	   "datetime": {
+	   	   	   	   	   	   "description": "Date time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+	   	   	   	   	   	   "example": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
 	   	   	   	   },
 	   	   	   	   "type": "object"
 	   	   	   },
@@ -3357,6 +3439,28 @@
 	   	   	   "DistanceDrivenMeters": {
 	   	   	   	   "description": "Distance driven in meters.",
 	   	   	   	   "type": "number"
+	   	   	   },
+	   	   	   "DistanceResponseBody": {
+	   	   	   	   "description": "Equipment odometer distance.",
+	   	   	   	   "properties": {
+	   	   	   	   	   "Odometer": {
+	   	   	   	   	   	   "description": "Odometer value reported by equipment.",
+	   	   	   	   	   	   "example": 12,
+	   	   	   	   	   	   "format": "double",
+	   	   	   	   	   	   "type": "number"
+	   	   	   	   	   },
+	   	   	   	   	   "OdometerUnits": {
+	   	   	   	   	   	   "description": "Unit of measurement for distance.",
+	   	   	   	   	   	   "example": "kilometre",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "datetime": {
+	   	   	   	   	   	   "description": "Date time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+	   	   	   	   	   	   "example": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "type": "object"
 	   	   	   },
 	   	   	   "DistanceTraveledObjectResponseBody": {
 	   	   	   	   "description": "The distance traveled information of the log.",
@@ -6304,6 +6408,22 @@
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
+	   	   	   "EngineStatusResponseBody": {
+	   	   	   	   "description": "Equipment engine status.",
+	   	   	   	   "properties": {
+	   	   	   	   	   "Running": {
+	   	   	   	   	   	   "description": "Boolean value for whether engine is running or not.",
+	   	   	   	   	   	   "example": true,
+	   	   	   	   	   	   "type": "boolean"
+	   	   	   	   	   },
+	   	   	   	   	   "datetime": {
+	   	   	   	   	   	   "description": "Date time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+	   	   	   	   	   	   "example": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "type": "object"
+	   	   	   },
 	   	   	   "Equipment": {
 	   	   	   	   "description": "An equipment object.",
 	   	   	   	   "properties": {
@@ -6493,6 +6613,39 @@
 	   	   	   	   	   "time",
 	   	   	   	   	   "value"
 	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "EquipmentHeaderResponseBody": {
+	   	   	   	   "description": "Equipment header fields.",
+	   	   	   	   "properties": {
+	   	   	   	   	   "EquipmentID": {
+	   	   	   	   	   	   "description": "The unique Samsara ID of the equipment. This is automatically generated when the Equipment object is created. It cannot be changed.",
+	   	   	   	   	   	   "example": "494123",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "ExternalIds": {
+	   	   	   	   	   	   "additionalProperties": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "A map of external ids",
+	   	   	   	   	   	   "type": "object"
+	   	   	   	   	   },
+	   	   	   	   	   "PIN": {
+	   	   	   	   	   	   "description": "The PIN number of the equipment.",
+	   	   	   	   	   	   "example": "8V8WD530FLN016251",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "SerialNumber": {
+	   	   	   	   	   	   "description": "The serial number of the equipment.",
+	   	   	   	   	   	   "example": "8V8WD530FLN016251",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   },
+	   	   	   	   	   "UnitInstallDateTime": {
+	   	   	   	   	   	   "description": "Telematics unit install date in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+	   	   	   	   	   	   "example": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
 	   	   	   	   "type": "object"
 	   	   	   },
 	   	   	   "EquipmentId": {
@@ -6977,84 +7130,6 @@
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
-	   	   	   "EquipmentResponseBody": {
-	   	   	   	   "description": "Contains equipment fields.",
-	   	   	   	   "properties": {
-	   	   	   	   	   "EquipmentID": {
-	   	   	   	   	   	   "description": "The unique Samsara ID of the equipment. This is automatically generated when the Equipment object is created. It cannot be changed.",
-	   	   	   	   	   	   "example": "494123",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "ExternalIds": {
-	   	   	   	   	   	   "additionalProperties": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "A map of external ids",
-	   	   	   	   	   	   "type": "object"
-	   	   	   	   	   },
-	   	   	   	   	   "Hour": {
-	   	   	   	   	   	   "description": "Total number of equipment operating hours.",
-	   	   	   	   	   	   "example": 12.34,
-	   	   	   	   	   	   "format": "double",
-	   	   	   	   	   	   "type": "number"
-	   	   	   	   	   },
-	   	   	   	   	   "Latitude": {
-	   	   	   	   	   	   "description": "Location latitude.",
-	   	   	   	   	   	   "example": 12.34,
-	   	   	   	   	   	   "format": "double",
-	   	   	   	   	   	   "type": "number"
-	   	   	   	   	   },
-	   	   	   	   	   "Longitude": {
-	   	   	   	   	   	   "description": "Location longitude.",
-	   	   	   	   	   	   "example": 12.34,
-	   	   	   	   	   	   "format": "double",
-	   	   	   	   	   	   "type": "number"
-	   	   	   	   	   },
-	   	   	   	   	   "Odometer": {
-	   	   	   	   	   	   "description": "Odometer value reported by equipment.",
-	   	   	   	   	   	   "example": 12,
-	   	   	   	   	   	   "format": "double",
-	   	   	   	   	   	   "type": "number"
-	   	   	   	   	   },
-	   	   	   	   	   "OdometerUnits": {
-	   	   	   	   	   	   "description": "Unit of measurement for distance.",
-	   	   	   	   	   	   "example": "kilometre",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "PIN": {
-	   	   	   	   	   	   "description": "The PIN number of the equipment.",
-	   	   	   	   	   	   "example": "8V8WD530FLN016251",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "Percent": {
-	   	   	   	   	   	   "description": "Percent of DEF remaining in tank.",
-	   	   	   	   	   	   "example": 12,
-	   	   	   	   	   	   "format": "double",
-	   	   	   	   	   	   "type": "number"
-	   	   	   	   	   },
-	   	   	   	   	   "Running": {
-	   	   	   	   	   	   "description": "Boolean value for whether engine is running or not.",
-	   	   	   	   	   	   "example": true,
-	   	   	   	   	   	   "type": "boolean"
-	   	   	   	   	   },
-	   	   	   	   	   "SerialNumber": {
-	   	   	   	   	   	   "description": "The serial number of the equipment.",
-	   	   	   	   	   	   "example": "8V8WD530FLN016251",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "UnitInstallDateTime": {
-	   	   	   	   	   	   "description": "Telematics unit install date in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
-	   	   	   	   	   	   "example": "2019-06-13T19:08:25Z",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "dateTime": {
-	   	   	   	   	   	   "description": "Date time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
-	   	   	   	   	   	   "example": "2019-06-13T19:08:25Z",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "type": "object"
-	   	   	   },
 	   	   	   "EquipmentStatsListResponse": {
 	   	   	   	   "description": "A time-series of equipment stats and pagination information",
 	   	   	   	   "properties": {
@@ -7377,6 +7452,23 @@
 	   	   	   "FuelConsumedMl": {
 	   	   	   	   "description": "Fuel consumption in milliliters.",
 	   	   	   	   "type": "number"
+	   	   	   },
+	   	   	   "FuelRemainingResponseBody": {
+	   	   	   	   "description": "Fuel remaining in equipment.",
+	   	   	   	   "properties": {
+	   	   	   	   	   "Percent": {
+	   	   	   	   	   	   "description": "Percent of fuel remaining in tank.",
+	   	   	   	   	   	   "example": 12,
+	   	   	   	   	   	   "format": "double",
+	   	   	   	   	   	   "type": "number"
+	   	   	   	   	   },
+	   	   	   	   	   "datetime": {
+	   	   	   	   	   	   "description": "Date time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+	   	   	   	   	   	   "example": "2019-06-13T19:08:25Z",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "type": "object"
 	   	   	   },
 	   	   	   "GatewayAssetResponseObjectResponseBody": {
 	   	   	   	   "description": "An object containing information about the asset the gateway is installed on",
@@ -11002,6 +11094,29 @@
 	   	   	   	   	   	   "description": "Street",
 	   	   	   	   	   	   "example": "Rhode Island",
 	   	   	   	   	   	   "format": "string",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "type": "object"
+	   	   	   },
+	   	   	   "LocationResponseBody": {
+	   	   	   	   "description": "Equipment location.",
+	   	   	   	   "properties": {
+	   	   	   	   	   "Latitude": {
+	   	   	   	   	   	   "description": "Location latitude.",
+	   	   	   	   	   	   "example": 12.34,
+	   	   	   	   	   	   "format": "double",
+	   	   	   	   	   	   "type": "number"
+	   	   	   	   	   },
+	   	   	   	   	   "Longitude": {
+	   	   	   	   	   	   "description": "Location longitude.",
+	   	   	   	   	   	   "example": 12.34,
+	   	   	   	   	   	   "format": "double",
+	   	   	   	   	   	   "type": "number"
+	   	   	   	   	   },
+	   	   	   	   	   "datetime": {
+	   	   	   	   	   	   "description": "Date time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
+	   	   	   	   	   	   "example": "2019-06-13T19:08:25Z",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   }
 	   	   	   	   },
