@@ -13407,7 +13407,7 @@
 	   	   	   "SafetyEventVehicle": {
 	   	   	   	   "$ref": "#/components/schemas/vehicleTinyResponse"
 	   	   	   },
-	   	   	   "SafetyEventsGetSafetyEventActivityFeedBadGatewayErrorResponseBody": {
+	   	   	   "SafetyEventsGetSafetyActivityEventFeedBadGatewayErrorResponseBody": {
 	   	   	   	   "description": "Bad Gateway",
 	   	   	   	   "properties": {
 	   	   	   	   	   "message": {
@@ -13427,7 +13427,7 @@
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
-	   	   	   "SafetyEventsGetSafetyEventActivityFeedBadRequestErrorResponseBody": {
+	   	   	   "SafetyEventsGetSafetyActivityEventFeedBadRequestErrorResponseBody": {
 	   	   	   	   "description": "Bad Request parameters",
 	   	   	   	   "properties": {
 	   	   	   	   	   "message": {
@@ -13447,7 +13447,7 @@
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
-	   	   	   "SafetyEventsGetSafetyEventActivityFeedGatewayTimeoutErrorResponseBody": {
+	   	   	   "SafetyEventsGetSafetyActivityEventFeedGatewayTimeoutErrorResponseBody": {
 	   	   	   	   "description": "Gateway timeout",
 	   	   	   	   "properties": {
 	   	   	   	   	   "message": {
@@ -13467,7 +13467,7 @@
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
-	   	   	   "SafetyEventsGetSafetyEventActivityFeedInternalServerErrorResponseBody": {
+	   	   	   "SafetyEventsGetSafetyActivityEventFeedInternalServerErrorResponseBody": {
 	   	   	   	   "description": "An internal server error occurred",
 	   	   	   	   "properties": {
 	   	   	   	   	   "message": {
@@ -13487,7 +13487,7 @@
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
-	   	   	   "SafetyEventsGetSafetyEventActivityFeedMethodNotAllowedErrorResponseBody": {
+	   	   	   "SafetyEventsGetSafetyActivityEventFeedMethodNotAllowedErrorResponseBody": {
 	   	   	   	   "description": "Method not allowed",
 	   	   	   	   "properties": {
 	   	   	   	   	   "message": {
@@ -13507,7 +13507,7 @@
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
-	   	   	   "SafetyEventsGetSafetyEventActivityFeedNotFoundErrorResponseBody": {
+	   	   	   "SafetyEventsGetSafetyActivityEventFeedNotFoundErrorResponseBody": {
 	   	   	   	   "description": "Resource not found",
 	   	   	   	   "properties": {
 	   	   	   	   	   "message": {
@@ -13527,7 +13527,7 @@
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
-	   	   	   "SafetyEventsGetSafetyEventActivityFeedNotImplementedErrorResponseBody": {
+	   	   	   "SafetyEventsGetSafetyActivityEventFeedNotImplementedErrorResponseBody": {
 	   	   	   	   "description": "Requested endpoint is not yet implemented",
 	   	   	   	   "properties": {
 	   	   	   	   	   "message": {
@@ -13547,7 +13547,7 @@
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
-	   	   	   "SafetyEventsGetSafetyEventActivityFeedResponseBody": {
+	   	   	   "SafetyEventsGetSafetyActivityEventFeedResponseBody": {
 	   	   	   	   "properties": {
 	   	   	   	   	   "data": {
 	   	   	   	   	   	   "description": "Paginated safety event activity feed limited to 10 events.",
@@ -13566,7 +13566,7 @@
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
-	   	   	   "SafetyEventsGetSafetyEventActivityFeedServiceUnavailableErrorResponseBody": {
+	   	   	   "SafetyEventsGetSafetyActivityEventFeedServiceUnavailableErrorResponseBody": {
 	   	   	   	   "description": "Service unavailable",
 	   	   	   	   "properties": {
 	   	   	   	   	   "message": {
@@ -13586,7 +13586,7 @@
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
-	   	   	   "SafetyEventsGetSafetyEventActivityFeedTooManyRequestsErrorResponseBody": {
+	   	   	   "SafetyEventsGetSafetyActivityEventFeedTooManyRequestsErrorResponseBody": {
 	   	   	   	   "description": "Too many requests",
 	   	   	   	   "properties": {
 	   	   	   	   	   "message": {
@@ -13606,7 +13606,7 @@
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
-	   	   	   "SafetyEventsGetSafetyEventActivityFeedUnauthorizedErrorResponseBody": {
+	   	   	   "SafetyEventsGetSafetyActivityEventFeedUnauthorizedErrorResponseBody": {
 	   	   	   	   "description": "Unauthorized",
 	   	   	   	   "properties": {
 	   	   	   	   	   "message": {
@@ -38998,8 +38998,8 @@
 	   	   },
 	   	   "/preview/fleet/safety-events/audit-logs/feed": {
 	   	   	   "get": {
-	   	   	   	   "description": "Get continuous safety event activity feed.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-	   	   	   	   "operationId": "getSafetyEventActivityFeed",
+	   	   	   	   "description": "Get continuous safety activity event feed.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+	   	   	   	   "operationId": "getSafetyActivityEventFeed",
 	   	   	   	   "parameters": [
 	   	   	   	   	   {
 	   	   	   	   	   	   "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
@@ -39018,7 +39018,7 @@
 	   	   	   	   	   	   "content": {
 	   	   	   	   	   	   	   "application/json": {
 	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/SafetyEventsGetSafetyEventActivityFeedResponseBody"
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/SafetyEventsGetSafetyActivityEventFeedResponseBody"
 	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   },
@@ -39028,7 +39028,7 @@
 	   	   	   	   	   	   "content": {
 	   	   	   	   	   	   	   "application/json": {
 	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/SafetyEventsGetSafetyEventActivityFeedUnauthorizedErrorResponseBody"
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/SafetyEventsGetSafetyActivityEventFeedUnauthorizedErrorResponseBody"
 	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   },
@@ -39038,7 +39038,7 @@
 	   	   	   	   	   	   "content": {
 	   	   	   	   	   	   	   "application/json": {
 	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/SafetyEventsGetSafetyEventActivityFeedNotFoundErrorResponseBody"
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/SafetyEventsGetSafetyActivityEventFeedNotFoundErrorResponseBody"
 	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   },
@@ -39048,7 +39048,7 @@
 	   	   	   	   	   	   "content": {
 	   	   	   	   	   	   	   "application/json": {
 	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/SafetyEventsGetSafetyEventActivityFeedMethodNotAllowedErrorResponseBody"
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/SafetyEventsGetSafetyActivityEventFeedMethodNotAllowedErrorResponseBody"
 	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   },
@@ -39058,7 +39058,7 @@
 	   	   	   	   	   	   "content": {
 	   	   	   	   	   	   	   "application/json": {
 	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/SafetyEventsGetSafetyEventActivityFeedTooManyRequestsErrorResponseBody"
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/SafetyEventsGetSafetyActivityEventFeedTooManyRequestsErrorResponseBody"
 	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   },
@@ -39068,7 +39068,7 @@
 	   	   	   	   	   	   "content": {
 	   	   	   	   	   	   	   "application/json": {
 	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/SafetyEventsGetSafetyEventActivityFeedInternalServerErrorResponseBody"
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/SafetyEventsGetSafetyActivityEventFeedInternalServerErrorResponseBody"
 	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   },
@@ -39078,7 +39078,7 @@
 	   	   	   	   	   	   "content": {
 	   	   	   	   	   	   	   "application/json": {
 	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/SafetyEventsGetSafetyEventActivityFeedNotImplementedErrorResponseBody"
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/SafetyEventsGetSafetyActivityEventFeedNotImplementedErrorResponseBody"
 	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   },
@@ -39088,7 +39088,7 @@
 	   	   	   	   	   	   "content": {
 	   	   	   	   	   	   	   "application/json": {
 	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/SafetyEventsGetSafetyEventActivityFeedBadGatewayErrorResponseBody"
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/SafetyEventsGetSafetyActivityEventFeedBadGatewayErrorResponseBody"
 	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   },
@@ -39098,7 +39098,7 @@
 	   	   	   	   	   	   "content": {
 	   	   	   	   	   	   	   "application/json": {
 	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/SafetyEventsGetSafetyEventActivityFeedServiceUnavailableErrorResponseBody"
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/SafetyEventsGetSafetyActivityEventFeedServiceUnavailableErrorResponseBody"
 	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   },
@@ -39108,7 +39108,7 @@
 	   	   	   	   	   	   "content": {
 	   	   	   	   	   	   	   "application/json": {
 	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/SafetyEventsGetSafetyEventActivityFeedGatewayTimeoutErrorResponseBody"
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/SafetyEventsGetSafetyActivityEventFeedGatewayTimeoutErrorResponseBody"
 	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   },
@@ -39118,14 +39118,14 @@
 	   	   	   	   	   	   "content": {
 	   	   	   	   	   	   	   "application/json": {
 	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/SafetyEventsGetSafetyEventActivityFeedBadRequestErrorResponseBody"
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/SafetyEventsGetSafetyActivityEventFeedBadRequestErrorResponseBody"
 	   	   	   	   	   	   	   	   }
 	   	   	   	   	   	   	   }
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "description": "Bad Request response."
 	   	   	   	   	   }
 	   	   	   	   },
-	   	   	   	   "summary": "[preview] Fetches safety event activity feed",
+	   	   	   	   "summary": "[preview] Fetches safety activity event feed",
 	   	   	   	   "tags": [
 	   	   	   	   	   "Preview APIs"
 	   	   	   	   ]
