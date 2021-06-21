@@ -10571,7 +10571,9 @@
         "values": {
           "description": "A map of data output IDs to values. All data outputs must belong to the same asset. Only the specified IDs will be written to.",
           "type": "object",
-          "additionalProperties": true,
+          "additionalProperties": {
+            "type": "float64"
+          },
           "example": {
             "4ebd0208-8328-5d69-8c44-ec50939c0967": 10.123,
             "8a9371af-82d1-4158-bf91-4ecc8d3a114c": 10
