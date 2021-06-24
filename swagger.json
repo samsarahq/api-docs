@@ -1635,6 +1635,423 @@
         }
       ]
     },
+    "/beta/industrial/jobs": {
+      "get": {
+        "description": "Fetches jobs based on id/uuid or provided filters\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Beta APIs"
+        ],
+        "summary": "[beta] Fetches all jobs",
+        "operationId": "getJobs",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "A jobId or uuid in STRING format. JobId must be prefixed with `jobId:`(Examples: `\"1234567\"`, `\"jobId:98765\"`).",
+            "name": "id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": " A start date in RFC 3339 format. This is a date only without an associated time. Example: `2019-06-13`",
+            "name": "startDate",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": " An end date in RFC 3339 format. This is a date only without an associated time. Must be greater than or equal to the start date. Example: `2019-07-21`",
+            "name": "endDate",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "description": "An array of industrialAssetIds in STRING format. (Examples: `[\"8d218e6c-7a16-4f9f-90f7-cc1d93b9e596\", \"ba84a7e2-9c8d-481f-a248-7cce6b22be9df\"]`).",
+            "name": "industrialAssetIds",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "collectionFormat": "multi",
+            "description": "An array of fleetDeviceIds in INTEGER format. (Examples: `[123456, 654321]`).",
+            "name": "fleetDeviceIds",
+            "in": "query"
+          },
+          {
+            "enum": [
+              "active",
+              "scheduled",
+              "completed"
+            ],
+            "type": "string",
+            "description": "A job status in STRING format. Job statuses can be one of three (ignores case): `\"active\", \"scheduled\", \"completed\"`",
+            "name": "status",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Customer name to filter by",
+            "name": "customerName",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+            "name": "after",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/JobsGetJobsResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/JobsGetJobsUnauthorizedErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/JobsGetJobsNotFoundErrorResponseBody"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/JobsGetJobsMethodNotAllowedErrorResponseBody"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/JobsGetJobsTooManyRequestsErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/JobsGetJobsInternalServerErrorResponseBody"
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/JobsGetJobsNotImplementedErrorResponseBody"
+            }
+          },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/JobsGetJobsBadGatewayErrorResponseBody"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/JobsGetJobsServiceUnavailableErrorResponseBody"
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/JobsGetJobsGatewayTimeoutErrorResponseBody"
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/JobsGetJobsBadRequestErrorResponseBody"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a new job and returns it\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Beta APIs"
+        ],
+        "summary": "[beta] Create a job",
+        "operationId": "createJob",
+        "parameters": [
+          {
+            "name": "CreateJobRequestBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/JobsCreateJobRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/JobsCreateJobResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/JobsCreateJobUnauthorizedErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/JobsCreateJobNotFoundErrorResponseBody"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/JobsCreateJobMethodNotAllowedErrorResponseBody"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/JobsCreateJobTooManyRequestsErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/JobsCreateJobInternalServerErrorResponseBody"
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/JobsCreateJobNotImplementedErrorResponseBody"
+            }
+          },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/JobsCreateJobBadGatewayErrorResponseBody"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/JobsCreateJobServiceUnavailableErrorResponseBody"
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/JobsCreateJobGatewayTimeoutErrorResponseBody"
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/JobsCreateJobBadRequestErrorResponseBody"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes an existing job\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Beta APIs"
+        ],
+        "summary": "[beta] Deletes an existing job",
+        "operationId": "deleteJob",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "A jobId or uuid in STRING format. JobId must be prefixed with `jobId:`(Examples: `\"1234567\"`, `\"jobId:98765\"`).",
+            "name": "id",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/JobsDeleteJobResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/JobsDeleteJobUnauthorizedErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/JobsDeleteJobNotFoundErrorResponseBody"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/JobsDeleteJobMethodNotAllowedErrorResponseBody"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/JobsDeleteJobTooManyRequestsErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/JobsDeleteJobInternalServerErrorResponseBody"
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/JobsDeleteJobNotImplementedErrorResponseBody"
+            }
+          },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/JobsDeleteJobBadGatewayErrorResponseBody"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/JobsDeleteJobServiceUnavailableErrorResponseBody"
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/JobsDeleteJobGatewayTimeoutErrorResponseBody"
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/JobsDeleteJobBadRequestErrorResponseBody"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Patches an existing job and returns it\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Beta APIs"
+        ],
+        "summary": "[beta] Patches a job",
+        "operationId": "patchJob",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "A jobId or uuid in STRING format. JobId must be prefixed with `jobId:`(Examples: `\"1234567\"`, `\"jobId:98765\"`).",
+            "name": "id",
+            "in": "query",
+            "required": true
+          },
+          {
+            "name": "PatchJobRequestBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/JobsPatchJobRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/JobsPatchJobResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/JobsPatchJobUnauthorizedErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/JobsPatchJobNotFoundErrorResponseBody"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/JobsPatchJobMethodNotAllowedErrorResponseBody"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/JobsPatchJobTooManyRequestsErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/JobsPatchJobInternalServerErrorResponseBody"
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/JobsPatchJobNotImplementedErrorResponseBody"
+            }
+          },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/JobsPatchJobBadGatewayErrorResponseBody"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/JobsPatchJobServiceUnavailableErrorResponseBody"
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/JobsPatchJobGatewayTimeoutErrorResponseBody"
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/JobsPatchJobBadRequestErrorResponseBody"
+            }
+          }
+        }
+      }
+    },
     "/contacts": {
       "get": {
         "description": "Returns a list of all contacts in an organization. \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
@@ -7464,413 +7881,6 @@
             "description": "Bad Request response.",
             "schema": {
               "$ref": "#/definitions/SafetyEventsGetSafetyActivityEventFeedBadRequestErrorResponseBody"
-            }
-          }
-        }
-      }
-    },
-    "/preview/industrial/jobs": {
-      "get": {
-        "description": "Fetches jobs based on id/uuid or provided filters\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-        "schemes": [
-          "https"
-        ],
-        "tags": [
-          "Preview APIs"
-        ],
-        "summary": "[preview] Fetches all jobs",
-        "operationId": "getJobs",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "A jobId or uuid in STRING format. JobId must be prefixed with `jobId:`(Examples: `\"1234567\"`, `\"jobId:98765\"`).",
-            "name": "id",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": " A start date in RFC 3339 format. This is a date only without an associated time. Example: `2019-06-13`",
-            "name": "startDate",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": " An end date in RFC 3339 format. This is a date only without an associated time. Must be greater than or equal to the start date. Example: `2019-07-21`",
-            "name": "endDate",
-            "in": "query"
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "multi",
-            "description": "An array of industrialAssetIds in STRING format. (Examples: `[\"8d218e6c-7a16-4f9f-90f7-cc1d93b9e596\", \"ba84a7e2-9c8d-481f-a248-7cce6b22be9df\"]`).",
-            "name": "industrialAssetIds",
-            "in": "query"
-          },
-          {
-            "enum": [
-              "active",
-              "scheduled",
-              "completed"
-            ],
-            "type": "string",
-            "description": "A job status in STRING format. Job statuses can be one of three (ignores case): `\"active\", \"scheduled\", \"completed\"`",
-            "name": "status",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "Customer name to filter by",
-            "name": "customerName",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
-            "name": "after",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK response.",
-            "schema": {
-              "$ref": "#/definitions/JobsGetJobsResponseBody"
-            }
-          },
-          "401": {
-            "description": "Unauthorized response.",
-            "schema": {
-              "$ref": "#/definitions/JobsGetJobsUnauthorizedErrorResponseBody"
-            }
-          },
-          "404": {
-            "description": "Not Found response.",
-            "schema": {
-              "$ref": "#/definitions/JobsGetJobsNotFoundErrorResponseBody"
-            }
-          },
-          "405": {
-            "description": "Method Not Allowed response.",
-            "schema": {
-              "$ref": "#/definitions/JobsGetJobsMethodNotAllowedErrorResponseBody"
-            }
-          },
-          "429": {
-            "description": "Too Many Requests response.",
-            "schema": {
-              "$ref": "#/definitions/JobsGetJobsTooManyRequestsErrorResponseBody"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error response.",
-            "schema": {
-              "$ref": "#/definitions/JobsGetJobsInternalServerErrorResponseBody"
-            }
-          },
-          "501": {
-            "description": "Not Implemented response.",
-            "schema": {
-              "$ref": "#/definitions/JobsGetJobsNotImplementedErrorResponseBody"
-            }
-          },
-          "502": {
-            "description": "Bad Gateway response.",
-            "schema": {
-              "$ref": "#/definitions/JobsGetJobsBadGatewayErrorResponseBody"
-            }
-          },
-          "503": {
-            "description": "Service Unavailable response.",
-            "schema": {
-              "$ref": "#/definitions/JobsGetJobsServiceUnavailableErrorResponseBody"
-            }
-          },
-          "504": {
-            "description": "Gateway Timeout response.",
-            "schema": {
-              "$ref": "#/definitions/JobsGetJobsGatewayTimeoutErrorResponseBody"
-            }
-          },
-          "default": {
-            "description": "Bad Request response.",
-            "schema": {
-              "$ref": "#/definitions/JobsGetJobsBadRequestErrorResponseBody"
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Creates a new job and returns it\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-        "schemes": [
-          "https"
-        ],
-        "tags": [
-          "Preview APIs"
-        ],
-        "summary": "[preview] Create a job",
-        "operationId": "createJob",
-        "parameters": [
-          {
-            "name": "CreateJobRequestBody",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/JobsCreateJobRequestBody"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK response.",
-            "schema": {
-              "$ref": "#/definitions/JobsCreateJobResponseBody"
-            }
-          },
-          "401": {
-            "description": "Unauthorized response.",
-            "schema": {
-              "$ref": "#/definitions/JobsCreateJobUnauthorizedErrorResponseBody"
-            }
-          },
-          "404": {
-            "description": "Not Found response.",
-            "schema": {
-              "$ref": "#/definitions/JobsCreateJobNotFoundErrorResponseBody"
-            }
-          },
-          "405": {
-            "description": "Method Not Allowed response.",
-            "schema": {
-              "$ref": "#/definitions/JobsCreateJobMethodNotAllowedErrorResponseBody"
-            }
-          },
-          "429": {
-            "description": "Too Many Requests response.",
-            "schema": {
-              "$ref": "#/definitions/JobsCreateJobTooManyRequestsErrorResponseBody"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error response.",
-            "schema": {
-              "$ref": "#/definitions/JobsCreateJobInternalServerErrorResponseBody"
-            }
-          },
-          "501": {
-            "description": "Not Implemented response.",
-            "schema": {
-              "$ref": "#/definitions/JobsCreateJobNotImplementedErrorResponseBody"
-            }
-          },
-          "502": {
-            "description": "Bad Gateway response.",
-            "schema": {
-              "$ref": "#/definitions/JobsCreateJobBadGatewayErrorResponseBody"
-            }
-          },
-          "503": {
-            "description": "Service Unavailable response.",
-            "schema": {
-              "$ref": "#/definitions/JobsCreateJobServiceUnavailableErrorResponseBody"
-            }
-          },
-          "504": {
-            "description": "Gateway Timeout response.",
-            "schema": {
-              "$ref": "#/definitions/JobsCreateJobGatewayTimeoutErrorResponseBody"
-            }
-          },
-          "default": {
-            "description": "Bad Request response.",
-            "schema": {
-              "$ref": "#/definitions/JobsCreateJobBadRequestErrorResponseBody"
-            }
-          }
-        }
-      },
-      "delete": {
-        "description": "Deletes an existing job\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-        "schemes": [
-          "https"
-        ],
-        "tags": [
-          "Preview APIs"
-        ],
-        "summary": "[preview] Deletes an existing job",
-        "operationId": "deleteJob",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "A jobId or uuid in STRING format. JobId must be prefixed with `jobId:`(Examples: `\"1234567\"`, `\"jobId:98765\"`).",
-            "name": "id",
-            "in": "query",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK response.",
-            "schema": {
-              "$ref": "#/definitions/JobsDeleteJobResponseBody"
-            }
-          },
-          "401": {
-            "description": "Unauthorized response.",
-            "schema": {
-              "$ref": "#/definitions/JobsDeleteJobUnauthorizedErrorResponseBody"
-            }
-          },
-          "404": {
-            "description": "Not Found response.",
-            "schema": {
-              "$ref": "#/definitions/JobsDeleteJobNotFoundErrorResponseBody"
-            }
-          },
-          "405": {
-            "description": "Method Not Allowed response.",
-            "schema": {
-              "$ref": "#/definitions/JobsDeleteJobMethodNotAllowedErrorResponseBody"
-            }
-          },
-          "429": {
-            "description": "Too Many Requests response.",
-            "schema": {
-              "$ref": "#/definitions/JobsDeleteJobTooManyRequestsErrorResponseBody"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error response.",
-            "schema": {
-              "$ref": "#/definitions/JobsDeleteJobInternalServerErrorResponseBody"
-            }
-          },
-          "501": {
-            "description": "Not Implemented response.",
-            "schema": {
-              "$ref": "#/definitions/JobsDeleteJobNotImplementedErrorResponseBody"
-            }
-          },
-          "502": {
-            "description": "Bad Gateway response.",
-            "schema": {
-              "$ref": "#/definitions/JobsDeleteJobBadGatewayErrorResponseBody"
-            }
-          },
-          "503": {
-            "description": "Service Unavailable response.",
-            "schema": {
-              "$ref": "#/definitions/JobsDeleteJobServiceUnavailableErrorResponseBody"
-            }
-          },
-          "504": {
-            "description": "Gateway Timeout response.",
-            "schema": {
-              "$ref": "#/definitions/JobsDeleteJobGatewayTimeoutErrorResponseBody"
-            }
-          },
-          "default": {
-            "description": "Bad Request response.",
-            "schema": {
-              "$ref": "#/definitions/JobsDeleteJobBadRequestErrorResponseBody"
-            }
-          }
-        }
-      },
-      "patch": {
-        "description": "Patches an existing job and returns it\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-        "schemes": [
-          "https"
-        ],
-        "tags": [
-          "Preview APIs"
-        ],
-        "summary": "[preview] Patches a job",
-        "operationId": "patchJob",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "A jobId or uuid in STRING format. JobId must be prefixed with `jobId:`(Examples: `\"1234567\"`, `\"jobId:98765\"`).",
-            "name": "id",
-            "in": "query",
-            "required": true
-          },
-          {
-            "name": "PatchJobRequestBody",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/JobsPatchJobRequestBody"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK response.",
-            "schema": {
-              "$ref": "#/definitions/JobsPatchJobResponseBody"
-            }
-          },
-          "401": {
-            "description": "Unauthorized response.",
-            "schema": {
-              "$ref": "#/definitions/JobsPatchJobUnauthorizedErrorResponseBody"
-            }
-          },
-          "404": {
-            "description": "Not Found response.",
-            "schema": {
-              "$ref": "#/definitions/JobsPatchJobNotFoundErrorResponseBody"
-            }
-          },
-          "405": {
-            "description": "Method Not Allowed response.",
-            "schema": {
-              "$ref": "#/definitions/JobsPatchJobMethodNotAllowedErrorResponseBody"
-            }
-          },
-          "429": {
-            "description": "Too Many Requests response.",
-            "schema": {
-              "$ref": "#/definitions/JobsPatchJobTooManyRequestsErrorResponseBody"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error response.",
-            "schema": {
-              "$ref": "#/definitions/JobsPatchJobInternalServerErrorResponseBody"
-            }
-          },
-          "501": {
-            "description": "Not Implemented response.",
-            "schema": {
-              "$ref": "#/definitions/JobsPatchJobNotImplementedErrorResponseBody"
-            }
-          },
-          "502": {
-            "description": "Bad Gateway response.",
-            "schema": {
-              "$ref": "#/definitions/JobsPatchJobBadGatewayErrorResponseBody"
-            }
-          },
-          "503": {
-            "description": "Service Unavailable response.",
-            "schema": {
-              "$ref": "#/definitions/JobsPatchJobServiceUnavailableErrorResponseBody"
-            }
-          },
-          "504": {
-            "description": "Gateway Timeout response.",
-            "schema": {
-              "$ref": "#/definitions/JobsPatchJobGatewayTimeoutErrorResponseBody"
-            }
-          },
-          "default": {
-            "description": "Bad Request response.",
-            "schema": {
-              "$ref": "#/definitions/JobsPatchJobBadRequestErrorResponseBody"
             }
           }
         }
@@ -18861,7 +18871,6 @@
         "uuid",
         "id",
         "name",
-        "industrialAssets",
         "startDate",
         "endDate",
         "createdAt",
@@ -18889,6 +18898,13 @@
           "description": "End date of job in RFC 3339 format",
           "type": "string",
           "example": "2019-06-13"
+        },
+        "fleetDevices": {
+          "description": "fleet devices in this job (cannot have both industrial assets and fleet devices in the same job)",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/fleetDeviceObjectResponseBody"
+          }
         },
         "id": {
           "description": "Job id",
@@ -19095,27 +19111,16 @@
     "JobsCreateJobResponseBody": {
       "type": "object",
       "required": [
-        "statusCode"
+        "data"
       ],
       "properties": {
         "data": {
           "$ref": "#/definitions/JobResponseObjectResponseBody"
         },
-        "errorMessage": {
-          "description": "The error message",
-          "type": "string",
-          "example": "Invalid Job Id provided"
-        },
         "id": {
           "description": "The job id of the failed request",
           "type": "string",
           "example": "1553"
-        },
-        "statusCode": {
-          "description": "The status code of the request. 200 indicates the request succeeded for this data output. 500 indicates an internal server error.",
-          "type": "integer",
-          "format": "int64",
-          "example": 200
         },
         "uuid": {
           "description": "The uuid of the failed request",
@@ -19326,25 +19331,11 @@
     },
     "JobsDeleteJobResponseBody": {
       "type": "object",
-      "required": [
-        "statusCode"
-      ],
       "properties": {
-        "errorMessage": {
-          "description": "The error message",
-          "type": "string",
-          "example": "Invalid Job Id provided"
-        },
         "id": {
           "description": "The job id of the failed request",
           "type": "string",
           "example": "1553"
-        },
-        "statusCode": {
-          "description": "The status code of the request. 200 indicates the request succeeded for this data output. 500 indicates an internal server error.",
-          "type": "integer",
-          "format": "int64",
-          "example": 200
         },
         "uuid": {
           "description": "The uuid of the failed request",
@@ -19556,8 +19547,8 @@
     "JobsGetJobsResponseBody": {
       "type": "object",
       "required": [
-        "pagination",
-        "statusCode"
+        "data",
+        "pagination"
       ],
       "properties": {
         "data": {
@@ -19567,11 +19558,6 @@
             "$ref": "#/definitions/JobResponseObjectResponseBody"
           }
         },
-        "errorMessage": {
-          "description": "The error message",
-          "type": "string",
-          "example": "Invalid Job Id provided"
-        },
         "id": {
           "description": "The job id of the failed request",
           "type": "string",
@@ -19579,12 +19565,6 @@
         },
         "pagination": {
           "$ref": "#/definitions/GoaPaginationResponseResponseBody"
-        },
-        "statusCode": {
-          "description": "The status code of the request. 200 indicates the request succeeded for this data output. 500 indicates an internal server error.",
-          "type": "integer",
-          "format": "int64",
-          "example": 200
         },
         "uuid": {
           "description": "The uuid of the failed request",
@@ -19814,27 +19794,16 @@
     "JobsPatchJobResponseBody": {
       "type": "object",
       "required": [
-        "statusCode"
+        "data"
       ],
       "properties": {
         "data": {
           "$ref": "#/definitions/JobResponseObjectResponseBody"
         },
-        "errorMessage": {
-          "description": "The error message",
-          "type": "string",
-          "example": "Invalid Job Id provided"
-        },
         "id": {
           "description": "The job id of the failed request",
           "type": "string",
           "example": "1553"
-        },
-        "statusCode": {
-          "description": "The status code of the request. 200 indicates the request succeeded for this data output. 500 indicates an internal server error.",
-          "type": "integer",
-          "format": "int64",
-          "example": 200
         },
         "uuid": {
           "description": "The uuid of the failed request",
@@ -20479,17 +20448,30 @@
           "type": "string",
           "example": "2019-06-13"
         },
+        "fleetDeviceIds": {
+          "description": "Fleet devices to be added to this job (cannot have both industrial assets and fleet devices in the same job)",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "example": 286808158607014600
+          },
+          "example": [
+            1234567,
+            654321
+          ]
+        },
         "id": {
           "description": "Job Id",
           "type": "string",
           "example": "123-asdf"
         },
         "industrialAssetIds": {
-          "description": "IndustrialAssets to be added to this job (cannot have both industrial assets and fleet devices in the same job, but must have one or the other)",
+          "description": "IndustrialAssets to be added to this job (cannot have both industrial assets and fleet devices in the same job)",
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Debitis ut quia."
+            "example": "Earum cum nam voluptatum nihil."
           },
           "example": [
             "8d218e6c-7a16-4f9f-90f7-cc1d93b9e596",
@@ -20695,17 +20677,30 @@
           "type": "string",
           "example": "2019-06-13"
         },
+        "fleetDeviceIds": {
+          "description": "Fleet devices to be added to this job (cannot have both industrial assets and fleet devices in the same job)",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "example": 5169127956086038000
+          },
+          "example": [
+            1234567,
+            654321
+          ]
+        },
         "id": {
           "description": "Job Id",
           "type": "string",
           "example": "123-asdf"
         },
         "industrialAssetIds": {
-          "description": "IndustrialAssets to be added to this job (cannot have both industrial assets and fleet devices in the same job, but must have one or the other)",
+          "description": "IndustrialAssets to be added to this job (cannot have both industrial assets and fleet devices in the same job)",
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Sunt molestiae fuga quisquam distinctio nostrum."
+            "example": "Quisquam distinctio nostrum rerum debitis ut quia."
           },
           "example": [
             "8d218e6c-7a16-4f9f-90f7-cc1d93b9e596",
@@ -36829,6 +36824,27 @@
         },
         "signatureFieldTypeMetaData": {
           "$ref": "#/definitions/signatureFieldTypeMetaDataObjectResponseBody"
+        }
+      }
+    },
+    "fleetDeviceObjectResponseBody": {
+      "description": "fleetDeviceObject",
+      "type": "object",
+      "required": [
+        "name",
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "description": "Id of the device",
+          "type": "integer",
+          "format": "int64",
+          "example": 123456
+        },
+        "name": {
+          "description": "Name of the device",
+          "type": "string",
+          "example": "My Device"
         }
       }
     },

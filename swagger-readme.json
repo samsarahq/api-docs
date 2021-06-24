@@ -9716,6 +9716,13 @@
 	   	   	   	   	   	   "example": "2019-06-13",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
+	   	   	   	   	   "fleetDevices": {
+	   	   	   	   	   	   "description": "fleet devices in this job (cannot have both industrial assets and fleet devices in the same job)",
+	   	   	   	   	   	   "items": {
+	   	   	   	   	   	   	   "$ref": "#/components/schemas/fleetDeviceObjectResponseBody"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "type": "array"
+	   	   	   	   	   },
 	   	   	   	   	   "id": {
 	   	   	   	   	   	   "description": "Job id",
 	   	   	   	   	   	   "example": "1553",
@@ -9771,7 +9778,6 @@
 	   	   	   	   	   "customerName",
 	   	   	   	   	   "endDate",
 	   	   	   	   	   "id",
-	   	   	   	   	   "industrialAssets",
 	   	   	   	   	   "modifiedAt",
 	   	   	   	   	   "name",
 	   	   	   	   	   "notes",
@@ -9938,21 +9944,10 @@
 	   	   	   	   	   "data": {
 	   	   	   	   	   	   "$ref": "#/components/schemas/JobResponseObjectResponseBody"
 	   	   	   	   	   },
-	   	   	   	   	   "errorMessage": {
-	   	   	   	   	   	   "description": "The error message",
-	   	   	   	   	   	   "example": "Invalid Job Id provided",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
 	   	   	   	   	   "id": {
 	   	   	   	   	   	   "description": "The job id of the failed request",
 	   	   	   	   	   	   "example": "1553",
 	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "statusCode": {
-	   	   	   	   	   	   "description": "The status code of the request. 200 indicates the request succeeded for this data output. 500 indicates an internal server error.",
-	   	   	   	   	   	   "example": 200,
-	   	   	   	   	   	   "format": "int64",
-	   	   	   	   	   	   "type": "integer"
 	   	   	   	   	   },
 	   	   	   	   	   "uuid": {
 	   	   	   	   	   	   "description": "The uuid of the failed request",
@@ -9961,7 +9956,7 @@
 	   	   	   	   	   }
 	   	   	   	   },
 	   	   	   	   "required": [
-	   	   	   	   	   "statusCode"
+	   	   	   	   	   "data"
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
@@ -10167,21 +10162,10 @@
 	   	   	   },
 	   	   	   "JobsDeleteJobResponseBody": {
 	   	   	   	   "properties": {
-	   	   	   	   	   "errorMessage": {
-	   	   	   	   	   	   "description": "The error message",
-	   	   	   	   	   	   "example": "Invalid Job Id provided",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
 	   	   	   	   	   "id": {
 	   	   	   	   	   	   "description": "The job id of the failed request",
 	   	   	   	   	   	   "example": "1553",
 	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "statusCode": {
-	   	   	   	   	   	   "description": "The status code of the request. 200 indicates the request succeeded for this data output. 500 indicates an internal server error.",
-	   	   	   	   	   	   "example": 200,
-	   	   	   	   	   	   "format": "int64",
-	   	   	   	   	   	   "type": "integer"
 	   	   	   	   	   },
 	   	   	   	   	   "uuid": {
 	   	   	   	   	   	   "description": "The uuid of the failed request",
@@ -10189,9 +10173,6 @@
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   }
 	   	   	   	   },
-	   	   	   	   "required": [
-	   	   	   	   	   "statusCode"
-	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
 	   	   	   "JobsDeleteJobServiceUnavailableErrorResponseBody": {
@@ -10403,11 +10384,6 @@
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "type": "array"
 	   	   	   	   	   },
-	   	   	   	   	   "errorMessage": {
-	   	   	   	   	   	   "description": "The error message",
-	   	   	   	   	   	   "example": "Invalid Job Id provided",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
 	   	   	   	   	   "id": {
 	   	   	   	   	   	   "description": "The job id of the failed request",
 	   	   	   	   	   	   "example": "1553",
@@ -10416,12 +10392,6 @@
 	   	   	   	   	   "pagination": {
 	   	   	   	   	   	   "$ref": "#/components/schemas/GoaPaginationResponseResponseBody"
 	   	   	   	   	   },
-	   	   	   	   	   "statusCode": {
-	   	   	   	   	   	   "description": "The status code of the request. 200 indicates the request succeeded for this data output. 500 indicates an internal server error.",
-	   	   	   	   	   	   "example": 200,
-	   	   	   	   	   	   "format": "int64",
-	   	   	   	   	   	   "type": "integer"
-	   	   	   	   	   },
 	   	   	   	   	   "uuid": {
 	   	   	   	   	   	   "description": "The uuid of the failed request",
 	   	   	   	   	   	   "example": "8d218e6c-7a16-4f9f-90f7-cc1d93b9e596",
@@ -10429,8 +10399,8 @@
 	   	   	   	   	   }
 	   	   	   	   },
 	   	   	   	   "required": [
-	   	   	   	   	   "pagination",
-	   	   	   	   	   "statusCode"
+	   	   	   	   	   "data",
+	   	   	   	   	   "pagination"
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
@@ -10657,21 +10627,10 @@
 	   	   	   	   	   "data": {
 	   	   	   	   	   	   "$ref": "#/components/schemas/JobResponseObjectResponseBody"
 	   	   	   	   	   },
-	   	   	   	   	   "errorMessage": {
-	   	   	   	   	   	   "description": "The error message",
-	   	   	   	   	   	   "example": "Invalid Job Id provided",
-	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
 	   	   	   	   	   "id": {
 	   	   	   	   	   	   "description": "The job id of the failed request",
 	   	   	   	   	   	   "example": "1553",
 	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   },
-	   	   	   	   	   "statusCode": {
-	   	   	   	   	   	   "description": "The status code of the request. 200 indicates the request succeeded for this data output. 500 indicates an internal server error.",
-	   	   	   	   	   	   "example": 200,
-	   	   	   	   	   	   "format": "int64",
-	   	   	   	   	   	   "type": "integer"
 	   	   	   	   	   },
 	   	   	   	   	   "uuid": {
 	   	   	   	   	   	   "description": "The uuid of the failed request",
@@ -10680,7 +10639,7 @@
 	   	   	   	   	   }
 	   	   	   	   },
 	   	   	   	   "required": [
-	   	   	   	   	   "statusCode"
+	   	   	   	   	   "data"
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
@@ -11328,19 +11287,32 @@
 	   	   	   	   	   	   "example": "2019-06-13",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
+	   	   	   	   	   "fleetDeviceIds": {
+	   	   	   	   	   	   "description": "Fleet devices to be added to this job (cannot have both industrial assets and fleet devices in the same job)",
+	   	   	   	   	   	   "example": [
+	   	   	   	   	   	   	   1234567,
+	   	   	   	   	   	   	   654321
+	   	   	   	   	   	   ],
+	   	   	   	   	   	   "items": {
+	   	   	   	   	   	   	   "example": 286808158607014600,
+	   	   	   	   	   	   	   "format": "int64",
+	   	   	   	   	   	   	   "type": "integer"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "type": "array"
+	   	   	   	   	   },
 	   	   	   	   	   "id": {
 	   	   	   	   	   	   "description": "Job Id",
 	   	   	   	   	   	   "example": "123-asdf",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "industrialAssetIds": {
-	   	   	   	   	   	   "description": "IndustrialAssets to be added to this job (cannot have both industrial assets and fleet devices in the same job, but must have one or the other)",
+	   	   	   	   	   	   "description": "IndustrialAssets to be added to this job (cannot have both industrial assets and fleet devices in the same job)",
 	   	   	   	   	   	   "example": [
 	   	   	   	   	   	   	   "8d218e6c-7a16-4f9f-90f7-cc1d93b9e596",
 	   	   	   	   	   	   	   "ba84a7e2-9c8d-481f-a248-7cce6b22be9d"
 	   	   	   	   	   	   ],
 	   	   	   	   	   	   "items": {
-	   	   	   	   	   	   	   "example": "Debitis ut quia.",
+	   	   	   	   	   	   	   "example": "Earum cum nam voluptatum nihil.",
 	   	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "type": "array"
@@ -11538,19 +11510,32 @@
 	   	   	   	   	   	   "example": "2019-06-13",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
+	   	   	   	   	   "fleetDeviceIds": {
+	   	   	   	   	   	   "description": "Fleet devices to be added to this job (cannot have both industrial assets and fleet devices in the same job)",
+	   	   	   	   	   	   "example": [
+	   	   	   	   	   	   	   1234567,
+	   	   	   	   	   	   	   654321
+	   	   	   	   	   	   ],
+	   	   	   	   	   	   "items": {
+	   	   	   	   	   	   	   "example": 5169127956086038000,
+	   	   	   	   	   	   	   "format": "int64",
+	   	   	   	   	   	   	   "type": "integer"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "type": "array"
+	   	   	   	   	   },
 	   	   	   	   	   "id": {
 	   	   	   	   	   	   "description": "Job Id",
 	   	   	   	   	   	   "example": "123-asdf",
 	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   },
 	   	   	   	   	   "industrialAssetIds": {
-	   	   	   	   	   	   "description": "IndustrialAssets to be added to this job (cannot have both industrial assets and fleet devices in the same job, but must have one or the other)",
+	   	   	   	   	   	   "description": "IndustrialAssets to be added to this job (cannot have both industrial assets and fleet devices in the same job)",
 	   	   	   	   	   	   "example": [
 	   	   	   	   	   	   	   "8d218e6c-7a16-4f9f-90f7-cc1d93b9e596",
 	   	   	   	   	   	   	   "ba84a7e2-9c8d-481f-a248-7cce6b22be9d"
 	   	   	   	   	   	   ],
 	   	   	   	   	   	   "items": {
-	   	   	   	   	   	   	   "example": "Sunt molestiae fuga quisquam distinctio nostrum.",
+	   	   	   	   	   	   	   "example": "Quisquam distinctio nostrum rerum debitis ut quia.",
 	   	   	   	   	   	   	   "type": "string"
 	   	   	   	   	   	   },
 	   	   	   	   	   	   "type": "array"
@@ -27791,6 +27776,27 @@
 	   	   	   	   ],
 	   	   	   	   "type": "object"
 	   	   	   },
+	   	   	   "fleetDeviceObjectResponseBody": {
+	   	   	   	   "description": "fleetDeviceObject",
+	   	   	   	   "properties": {
+	   	   	   	   	   "id": {
+	   	   	   	   	   	   "description": "Id of the device",
+	   	   	   	   	   	   "example": 123456,
+	   	   	   	   	   	   "format": "int64",
+	   	   	   	   	   	   "type": "integer"
+	   	   	   	   	   },
+	   	   	   	   	   "name": {
+	   	   	   	   	   	   "description": "Name of the device",
+	   	   	   	   	   	   "example": "My Device",
+	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "required": [
+	   	   	   	   	   "id",
+	   	   	   	   	   "name"
+	   	   	   	   ],
+	   	   	   	   "type": "object"
+	   	   	   },
 	   	   	   "gatewayTiny": {
 	   	   	   	   "description": "A minified gateway including serial number and model.",
 	   	   	   	   "properties": {
@@ -30774,6 +30780,637 @@
 	   	   	   	   	   "Beta APIs"
 	   	   	   	   ],
 	   	   	   	   "x-codegen-request-body-name": "UpdateEngineImmobilizerStateRequestBody"
+	   	   	   }
+	   	   },
+	   	   "/beta/industrial/jobs": {
+	   	   	   "delete": {
+	   	   	   	   "description": "Deletes an existing job\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+	   	   	   	   "operationId": "deleteJob",
+	   	   	   	   "parameters": [
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": "A jobId or uuid in STRING format. JobId must be prefixed with `jobId:`(Examples: `\"1234567\"`, `\"jobId:98765\"`).",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "id",
+	   	   	   	   	   	   "required": true,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   }
+	   	   	   	   ],
+	   	   	   	   "responses": {
+	   	   	   	   	   "200": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsDeleteJobResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "OK response."
+	   	   	   	   	   },
+	   	   	   	   	   "401": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsDeleteJobUnauthorizedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Unauthorized response."
+	   	   	   	   	   },
+	   	   	   	   	   "404": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsDeleteJobNotFoundErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Found response."
+	   	   	   	   	   },
+	   	   	   	   	   "405": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsDeleteJobMethodNotAllowedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Method Not Allowed response."
+	   	   	   	   	   },
+	   	   	   	   	   "429": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsDeleteJobTooManyRequestsErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Too Many Requests response."
+	   	   	   	   	   },
+	   	   	   	   	   "500": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsDeleteJobInternalServerErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Internal Server Error response."
+	   	   	   	   	   },
+	   	   	   	   	   "501": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsDeleteJobNotImplementedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Implemented response."
+	   	   	   	   	   },
+	   	   	   	   	   "502": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsDeleteJobBadGatewayErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Gateway response."
+	   	   	   	   	   },
+	   	   	   	   	   "503": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsDeleteJobServiceUnavailableErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Service Unavailable response."
+	   	   	   	   	   },
+	   	   	   	   	   "504": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsDeleteJobGatewayTimeoutErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Gateway Timeout response."
+	   	   	   	   	   },
+	   	   	   	   	   "default": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsDeleteJobBadRequestErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Request response."
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "summary": "[beta] Deletes an existing job",
+	   	   	   	   "tags": [
+	   	   	   	   	   "Beta APIs"
+	   	   	   	   ]
+	   	   	   },
+	   	   	   "get": {
+	   	   	   	   "description": "Fetches jobs based on id/uuid or provided filters\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+	   	   	   	   "operationId": "getJobs",
+	   	   	   	   "parameters": [
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": "A jobId or uuid in STRING format. JobId must be prefixed with `jobId:`(Examples: `\"1234567\"`, `\"jobId:98765\"`).",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "id",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": " A start date in RFC 3339 format. This is a date only without an associated time. Example: `2019-06-13`",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "startDate",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": " An end date in RFC 3339 format. This is a date only without an associated time. Must be greater than or equal to the start date. Example: `2019-07-21`",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "endDate",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": "An array of industrialAssetIds in STRING format. (Examples: `[\"8d218e6c-7a16-4f9f-90f7-cc1d93b9e596\", \"ba84a7e2-9c8d-481f-a248-7cce6b22be9df\"]`).",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "industrialAssetIds",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "items": {
+	   	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "type": "array"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": "An array of fleetDeviceIds in INTEGER format. (Examples: `[123456, 654321]`).",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "fleetDeviceIds",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "items": {
+	   	   	   	   	   	   	   	   "type": "integer"
+	   	   	   	   	   	   	   },
+	   	   	   	   	   	   	   "type": "array"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": "A job status in STRING format. Job statuses can be one of three (ignores case): `\"active\", \"scheduled\", \"completed\"`",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "status",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "enum": [
+	   	   	   	   	   	   	   	   "active",
+	   	   	   	   	   	   	   	   "scheduled",
+	   	   	   	   	   	   	   	   "completed"
+	   	   	   	   	   	   	   ],
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": "Customer name to filter by",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "customerName",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   },
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "after",
+	   	   	   	   	   	   "required": false,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   }
+	   	   	   	   ],
+	   	   	   	   "responses": {
+	   	   	   	   	   "200": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsGetJobsResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "OK response."
+	   	   	   	   	   },
+	   	   	   	   	   "401": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsGetJobsUnauthorizedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Unauthorized response."
+	   	   	   	   	   },
+	   	   	   	   	   "404": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsGetJobsNotFoundErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Found response."
+	   	   	   	   	   },
+	   	   	   	   	   "405": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsGetJobsMethodNotAllowedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Method Not Allowed response."
+	   	   	   	   	   },
+	   	   	   	   	   "429": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsGetJobsTooManyRequestsErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Too Many Requests response."
+	   	   	   	   	   },
+	   	   	   	   	   "500": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsGetJobsInternalServerErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Internal Server Error response."
+	   	   	   	   	   },
+	   	   	   	   	   "501": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsGetJobsNotImplementedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Implemented response."
+	   	   	   	   	   },
+	   	   	   	   	   "502": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsGetJobsBadGatewayErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Gateway response."
+	   	   	   	   	   },
+	   	   	   	   	   "503": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsGetJobsServiceUnavailableErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Service Unavailable response."
+	   	   	   	   	   },
+	   	   	   	   	   "504": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsGetJobsGatewayTimeoutErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Gateway Timeout response."
+	   	   	   	   	   },
+	   	   	   	   	   "default": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsGetJobsBadRequestErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Request response."
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "summary": "[beta] Fetches all jobs",
+	   	   	   	   "tags": [
+	   	   	   	   	   "Beta APIs"
+	   	   	   	   ]
+	   	   	   },
+	   	   	   "patch": {
+	   	   	   	   "description": "Patches an existing job and returns it\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+	   	   	   	   "operationId": "patchJob",
+	   	   	   	   "parameters": [
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": "A jobId or uuid in STRING format. JobId must be prefixed with `jobId:`(Examples: `\"1234567\"`, `\"jobId:98765\"`).",
+	   	   	   	   	   	   "explode": true,
+	   	   	   	   	   	   "in": "query",
+	   	   	   	   	   	   "name": "id",
+	   	   	   	   	   	   "required": true,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "form"
+	   	   	   	   	   }
+	   	   	   	   ],
+	   	   	   	   "requestBody": {
+	   	   	   	   	   "content": {
+	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsPatchJobRequestBody"
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   }
+	   	   	   	   	   },
+	   	   	   	   	   "required": true
+	   	   	   	   },
+	   	   	   	   "responses": {
+	   	   	   	   	   "200": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsPatchJobResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "OK response."
+	   	   	   	   	   },
+	   	   	   	   	   "401": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsPatchJobUnauthorizedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Unauthorized response."
+	   	   	   	   	   },
+	   	   	   	   	   "404": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsPatchJobNotFoundErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Found response."
+	   	   	   	   	   },
+	   	   	   	   	   "405": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsPatchJobMethodNotAllowedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Method Not Allowed response."
+	   	   	   	   	   },
+	   	   	   	   	   "429": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsPatchJobTooManyRequestsErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Too Many Requests response."
+	   	   	   	   	   },
+	   	   	   	   	   "500": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsPatchJobInternalServerErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Internal Server Error response."
+	   	   	   	   	   },
+	   	   	   	   	   "501": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsPatchJobNotImplementedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Implemented response."
+	   	   	   	   	   },
+	   	   	   	   	   "502": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsPatchJobBadGatewayErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Gateway response."
+	   	   	   	   	   },
+	   	   	   	   	   "503": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsPatchJobServiceUnavailableErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Service Unavailable response."
+	   	   	   	   	   },
+	   	   	   	   	   "504": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsPatchJobGatewayTimeoutErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Gateway Timeout response."
+	   	   	   	   	   },
+	   	   	   	   	   "default": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsPatchJobBadRequestErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Request response."
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "summary": "[beta] Patches a job",
+	   	   	   	   "tags": [
+	   	   	   	   	   "Beta APIs"
+	   	   	   	   ],
+	   	   	   	   "x-codegen-request-body-name": "PatchJobRequestBody"
+	   	   	   },
+	   	   	   "post": {
+	   	   	   	   "description": "Creates a new job and returns it\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+	   	   	   	   "operationId": "createJob",
+	   	   	   	   "requestBody": {
+	   	   	   	   	   "content": {
+	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsCreateJobRequestBody"
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   }
+	   	   	   	   	   },
+	   	   	   	   	   "required": true
+	   	   	   	   },
+	   	   	   	   "responses": {
+	   	   	   	   	   "200": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsCreateJobResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "OK response."
+	   	   	   	   	   },
+	   	   	   	   	   "401": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsCreateJobUnauthorizedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Unauthorized response."
+	   	   	   	   	   },
+	   	   	   	   	   "404": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsCreateJobNotFoundErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Found response."
+	   	   	   	   	   },
+	   	   	   	   	   "405": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsCreateJobMethodNotAllowedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Method Not Allowed response."
+	   	   	   	   	   },
+	   	   	   	   	   "429": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsCreateJobTooManyRequestsErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Too Many Requests response."
+	   	   	   	   	   },
+	   	   	   	   	   "500": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsCreateJobInternalServerErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Internal Server Error response."
+	   	   	   	   	   },
+	   	   	   	   	   "501": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsCreateJobNotImplementedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Implemented response."
+	   	   	   	   	   },
+	   	   	   	   	   "502": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsCreateJobBadGatewayErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Gateway response."
+	   	   	   	   	   },
+	   	   	   	   	   "503": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsCreateJobServiceUnavailableErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Service Unavailable response."
+	   	   	   	   	   },
+	   	   	   	   	   "504": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsCreateJobGatewayTimeoutErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Gateway Timeout response."
+	   	   	   	   	   },
+	   	   	   	   	   "default": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsCreateJobBadRequestErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Request response."
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "summary": "[beta] Create a job",
+	   	   	   	   "tags": [
+	   	   	   	   	   "Beta APIs"
+	   	   	   	   ],
+	   	   	   	   "x-codegen-request-body-name": "CreateJobRequestBody"
 	   	   	   }
 	   	   },
 	   	   "/contacts": {
@@ -39125,623 +39762,6 @@
 	   	   	   	   "tags": [
 	   	   	   	   	   "Preview APIs"
 	   	   	   	   ]
-	   	   	   }
-	   	   },
-	   	   "/preview/industrial/jobs": {
-	   	   	   "delete": {
-	   	   	   	   "description": "Deletes an existing job\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-	   	   	   	   "operationId": "deleteJob",
-	   	   	   	   "parameters": [
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": "A jobId or uuid in STRING format. JobId must be prefixed with `jobId:`(Examples: `\"1234567\"`, `\"jobId:98765\"`).",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "id",
-	   	   	   	   	   	   "required": true,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   }
-	   	   	   	   ],
-	   	   	   	   "responses": {
-	   	   	   	   	   "200": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsDeleteJobResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "OK response."
-	   	   	   	   	   },
-	   	   	   	   	   "401": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsDeleteJobUnauthorizedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Unauthorized response."
-	   	   	   	   	   },
-	   	   	   	   	   "404": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsDeleteJobNotFoundErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Found response."
-	   	   	   	   	   },
-	   	   	   	   	   "405": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsDeleteJobMethodNotAllowedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Method Not Allowed response."
-	   	   	   	   	   },
-	   	   	   	   	   "429": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsDeleteJobTooManyRequestsErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Too Many Requests response."
-	   	   	   	   	   },
-	   	   	   	   	   "500": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsDeleteJobInternalServerErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Internal Server Error response."
-	   	   	   	   	   },
-	   	   	   	   	   "501": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsDeleteJobNotImplementedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Implemented response."
-	   	   	   	   	   },
-	   	   	   	   	   "502": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsDeleteJobBadGatewayErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Gateway response."
-	   	   	   	   	   },
-	   	   	   	   	   "503": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsDeleteJobServiceUnavailableErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Service Unavailable response."
-	   	   	   	   	   },
-	   	   	   	   	   "504": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsDeleteJobGatewayTimeoutErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Gateway Timeout response."
-	   	   	   	   	   },
-	   	   	   	   	   "default": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsDeleteJobBadRequestErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Request response."
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "summary": "[preview] Deletes an existing job",
-	   	   	   	   "tags": [
-	   	   	   	   	   "Preview APIs"
-	   	   	   	   ]
-	   	   	   },
-	   	   	   "get": {
-	   	   	   	   "description": "Fetches jobs based on id/uuid or provided filters\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-	   	   	   	   "operationId": "getJobs",
-	   	   	   	   "parameters": [
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": "A jobId or uuid in STRING format. JobId must be prefixed with `jobId:`(Examples: `\"1234567\"`, `\"jobId:98765\"`).",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "id",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": " A start date in RFC 3339 format. This is a date only without an associated time. Example: `2019-06-13`",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "startDate",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": " An end date in RFC 3339 format. This is a date only without an associated time. Must be greater than or equal to the start date. Example: `2019-07-21`",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "endDate",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": "An array of industrialAssetIds in STRING format. (Examples: `[\"8d218e6c-7a16-4f9f-90f7-cc1d93b9e596\", \"ba84a7e2-9c8d-481f-a248-7cce6b22be9df\"]`).",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "industrialAssetIds",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "items": {
-	   	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   	   },
-	   	   	   	   	   	   	   "type": "array"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": "A job status in STRING format. Job statuses can be one of three (ignores case): `\"active\", \"scheduled\", \"completed\"`",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "status",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "enum": [
-	   	   	   	   	   	   	   	   "active",
-	   	   	   	   	   	   	   	   "scheduled",
-	   	   	   	   	   	   	   	   "completed"
-	   	   	   	   	   	   	   ],
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": "Customer name to filter by",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "customerName",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   },
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": " If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "after",
-	   	   	   	   	   	   "required": false,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   }
-	   	   	   	   ],
-	   	   	   	   "responses": {
-	   	   	   	   	   "200": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsGetJobsResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "OK response."
-	   	   	   	   	   },
-	   	   	   	   	   "401": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsGetJobsUnauthorizedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Unauthorized response."
-	   	   	   	   	   },
-	   	   	   	   	   "404": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsGetJobsNotFoundErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Found response."
-	   	   	   	   	   },
-	   	   	   	   	   "405": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsGetJobsMethodNotAllowedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Method Not Allowed response."
-	   	   	   	   	   },
-	   	   	   	   	   "429": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsGetJobsTooManyRequestsErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Too Many Requests response."
-	   	   	   	   	   },
-	   	   	   	   	   "500": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsGetJobsInternalServerErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Internal Server Error response."
-	   	   	   	   	   },
-	   	   	   	   	   "501": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsGetJobsNotImplementedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Implemented response."
-	   	   	   	   	   },
-	   	   	   	   	   "502": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsGetJobsBadGatewayErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Gateway response."
-	   	   	   	   	   },
-	   	   	   	   	   "503": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsGetJobsServiceUnavailableErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Service Unavailable response."
-	   	   	   	   	   },
-	   	   	   	   	   "504": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsGetJobsGatewayTimeoutErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Gateway Timeout response."
-	   	   	   	   	   },
-	   	   	   	   	   "default": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsGetJobsBadRequestErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Request response."
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "summary": "[preview] Fetches all jobs",
-	   	   	   	   "tags": [
-	   	   	   	   	   "Preview APIs"
-	   	   	   	   ]
-	   	   	   },
-	   	   	   "patch": {
-	   	   	   	   "description": "Patches an existing job and returns it\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-	   	   	   	   "operationId": "patchJob",
-	   	   	   	   "parameters": [
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": "A jobId or uuid in STRING format. JobId must be prefixed with `jobId:`(Examples: `\"1234567\"`, `\"jobId:98765\"`).",
-	   	   	   	   	   	   "explode": true,
-	   	   	   	   	   	   "in": "query",
-	   	   	   	   	   	   "name": "id",
-	   	   	   	   	   	   "required": true,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "form"
-	   	   	   	   	   }
-	   	   	   	   ],
-	   	   	   	   "requestBody": {
-	   	   	   	   	   "content": {
-	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsPatchJobRequestBody"
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   }
-	   	   	   	   	   },
-	   	   	   	   	   "required": true
-	   	   	   	   },
-	   	   	   	   "responses": {
-	   	   	   	   	   "200": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsPatchJobResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "OK response."
-	   	   	   	   	   },
-	   	   	   	   	   "401": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsPatchJobUnauthorizedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Unauthorized response."
-	   	   	   	   	   },
-	   	   	   	   	   "404": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsPatchJobNotFoundErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Found response."
-	   	   	   	   	   },
-	   	   	   	   	   "405": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsPatchJobMethodNotAllowedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Method Not Allowed response."
-	   	   	   	   	   },
-	   	   	   	   	   "429": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsPatchJobTooManyRequestsErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Too Many Requests response."
-	   	   	   	   	   },
-	   	   	   	   	   "500": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsPatchJobInternalServerErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Internal Server Error response."
-	   	   	   	   	   },
-	   	   	   	   	   "501": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsPatchJobNotImplementedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Implemented response."
-	   	   	   	   	   },
-	   	   	   	   	   "502": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsPatchJobBadGatewayErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Gateway response."
-	   	   	   	   	   },
-	   	   	   	   	   "503": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsPatchJobServiceUnavailableErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Service Unavailable response."
-	   	   	   	   	   },
-	   	   	   	   	   "504": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsPatchJobGatewayTimeoutErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Gateway Timeout response."
-	   	   	   	   	   },
-	   	   	   	   	   "default": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsPatchJobBadRequestErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Request response."
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "summary": "[preview] Patches a job",
-	   	   	   	   "tags": [
-	   	   	   	   	   "Preview APIs"
-	   	   	   	   ],
-	   	   	   	   "x-codegen-request-body-name": "PatchJobRequestBody"
-	   	   	   },
-	   	   	   "post": {
-	   	   	   	   "description": "Creates a new job and returns it\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-	   	   	   	   "operationId": "createJob",
-	   	   	   	   "requestBody": {
-	   	   	   	   	   "content": {
-	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsCreateJobRequestBody"
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   }
-	   	   	   	   	   },
-	   	   	   	   	   "required": true
-	   	   	   	   },
-	   	   	   	   "responses": {
-	   	   	   	   	   "200": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsCreateJobResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "OK response."
-	   	   	   	   	   },
-	   	   	   	   	   "401": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsCreateJobUnauthorizedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Unauthorized response."
-	   	   	   	   	   },
-	   	   	   	   	   "404": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsCreateJobNotFoundErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Found response."
-	   	   	   	   	   },
-	   	   	   	   	   "405": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsCreateJobMethodNotAllowedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Method Not Allowed response."
-	   	   	   	   	   },
-	   	   	   	   	   "429": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsCreateJobTooManyRequestsErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Too Many Requests response."
-	   	   	   	   	   },
-	   	   	   	   	   "500": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsCreateJobInternalServerErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Internal Server Error response."
-	   	   	   	   	   },
-	   	   	   	   	   "501": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsCreateJobNotImplementedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Implemented response."
-	   	   	   	   	   },
-	   	   	   	   	   "502": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsCreateJobBadGatewayErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Gateway response."
-	   	   	   	   	   },
-	   	   	   	   	   "503": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsCreateJobServiceUnavailableErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Service Unavailable response."
-	   	   	   	   	   },
-	   	   	   	   	   "504": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsCreateJobGatewayTimeoutErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Gateway Timeout response."
-	   	   	   	   	   },
-	   	   	   	   	   "default": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/JobsCreateJobBadRequestErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Request response."
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "summary": "[preview] Create a job",
-	   	   	   	   "tags": [
-	   	   	   	   	   "Preview APIs"
-	   	   	   	   ],
-	   	   	   	   "x-codegen-request-body-name": "CreateJobRequestBody"
 	   	   	   }
 	   	   },
 	   	   "/tags": {
