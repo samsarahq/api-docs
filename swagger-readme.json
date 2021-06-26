@@ -28774,6 +28774,141 @@
 	   	   	   	   "x-codegen-request-body-name": "address"
 	   	   	   }
 	   	   },
+	   	   "/beta/aemp/fleet/equipment/{id}": {
+	   	   	   "get": {
+	   	   	   	   "description": "Get an equipment following the AEMP ISO 15143-3 standard.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+	   	   	   	   "operationId": "getAempEquipment",
+	   	   	   	   "parameters": [
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": "The Samsara equipment id or external id. This is automatically generated when the Equipment object is created. It cannot be changed.",
+	   	   	   	   	   	   "explode": false,
+	   	   	   	   	   	   "in": "path",
+	   	   	   	   	   	   "name": "id",
+	   	   	   	   	   	   "required": true,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "simple"
+	   	   	   	   	   }
+	   	   	   	   ],
+	   	   	   	   "responses": {
+	   	   	   	   	   "200": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/AempEquipmentGetAempEquipmentResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "OK response."
+	   	   	   	   	   },
+	   	   	   	   	   "401": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/AempEquipmentGetAempEquipmentUnauthorizedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Unauthorized response."
+	   	   	   	   	   },
+	   	   	   	   	   "404": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/AempEquipmentGetAempEquipmentNotFoundErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Found response."
+	   	   	   	   	   },
+	   	   	   	   	   "405": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/AempEquipmentGetAempEquipmentMethodNotAllowedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Method Not Allowed response."
+	   	   	   	   	   },
+	   	   	   	   	   "429": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/AempEquipmentGetAempEquipmentTooManyRequestsErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Too Many Requests response."
+	   	   	   	   	   },
+	   	   	   	   	   "500": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/AempEquipmentGetAempEquipmentInternalServerErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Internal Server Error response."
+	   	   	   	   	   },
+	   	   	   	   	   "501": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/AempEquipmentGetAempEquipmentNotImplementedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Implemented response."
+	   	   	   	   	   },
+	   	   	   	   	   "502": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/AempEquipmentGetAempEquipmentBadGatewayErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Gateway response."
+	   	   	   	   	   },
+	   	   	   	   	   "503": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/AempEquipmentGetAempEquipmentServiceUnavailableErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Service Unavailable response."
+	   	   	   	   	   },
+	   	   	   	   	   "504": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/AempEquipmentGetAempEquipmentGatewayTimeoutErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Gateway Timeout response."
+	   	   	   	   	   },
+	   	   	   	   	   "default": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/AempEquipmentGetAempEquipmentBadRequestErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Request response."
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "summary": "[beta] Get an AEMP equipment",
+	   	   	   	   "tags": [
+	   	   	   	   	   "Beta APIs"
+	   	   	   	   ]
+	   	   	   }
+	   	   },
 	   	   "/beta/attributes": {
 	   	   	   "get": {
 	   	   	   	   "description": "Fetch all attributes in an organization associated with either drivers or assets. \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
@@ -39491,141 +39626,6 @@
 	   	   	   	   "summary": "Get information about your organization",
 	   	   	   	   "tags": [
 	   	   	   	   	   "Organization Info"
-	   	   	   	   ]
-	   	   	   }
-	   	   },
-	   	   "/preview/aemp/fleet/equipment/{id}": {
-	   	   	   "get": {
-	   	   	   	   "description": "Get an equipment following the AEMP ISO 15143-3 standard.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-	   	   	   	   "operationId": "getAempEquipment",
-	   	   	   	   "parameters": [
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": "The Samsara equipment id or external id. This is automatically generated when the Equipment object is created. It cannot be changed.",
-	   	   	   	   	   	   "explode": false,
-	   	   	   	   	   	   "in": "path",
-	   	   	   	   	   	   "name": "id",
-	   	   	   	   	   	   "required": true,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "simple"
-	   	   	   	   	   }
-	   	   	   	   ],
-	   	   	   	   "responses": {
-	   	   	   	   	   "200": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/AempEquipmentGetAempEquipmentResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "OK response."
-	   	   	   	   	   },
-	   	   	   	   	   "401": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/AempEquipmentGetAempEquipmentUnauthorizedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Unauthorized response."
-	   	   	   	   	   },
-	   	   	   	   	   "404": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/AempEquipmentGetAempEquipmentNotFoundErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Found response."
-	   	   	   	   	   },
-	   	   	   	   	   "405": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/AempEquipmentGetAempEquipmentMethodNotAllowedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Method Not Allowed response."
-	   	   	   	   	   },
-	   	   	   	   	   "429": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/AempEquipmentGetAempEquipmentTooManyRequestsErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Too Many Requests response."
-	   	   	   	   	   },
-	   	   	   	   	   "500": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/AempEquipmentGetAempEquipmentInternalServerErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Internal Server Error response."
-	   	   	   	   	   },
-	   	   	   	   	   "501": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/AempEquipmentGetAempEquipmentNotImplementedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Implemented response."
-	   	   	   	   	   },
-	   	   	   	   	   "502": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/AempEquipmentGetAempEquipmentBadGatewayErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Gateway response."
-	   	   	   	   	   },
-	   	   	   	   	   "503": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/AempEquipmentGetAempEquipmentServiceUnavailableErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Service Unavailable response."
-	   	   	   	   	   },
-	   	   	   	   	   "504": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/AempEquipmentGetAempEquipmentGatewayTimeoutErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Gateway Timeout response."
-	   	   	   	   	   },
-	   	   	   	   	   "default": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/AempEquipmentGetAempEquipmentBadRequestErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Request response."
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "summary": "[preview] Get an AEMP equipment",
-	   	   	   	   "tags": [
-	   	   	   	   	   "Preview APIs"
 	   	   	   	   ]
 	   	   	   }
 	   	   },

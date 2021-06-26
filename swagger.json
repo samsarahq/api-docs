@@ -267,6 +267,105 @@
         }
       ]
     },
+    "/beta/aemp/fleet/equipment/{id}": {
+      "get": {
+        "description": "Get an equipment following the AEMP ISO 15143-3 standard.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Beta APIs"
+        ],
+        "summary": "[beta] Get an AEMP equipment",
+        "operationId": "getAempEquipment",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "The Samsara equipment id or external id. This is automatically generated when the Equipment object is created. It cannot be changed.",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/AempEquipmentGetAempEquipmentResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/AempEquipmentGetAempEquipmentUnauthorizedErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/AempEquipmentGetAempEquipmentNotFoundErrorResponseBody"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/AempEquipmentGetAempEquipmentMethodNotAllowedErrorResponseBody"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/AempEquipmentGetAempEquipmentTooManyRequestsErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/AempEquipmentGetAempEquipmentInternalServerErrorResponseBody"
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/AempEquipmentGetAempEquipmentNotImplementedErrorResponseBody"
+            }
+          },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/AempEquipmentGetAempEquipmentBadGatewayErrorResponseBody"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/AempEquipmentGetAempEquipmentServiceUnavailableErrorResponseBody"
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/AempEquipmentGetAempEquipmentGatewayTimeoutErrorResponseBody"
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/AempEquipmentGetAempEquipmentBadRequestErrorResponseBody"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "The Samsara equipment id or external id. This is automatically generated when the Equipment object is created. It cannot be changed.",
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
     "/beta/attributes": {
       "get": {
         "description": "Fetch all attributes in an organization associated with either drivers or assets. \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
@@ -7697,105 +7796,6 @@
           }
         }
       }
-    },
-    "/preview/aemp/fleet/equipment/{id}": {
-      "get": {
-        "description": "Get an equipment following the AEMP ISO 15143-3 standard.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-        "schemes": [
-          "https"
-        ],
-        "tags": [
-          "Preview APIs"
-        ],
-        "summary": "[preview] Get an AEMP equipment",
-        "operationId": "getAempEquipment",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "The Samsara equipment id or external id. This is automatically generated when the Equipment object is created. It cannot be changed.",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK response.",
-            "schema": {
-              "$ref": "#/definitions/AempEquipmentGetAempEquipmentResponseBody"
-            }
-          },
-          "401": {
-            "description": "Unauthorized response.",
-            "schema": {
-              "$ref": "#/definitions/AempEquipmentGetAempEquipmentUnauthorizedErrorResponseBody"
-            }
-          },
-          "404": {
-            "description": "Not Found response.",
-            "schema": {
-              "$ref": "#/definitions/AempEquipmentGetAempEquipmentNotFoundErrorResponseBody"
-            }
-          },
-          "405": {
-            "description": "Method Not Allowed response.",
-            "schema": {
-              "$ref": "#/definitions/AempEquipmentGetAempEquipmentMethodNotAllowedErrorResponseBody"
-            }
-          },
-          "429": {
-            "description": "Too Many Requests response.",
-            "schema": {
-              "$ref": "#/definitions/AempEquipmentGetAempEquipmentTooManyRequestsErrorResponseBody"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error response.",
-            "schema": {
-              "$ref": "#/definitions/AempEquipmentGetAempEquipmentInternalServerErrorResponseBody"
-            }
-          },
-          "501": {
-            "description": "Not Implemented response.",
-            "schema": {
-              "$ref": "#/definitions/AempEquipmentGetAempEquipmentNotImplementedErrorResponseBody"
-            }
-          },
-          "502": {
-            "description": "Bad Gateway response.",
-            "schema": {
-              "$ref": "#/definitions/AempEquipmentGetAempEquipmentBadGatewayErrorResponseBody"
-            }
-          },
-          "503": {
-            "description": "Service Unavailable response.",
-            "schema": {
-              "$ref": "#/definitions/AempEquipmentGetAempEquipmentServiceUnavailableErrorResponseBody"
-            }
-          },
-          "504": {
-            "description": "Gateway Timeout response.",
-            "schema": {
-              "$ref": "#/definitions/AempEquipmentGetAempEquipmentGatewayTimeoutErrorResponseBody"
-            }
-          },
-          "default": {
-            "description": "Bad Request response.",
-            "schema": {
-              "$ref": "#/definitions/AempEquipmentGetAempEquipmentBadRequestErrorResponseBody"
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "type": "string",
-          "description": "The Samsara equipment id or external id. This is automatically generated when the Equipment object is created. It cannot be changed.",
-          "name": "id",
-          "in": "path",
-          "required": true
-        }
-      ]
     },
     "/preview/fleet/safety-events/audit-logs/feed": {
       "get": {
