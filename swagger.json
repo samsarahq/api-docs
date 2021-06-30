@@ -1748,19 +1748,19 @@
         "parameters": [
           {
             "type": "string",
-            "description": "A jobId or uuid in STRING format. JobId must be prefixed with `jobId:`(Examples: `\"1234567\"`, `\"jobId:98765\"`).",
+            "description": "A jobId or uuid in STRING format. JobId must be prefixed with `jobId:`(Examples: `\"8d218e6c-7a16-4f9f-90f7-cc1d93b9e596\"`, `\"jobId:98765\"`).",
             "name": "id",
             "in": "query"
           },
           {
             "type": "string",
-            "description": " A start date in RFC 3339 format. This is a date only without an associated time. Example: `2019-06-13`",
+            "description": " A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
             "name": "startDate",
             "in": "query"
           },
           {
             "type": "string",
-            "description": " An end date in RFC 3339 format. This is a date only without an associated time. Must be greater than or equal to the start date. Example: `2019-07-21`",
+            "description": " An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).",
             "name": "endDate",
             "in": "query"
           },
@@ -1770,7 +1770,7 @@
               "type": "string"
             },
             "collectionFormat": "multi",
-            "description": "An array of industrialAssetIds in STRING format. (Examples: `[\"8d218e6c-7a16-4f9f-90f7-cc1d93b9e596\", \"ba84a7e2-9c8d-481f-a248-7cce6b22be9df\"]`).",
+            "description": "IndustrialAssetId in STRING format. (Example: `\"8d218e6c-7a16-4f9f-90f7-cc1d93b9e596\"`).",
             "name": "industrialAssetIds",
             "in": "query"
           },
@@ -1780,7 +1780,7 @@
               "type": "integer"
             },
             "collectionFormat": "multi",
-            "description": "An array of fleetDeviceIds in INTEGER format. (Examples: `[123456, 654321]`).",
+            "description": "FleetDeviceId in INTEGER format. (Example: `123456`).",
             "name": "fleetDeviceIds",
             "in": "query"
           },
@@ -1979,7 +1979,7 @@
         "parameters": [
           {
             "type": "string",
-            "description": "A jobId or uuid in STRING format. JobId must be prefixed with `jobId:`(Examples: `\"1234567\"`, `\"jobId:98765\"`).",
+            "description": "A jobId or uuid in STRING format. JobId must be prefixed with `jobId:`(Examples: `\"8d218e6c-7a16-4f9f-90f7-cc1d93b9e596\"`, `\"jobId:98765\"`).",
             "name": "id",
             "in": "query",
             "required": true
@@ -2067,7 +2067,7 @@
         "parameters": [
           {
             "type": "string",
-            "description": "A jobId or uuid in STRING format. JobId must be prefixed with `jobId:`(Examples: `\"1234567\"`, `\"jobId:98765\"`).",
+            "description": "A jobId or uuid in STRING format. JobId must be prefixed with `jobId:`(Examples: `\"8d218e6c-7a16-4f9f-90f7-cc1d93b9e596\"`, `\"jobId:98765\"`).",
             "name": "id",
             "in": "query",
             "required": true
@@ -18897,7 +18897,7 @@
         "endDate": {
           "description": "End date of job in RFC 3339 format",
           "type": "string",
-          "example": "2019-06-13"
+          "example": "2019-06-13T19:08:25Z"
         },
         "fleetDevices": {
           "description": "fleet devices in this job (cannot have both industrial assets and fleet devices in the same job)",
@@ -18937,7 +18937,7 @@
         "startDate": {
           "description": "Start date of job in RFC 3339 format",
           "type": "string",
-          "example": "2019-06-13"
+          "example": "2019-06-13T19:08:25Z"
         },
         "status": {
           "description": "The current job status",
@@ -20446,7 +20446,7 @@
         "endDate": {
           "description": "End date of job in RFC 3339 format. Must be greater than or equal to the start date",
           "type": "string",
-          "example": "2019-06-13"
+          "example": "2019-06-13T19:08:25Z"
         },
         "fleetDeviceIds": {
           "description": "Fleet devices to be added to this job (cannot have both industrial assets and fleet devices in the same job)",
@@ -20464,7 +20464,7 @@
         "id": {
           "description": "Job Id",
           "type": "string",
-          "example": "123-asdf"
+          "example": "8d218e6c-7a16-4f9f-90f7-cc1d93b9e596"
         },
         "industrialAssetIds": {
           "description": "IndustrialAssets to be added to this job (cannot have both industrial assets and fleet devices in the same job)",
@@ -20492,7 +20492,7 @@
         "startDate": {
           "description": "Start date of job in RFC 3339 format.",
           "type": "string",
-          "example": "2019-06-13"
+          "example": "2019-06-13T19:08:25Z"
         }
       }
     },
@@ -20675,7 +20675,7 @@
         "endDate": {
           "description": "End date of job in RFC 3339 format. Must be greater than or equal to the start date",
           "type": "string",
-          "example": "2019-06-13"
+          "example": "2019-06-13T19:08:25Z"
         },
         "fleetDeviceIds": {
           "description": "Fleet devices to be added to this job (cannot have both industrial assets and fleet devices in the same job)",
@@ -20693,7 +20693,7 @@
         "id": {
           "description": "Job Id",
           "type": "string",
-          "example": "123-asdf"
+          "example": "8d218e6c-7a16-4f9f-90f7-cc1d93b9e596"
         },
         "industrialAssetIds": {
           "description": "IndustrialAssets to be added to this job (cannot have both industrial assets and fleet devices in the same job)",
@@ -20721,7 +20721,7 @@
         "startDate": {
           "description": "Start date of job in RFC 3339 format.",
           "type": "string",
-          "example": "2019-06-13"
+          "example": "2019-06-13T19:08:25Z"
         }
       }
     },
