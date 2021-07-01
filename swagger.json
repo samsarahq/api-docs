@@ -11040,65 +11040,6 @@
         }
       }
     },
-    "BehaviorLabelsObjectResponseBody": {
-      "description": "The most up-to-date behavior labels associated with the safety event. These labels can be updated by the Safety Report Admin.",
-      "type": "object",
-      "properties": {
-        "label": {
-          "description": "The label associated with the safety event. This list often changes, so it is recommended that clients gracefully handle any types not enumerated in this list.",
-          "type": "string",
-          "enum": [
-            "invalid",
-            "genericTailgating",
-            "genericDistraction",
-            "defensiveDriving",
-            "rollingStop",
-            "nearCollision",
-            "speeding",
-            "obstructedCamera",
-            "didNotYield",
-            "noSeatbelt",
-            "mobileUsage",
-            "drowsy",
-            "laneDeparture",
-            "followingDistanceSevere",
-            "followingDistanceModerate",
-            "lateResponse",
-            "acceleration",
-            "braking",
-            "harshTurn",
-            "crash",
-            "rolloverProtection",
-            "yawControl",
-            "ranRedLight",
-            "forwardCollisionWarning",
-            "eatingDrinking",
-            "smoking",
-            "followingDistance",
-            "edgeDistractedDriving",
-            "policyViolationMask",
-            "eating",
-            "drinking",
-            "edgeRailroadCrossingViolation"
-          ],
-          "example": "genericTailgating"
-        },
-        "source": {
-          "description": "The source of the label associated with the safety event.",
-          "type": "string",
-          "enum": [
-            "invalid",
-            "system",
-            "samsaraUser",
-            "customerUser",
-            "dataMigration",
-            "device",
-            "driverUser"
-          ],
-          "example": "automated"
-        }
-      }
-    },
     "CameraMediaGetCameraMediaBadGatewayErrorResponseBody": {
       "description": "Bad Gateway",
       "type": "object",
@@ -14633,22 +14574,6 @@
       "type": "string",
       "maxLength": 4096,
       "example": "Also goes by the nickname Furious Fred."
-    },
-    "DriverObjectResponseBody": {
-      "description": "A minified driver object.",
-      "type": "object",
-      "properties": {
-        "id": {
-          "description": "ID of the driver.",
-          "type": "string",
-          "example": "0987"
-        },
-        "name": {
-          "description": "Name of the driver.",
-          "type": "string",
-          "example": "Driver Name"
-        }
-      }
     },
     "DriverPassword": {
       "description": "Password that the driver can use to login to the Samsara driver app.",
@@ -22634,27 +22559,16 @@
       "description": "Safety event activity feed item.",
       "type": "object",
       "required": [
+        "id",
         "time",
         "type",
-        "operation",
-        "id",
         "safetyEvent"
       ],
       "properties": {
         "id": {
-          "description": "The ID of the activity feed line item.",
+          "description": "The ID of the activity event feed line item.",
           "type": "string",
-          "example": "212014918174029-1550954461759-1622151765"
-        },
-        "operation": {
-          "description": "The type of operation that occured in the safety event.",
-          "type": "string",
-          "enum": [
-            "create",
-            "update",
-            "delete"
-          ],
-          "example": "create"
+          "example": "1622151765-212014918174029-1550954461759"
         },
         "safetyEvent": {
           "$ref": "#/definitions/SafetyEventObjectResponseBody"
@@ -22775,6 +22689,17 @@
     "SafetyEventDriver": {
       "$ref": "#/definitions/driverTinyResponse"
     },
+    "SafetyEventDriverObjectResponseBody": {
+      "description": "A minified driver object.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "ID of the driver.",
+          "type": "string",
+          "example": "0987"
+        }
+      }
+    },
     "SafetyEventId": {
       "description": "The unique Samsara ID of the safety event.",
       "type": "string",
@@ -22792,39 +22717,13 @@
       "description": "The safety event that was updated.",
       "type": "object",
       "properties": {
-        "behaviorLabels": {
-          "description": "List of behavior labels associated with this safety event.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/BehaviorLabelsObjectResponseBody"
-          }
-        },
-        "downloadForwardVideoUrl": {
-          "description": "URL to download the forward video.",
-          "type": "string",
-          "example": "https://s3.console.aws.amazon.com/s3/buckets/samsara-dashcam-videos/21575/212014918400828/1553060687222/huKA7IhpBV-camera-video-segment-1244214895.mp4"
-        },
-        "downloadInwardVideoUrl": {
-          "description": "URL to download the inward video.",
-          "type": "string",
-          "example": "https://s3.console.aws.amazon.com/s3/buckets/samsara-dashcam-videos/21575/212014918400828/1553060687222/huKA7IhpBV-camera-video-segment-1244214895.mp4"
-        },
         "driver": {
-          "$ref": "#/definitions/DriverObjectResponseBody"
+          "$ref": "#/definitions/SafetyEventDriverObjectResponseBody"
         },
         "id": {
           "description": "The unique Samsara ID of the safety event.",
           "type": "string",
           "example": "212014918174029-1550954461759"
-        },
-        "location": {
-          "$ref": "#/definitions/locationResponseBody"
-        },
-        "maxAccelerationGForce": {
-          "description": "The maximum acceleration value as a multiplier on the force of gravity (g).",
-          "type": "number",
-          "format": "double",
-          "example": 0.123
         },
         "time": {
           "description": "The time the safety event occurred in RFC 3339 milliseconds format.",
@@ -22832,7 +22731,7 @@
           "example": "2019-06-13T19:08:25.455Z"
         },
         "vehicle": {
-          "$ref": "#/definitions/VehicleObjectResponseBody"
+          "$ref": "#/definitions/SafetyEventVehicleObjectResponseBody"
         }
       }
     },
@@ -22843,6 +22742,17 @@
     },
     "SafetyEventVehicle": {
       "$ref": "#/definitions/vehicleTinyResponse"
+    },
+    "SafetyEventVehicleObjectResponseBody": {
+      "description": "A minified vehicle object.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "ID of the vehicle.",
+          "type": "string",
+          "example": "1234"
+        }
+      }
     },
     "SafetyEventsGetSafetyActivityEventFeedBadGatewayErrorResponseBody": {
       "description": "Bad Gateway",
@@ -33649,22 +33559,6 @@
       "maxLength": 255,
       "example": "These are notes about this given vehicle."
     },
-    "VehicleObjectResponseBody": {
-      "description": "A minified vehicle object.",
-      "type": "object",
-      "properties": {
-        "id": {
-          "description": "ID of the vehicle.",
-          "type": "string",
-          "example": "1234"
-        },
-        "name": {
-          "description": "Name of the vehicle.",
-          "type": "string",
-          "example": "Vehicle Name"
-        }
-      }
-    },
     "VehicleOdometerMeters": {
       "description": "A manual override for the vehicle's odometer. You may only override a vehicle's odometer if it cannot be read from on-board diagnostics. When you provide a manual odometer override, Samsara will begin updating a vehicle's odometer using GPS distance traveled since this override was set. See \u003ca href=\"https://kb.samsara.com/hc/en-us/articles/115005273667\" target=\"_blank\"\u003ehere\u003c/a\u003e for more details.",
       "type": "integer",
@@ -37274,24 +37168,6 @@
           "type": "number",
           "format": "double",
           "example": -93.343
-        }
-      }
-    },
-    "locationResponseBody": {
-      "description": "Location object",
-      "type": "object",
-      "properties": {
-        "latitude": {
-          "description": "GPS latitude represented in degrees",
-          "type": "number",
-          "format": "double",
-          "example": 37.456345
-        },
-        "longitude": {
-          "description": "\tGPS longitude represented in degrees",
-          "type": "number",
-          "format": "double",
-          "example": 34.5633749
         }
       }
     },
