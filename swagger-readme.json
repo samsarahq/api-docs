@@ -36060,6 +36060,133 @@
 	   	   	   }
 	   	   },
 	   	   "/fleet/routes/{id}": {
+	   	   	   "delete": {
+	   	   	   	   "description": "Delete a dispatch route and its associated stops.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+	   	   	   	   "operationId": "deleteRoute",
+	   	   	   	   "parameters": [
+	   	   	   	   	   {
+	   	   	   	   	   	   "description": "ID of the route. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `payrollId:ABFS18600`",
+	   	   	   	   	   	   "explode": false,
+	   	   	   	   	   	   "in": "path",
+	   	   	   	   	   	   "name": "id",
+	   	   	   	   	   	   "required": true,
+	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   "type": "string"
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "style": "simple"
+	   	   	   	   	   }
+	   	   	   	   ],
+	   	   	   	   "responses": {
+	   	   	   	   	   "204": {
+	   	   	   	   	   	   "content": {},
+	   	   	   	   	   	   "description": "No Content response."
+	   	   	   	   	   },
+	   	   	   	   	   "401": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesDeleteRouteUnauthorizedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Unauthorized response."
+	   	   	   	   	   },
+	   	   	   	   	   "404": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesDeleteRouteNotFoundErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Found response."
+	   	   	   	   	   },
+	   	   	   	   	   "405": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesDeleteRouteMethodNotAllowedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Method Not Allowed response."
+	   	   	   	   	   },
+	   	   	   	   	   "429": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesDeleteRouteTooManyRequestsErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Too Many Requests response."
+	   	   	   	   	   },
+	   	   	   	   	   "500": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesDeleteRouteInternalServerErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Internal Server Error response."
+	   	   	   	   	   },
+	   	   	   	   	   "501": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesDeleteRouteNotImplementedErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Not Implemented response."
+	   	   	   	   	   },
+	   	   	   	   	   "502": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesDeleteRouteBadGatewayErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Gateway response."
+	   	   	   	   	   },
+	   	   	   	   	   "503": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesDeleteRouteServiceUnavailableErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Service Unavailable response."
+	   	   	   	   	   },
+	   	   	   	   	   "504": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesDeleteRouteGatewayTimeoutErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Gateway Timeout response."
+	   	   	   	   	   },
+	   	   	   	   	   "default": {
+	   	   	   	   	   	   "content": {
+	   	   	   	   	   	   	   "application/json": {
+	   	   	   	   	   	   	   	   "schema": {
+	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesDeleteRouteBadRequestErrorResponseBody"
+	   	   	   	   	   	   	   	   }
+	   	   	   	   	   	   	   }
+	   	   	   	   	   	   },
+	   	   	   	   	   	   "description": "Bad Request response."
+	   	   	   	   	   }
+	   	   	   	   },
+	   	   	   	   "summary": "Delete a route.",
+	   	   	   	   "tags": [
+	   	   	   	   	   "Routes"
+	   	   	   	   ]
+	   	   	   },
 	   	   	   "get": {
 	   	   	   	   "description": "Returns a single route. The legacy version of this endpoint can be found at [samsara.com/api-legacy](https://www.samsara.com/api-legacy#operation/getDispatchRouteById).\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
 	   	   	   	   "operationId": "fetchRoute",
@@ -39702,135 +39829,6 @@
 	   	   	   	   "summary": "Get information about your organization",
 	   	   	   	   "tags": [
 	   	   	   	   	   "Organization Info"
-	   	   	   	   ]
-	   	   	   }
-	   	   },
-	   	   "/preview/fleet/routes/{id}": {
-	   	   	   "delete": {
-	   	   	   	   "description": "Delete a dispatch route and its associated stops.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
-	   	   	   	   "operationId": "deleteRoute",
-	   	   	   	   "parameters": [
-	   	   	   	   	   {
-	   	   	   	   	   	   "description": "ID of the route. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `payrollId:ABFS18600`",
-	   	   	   	   	   	   "explode": false,
-	   	   	   	   	   	   "in": "path",
-	   	   	   	   	   	   "name": "id",
-	   	   	   	   	   	   "required": true,
-	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   "type": "string"
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "style": "simple"
-	   	   	   	   	   }
-	   	   	   	   ],
-	   	   	   	   "responses": {
-	   	   	   	   	   "204": {
-	   	   	   	   	   	   "content": {},
-	   	   	   	   	   	   "description": "No Content response."
-	   	   	   	   	   },
-	   	   	   	   	   "401": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesDeleteRouteUnauthorizedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Unauthorized response."
-	   	   	   	   	   },
-	   	   	   	   	   "404": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesDeleteRouteNotFoundErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Found response."
-	   	   	   	   	   },
-	   	   	   	   	   "405": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesDeleteRouteMethodNotAllowedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Method Not Allowed response."
-	   	   	   	   	   },
-	   	   	   	   	   "429": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesDeleteRouteTooManyRequestsErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Too Many Requests response."
-	   	   	   	   	   },
-	   	   	   	   	   "500": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesDeleteRouteInternalServerErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Internal Server Error response."
-	   	   	   	   	   },
-	   	   	   	   	   "501": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesDeleteRouteNotImplementedErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Not Implemented response."
-	   	   	   	   	   },
-	   	   	   	   	   "502": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesDeleteRouteBadGatewayErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Gateway response."
-	   	   	   	   	   },
-	   	   	   	   	   "503": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesDeleteRouteServiceUnavailableErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Service Unavailable response."
-	   	   	   	   	   },
-	   	   	   	   	   "504": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesDeleteRouteGatewayTimeoutErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Gateway Timeout response."
-	   	   	   	   	   },
-	   	   	   	   	   "default": {
-	   	   	   	   	   	   "content": {
-	   	   	   	   	   	   	   "application/json": {
-	   	   	   	   	   	   	   	   "schema": {
-	   	   	   	   	   	   	   	   	   "$ref": "#/components/schemas/RoutesDeleteRouteBadRequestErrorResponseBody"
-	   	   	   	   	   	   	   	   }
-	   	   	   	   	   	   	   }
-	   	   	   	   	   	   },
-	   	   	   	   	   	   "description": "Bad Request response."
-	   	   	   	   	   }
-	   	   	   	   },
-	   	   	   	   "summary": "[preview] Delete a route.",
-	   	   	   	   "tags": [
-	   	   	   	   	   "Preview APIs"
 	   	   	   	   ]
 	   	   	   }
 	   	   },
