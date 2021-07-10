@@ -1734,6 +1734,196 @@
         }
       ]
     },
+    "/beta/ifta-detail/csv": {
+      "post": {
+        "description": "Create a job to generate csv files of IFTA mileage segments.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Beta APIs"
+        ],
+        "summary": "[beta] Create a job to generate csv files of IFTA mileage segments.",
+        "operationId": "createIftaDetailJob",
+        "parameters": [
+          {
+            "name": "CreateIftaDetailJobRequestBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IFTACreateIftaDetailJobRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created response.",
+            "schema": {
+              "$ref": "#/definitions/IFTACreateIftaDetailJobResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/IFTACreateIftaDetailJobUnauthorizedErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/IFTACreateIftaDetailJobNotFoundErrorResponseBody"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/IFTACreateIftaDetailJobMethodNotAllowedErrorResponseBody"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/IFTACreateIftaDetailJobTooManyRequestsErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/IFTACreateIftaDetailJobInternalServerErrorResponseBody"
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/IFTACreateIftaDetailJobNotImplementedErrorResponseBody"
+            }
+          },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/IFTACreateIftaDetailJobBadGatewayErrorResponseBody"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/IFTACreateIftaDetailJobServiceUnavailableErrorResponseBody"
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/IFTACreateIftaDetailJobGatewayTimeoutErrorResponseBody"
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/IFTACreateIftaDetailJobBadRequestErrorResponseBody"
+            }
+          }
+        }
+      }
+    },
+    "/beta/ifta-detail/csv/{id}": {
+      "get": {
+        "description": "Get information about an existing IFTA detail job.\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "Beta APIs"
+        ],
+        "summary": "[beta] Get information about an existing IFTA detail job.",
+        "operationId": "getIftaDetailJob",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID of the requested job.",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response.",
+            "schema": {
+              "$ref": "#/definitions/IFTAGetIftaDetailJobResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized response.",
+            "schema": {
+              "$ref": "#/definitions/IFTAGetIftaDetailJobUnauthorizedErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found response.",
+            "schema": {
+              "$ref": "#/definitions/IFTAGetIftaDetailJobNotFoundErrorResponseBody"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed response.",
+            "schema": {
+              "$ref": "#/definitions/IFTAGetIftaDetailJobMethodNotAllowedErrorResponseBody"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests response.",
+            "schema": {
+              "$ref": "#/definitions/IFTAGetIftaDetailJobTooManyRequestsErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error response.",
+            "schema": {
+              "$ref": "#/definitions/IFTAGetIftaDetailJobInternalServerErrorResponseBody"
+            }
+          },
+          "501": {
+            "description": "Not Implemented response.",
+            "schema": {
+              "$ref": "#/definitions/IFTAGetIftaDetailJobNotImplementedErrorResponseBody"
+            }
+          },
+          "502": {
+            "description": "Bad Gateway response.",
+            "schema": {
+              "$ref": "#/definitions/IFTAGetIftaDetailJobBadGatewayErrorResponseBody"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable response.",
+            "schema": {
+              "$ref": "#/definitions/IFTAGetIftaDetailJobServiceUnavailableErrorResponseBody"
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout response.",
+            "schema": {
+              "$ref": "#/definitions/IFTAGetIftaDetailJobGatewayTimeoutErrorResponseBody"
+            }
+          },
+          "default": {
+            "description": "Bad Request response.",
+            "schema": {
+              "$ref": "#/definitions/IFTAGetIftaDetailJobBadRequestErrorResponseBody"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "ID of the requested job.",
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
     "/beta/industrial/jobs": {
       "get": {
         "description": "Fetches jobs based on id/uuid or provided filters\n \n\n **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our \u003ca href=\"https://forms.gle/zkD4NCH7HjKb7mm69\" target=\"_blank\"\u003eAPI feedback form\u003c/a\u003e. If you encountered an issue or noticed inaccuracies in the API documentation, please \u003ca href=\"https://www.samsara.com/help\" target=\"_blank\"\u003esubmit a case\u003c/a\u003e to our support team.",
@@ -12512,13 +12702,13 @@
           "description": "Celluar data usage in bytes.",
           "type": "integer",
           "format": "int64",
-          "example": 641234325353800600
+          "example": 5110750766220406000
         },
         "hotspotUsageBytes": {
           "description": "Wifi hotspot data usage in bytes.",
           "type": "integer",
           "format": "int64",
-          "example": 5183997943720215000
+          "example": 8991161326583482000
         }
       }
     },
@@ -14079,7 +14269,7 @@
         "anonymizeDriverNames": {
           "description": "Hide the names of other drivers when viewing the driver leaderboard in the mobile app.",
           "type": "boolean",
-          "example": false
+          "example": true
         }
       }
     },
@@ -14090,7 +14280,7 @@
         "anonymizeDriverNames": {
           "description": "Hide the names of other drivers when viewing the driver leaderboard in the mobile app.",
           "type": "boolean",
-          "example": false
+          "example": true
         }
       }
     },
@@ -14106,7 +14296,7 @@
         "gamification": {
           "description": "Driver gamification feature. Enabling this will turn on the feature for all drivers using the mobile app. Drivers can be configured into peer groups within the Drivers Page. Unconfigured drivers will be grouped on an organization level.",
           "type": "boolean",
-          "example": true
+          "example": false
         },
         "gamificationConfig": {
           "$ref": "#/definitions/DriverAppSettingsGamificationConfigTinyObjectResponseBody"
@@ -14119,7 +14309,7 @@
         "trailerSelection": {
           "description": "Allow drivers to see and select trailers in the Samsara Driver app. ",
           "type": "boolean",
-          "example": false
+          "example": true
         },
         "trailerSelectionConfig": {
           "$ref": "#/definitions/DriverAppSettingsTrailerSelectionConfigTinyObjectResponseBody"
@@ -14139,12 +14329,12 @@
           "description": "Trailer selection limit.",
           "type": "integer",
           "maximum": 8,
-          "example": -1432112288976369200
+          "example": -3714564863465337300
         },
         "orgTrailerSearch": {
           "description": "Allow drivers to search for trailers outside of their selection tag when connected to the internet",
           "type": "boolean",
-          "example": false
+          "example": true
         }
       }
     },
@@ -14161,12 +14351,12 @@
           "description": "Trailer selection limit.",
           "type": "integer",
           "maximum": 8,
-          "example": -2931106431936149000
+          "example": -3123450857459408400
         },
         "orgTrailerSearch": {
           "description": "Allow drivers to search for trailers outside of their selection tag when connected to the internet",
           "type": "boolean",
-          "example": true
+          "example": false
         }
       }
     },
@@ -16235,13 +16425,11 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Accusantium vitae nulla quisquam sint molestias quod."
+            "example": "Modi eos."
           },
           "example": [
-            "Et molestiae laborum dicta.",
-            "Recusandae quia omnis unde odit.",
-            "Labore qui iste dicta placeat deserunt.",
-            "Qui et magni exercitationem id enim."
+            "Accusantium vitae nulla quisquam sint molestias quod.",
+            "Necessitatibus et molestiae laborum dicta nulla recusandae."
           ]
         }
       }
@@ -17429,7 +17617,7 @@
           "items": {
             "type": "number",
             "format": "double",
-            "example": 0.3635325958410958
+            "example": 0.008224439469846422
           },
           "example": [
             867,
@@ -17441,7 +17629,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Ad et repellendus."
+            "example": "Unde odit."
           },
           "example": [
             "HQ",
@@ -17470,7 +17658,7 @@
           "items": {
             "type": "number",
             "format": "double",
-            "example": 0.09008720844465164
+            "example": 0.9649604438391876
           },
           "example": [
             867,
@@ -17482,7 +17670,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Adipisci et velit quis eum amet."
+            "example": "Iusto aspernatur dolorum tenetur nihil temporibus."
           },
           "example": [
             "HQ",
@@ -17511,7 +17699,7 @@
           "items": {
             "type": "number",
             "format": "double",
-            "example": 0.7284731266146857
+            "example": 0.2631837068477902
           },
           "example": [
             867,
@@ -17523,7 +17711,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Omnis dignissimos qui quae."
+            "example": "Animi non."
           },
           "example": [
             "HQ",
@@ -18202,6 +18390,463 @@
         }
       }
     },
+    "IFTACreateIftaDetailJobBadGatewayErrorResponseBody": {
+      "description": "Bad Gateway",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "rpc error: code = Unknown desc = connection refused"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "IFTACreateIftaDetailJobBadRequestErrorResponseBody": {
+      "description": "Bad Request parameters",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid value for parameter."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "IFTACreateIftaDetailJobGatewayTimeoutErrorResponseBody": {
+      "description": "Gateway timeout",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "IFTACreateIftaDetailJobInternalServerErrorResponseBody": {
+      "description": "An internal server error occurred",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Failed to execute GraphQL query."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "IFTACreateIftaDetailJobMethodNotAllowedErrorResponseBody": {
+      "description": "Method not allowed",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "DELETE not allowed on /endpoint."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "IFTACreateIftaDetailJobNotFoundErrorResponseBody": {
+      "description": "Resource not found",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Object not found."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "IFTACreateIftaDetailJobNotImplementedErrorResponseBody": {
+      "description": "Requested endpoint is not yet implemented",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Not implemented."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "IFTACreateIftaDetailJobRequestBody": {
+      "description": "The payload to create a new IftaDetailJob.",
+      "type": "object",
+      "required": [
+        "startHour",
+        "endHour"
+      ],
+      "properties": {
+        "endHour": {
+          "description": " An end time in RFC 3339 format. Hour precision and timezones are supported. Any minutes or seconds will be truncated down to the nearest hour. (Examples: 2019-06-13T19:00:00Z, 2019-06-13T19:00:00.000Z, OR 2015-09-15T14:00:00-04:00).",
+          "type": "string",
+          "example": "2019-06-13T19:00:00Z"
+        },
+        "startHour": {
+          "description": " A start time in RFC 3339 format. Hour precision and timezones are supported. Any minutes or seconds will be truncated down to the nearest hour. (Examples: 2019-06-13T19:00:00Z, 2019-06-13T19:00:00.000Z, OR 2015-09-15T14:00:00-04:00).",
+          "type": "string",
+          "example": "2019-06-13T19:00:00Z"
+        },
+        "vehicleIds": {
+          "description": "A filter on the data based on this comma-separated list of vehicle IDs and external IDs. Example: `vehicleIds: '1234,5678,samsara.vin:1HGBH41JXMN109186'`",
+          "type": "string",
+          "example": "1234,5678,samsara.vin:1HGBH41JXMN109186"
+        },
+        "vehicleParentTagIds": {
+          "description": " A filter on the data based on this comma-separated list of vehicle parent tag IDs. Example: `vehicleParentTagIds: '1234,5678'`",
+          "type": "string",
+          "example": "1234,5678"
+        },
+        "vehicleTagIds": {
+          "description": " A filter on the data based on this comma-separated list of vehicle tag IDs. Example: `vehicleTagIds: '1234,5678'`",
+          "type": "string",
+          "example": "1234,5678"
+        }
+      }
+    },
+    "IFTACreateIftaDetailJobResponseBody": {
+      "type": "object",
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/IftaDetailJobResponseBody"
+        }
+      }
+    },
+    "IFTACreateIftaDetailJobServiceUnavailableErrorResponseBody": {
+      "description": "Service unavailable",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "IFTACreateIftaDetailJobTooManyRequestsErrorResponseBody": {
+      "description": "Too many requests",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Exceeded rate limit."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "IFTACreateIftaDetailJobUnauthorizedErrorResponseBody": {
+      "description": "Unauthorized",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid token."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "IFTAGetIftaDetailJobBadGatewayErrorResponseBody": {
+      "description": "Bad Gateway",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "rpc error: code = Unknown desc = connection refused"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "IFTAGetIftaDetailJobBadRequestErrorResponseBody": {
+      "description": "Bad Request parameters",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid value for parameter."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "IFTAGetIftaDetailJobGatewayTimeoutErrorResponseBody": {
+      "description": "Gateway timeout",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "IFTAGetIftaDetailJobInternalServerErrorResponseBody": {
+      "description": "An internal server error occurred",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Failed to execute GraphQL query."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "IFTAGetIftaDetailJobMethodNotAllowedErrorResponseBody": {
+      "description": "Method not allowed",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "DELETE not allowed on /endpoint."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "IFTAGetIftaDetailJobNotFoundErrorResponseBody": {
+      "description": "Resource not found",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Object not found."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "IFTAGetIftaDetailJobNotImplementedErrorResponseBody": {
+      "description": "Requested endpoint is not yet implemented",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Not implemented."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "IFTAGetIftaDetailJobResponseBody": {
+      "type": "object",
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/IftaDetailJobResponseBody"
+        }
+      }
+    },
+    "IFTAGetIftaDetailJobServiceUnavailableErrorResponseBody": {
+      "description": "Service unavailable",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "context deadline exceeded"
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "IFTAGetIftaDetailJobTooManyRequestsErrorResponseBody": {
+      "description": "Too many requests",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Exceeded rate limit."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
+    "IFTAGetIftaDetailJobUnauthorizedErrorResponseBody": {
+      "description": "Unauthorized",
+      "type": "object",
+      "required": [
+        "message",
+        "requestId"
+      ],
+      "properties": {
+        "message": {
+          "description": "Message of error",
+          "type": "string",
+          "example": "Invalid token."
+        },
+        "requestId": {
+          "description": "The request ID; used when reaching out to support for issues with requests.",
+          "type": "string",
+          "example": "8916e1c1"
+        }
+      }
+    },
     "IFTAGetIftaJurisdictionReportsBadGatewayErrorResponseBody": {
       "description": "Bad Gateway",
       "type": "object",
@@ -18631,6 +19276,138 @@
     "IdleTimeDurationMs": {
       "description": "Time spent idling in milliseconds.",
       "type": "number"
+    },
+    "IftaDetailJobArgsResponseBody": {
+      "description": "The arguments used to create this job.",
+      "type": "object",
+      "required": [
+        "startHour",
+        "endHour",
+        "vehicleIds"
+      ],
+      "properties": {
+        "endHour": {
+          "description": "The `endHour` used to create this job.",
+          "type": "string",
+          "example": "2019-06-13T19:00:00Z"
+        },
+        "startHour": {
+          "description": "The `startHour` used to create this job.",
+          "type": "string",
+          "example": "2019-06-13T19:00:00Z"
+        },
+        "vehicleIds": {
+          "description": "The vehicleIds used to create this job. Determined by the filter list of `vehicleIds`, `vehicleTagIds`, and `vehicleParentTagIds` parameters (if provided).",
+          "type": "array",
+          "items": {
+            "description": "Vehicle ID element of array.",
+            "type": "integer",
+            "format": "int64",
+            "example": 9201981495928149000
+          },
+          "example": [
+            12345678,
+            56789123
+          ]
+        }
+      }
+    },
+    "IftaDetailJobOutputResponseBody": {
+      "description": " The file outputs produced by a successfully completed job.",
+      "type": "object",
+      "required": [
+        "name",
+        "downloadUrl",
+        "downloadUrlExpirationTime",
+        "createdAtTime",
+        "recordCount"
+      ],
+      "properties": {
+        "createdAtTime": {
+          "description": " When this file was created.",
+          "type": "string",
+          "example": "2019-06-13T19:00:00Z"
+        },
+        "downloadUrl": {
+          "description": "A url to download the generated file. This url has an expiration and will no longer be valid after expiration. Requesting this job again will refresh the download url.",
+          "type": "string",
+          "example": "https://s3.download-url.com"
+        },
+        "downloadUrlExpirationTime": {
+          "description": " The expiration time of this file's download url. Requesting this job again by ID will refresh the download urls, if expired.",
+          "type": "string",
+          "example": "2019-06-13T19:00:00Z"
+        },
+        "name": {
+          "description": "The name of this file.",
+          "type": "string",
+          "example": "part-001.csv"
+        },
+        "recordCount": {
+          "description": "The number of records in this file.",
+          "type": "integer",
+          "format": "int64",
+          "example": 6870127085284564000
+        }
+      }
+    },
+    "IftaDetailJobResponseBody": {
+      "description": " A job representing the async generation of IFTA mileage segments. The job should be polled until the state is terminal.",
+      "type": "object",
+      "required": [
+        "jobId",
+        "jobStatus",
+        "requestedAtTime",
+        "args"
+      ],
+      "properties": {
+        "args": {
+          "$ref": "#/definitions/IftaDetailJobArgsResponseBody"
+        },
+        "completedAtTime": {
+          "description": " The time this job completed successfully.",
+          "type": "string",
+          "example": "2019-06-13T19:00:00Z"
+        },
+        "failedAtTime": {
+          "description": " The time this job failed.",
+          "type": "string",
+          "example": "2019-06-13T19:00:00Z"
+        },
+        "files": {
+          "description": " A list of files generated by this job. This field will be omitted if the job did not complete successfully.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IftaDetailJobOutputResponseBody"
+          }
+        },
+        "jobId": {
+          "description": " The ID used to retrieve this job.",
+          "type": "string",
+          "example": "8cabba84-bef4-4951-8cd2-78ce898fd8e6"
+        },
+        "jobStatus": {
+          "description": " The status of this job. `jobStatus` can be one of Requested, Processing, Completed, or Failed.",
+          "type": "string",
+          "enum": [
+            "Requested",
+            "Processing",
+            "Completed",
+            "Failed"
+          ],
+          "example": "Processing"
+        },
+        "requestedAtTime": {
+          "description": " The time this job was requested for creation.",
+          "type": "string",
+          "example": "2019-06-13T19:00:00Z"
+        },
+        "startedAtTime": {
+          "description": " The time this job started processing.",
+          "type": "string",
+          "example": "2019-06-13T19:00:00Z"
+        }
+      }
     },
     "IftaJurisdictionReportDataObjectResponseBody": {
       "description": "Dictionary containing summarized jurisdiction report data.",
@@ -20471,7 +21248,7 @@
           "items": {
             "type": "integer",
             "format": "int64",
-            "example": 286808158607014600
+            "example": 6162976408521046000
           },
           "example": [
             1234567,
@@ -20488,7 +21265,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Earum cum nam voluptatum nihil."
+            "example": "A sequi."
           },
           "example": [
             "8d218e6c-7a16-4f9f-90f7-cc1d93b9e596",
@@ -20700,7 +21477,7 @@
           "items": {
             "type": "integer",
             "format": "int64",
-            "example": 5169127956086038000
+            "example": 7236484444959590000
           },
           "example": [
             1234567,
@@ -20717,7 +21494,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Quisquam distinctio nostrum rerum debitis ut quia."
+            "example": "Modi accusamus est eum eos dolor magni."
           },
           "example": [
             "8d218e6c-7a16-4f9f-90f7-cc1d93b9e596",
@@ -22996,12 +23773,12 @@
         "allowUnregulatedVehiclesEnabled": {
           "description": "[deprecated] Allow Unregulated Vehicles. This setting is deprecated as all organizations can now mark vehicles as unregulated.",
           "type": "boolean",
-          "example": false
+          "example": true
         },
         "canadaHosEnabled": {
           "description": "Enable Canada HOS",
           "type": "boolean",
-          "example": true
+          "example": false
         },
         "carrierName": {
           "description": "Carrier name of the organization",
@@ -23017,12 +23794,12 @@
         "driverAutoDutyEnabled": {
           "description": "Enable Driver Auto-Duty",
           "type": "boolean",
-          "example": false
+          "example": true
         },
         "editCertifiedLogsEnabled": {
           "description": "Drivers Can Edit Certified Log",
           "type": "boolean",
-          "example": false
+          "example": true
         },
         "forceManualLocationForDutyStatusChangesEnabled": {
           "description": "Force Manual Location For Duty Status Changes",
@@ -23042,7 +23819,7 @@
         "persistentDutyStatusEnabled": {
           "description": "Persistent Duty Status",
           "type": "boolean",
-          "example": true
+          "example": false
         }
       }
     },
@@ -23636,7 +24413,7 @@
         "driverAutoDutyEnabled": {
           "description": "Enable Driver Auto-Duty",
           "type": "boolean",
-          "example": false
+          "example": true
         },
         "editCertifiedLogsEnabled": {
           "description": "Drivers Can Edit Certified Log",
@@ -23651,7 +24428,7 @@
         "forceReviewUnassignedHosEnabled": {
           "description": "Force Review of Unassigned HOS",
           "type": "boolean",
-          "example": true
+          "example": false
         },
         "mainOfficeFormattedAddress": {
           "description": "Main Office Address / Principal Place of Businesss Address",
@@ -23661,7 +24438,7 @@
         "persistentDutyStatusEnabled": {
           "description": "Persistent Duty Status",
           "type": "boolean",
-          "example": true
+          "example": false
         }
       }
     },
@@ -23897,12 +24674,12 @@
         "orgVehicleSearch": {
           "description": "Allow drivers to search for vehicles outside of their selection tag when connected to the internet.",
           "type": "boolean",
-          "example": false
+          "example": true
         },
         "trailerSelection": {
           "description": "Allow drivers to see and select trailers in the Samsara Driver app. ",
           "type": "boolean",
-          "example": true
+          "example": false
         },
         "trailerSelectionConfig": {
           "$ref": "#/definitions/DriverAppSettingsTrailerSelectionConfigTinyObjectRequestBody"
@@ -24528,19 +25305,19 @@
           "description": "Heading of the trailer in degrees.",
           "type": "integer",
           "format": "int64",
-          "example": 5898377342654406000
+          "example": 7616433137257868000
         },
         "latitude": {
           "description": "GPS latitude represented in degrees.",
           "type": "number",
           "format": "double",
-          "example": 0.40594329532804035
+          "example": 0.3610852368353792
         },
         "longitude": {
           "description": "GPS longitude represented in degrees.",
           "type": "number",
           "format": "double",
-          "example": 0.9353933786239367
+          "example": 0.571477936526801
         },
         "reverseGeo": {
           "$ref": "#/definitions/ReverseGeoObjectResponseBody"
@@ -24549,7 +25326,7 @@
           "description": "GPS speed of the trailer in miles per hour.",
           "type": "integer",
           "format": "int64",
-          "example": 1928651334225073200
+          "example": 6170855488700557000
         },
         "time": {
           "description": "UTC timestamp in RFC 3339 format.",
@@ -24574,19 +25351,19 @@
           "description": "Heading of the trailer in degrees.",
           "type": "integer",
           "format": "int64",
-          "example": 8645379593613884000
+          "example": 2404766721373075500
         },
         "latitude": {
           "description": "GPS latitude represented in degrees.",
           "type": "number",
           "format": "double",
-          "example": 0.8721548568616473
+          "example": 0.7729798090797008
         },
         "longitude": {
           "description": "GPS longitude represented in degrees.",
           "type": "number",
           "format": "double",
-          "example": 0.7908075233711628
+          "example": 0.5797801623938367
         },
         "reverseGeo": {
           "$ref": "#/definitions/ReverseGeoObjectResponseBody"
@@ -24595,7 +25372,7 @@
           "description": "GPS speed of the trailer in miles per hour.",
           "type": "integer",
           "format": "int64",
-          "example": 1412650536872380700
+          "example": 205805377808340300
         },
         "time": {
           "description": "UTC timestamp in RFC 3339 format.",
@@ -24632,7 +25409,7 @@
           "description": "The severity of the alarm. `1`: Ok to run, `2`: Check as specified, `3`: Take immediate action.",
           "type": "integer",
           "format": "int64",
-          "example": 1623989735203046700
+          "example": 3390341726502964700
         }
       }
     },
@@ -26586,12 +27363,11 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Dolorum ut."
+            "example": "Maxime et qui."
           },
           "example": [
-            "Qui ad et et non.",
-            "Et numquam ut.",
-            "Qui eligendi vel ab ut."
+            "Et non.",
+            "Et numquam ut."
           ]
         },
         "trailerSerialNumber": {
@@ -27492,12 +28268,13 @@
           "type": "array",
           "items": {
             "type": "string",
-            "example": "Expedita facilis qui asperiores repellendus laudantium."
+            "example": "Laudantium minima accusantium consequatur deserunt."
           },
           "example": [
-            "Consequatur deserunt.",
-            "Et dolore.",
-            "Molestiae in fugit dicta amet asperiores magni."
+            "Dolore vitae.",
+            "In fugit dicta amet asperiores magni aperiam.",
+            "Adipisci et velit quis eum amet.",
+            "Illum cumque."
           ]
         },
         "trailerSerialNumber": {
